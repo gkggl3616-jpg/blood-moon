@@ -88,3 +88,5 @@ Bu dosya bu konuşmada tespit edilen hataları, bunların sonucunu ve gerçek du
 - Koşu hızı arttığında test, iniş sonrasında basılı kalan tuşla gidilen mesafeyi de sıçrama sayıyordu. Fizik kalkış/iniş mesafesini ve tepe yatay hızı ayrıca kaydeder.
 - #23 tarihî imza sorunu: kalıcı cache anahtarı kullanılır; bu sürümün sertifikası yayımlanmış v0.1.11 ile ayrıca karşılaştırılır. Eski kayıtları silmek için uygulamayı kaldırmak istenmez.
 - Ayrıntılı güncel durum, eşya tablosu ve açık kalite işleri: docs/guncelleme-v012.md.
+
+- Yayın testinde hızlı SR-01 atışı → kurt dönüşümü → pençe vuruşu akışı takıldı: insan silahının 0,95 sn atış kilidi kurt formuna sızıyordu. Yerel yavaş yazılım renderı bu yarışı görünmez kılmıştı. Form değişiminde atış kilidi sıfırlandı; dönüşüm/kükreme sırasında ateş düğmesi kilitli görünür, test gerçek eylem-hazır durumunu bekler ve sıfır taşınmış atış kilidini doğrular.

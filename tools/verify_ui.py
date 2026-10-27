@@ -184,7 +184,8 @@ with sync_playwright() as p:
     assert abs(page.evaluate('arenaDebug.state().targets[0].hp')-33)<.01
     page.locator('[data-weapon-slot="secondary"]').click()
     assert page.evaluate('arenaDebug.state().weapon')=='pistol-p01'
-    page.locator('#arenaTransform').click();page.wait_for_function('()=>arenaDebug.state().form==="wolf"')
+    page.locator('#arenaTransform').click();page.wait_for_function('()=>arenaDebug.state().form==="wolf"&&arenaDebug.state().canAct')
+    assert page.evaluate('arenaDebug.state().attackCooldown')==0,'human weapon cooldown leaked into wolf form'
     assert abs(page.evaluate('arenaDebug.state().stats.damage')-385)<.001
     page.evaluate('arenaDebug.place(0,-5.8)');page.wait_for_timeout(500);before=page.evaluate('arenaDebug.state().hits');page.locator('#arenaFire').click()
     page.wait_for_function('(n)=>arenaDebug.state().hits>n',arg=before)
