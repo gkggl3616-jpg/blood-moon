@@ -1,37 +1,66 @@
 'use strict';
-let powerFilter='all',selectedPower=null;
-const tattooNames={dragon:'Ejder',phoenix:'Anka',lion:'Aslan',pegasus:'Kanatlı At',spider:'Örümcek',bull:'Boğa',dice:'Kader Zarı',unicorn:'Tekboynuz',reaper:'Ölüm'};
-const tattooTiles={dragon:[0,0],phoenix:[1,0],lion:[2,0],pegasus:[0,1],spider:[1,1],bull:[2,1],dice:[0,2],unicorn:[1,2],reaper:[2,2]};
-const tattooItems=Object.keys(tattooNames).flatMap(motif=>(['dragon','phoenix','reaper'].includes(motif)?['back','left','right']:['back']).map(slot=>({id:motif+'-'+slot,motif,slot,title:tattooNames[motif]+' Dövmesi ('+({back:'Sırt',left:'Sol',right:'Sağ'}[slot])+')'})));
-function tileStyle(motif){const [x,y]=tattooTiles[motif]||[0,0];return 'background-position:'+x*50+'% '+y*50+'%';}
-function isTattooEquipped(item){return window.getArenaConfig(selectedCharacter,'equipped').tattoos[item.slot]===item.motif;}
-function renderPowerDetail(item){
- if(item.type==='claw'){
-  const c=roster.find(c=>c.id===item.character);$('collectionDetail').innerHTML=`<div class="detail-art"><img src="media/characters/${item.character}-wolf.webp" alt="${c.wolf}"></div><div class="detail-copy"><span class="eyebrow">KARAKTERİN İMZA PENÇESİ</span><h2>${item.title}</h2><div class="detail-scroll"><p>${c.claw}</p><p>${c.trail}</p><p>Koşu ve takla tüm kurtlarda ortaktır. Pençe hareketi ve ışık izi gövdeye göre değişir.</p></div><button id="tryClaw" class="primary">TEST ALANINDA DENE →</button></div>`;
-  $('tryClaw').onclick=()=>{$('arenaCharacter').value=item.character;window.openArena?.();};return;
- }
- const equipped=isTattooEquipped(item);
- $('collectionDetail').innerHTML=`<div class="detail-art"><span class="tattoo-thumb" style="${tileStyle(item.motif)}"></span><small>${item.title}</small></div><div class="detail-copy"><span class="eyebrow">AÇIKLAMA / ÖZELLİK</span><h2>${item.title}</h2><div class="detail-scroll"><p>Kurtlar için ${item.slot==='back'?'sırt':item.slot==='left'?'sol kol':'sağ kol'} dövmesi. Kükremede parlar.</p><p>Kozmetik eşya; ek güç veya hasar vermez. Sürekli kullanım.</p><p>${equipped?'Seçili kurt üzerinde kullanılıyor.':'Bu yuvaya kuşanılabilir.'}</p></div><button id="equipTattooItem" class="primary">${equipped?'BIRAK':'KUŞAN'} →</button></div>`;
- $('equipTattooItem').onclick=()=>{if(!collectionState.owned.includes(selectedCharacter)){toast('Bu karakteri önce deneme envanterine ekle.');return;}window.saveInventoryTattoo(selectedCharacter,item.slot,equipped?'none':item.motif);renderCollection();};
-}
-const oldPowerRenderer=window.renderRollShop;
-window.renderRollShop=()=>{
- oldPowerRenderer();
- const oldHTML=$('collectionCards').innerHTML;
- const tattoos=['all','tattoos'].includes(powerFilter)?tattooItems:[];
- const claws=['all','claws'].includes(powerFilter)?[{character:'bilge',title:'Buz Kıran Pençe'},{character:'kultigin',title:'Kızıl Çapraz'},{character:'alparslan',title:'Köz Vuruşu'},{character:'konuralp',title:'Gölge Yırtığı'}]:[];
- const rollHTML=['all','skills'].includes(powerFilter)&&oldHTML.includes('data-buy-roll')?oldHTML:'';
- $('collectionCards').innerHTML=tattoos.map(item=>`<button class="power-item ${selectedPower?.id===item.id?'active':''}" data-tattoo-item="${item.id}"><span class="tattoo-thumb" style="${tileStyle(item.motif)}"></span><strong>${item.title}</strong><small class="${isTattooEquipped(item)?'used':''}">${isTattooEquipped(item)?'Kullanılıyor':'Sürekli Kullanım'}</small></button>`).join('')+claws.map(item=>`<button class="power-item" data-claw-item="${item.character}"><img src="media/characters/${item.character}-wolf.webp" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 24%;opacity:.45"><strong>${item.title}</strong><small>Karaktere özel iz</small></button>`).join('')+rollHTML;
- $('collectionCount').textContent=$('collectionCards').children.length+' EŞYA';
- if(!$('collectionCards').children.length)$('collectionCards').innerHTML='<div class="empty-collection"><h3>BU FİLTREDE EŞYA YOK</h3><p>Mağazaya geçerek takla özelliklerini alabilirsin.</p></div>';
- document.querySelectorAll('[data-tattoo-item]').forEach(b=>b.onclick=()=>{selectedPower=tattooItems.find(x=>x.id===b.dataset.tattooItem);renderCollection();});
- document.querySelectorAll('[data-claw-item]').forEach(b=>b.onclick=()=>{selectedPower={type:'claw',id:b.dataset.clawItem,character:b.dataset.clawItem,title:claws.find(x=>x.character===b.dataset.clawItem).title};renderPowerDetail(selectedPower);});
- // The original shop renderer owns purchase actions; restore them after grid composition.
- document.querySelectorAll('[data-buy-roll]').forEach(button=>button.onclick=()=>{const item=rollItems.find(item=>item.id===button.dataset.buyRoll);if(ownedRollSkills.has(item.id))return;if(collectionState.credits<item.price){toast('Deneme kredisi yetersiz.');return;}collectionState.credits-=item.price;ownedRollSkills.add(item.id);saveCollection();try{localStorage.setItem('rogue-roll-items',JSON.stringify([...ownedRollSkills]));}catch(_){toast('Cihaz kaydı kullanılamıyor.');}renderCollection();toast(item.title+' envantere eklendi. Kurda takmayı unutma.');});
- if(selectedPower)renderPowerDetail(selectedPower);
- else{
-  $('collectionDetail').innerHTML='<div class="detail-art"><span class="tattoo-thumb" style="background-position:0 0"></span></div><div class="detail-copy"><span class="eyebrow">DONANIM BİLGİSİ</span><h2>KURT ÖZELLİKLERİ</h2><div class="detail-scroll"><p>Dövme ve pençeleri incelemek için eşya seç.</p><p>Standart takla: yalnızca takla. Efsanevi: dört ayak koşu ve takla.</p><p>Önce satın al, sonra seçili kurdun tek takla yuvasına tak. Gerçek ödeme yapılmaz.</p></div><button id="goWolfEquip" class="primary">KURDA TAK →</button></div>';$('goWolfEquip').onclick=openWolfEquipment;
- }
+let powerFilter='all',selectedPower=null,selectedItem=null,activeEquipSlot=null,drag=null,suppressClickUntil=0;
+const labels={damage:'Hasar',defense:'Savunma',speed:'Hız',health:'Can'};
+const tattooTiles={dragon:[0,0],phoenix:[1,0],lion:[2,0],pegasus:[0,1],spider:[1,1],bull:[2,1],dice:[0,2],unicorn:[1,2],reaper:[2,2],runes:[1,0]};
+function tileStyle(motif){const [x,y]=tattooTiles[motif]||[0,0];return `background-position:${x*50}% ${y*50}%`;}
+function itemArt(item){if(!item)return '<span class="empty-slot-icon">＋</span>';if(item.type==='tattoo')return `<span class="tattoo-thumb" style="${tileStyle(item.motif)}"></span>`;return `<img src="media/items/${item.id}.svg" alt="">`;}
+function bonusText(item){return Object.entries(item.bonus).map(([k,v])=>`${labels[k]} +%${v}`).join(' · ')||item.description||'Kalıcı donanım';}
+function slotForm(){return previewForm==='human'?'human':'wolf';}
+function applied(id){return Object.values(RogueGear.current(selectedCharacter,slotForm())).includes(id);}
+function feedback(result){toast(result.message);if(result.ok){renderCollection();window.refreshWolf3D?.();}return result.ok;}
+function equipSelected(slot){return selectedItem&&feedback(RogueGear.equip(selectedCharacter,slotForm(),slot,selectedItem.id));}
+function renderEquipment(){
+ RogueGear.syncOwnedCharacters();const c=roster.find(c=>c.id===selectedCharacter)||roster[0];
+ $('loadoutCharacter').innerHTML=roster.filter(c=>collectionState.owned.includes(c.id)||c.id===selectedCharacter).map(x=>`<option value="${x.id}" ${x.id===selectedCharacter?'selected':''}>${x.name}</option>`).join('');
+ $('loadoutTabs').innerHTML=['STANDART','SET 1','SET 2','SET 3'].map((name,n)=>`<button data-preset="${n}" class="${RogueGear.preset(c.id)===n?'active':''}">${name}</button>`).join('');
+ const form=slotForm(),slots=RogueGear.current(c.id,form);
+ $('equipmentSlots').innerHTML=Object.entries(slots).map(([slot,id])=>{const item=RogueGear.items[id];return `<div class="gear-slot ${item?'filled':''} ${activeEquipSlot===slot?'selected':''}" data-equip-slot="${slot}" data-form="${form}"><button class="slot-target" data-slot-target="${slot}" aria-label="${RogueGear.slotNames[slot]}"><span class="slot-label">${RogueGear.slotNames[slot]}</span><span class="slot-art">${itemArt(item)}</span><strong>${item?.name||'Eşyayı buraya bırak'}</strong></button>${item?`<button class="slot-remove" data-remove-slot="${slot}" aria-label="${RogueGear.slotNames[slot]} çıkar">×</button>`:''}</div>`;}).join('');
+ document.querySelectorAll('[data-preset]').forEach(b=>b.onclick=()=>{cancelDrag();RogueGear.setPreset(c.id,Number(b.dataset.preset));renderCollection();});
+ document.querySelectorAll('[data-remove-slot]').forEach(b=>b.onclick=e=>{e.stopPropagation();feedback(RogueGear.equip(c.id,form,b.dataset.removeSlot,null));});
+ document.querySelectorAll('[data-slot-target]').forEach(b=>b.onclick=()=>{const slot=b.dataset.slotTarget;if(selectedItem&&RogueGear.owns(selectedItem.id)){equipSelected(slot);return;}activeEquipSlot=slot;category=form==='wolf'?(slot==='accessory'?'equipment':'skills'):slot==='grenade'?'grenades':slot==='knife'?'knives':'weapons';powerFilter=slot==='back'||slot==='left'||slot==='right'?'tattoos':slot==='skill'?'skills':slot==='claw'?'claws':'all';renderCollection();});
  updateInventoryCharacter();
+}
+function statBreakdown(){const s=RogueGear.stats(selectedCharacter,slotForm());return `<table class="gear-stats-table"><thead><tr><th>Özellik</th><th>Temel</th><th>Karakter</th><th>Dövme</th><th>Sonuç</th></tr></thead><tbody>${Object.keys(labels).map(k=>`<tr><th>${labels[k]}</th><td>${s.base[k]}</td><td>+%${s.character[k]}</td><td>+%${s.tattoo[k]}</td><td>${s.values[k].toFixed(1)}</td></tr>`).join('')}</tbody></table>`;}
+function renderItemDetail(item){
+ selectedItem=item;selectedPower=item;const owned=RogueGear.owns(item.id),equipped=applied(item.id);
+ const weapon=item.weapon?`<p>${item.weapon.damage?'Vuruş: '+item.weapon.damage+' · ':''}${item.weapon.capacity?'Şarjör: '+item.weapon.capacity+' · ':''}Aralık: ${item.weapon.interval} sn</p>`:'';
+ $('collectionDetail').innerHTML=`<div class="detail-art">${itemArt(item)}<small>${item.type==='tattoo'?'DÖVME':'DONANIM'} · ${RogueGear.slotNames[item.slot]}</small></div><div class="detail-copy"><span class="eyebrow">AÇIKLAMA / ÖZELLİK</span><h2>${item.name}</h2><div class="detail-scroll"><p class="item-bonus">${bonusText(item)}</p>${weapon}<p>${item.type==='tattoo'?'Karakter pasifine eklenir. Kükremede ayrıca parlar.':'Kalıcı eşya; kuşanmak sahipliği veya adedi tüketmez.'} ${equipped?'Seçili sette kullanılıyor.':''}</p>${statBreakdown()}</div><div class="item-actions"><button id="itemAction" class="primary">${!owned?item.price+' KREDİ · SATIN AL':equipped?'ÇIKAR':'KUŞAN'}</button>${owned?'<span>Veya uygun sol kutuya sürükle</span>':''}</div></div>`;
+ $('itemAction').onclick=()=>{if(!owned){const r=RogueGear.buy(item.id);if(r.ok&&item.type==='skill')try{localStorage.setItem('rogue-roll-items',JSON.stringify(RogueGear.catalog.filter(i=>i.type==='skill'&&RogueGear.owns(i.id)).map(i=>i.id.replace('skill-',''))));}catch(_){}feedback(r);}else feedback(RogueGear.equip(selectedCharacter,slotForm(),item.slot,equipped?null:item.id));};
+}
+function matches(item){
+ if(activeEquipSlot&&item.slot!==activeEquipSlot)return false;
+ if(category==='skills')return ['tattoo','skill','claw'].includes(item.type)&&(powerFilter==='all'||powerFilter==='tattoos'&&item.type==='tattoo'||powerFilter==='skills'&&item.type==='skill'||powerFilter==='claws'&&item.type==='claw');
+ if(category==='equipment')return item.type==='accessory';if(category==='weapons')return item.type==='weapon';if(category==='knives')return item.type==='knife';if(category==='grenades')return item.type==='grenade';return category==='cosmetics'&&['tattoo','accessory'].includes(item.type);
+}
+function renderItemGrid(){
+ const list=RogueGear.catalog.filter(i=>matches(i)&&(libraryMode==='shop'||RogueGear.owns(i.id))&&(!i.model||i.model===characterModelId(selectedCharacter)));
+ $('collectionCount').textContent=list.length+' EŞYA';
+ $('collectionCards').innerHTML=list.map(i=>`<button class="power-item ${selectedItem?.id===i.id?'active':''} ${RogueGear.owns(i.id)?'owned':''}" data-gear-item="${i.id}" aria-label="${i.name}">${itemArt(i)}<strong>${i.name}</strong><small class="${applied(i.id)?'used':''}">${applied(i.id)?'Kullanılıyor':RogueGear.owns(i.id)?bonusText(i):i.price+' KREDİ'}</small></button>`).join('')||'<div class="empty-collection"><h3>BU FİLTREDE EŞYA YOK</h3><p>Mağazadan eşya alabilir veya Tümü filtresini seçebilirsin.</p></div>';
+ for(const b of document.querySelectorAll('[data-gear-item]'))b.onclick=()=>{if(performance.now()<suppressClickUntil)return;selectedItem=RogueGear.items[b.dataset.gearItem];renderItemGrid();renderItemDetail(selectedItem);};
+ if(selectedItem&&list.some(i=>i.id===selectedItem.id))renderItemDetail(selectedItem);
+ else{$('collectionDetail').innerHTML=`<div class="detail-art"><b class="detail-empty">TEÇHİZAT</b></div><div class="detail-copy"><span class="eyebrow">SET ${RogueGear.preset(selectedCharacter)+1}</span><h2>${slotForm()==='wolf'?'KURT DONANIMI':'İNSAN DONANIMI'}</h2><div class="detail-scroll"><p>Sağdan eşya seç. Sahip olduğun eşyayı uygun sol kutuya sürükleyerek veya Kuşan düğmesiyle kullan.</p>${statBreakdown()}</div></div>`;}
+}
+const characterRenderer=renderCharacter;
+renderCollection=function(){
+ cancelDrag();RogueGear.syncOwnedCharacters();$('collectionTitle').textContent=libraryMode==='shop'?'MAĞAZA':'ENVANTER';$('walletAmount').textContent=collectionState.credits.toLocaleString('tr');$('inventoryMode').classList.toggle('active',libraryMode==='inventory');$('shopMode').classList.toggle('active',libraryMode==='shop');
+ document.querySelectorAll('[data-category]').forEach(b=>b.classList.toggle('active',b.dataset.category===category));$('categoryTitle').textContent=({characters:'KARAKTERLER',wolves:'KURT FORMLARI',skills:'GÜÇ+ / DÖVMELER',weapons:'SİLAHLAR',grenades:'BOMBALAR',knives:'BIÇAKLAR',equipment:'AKSESUARLAR',cosmetics:'ÖZEL EŞYALAR'})[category];
+ renderEquipment();
+ if(['characters','wolves'].includes(category)){
+  const list=roster.filter(c=>libraryMode==='shop'||collectionState.owned.includes(c.id));$('collectionCount').textContent=list.length+' KARAKTER';$('collectionCards').innerHTML=list.map(c=>`<button class="character-card ${selectedCharacter===c.id?'active':''}" data-character="${c.id}"><img class="character-art" src="media/characters/${characterModelId(c.id)}-${previewForm}.webp" alt="${c.name}"><small>${c.role}</small><strong>${previewForm==='wolf'?c.wolf:c.name}</strong><span class="ownership">${collectionState.equipped===c.id?'SEÇİLİ':collectionState.owned.includes(c.id)?'ENVANTERDE':c.price+' KREDİ'}</span></button>`).join('');for(const b of document.querySelectorAll('[data-character]'))b.onclick=()=>{selectedCharacter=b.dataset.character;selectedItem=null;renderCollection();};characterRenderer();
+ }else renderItemGrid();
 };
-for(const button of document.querySelectorAll('[data-power-filter]'))button.onclick=()=>{powerFilter=button.dataset.powerFilter;selectedPower=null;category='skills';document.querySelectorAll('[data-power-filter]').forEach(b=>b.classList.toggle('active',b===button));renderCollection();};
+updateInventoryCharacter=function(){const c=roster.find(c=>c.id===selectedCharacter)||roster[0];$('inventoryCharacterName').textContent=previewForm==='human'?c.name:c.wolf;$('previewHuman').classList.toggle('active',previewForm==='human');$('previewWolf').classList.toggle('active',previewForm==='wolf');$('inventoryElement').textContent=previewForm==='wolf'?'KURT DONANIMI':'İNSAN DONANIMI';const s=RogueGear.stats(c.id,slotForm()).values;$('inventoryStats').innerHTML=Object.entries(labels).map(([k,n])=>`<div><span>${n}</span><strong>${s[k].toFixed(0)}</strong></div>`).join('');window.previewCharacter3D?.(c.id,previewForm);};
+$('previewHuman').onclick=()=>{previewForm='human';activeEquipSlot=null;selectedItem=null;if(['skills','equipment'].includes(category))category='weapons';renderCollection();};$('previewWolf').onclick=()=>{previewForm='wolf';activeEquipSlot=null;selectedItem=null;if(['weapons','grenades','knives'].includes(category))category='skills';renderCollection();};
+$('loadoutCharacter').onchange=e=>{selectedCharacter=e.target.value;selectedItem=null;activeEquipSlot=null;renderCollection();};
+$('previewExpand').onclick=()=>{document.querySelector('.inventory-shell').classList.toggle('model-expanded');requestAnimationFrame(()=>window.fitWolfPreview?.());};
+for(const b of document.querySelectorAll('[data-category]'))b.onclick=()=>{category=b.dataset.category;activeEquipSlot=null;selectedItem=null;powerFilter='all';if(['weapons','grenades','knives'].includes(category))previewForm='human';if(['wolves','skills','equipment'].includes(category))previewForm='wolf';renderCollection();};
+for(const b of document.querySelectorAll('[data-power-filter]'))b.onclick=()=>{powerFilter=b.dataset.powerFilter;activeEquipSlot=null;selectedItem=null;category='skills';previewForm='wolf';document.querySelectorAll('[data-power-filter]').forEach(x=>x.classList.toggle('active',x===b));renderCollection();};
+function cancelDrag(){if(!drag)return;clearTimeout(drag.timer);drag.ghost?.remove();document.querySelectorAll('.drop-valid,.drop-invalid,.drop-hover').forEach(x=>x.classList.remove('drop-valid','drop-invalid','drop-hover'));drag=null;}
+function startDrag(){if(!drag||drag.active)return;drag.active=true;suppressClickUntil=performance.now()+500;const ghost=document.createElement('div');ghost.className='gear-drag-ghost';ghost.innerHTML=itemArt(drag.item)+`<span>${drag.item.name}</span>`;document.body.append(ghost);drag.ghost=ghost;for(const slot of document.querySelectorAll('[data-equip-slot]'))slot.classList.add(RogueGear.compatible(drag.item,slot.dataset.equipSlot,slot.dataset.form,selectedCharacter)?'drop-valid':'drop-invalid');positionGhost();}
+function positionGhost(){if(drag?.ghost){drag.ghost.style.left=drag.x+12+'px';drag.ghost.style.top=drag.y-24+'px';}}
+$('collectionCards').addEventListener('pointerdown',e=>{const card=e.target.closest('[data-gear-item]');if(!card||!RogueGear.owns(card.dataset.gearItem)||e.button>0)return;cancelDrag();drag={pointer:e.pointerId,item:RogueGear.items[card.dataset.gearItem],x:e.clientX,y:e.clientY,startX:e.clientX,startY:e.clientY,touch:e.pointerType==='touch',active:false,card};if(drag.touch)drag.timer=setTimeout(startDrag,180);});
+window.addEventListener('pointermove',e=>{if(!drag||e.pointerId!==drag.pointer)return;drag.x=e.clientX;drag.y=e.clientY;const dx=e.clientX-drag.startX,dy=e.clientY-drag.startY;if(!drag.active&&Math.hypot(dx,dy)>7){if(drag.touch&&Math.abs(dy)>Math.abs(dx)){cancelDrag();return;}startDrag();}if(!drag?.active)return;e.preventDefault();positionGhost();document.querySelectorAll('.drop-hover').forEach(s=>s.classList.remove('drop-hover'));document.elementFromPoint(e.clientX,e.clientY)?.closest('[data-equip-slot]')?.classList.add('drop-hover');},{passive:false});
+window.addEventListener('pointerup',e=>{if(!drag||e.pointerId!==drag.pointer)return;const d=drag,slot=document.elementFromPoint(e.clientX,e.clientY)?.closest('[data-equip-slot]');if(d.active){suppressClickUntil=performance.now()+450;const result=slot?RogueGear.equip(selectedCharacter,slot.dataset.form,slot.dataset.equipSlot,d.item.id):{ok:false,message:'Kuşanma iptal edildi.'};cancelDrag();feedback(result);}else cancelDrag();});
+window.addEventListener('pointerout',e=>{if(!e.relatedTarget)cancelDrag();});window.addEventListener('pointercancel',cancelDrag);window.addEventListener('blur',cancelDrag);document.addEventListener('visibilitychange',()=>{if(document.hidden)cancelDrag();});
+window.gearDragInfo=()=>({active:!!drag?.active,item:drag?.item.id||null});
+window.addEventListener('rogue-gear-changed',()=>{window.refreshWolf3D?.();});

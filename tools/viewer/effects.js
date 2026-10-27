@@ -18,7 +18,7 @@ export class WolfEffects{
  burst(pos,color=0xb14dff){this.spawn(pos,color,30,true);}
  claw(position,yaw){this.trailLife=.3;this.trailOrigin=position.clone();this.trailOrigin.y+=1.25;this.trailYaw=yaw;}
  update(dt,roaring,visible=true){
-  this.elapsed+=dt;this.particleMat.uniforms.uTime.value=this.elapsed;const profile=identity[this.key]||identity.kultigin;
+  this.elapsed+=dt;this.particleMat.uniforms.uTime.value=this.elapsed;const chosen=this.actor?.userData.clawProfile;const profile=chosen==='standard'?{color:0xb7d9e6,claws:3,tilt:-.3}:identity[chosen]||identity[this.key]||identity.kultigin;
   if(this.actor&&visible){this.actor.updateMatrixWorld(true);if(roaring)for(const bone of this.handles){bone.getWorldPosition(tmp);if(Math.random()<Math.min(1,dt*38))this.spawn(tmp,0xa849ff,2);}}
   this.ice.visible=visible&&this.key==='bilge'&&!this.hasBuiltInIce&&this.elbows.length===2;
   if(this.ice.visible){for(let side=0;side<2;side++){const bone=this.elbows[side];bone.getWorldPosition(tmp);for(let j=0;j<4;j++){const m=this.ice.children[side*4+j];m.position.copy(tmp);m.position.y-=j*.075;m.position.x+=(side?-.09:.09)*(1+j*.1);m.rotation.set(side?.4:-.4,0,side?-.65:.65);m.scale.setScalar(.8+j*.08);}}}

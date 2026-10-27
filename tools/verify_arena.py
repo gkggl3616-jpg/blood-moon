@@ -45,7 +45,7 @@ with sync_playwright() as p:
  page.locator('#arenaRoll').click()
  page.wait_for_function('(n)=>arenaDebug.state().hits===n+1',arg=hit_count,timeout=15000)
  page.wait_for_function('()=>arenaDebug.state().rollTime===0',timeout=15000)
- assert abs(state()['targets'][0]['hp']-(hp-expected))<.02,'wrong roll damage or repeated damage'
+ assert abs(state()['targets'][0]['hp']-max(0,hp-expected))<.02,'wrong roll damage or repeated damage'
  assert state()['hits']==hit_count+1 and state()['rollHitTargets']==[0]
  assert -7.85<state()['position'][2]<-6.9,'roll is not compact'
  # A straight roll into cover must stop at its near side; no distant dummy takes damage.
@@ -59,15 +59,20 @@ with sync_playwright() as p:
  rect=page.locator('#moveForward').bounding_box();page.mouse.move(rect['x']+rect['width']/2,rect['y']+rect['height']/2);page.mouse.down()
  page.wait_for_function('()=>arenaDebug.state().motion==="WolfRunQuad"',timeout=10000);page.mouse.up()
  assert state()['input']=={'x':0,'y':0}
+ # Real displacement/time, independent of the animation clip's playback rate.
+ page.evaluate('arenaDebug.place(0,25)');page.keyboard.down('KeyW');page.wait_for_function('()=>arenaDebug.state().motion==="WolfRunQuad"')
+ measure_start=state();page.wait_for_function('(t)=>arenaDebug.state().time>t+.8',arg=measure_start['time']);measure_end=state();page.keyboard.up('KeyW')
+ distance=measure_start['position'][2]-measure_end['position'][2];measured=distance/(measure_end['simulationTime']-measure_start['simulationTime']);wall_measured=distance/(measure_end['time']-measure_start['time']);assert abs(measured-8.4)<.01 and 8.0<wall_measured<8.8,(measured,wall_measured)
+ (ROOT/'dist/run-speed.json').write_text(json.dumps({'measured_mps':measured,'wall_time_mps':wall_measured,'baseline_mps':8,'tattoo_speed_percent':5}))
  # A running jump keeps the run state and carries one horizontal speed, not two added speeds.
  page.evaluate('arenaDebug.place(0,15)');page.keyboard.down('KeyW')
  page.wait_for_function('()=>arenaDebug.state().motion==="WolfRunQuad"',timeout=10000)
  jump_start=state()['position'];page.locator('#arenaJump').click()
  page.wait_for_function('()=>arenaDebug.state().position[1]>.3&&arenaDebug.state().motion==="WolfJump"',timeout=10000)
  assert state()['run']
- assert (state()['velocity'][0]**2+state()['velocity'][2]**2)**.5<5.8,'jump stacked two speeds'
+ assert (state()['velocity'][0]**2+state()['velocity'][2]**2)**.5<8.55,'jump stacked two speeds'
  page.wait_for_function('()=>arenaDebug.state().grounded',timeout=15000)
- assert .7<jump_start[2]-state()['position'][2]<8.2,'running jump has stacked impulse'
+ assert .7<state()['jumpDistance']<8.2 and state()['jumpPeakSpeed']<8.55,'running jump has stacked impulse'
  page.wait_for_function('()=>arenaDebug.state().motion==="WolfRunQuad"',timeout=10000)
  # Rolling directly from running is allowed; it keeps the selected run mode but only travels ~2m.
  roll_start=state()['position'];page.locator('#arenaRoll').click();page.keyboard.up('KeyW')
@@ -86,7 +91,7 @@ with sync_playwright() as p:
  page.wait_for_function('()=>arenaDebug.state().motion==="WolfRunQuad"',timeout=10000)
  page.locator('#arenaRoarButton').click();roar_start=state()['position']
  page.wait_for_function('()=>arenaDebug.state().effects.particles>0',timeout=10000)
- assert 17<state()['roarTime']<=20 and max(state()['stats'].values())<=180.001
+ assert 17<state()['roarTime']<=20 and abs(state()['stats']['damage']-235.75)<.001
  assert not page.evaluate('arenaDebug.action("roll")'),'roar pose was interrupted'
  page.wait_for_function('()=>arenaDebug.state().roarPoseTime<.45&&arenaDebug.state().roarPoseTime>0',timeout=10000)
  assert sum((a-b)**2 for a,b in zip(state()['position'],roar_start))<.0001,'roar did not stop held movement'
@@ -131,4 +136,4 @@ with sync_playwright() as p:
  hd.close()
  assert not errors,errors
  browser.close()
- print('PASS: FPS fire/reload, cover collision, human/wolf transition, normal/legendary gates, double-tap direction run, one-hit swept roll damage and cover blocking, consistent vertical drag in both forms, run/jump/roll transitions, stopped roar, native high-DPI render and saved quality/sensitivity, forward jump, melee and VFX, roar cap/expiry, soft character shadow, bounded cache and one WebGL context.')
+ print('PASS: FPS fire/reload, cover collision, human/wolf transition, normal/legendary gates, double-tap direction run, one-hit swept roll damage and cover blocking, consistent vertical drag in both forms, run/jump/roll transitions, stopped roar, native high-DPI render and saved quality/sensitivity, forward jump, melee and VFX, independent tattoo/roar bonuses and expiry, soft character shadow, bounded cache and one WebGL context.')

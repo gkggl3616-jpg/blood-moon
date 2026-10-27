@@ -1,6 +1,6 @@
 {
   "source": "Approved Bilge image-to-3D pair and existing Meshy/Blender wolf variants",
-  "static_source_dir": "art/3d/source/mobile-v019",
+  "static_source_dir": "art/3d/source/mobile-v012",
   "variants": [
     {
       "id": "bilge",
@@ -10,9 +10,9 @@
       "has_tail": false,
       "file": "bilge.glb",
       "source_faces": 3751650,
-      "triangles": 13773,
+      "triangles": 14457,
       "body_triangles": 11999,
-      "objects": 4,
+      "objects": 9,
       "rest_joints": {
         "shoulderL": [
           0.19144155085086823,
@@ -55,7 +55,8 @@
           0.375
         ]
       },
-      "bytes": 13682260
+      "bytes": 13399668,
+      "refinement": "v012 approved shape preserved; arm rest fidelity and internal articulated mouth"
     },
     {
       "id": "kultigin",
@@ -68,7 +69,7 @@
       "body_triangles": 8200,
       "objects": 8,
       "rest_joints": {},
-      "bytes": 10631432,
+      "bytes": 10630920,
       "shape_profile": {
         "name": "Kara Tigin",
         "height": 2.08,
@@ -102,7 +103,7 @@
       "body_triangles": 8200,
       "objects": 8,
       "rest_joints": {},
-      "bytes": 10631160,
+      "bytes": 10630600,
       "shape_profile": {
         "name": "Boz Arslan",
         "height": 2.4,
@@ -136,7 +137,7 @@
       "body_triangles": 8200,
       "objects": 8,
       "rest_joints": {},
-      "bytes": 10636364,
+      "bytes": 10635848,
       "shape_profile": {
         "name": "Uc Avcisi",
         "height": 2.25,
@@ -212,13 +213,14 @@
           0.52
         ]
       },
-      "bytes": 9875504
+      "bytes": 9521564
     }
   ],
   "rigged": true,
   "tattoo_method": "one skinned surface per slot, shared atlas with runtime UV selection",
   "scale_unit": "meters",
   "new_meshy_credits": 60,
-  "rig_status": "Initial 22-bone preview rig; manual weight polish required",
-  "animation_report": "animation-report.json"
+  "rig_status": "23-bone length-constrained rig; Bilge jaw and oral geometry, source topology limitations documented",
+  "animation_report": "animation-report.json",
+  "refinement_new_credits": 0
 }

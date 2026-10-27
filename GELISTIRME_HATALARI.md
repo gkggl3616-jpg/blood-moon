@@ -78,3 +78,13 @@ Bu dosya bu konuşmada tespit edilen hataları, bunların sonucunu ve gerçek du
 48. **Taklada 180 derece yakınındaki quaternion işaretleri, Blender ara değerlemesinde gövdeyi bir kare yukarı fırlatıyordu.** Ardışık quaternion yarımküreleri eşitlendi. GLB klipleri 0.033 saniye yerine sıfırda başlatıldı; gerçek klip süresi ve döngü uçları doğrulanır.
 49. **Takla çok uzağa gidiyordu; koşu sıçramasına ikinci yatay hız ekleniyordu.** Takla 0.8 sn / yaklaşık 2m oldu, hasarı korundu. Takla zamanı sabit fizik adımında ilerler; mesafe render FPS'ine bağlı hesaplanmaz. Koşu sıçraması tek yatay hızı taşır, havada takla geçişi ve koşu moduna dönüş vardır. Kükremede yatay hız tamamen sıfırlanır.
 50. **Yeni ayar alanları eklenince test eski iki alanlı kayıt şemasını bekliyordu.** Beklenti hassasiyet ve görüntü tercihini kapsayacak şekilde güncellendi; eski ses/volume kayıtları varsayılanlarla okunur. Hassasiyet ekran genişliğine göre normalize ve kalıcıdır.
+
+## v0.1.12 — güncel düzeltme
+
+- Genel 180 tavanı ve kozmetik dövme kararı son kapsamla geçersiz; RogueGear temel/pasif/dövme/aktif katmanlarını ayrı hesaplar. Gerçek hasar, can, hız ve savunma bu hesabı kullanır.
+- Kaynak modeli iyileştirmeye çalışırken beyaz kürkü düz/koyu bir gövdeyle değiştirdim. Kullanıcı 11513–11517 SS ile bunu reddetti. Deneme tamamen geri alındı; özgün gövde/UV korunur.
+- Genel bekleme dirsek hedefleri kaynağın neredeyse düz A-poz kollarını dışa büküyordu. Kaynak omuz/dirsek/bilek noktaları ve uzunlukları beklemede korunur; kaynak–teslim geometri farkı otomatik ölçülür (yaklaşık 2 mm nefes hareketi).
+- Eski teçhizat ekranının kaydı yeni gerçek donanıma bağlı değildi. Teçhizat menüsü artık gerçek sol yuva/sağ ızgara ekranını açar.
+- Koşu hızı arttığında test, iniş sonrasında basılı kalan tuşla gidilen mesafeyi de sıçrama sayıyordu. Fizik kalkış/iniş mesafesini ve tepe yatay hızı ayrıca kaydeder.
+- #23 tarihî imza sorunu: kalıcı cache anahtarı kullanılır; bu sürümün sertifikası yayımlanmış v0.1.11 ile ayrıca karşılaştırılır. Eski kayıtları silmek için uygulamayı kaldırmak istenmez.
+- Ayrıntılı güncel durum, eşya tablosu ve açık kalite işleri: docs/guncelleme-v012.md.

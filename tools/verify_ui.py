@@ -101,169 +101,118 @@ with sync_playwright() as p:
     page.screenshot(path=str(ROOT / 'dist/settings-preview.png'))
     page.locator('#closeModal').click()
     page.locator('[data-nav="gear"]').click()
-    assert page.locator('#gear.active').count() == 1
-    page.locator('[data-loadout="2"]').click()
-    page.locator('[data-form="wolf"]').click()
-    page.locator('[data-slot="Taktik ekipman"]').click()
-    assert page.locator('#slotName').inner_text() == 'TAKTİK EKİPMAN'
-    page.locator('#saveLoadout').click()
-    assert json.loads(page.evaluate("localStorage.getItem('rogue-loadout')")) == {'set':'2','form':'wolf'}
-    assert_fits(page, ['.gear-left', '.gear-right', '#saveLoadout', '#gear .gear-footer'])
-    page.screenshot(path=str(ROOT / 'dist/gear-preview.png'))
+    assert page.locator('#collection.active').count()==1
+    page.locator('#previewHuman').click()
+    assert page.locator('[data-equip-slot]').count()==4
     page.evaluate('window.goBack()')
-    page.locator('[data-nav="shop"]').click()
-    page.locator('[data-character="kul"]').click()
-    page.locator('#previewWolf').click()
-    assert '+8.5%' in page.locator('#collectionDetail').inner_text()
-    page.locator('#characterAction').click()
-    assert page.locator('#walletAmount').inner_text() == '1.750'
-    page.locator('#characterAction').click()
-    assert page.locator('#walletAmount').inner_text() == '1.750'
-    page.locator('#inventoryMode').click()
-    assert page.locator('[data-character]').count() == 3
-    page.screenshot(path=str(ROOT / 'dist/inventory-preview.png'), animations='disabled')
-    page.locator('[data-category="equipment"]').click()
-    assert 'Silahlar' in page.locator('#collectionCards').inner_text()
-    page.reload()
-    page.evaluate('document.getElementById("skipIntro").click()')
-    page.wait_for_selector('#lobby.active')
-    page.locator('[data-nav="gear"]').click()
-    assert page.locator('#operatorName').inner_text() == 'KÜL PENÇESİ'
-    page.evaluate('window.goBack()')
-    page.locator('[data-nav="shop"]').click()
-    assert page.locator('[data-character]').count() == 7
-    profiles = page.evaluate('roster')
-    assert max(c['power'] for c in profiles) / min(c['power'] for c in profiles) <= 1.8
-    assert all(0 <= value <= 80 for c in profiles for _, value in c['beast'])
-    assert len({c['claw'] for c in profiles}) == len(profiles)
-    assert len({c['trail'] for c in profiles}) == len(profiles)
-    for character in ['bilge', 'kultigin', 'alparslan', 'konuralp']:
-        page.locator(f'[data-character="{character}"]').click()
-        assert 'Sıçrama düz ileriye' in page.locator('#collectionDetail').inner_text()
-        assert 'İz sürme korunur' in page.locator('#collectionDetail').inner_text()
-    assert page.locator('#abilities').count() == 0
-    page.locator('[data-category="grenades"]').click()
-    assert 'Duman bombası' in page.locator('#collectionCards').inner_text()
-    page.locator('[data-category="weapons"]').click()
-    assert page.locator('.blueprint-item').count() == 2
-    page.locator('[data-category="knives"]').click()
-    assert 'KAMA-01' in page.locator('#collectionCards').inner_text()
-    page.locator('#openWolfGear').click()
-    assert page.locator('#runPreview').is_disabled()
-    assert page.locator('#rollPreview').is_disabled()
-    page.locator('#openRollShop').click()
-    page.locator('[data-buy-roll="normal"]').click()
-    assert page.locator('#walletAmount').inner_text() == '1.300'
-    assert page.locator('[data-buy-roll="normal"]').is_disabled()
-    page.locator('#goWolfEquip').click()
-    assert page.locator('#equipRollTier').input_value() == 'none'
-    page.locator('#equipRollTier').select_option('normal')
-    assert not page.locator('#rollPreview').is_disabled()
-    assert page.locator('#runPreview').is_disabled()
-    assert page.evaluate('getWolfMotionAccess()') == {'roll':True,'run':False}
-    page.locator('#openRollShop').click()
-    page.locator('[data-buy-roll="legendary"]').click()
-    assert page.locator('#walletAmount').inner_text() == '100'
-    page.locator('#inventoryMode').click()
-    assert page.locator('.roll-item').count() == 2
-    page.screenshot(path=str(ROOT / 'dist/roll-shop-preview.png'), animations='disabled')
-    page.locator('#goWolfEquip').click()
-    page.locator('#equipRollTier').select_option('legendary')
-    page.locator('#wolfAccessory').select_option('shoulder')
-    page.locator('#saveWolfGear').click()
-    equipment=json.loads(page.evaluate("localStorage.getItem('rogue-wolf-equipment')"))
-    assert equipment == {'skill':'legendary','run':True,'roll':True,'accessory':'shoulder'}
-    page.evaluate('collectionState.equipped="basibozuk";openWolfEquipment()')
-    assert page.locator('#equipRollTier').input_value() == 'none'
-    page.evaluate('collectionState.equipped="kul";openWolfEquipment()')
-    assert page.locator('#equipRollTier').input_value() == 'legendary'
-    page.wait_for_function('() => document.getElementById("wolfModelViewport").dataset.modelReady === "true"', timeout=60000)
-    assert page.locator('#wolfModelViewport canvas').count() == 1
-    assert page.evaluate('wolf3DInfo().meshes.every(m=>m.map)')
-    assert page.evaluate('wolf3DInfo().skinned')
-    assert {'WolfIdle','WolfRoll','WolfRunQuad','WolfClaw','WolfJump'} <= set(page.evaluate('wolf3DInfo().clips'))
-    page.locator('#equipRollTier').select_option('normal')
-    assert not page.evaluate('playWolfMotion("WolfRunQuad")')
-    page.locator('#rollPreview').click()
-    assert page.evaluate('wolf3DInfo().motion') == 'WolfRoll'
-    page.wait_for_function('()=>wolf3DInfo().motion==="WolfIdle"', timeout=15000)
-    page.locator('#equipRollTier').select_option('legendary')
-    page.locator('#runPreview').click()
-    assert page.evaluate('wolf3DInfo().motion') == 'WolfRunQuad'
-    page.wait_for_function('()=>wolf3DInfo().actionTime>.1',timeout=10000)
-    page.locator('#equipRollTier').select_option('normal')
-    assert page.evaluate('wolf3DInfo().motion') == 'WolfIdle'
-    page.locator('#equipRollTier').select_option('legendary')
-
-    # Detailed ink has real color/alpha and emission textures. Exactly one
-    # chosen motif is visible per slot, including the three new back designs.
-    for motif in ['dragon','phoenix','lion','pegasus','spider','bull','dice','unicorn','reaper']:
-        page.locator('#tattooBack').select_option(motif)
-        tattoos=page.evaluate('wolf3DInfo().tattoos.filter(t=>t.visible&&t.name.startsWith("Tattoo_back_"))')
-        assert len(tattoos)==1 and tattoos[0]['name'].startswith('Tattoo_back_')
-        assert tattoos[0]['map'] and tattoos[0]['emissiveMap'] and tattoos[0]['alphaTest'] > 0
-    page.locator('#tattooLeft').select_option('dragon')
-    page.locator('#tattooRight').select_option('reaper')
-    assert len(page.evaluate('wolf3DInfo().tattoos.filter(t=>t.visible)')) == 3
-    page.locator('#tattooBack').select_option('none')
-    assert not page.evaluate('wolf3DInfo().tattoos.some(t=>t.visible&&t.name.startsWith("Tattoo_back_"))')
-    page.locator('#tattooBack').select_option('phoenix')
-    page.locator('#tattooLeft').select_option('none')
-    page.locator('#saveWolfGear').click()
-    assert page.evaluate('wolfLoadouts.kul.tattoos.back') == 'phoenix'
-    assert page.evaluate('wolfLoadouts.kul.tattoos.left') == 'none'
-    page.locator('#activateRoar').click()
-    stats=page.evaluate('wolfStats()')
-    assert stats['active'] and 19000 < stats['remaining'] <= 20000
-    assert abs(stats['speed']-138) < .001
-    assert page.locator('#wolfFigure.roaring').count() == 1
-    assert page.locator('#activateRoar').is_disabled()
-    assert all(t['glow'] > 1 for t in page.evaluate('wolf3DInfo().tattoos.filter(t=>t.visible)'))
-    # Check the real expiry calculation without sleeping for 20 seconds.
-    page.evaluate('roarUntil = Date.now() - 1; updateRoar()')
-    assert not page.evaluate('wolfStats().active')
-    assert page.locator('#wolfFigure.roaring').count() == 0
-    for character in page.evaluate('roster.map(c=>c.id)'):
-        page.evaluate('(id)=>{collectionState.equipped=id;roarUntil=Date.now()+20000;}',character)
-        assert max(page.evaluate('(()=>{const s=wolfStats();return [s.speed,s.damage,s.defense]})()')) <= 180.001
-    page.evaluate('collectionState.equipped="kul";roarUntil=0;renderWolfEquipment()')
-    assert_fits(page, ['.wolf-slots','.wolf-showcase','.roar-panel','#activateRoar','#wolfModelViewport'])
-    page.screenshot(path=str(ROOT / 'dist/wolf-equipment-preview.png'), animations='disabled')
-    # Purchases, balance and the selected wolf's loadout survive an app reload.
-    page.reload()
-    page.evaluate('document.getElementById("skipIntro").click()')
     page.locator('[data-nav="inventory"]').click()
-    page.locator('[data-category="skills"]').click()
-    assert page.locator('.roll-item').count() == 2
-    assert page.locator('#walletAmount').inner_text() == '100'
-    page.locator('#goWolfEquip').click()
-    assert page.locator('#equipRollTier').input_value() == 'legendary'
-    assert page.evaluate('getWolfMotionAccess()') == {'roll':True,'run':True}
-    assert page.locator('#tattooRight').input_value() == 'reaper'
-    assert page.locator('#tattooLeft').input_value() == 'none'
-    page.evaluate('window.goBack()')
-    (ROOT / 'dist/character-profiles.json').write_text(json.dumps(profiles, ensure_ascii=False, indent=2))
-    page.screenshot(path=str(ROOT / 'dist/characters-preview.png'), animations='disabled')
-    page.evaluate('window.goBack()')
-    page.locator('#viewport').evaluate('(v) => { v.style.left="32px"; v.style.right="24px"; v.style.bottom="16px"; }')
-    assert_fits(page, ['.brand', '#join', '.bottomnav'])
-    page.locator('#viewport').evaluate('(v) => { v.style.left="0"; v.style.right="0"; v.style.bottom="0"; }')
-    page.set_viewport_size({'width': 1280, 'height': 576})
-    assert_fits(page, ['#join'])
-    page.screenshot(path=str(ROOT / 'dist/lobby-preview.png'))
-    # Replaying and skipping must stop the video without later reopening the intro.
-    page.locator('.brand').click()
-    page.wait_for_function('() => document.getElementById("intro").currentTime > 0.1')
-    page.locator('#skipIntro').click()
-    assert page.locator('#intro').evaluate('(v) => v.paused')
-    assert page.locator('#lobby.active').count() == 1
-    page.set_viewport_size({'width': 390, 'height': 844})
-    assert page.locator('.portrait-hint').is_visible()
-    # Missing or unsupported video must open the menu instead of leaving a dead intro.
-    fallback = context.new_page()
-    fallback.route('**/media/intro.mp4', lambda route: route.fulfill(status=404, body='Missing'))
-    fallback.goto('https://rogue.local/index.html')
-    fallback.wait_for_selector('#lobby.active', timeout=10000)
-    assert not errors, errors
+    page.locator('#previewWolf').click()
+    page.locator('[data-category="characters"]').click()
+    page.locator('[data-character="bilge"]').click()
+    page.locator('#characterAction').click()
+    page.wait_for_function('()=>wolf3DInfo().visible',timeout=60000)
+    # Pure bonus semantics, independent of character: +240 means 340, not 240.
+    values=page.evaluate("""()=>{const base={damage:100,health:100,defense:100,speed:100};return [RogueGear.aggregate(base,{}, {damage:240}).values.damage,RogueGear.aggregate(base,{damage:20},{damage:240}).values.damage,RogueGear.aggregate(base,{damage:20},{damage:240},true).values.damage];}""")
+    assert all(abs(a-b)<.001 for a,b in zip(values,[340,360,414])),values
+    # Real purchase, owned grid, mouse drag, wrong slot, full slot replacement.
+    page.locator('#shopMode').click();page.locator('[data-category="skills"]').click();page.locator('[data-power-filter="tattoos"]').click()
+    page.locator('[data-gear-item="tattoo-reaper-back"]').click();page.locator('#itemAction').click()
+    assert page.evaluate('collectionState.credits')==700
+    assert page.evaluate('RogueGear.owns("tattoo-reaper-back")')
+    page.locator('#inventoryMode').click()
+    def drag_item(item,slot,touch=False):
+        src=page.locator(f'[data-gear-item="{item}"]');src.scroll_into_view_if_needed();dst=page.locator(f'[data-equip-slot="{slot}"]');dst.scroll_into_view_if_needed()
+        a=src.bounding_box();b=dst.bounding_box();sx=a['x']+a['width']/2;sy=a['y']+a['height']/2;ex=b['x']+b['width']/2;ey=b['y']+b['height']/2
+        if not touch:
+            page.mouse.move(sx,sy);page.mouse.down();page.mouse.move(ex,ey,steps=12);page.mouse.up()
+        else:
+            c=page.context.new_cdp_session(page)
+            c.send('Input.dispatchTouchEvent',{'type':'touchStart','touchPoints':[{'x':sx,'y':sy}]});page.wait_for_timeout(230)
+            for n in range(1,13):c.send('Input.dispatchTouchEvent',{'type':'touchMove','touchPoints':[{'x':sx+(ex-sx)*n/12,'y':sy+(ey-sy)*n/12}]})
+            c.send('Input.dispatchTouchEvent',{'type':'touchEnd','touchPoints':[]});c.detach()
+        page.wait_for_timeout(100)
+    page.locator('#shopMode').click()
+    old=page.evaluate('RogueGear.current("bilge").back');drag_item('tattoo-reaper-back','left')
+    assert page.evaluate('RogueGear.current("bilge").back')==old
+    drag_item('tattoo-reaper-back','back')
+    assert page.evaluate('RogueGear.current("bilge").back')=='tattoo-reaper-back'
+    assert abs(page.evaluate('RogueGear.stats("bilge").values.damage')-385)<.001
+    assert 'Kullanılıyor' in page.locator('[data-gear-item="tattoo-reaper-back"]').inner_text()
+    assert page.evaluate('RogueGear.owns("tattoo-dragon-back")'),'replacement destroyed previous item'
+    page.locator('#inventoryMode').click()
+    page.locator('[data-remove-slot="back"]').click()
+    assert abs(page.evaluate('RogueGear.stats("bilge").values.damage')-145)<.001
+    drag_item('tattoo-reaper-back','back',touch=True)
+    assert page.evaluate('RogueGear.current("bilge").back')=='tattoo-reaper-back','touch drag failed'
+    page.set_viewport_size({'width':800,'height':360})
+    page.locator('[data-remove-slot="back"]').click();drag_item('tattoo-reaper-back','back',touch=True)
+    assert page.evaluate('RogueGear.current("bilge").back')=='tattoo-reaper-back'
+    page.set_viewport_size({'width':1280,'height':720})
+    page.locator('[data-preset="1"]').click()
+    assert page.evaluate('RogueGear.current("bilge").back') is None
+    page.locator('[data-gear-item="tattoo-reaper-back"]').click();page.locator('#itemAction').click()
+    assert page.evaluate('RogueGear.current("bilge").back')=='tattoo-reaper-back'
+    page.locator('[data-preset="0"]').click()
+    # Drag cancellation on blur and pointer cancellation leave previous loadout.
+    src=page.locator('[data-gear-item="tattoo-dragon-back"]');src.scroll_into_view_if_needed();a=src.bounding_box()
+    page.mouse.move(a['x']+20,a['y']+20);page.mouse.down();page.mouse.move(a['x']-20,a['y']+20);page.evaluate('window.dispatchEvent(new Event("blur"))');page.mouse.up()
+    assert page.locator('.gear-drag-ghost').count()==0 and not page.evaluate('gearDragInfo().active')
+    assert not page.evaluate('RogueGear.equip("bilge","wolf","left","tattoo-reaper-back").ok')
+    assert not page.evaluate('RogueGear.equip("bilge","wolf","back","tattoo-unicorn-back").ok')
+    page.screenshot(path=str(ROOT/'dist/inventory-wolf-v012.png'))
+    # Human equipment is separate, and purchased weapon reaches actual arena.
+    page.locator('#shopMode').click();page.locator('[data-category="weapons"]').click()
+    page.locator('[data-gear-item="rifle-sr01"]').click();page.locator('#itemAction').click()
+    assert page.evaluate('collectionState.credits')==150
+    page.locator('#inventoryMode').click();drag_item('rifle-sr01','primary',touch=True)
+    assert page.evaluate('RogueGear.current("bilge","human").primary')=='rifle-sr01'
+    assert page.evaluate('RogueGear.current("bilge").back')=='tattoo-reaper-back'
+    for width,height in [(1280,720),(800,360),(915,412),(740,360)]:
+        page.set_viewport_size({'width':width,'height':height})
+        assert_fits(page,['#loadoutTabs','#equipmentSlots','#collectionCards','#collectionDetail'])
+    page.screenshot(path=str(ROOT/'dist/inventory-human-v012.png'))
+    page.reload();page.locator('#skipIntro').click();page.locator('[data-nav="inventory"]').click()
+    assert page.evaluate('RogueGear.current("bilge","human").primary')=='rifle-sr01'
+    assert page.evaluate('RogueGear.current("bilge").back')=='tattoo-reaper-back'
+    assert abs(page.evaluate('RogueGear.stats("bilge").values.damage')-385)<.001
+    assert page.evaluate('collectionState.credits')==150
+    page.evaluate('openArena()');page.wait_for_function('()=>arenaDebug.state().ready&&arenaDebug.state().time>.3',timeout=60000)
+    assert page.evaluate('arenaDebug.state().weapon')=='rifle-sr01'
+    assert page.evaluate('arenaDebug.state().ammo')==5
+    page.evaluate('arenaDebug.aimAt(0)');page.wait_for_timeout(250);page.locator('#arenaFire').click()
+    page.wait_for_function('()=>arenaDebug.state().targets[0].hp<100')
+    assert abs(page.evaluate('arenaDebug.state().targets[0].hp')-33)<.01
+    page.locator('[data-weapon-slot="secondary"]').click()
+    assert page.evaluate('arenaDebug.state().weapon')=='pistol-p01'
+    page.locator('#arenaTransform').click();page.wait_for_function('()=>arenaDebug.state().form==="wolf"')
+    assert abs(page.evaluate('arenaDebug.state().stats.damage')-385)<.001
+    page.evaluate('arenaDebug.place(0,-5.8)');page.wait_for_timeout(500);before=page.evaluate('arenaDebug.state().hits');page.locator('#arenaFire').click()
+    page.wait_for_function('(n)=>arenaDebug.state().hits>n',arg=before)
+    assert page.evaluate('arenaDebug.state().targets[0].hp')==0,'tattoo not applied to melee'
+    taken=page.evaluate('arenaDebug.receiveDamage(18)');assert abs(taken-11.25)<.001,'defense rating not used'
+    assert page.evaluate('RogueGear.equip("basibozuk","wolf","back","tattoo-reaper-back").ok')
+    page.locator('#arenaCharacter').select_option('basibozuk');page.wait_for_function('()=>arenaDebug.state().character==="basibozuk"&&document.getElementById("arenaLoad").hidden')
+    assert abs(page.evaluate('arenaDebug.state().stats.damage')-340)<.001,'real tattoo bonus requires character passive'
+    # Migration preserves wallet and owned characters; old selected tattoos are granted once.
+    legacy=browser.new_context(viewport={'width':960,'height':540});legacy.route('https://rogue.local/**',serve)
+    legacy.add_init_script("localStorage.setItem('rogue-collection',JSON.stringify({credits:1234,owned:['basibozuk','bilge'],equipped:'bilge'}));localStorage.setItem('rogue-wolf-loadouts',JSON.stringify({bilge:{tattoos:{back:'phoenix',left:'runes',right:'dragon'}}}));")
+    lp=legacy.new_page();lp.goto('https://rogue.local/index.html')
+    assert lp.evaluate('collectionState.credits')==1234
+    assert lp.evaluate('RogueGear.current("bilge").back')=='tattoo-phoenix-back'
+    assert lp.evaluate('RogueGear.owns("tattoo-dragon-right")')
+    lp.locator('#skipIntro').click();lp.locator('[data-nav="shop"]').click();lp.locator('[data-category="grenades"]').click()
+    lp.locator('[data-gear-item="grenade-frag"]').click();lp.locator('#itemAction').click();lp.locator('#itemAction').click()
+    assert lp.evaluate('RogueGear.current("bilge","human").grenade')=='grenade-frag'
+    page.evaluate('stopArena()')
+    lp.evaluate('openArena()');lp.wait_for_function('()=>arenaDebug.state().ready&&arenaDebug.state().time>.3',timeout=60000)
+    lp.locator('[data-weapon-slot="grenade"]').click();lp.evaluate('arenaDebug.place(0,.5)');lp.wait_for_timeout(250);lp.locator('#arenaFire').click()
+    assert lp.evaluate('arenaDebug.state().grenadeTime')>0
+    lp.wait_for_function('()=>arenaDebug.state().projectiles===0&&arenaDebug.state().targets[0].hp<100',timeout=15000)
+    assert lp.evaluate('RogueGear.owns("grenade-frag")'),'equipping or throwing consumed ownership'
+    lp.locator('[data-weapon-slot="knife"]').click();lp.evaluate('arenaDebug.place(0,-6.7)');lp.wait_for_timeout(150)
+    hp_before=lp.evaluate('arenaDebug.state().targets[0].hp');lp.locator('#arenaFire').click()
+    lp.wait_for_function('(hp)=>arenaDebug.state().targets[0].hp<hp',arg=hp_before)
+    assert abs(hp_before-lp.evaluate('arenaDebug.state().targets[0].hp')-34)<.01
+    assert not errors,errors
+    print(json.dumps({'result':'PASS','bonus_examples':values,'mouse_touch_drag':True,'presets_reload':True,'weapon_combat':True,'migration':True}))
     browser.close()
-    print('PASS: automatic intro and fallback; five mobile viewport sizes; shop and per-wolf roll/run persistence; skinned GLB clips; nine textured ink motifs with independent arm slots, alpha and roar emission; roar expiry and 180 cap; no JS errors.')

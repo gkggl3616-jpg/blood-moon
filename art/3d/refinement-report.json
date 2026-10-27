@@ -1,0 +1,10 @@
+{
+  "approved_body_coordinate_change_m": 0,
+  "body_triangles": 11999,
+  "total_triangles": 14457,
+  "rejected_reconstruction": true,
+  "new_credits": 0,
+  "limitations": [
+    "Original generated fur topology retained per latest user correction; further artistic changes need comparison to the approved model."
+  ]
+}

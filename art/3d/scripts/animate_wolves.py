@@ -11,7 +11,7 @@ MODELS=ROOT/'app/src/main/assets/models'
 model_meta=json.loads((ROOT/'art/3d/model-report.json').read_text())
 BACKUP=ROOT/model_meta.get('static_source_dir','art/3d/source/static');BACKUP.mkdir(parents=True,exist_ok=True)
 profiles=model_meta['variants']
-report={'rig_type':'procedural humanoid/quadrupedal prototype rig with length-constrained limbs','clips':['WolfIdle','WolfMove','WolfRoll','WolfRunQuad','WolfClaw','WolfRoar','WolfJump','WolfTransform','HumanIdle','HumanMove'],'shared_run_roll_template':'wolf-shared-v3','root_motion':False,'new_meshy_credits':0,'notes':['All 119 frames of the uploaded 4.91-second screen recording reviewed; it is a short edited excerpt, not the complete YouTube source.','Shared 0.533s bounding run: timed paw contacts/recovery, stabilized head, source limb lengths preserved by two-bone IK.','Shared 0.8s compact roll; gameplay travel is about 2m. Values are local tuning, not measured world units from the video.','Roar: anticipation, raised/open arms, held chest/head lift, recovery; no articulated jaw yet.','Weights use geometric regions and bone distance; manual deformation polish remains.'],'models':[]}
+report={'rig_type':'procedural humanoid/quadrupedal prototype rig with length-constrained limbs','clips':['WolfIdle','WolfMove','WolfRoll','WolfRunQuad','WolfClaw','WolfRoar','WolfJump','WolfTransform','HumanIdle','HumanMove'],'shared_run_roll_template':'wolf-shared-v4','root_motion':False,'new_meshy_credits':0,'notes':['All 119 frames of the uploaded 4.91-second screen recording reviewed; it is a short edited excerpt, not the complete YouTube source.','Shared 0.533s bounding run: timed paw contacts/recovery, stabilized head, source limb lengths preserved by two-bone IK; idle keeps the approved source arm pose exactly.','Shared 0.8s compact roll; gameplay travel is about 2m. Values are local tuning, not measured world units from the video.','Roar: anticipation, raised/open arms, held chest/head lift, recovery; Bilge has articulated jaw, interior and rigid upper/lower teeth.','Weights use geometric regions and bone distance; manual deformation polish remains.'],'models':[]}
 
 def smoothstep(a,b,t):
  u=max(0,min(1,(t-a)/(b-a)))
@@ -23,7 +23,7 @@ def roll_angle(t):
 def two_bone(start,goal,pole,l1,l2):
  axis=goal-start
  if axis.length<1e-7:axis=Vector((0,0,-1))
- d=max(abs(l1-l2)+1e-5,min(axis.length,(l1+l2)*.985));axis.normalize()
+ d=max(abs(l1-l2)+1e-5,min(axis.length,(l1+l2)*.99999));axis.normalize()
  along=(l1*l1-l2*l2+d*d)/(2*d);lift=math.sqrt(max(0,l1*l1-along*along))
  bend=pole-start; bend-=axis*bend.dot(axis)
  if bend.length<1e-7:
@@ -48,22 +48,29 @@ def paw_cycle(t,stance=.26):
  s=(u-stance)/(1-stance)
  return math.cos(math.pi*s),math.sin(math.pi*s)**1.5
 
-# Reproducible from the committed static Blender scene. Never back up an
-# already-rigged GLB as an unrigged source on a clean checkout.
-missing=[p for p in profiles if not (BACKUP/(p['id']+'.glb')).exists()]
-if missing:
- bpy.ops.wm.open_mainfile(filepath=str(ROOT/'art/3d/wolves-modular.blend'))
- for profile in missing:
-  bpy.ops.object.select_all(action='DESELECT')
-  collection=bpy.data.collections['Wolf_'+profile['id']]
-  for o in collection.objects:
-   o.hide_set(False);o.select_set(True)
-   o.location.x-=profiles.index(profile)*2.8
-  bpy.context.view_layer.objects.active=next(o for o in collection.objects if o.name.startswith('Body_'))
-  bpy.ops.export_scene.gltf(filepath=str(BACKUP/(profile['id']+'.glb')),export_format='GLB',use_selection=True,export_animations=False)
+# Rebuild missing static inputs from the committed optimized source scenes.
+# For legacy wolves extract the GLB bind mesh, explicitly removing armature,
+# parenting and vertex groups; never use a posed/animated mesh as a new source.
+for profile in profiles:
+ path=BACKUP/(profile['id']+'.glb')
+ if path.exists():continue
+ key=profile['id'];scene_file={'bilge':'bilge-refined.blend','human-bilge':'bilge-human-refined.blend'}.get(key)
+ if scene_file:bpy.ops.wm.open_mainfile(filepath=str(ROOT/'art/3d'/scene_file))
+ else:
+  bpy.ops.object.select_all(action='SELECT');bpy.ops.object.delete(use_global=False);bpy.ops.import_scene.gltf(filepath=str(MODELS/(key+'.glb')))
+ meshes=[o for o in bpy.context.scene.objects if o.type=='MESH']
+ for o in meshes:
+  matrix=o.matrix_world.copy();o.parent=None;o.matrix_world=matrix
+  for mod in list(o.modifiers):
+   if mod.type=='ARMATURE':o.modifiers.remove(mod)
+  o.vertex_groups.clear()
+ bpy.ops.object.select_all(action='DESELECT')
+ for o in meshes:o.select_set(True)
+ bpy.context.view_layer.objects.active=meshes[0]
+ bpy.ops.export_scene.gltf(filepath=str(path),export_format='GLB',use_selection=True,export_extras=True,export_animations=False)
 
 def rest_points(h,profile):
- p={'root':(0,0,0),'rootEnd':(0,0,.14),'hip':(0,0,.47),'spine':(0,0,.59),'chest':(0,0,.74),'neck':(0,0,.83),'head':(0,-.018,.91),'headEnd':(0,-.035,.99),'tail':(0,.09,.43),'tailMid':(0,.13,.27),'tailEnd':(0,.14,.12)}
+ p={'root':(0,0,0),'rootEnd':(0,0,.14),'hip':(0,0,.47),'spine':(0,0,.59),'chest':(0,0,.74),'neck':(0,0,.83),'head':(0,-.018,.91),'headEnd':(0,-.035,.99),'jaw':(0,-.075,.854),'jawEnd':(0,-.16,.834),'tail':(0,.09,.43),'tailMid':(0,.13,.27),'tailEnd':(0,.14,.12)}
  for side,sg in [('L',1),('R',-1)]:
   p.update({f'shoulder{side}':(sg*.16,0,.75),f'elbow{side}':(sg*.27,0,.64),f'wrist{side}':(sg*.35,-.015,.53),f'finger{side}':(sg*.39,-.02,.49),f'hip{side}':(sg*.07,0,.47),f'knee{side}':(sg*.09,-.015,.27),f'ankle{side}':(sg*.095,.04,.09),f'toe{side}':(sg*.10,-.08,.025)})
  result={}
@@ -75,7 +82,7 @@ def rest_points(h,profile):
   result[k]=Vector((x*xs,y*ys,z))*h
  return result
 
-chains=[('Root','root','rootEnd',None),('Hips','hip','spine','Root'),('Spine','spine','chest','Hips'),('Chest','chest','neck','Spine'),('Neck','neck','head','Chest'),('Head','head','headEnd','Neck'),('Tail','tail','tailMid','Hips'),('TailTip','tailMid','tailEnd','Tail')]
+chains=[('Root','root','rootEnd',None),('Hips','hip','spine','Root'),('Spine','spine','chest','Hips'),('Chest','chest','neck','Spine'),('Neck','neck','head','Chest'),('Head','head','headEnd','Neck'),('Jaw','jaw','jawEnd','Head'),('Tail','tail','tailMid','Hips'),('TailTip','tailMid','tailEnd','Tail')]
 for side in ['L','R']:
  chains += [(f'Clavicle{side}','chest',f'shoulder{side}','Chest'),(f'UpperArm{side}',f'shoulder{side}',f'elbow{side}',f'Clavicle{side}'),(f'Forearm{side}',f'elbow{side}',f'wrist{side}',f'UpperArm{side}'),(f'Hand{side}',f'wrist{side}',f'finger{side}',f'Forearm{side}'),(f'Thigh{side}',f'hip{side}',f'knee{side}','Hips'),(f'Shin{side}',f'knee{side}',f'ankle{side}',f'Thigh{side}'),(f'Foot{side}',f'ankle{side}',f'toe{side}',f'Shin{side}')]
 
@@ -83,20 +90,13 @@ def pose_points(base,kind,t,h,variant="shared"):
  p={k:v.copy() for k,v in base.items()}
  span=base['shoulderL'].x/(.16*h)
  if kind in ['WolfIdle','HumanIdle']:
-  breath=.003*h*math.sin(t*math.tau)
-  for k in ['chest','neck','head','headEnd']:p[k].z+=breath
-  # Lower the A-pose arms into a relaxed standing stance.
-  for side,sg in [('L',1),('R',-1)]:
-   p[f'elbow{side}']=Vector((sg*.22*span,-.025,.60))*h;p[f'wrist{side}']=Vector((sg*.235*span,-.055,.43))*h;p[f'finger{side}']=Vector((sg*.24*span,-.065,.37))*h
-  if kind=='WolfIdle':
-   lean=.07 if variant=='konuralp' else .045
-   for k in ['chest','neck','head','headEnd']:p[k].y-=lean*h
-   for k in ['hip','hipL','hipR']:p[k].z-=.025*h
-   p['spine'].z-=.02*h
-   for k in ['chest','shoulderL','shoulderR']:p[k].z-=.015*h
-   for k in ['neck','head','headEnd']:p[k].z-=.01*h
-  else:
-   for k in ['neck','head','headEnd']:p[k]=base[k].copy()
+  # Preserve the approved mesh's original arm/shoulder rest positions. Previous
+  # generic elbow goals made this near-straight A pose bow outward like wings.
+  # Move the complete upper chain together for a subtle breath, keeping segment
+  # lengths fixed and both planted feet at the original source coordinates.
+  breath=.001*h*math.sin(t*math.tau)
+  for name in ['chest','neck','head','headEnd','shoulderL','shoulderR','elbowL','elbowR','wristL','wristR','fingerL','fingerR']:p[name].z+=breath
+  if kind=='HumanIdle':
    for side,sg in [('L',1),('R',-1)]:
     for part,x,z in [('elbow',.18,.635),('wrist',.20,.51),('finger',.205,.465)]:p[part+side]=Vector((sg*x,-.035,z))*h
  elif kind=='WolfMove':
@@ -169,7 +169,14 @@ def pose_points(base,kind,t,h,variant="shared"):
   # thickness so the actual skinned claws, not just the joints, meet the floor.
   for name in p:
    if name not in ['root','rootEnd']:p[name].z+=.04*h
- return fit_limbs(p,base) if kind.startswith('Wolf') else p
+ # Jaw follows head in every pose, including the full-body roll. The roar
+ # rotates the real lower jaw and its teeth, exposing the dark oral interior.
+ headrot=(base['headEnd']-base['head']).rotation_difference(p['headEnd']-p['head']).to_matrix()
+ p['jaw']=p['head']+headrot@(base['jaw']-base['head'])
+ strength=smoothstep(.10,.42,t)*(1-smoothstep(.70,1,t)) if kind=='WolfRoar' else 0
+ jawrot=Matrix.Rotation(.60*strength,3,'X')
+ p['jawEnd']=p['jaw']+headrot@jawrot@(base['jawEnd']-base['jaw'])
+ return p if kind=='WolfIdle' else fit_limbs(p,base)
 
 for profile in profiles:
  key=profile['id'];h=profile['height_m'];src=BACKUP/(key+'.glb')
@@ -198,7 +205,11 @@ for profile in profiles:
   for j,(name,a,b) in enumerate(segments):
    ab=b-a;u=np.clip(((xyz-a)@ab)/np.dot(ab,ab),0,1);dist[:,j]=np.linalg.norm(xyz-(a+u[:,None]*ab),axis=1)
    z=xyz[:,2]/h;x=xyz[:,0]/h;y=xyz[:,1]/h
-   if any(s in name for s in ['Arm','Hand','Clavicle']):
+   if name=='Jaw':
+    dist[:,j]+=h*3
+    if key=='bilge':
+     jaw=(np.abs(x)<.047)&(y<-.10)&(z>.815)&(z<.849);dist[jaw,j]=.001*h
+   elif any(s in name for s in ['Arm','Hand','Clavicle']):
     side=1 if name.endswith('L') else -1;dist[(x*side<.13)|(z<.28),j]+=h
    elif any(s in name for s in ['Thigh','Shin','Foot']):
     side=1 if name.endswith('L') else -1;dist[(x*side<-.01)|(z>.54),j]+=h
@@ -211,6 +222,8 @@ for profile in profiles:
   for i in range(N):
    for idx,w in zip(near[i],weights[i]):
     if w>.005:groups[int(idx)].add([i],float(w),'REPLACE')
+  if o.get('skin_bone'):
+   o.vertex_groups.clear();g=o.vertex_groups.new(name=o['skin_bone']);g.add(list(range(N)),1,'REPLACE')
   mod=o.modifiers.new('WolfSkin','ARMATURE');mod.object=rig;o.parent=rig
  # Interpolate the actual body's weights onto tattoo vertices. An independent
  # distance rig made surface ink drift away from the skin at bending joints.
@@ -270,7 +283,7 @@ for profile in profiles:
  for o in meshes:o.select_set(True)
  bpy.context.view_layer.objects.active=rig
  for o in meshes:
-  if o.name.startswith('Body_'):o['rig_status']='Initial 22-bone preview rig; manual weight polish required'
+  if o.name.startswith('Body_'):o['rig_status']='23-bone length-constrained rig; Bilge jaw and oral geometry, source topology limitations documented'
  bpy.ops.export_scene.gltf(filepath=str(MODELS/(key+'.glb')),export_format='GLB',use_selection=True,export_extras=True,export_animations=True,export_animation_mode='NLA_TRACKS',export_force_sampling=True)
  report['models'].append({'id':key,'bones':len(data.bones),'skinned_parts':len(meshes),'tattoo_skinning':'barycentric transfer from body triangles','clips':{name:frames/30 for name,frames in specs},'file':key+'.glb','bytes':(MODELS/(key+'.glb')).stat().st_size})
  print('RIGGED',key,flush=True)
@@ -286,7 +299,7 @@ bpy.data.orphans_purge(do_recursive=True)
 bpy.ops.wm.save_as_mainfile(filepath=str(ROOT/'art/3d/wolves-rigged.blend'),compress=True)
 (ROOT/'art/3d/animation-report.json').write_text(json.dumps(report,indent=2))
 model_report=json.loads((ROOT/'art/3d/model-report.json').read_text())
-model_report.update(rigged=True,rig_status='Initial 22-bone preview rig; manual weight polish required',animation_report='animation-report.json')
+model_report.update(rigged=True,rig_status='23-bone length-constrained rig; Bilge jaw and oral geometry, source topology limitations documented',animation_report='animation-report.json')
 for p in model_report['variants']:p['bytes']=(MODELS/(p['id']+'.glb')).stat().st_size
 (ROOT/'art/3d/model-report.json').write_text(json.dumps(model_report,indent=2))
 print('ANIMATION_REPORT',json.dumps(report),flush=True)

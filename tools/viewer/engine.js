@@ -41,6 +41,7 @@ export async function loadCharacter(key){
 const rects={dragon:[0,0,426,431],phoenix:[428,0,847,430],lion:[848,0,1274,431],pegasus:[0,431,428,826],spider:[429,431,845,826],bull:[846,431,1274,826],dice:[0,827,427,1234],unicorn:[428,827,846,1234],reaper:[847,827,1274,1234],runes:[428,0,847,430]};
 export function configureCharacter(object,state={}){
  if(!object)return;
+ object.userData.clawProfile=state.claw||'standard';
  const slots=state.tattoos||{back:'dragon',left:'runes',right:'runes'};
  object.traverse(o=>{
   if(o.name.startsWith('Tattoo_')){
@@ -58,7 +59,7 @@ export function configureCharacter(object,state={}){
    if(!mat)continue;
    if(mat.map)mat.map.anisotropy=Math.min(8,getRenderer().capabilities.getMaxAnisotropy());
    if(mat.name.startsWith('Fur_')){mat.metalness=0;mat.roughness=.88;mat.normalScale?.set(.65,.65);}
-   if(mat.name.startsWith('Tattoo_')){mat.emissiveIntensity=state.roaring?3:.15;mat.alphaTest=.3;mat.transparent=false;mat.depthWrite=true;mat.polygonOffset=true;mat.polygonOffsetFactor=-1;mat.polygonOffsetUnits=-1;}
+   if(mat.name.startsWith('Tattoo_')){mat.emissiveIntensity=state.roaring?.9:.08;mat.alphaTest=.3;mat.transparent=false;mat.depthWrite=true;mat.polygonOffset=true;mat.polygonOffsetFactor=-1;mat.polygonOffsetUnits=-1;}
   }
  });
 }
