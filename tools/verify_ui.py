@@ -113,7 +113,7 @@ with sync_playwright() as p:
     page.locator('[data-nav="shop"]').click()
     page.locator('[data-character="kul"]').click()
     page.locator('#previewWolf').click()
-    assert '+5%' in page.locator('#collectionDetail').inner_text()
+    assert '+12%' in page.locator('#collectionDetail').inner_text()
     page.locator('#characterAction').click()
     assert page.locator('#walletAmount').inner_text() == '1.750'
     page.locator('#characterAction').click()
@@ -127,21 +127,21 @@ with sync_playwright() as p:
     page.locator('#skipIntro').click()
     page.locator('[data-nav="gear"]').click()
     assert page.locator('#operatorName').inner_text() == 'KÜL PENÇESİ'
-    page.locator('#openAbilities').click()
-    page.locator('#farTarget').click()
-    page.locator('[data-ability="claw"]').click()
-    assert 'hasar verilmedi' in page.locator('#abilityResult').inner_text()
-    assert page.locator('[data-ability="claw"]').is_disabled()
-    page.locator('#nearTarget').click()
-    page.locator('[data-ability="pulse"]').click()
-    assert '15 örnek hasar' in page.locator('#abilityResult').inner_text()
-    page.locator('#farTarget').click()
-    page.locator('[data-ability="track"]').click()
-    assert page.locator('#targetToken.detected').count() == 1
-    page.screenshot(path=str(ROOT / 'dist/abilities-preview.png'), animations='disabled')
-    for w,h in [(1280,576),(800,360),(915,412)]:
-        page.set_viewport_size({'width':w,'height':h})
-        assert_fits(page, ['.ability-stage','.ability-panel'])
+    page.evaluate('window.goBack()')
+    page.locator('[data-nav="shop"]').click()
+    assert page.locator('[data-character]').count() == 7
+    profiles = page.evaluate('roster')
+    assert max(c['power'] for c in profiles) / min(c['power'] for c in profiles) <= 1.8
+    assert all(0 <= value <= 80 for c in profiles for _, value in c['beast'])
+    assert len({c['claw'] for c in profiles}) == len(profiles)
+    assert len({c['trail'] for c in profiles}) == len(profiles)
+    for character in ['bilge', 'kultigin', 'alparslan', 'konuralp']:
+        page.locator(f'[data-character="{character}"]').click()
+        assert 'Sıçrama düz ileriye' in page.locator('#collectionDetail').inner_text()
+        assert 'İz sürme korunur' in page.locator('#collectionDetail').inner_text()
+    assert page.locator('#abilities').count() == 0
+    (ROOT / 'dist/character-profiles.json').write_text(json.dumps(profiles, ensure_ascii=False, indent=2))
+    page.screenshot(path=str(ROOT / 'dist/characters-preview.png'), animations='disabled')
     page.evaluate('window.goBack()')
     page.locator('#viewport').evaluate('(v) => { v.style.left="32px"; v.style.right="24px"; v.style.bottom="16px"; }')
     assert_fits(page, ['.brand', '#join', '.bottomnav'])

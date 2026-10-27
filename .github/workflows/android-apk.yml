@@ -53,10 +53,11 @@ jobs:
       - name: Upload installable Android prototype
         uses: actions/upload-artifact@v4
         with:
-          name: Rogue-Blood-Moon-v0.1.3-APK
+          name: Rogue-Blood-Moon-v0.1.4-APK
           path: |
             dist/*.apk
             dist/build-report.json
+            dist/character-profiles.json
             dist/signature-verification.txt
             dist/apk-badging.txt
             dist/*-preview.png

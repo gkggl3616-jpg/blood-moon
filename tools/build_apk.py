@@ -36,7 +36,7 @@ def main():
     run(TOOLS / 'aapt2', 'link', '-o', BUILD / 'base.apk', '-I', ANDROID,
         '--manifest', manifest,
         '--min-sdk-version', '26', '--target-sdk-version', '35',
-        '--version-code', '4', '--version-name', '0.1.3',
+        '--version-code', '5', '--version-name', '0.1.4',
         '-A', ROOT / 'app/src/main/assets', BUILD / 'resources.zip')
     sources = list((ROOT / 'app/src/main/java').rglob('*.java'))
     run('java', '-m', 'jdk.compiler/com.sun.tools.javac.Main', '-source', '17', '-target', '17', '-encoding', 'UTF-8',
@@ -60,7 +60,7 @@ def main():
             '-alias', 'androiddebugkey', '-keyalg', 'RSA', '-keysize', '2048', '-validity', '10000',
             '-dname', 'CN=Rogue Prototype,O=Local Development,C=TR')
         key.chmod(0o600)
-    apk = ROOT / 'dist/Rogue-Blood-Moon-v0.1.3-debug.apk'
+    apk = ROOT / 'dist/Rogue-Blood-Moon-v0.1.4-debug.apk'
     run('java', '-jar', TOOLS / 'lib/apksigner.jar', 'sign', '--ks', key,
         '--ks-pass', 'pass:android', '--key-pass', 'pass:android', '--ks-key-alias', 'androiddebugkey',
         '--out', apk, aligned)
@@ -72,7 +72,7 @@ def main():
         assert z.testzip() is None
         assert {'classes.dex', 'AndroidManifest.xml', 'assets/index.html', 'assets/media/intro.mp4'} <= set(z.namelist())
     report = {'apk': apk.name, 'size_bytes': apk.stat().st_size, 'sha256': hashlib.sha256(apk.read_bytes()).hexdigest(),
-              'package': 'com.roguebloodmoon.prototype', 'version': '0.1.3', 'min_android': '8.0',
+              'package': 'com.roguebloodmoon.prototype', 'version': '0.1.4', 'min_android': '8.0',
               'signed': True, 'device_tested': False, 'scope': 'Offline menu, intro and map concept preview'}
     (ROOT / 'dist/build-report.json').write_text(json.dumps(report, indent=2))
     print(json.dumps(report, indent=2))
