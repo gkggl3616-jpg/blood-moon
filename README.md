@@ -1,6 +1,8 @@
-# Rogue: Blood Moon — Android Prototype 0.1.0
+# Rogue: Blood Moon — Android Prototype 0.1.1
 
-Yatay Android ekranı için ilk menü ve harita konsepti prototipi.
+Yatay Android ekranı için menü ve harita konsepti prototipi.
+
+v0.1.1: Açılış videosu otomatik başlar ve bitince lobiye geçer. Görünür ekran alanına göre ölçekleme, sabit viewport ve Android çentik/sistem çubuğu güvenli alanları eklendi.
 
 ## Bu sürüm
 
@@ -18,8 +20,8 @@ hesap, ödül veya satın alma sistemi içermez. Oda dolulukları ve etkinlikler
 ## GitHub Actions ile APK
 
 `main` dalına gönderim veya **Actions → Android APK → Run workflow** derlemeyi başlatır.
-İş bitince **Rogue-Blood-Moon-v0.1.0-APK** çıktısını indirin, ZIP içindeki
-`Rogue-Blood-Moon-v0.1.0-debug.apk` dosyasını Android telefonda açın.
+İş bitince **Rogue-Blood-Moon-v0.1.1-APK** çıktısını indirin, ZIP içindeki
+`Rogue-Blood-Moon-v0.1.1-debug.apk` dosyasını Android telefonda açın.
 Gerekirse dosyayı açan uygulama için "Bu kaynaktan izin ver" seçeneğini etkinleştirin.
 Bu geliştirme imzalı APK Google Play sürümü değildir.
 

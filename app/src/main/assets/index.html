@@ -8,15 +8,14 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div id="viewport">
 <main id="stage">
   <section id="opening" class="screen active" aria-label="Açılış ekranı">
     <img class="hero" src="media/opening.jpg" alt="Kanlı ay altında asker ve kurt">
-    <video id="intro" playsinline preload="none" poster="media/opening.jpg"><source src="media/intro.mp4" type="video/mp4"></video>
-    <div class="opening-shade"></div><div class="scan"></div>
-    <div class="opening-top"><span class="badge">ANDROID • İLK PROTOTİP</span><button class="icon-button" id="openingSound" aria-label="Sesi aç veya kapat">SES AÇIK</button></div>
-    <div class="title-block"><span class="eyebrow">İÇİNDEKİ AVCIYI UYANDIR</span><h1>ROGUE</h1><div class="subtitle">BLOOD MOON</div><div class="title-rule"></div><p>Gece çöker. Kurallar değişir.</p></div>
-    <div class="opening-actions"><button class="primary" id="enter">BAŞLAMAK İÇİN DOKUN <span>→</span></button><button class="text-button" id="replay">AÇILIŞI İZLE</button></div>
-    <footer class="opening-footer"><span>BAŞIBOZUK</span><span>v0.1.0 • MENÜ PROTOTİPİ</span></footer>
+    <video id="intro" src="media/intro.mp4" playsinline autoplay preload="auto" poster="media/opening.jpg"></video>
+    <div class="opening-top"><span class="badge">ROGUE: BLOOD MOON</span><div class="intro-controls"><button class="icon-button" id="openingSound" aria-label="Sesi aç veya kapat">SES AÇIK</button><button class="icon-button" id="skipIntro">ATLA →</button></div></div>
+    <button class="primary intro-start" id="startIntro" hidden>AÇILIŞI BAŞLAT <span>▶</span></button>
+    <footer class="opening-footer"><span>AÇILIŞTAN SONRA MENÜYE GEÇİLECEK</span><span>v0.1.1</span></footer>
   </section>
 
   <section id="lobby" class="screen" aria-label="Oyun lobisi" inert>
@@ -53,6 +52,7 @@
   <dialog id="modal"><div class="modal-label" id="modalLabel">ROGUE: BLOOD MOON</div><button id="closeModal" class="close" aria-label="Kapat">×</button><h2 id="modalTitle"></h2><div id="modalBody"></div><button class="primary" id="modalOk">ANLADIM <span>→</span></button></dialog>
   <div id="toast" role="status" aria-live="polite"></div>
 </main>
+</div>
 <div class="portrait-hint"><span>↻</span><strong>Telefonunu yatay çevir</strong><p>Rogue: Blood Moon yatay ekran için tasarlandı.</p></div>
 <script src="app.js"></script>
 </body>

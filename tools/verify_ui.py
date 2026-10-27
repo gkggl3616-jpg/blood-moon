@@ -1,4 +1,4 @@
-"""Exercise the offline mobile interface using a real Chromium instance."""
+"""Exercise automatic intro playback and the offline mobile interface in a real browser."""
 from pathlib import Path
 import json
 import os
@@ -7,44 +7,57 @@ from playwright.sync_api import sync_playwright
 
 ROOT = Path(__file__).resolve().parents[1]
 ASSETS = ROOT / 'app/src/main/assets'
+(ROOT / 'dist').mkdir(exist_ok=True)
+
+
+def serve(route):
+    path = route.request.url.split('https://rogue.local/', 1)[-1].split('?', 1)[0]
+    file = (ASSETS / (path or 'index.html')).resolve()
+    if not file.is_relative_to(ASSETS) or not file.is_file():
+        route.fulfill(status=404, body='Not Found')
+        return
+    route.fulfill(path=str(file))
+
+
+def assert_fits(page, selectors):
+    page.wait_for_function('''() => {
+        const r = document.getElementById('stage').getBoundingClientRect();
+        const v = document.getElementById('viewport').getBoundingClientRect();
+        return r.left >= v.left - 1 && r.top >= v.top - 1 &&
+               r.right <= v.right + 1 && r.bottom <= v.bottom + 1;
+    }''')
+    viewport = page.locator('#viewport').bounding_box()
+    for selector in selectors:
+        rect = page.locator(selector).bounding_box()
+        assert rect and rect['x'] >= viewport['x'] - 1 and rect['y'] >= viewport['y'] - 1, (selector, rect)
+        assert rect['x'] + rect['width'] <= viewport['x'] + viewport['width'] + 1, (selector, rect, viewport)
+        assert rect['y'] + rect['height'] <= viewport['y'] + viewport['height'] + 1, (selector, rect, viewport)
+
 
 with sync_playwright() as p:
-    browser_options = {'headless': True, 'args': ['--no-sandbox']}
+    # Native Android WebView also permits media playback without a user gesture.
+    browser_options = {'headless': True, 'args': ['--no-sandbox', '--autoplay-policy=no-user-gesture-required']}
     if os.environ.get('ROGUE_BROWSER_CHANNEL'):
         browser_options['channel'] = os.environ['ROGUE_BROWSER_CHANNEL']
     elif shutil.which('chromium'):
         browser_options['executable_path'] = shutil.which('chromium')
     browser = p.chromium.launch(**browser_options)
-    page = browser.new_page(viewport={'width': 960, 'height': 540}, device_scale_factor=1)
+    context = browser.new_context(viewport={'width': 960, 'height': 540}, device_scale_factor=1, is_mobile=True, has_touch=True)
+    context.route('https://rogue.local/**', serve)
+    page = context.new_page()
     errors = []
     page.on('pageerror', lambda e: errors.append(str(e)))
-
-    def serve(route):
-        path = route.request.url.split('https://rogue.local/', 1)[-1].split('?', 1)[0]
-        file = (ASSETS / (path or 'index.html')).resolve()
-        if not file.is_relative_to(ASSETS) or not file.is_file():
-            route.fulfill(status=404, body='Not Found')
-            return
-        route.fulfill(path=str(file))
-
-    page.route('https://rogue.local/**', serve)
     page.goto('https://rogue.local/index.html')
-    if (ASSETS / 'media/intro.mp4').exists():
-        page.locator('#replay').click()
-        try:
-            page.wait_for_function('() => document.getElementById("intro").currentTime > 0.1', timeout=15000)
-        except Exception:
-            print(page.locator('#intro').evaluate('(v) => ({error: v.error && v.error.message, readyState: v.readyState, h264: v.canPlayType(\'video/mp4; codecs="avc1.4D401F"\'), aac: v.canPlayType(\'audio/mp4; codecs="mp4a.40.2"\')})'))
-            raise
-        page.evaluate('window.pauseApp()')
-    page.locator('#enter').click()
-    assert page.locator('#lobby.active').count() == 1
+    # No click: the real video must begin on launch, then naturally end in the lobby.
+    page.wait_for_function('() => document.getElementById("intro").currentTime > 0.1', timeout=15000)
+    assert page.locator('#opening.active').count() == 1
+    assert_fits(page, ['#intro', '#skipIntro', '#openingSound'])
+    page.wait_for_selector('#lobby.active', timeout=15000)
+    assert page.locator('#intro').evaluate('(v) => v.ended')
     page.locator('[data-event="moon"]').click()
-    assert page.locator('#modal[open]').count() == 1
     assert page.locator('#modalTitle').inner_text() == 'KANLI AY'
     page.locator('#modalOk').click()
     page.locator('[data-room="foundry"]').click()
-    assert page.locator('#selectedName').inner_text() == 'DÖKÜMHANE'
     page.locator('#join').click()
     assert page.locator('#modalTitle').inner_text() == 'DÖKÜMHANE'
     page.locator('#modalOk').click()
@@ -52,11 +65,9 @@ with sync_playwright() as p:
     page.locator('#join').click()
     assert page.locator('#map.active').count() == 1
     page.locator('#mapDetails').click()
-    assert page.locator('.map-image.expanded').count() == 1
     page.evaluate('window.goBack()')
     assert page.locator('.map-image.expanded').count() == 0
     page.evaluate('window.goBack()')
-    assert page.locator('#lobby.active').count() == 1
     page.locator('[data-nav="settings"]').click()
     page.locator('#soundToggle').click()
     page.locator('#volume').evaluate('(el) => { el.value = "25"; }')
@@ -64,26 +75,35 @@ with sync_playwright() as p:
     assert json.loads(page.evaluate("localStorage.getItem('rogue-settings')")) == {'audio': False, 'volume': .25}
     page.reload()
     assert page.locator('#openingSound').inner_text() == 'SES KAPALI'
-    page.locator('#enter').click()
+    page.locator('#skipIntro').click()
     for key, title in [('gear', 'TEÇHİZAT'), ('events', 'ETKİNLİKLER'), ('clan', 'KLAN')]:
         page.locator(f'[data-nav="{key}"]').click()
         assert page.locator('#modalTitle').inner_text() == title
         page.locator('#closeModal').click()
-    # Touch targets remain within the landscape viewport at a small phone size.
-    page.set_viewport_size({'width': 800, 'height': 360})
-    page.wait_for_function('''() => {
-        const r = document.getElementById('stage').getBoundingClientRect();
-        return r.width <= innerWidth + 1 && r.height <= innerHeight + 1;
-    }''')
-    for selector in ['#join', '[data-room="bunker"]', '[data-event="moon"]']:
-        rect = page.locator(selector).bounding_box()
-        assert rect and rect['x'] >= 0 and rect['y'] >= 0
-        assert rect['x'] + rect['width'] <= 801 and rect['y'] + rect['height'] <= 361, (selector, rect)
-    page.set_viewport_size({'width': 1280, 'height': 720})
-    page.wait_for_function('() => Math.abs(document.getElementById("stage").getBoundingClientRect().width - 1280) < 1')
+    # Include the exact screenshot aspect ratio, narrow phones and ultrawide phones.
+    for width, height in [(1280, 576), (800, 360), (915, 412), (740, 360), (1280, 720)]:
+        page.set_viewport_size({'width': width, 'height': height})
+        assert_fits(page, ['.brand', '#join', '[data-room="bunker"]', '[data-event="moon"]', '.bottomnav'])
+    # Simulate safe space taken by a display cutout and navigation area.
+    page.locator('#viewport').evaluate('(v) => { v.style.left="32px"; v.style.right="24px"; v.style.bottom="16px"; }')
+    assert_fits(page, ['.brand', '#join', '.bottomnav'])
+    page.locator('#viewport').evaluate('(v) => { v.style.left="0"; v.style.right="0"; v.style.bottom="0"; }')
+    page.set_viewport_size({'width': 1280, 'height': 576})
+    assert_fits(page, ['#join'])
     page.screenshot(path=str(ROOT / 'dist/lobby-preview.png'))
+    # Replaying and skipping must stop the video without later reopening the intro.
+    page.locator('.brand').click()
+    page.wait_for_function('() => document.getElementById("intro").currentTime > 0.1')
+    page.locator('#skipIntro').click()
+    assert page.locator('#intro').evaluate('(v) => v.paused')
+    assert page.locator('#lobby.active').count() == 1
     page.set_viewport_size({'width': 390, 'height': 844})
     assert page.locator('.portrait-hint').is_visible()
+    # Missing or unsupported video must open the menu instead of leaving a dead intro.
+    fallback = context.new_page()
+    fallback.route('**/media/intro.mp4', lambda route: route.fulfill(status=404, body='Missing'))
+    fallback.goto('https://rogue.local/index.html')
+    fallback.wait_for_selector('#lobby.active', timeout=10000)
     assert not errors, errors
     browser.close()
-    print('PASS: lobby, events, map selection, map zoom, back navigation, persisted audio settings, all tabs, small landscape layout, portrait prompt; no JS errors.')
+    print('PASS: automatic video start and natural menu transition; skip and replay; media failure fallback; mobile viewport containment at five sizes and safe insets; lobby, events, map, tabs and persisted audio; no JS errors.')

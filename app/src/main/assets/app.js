@@ -1,6 +1,7 @@
 'use strict';
 const $ = (id) => document.getElementById(id);
 const stage = $('stage');
+const viewport = $('viewport');
 const intro = $('intro');
 const modal = $('modal');
 const sounds = { click: new Audio('media/click.wav'), confirm: new Audio('media/enter.mp3'), back: new Audio('media/back.wav') };
@@ -11,8 +12,18 @@ let currentScreen = 'opening';
 let toastTimer;
 try { const saved = JSON.parse(localStorage.getItem('rogue-settings')); if (saved) { audioEnabled = saved.audio !== false; volume = Math.max(0, Math.min(1, Number(saved.volume) || 0)); } } catch (_) {}
 
-function fit() { stage.style.transform = `translate(-50%,-50%) scale(${Math.min(innerWidth / 1280, innerHeight / 720)})`; }
-addEventListener('resize', fit); fit();
+function fit() {
+  const width = viewport.clientWidth;
+  const height = viewport.clientHeight;
+  if (!width || !height) return;
+  const scale = Math.min(width / 1280, height / 720);
+  stage.style.transform = `translate(${(width - 1280 * scale) / 2}px,${(height - 720 * scale) / 2}px) scale(${scale})`;
+}
+addEventListener('resize', fit);
+addEventListener('orientationchange', fit);
+if (window.visualViewport) window.visualViewport.addEventListener('resize', fit);
+if (window.ResizeObserver) new ResizeObserver(fit).observe(viewport);
+fit();
 function saveSettings() { try { localStorage.setItem('rogue-settings', JSON.stringify({ audio: audioEnabled, volume })); } catch (_) {} updateSound(); }
 function updateSound() { $('openingSound').textContent = audioEnabled ? 'SES AÇIK' : 'SES KAPALI'; intro.muted = !audioEnabled; intro.volume = volume; }
 function playSound(type = 'click') { if (!audioEnabled || document.hidden) return; const a = sounds[type]; if (!a) return; a.volume = volume; a.currentTime = 0; a.play().catch(() => {}); }
@@ -24,16 +35,25 @@ $('closeModal').addEventListener('click', closeModal);
 $('modalOk').addEventListener('click', closeModal);
 modal.addEventListener('click', e => { if (e.target === modal) { const r = modal.getBoundingClientRect(); if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) closeModal(); } });
 
-$('enter').addEventListener('click', () => { playSound('confirm'); screen('lobby'); });
+$('skipIntro').addEventListener('click', () => screen('lobby'));
 $('openingSound').addEventListener('click', () => { audioEnabled = !audioEnabled; saveSettings(); playSound(); });
-$('replay').addEventListener('click', async () => {
-  playSound(); intro.currentTime = 0; updateSound(); intro.classList.add('playing');
-  try { await intro.play(); } catch (_) { intro.classList.remove('playing'); toast('Açılış videosu bu cihazda oynatılamadı. Görselle devam edebilirsin.'); }
-});
-intro.addEventListener('ended', () => intro.classList.remove('playing'));
-intro.addEventListener('error', () => { intro.classList.remove('playing'); toast('Video yüklenemedi. Açılış görseli kullanılacak.'); });
+async function startIntro(restart = true) {
+  screen('opening');
+  if (restart) intro.currentTime = 0;
+  $('startIntro').hidden = true;
+  updateSound(); intro.classList.add('playing');
+  try { await intro.play(); }
+  catch (error) {
+    if (currentScreen !== 'opening' || document.hidden) return;
+    if (error.name === 'NotAllowedError') $('startIntro').hidden = false;
+    else { screen('lobby'); toast('Açılış videosu oynatılamadı. Menü açıldı.'); }
+  }
+}
+$('startIntro').addEventListener('click', () => startIntro(false));
+intro.addEventListener('ended', () => { if (currentScreen === 'opening') screen('lobby'); });
+intro.addEventListener('error', () => { if (currentScreen === 'opening') { screen('lobby'); toast('Açılış videosu yüklenemedi. Menü açıldı.'); } });
 
-document.querySelectorAll('[data-action]').forEach(b => b.addEventListener('click', () => { playSound('back'); screen(b.dataset.action); }));
+document.querySelectorAll('[data-action]').forEach(b => b.addEventListener('click', () => { playSound('back'); if (b.dataset.action === 'opening') startIntro(); else screen(b.dataset.action); }));
 const rooms = { bunker: ['SIĞINAK 07', "3'e 3 • Harita konsepti hazır"], foundry: ['DÖKÜMHANE', 'Harita henüz tasarım aşamasında'], quarantine: ['KARANTİNA', 'Harita henüz tasarım aşamasında'] };
 document.querySelectorAll('[data-room]').forEach(b => b.addEventListener('click', () => {
   playSound(); selectedRoom = b.dataset.room;
@@ -59,7 +79,7 @@ $('mapDetails').addEventListener('click', () => { playSound(); document.querySel
 document.querySelector('.map-image').addEventListener('click', e => { e.currentTarget.classList.remove('expanded'); });
 
 function settings() {
-  showModal('AYARLAR', `<p>Düğme seslerini ve video sesini buradan ayarla.</p><div class="setting"><span>Ses efektleri</span><button id="soundToggle" class="toggle ${audioEnabled ? '' : 'off'}">${audioEnabled ? 'AÇIK' : 'KAPALI'}</button></div><label class="setting"><span>Ses düzeyi</span><input id="volume" type="range" min="0" max="100" value="${Math.round(volume * 100)}" aria-label="Ses düzeyi"></label><button id="testSound" class="toggle">DÜĞME SESİNİ DENE</button><p class="modal-note" style="margin-top:20px">Rogue: Blood Moon v0.1.0<br>Çevrimdışı menü ve harita konsepti prototipi.</p>`, 'TERCİHLER');
+  showModal('AYARLAR', `<p>Düğme seslerini ve video sesini buradan ayarla.</p><div class="setting"><span>Ses efektleri</span><button id="soundToggle" class="toggle ${audioEnabled ? '' : 'off'}">${audioEnabled ? 'AÇIK' : 'KAPALI'}</button></div><label class="setting"><span>Ses düzeyi</span><input id="volume" type="range" min="0" max="100" value="${Math.round(volume * 100)}" aria-label="Ses düzeyi"></label><button id="testSound" class="toggle">DÜĞME SESİNİ DENE</button><p class="modal-note" style="margin-top:20px">Rogue: Blood Moon v0.1.1<br>Çevrimdışı menü ve harita konsepti prototipi.</p>`, 'TERCİHLER');
   $('soundToggle').addEventListener('click', e => { audioEnabled = !audioEnabled; e.currentTarget.textContent = audioEnabled ? 'AÇIK' : 'KAPALI'; e.currentTarget.classList.toggle('off', !audioEnabled); saveSettings(); playSound(); });
   $('volume').addEventListener('input', e => { volume = Number(e.target.value) / 100; saveSettings(); });
   $('testSound').addEventListener('click', () => { if (!audioEnabled) toast('Sesi denemek için ses efektlerini aç.'); else playSound('confirm'); });
@@ -74,8 +94,10 @@ document.querySelectorAll('[data-nav]').forEach(b => b.addEventListener('click',
     case 'clan': showModal('KLAN', '<p>Kendi sürünü kur. Takım kimliği, klan etiketi ve arkadaşlarla oda kurma gelecek sürümler için planlanıyor.</p><p class="modal-note">Bu sürümde hesap veya klan sunucusu bulunmuyor.</p>', 'SOSYAL • PLANLANAN'); break;
   }
 }));
-window.goBack = () => { if (modal.open) closeModal(); else if (document.querySelector('.map-image.expanded')) document.querySelector('.map-image').classList.remove('expanded'); else if (currentScreen === 'map') { playSound('back'); screen('lobby'); } else if (currentScreen === 'lobby') { playSound('back'); screen('opening'); } else toast('Uygulamadan çıkmak için ana ekran hareketini kullan.'); };
+window.goBack = () => { if (modal.open) closeModal(); else if (document.querySelector('.map-image.expanded')) document.querySelector('.map-image').classList.remove('expanded'); else if (currentScreen === 'map') { playSound('back'); screen('lobby'); } else if (currentScreen === 'opening') screen('lobby'); else toast('Uygulamadan çıkmak için ana ekran hareketini kullan.'); };
 window.pauseApp = () => { intro.pause(); Object.values(sounds).forEach(a => a.pause()); };
-document.addEventListener('visibilitychange', () => { if (document.hidden) window.pauseApp(); });
+window.resumeApp = () => { if (currentScreen === 'opening' && !intro.ended) startIntro(false); };
+document.addEventListener('visibilitychange', () => { if (document.hidden) window.pauseApp(); else window.resumeApp(); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && !modal.open) window.goBack(); });
 updateSound();
+startIntro();

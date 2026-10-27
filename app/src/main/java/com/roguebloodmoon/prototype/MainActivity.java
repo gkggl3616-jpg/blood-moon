@@ -2,8 +2,11 @@ package com.roguebloodmoon.prototype;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Build;
 import android.view.View;
+import android.view.WindowInsets;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.webkit.WebResourceRequest;
@@ -24,9 +27,15 @@ public class MainActivity extends Activity {
         web.setBackgroundColor(0xff090d10);
         web.getSettings().setJavaScriptEnabled(true);
         web.getSettings().setDomStorageEnabled(true);
+        web.getSettings().setUseWideViewPort(true);
+        web.getSettings().setLoadWithOverviewMode(true);
+        web.getSettings().setSupportZoom(false);
+        web.getSettings().setBuiltInZoomControls(false);
+        web.getSettings().setDisplayZoomControls(false);
+        web.getSettings().setTextZoom(100);
         web.getSettings().setAllowFileAccess(false);
         web.getSettings().setAllowContentAccess(false);
-        web.getSettings().setMediaPlaybackRequiresUserGesture(true);
+        web.getSettings().setMediaPlaybackRequiresUserGesture(false);
         web.setWebViewClient(new WebViewClient() {
             @Override public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
                 return !HOST.equals(request.getUrl().getHost());
@@ -49,7 +58,31 @@ public class MainActivity extends Activity {
                 catch (IOException e) { return denied(); }
             }
         });
-        setContentView(web);
+        FrameLayout viewport = new FrameLayout(this);
+        viewport.setBackgroundColor(0xff090d10);
+        viewport.addView(web, new FrameLayout.LayoutParams(
+            FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
+        viewport.setOnApplyWindowInsetsListener((view, insets) -> {
+            int left = insets.getSystemWindowInsetLeft();
+            int top = insets.getSystemWindowInsetTop();
+            int right = insets.getSystemWindowInsetRight();
+            int bottom = insets.getSystemWindowInsetBottom();
+            if (Build.VERSION.SDK_INT >= 30) {
+                android.graphics.Insets safe = insets.getInsets(
+                    WindowInsets.Type.systemBars() | WindowInsets.Type.displayCutout());
+                left = safe.left; top = safe.top; right = safe.right; bottom = safe.bottom;
+            } else if (Build.VERSION.SDK_INT >= 28 && insets.getDisplayCutout() != null) {
+                android.view.DisplayCutout cutout = insets.getDisplayCutout();
+                left = Math.max(left, cutout.getSafeInsetLeft());
+                top = Math.max(top, cutout.getSafeInsetTop());
+                right = Math.max(right, cutout.getSafeInsetRight());
+                bottom = Math.max(bottom, cutout.getSafeInsetBottom());
+            }
+            view.setPadding(left, top, right, bottom);
+            return insets;
+        });
+        setContentView(viewport);
+        viewport.requestApplyInsets();
         web.loadUrl("https://" + HOST + "/index.html");
     }
     private WebResourceResponse denied() {
@@ -63,7 +96,7 @@ public class MainActivity extends Activity {
     }
     @Override public void onWindowFocusChanged(boolean focus) { super.onWindowFocusChanged(focus); if (focus) immersive(); }
     @Override protected void onPause() { if (web != null) { web.evaluateJavascript("window.pauseApp && window.pauseApp()", null); web.onPause(); } super.onPause(); }
-    @Override protected void onResume() { super.onResume(); if (web != null) web.onResume(); }
+    @Override protected void onResume() { super.onResume(); if (web != null) { web.onResume(); web.evaluateJavascript("window.resumeApp && window.resumeApp()", null); } }
     @Override public void onBackPressed() { web.evaluateJavascript("window.goBack && window.goBack()", null); }
     @Override protected void onDestroy() { if (web != null) { web.destroy(); web = null; } super.onDestroy(); }
 }
