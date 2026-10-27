@@ -1,0 +1,10 @@
+{
+  "source_fidelity": "PASS",
+  "exported_motion_bounds_all_four": "PASS",
+  "reference_contacts_skeleton_mouth_all_four": "PASS",
+  "actual_game_reference_motion_and_colors_all_four": "PASS",
+  "general_arena_regression": "PASS",
+  "inventory_regression": "PASS",
+  "signed_release_package": "PENDING",
+  "physical_android_device": "NOT_RUN"
+}

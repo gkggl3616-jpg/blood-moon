@@ -1,0 +1,134 @@
+[
+  {
+    "id": "bilge",
+    "approved_body_error_m": 1.3741133670919226e-06,
+    "body_triangles": 11999,
+    "bone_count": 27,
+    "garment_hand_weight_max": 0.0,
+    "contacts": {
+      "frontL": {
+        "sole_min_m": -0.0002829432487487793,
+        "sole_max_m": 0.0032071471214294434,
+        "support_drift_m": 0.0006623733441034618
+      },
+      "rearL": {
+        "sole_min_m": -0.0063230739906430244,
+        "sole_max_m": -0.00047246762551367283,
+        "support_drift_m": 0.0018315654397009773
+      },
+      "frontR": {
+        "sole_min_m": -0.0007429122924804688,
+        "sole_max_m": 0.0033136606216430664,
+        "support_drift_m": 0.001339394529661142
+      },
+      "rearR": {
+        "sole_min_m": -0.0006839600391685963,
+        "sole_max_m": 0.007842205464839935,
+        "support_drift_m": 0.002232607841491374
+      }
+    },
+    "max_segment_length_error": 5.427337166352686e-06,
+    "hands_above_head_m": 0.31786632537841797,
+    "jaw_rotation_rad": 0.5999998450279236,
+    "oral_parts": 2
+  },
+  {
+    "id": "kultigin",
+    "approved_body_error_m": 9.930257647283725e-07,
+    "body_triangles": 8200,
+    "bone_count": 27,
+    "garment_hand_weight_max": 0.0,
+    "contacts": {
+      "frontL": {
+        "sole_min_m": -0.002172708511352539,
+        "sole_max_m": 0.002880990505218506,
+        "support_drift_m": 0.001342758466799987
+      },
+      "rearL": {
+        "sole_min_m": -0.005576852709054947,
+        "sole_max_m": -0.001455727033317089,
+        "support_drift_m": 0.002249194696545498
+      },
+      "frontR": {
+        "sole_min_m": -0.004947364330291748,
+        "sole_max_m": 0.0030936598777770996,
+        "support_drift_m": 0.0027432125409436736
+      },
+      "rearR": {
+        "sole_min_m": -0.0007151026511564851,
+        "sole_max_m": 0.0036370293237268925,
+        "support_drift_m": 0.002523634970187816
+      }
+    },
+    "max_segment_length_error": 1.3420825867305197e-06,
+    "hands_above_head_m": 0.17118799686431885,
+    "jaw_rotation_rad": 0.600000262260437,
+    "oral_parts": 2
+  },
+  {
+    "id": "alparslan",
+    "approved_body_error_m": 1.7024087810568744e-06,
+    "body_triangles": 8200,
+    "bone_count": 27,
+    "garment_hand_weight_max": 0.0,
+    "contacts": {
+      "frontL": {
+        "sole_min_m": -0.0007119178771972656,
+        "sole_max_m": 0.003144502639770508,
+        "support_drift_m": 0.0011512617816527015
+      },
+      "rearL": {
+        "sole_min_m": -0.005348511040210724,
+        "sole_max_m": -0.0002196286804974079,
+        "support_drift_m": 0.0019395467042921943
+      },
+      "frontR": {
+        "sole_min_m": -0.0034323930740356445,
+        "sole_max_m": 0.0033712387084960938,
+        "support_drift_m": 0.001401700941224604
+      },
+      "rearR": {
+        "sole_min_m": -2.2336840629577637e-05,
+        "sole_max_m": 0.004265600815415382,
+        "support_drift_m": 0.0024877455234524337
+      }
+    },
+    "max_segment_length_error": 7.376182925344921e-06,
+    "hands_above_head_m": 0.22380733489990234,
+    "jaw_rotation_rad": 0.6000010371208191,
+    "oral_parts": 2
+  },
+  {
+    "id": "konuralp",
+    "approved_body_error_m": 1.190234570458415e-06,
+    "body_triangles": 8200,
+    "bone_count": 27,
+    "garment_hand_weight_max": 0.0,
+    "contacts": {
+      "frontL": {
+        "sole_min_m": -0.0011072158813476562,
+        "sole_max_m": 0.003025054931640625,
+        "support_drift_m": 0.0008642058124144203
+      },
+      "rearL": {
+        "sole_min_m": -0.0020056799985468388,
+        "sole_max_m": 0.00026443228125572205,
+        "support_drift_m": 0.0020108822882174415
+      },
+      "frontR": {
+        "sole_min_m": -0.0027168989181518555,
+        "sole_max_m": 0.003184199333190918,
+        "support_drift_m": 0.001559066050996094
+      },
+      "rearR": {
+        "sole_min_m": -0.00021776731591671705,
+        "sole_max_m": 0.004133469425141811,
+        "support_drift_m": 0.002427649140357646
+      }
+    },
+    "max_segment_length_error": 5.828011485409235e-06,
+    "hands_above_head_m": 0.21135711669921875,
+    "jaw_rotation_rad": 0.5999998450279236,
+    "oral_parts": 2
+  }
+]

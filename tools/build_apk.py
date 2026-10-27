@@ -38,7 +38,7 @@ def main():
     run(TOOLS / 'aapt2', 'link', '-o', BUILD / 'base.apk', '-I', ANDROID,
         '--manifest', manifest,
         '--min-sdk-version', '26', '--target-sdk-version', '35',
-        '--version-code', '13', '--version-name', '0.1.12',
+        '--version-code', '14', '--version-name', '0.1.13',
         '-A', ROOT / 'app/src/main/assets', BUILD / 'resources.zip')
     sources = list((ROOT / 'app/src/main/java').rglob('*.java'))
     run('java', '-m', 'jdk.compiler/com.sun.tools.javac.Main', '-source', '17', '-target', '17', '-encoding', 'UTF-8',
@@ -67,7 +67,7 @@ def main():
             '-alias', 'androiddebugkey', '-keyalg', 'RSA', '-keysize', '2048', '-validity', '10000',
             '-dname', 'CN=Rogue Prototype,O=Local Development,C=TR')
         key.chmod(0o600)
-    apk = ROOT / 'dist/Rogue-Blood-Moon-v0.1.12.apk'
+    apk = ROOT / 'dist/Rogue-Blood-Moon-v0.1.13.apk'
     run('java', '-jar', TOOLS / 'lib/apksigner.jar', 'sign', '--ks', key,
         '--ks-pass', 'pass:android', '--key-pass', 'pass:android', '--ks-key-alias', 'androiddebugkey',
         '--out', apk, aligned)
@@ -81,6 +81,11 @@ def main():
     with zipfile.ZipFile(apk) as z:
         assert z.testzip() is None
         assert {'classes.dex', 'AndroidManifest.xml', 'assets/index.html', 'assets/media/intro.mp4'} <= set(z.namelist())
+        runtime_files=list((ROOT / 'app/src/main/assets').rglob('*'))
+        runtime_files=[file for file in runtime_files if file.is_file()]
+        for file in runtime_files:
+            packaged='assets/'+file.relative_to(ROOT / 'app/src/main/assets').as_posix()
+            assert z.read(packaged)==file.read_bytes(),('runtime asset mismatch',packaged)
         for model_id in ['bilge','kultigin','alparslan','konuralp','human-bilge']:
             data=z.read('assets/models/'+model_id+'.glb')
             magic,version,length,json_length,chunk_type=struct.unpack_from('<4sIIII',data)
@@ -90,16 +95,19 @@ def main():
             required={'HumanIdle','HumanMove'} if model_id.startswith('human-') else {'WolfIdle','WolfMove','WolfRunQuad','WolfRoll','WolfClaw','WolfRoar','WolfJump','WolfTransform'}
             assert required<=names
             if not model_id.startswith('human-'):
+                assert len(gltf['skins'][0]['joints'])==27
+                assert sum(n.get('name','').startswith('Mouth_') for n in gltf['nodes'])>=2
                 for animation in gltf['animations']:
-                    if animation['name'] in ['WolfRunQuad','WolfRoll']:
+                    if animation['name'] in ['WolfRunQuad','WolfRoll','WolfRoar']:
                         timing=gltf['accessors'][animation['samplers'][0]['input']]
-                        expected=16/30 if animation['name']=='WolfRunQuad' else .8
+                        expected=16/30 if animation['name']=='WolfRunQuad' else .8 if animation['name']=='WolfRoll' else 1.2
                         assert abs(timing['min'][0])<1e-5 and abs(timing['max'][0]-expected)<1e-5
             triangles=sum(gltf['accessors'][p['indices']]['count']//3 for m in gltf['meshes'] for p in m['primitives'])
             assert triangles <= (12000 if model_id.startswith('human-') else 15000),(model_id,triangles)
         assert {'assets/arena.css','assets/inventory.js','assets/inventory.css','assets/gear-system.js'}<=set(z.namelist())
     report = {'apk': apk.name, 'size_bytes': apk.stat().st_size, 'sha256': hashlib.sha256(apk.read_bytes()).hexdigest(),
-              'package': 'com.roguebloodmoon.prototype', 'version': '0.1.12', 'min_android': '8.0',
+              'package': 'com.roguebloodmoon.prototype', 'version': '0.1.13', 'min_android': '8.0',
+              'version_code': 14, 'runtime_asset_count': len(runtime_files),
               'signed': True, 'certificate_sha256':certificate, 'device_tested': False, 'scope': 'Offline playable flat arena; human FPS, wolf TPS, transformation, run, roll, claw, roar, inventory', 'standalone_apk': True, 'extra_data_files_required': False}
     (ROOT / 'dist/build-report.json').write_text(json.dumps(report, indent=2))
     print(json.dumps(report, indent=2))

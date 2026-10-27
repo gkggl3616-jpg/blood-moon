@@ -1,10 +1,10 @@
 """Blender: capture the delivered GLB, not a concept image or separate menu mesh."""
-import bpy,math,json
+import bpy,math,json,sys
 from pathlib import Path
 from mathutils import Vector
-R=Path(__file__).resolve().parents[1];OUT=R/'dist/model-review';OUT.mkdir(parents=True,exist_ok=True)
+R=Path(__file__).resolve().parents[1];key=sys.argv[sys.argv.index('--')+1] if '--' in sys.argv else 'bilge';OUT=R/('dist/model-review' if key=='bilge' else 'dist/model-review-'+key);OUT.mkdir(parents=True,exist_ok=True)
 bpy.ops.object.select_all(action='SELECT');bpy.ops.object.delete(use_global=False)
-bpy.ops.import_scene.gltf(filepath=str(R/'app/src/main/assets/models/bilge.glb'))
+bpy.ops.import_scene.gltf(filepath=str(R/f'app/src/main/assets/models/{key}.glb'))
 rig=next(o for o in bpy.context.scene.objects if o.type=='ARMATURE');tracks=list(rig.animation_data.nla_tracks)
 for t in tracks:t.mute=True
 for o in bpy.context.scene.objects:
@@ -20,5 +20,5 @@ for clip,fractions in [('WolfIdle',[0]),('WolfRunQuad',[0,.125,.25,.375,.5,.625,
  for fraction in fractions:
   f=lo+(hi-lo)*fraction;scene.frame_set(int(f),subframe=f%1)
   for view in (views if clip=='WolfIdle' else ['three-quarter']):
-   camera.location=views[view];camera.rotation_euler=(Vector((0,0,1.1))-camera.location).to_track_quat('-Z','Y').to_euler();name=f'{clip}-{int(fraction*100):02}-{view}';scene.render.filepath=str(OUT/(name+'.png'));bpy.ops.render.render(write_still=True);shots.append(name)
+   camera.data.ortho_scale=3.15 if clip=='WolfRoar' else 2.8;camera.location=views[view];camera.rotation_euler=(Vector((0,0,1.30 if clip=='WolfRoar' else 1.1))-camera.location).to_track_quat('-Z','Y').to_euler();name=f'{clip}-{int(fraction*100):02}-{view}';scene.render.filepath=str(OUT/(name+'.png'));bpy.ops.render.render(write_still=True);shots.append(name)
 (OUT/'shots.json').write_text(json.dumps(shots))

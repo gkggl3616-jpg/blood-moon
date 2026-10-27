@@ -90,3 +90,18 @@ Bu dosya bu konuşmada tespit edilen hataları, bunların sonucunu ve gerçek du
 - Ayrıntılı güncel durum, eşya tablosu ve açık kalite işleri: docs/guncelleme-v012.md.
 
 - Yayın testinde hızlı SR-01 atışı → kurt dönüşümü → pençe vuruşu akışı takıldı: insan silahının 0,95 sn atış kilidi kurt formuna sızıyordu. Yerel yavaş yazılım renderı bu yarışı görünmez kılmıştı. Form değişiminde atış kilidi sıfırlandı; dönüşüm/kükreme sırasında ateş düğmesi kilitli görünür, test gerçek eylem-hazır durumunu bekler ve sıfır taşınmış atış kilidini doğrular.
+
+## Yeni üç video incelemesi — henüz uygulanmadı
+
+- Kaynak modelin bekleme biçimini korumak, koşu animasyonunun hedef harekete benzediğini kanıtlamadı. Video 1’de kısa/hızlı salınım ve zayıf ağırlık aktarımı sürüyor. Prosedürel koşu hedef videonun uzama/toparlanma/destek pozlarına göre yeniden kurulmalı.
+- Koşu klibi 0,533 sn iken arena çarpanı başlangıç rünüyle 1,5, etkin döngü ~0,356 sn. Menü farklı tempoda oynatıyor. Hız, adım mesafesi ve faz birlikte ayarlanmalı. Hedef kayıt sayacı yavaş oynatımı gösteriyor; görünen ~1 sn döngüyü doğrudan gerçek oyun süresi saymak yanlış.
+- Mevcut kükreme el hedefi göğüs hizasında; yeni videoda iki el baş üstüne kaldırılıyor. Aynı poz/süre bütün kurtlara aktarılmalı; efekt yalnız karakter rengiyle farklılaşmalı. Sabit mor el parçacığı güncellenecek.
+- Sahnedeki başka oyuncuların/belirsiz kaynaklı yeşil patlamaların tamamı ana oyuncunun kükremesi diye kopyalanmayacak. Aşamalar ve inceleme kanıtları `docs/uc-video-kosu-kukreme-analizi-20261028.md` içinde. Bu maddeler teşhistir, tamamlanmış düzeltme değildir.
+
+## v0.1.13 — üç video teşhisinin uygulanması
+
+- Eski hız çarpanı kaldırıldı; gerçek mesafe/çevrim sözleşmesi menü ve arena arasında ortak. Koşu ana fazları yeniden yazıldı.
+- Kükreme artık baş üstü poz, bilek/parmak hareketi ve gerçek çene kullanır. Aynı efekt biçimi karakter rengine boyanır.
+- Yeni parmak kemiklerine en yakın mesafeyle ağırlık atamak etek köşelerini ellere çekiyordu. El/kol bölgeleri anatomik sınırlarla ayrıldı; gerçek kaynak etek köşelerinde el ağırlığı sıfır olarak doğrulandı.
+- Sabit IK destek hedefi tek başına mesh temasını garanti etmedi. Avuç bağları, gerçek mesh tabanı kalibrasyonu ve 60 Hz FK aktarımıyla ara kare çökmesi giderildi; test gerçek dışa aktarılmış deri köşelerini ve destek kaymasını ölçer.
+- Ayrıntılar, ölçüm sınırları ve açık kalite işleri: docs/guncelleme-v013.md.

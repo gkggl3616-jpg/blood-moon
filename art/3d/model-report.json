@@ -55,7 +55,7 @@
           0.375
         ]
       },
-      "bytes": 13399668,
+      "bytes": 13483456,
       "refinement": "v012 approved shape preserved; arm rest fidelity and internal articulated mouth"
     },
     {
@@ -65,11 +65,52 @@
       "has_tail": true,
       "file": "kultigin.glb",
       "source_faces": 28000,
-      "triangles": 9598,
+      "triangles": 9918,
       "body_triangles": 8200,
       "objects": 8,
-      "rest_joints": {},
-      "bytes": 10630920,
+      "rest_joints": {
+        "shoulderL": [
+          0.1824900060892105,
+          0.020336322486400604,
+          0.75
+        ],
+        "elbowL": [
+          0.23880602419376373,
+          -0.004720902070403099,
+          0.64
+        ],
+        "wristL": [
+          0.3414173722267151,
+          -0.030352480709552765,
+          0.535
+        ],
+        "fingerL": [
+          0.34105244278907776,
+          -0.031009288504719734,
+          0.485
+        ],
+        "shoulderR": [
+          -0.18588702380657196,
+          0.027376078069210052,
+          0.75
+        ],
+        "elbowR": [
+          -0.26504844427108765,
+          -0.02617066726088524,
+          0.64
+        ],
+        "wristR": [
+          -0.33715346455574036,
+          -0.028844944201409817,
+          0.535
+        ],
+        "fingerR": [
+          -0.34371331334114075,
+          -0.03253691643476486,
+          0.485
+        ]
+      },
+      "bytes": 10760296,
       "shape_profile": {
         "name": "Kara Tigin",
         "height": 2.08,
@@ -99,11 +140,52 @@
       "has_tail": true,
       "file": "alparslan.glb",
       "source_faces": 28000,
-      "triangles": 9595,
+      "triangles": 9915,
       "body_triangles": 8200,
       "objects": 8,
-      "rest_joints": {},
-      "bytes": 10630600,
+      "rest_joints": {
+        "shoulderL": [
+          0.19502071291208267,
+          0.01788802118971944,
+          0.75
+        ],
+        "elbowL": [
+          0.21228504180908203,
+          0.002322923392057419,
+          0.64
+        ],
+        "wristL": [
+          0.3425065875053406,
+          -0.03239670395851135,
+          0.535
+        ],
+        "fingerL": [
+          0.3405827283859253,
+          -0.033336419612169266,
+          0.485
+        ],
+        "shoulderR": [
+          -0.193357452750206,
+          0.042024124413728714,
+          0.75
+        ],
+        "elbowR": [
+          -0.20705043524503708,
+          0.009262255392968655,
+          0.64
+        ],
+        "wristR": [
+          -0.3391791731119156,
+          -0.030866160988807678,
+          0.535
+        ],
+        "fingerR": [
+          -0.3441261649131775,
+          -0.0346297025680542,
+          0.485
+        ]
+      },
+      "bytes": 10760052,
       "shape_profile": {
         "name": "Boz Arslan",
         "height": 2.4,
@@ -133,11 +215,47 @@
       "has_tail": true,
       "file": "konuralp.glb",
       "source_faces": 28000,
-      "triangles": 9653,
+      "triangles": 9973,
       "body_triangles": 8200,
       "objects": 8,
-      "rest_joints": {},
-      "bytes": 10635848,
+      "rest_joints": {
+        "shoulderL": [
+          0.15943868458271027,
+          0.02088756300508976,
+          0.75
+        ],
+        "wristL": [
+          0.33724987506866455,
+          -0.024683725088834763,
+          0.535
+        ],
+        "fingerL": [
+          0.3390553891658783,
+          -0.02609986998140812,
+          0.485
+        ],
+        "shoulderR": [
+          -0.1561119258403778,
+          0.019002119079232216,
+          0.75
+        ],
+        "elbowR": [
+          -0.21567703783512115,
+          -0.016308648511767387,
+          0.64
+        ],
+        "wristR": [
+          -0.3332730531692505,
+          -0.024181827902793884,
+          0.535
+        ],
+        "fingerR": [
+          -0.3444342762231827,
+          -0.027837133035063744,
+          0.485
+        ]
+      },
+      "bytes": 10765072,
       "shape_profile": {
         "name": "Uc Avcisi",
         "height": 2.25,
@@ -213,14 +331,14 @@
           0.52
         ]
       },
-      "bytes": 9521564
+      "bytes": 9544956
     }
   ],
   "rigged": true,
   "tattoo_method": "one skinned surface per slot, shared atlas with runtime UV selection",
   "scale_unit": "meters",
   "new_meshy_credits": 60,
-  "rig_status": "23-bone length-constrained rig; Bilge jaw and oral geometry, source topology limitations documented",
+  "rig_status": "27-bone source-preserving rig; authored support/gather/push poses and overhead roar with wrist roll and digits",
   "animation_report": "animation-report.json",
   "refinement_new_credits": 0
 }

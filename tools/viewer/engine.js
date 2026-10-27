@@ -41,7 +41,7 @@ export async function loadCharacter(key){
 const rects={dragon:[0,0,426,431],phoenix:[428,0,847,430],lion:[848,0,1274,431],pegasus:[0,431,428,826],spider:[429,431,845,826],bull:[846,431,1274,826],dice:[0,827,427,1234],unicorn:[428,827,846,1234],reaper:[847,827,1274,1234],runes:[428,0,847,430]};
 export function configureCharacter(object,state={}){
  if(!object)return;
- object.userData.clawProfile=state.claw||'standard';
+ object.userData.clawProfile=state.claw||'standard';object.userData.identity=keyFor(state.character||state.id||'bilge');
  const slots=state.tattoos||{back:'dragon',left:'runes',right:'runes'};
  object.traverse(o=>{
   if(o.name.startsWith('Tattoo_')){
@@ -62,6 +62,13 @@ export function configureCharacter(object,state={}){
    if(mat.name.startsWith('Tattoo_')){mat.emissiveIntensity=state.roaring?.9:.08;mat.alphaTest=.3;mat.transparent=false;mat.depthWrite=true;mat.polygonOffset=true;mat.polygonOffsetFactor=-1;mat.polygonOffsetUnits=-1;}
   }
  });
+ setRoarGlow(object,!!state.roaring);
+}
+export function setRoarGlow(object,active,phase=null){
+ if(!object)return;const color=identity[object.userData.identity]?.color||0xaf65ff;
+ if(!object.userData.glowMaterials){const set=new Set();object.traverse(o=>{if(o.isMesh)for(const m of Array.isArray(o.material)?o.material:[o.material])if(m?.emissive&&!m.name.startsWith('Mouth')&&!m.name.startsWith('Teeth'))set.add(m);});object.userData.glowMaterials=[...set].map(m=>({m,color:m.emissive.clone(),intensity:m.emissiveIntensity}));}
+ const pulse=active&&phase!==null?Math.sin(Math.PI*Math.max(0,Math.min(1,(phase-.26)/.62)))**2:0;
+ for(const b of object.userData.glowMaterials){const m=b.m;if(m.name.startsWith('Tattoo_')){m.emissive.setHex(active?color:0xffffff);m.emissiveIntensity=active?.25+pulse*.55:.08;}else if(active){m.emissive.setHex(color);m.emissiveIntensity=.025+pulse*.075;}else{m.emissive.copy(b.color);m.emissiveIntensity=b.intensity;}}
 }
 export function engineInfo(){return {contexts:renderer?1:0,stage:active?.name||null,cacheKeys:[...cache.keys()],triangles:renderer?.info.render.triangles||0,drawCalls:renderer?.info.render.calls||0,textures:renderer?.info.memory.textures||0,pixelRatio:renderer?.getPixelRatio(),buffer:renderer?[renderer.domElement.width,renderer.domElement.height]:[0,0],quality:window.getRoguePreferences?.().graphicsQuality||'sharp'};}
 window.rogueEngineInfo=engineInfo;

@@ -1,0 +1,66 @@
+{
+  "wolves": [
+    {
+      "id": "bilge",
+      "measured_speed_mps": 8.400000000000064,
+      "action_rate": 1.0500000547617754,
+      "stride_error_m": -8.881784197001252e-16,
+      "roar_color": "#70dfff",
+      "emitted_rgb": [
+        0.06636723130941391,
+        0.3022480905056,
+        0.40959998965263367
+      ],
+      "hands_above_head_m": 0.3178661394720508,
+      "held_direction_stopped": true,
+      "peak_bursts_per_roar": 1
+    },
+    {
+      "id": "kultigin",
+      "measured_speed_mps": 8.400000000000064,
+      "action_rate": 1.0500000547617754,
+      "stride_error_m": -1.7763568394002505e-15,
+      "roar_color": "#ff354d",
+      "emitted_rgb": [
+        0.10737418383359909,
+        0.0038226619362831116,
+        0.007968622259795666
+      ],
+      "hands_above_head_m": 0.17118805876284982,
+      "held_direction_stopped": true,
+      "peak_bursts_per_roar": 1
+    },
+    {
+      "id": "alparslan",
+      "measured_speed_mps": 8.400000000000064,
+      "action_rate": 1.0500000547617756,
+      "stride_error_m": 0.0,
+      "roar_color": "#ffae36",
+      "emitted_rgb": [
+        0.40959998965263367,
+        0.17337043583393097,
+        0.01510991808027029
+      ],
+      "hands_above_head_m": 0.22380755765513038,
+      "held_direction_stopped": true,
+      "peak_bursts_per_roar": 1
+    },
+    {
+      "id": "konuralp",
+      "measured_speed_mps": 8.399999999999617,
+      "action_rate": 1.0500000547617194,
+      "stride_error_m": -1.7763568394002505e-15,
+      "roar_color": "#af65ff",
+      "emitted_rgb": [
+        0.07192232459783554,
+        0.021833276376128197,
+        0.16777215898036957
+      ],
+      "hands_above_head_m": 0.21135667379771972,
+      "held_direction_stopped": true,
+      "peak_bursts_per_roar": 1
+    }
+  ],
+  "preview_run_rate": 1.0500000547617676,
+  "browser_errors": []
+}

@@ -12,20 +12,31 @@
     "HumanIdle",
     "HumanMove"
   ],
-  "shared_run_roll_template": "wolf-shared-v4",
+  "shared_run_roll_template": "wolf-reference-v5",
   "root_motion": false,
   "new_meshy_credits": 0,
+  "run_stride_m": 4.266666666666667,
+  "reference_review": "docs/uc-video-kosu-kukreme-analizi-20261028.md",
   "notes": [
+    "301 frames across the three new clips reviewed; target run footage is slowed as confirmed by the match clock.",
     "All 119 frames of the uploaded 4.91-second screen recording reviewed; it is a short edited excerpt, not the complete YouTube source.",
-    "Shared 0.533s bounding run: timed paw contacts/recovery, stabilized head, source limb lengths preserved by two-bone IK; idle keeps the approved source arm pose exactly.",
+    "Authored 0.533s run, 4.2667m stride at 8m/s: reach/front support/gather/hind push/suspension. Fixed trunk and limb lengths, source idle unchanged.",
     "Shared 0.8s compact roll; gameplay travel is about 2m. Values are local tuning, not measured world units from the video.",
-    "Roar: anticipation, raised/open arms, held chest/head lift, recovery; Bilge has articulated jaw, interior and rigid upper/lower teeth.",
+    "Shared 1.2s overhead roar: crouch/spread/hands above head/open digits/chest lift/recovery. No paid generation.",
     "Weights use geometric regions and bone distance; manual deformation polish remains."
   ],
   "models": [
     {
       "id": "bilge",
-      "bones": 23,
+      "triangles": 14457,
+      "oral_parts": 2,
+      "sole_offsets_m": {
+        "frontL": -0.04832644891738891,
+        "frontR": -0.05578173828124999,
+        "rearL": -0.00476704715564847,
+        "rearR": 0.0006068005152046682
+      },
+      "bones": 27,
       "skinned_parts": 9,
       "tattoo_skinning": "barycentric transfer from body triangles",
       "clips": {
@@ -38,13 +49,22 @@
         "WolfJump": 0.8,
         "WolfTransform": 1.0
       },
+      "bake_fps": 60,
       "file": "bilge.glb",
-      "bytes": 13399668
+      "bytes": 13483456
     },
     {
       "id": "kultigin",
-      "bones": 23,
-      "skinned_parts": 8,
+      "triangles": 9918,
+      "oral_parts": 2,
+      "sole_offsets_m": {
+        "frontL": -0.13424398136138915,
+        "frontR": -0.12908055019378661,
+        "rearL": -0.026240870736539364,
+        "rearR": -0.014732483223080635
+      },
+      "bones": 27,
+      "skinned_parts": 10,
       "tattoo_skinning": "barycentric transfer from body triangles",
       "clips": {
         "WolfIdle": 1.0,
@@ -56,13 +76,22 @@
         "WolfJump": 0.8,
         "WolfTransform": 1.0
       },
+      "bake_fps": 60,
       "file": "kultigin.glb",
-      "bytes": 10630920
+      "bytes": 10760296
     },
     {
       "id": "alparslan",
-      "bones": 23,
-      "skinned_parts": 8,
+      "triangles": 9915,
+      "oral_parts": 2,
+      "sole_offsets_m": {
+        "frontL": -0.15380717945098876,
+        "frontR": -0.1485832495689392,
+        "rearL": -0.027013138316571712,
+        "rearR": -0.014332817316055298
+      },
+      "bones": 27,
+      "skinned_parts": 10,
       "tattoo_skinning": "barycentric transfer from body triangles",
       "clips": {
         "WolfIdle": 1.0,
@@ -74,13 +103,22 @@
         "WolfJump": 0.8,
         "WolfTransform": 1.0
       },
+      "bake_fps": 60,
       "file": "alparslan.glb",
-      "bytes": 10630600
+      "bytes": 10760052
     },
     {
       "id": "konuralp",
-      "bones": 23,
-      "skinned_parts": 8,
+      "triangles": 9973,
+      "oral_parts": 2,
+      "sole_offsets_m": {
+        "frontL": -0.1486793918609619,
+        "frontR": -0.1406217975616455,
+        "rearL": -0.030549977354705334,
+        "rearR": -0.02490133085101843
+      },
+      "bones": 27,
+      "skinned_parts": 10,
       "tattoo_skinning": "barycentric transfer from body triangles",
       "clips": {
         "WolfIdle": 1.0,
@@ -92,20 +130,30 @@
         "WolfJump": 0.8,
         "WolfTransform": 1.0
       },
+      "bake_fps": 60,
       "file": "konuralp.glb",
-      "bytes": 10635848
+      "bytes": 10765072
     },
     {
       "id": "human-bilge",
-      "bones": 23,
+      "triangles": 9000,
+      "oral_parts": 0,
+      "sole_offsets_m": {
+        "frontL": 0.0,
+        "frontR": 0.0,
+        "rearL": 0.0,
+        "rearR": 0.0
+      },
+      "bones": 27,
       "skinned_parts": 1,
       "tattoo_skinning": "barycentric transfer from body triangles",
       "clips": {
         "HumanIdle": 2.0,
         "HumanMove": 1.0
       },
+      "bake_fps": 60,
       "file": "human-bilge.glb",
-      "bytes": 9521564
+      "bytes": 9544956
     }
   ]
 }
