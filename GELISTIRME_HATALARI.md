@@ -38,6 +38,8 @@ Bu dosya bu konuşmada tespit edilen hataları, bunların sonucunu ve gerçek du
 23. **Her temiz CI çalışmasında yeni geliştirme imzası üretiliyor.** Durum: hâlâ açık. Eski APK üzerine kurulum reddedilebilir; eski test sürümünü kaldırmak gerekir. Kalıcı üretim/test anahtarı ayrıca güvenli şekilde yapılandırılmalı. Anahtar depoya eklenmedi.
 24. **GitHub artifact yönlendirmesini CLI üzerinden indirme bazı ağlarda reddedildi.** Düzeltme: GitHub artifact bağlantısı ve gerektiğinde connector'ın artifact indirme aracı. Başarılı CI çıktısını doğrulamadan tamamlandı denmiyor.
 
+25. **Koşu/takla donanımını ilk uygulamada bütün kurtlar için ortak tuttum.** Yayınlamadan önce düzeltildi: her seçili karakter/kurt için ayrı kayıt anahtarı var; bir kurda takılan özellik diğerine otomatik geçmez. Bu geçiş test ediliyor.
+
 ## Açık sınırlar
 
 - Fiziksel Android cihaz ve gerçek 3B savaş testi yapılmadı.

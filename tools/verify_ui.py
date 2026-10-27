@@ -155,6 +155,12 @@ with sync_playwright() as p:
     page.locator('#saveWolfGear').click()
     equipment=json.loads(page.evaluate("localStorage.getItem('rogue-wolf-equipment')"))
     assert equipment == {'run':True,'roll':True,'accessory':'shoulder'}
+    assert page.evaluate('wolfLoadouts.kul.run && wolfLoadouts.kul.roll')
+    page.evaluate('collectionState.equipped="basibozuk";openWolfEquipment()')
+    assert not page.locator('#equipRun').is_checked()
+    assert not page.locator('#equipRoll').is_checked()
+    page.evaluate('collectionState.equipped="kul";openWolfEquipment()')
+    assert page.locator('#equipRun').is_checked()
     page.locator('#runPreview').click()
     assert page.locator('#wolfFigure.run-preview').count() == 1
     page.locator('#rollPreview').click()
