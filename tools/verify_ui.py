@@ -71,11 +71,16 @@ with sync_playwright() as p:
         page.locator('#closeModal').click()
     # Touch targets remain within the landscape viewport at a small phone size.
     page.set_viewport_size({'width': 800, 'height': 360})
+    page.wait_for_function('''() => {
+        const r = document.getElementById('stage').getBoundingClientRect();
+        return r.width <= innerWidth + 1 && r.height <= innerHeight + 1;
+    }''')
     for selector in ['#join', '[data-room="bunker"]', '[data-event="moon"]']:
         rect = page.locator(selector).bounding_box()
         assert rect and rect['x'] >= 0 and rect['y'] >= 0
-        assert rect['x'] + rect['width'] <= 801 and rect['y'] + rect['height'] <= 361
+        assert rect['x'] + rect['width'] <= 801 and rect['y'] + rect['height'] <= 361, (selector, rect)
     page.set_viewport_size({'width': 1280, 'height': 720})
+    page.wait_for_function('() => Math.abs(document.getElementById("stage").getBoundingClientRect().width - 1280) < 1')
     page.screenshot(path=str(ROOT / 'dist/lobby-preview.png'))
     page.set_viewport_size({'width': 390, 'height': 844})
     assert page.locator('.portrait-hint').is_visible()
