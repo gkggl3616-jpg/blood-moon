@@ -1,0 +1,21 @@
+{
+  "tool": "Meshy CLI 0.4.0",
+  "resource": "text-to-3d",
+  "preview_task": "01a17d03-bab7-711f-b69b-c240896cfc81",
+  "refine_task": "01a17d05-801f-7167-a810-1f589c670918",
+  "project_dir": "meshy_output/20261027_105945_kul-tigin-wolf-base_01a17d03",
+  "consumed_credits": {
+    "preview": 20,
+    "refine": 10,
+    "total": 30
+  },
+  "balance_after": 1010,
+  "blender_version": "4.3.2",
+  "editable_file": "art/3d/wolves-modular.blend",
+  "rigged": false,
+  "notes": [
+    "Four edited derivatives of one Meshy source, not four independent generations.",
+    "Models are first design drafts; deformation topology and rigs require further work.",
+    "Tattoo patterns are original separate projected curve meshes, not final UV-painted art."
+  ]
+}

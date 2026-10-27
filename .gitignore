@@ -7,3 +7,9 @@ tools/cache/
 dist/
 __pycache__/
 *.pyc
+
+meshy_output/
+tools/viewer/node_modules/
+art/3d/source/
+art/3d/*.log
+*.blend1

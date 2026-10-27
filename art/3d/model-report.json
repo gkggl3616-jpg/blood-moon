@@ -1,0 +1,42 @@
+{
+  "source": "Meshy text-to-3d refine",
+  "source_faces": 1040602,
+  "base_faces": 18000,
+  "variants": [
+    {
+      "id": "bilge",
+      "height_m": 2.35,
+      "triangles": 20044,
+      "objects": 30,
+      "file": "bilge.glb",
+      "bytes": 5518580
+    },
+    {
+      "id": "kultigin",
+      "height_m": 2.08,
+      "triangles": 20872,
+      "objects": 37,
+      "file": "kultigin.glb",
+      "bytes": 5542264
+    },
+    {
+      "id": "alparslan",
+      "height_m": 2.4,
+      "triangles": 20920,
+      "objects": 37,
+      "file": "alparslan.glb",
+      "bytes": 5544128
+    },
+    {
+      "id": "konuralp",
+      "height_m": 2.25,
+      "triangles": 19540,
+      "objects": 25,
+      "file": "konuralp.glb",
+      "bytes": 5502832
+    }
+  ],
+  "rigged": false,
+  "tattoo_method": "separate projected emissive curve meshes",
+  "scale_unit": "meters"
+}

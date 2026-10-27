@@ -40,9 +40,13 @@ Bu dosya bu konuşmada tespit edilen hataları, bunların sonucunu ve gerçek du
 
 25. **Koşu/takla donanımını ilk uygulamada bütün kurtlar için ortak tuttum.** Yayınlamadan önce düzeltildi: her seçili karakter/kurt için ayrı kayıt anahtarı var; bir kurda takılan özellik diğerine otomatik geçmez. Bu geçiş test ediliyor.
 
+26. **Meshy CLI ilk bağlantısında Node proxy ayarı eksikti.** Düzeltildi: resmî CLI mevcut ağ proxy’sini ve sistem CA güvenini kullanıyor; cihaz onayıyla giriş doğrulandı.
+27. **3B gövde dokusu ilk WebGL kontrolde siyah/metalik, sonra beyaz göründü.** Kök neden: GLB içindeki blob dokuları CSP connect-src ile engelleniyordu. Yerel blob erişimi açıldı, metaliklik ve normal etkisi ayarlandı; dokunun gerçekten yüklendiği test ediliyor.
+28. **Blender renderında mevcut olmayan denoiser varsayıldı.** Düzeltildi: desteklenmeyen denoising kapatıldı, CPU Cycles renderı üretildi.
+
 ## Açık sınırlar
 
 - Fiziksel Android cihaz ve gerçek 3B savaş testi yapılmadı.
-- Koşu/takla kuşanması, kükreme süresi ve bonus hesabı çalışır; görünen hareket ve dövme efektleri 2B şemadır.
+- Koşu/takla kuşanması ve kükreme hesabı çalışır. Donanım ekranında gerçek 3B model ve ayrı emisif dövmeler vardır; 3B savaş hareketleri için rig/klipler henüz yoktur.
 - Yeni silah/bomba/bıçak kategorileri katalog taslağıdır; modelleri, atış veya hasar fiziği yoktur.
 - Tarihî esinli karakter görselleri kurgu konseptleridir; tarihsel portre doğruluğu iddiası yoktur.

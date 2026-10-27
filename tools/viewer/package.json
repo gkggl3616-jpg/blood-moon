@@ -1,0 +1,1 @@
+{"private":true,"scripts":{"build":"esbuild viewer.js --bundle --minify --outfile=../../app/src/main/assets/wolf3d.js"},"dependencies":{"three":"0.180.0"},"devDependencies":{"esbuild":"0.25.12"}}

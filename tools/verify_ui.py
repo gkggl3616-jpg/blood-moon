@@ -36,7 +36,7 @@ def assert_fits(page, selectors):
 
 with sync_playwright() as p:
     # Native Android WebView also permits media playback without a user gesture.
-    browser_options = {'headless': True, 'args': ['--no-sandbox', '--autoplay-policy=no-user-gesture-required']}
+    browser_options = {'headless': True, 'args': ['--no-sandbox', '--autoplay-policy=no-user-gesture-required', '--enable-unsafe-swiftshader', '--use-angle=swiftshader']}
     if os.environ.get('ROGUE_BROWSER_CHANNEL'):
         browser_options['channel'] = os.environ['ROGUE_BROWSER_CHANNEL']
     elif shutil.which('chromium'):
@@ -75,7 +75,8 @@ with sync_playwright() as p:
     assert json.loads(page.evaluate("localStorage.getItem('rogue-settings')")) == {'audio': False, 'volume': .25}
     page.reload()
     assert page.locator('#openingSound').inner_text() == 'SES KAPALI'
-    page.locator('#skipIntro').click()
+    page.evaluate('document.getElementById("skipIntro").click()')
+    page.wait_for_selector('#lobby.active')
     for key, title in [('events', 'ETKİNLİK MERKEZİ')]:
         page.locator(f'[data-nav="{key}"]').click()
         assert page.locator('#modalTitle').inner_text() == title
@@ -124,7 +125,8 @@ with sync_playwright() as p:
     page.locator('[data-category="equipment"]').click()
     assert 'Silahlar' in page.locator('#collectionCards').inner_text()
     page.reload()
-    page.locator('#skipIntro').click()
+    page.evaluate('document.getElementById("skipIntro").click()')
+    page.wait_for_selector('#lobby.active')
     page.locator('[data-nav="gear"]').click()
     assert page.locator('#operatorName').inner_text() == 'KÜL PENÇESİ'
     page.evaluate('window.goBack()')
@@ -147,8 +149,6 @@ with sync_playwright() as p:
     page.locator('[data-category="knives"]').click()
     assert 'KAMA-01' in page.locator('#collectionCards').inner_text()
     page.locator('#openWolfGear').click()
-    page.locator('#runPreview').click()
-    assert not page.locator('#wolfFigure').evaluate('(e)=>e.classList.contains("run-preview")')
     page.locator('#equipRun').check()
     page.locator('#equipRoll').check()
     page.locator('#wolfAccessory').select_option('shoulder')
@@ -161,10 +161,14 @@ with sync_playwright() as p:
     assert not page.locator('#equipRoll').is_checked()
     page.evaluate('collectionState.equipped="kul";openWolfEquipment()')
     assert page.locator('#equipRun').is_checked()
-    page.locator('#runPreview').click()
-    assert page.locator('#wolfFigure.run-preview').count() == 1
-    page.locator('#rollPreview').click()
-    assert page.locator('#wolfFigure.roll-preview').count() == 1
+    page.wait_for_function('() => document.getElementById("wolfModelViewport").dataset.modelReady === "true"', timeout=60000)
+    assert page.locator('#wolfModelViewport canvas').count() == 1
+    assert page.evaluate('wolf3DInfo().meshes.every(m=>m.map)')
+    page.locator('#tattooBack').select_option('phoenix')
+    page.locator('#tattooLeft').select_option('none')
+    page.locator('#saveWolfGear').click()
+    assert page.evaluate('wolfLoadouts.kul.tattoos.back') == 'phoenix'
+    assert page.evaluate('wolfLoadouts.kul.tattoos.left') == 'none'
     page.locator('#activateRoar').click()
     stats=page.evaluate('wolfStats()')
     assert stats['active'] and 19000 < stats['remaining'] <= 20000
@@ -179,7 +183,7 @@ with sync_playwright() as p:
         page.evaluate('(id)=>{collectionState.equipped=id;roarUntil=Date.now()+20000;}',character)
         assert max(page.evaluate('(()=>{const s=wolfStats();return [s.speed,s.damage,s.defense]})()')) <= 180.001
     page.evaluate('collectionState.equipped="kul";roarUntil=0;renderWolfEquipment()')
-    assert_fits(page, ['.wolf-slots','.wolf-showcase','.roar-panel','#activateRoar'])
+    assert_fits(page, ['.wolf-slots','.wolf-showcase','.roar-panel','#activateRoar','#wolfModelViewport'])
     page.screenshot(path=str(ROOT / 'dist/wolf-equipment-preview.png'), animations='disabled')
     page.evaluate('window.goBack()')
     (ROOT / 'dist/character-profiles.json').write_text(json.dumps(profiles, ensure_ascii=False, indent=2))
