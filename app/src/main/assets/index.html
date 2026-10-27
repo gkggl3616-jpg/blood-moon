@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; media-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; connect-src 'none'; object-src 'none'">
+  <title>Rogue: Blood Moon</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main id="stage">
+  <section id="opening" class="screen active" aria-label="Açılış ekranı">
+    <img class="hero" src="media/opening.jpg" alt="Kanlı ay altında asker ve kurt">
+    <video id="intro" playsinline preload="none" poster="media/opening.jpg"><source src="media/intro.mp4" type="video/mp4"></video>
+    <div class="opening-shade"></div><div class="scan"></div>
+    <div class="opening-top"><span class="badge">ANDROID • İLK PROTOTİP</span><button class="icon-button" id="openingSound" aria-label="Sesi aç veya kapat">SES AÇIK</button></div>
+    <div class="title-block"><span class="eyebrow">İÇİNDEKİ AVCIYI UYANDIR</span><h1>ROGUE</h1><div class="subtitle">BLOOD MOON</div><div class="title-rule"></div><p>Gece çöker. Kurallar değişir.</p></div>
+    <div class="opening-actions"><button class="primary" id="enter">BAŞLAMAK İÇİN DOKUN <span>→</span></button><button class="text-button" id="replay">AÇILIŞI İZLE</button></div>
+    <footer class="opening-footer"><span>BAŞIBOZUK</span><span>v0.1.0 • MENÜ PROTOTİPİ</span></footer>
+  </section>
+
+  <section id="lobby" class="screen" aria-label="Oyun lobisi" inert>
+    <img class="lobby-art" src="media/opening.jpg" alt=""><div class="lobby-shade"></div>
+    <header class="topbar"><button class="brand" data-action="opening" aria-label="Açılışa dön"><span class="crest">◈</span><span>ROGUE<small>BLOOD MOON</small></span></button><span class="prototype-tag">ÖNİZLEME 01</span><div class="profile"><span class="avatar">B</span><span>BAŞIBOZUK<small><i></i> ÇEVRİMDIŞI PROTOTİP</small></span><span class="level">01<small>SEVİYE</small></span></div></header>
+    <div class="lobby-content">
+      <aside class="events"><div class="section-heading"><h2>ETKİNLİKLER</h2><span>01 / 03</span></div>
+        <button class="event-card moon-card" data-event="moon"><span class="event-tag">ÖZEL MOD</span><strong>KANLI AY</strong><small>Gece operasyonu <span>↗</span></small></button>
+        <button class="event-card hunt-card" data-event="hunt"><span class="event-tag">BAŞLANGIÇ</span><strong>İLK AV</strong><small>Eğitim görevleri <span>↗</span></small></button>
+        <button class="event-card pack-card" data-event="pack"><span class="event-tag">TAKIM MODU</span><strong>SÜRÜ KAPIŞMASI</strong><small>Birlikte avlan <span>↗</span></small></button>
+        <p class="muted micro">Etkinlikler konsept içeriktir.</p>
+      </aside>
+      <div class="character-caption"><span class="eyebrow">İNSAN OLARAK SAVAŞ.</span><strong>KURT OLARAK AVLAN.</strong><div class="mini-line"></div><span class="micro">ROGUE: BLOOD MOON</span></div>
+      <aside class="rooms-panel"><div class="section-heading"><h2>ODALAR</h2><span class="status-pill">ÖRNEK LİSTE</span></div>
+        <div class="room-list" role="group" aria-label="Örnek odalar">
+          <button class="room selected" data-room="bunker" aria-pressed="true"><span class="room-thumb bunker-thumb"></span><span class="room-info"><strong>Sığınak 07</strong><small>TAKIM SAVAŞI</small></span><span class="room-count">2/6<small>→</small></span></button>
+          <button class="room" data-room="foundry" aria-pressed="false"><span class="room-thumb foundry-thumb"></span><span class="room-info"><strong>Dökümhane</strong><small>TASARIM AŞAMASINDA</small></span><span class="room-count">4/6<small>→</small></span></button>
+          <button class="room" data-room="quarantine" aria-pressed="false"><span class="room-thumb quarantine-thumb"></span><span class="room-info"><strong>Karantina</strong><small>TASARIM AŞAMASINDA</small></span><span class="room-count">1/6<small>→</small></span></button>
+        </div>
+        <div class="selected-map"><span>SEÇİLİ HARİTA</span><strong id="selectedName">SIĞINAK 07</strong><small id="selectedHint">3'e 3 • Harita konsepti hazır</small></div>
+        <button class="primary" id="join">SAVAŞA GİR <span>→</span></button>
+        <p class="micro muted room-disclaimer">Oda dolulukları örnektir. Eşleştirme henüz yok.</p>
+      </aside>
+    </div>
+    <nav class="bottomnav" aria-label="Ana menü"><button class="nav-item selected" data-nav="lobby"><span>⌂</span>LOBİ</button><button class="nav-item" data-nav="gear"><span>▤</span>TEÇHİZAT</button><button class="nav-item" data-nav="events"><span>◫</span>ETKİNLİKLER</button><button class="nav-item" data-nav="clan"><span>♧</span>KLAN</button><button class="nav-item" data-nav="settings"><span>⚙</span>AYARLAR</button></nav>
+  </section>
+
+  <section id="map" class="screen" aria-label="Harita önizlemesi" inert>
+    <header class="map-header"><button class="back-button" data-action="lobby">← LOBİYE DÖN</button><span class="badge">HARİTA KONSEPTİ • SIĞINAK 07</span><button class="icon-button" id="mapInfo">ROTA BİLGİSİ</button></header>
+    <img class="map-image" src="media/map.jpg" alt="Sığınak 07 üç boyutlu konsepti ve A/B başlangıçları, avlu, laboratuvar, bakım ve çatı rotalarını gösteren üstten plan">
+    <div class="map-footer"><div><span class="eyebrow">İLK OPERASYON</span><h2>SIĞINAK 07</h2><p>Merkez avlu. İki yan rota. Çatı kestirmeleri.</p></div><button class="primary" id="mapDetails">HARİTAYI İNCELE <span>↗</span></button></div>
+  </section>
+
+  <dialog id="modal"><div class="modal-label" id="modalLabel">ROGUE: BLOOD MOON</div><button id="closeModal" class="close" aria-label="Kapat">×</button><h2 id="modalTitle"></h2><div id="modalBody"></div><button class="primary" id="modalOk">ANLADIM <span>→</span></button></dialog>
+  <div id="toast" role="status" aria-live="polite"></div>
+</main>
+<div class="portrait-hint"><span>↻</span><strong>Telefonunu yatay çevir</strong><p>Rogue: Blood Moon yatay ekran için tasarlandı.</p></div>
+<script src="app.js"></script>
+</body>
+</html>

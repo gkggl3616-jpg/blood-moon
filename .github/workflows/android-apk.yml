@@ -1,0 +1,65 @@
+name: Android APK
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: android-apk-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Verify UI and build signed prototype APK
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v4
+      - name: Set up Java 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Cache verified Android tools
+        uses: actions/cache@v4
+        with:
+          path: tools/cache
+          key: android-platform35-buildtools35-v1
+      - name: Install UI test browser
+        run: |
+          python -m pip install playwright==1.58.0
+          python -m playwright install --with-deps chromium
+      - name: Verify offline mobile interface
+        run: python tools/verify_ui.py
+      - name: Download verified Android build tools
+        run: python tools/bootstrap_android.py
+      - name: Compile and sign APK
+        run: python tools/build_apk.py
+      - name: Upload installable Android prototype
+        uses: actions/upload-artifact@v4
+        with:
+          name: Rogue-Blood-Moon-v0.1.0-APK
+          path: |
+            dist/*.apk
+            dist/build-report.json
+            dist/signature-verification.txt
+            dist/apk-badging.txt
+            dist/lobby-preview.png
+          if-no-files-found: error
+          retention-days: 30
+      - name: Upload UI preview on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-diagnostics
+          path: dist/
+          if-no-files-found: ignore
