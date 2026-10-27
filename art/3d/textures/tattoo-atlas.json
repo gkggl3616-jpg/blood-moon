@@ -1,0 +1,65 @@
+{
+  "texture": "tattoo-atlas.png",
+  "size": [
+    1274,
+    1234
+  ],
+  "rects_top_left_pixels": {
+    "dragon": [
+      0,
+      0,
+      426,
+      431
+    ],
+    "phoenix": [
+      428,
+      0,
+      847,
+      430
+    ],
+    "lion": [
+      848,
+      0,
+      1274,
+      431
+    ],
+    "pegasus": [
+      0,
+      431,
+      428,
+      826
+    ],
+    "spider": [
+      429,
+      431,
+      845,
+      826
+    ],
+    "bull": [
+      846,
+      431,
+      1274,
+      826
+    ],
+    "dice": [
+      0,
+      827,
+      427,
+      1234
+    ],
+    "unicorn": [
+      428,
+      827,
+      846,
+      1234
+    ],
+    "reaper": [
+      847,
+      827,
+      1274,
+      1234
+    ]
+  },
+  "method": "original generated alpha ink; surface-projected UV patches",
+  "source": "OpenAI image generation"
+}

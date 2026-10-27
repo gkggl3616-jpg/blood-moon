@@ -1,4 +1,4 @@
-# Rogue: Blood Moon — Android Prototype 0.1.7
+# Rogue: Blood Moon — Android Prototype 0.1.8
 
 Yatay Android ekranı için menü ve harita konsepti prototipi.
 
@@ -35,3 +35,11 @@ TikTok sayfası ve kapak karesi incelendi; video akışı 403 döndüğü için 
 - Düzenlenebilir kaynak: `art/3d/wolves-rigged.blend`; üretim betiği: `art/3d/scripts/animate_wolves.py`; klip/kemik kaydı: `art/3d/animation-report.json`. Bu aşamada yeni Meshy üretimi ve kredi tüketimi yoktur.
 
 Bu hareketler donanım ekranındaki ilk 3B önizlemelerdir. Ağırlıklar geometrik yöntemle atanmıştır; özellikle omuz, kalça ve kürkte elle deformasyon düzeltmesi gerekir. Haritada ilerleme, çarpışma, saldırı ve çevrimiçi maç henüz uygulanmadı. Tarayıcı testi satın alma/kuşanma ayrımını, kalıcı kaydı ve klip oynatmayı doğrular; fiziksel Android cihazda oynanış testi değildir.
+
+## v0.1.8 — Atletik gövdeler ve ayrıntılı dövmeler
+
+Dört gerçek gövdenin beli ve karın derinliği yeniden biçimlendirildi. Ağır varyantların hacmi omuz/göğüste korunur. Bel daraltması yalnızca gövde bölgesine uygulanır; ön kolları ve elleri sıkıştırmaz. Her varyantın oranları, boyu ve ölçülen gövde kesitleri `art/3d/model-report.json` içindedir. Kaynak Meshy modeli korunarak Blender'da düzenlendi; yeni Meshy üretimi ve kredi tüketimi yoktur.
+
+Gövde LOD'si 18.000'den 28.000 üçgene çıkarıldı. Dokuz ayrıntılı, özgün sırt dövmesi: ejder, anka, aslan, kanatlı at, örümcek, boğa, kader zarı, tekboynuz ve ölüm. Kaynak sayfa `art/3d/textures/tattoo-atlas.png`, UV bölmeleri aynı klasördeki JSON dosyasıdır. Dövmeler görüntü üretimiyle hazırlanan şeffaf renk/emisyon dokularını kullanır; referans oyundan doku dosyası alınmadı. Her dövme gerçek gövde yüzey üçgenlerini izleyen ayrı bir mesh'tir. Sol ve sağ kol bağımsız olarak kanat şeridi, ejder, anka veya ölüm deseni seçer. Kükreme bu renkli mürekkepleri parlatır.
+
+Dövme iskelet ağırlıkları gövdenin en yakın üçgeninden ara değerleme ile aktarılır. İlk rig ve üç hareket klibi korunur; final üretim topolojisi, yüz ifadesi ve deformasyon cilası henüz tamamlanmadı. Bu bir kalite geliştirme geçişidir; nihai AAA model iddiası yoktur. Yedi karakter hâlâ dört temel geometriyi paylaşır.

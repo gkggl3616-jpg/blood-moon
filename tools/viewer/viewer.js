@@ -32,11 +32,11 @@ try{
 const modelIds={basibozuk:'kultigin',kul:'konuralp',ayaz:'alparslan',bilge:'bilge',kultigin:'kultigin',alparslan:'alparslan',konuralp:'konuralp'};
 function updateParts(state){if(!model)return;const tattoos=state.tattoos||{};model.traverse(o=>{
  if(o.name.startsWith('Tattoo_back_'))o.visible=o.name.startsWith('Tattoo_back_'+(tattoos.back||'dragon')+'_');
- if(o.name.startsWith('Tattoo_left_'))o.visible=tattoos.left!=='none';
- if(o.name.startsWith('Tattoo_right_'))o.visible=tattoos.right!=='none';
+ if(o.name.startsWith('Tattoo_left_'))o.visible=o.name.startsWith('Tattoo_left_'+(tattoos.left||'runes')+'_');
+ if(o.name.startsWith('Tattoo_right_'))o.visible=o.name.startsWith('Tattoo_right_'+(tattoos.right||'runes')+'_');
  if(o.name.startsWith('Accessory_')){const name=o.name.replace(/\.\d+$/,'');o.visible=name==='Accessory_'+state.accessory||(name==='Accessory_cross_strap'&&state.accessory==='charm');}
  if(o.isMesh){const mats=Array.isArray(o.material)?o.material:[o.material];for(const mat of mats){if(mat?.name.startsWith('Fur_')){mat.metalness=0;mat.roughness=.78;mat.normalScale?.set(.35,.35);}
- if(mat?.name.startsWith('Tattoo_'))mat.emissiveIntensity=state.roaring?6:.15;}}
+ if(mat?.name.startsWith('Tattoo_')){mat.emissiveIntensity=state.roaring?3:.15;mat.alphaTest=.3;mat.transparent=false;mat.depthWrite=true;mat.polygonOffset=true;mat.polygonOffsetFactor=-1;mat.polygonOffsetUnits=-1;}}}
  });
 }
 window.refreshWolf3D=async()=>{
@@ -61,7 +61,7 @@ window.refreshWolf3D=async()=>{
  }catch(e){if(token===loadToken){host.dataset.loading='';setStatus('Model yüklenemedi. Yeniden denemek için farklı kurt seç.');host.dataset.error=String(e);}}
 };
 window.wolf3DView=(front)=>{if(!model||!controls)return;camera.position.set(controls.target.x+.15,controls.target.y+.45,controls.target.z+(front?4.5:-4.5));controls.update();};
-window.wolf3DInfo=()=>{const meshes=[];model?.traverse(o=>{if(o.isMesh&&o.name.startsWith('Body')){const m=o.material;meshes.push({name:o.name,color:m.color?.toArray(),metalness:m.metalness,roughness:m.roughness,emissive:m.emissive?.toArray(),emissiveIntensity:m.emissiveIntensity,map:!!m.map,normal:!!m.normalMap});}});return {loaded,meshes,motion:currentMotion,clips:model?.userData.motionClips?.map(c=>c.name)||[],skinned:!!model?.getObjectByProperty('isSkinnedMesh',true),actionTime:activeAction?.time||0};};
+window.wolf3DInfo=()=>{const meshes=[],tattoos=[];model?.traverse(o=>{if(o.isMesh&&o.name.startsWith('Body')){const m=o.material;meshes.push({name:o.name,color:m.color?.toArray(),metalness:m.metalness,roughness:m.roughness,emissive:m.emissive?.toArray(),emissiveIntensity:m.emissiveIntensity,map:!!m.map,normal:!!m.normalMap});}if(o.isMesh&&o.name.startsWith('Tattoo_'))tattoos.push({name:o.name,visible:o.visible,map:!!o.material.map,emissiveMap:!!o.material.emissiveMap,alphaTest:o.material.alphaTest,glow:o.material.emissiveIntensity});});return {loaded,meshes,tattoos,motion:currentMotion,clips:model?.userData.motionClips?.map(c=>c.name)||[],skinned:!!model?.getObjectByProperty('isSkinnedMesh',true),actionTime:activeAction?.time||0};};
 
 function startMotion(name){
  if(!mixer||!model)return false;

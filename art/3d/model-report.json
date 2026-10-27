@@ -1,43 +1,169 @@
 {
-  "source": "Meshy text-to-3d refine",
+  "source": "Existing Meshy refine; athletic sculpt v2",
   "source_faces": 1040602,
-  "base_faces": 18000,
+  "base_faces": 28000,
   "variants": [
     {
       "id": "bilge",
       "height_m": 2.35,
-      "triangles": 20044,
-      "objects": 30,
+      "triangles": 50576,
+      "objects": 22,
+      "shape_profile": {
+        "name": "Boz Kagan",
+        "height": 2.35,
+        "shoulder": 1.08,
+        "waist": 0.88,
+        "depth": 0.98,
+        "waist_depth": 0.8,
+        "tint": [
+          0.68,
+          0.75,
+          0.84,
+          1
+        ],
+        "color": [
+          1,
+          0.58,
+          0.06,
+          1
+        ],
+        "accessory": "collar"
+      },
+      "normalized_trunk_sections": {
+        "waist": {
+          "width": 0.1693,
+          "depth": 0.1457
+        },
+        "chest": {
+          "width": 0.3365,
+          "depth": 0.1842
+        }
+      },
       "file": "bilge.glb",
-      "bytes": 6034944
+      "bytes": 10811324
     },
     {
       "id": "kultigin",
       "height_m": 2.08,
-      "triangles": 20872,
-      "objects": 37,
+      "triangles": 49005,
+      "objects": 22,
+      "shape_profile": {
+        "name": "Kara Tigin",
+        "height": 2.08,
+        "shoulder": 1.24,
+        "waist": 0.94,
+        "depth": 1.08,
+        "waist_depth": 0.78,
+        "tint": [
+          0.48,
+          0.57,
+          0.7,
+          1
+        ],
+        "color": [
+          1,
+          0.1,
+          0.12,
+          1
+        ],
+        "accessory": "shoulder"
+      },
+      "normalized_trunk_sections": {
+        "waist": {
+          "width": 0.1833,
+          "depth": 0.1567
+        },
+        "chest": {
+          "width": 0.3863,
+          "depth": 0.203
+        }
+      },
       "file": "kultigin.glb",
-      "bytes": 6071476
+      "bytes": 10713892
     },
     {
       "id": "alparslan",
       "height_m": 2.4,
-      "triangles": 20920,
-      "objects": 37,
+      "triangles": 48233,
+      "objects": 22,
+      "shape_profile": {
+        "name": "Boz Arslan",
+        "height": 2.4,
+        "shoulder": 1.34,
+        "waist": 0.99,
+        "depth": 1.15,
+        "waist_depth": 0.8,
+        "tint": [
+          0.78,
+          0.69,
+          0.57,
+          1
+        ],
+        "color": [
+          1,
+          0.42,
+          0.05,
+          1
+        ],
+        "accessory": "collar"
+      },
+      "normalized_trunk_sections": {
+        "waist": {
+          "width": 0.1944,
+          "depth": 0.171
+        },
+        "chest": {
+          "width": 0.4175,
+          "depth": 0.2161
+        }
+      },
       "file": "alparslan.glb",
-      "bytes": 6073820
+      "bytes": 10665400
     },
     {
       "id": "konuralp",
       "height_m": 2.25,
-      "triangles": 19540,
-      "objects": 25,
+      "triangles": 51983,
+      "objects": 22,
+      "shape_profile": {
+        "name": "Uc Avcisi",
+        "height": 2.25,
+        "shoulder": 0.97,
+        "waist": 0.84,
+        "depth": 0.91,
+        "waist_depth": 0.77,
+        "tint": [
+          0.62,
+          0.69,
+          0.59,
+          1
+        ],
+        "color": [
+          0.09,
+          0.85,
+          0.76,
+          1
+        ],
+        "accessory": "charm"
+      },
+      "normalized_trunk_sections": {
+        "waist": {
+          "width": 0.16,
+          "depth": 0.1304
+        },
+        "chest": {
+          "width": 0.3022,
+          "depth": 0.171
+        }
+      },
       "file": "konuralp.glb",
-      "bytes": 6011156
+      "bytes": 10900812
     }
   ],
   "rigged": true,
-  "tattoo_method": "separate projected emissive curve meshes",
+  "tattoo_method": "skin-triangle alpha ink; nine detailed back motifs",
+  "new_meshy_credits": 0,
+  "static_source_dir": "art/3d/source/athletic-static",
   "scale_unit": "meters",
   "rig_status": "Initial 22-bone preview rig; manual weight polish required",
   "animation_report": "animation-report.json"

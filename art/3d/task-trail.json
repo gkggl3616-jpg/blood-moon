@@ -12,10 +12,23 @@
   "balance_after": 1010,
   "blender_version": "4.3.2",
   "editable_file": "art/3d/wolves-modular.blend",
-  "rigged": false,
+  "rigged": true,
   "notes": [
-    "Four edited derivatives of one Meshy source, not four independent generations.",
-    "Models are first design drafts; deformation topology and rigs require further work.",
-    "Tattoo patterns are original separate projected curve meshes, not final UV-painted art."
+    "Four derivatives of one Meshy source; seven characters share these four geometries.",
+    "Initial local rigs and clips exist; final face, topology and deformation polish remain.",
+    "Original alpha ink atlas generated with OpenAI image generation; no additional Meshy tasks."
+  ],
+  "rig_source": "art/3d/wolves-rigged.blend",
+  "local_revisions": [
+    {
+      "version": "0.1.7",
+      "operation": "Blender 22-bone rig, idle/roll/quadrupedal clips",
+      "additional_meshy_credits": 0
+    },
+    {
+      "version": "0.1.8",
+      "operation": "Athletic torso sculpt, 28k body LOD, detailed alpha ink atlas and skin-weight transfer",
+      "additional_meshy_credits": 0
+    }
   ]
 }

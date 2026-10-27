@@ -37,7 +37,7 @@ def main():
     run(TOOLS / 'aapt2', 'link', '-o', BUILD / 'base.apk', '-I', ANDROID,
         '--manifest', manifest,
         '--min-sdk-version', '26', '--target-sdk-version', '35',
-        '--version-code', '8', '--version-name', '0.1.7',
+        '--version-code', '9', '--version-name', '0.1.8',
         '-A', ROOT / 'app/src/main/assets', BUILD / 'resources.zip')
     sources = list((ROOT / 'app/src/main/java').rglob('*.java'))
     run('java', '-m', 'jdk.compiler/com.sun.tools.javac.Main', '-source', '17', '-target', '17', '-encoding', 'UTF-8',
@@ -61,7 +61,7 @@ def main():
             '-alias', 'androiddebugkey', '-keyalg', 'RSA', '-keysize', '2048', '-validity', '10000',
             '-dname', 'CN=Rogue Prototype,O=Local Development,C=TR')
         key.chmod(0o600)
-    apk = ROOT / 'dist/Rogue-Blood-Moon-v0.1.7-debug.apk'
+    apk = ROOT / 'dist/Rogue-Blood-Moon-v0.1.8-debug.apk'
     run('java', '-jar', TOOLS / 'lib/apksigner.jar', 'sign', '--ks', key,
         '--ks-pass', 'pass:android', '--key-pass', 'pass:android', '--ks-key-alias', 'androiddebugkey',
         '--out', apk, aligned)
@@ -78,8 +78,12 @@ def main():
             assert magic == b'glTF' and glb_version == 2 and length == len(data) and chunk_type == 0x4E4F534A
             gltf = json.loads(data[20:20 + json_length])
             assert gltf['skins'] and {a['name'] for a in gltf['animations']} == {'WolfIdle','WolfRoll','WolfRunQuad'}
+            for motif in ['dragon','phoenix','lion','pegasus','spider','bull','dice','unicorn','reaper']:
+                assert any(n.get('name','').startswith('Tattoo_back_'+motif+'_') for n in gltf['nodes'])
+            ink_materials=[m for m in gltf['materials'] if m.get('name','').startswith('Tattoo_')]
+            assert ink_materials and all(m.get('emissiveTexture') and m['pbrMetallicRoughness'].get('baseColorTexture') and m.get('alphaMode') in ['MASK','BLEND'] for m in ink_materials)
     report = {'apk': apk.name, 'size_bytes': apk.stat().st_size, 'sha256': hashlib.sha256(apk.read_bytes()).hexdigest(),
-              'package': 'com.roguebloodmoon.prototype', 'version': '0.1.7', 'min_android': '8.0',
+              'package': 'com.roguebloodmoon.prototype', 'version': '0.1.8', 'min_android': '8.0',
               'signed': True, 'device_tested': False, 'scope': 'Offline menu, wolf equipment, shop and rigged 3D motion previews'}
     (ROOT / 'dist/build-report.json').write_text(json.dumps(report, indent=2))
     print(json.dumps(report, indent=2))

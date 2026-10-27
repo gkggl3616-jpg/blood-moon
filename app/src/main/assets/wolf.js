@@ -1,6 +1,6 @@
 'use strict';
 sounds.roar = new Audio('media/roar.mp3');
-const wolfBodyProfiles={basibozuk:{body:'Dengeli gövde',width:1,height:1,color:'#91bac4'},kul:{body:'Çevik • ince bel • uzun uzuv',width:.85,height:1.03,color:'#b3a29b'},ayaz:{body:'Geniş omuz • yoğun yele',width:1.13,height:.98,color:'#80c5dc'},bilge:{body:'Uzun gövde • örgülü yele • kağan tasması',width:.94,height:1.12,color:'#d2b367'},kultigin:{body:'Kısa ve çok kaslı • asimetrik omuzluk',width:1.28,height:.94,color:'#db6977'},alparslan:{body:'Çok ağır göğüs • kalın yele • bronz boyunluk',width:1.42,height:1.06,color:'#d5a565'},konuralp:{body:'İnce akıncı • uzun kollar • deri kayışlar',width:.82,height:1.09,color:'#77d3c6'}};
+const wolfBodyProfiles={basibozuk:{body:'Atletik • dar bel',width:1,height:1,color:'#91bac4'},kul:{body:'Çevik • ince bel • uzun uzuv',width:.85,height:1.03,color:'#b3a29b'},ayaz:{body:'Geniş omuz • yoğun yele',width:1.13,height:.98,color:'#80c5dc'},bilge:{body:'Uzun gövde • örgülü yele • kağan tasması',width:.94,height:1.12,color:'#d2b367'},kultigin:{body:'Kısa, kaslı omuz • dar bel • omuzluk',width:1.28,height:.94,color:'#db6977'},alparslan:{body:'Ağır göğüs • dar bel • bronz boyunluk',width:1.42,height:1.06,color:'#d5a565'},konuralp:{body:'İnce akıncı • uzun kollar • deri kayışlar',width:.82,height:1.09,color:'#77d3c6'}};
 let wolfEquipment={skill:'none',run:false,roll:false,accessory:'none'};
 const rollItems=[{id:'normal',title:'KURT TAKLASI',price:450,rarity:'STANDART',desc:'Yalnızca takla atmayı açar. Dört ayak koşu vermez; takla ek hasar vermez.'},{id:'legendary',title:'EFSANEVİ KURT TAKLASI',price:1200,rarity:'EFSANEVİ',desc:'Dört ayak üzerinde koşu ve taklayı birlikte açar. Standart takla ayrıca takılmaz.'}];
 const ownedRollSkills=new Set();
@@ -8,7 +8,7 @@ try{const saved=JSON.parse(localStorage.getItem('rogue-roll-items'));if(Array.is
 let wolfLoadouts={};
 try{const saved=JSON.parse(localStorage.getItem('rogue-wolf-loadouts'));if(saved&&typeof saved==='object')wolfLoadouts=saved;}catch(_){}
 let wolfTattoos={back:'dragon',left:'runes',right:'runes'};
-function loadWolfLoadout(){const e=wolfLoadouts[collectionState.equipped];const skill=ownedRollSkills.has(e?.skill)?e.skill:'none';wolfEquipment={skill,run:skill==='legendary',roll:skill!=='none',accessory:['collar','shoulder','charm'].includes(e?.accessory)?e.accessory:'none'};wolfTattoos={back:['dragon','phoenix','lion','pegasus','spider','bull','none'].includes(e?.tattoos?.back)?e.tattoos.back:'dragon',left:e?.tattoos?.left==='none'?'none':'runes',right:e?.tattoos?.right==='none'?'none':'runes'};}
+function loadWolfLoadout(){const e=wolfLoadouts[collectionState.equipped];const skill=ownedRollSkills.has(e?.skill)?e.skill:'none';wolfEquipment={skill,run:skill==='legendary',roll:skill!=='none',accessory:['collar','shoulder','charm'].includes(e?.accessory)?e.accessory:'none'};wolfTattoos={back:['dragon','phoenix','lion','pegasus','spider','bull','dice','unicorn','reaper','none'].includes(e?.tattoos?.back)?e.tattoos.back:'dragon',left:['runes','dragon','phoenix','reaper','none'].includes(e?.tattoos?.left)?e.tattoos.left:'runes',right:['runes','dragon','phoenix','reaper','none'].includes(e?.tattoos?.right)?e.tattoos.right:'runes'};}
 const ROAR_DURATION=20000;
 let roarUntil=0,previewTimer;
 function wolfStats(now=Date.now()){

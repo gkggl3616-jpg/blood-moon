@@ -48,6 +48,11 @@ Bu dosya bu konuşmada tespit edilen hataları, bunların sonucunu ve gerçek du
 
 30. **Hızlı karakter değişiminde yüklü modele dönülünce yükleme durumu yanlışlıkla açık kalabiliyordu.** Düzeltildi: bekleyen farklı model yüklemesi geçersiz kılınıyor, mevcut model hazır duruma alınıyor. Kurtlar arasında hızlı geçiş akışı test ediliyor.
 
+31. **Ağır kurtlarda bel ve karın derinliğini de büyüttüm.** Göğüs/omuz ağırlığı yerine kalın bir bel silüeti oluştu; kullanıcı referansları atletik ve dar bel istiyordu. Düzeltme: dört gövdede bel ve karın ayrı biçimlendirildi, omuz hacmi korundu. İlk düzeltme taslağındaki aşırı daralma yayınlamadan yumuşatıldı. Ön kollar/eller gövde daraltma alanından çıkarıldı; ön ve yan görünüm kontrol ediliyor.
+32. **İlk dövmeler ayrıntılı desen yerine kaba çizgi geometrisi olarak kaldı.** İstenen görsel kaliteyi karşılamadı. Düzeltme: dokuz ayrıntılı özgün renkli alfa/emisyon dövmesi, bağımsız kol seçimleri ve yüzeye oturan UV patch'leri eklendi. Zar, tekboynuz ve ölüm temaları da var; örnek oyunun doku dosyaları kopyalanmadı.
+33. **Dövme rig ağırlıklarını gövdeden bağımsız hesapladım.** Eklem bükülmesinde yüzeyden ayrılma riski vardı. Düzeltme: her dövme köşesine en yakın gövde üçgeninin gerçek iskelet ağırlıkları ara değerlemeyle aktarılır. Bu yöntem deformasyon cilası ve fiziksel cihaz kontrolünün yerini almaz.
+34. **Boyunluk fazla geniş, deri kayış ise düz bir çubuk gibi gövdeden uzaktaydı.** Yakın model kontrolünde görüldü. Düzeltme: boyunluk boyun çevresine küçültüldü; kayış gövde önüne oturan yassı deri şeridi oldu ve yalnız tılsımlı görünümde gösterilir. Kaba raycast ızgarasının kürk çıkıntılarında köprü kurması da giderildi: dövmeler artık gerçek gövde üçgenlerini izler.
+
 ## Açık sınırlar
 
 - Fiziksel Android cihaz ve gerçek 3B savaş testi yapılmadı.

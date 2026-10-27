@@ -195,6 +195,18 @@ with sync_playwright() as p:
     assert page.evaluate('wolf3DInfo().motion') == 'WolfIdle'
     page.locator('#equipRollTier').select_option('legendary')
 
+    # Detailed ink has real color/alpha and emission textures. Exactly one
+    # chosen motif is visible per slot, including the three new back designs.
+    for motif in ['dragon','phoenix','lion','pegasus','spider','bull','dice','unicorn','reaper']:
+        page.locator('#tattooBack').select_option(motif)
+        tattoos=page.evaluate('wolf3DInfo().tattoos.filter(t=>t.visible&&t.name.startsWith("Tattoo_back_"))')
+        assert len(tattoos)==1 and tattoos[0]['name'].startswith('Tattoo_back_'+motif+'_')
+        assert tattoos[0]['map'] and tattoos[0]['emissiveMap'] and tattoos[0]['alphaTest'] > 0
+    page.locator('#tattooLeft').select_option('dragon')
+    page.locator('#tattooRight').select_option('reaper')
+    assert len(page.evaluate('wolf3DInfo().tattoos.filter(t=>t.visible)')) == 3
+    page.locator('#tattooBack').select_option('none')
+    assert not page.evaluate('wolf3DInfo().tattoos.some(t=>t.visible&&t.name.startsWith("Tattoo_back_"))')
     page.locator('#tattooBack').select_option('phoenix')
     page.locator('#tattooLeft').select_option('none')
     page.locator('#saveWolfGear').click()
@@ -206,6 +218,7 @@ with sync_playwright() as p:
     assert abs(stats['speed']-138) < .001
     assert page.locator('#wolfFigure.roaring').count() == 1
     assert page.locator('#activateRoar').is_disabled()
+    assert all(t['glow'] > 1 for t in page.evaluate('wolf3DInfo().tattoos.filter(t=>t.visible)'))
     # Check the real expiry calculation without sleeping for 20 seconds.
     page.evaluate('roarUntil = Date.now() - 1; updateRoar()')
     assert not page.evaluate('wolfStats().active')
@@ -226,6 +239,8 @@ with sync_playwright() as p:
     page.locator('#goWolfEquip').click()
     assert page.locator('#equipRollTier').input_value() == 'legendary'
     assert page.evaluate('getWolfMotionAccess()') == {'roll':True,'run':True}
+    assert page.locator('#tattooRight').input_value() == 'reaper'
+    assert page.locator('#tattooLeft').input_value() == 'none'
     page.evaluate('window.goBack()')
     (ROOT / 'dist/character-profiles.json').write_text(json.dumps(profiles, ensure_ascii=False, indent=2))
     page.screenshot(path=str(ROOT / 'dist/characters-preview.png'), animations='disabled')
@@ -251,4 +266,4 @@ with sync_playwright() as p:
     fallback.wait_for_selector('#lobby.active', timeout=10000)
     assert not errors, errors
     browser.close()
-    print('PASS: automatic intro and fallback; viewport containment at five mobile sizes and safe insets; lobby/events/map/audio; shop purchase and persistence; per-wolf normal roll vs legendary run+roll permissions; skinned GLB clips playback and return to idle; roar expiry and 180 cap; no JS errors.')
+    print('PASS: automatic intro and fallback; five mobile viewport sizes; shop and per-wolf roll/run persistence; skinned GLB clips; nine textured ink motifs with independent arm slots, alpha and roar emission; roar expiry and 180 cap; no JS errors.')

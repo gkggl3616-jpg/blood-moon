@@ -15,30 +15,34 @@
     {
       "id": "bilge",
       "bones": 22,
-      "skinned_parts": 30,
+      "skinned_parts": 22,
+      "tattoo_skinning": "barycentric transfer from body triangles",
       "file": "bilge.glb",
-      "bytes": 6034944
+      "bytes": 10811324
     },
     {
       "id": "kultigin",
       "bones": 22,
-      "skinned_parts": 37,
+      "skinned_parts": 22,
+      "tattoo_skinning": "barycentric transfer from body triangles",
       "file": "kultigin.glb",
-      "bytes": 6071476
+      "bytes": 10713892
     },
     {
       "id": "alparslan",
       "bones": 22,
-      "skinned_parts": 37,
+      "skinned_parts": 22,
+      "tattoo_skinning": "barycentric transfer from body triangles",
       "file": "alparslan.glb",
-      "bytes": 6073820
+      "bytes": 10665400
     },
     {
       "id": "konuralp",
       "bones": 22,
-      "skinned_parts": 25,
+      "skinned_parts": 22,
+      "tattoo_skinning": "barycentric transfer from body triangles",
       "file": "konuralp.glb",
-      "bytes": 6011156
+      "bytes": 10900812
     }
   ]
 }
