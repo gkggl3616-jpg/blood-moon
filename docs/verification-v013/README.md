@@ -7,6 +7,7 @@ Bu klasör gerçek dışa aktarılmış varlıkların ve gerçek WebGL oyununun 
 - `reference-motion-verification.json`: dört kurtta destek taban yüksekliği, sanal köke göre destek kayması, gövde/uzuv uzunlukları, kumaş–el ağırlığı ayrımı, baş üstü eller ve gerçek çene/ağız.
 - `reference-arena-verification.json`: gerçek oyun mesafe/zamanı, adım–mesafe eşleşmesi, yayılan parçacığın RGB'si, kükremede hareketsizlik ve menü temposu.
 - `run-speed.json`: genel arena regresyonunun bağımsız hız ölçümü.
+- `published-apk.json` ve `apk-badging.txt`: yayımlanmış dosya yeniden indirilerek imza/sürüm/52 varlık doğrulaması; eski APK ile aynı sertifika.
 - `test-status.json`: yapılmış kontroller ve açık fiziksel cihaz testi.
 - `review13-collage.jpg`: çalışma zamanı Bilge modelinin ön/arka bekleme, koşu, kükreme ve takla örnekleri.
 - `four-runs13.jpg`: dört çalışma zamanı GLB'sinde aynı koşu fazları.

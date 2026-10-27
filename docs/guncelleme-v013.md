@@ -44,3 +44,9 @@ Kaynak Bilge gövdesinin bekleme başlangıcında en yüksek koordinat farkı ya
 Hareket videodaki ana pozlardan yeniden yazıldı; referans oyunun orijinal animasyon dosyaları çıkarılmadı. Piksel piksel aynı hareket veya final sinema kalitesi iddia edilmez. Mevcut kürk kümeleri, kıyafet yüzeyleri, yüz ağırlıkları ve geçişlerin elle sanatçı cilası hâlâ yapılabilir; bunlar efektle gizlenmiş “bitmiş yeni model” olarak sunulmaz. Diğer üç insan formu hâlâ 2B konsepttir. Fiziksel Android kurulumu, GPU profili, ısınma ve FPS bu ortamda ölçülmedi.
 
 Teslim hedefi v0.1.13 / versionCode 14, tek imzalı bağımsız APK. Yayın CI'sı önceki sürümün `af43be4b…98633` sertifikasını zorunlu tutar; farklı yerel anahtarla üretilmiş paket teslim edilmez. Yayın bağlantısı ve indirilmiş dosyanın kontrolleri ayrıca kaydedilir.
+
+## Yayın sonucu
+
+[TEK APK v0.1.13](https://github.com/gkggl3616-jpg/blood-moon/releases/download/prototype-v0.1.13-19/Rogue-Blood-Moon-v0.1.13.apk) — 62.292.240 bayt, versionCode 14. [Temiz CI çalışması](https://github.com/gkggl3616-jpg/blood-moon/actions/runs/40596165659) başarılı; envanter, genel arena, yeni dört karakterli hareket/efekt kontrolleri ve imzalama geçti.
+
+Yayımlanmış dosya yeniden indirildi: ZIP CRC sağlam; 52 çalışma zamanı dosyasının her biri kaynakla bayt bayt aynı; dört kurt ve Bilge insan GLB’leri içeride. Sertifika v0.1.12 ile aynı: `af43be4b6ee4d5b2e1feca6da3df36805a7b10bbb56b1f884136054ef7f98633`. APK SHA-256: `8ea24111d90fef1fcea9aee83e09c5f0771d43332d6b7ebf48c10976599d3bdd`. [Paket raporu](verification-v013/published-apk.json). Fiziksel telefon testi açık kalır.

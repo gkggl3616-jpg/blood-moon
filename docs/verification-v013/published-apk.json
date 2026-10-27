@@ -1,0 +1,90 @@
+{
+  "version": "0.1.13",
+  "version_code": 14,
+  "release": "prototype-v0.1.13-19",
+  "ci_run_id": 40596165659,
+  "ci_conclusion": "success",
+  "source_commit": "0ee0ec20d6b8680e96aa22ef81f0ba5954814ea6",
+  "apk_url": "https://github.com/gkggl3616-jpg/blood-moon/releases/download/prototype-v0.1.13-19/Rogue-Blood-Moon-v0.1.13.apk",
+  "apk_bytes": 62292240,
+  "apk_sha256": "8ea24111d90fef1fcea9aee83e09c5f0771d43332d6b7ebf48c10976599d3bdd",
+  "certificate_sha256": "af43be4b6ee4d5b2e1feca6da3df36805a7b10bbb56b1f884136054ef7f98633",
+  "same_certificate_as_v012": true,
+  "zip_crc": "PASS",
+  "all_runtime_assets_byte_match": true,
+  "runtime_asset_count": 52,
+  "standalone_apk": true,
+  "extra_data_installation_required": false,
+  "models": [
+    {
+      "id": "bilge",
+      "triangles": 14457,
+      "bones": 27,
+      "animations": [
+        "WolfIdle",
+        "WolfMove",
+        "WolfRunQuad",
+        "WolfRoll",
+        "WolfClaw",
+        "WolfRoar",
+        "WolfJump",
+        "WolfTransform"
+      ]
+    },
+    {
+      "id": "kultigin",
+      "triangles": 9918,
+      "bones": 27,
+      "animations": [
+        "WolfIdle",
+        "WolfMove",
+        "WolfRunQuad",
+        "WolfRoll",
+        "WolfClaw",
+        "WolfRoar",
+        "WolfJump",
+        "WolfTransform"
+      ]
+    },
+    {
+      "id": "alparslan",
+      "triangles": 9915,
+      "bones": 27,
+      "animations": [
+        "WolfIdle",
+        "WolfMove",
+        "WolfRunQuad",
+        "WolfRoll",
+        "WolfClaw",
+        "WolfRoar",
+        "WolfJump",
+        "WolfTransform"
+      ]
+    },
+    {
+      "id": "konuralp",
+      "triangles": 9973,
+      "bones": 27,
+      "animations": [
+        "WolfIdle",
+        "WolfMove",
+        "WolfRunQuad",
+        "WolfRoll",
+        "WolfClaw",
+        "WolfRoar",
+        "WolfJump",
+        "WolfTransform"
+      ]
+    },
+    {
+      "id": "human-bilge",
+      "triangles": 9000,
+      "bones": 27,
+      "animations": [
+        "HumanIdle",
+        "HumanMove"
+      ]
+    }
+  ],
+  "physical_device_tested": false
+}
