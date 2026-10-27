@@ -76,7 +76,7 @@ with sync_playwright() as p:
     page.reload()
     assert page.locator('#openingSound').inner_text() == 'SES KAPALI'
     page.locator('#skipIntro').click()
-    for key, title in [('events', 'ETKİNLİK MERKEZİ'), ('clan', 'KLAN')]:
+    for key, title in [('events', 'ETKİNLİK MERKEZİ')]:
         page.locator(f'[data-nav="{key}"]').click()
         assert page.locator('#modalTitle').inner_text() == title
         page.locator('#closeModal').click()
@@ -107,8 +107,41 @@ with sync_playwright() as p:
     assert page.locator('#slotName').inner_text() == 'TAKTİK EKİPMAN'
     page.locator('#saveLoadout').click()
     assert json.loads(page.evaluate("localStorage.getItem('rogue-loadout')")) == {'set':'2','form':'wolf'}
-    assert_fits(page, ['.gear-left', '.gear-right', '#saveLoadout', '.gear-footer'])
+    assert_fits(page, ['.gear-left', '.gear-right', '#saveLoadout', '#gear .gear-footer'])
     page.screenshot(path=str(ROOT / 'dist/gear-preview.png'))
+    page.evaluate('window.goBack()')
+    page.locator('[data-nav="shop"]').click()
+    page.locator('[data-character="kul"]').click()
+    page.locator('#previewWolf').click()
+    assert '+5%' in page.locator('#collectionDetail').inner_text()
+    page.locator('#characterAction').click()
+    assert page.locator('#walletAmount').inner_text() == '1.750'
+    page.locator('#characterAction').click()
+    assert page.locator('#walletAmount').inner_text() == '1.750'
+    page.locator('#inventoryMode').click()
+    assert page.locator('[data-character]').count() == 2
+    page.screenshot(path=str(ROOT / 'dist/inventory-preview.png'), animations='disabled')
+    page.locator('[data-category="equipment"]').click()
+    assert 'Silahlar' in page.locator('#collectionCards').inner_text()
+    page.reload()
+    page.locator('#skipIntro').click()
+    page.locator('[data-nav="gear"]').click()
+    assert page.locator('#operatorName').inner_text() == 'KÜL PENÇESİ'
+    page.locator('#openAbilities').click()
+    page.locator('#farTarget').click()
+    page.locator('[data-ability="claw"]').click()
+    assert 'hasar verilmedi' in page.locator('#abilityResult').inner_text()
+    assert page.locator('[data-ability="claw"]').is_disabled()
+    page.locator('#nearTarget').click()
+    page.locator('[data-ability="pulse"]').click()
+    assert '15 örnek hasar' in page.locator('#abilityResult').inner_text()
+    page.locator('#farTarget').click()
+    page.locator('[data-ability="track"]').click()
+    assert page.locator('#targetToken.detected').count() == 1
+    page.screenshot(path=str(ROOT / 'dist/abilities-preview.png'), animations='disabled')
+    for w,h in [(1280,576),(800,360),(915,412)]:
+        page.set_viewport_size({'width':w,'height':h})
+        assert_fits(page, ['.ability-stage','.ability-panel'])
     page.evaluate('window.goBack()')
     page.locator('#viewport').evaluate('(v) => { v.style.left="32px"; v.style.right="24px"; v.style.bottom="16px"; }')
     assert_fits(page, ['.brand', '#join', '.bottomnav'])

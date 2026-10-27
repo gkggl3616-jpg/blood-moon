@@ -89,7 +89,7 @@ $('mapDetails').addEventListener('click', () => { playSound(); document.querySel
 document.querySelector('.map-image').addEventListener('click', e => { e.currentTarget.classList.remove('expanded'); });
 
 function settings() {
-  showModal('AYARLAR', `<p class="settings-intro">Ses tercihleri</p><div class="setting"><span>Ses efektleri</span><button id="soundToggle" class="toggle ${audioEnabled ? '' : 'off'}">${audioEnabled ? 'AÇIK' : 'KAPALI'}</button></div><label class="setting"><span>Ses düzeyi</span><input id="volume" type="range" min="0" max="100" value="${Math.round(volume * 100)}" aria-label="Ses düzeyi"></label><button id="testSound" class="toggle">DÜĞME SESİNİ DENE</button><p class="settings-version">ROGUE: BLOOD MOON • v0.1.2</p>`, 'TERCİHLER'); modal.classList.add('settings-modal');
+  showModal('AYARLAR', `<p class="settings-intro">Ses tercihleri</p><div class="setting"><span>Ses efektleri</span><button id="soundToggle" class="toggle ${audioEnabled ? '' : 'off'}">${audioEnabled ? 'AÇIK' : 'KAPALI'}</button></div><label class="setting"><span>Ses düzeyi</span><input id="volume" type="range" min="0" max="100" value="${Math.round(volume * 100)}" aria-label="Ses düzeyi"></label><button id="testSound" class="toggle">DÜĞME SESİNİ DENE</button><p class="settings-version">ROGUE: BLOOD MOON • v0.1.3</p>`, 'TERCİHLER'); modal.classList.add('settings-modal');
   $('soundToggle').addEventListener('click', e => { audioEnabled = !audioEnabled; e.currentTarget.textContent = audioEnabled ? 'AÇIK' : 'KAPALI'; e.currentTarget.classList.toggle('off', !audioEnabled); saveSettings(); playSound(); });
   $('volume').addEventListener('input', e => { volume = Number(e.target.value) / 100; saveSettings(); });
   $('testSound').addEventListener('click', () => { if (!audioEnabled) toast('Sesi denemek için ses efektlerini aç.'); else playSound('confirm'); });
@@ -100,11 +100,13 @@ document.querySelectorAll('[data-nav]').forEach(b => b.addEventListener('click',
     case 'lobby': screen('lobby'); break;
     case 'events': showEvents(); break;
     case 'settings': settings(); break;
+    case 'inventory': window.openCollection('inventory'); break;
+    case 'shop': window.openCollection('shop'); break;
     case 'gear': screen('gear'); break;
     case 'clan': showModal('KLAN', '<p>Kendi sürünü kur. Takım kimliği, klan etiketi ve arkadaşlarla oda kurma gelecek sürümler için planlanıyor.</p><p class="modal-note">Bu sürümde hesap veya klan sunucusu bulunmuyor.</p>', 'SOSYAL • PLANLANAN'); break;
   }
 }));
-window.goBack = () => { if (modal.open) closeModal(); else if (document.querySelector('.map-image.expanded')) document.querySelector('.map-image').classList.remove('expanded'); else if (currentScreen === 'map' || currentScreen === 'gear') { playSound('back'); screen('lobby'); } else if (currentScreen === 'opening') screen('lobby'); else toast('Uygulamadan çıkmak için ana ekran hareketini kullan.'); };
+window.goBack = () => { if (modal.open) closeModal(); else if (document.querySelector('.map-image.expanded')) document.querySelector('.map-image').classList.remove('expanded'); else if (['map','gear','collection','abilities'].includes(currentScreen)) { playSound('back'); screen('lobby'); } else if (currentScreen === 'opening') screen('lobby'); else toast('Uygulamadan çıkmak için ana ekran hareketini kullan.'); };
 window.pauseApp = () => { intro.pause(); Object.values(sounds).forEach(a => a.pause()); };
 window.resumeApp = () => { if (currentScreen === 'opening' && !intro.ended) startIntro(false); };
 document.addEventListener('visibilitychange', () => { if (document.hidden) window.pauseApp(); else window.resumeApp(); });
@@ -121,6 +123,7 @@ function renderGear() {
  $('operatorName').textContent=gearForm==='human'?'BAŞIBOZUK':'GECE AVCISI';
  $('operatorRole').textContent=gearForm==='human'?'Taktik operatör • Görsel önizleme':'Kurt formu • Görsel önizleme';
  $('gearRole').textContent=gearForm==='human'?'TAKTİK OPERATÖR':'YAKIN MESAFE AVCISI';
+ if(window.refreshCharacter) window.refreshCharacter();
 }
 document.querySelectorAll('[data-loadout]').forEach(b=>b.addEventListener('click',()=>{playSound();gearSet=b.dataset.loadout;renderGear();}));
 document.querySelectorAll('[data-form]').forEach(b=>b.addEventListener('click',()=>{playSound();gearForm=b.dataset.form;renderGear();}));

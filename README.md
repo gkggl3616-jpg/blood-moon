@@ -1,10 +1,10 @@
-# Rogue: Blood Moon — Android Prototype 0.1.2
+# Rogue: Blood Moon — Android Prototype 0.1.3
 
 Yatay Android ekranı için menü ve harita konsepti prototipi.
 
-v0.1.2: Açılış videosu otomatik başlar ve bitince lobiye geçer. Görünür ekran alanına göre ölçekleme, sabit viewport ve Android çentik/sistem çubuğu güvenli alanları eklendi.
+v0.1.3: Açılış videosu otomatik başlar ve bitince lobiye geçer. Görünür ekran alanına göre ölçekleme, sabit viewport ve Android çentik/sistem çubuğu güvenli alanları eklendi.
 
-## v0.1.2 değişiklikleri
+## v0.1.3 değişiklikleri
 
 - Ekranın genişliğine yayılan lobi; yan boşluklar kaldırıldı.
 - Menüyle aynı ölçekte, tek sayfaya sığan ayarlar penceresi.
@@ -28,8 +28,8 @@ hesap, ödül veya satın alma sistemi içermez. Oda dolulukları ve etkinlikler
 ## GitHub Actions ile APK
 
 `main` dalına gönderim veya **Actions → Android APK → Run workflow** derlemeyi başlatır.
-İş bitince **Rogue-Blood-Moon-v0.1.2-APK** çıktısını indirin, ZIP içindeki
-`Rogue-Blood-Moon-v0.1.2-debug.apk` dosyasını Android telefonda açın.
+İş bitince **Rogue-Blood-Moon-v0.1.3-APK** çıktısını indirin, ZIP içindeki
+`Rogue-Blood-Moon-v0.1.3-debug.apk` dosyasını Android telefonda açın.
 Gerekirse dosyayı açan uygulama için "Bu kaynaktan izin ver" seçeneğini etkinleştirin.
 Bu geliştirme imzalı APK Google Play sürümü değildir.
 
@@ -61,3 +61,7 @@ Fiziksel Android cihaz testi ayrıca yapılmalıdır.
 
 Görseller, açılış videosu ve giriş sesi bu proje için Higgsfield üzerinden üretilmiştir.
 Kısa menü tıklama ve geri sesleri özgün sentezlenmiş WAV dosyalarıdır.
+
+## v0.1.3
+
+Envanter kategorileri, üç özgün karakter için insan/kurt bonus karşılaştırması, deneme kredisiyle mağaza ve kalıcı karakter seçimi eklendi. Bonuslar taslak değerlerdir. Kurt yetenek laboratuvarı 2B menzil, hasar geri bildirimi ve bekleme süresi demosudur; 3B savaş fiziği değildir. Yeni Higgsfield görselleri prototypes/ klasöründe inceleme için bulunur.
