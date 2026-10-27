@@ -74,4 +74,12 @@ Yerel UI ve arena testleri geçti; parça bombası patlama hasarı, bıçak hasa
 
 Görsel ve makine kontrol kayıtları: [oyun envanteri](review-v012/inventory-wolf.png), [insan envanteri](review-v012/inventory-human.png), [özgün biçimi koruyan ön](review-v012/model-front.png), [arka](review-v012/model-back.png), [yan](review-v012/model-side.png), [kaynak aktarımı ölçümü](review-v012/source-fidelity.json), [hareket örnekleri](review-v012/motion-verification.json), [hız ölçümü](review-v012/run-speed.json).
 
-Yerel anahtar önceki yayın sertifikasından farklı çıktı; yerel imzalı dosya kullanıcıya teslim edilmiyor. Yayın CI’si kalıcı anahtar cache’ini kullanır ve v0.1.11 sertifikasının `af43be4b6ee4d5b2e1feca6da3df36805a7b10bbb56b1f884136054ef7f98633` SHA-256 değeriyle eşleşmeyen APK’yı yayımlamaz. Yayımlanan APK ayrıca indirilerek karşılaştırılacak.
+Yerel anahtar önceki yayın sertifikasından farklı çıktı; yerel imzalı dosya kullanıcıya teslim edilmiyor. Yayın CI’si kalıcı anahtar cache’ini kullanır ve v0.1.11 sertifikasının `af43be4b6ee4d5b2e1feca6da3df36805a7b10bbb56b1f884136054ef7f98633` SHA-256 değeriyle eşleşmeyen APK’yı yayımlamaz. Yayımlanan APK indirildi ve karşılaştırıldı: önceki sürümle sertifika aynı, 52 çalışma zamanı dosyasının tamamı kaynakla birebir eşleşiyor.
+
+## Yayımlanan teslim
+
+GitHub Actions [40583793256](https://github.com/gkggl3616-jpg/blood-moon/actions/runs/40583793256) başarılı: UI, arena, kalıcı imza ve tek APK yayını. Tüfekten kurda hızlı dönüşümde ilk pençeyi engelleyen atış kilidi de düzeltildi ve tekrar test edildi.
+
+[Doğrudan tek APK v0.1.12](https://github.com/gkggl3616-jpg/blood-moon/releases/download/prototype-v0.1.12-18/Rogue-Blood-Moon-v0.1.12.apk) — 61.796.624 bayt. SHA-256: `fcdbe94b00f1c3942fe52943690bcfdcf21bb89bd0ef7cffc9d2dbc692ec6364`.
+
+İndirilen dosya üzerinde imza doğrulandı; v0.1.11 ile aynı sertifika, versionCode 13, doğru paket adı, sağlam APK arşivi ve kaynaktaki 52 çalışma zamanı dosyası doğrulandı. [Makine kontrol kaydı](review-v012/published-apk-verification.json). Fiziksel telefon testi yapılmadı; üstteki açık sanat/deformasyon işleri tamamlanmış sayılmıyor.

@@ -1,0 +1,18 @@
+{
+  "release": "prototype-v0.1.12-18",
+  "ci_run": 40583793256,
+  "ci_result": "success",
+  "previous_version": "0.1.11",
+  "version": "0.1.12",
+  "version_code": 13,
+  "certificate_sha256": "af43be4b6ee4d5b2e1feca6da3df36805a7b10bbb56b1f884136054ef7f98633",
+  "matches_previous_certificate": true,
+  "all_runtime_assets_match_source": true,
+  "runtime_file_count": 52,
+  "zip_integrity": true,
+  "standalone_apk": true,
+  "apk_size_bytes": 61796624,
+  "apk_sha256": "fcdbe94b00f1c3942fe52943690bcfdcf21bb89bd0ef7cffc9d2dbc692ec6364",
+  "physical_phone_tested": false,
+  "url": "https://github.com/gkggl3616-jpg/blood-moon/releases/download/prototype-v0.1.12-18/Rogue-Blood-Moon-v0.1.12.apk"
+}
