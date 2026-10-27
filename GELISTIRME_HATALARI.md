@@ -1,0 +1,46 @@
+# Geliştirme hataları ve düzeltme kaydı
+
+Bu dosya bu konuşmada tespit edilen hataları, bunların sonucunu ve gerçek durumlarını kaydeder. Yeni hatalar bu kayda eklenecek. Bir prototip veya tarayıcı testi, gerçek telefonda/3B savaşta doğrulama yerine geçmez.
+
+## Teslim ve iletişim
+
+1. **Görseller görünmeden teslim edilmiş gibi konuştum.** Higgsfield widget'ları, uzak URL'ler ve yerel `sandbox:` bağlantıları kullanıcıda çalışmadı. Aynı yöntemi tekrarlamak zaman kaybettirdi. Düzeltme: görsel verisini doğrudan görsel eki yöntemiyle sunmak; APK için başarılı GitHub Actions çıktısı vermek. Kullanıcının cihazında görünürlüğü kendim doğrulayamadığımı açıkça belirtmek.
+2. **Ağ izni bekleyen komutta uzun süre sessiz kaldım.** Android araçlarını indirirken ilerleyemedim ve zamanında açıklama vermedim. Düzeltme: kaynağı bağımsız hazırlamak, durum bildirmek ve kullanıcı istediğinde GitHub Actions ile derlemek.
+3. **İlk APK planıyla tam oyun arasındaki sınırı her yerde yeterince açık tutmadım.** Mevcut proje bir Android WebView menü prototipidir; Unity/FPS, çarpışma, ağ maçı veya gerçek 3B animasyon yoktur. Sonraki açıklamalarda uygulanmış hesap/arayüz ile planlanan oynanış ayrılıyor.
+
+## Açılış ve ekran
+
+4. **İlk açılış videosu otomatik değildi; bitince menüye geçmiyordu.** Düzeltildi: native otomatik medya izni, otomatik oynatma, `ended` ile lobi geçişi, atlama ve hata durumunda menüye dönüş.
+5. **Sabit 1280x720 sahne ve `innerWidth` ölçeklemesi Android ekranında kırpıldı.** Düzeltildi: sabit sınırlandırılmış viewport, gerçek `clientWidth/clientHeight`, resize gözlemi ve native WebView viewport ayarları.
+6. **Kırpmayı düzeltirken yanlarda geniş boşluk bıraktım.** Düzeltildi: 720 tasarım yüksekliğini koruyup tasarım genişliğini ekran oranına göre açmak. Video oranını korumak ayrı bir davranıştır.
+7. **Native dialog/top-layer menünün ölçeğini paylaşmadı.** Ayarlar ve etkinliklerde dev yazılar, düğmeler ve kaydırma oluştu. Düzeltildi: aynı sahnede ölçeklenen modal katmanı, küçük ölçüler ve farklı ekranlarda sığma kontrolleri.
+8. **Çentik ve sistem çubuklarını başlangıçta hesaba katmadım.** Düzeltildi: Android WindowInsets güvenli alanları; yine de fiziksel cihaz doğrulaması gerekir.
+9. **İlk etkinlik ve teçhizat pencereleri fazla sade kaldı.** Düzeltildi: görev/avantaj kartları, setler, form seçimi, slotlar ve envanter/mağaza sayfaları.
+
+## Tasarım ve kullanıcı yönlendirmesi
+
+10. **Kurtları yeterince farklılaştırmadım.** Benzer yele, gövde ve aksesuarlar aynı görünmelerine neden oldu. Düzeltme: karakter başına ayrı gövde oranı, yele, zırh/tılsım, dövme rengi ve pençe hareket profili. Bunlar model üretim gereksinimleridir; gerçek 3B modellere henüz uygulanmadı.
+11. **Bazı Higgsfield çıktıları dört ayaklı kurt üretti.** İki ayaklı pençe kullanan tasarıma uymadı. Düzeltildi: iki ayaklı insansı anatomiyi açıkça isteyen referans düzenlemesi; eski görseller `prototypes/archive/` altında tutuluyor.
+12. **Sıçrama konseptine hedef/iniş halkası koydum.** Kullanıcının doğal ileri sıçrama isteğine aykırıydı. Kural düzeltildi: yerde hedef alanı yok; doğal ileri sıçrama. Gerçek 3B sıçrama henüz yok.
+13. **Kullanıcı istemeden yetenek laboratuvarı ekledim.** Kullanıcı kaldırılmasını istedi. Kaldırıldı. Sonraki donanım sayfası bir envanter ekranıdır; arena/laboratuvar yoktur.
+14. **Pençe animasyonu/izi ve gövde uyumu başta ortak kaldı.** Düzeltme: her karakter için ayrı hareket ve iz tanımı. Gerçek animasyon klipleri/rig'ler üretilecek; mevcut kartlarda tarif gösteriliyor.
+15. **Örnek görsel ve koddaki denge değerleri aynı değildi.** Görseller kesin oyun verisi değildir. Çalışan prototipin verisi kodda tutulur; sayılar testle doğrulanır.
+16. **Kükreme eklenince pasif +%80 üstüne bonus koymak toplam tavanı aşacaktı.** Önlenerek düzeltildi: ortak 100 tabanı, 180 toplam tavanı, pasiflerde kükremeye pay, 20 saniyelik %20 hız/%15 hasar/%30 savunma çarpanları. Aksesuarlar kozmetiktir. Koşu ve takla ayrı yuvalardadır.
+
+## Derleme ve testler
+
+17. **Yereldeki tarayıcı ile GitHub Chromium'un medya desteğini aynı varsaydım.** İlk CI video testi takıldı. Düzeltildi: codec destekli Chrome kanalı ve gerçek video başlangıç/bitiş testi.
+18. **CI'da mevcut Chrome'u yeniden kurmaya çalıştım.** Gereksiz bekleme oluştu. Düzeltildi: kurulu Chrome'u kullan, yalnızca yoksa kur.
+19. **Resize sonrası yerleşimi hemen ölçtüm.** Asenkron güncelleme CI'da yanlış başarısızlık verdi. Düzeltildi: ölçümden önce sınırların güncellenmesini beklemek.
+20. **Playwright string ifadesi CSP ile çakıştı.** Düzeltildi: fonksiyon şeklindeki test ifadeleri; ürün CSP'si gevşetilmedi.
+21. **Yeni sayfalarda aynı CSS sınıfını seçen test strict-mode hatası verdi.** Düzeltildi: ilgili ekranı belirten selector kullanmak.
+22. **JRE içindeki derleyiciyi ve `--release` desteğini başlangıçta doğru değerlendirmedim.** Düzeltildi: mevcut JDK compiler modülü ile uyumlu source/target derlemesi; APK imzası ve arşivi kontrol ediliyor.
+23. **Her temiz CI çalışmasında yeni geliştirme imzası üretiliyor.** Durum: hâlâ açık. Eski APK üzerine kurulum reddedilebilir; eski test sürümünü kaldırmak gerekir. Kalıcı üretim/test anahtarı ayrıca güvenli şekilde yapılandırılmalı. Anahtar depoya eklenmedi.
+24. **GitHub artifact yönlendirmesini CLI üzerinden indirme bazı ağlarda reddedildi.** Düzeltme: GitHub artifact bağlantısı ve gerektiğinde connector'ın artifact indirme aracı. Başarılı CI çıktısını doğrulamadan tamamlandı denmiyor.
+
+## Açık sınırlar
+
+- Fiziksel Android cihaz ve gerçek 3B savaş testi yapılmadı.
+- Koşu/takla kuşanması, kükreme süresi ve bonus hesabı çalışır; görünen hareket ve dövme efektleri 2B şemadır.
+- Yeni silah/bomba/bıçak kategorileri katalog taslağıdır; modelleri, atış veya hasar fiziği yoktur.
+- Tarihî esinli karakter görselleri kurgu konseptleridir; tarihsel portre doğruluğu iddiası yoktur.

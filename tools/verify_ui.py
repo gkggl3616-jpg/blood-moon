@@ -113,7 +113,7 @@ with sync_playwright() as p:
     page.locator('[data-nav="shop"]').click()
     page.locator('[data-character="kul"]').click()
     page.locator('#previewWolf').click()
-    assert '+12%' in page.locator('#collectionDetail').inner_text()
+    assert '+8.5%' in page.locator('#collectionDetail').inner_text()
     page.locator('#characterAction').click()
     assert page.locator('#walletAmount').inner_text() == '1.750'
     page.locator('#characterAction').click()
@@ -140,6 +140,42 @@ with sync_playwright() as p:
         assert 'Sıçrama düz ileriye' in page.locator('#collectionDetail').inner_text()
         assert 'İz sürme korunur' in page.locator('#collectionDetail').inner_text()
     assert page.locator('#abilities').count() == 0
+    page.locator('[data-category="grenades"]').click()
+    assert 'Duman bombası' in page.locator('#collectionCards').inner_text()
+    page.locator('[data-category="weapons"]').click()
+    assert page.locator('.blueprint-item').count() == 2
+    page.locator('[data-category="knives"]').click()
+    assert 'KAMA-01' in page.locator('#collectionCards').inner_text()
+    page.locator('#openWolfGear').click()
+    page.locator('#runPreview').click()
+    assert not page.locator('#wolfFigure').evaluate('(e)=>e.classList.contains("run-preview")')
+    page.locator('#equipRun').check()
+    page.locator('#equipRoll').check()
+    page.locator('#wolfAccessory').select_option('shoulder')
+    page.locator('#saveWolfGear').click()
+    equipment=json.loads(page.evaluate("localStorage.getItem('rogue-wolf-equipment')"))
+    assert equipment == {'run':True,'roll':True,'accessory':'shoulder'}
+    page.locator('#runPreview').click()
+    assert page.locator('#wolfFigure.run-preview').count() == 1
+    page.locator('#rollPreview').click()
+    assert page.locator('#wolfFigure.roll-preview').count() == 1
+    page.locator('#activateRoar').click()
+    stats=page.evaluate('wolfStats()')
+    assert stats['active'] and 19000 < stats['remaining'] <= 20000
+    assert abs(stats['speed']-138) < .001
+    assert page.locator('#wolfFigure.roaring').count() == 1
+    assert page.locator('#activateRoar').is_disabled()
+    # Check the real expiry calculation without sleeping for 20 seconds.
+    page.evaluate('roarUntil = Date.now() - 1; updateRoar()')
+    assert not page.evaluate('wolfStats().active')
+    assert page.locator('#wolfFigure.roaring').count() == 0
+    for character in page.evaluate('roster.map(c=>c.id)'):
+        page.evaluate('(id)=>{collectionState.equipped=id;roarUntil=Date.now()+20000;}',character)
+        assert max(page.evaluate('(()=>{const s=wolfStats();return [s.speed,s.damage,s.defense]})()')) <= 180.001
+    page.evaluate('collectionState.equipped="kul";roarUntil=0;renderWolfEquipment()')
+    assert_fits(page, ['.wolf-slots','.wolf-showcase','.roar-panel','#activateRoar'])
+    page.screenshot(path=str(ROOT / 'dist/wolf-equipment-preview.png'), animations='disabled')
+    page.evaluate('window.goBack()')
     (ROOT / 'dist/character-profiles.json').write_text(json.dumps(profiles, ensure_ascii=False, indent=2))
     page.screenshot(path=str(ROOT / 'dist/characters-preview.png'), animations='disabled')
     page.evaluate('window.goBack()')

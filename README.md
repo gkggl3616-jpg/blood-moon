@@ -13,3 +13,7 @@ v0.1.3: Açılış videosu otomatik başlar ve bitince lobiye geçer. Görünür
 - İz sürme korunur; ileri sıçrama için hedef alanı göstergesi kullanılmaz.
 - Yetenek laboratuvarı kaldırıldı. Yeni 3B mekanikler hâlâ tasarım aşamasındadır.
 - Higgsfield konseptleri prototypes/ klasöründedir; oyun içi kartlar henüz temsilîdir.
+
+## v0.1.5
+
+Kurt donanımında koşu ve takla ayrı kuşanılır; kozmetik aksesuar seçimi kaydedilir. Kükreme 20 saniye boyunca %20 hız, %15 hasar, %30 savunma sağlar; 2B dövme şeması parlar. Pasif değerler kükreme dahil toplam 180 tavanına göre ayarlanır. Koşu önizlemesi %15 koşu bonusu kullanır. Bunlar henüz 3B savaş animasyonları değildir. Silah, bomba ve bıçak katalog kategorileri eklendi. Bilinen hata kaydı: GELISTIRME_HATALARI.md.
