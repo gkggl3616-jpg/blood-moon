@@ -1,6 +1,7 @@
 """Exercise the offline mobile interface using a real Chromium instance."""
 from pathlib import Path
 import json
+import os
 import shutil
 from playwright.sync_api import sync_playwright
 
@@ -8,7 +9,12 @@ ROOT = Path(__file__).resolve().parents[1]
 ASSETS = ROOT / 'app/src/main/assets'
 
 with sync_playwright() as p:
-    browser = p.chromium.launch(headless=True, executable_path=shutil.which('chromium'), args=['--no-sandbox'])
+    browser_options = {'headless': True, 'args': ['--no-sandbox']}
+    if os.environ.get('ROGUE_BROWSER_CHANNEL'):
+        browser_options['channel'] = os.environ['ROGUE_BROWSER_CHANNEL']
+    elif shutil.which('chromium'):
+        browser_options['executable_path'] = shutil.which('chromium')
+    browser = p.chromium.launch(**browser_options)
     page = browser.new_page(viewport={'width': 960, 'height': 540}, device_scale_factor=1)
     errors = []
     page.on('pageerror', lambda e: errors.append(str(e)))
@@ -25,7 +31,11 @@ with sync_playwright() as p:
     page.goto('https://rogue.local/index.html')
     if (ASSETS / 'media/intro.mp4').exists():
         page.locator('#replay').click()
-        page.wait_for_function('() => document.getElementById("intro").currentTime > 0.1', timeout=15000)
+        try:
+            page.wait_for_function('() => document.getElementById("intro").currentTime > 0.1', timeout=15000)
+        except Exception:
+            print(page.locator('#intro').evaluate('(v) => ({error: v.error && v.error.message, readyState: v.readyState, h264: v.canPlayType(\'video/mp4; codecs="avc1.4D401F"\'), aac: v.canPlayType(\'audio/mp4; codecs="mp4a.40.2"\')})'))
+            raise
         page.evaluate('window.pauseApp()')
     page.locator('#enter').click()
     assert page.locator('#lobby.active').count() == 1
