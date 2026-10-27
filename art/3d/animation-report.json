@@ -1,5 +1,5 @@
 {
-  "rig_type": "initial procedural humanoid/quadrupedal preview rig",
+  "rig_type": "procedural humanoid/quadrupedal prototype rig",
   "clips": [
     "WolfIdle",
     "WolfMove",
@@ -12,11 +12,13 @@
     "HumanIdle",
     "HumanMove"
   ],
-  "shared_run_roll_template": "wolf-shared-v1",
+  "shared_run_roll_template": "wolf-shared-v2",
   "root_motion": false,
   "new_meshy_credits": 0,
   "notes": [
-    "Preview animation in equipment screen, not collision-tested gameplay.",
+    "Shared phased roll: anticipation, tuck/360 rotation, landing and recovery.",
+    "Roar: anticipation, raised/open arms, held chest/head lift, recovery; no articulated jaw yet.",
+    "Timings are local gameplay tuning from prior accessible references; the new NGqOn5o0dHE video was blocked and was not observed.",
     "Weights use geometric regions and bone distance; manual deformation polish remains."
   ],
   "models": [

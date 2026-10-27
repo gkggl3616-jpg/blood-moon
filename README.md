@@ -1,4 +1,4 @@
-# Rogue: Blood Moon — Android Prototype 0.1.9
+# Rogue: Blood Moon — Android Prototype 0.1.10
 
 Yatay Android ekranı için menü ve harita konsepti prototipi.
 
@@ -28,7 +28,7 @@ TikTok sayfası ve kapak karesi incelendi; video akışı 403 döndüğü için 
 
 ## v0.1.7 — Mağazadan alınan takla özellikleri
 
-- **Kurt Taklası:** 450 deneme kredisi, yalnızca takla. Dört ayak koşu veya ek saldırı hasarı vermez.
+- **Kurt Taklası:** 450 deneme kredisi, yalnızca takla. Dört ayak koşu açmaz; takla temas hasarı verir (v0.1.10 kuralı).
 - **Efsanevi Kurt Taklası:** 1.200 deneme kredisi, dört ayak koşu ve takla birlikte. Tek takla yuvası kullanır.
 - Mağaza → Kurt Özellikleri bölümünden satın alındıktan sonra Kurt Donanımı → Takla Yuvası bölümünde kuşanılır ve kaydedilir. Her kurdun seçimi ayrı tutulur; satın alma otomatik kuşanma yapmaz. Bu sürüm önceki ücretsiz koşu/takla kutularının yerini alır.
 - Mevcut dört Meshy/Blender gövdesine Blender’da 22 kemikli başlangıç rig’i ve `WolfIdle`, `WolfRoll`, `WolfRunQuad` klipleri eklendi. Düğmeler tüm modelin CSS dönüşünü değil, GLB içindeki iskelet animasyonunu oynatır. Koşu döngüsü durdurulabilir; takla bitince önceki uygun duruşa döner.
@@ -51,3 +51,9 @@ Yeni Bilge Kağan insan/kurt çifti Meshy image-to-3D ile üretildi; onaylanan v
 Sol dört yön düğmesi; ileriye 330 ms içinde iki basış efsanevi özellik takılıysa koşuyu açar. Sağda simgeli yuvarlak eylemler. Klavye WASD, E dönüşüm, Q takla, Shift koşu, Space sıçrama, F saldırı, R kükreme/şarjör, T iz sürme. Sağ ekranı sürüklemek bakışı değiştirir. Kükreme 20 saniye, mor el alevleri ve dövme parlaması; 180 tavanı korunur. Tek WebGL context, iki kayıtla sınırlı model cache'i, 72 parçacık havuzu, karakterden düşen 1024 PCF gölge kullanılır.
 
 Tek APK release varlığı bütün çalışma zamanı dosyalarını içerir; ek model/OBB/ZIP kurulumu yoktur. Actions imza sırrı yazma yetkisi 403 verdiği için geliştirme imzası cache ile korunur; üretim imzası kurulmuş değildir. Fiziksel Android testi ve çevrimiçi maç yoktur. Deformasyon ve yüz cilası geliştirme aşamasındadır. TikTok sayfalarına erişildi, yeni akış 403 verdi; yüklenen yerel referans videolarının kareleri incelendi.
+
+## v0.1.10 — takla teması ve bakış düzeltmesi
+
+Takla temas hasarı verir: 38 taban hasar, karakter hasar değeri/kükreme çarpanı ve 180 tavanıyla ölçeklenir. Bu yerel denge ayarıdır; yeni YouTube videosundan ölçülmüş değer değildir. Süpürülen gövde teması, hedef başına taklada bir vuruş, siper engeli, sabit takla yönü kullanılır. Koşu/takla dört kurtta ortak v2 şablonu; taklada hazırlık–toplanma–360 dönüş–iniş, kükremede hazırlık–açılma–tutma–toparlanma vardır. Çene kemiği/yüz animasyonu henüz yoktur. İnsan ve kurt dikey sürüklemesi aynı yönde düzeltilmiştir.
+
+Yeni video `https://youtube.com/shorts/NGqOn5o0dHE` ortam ağ geçidinde 403 ile engellendi; tamamı izlenmedi. Zaman kodlu içerik analizi bekliyor. Önceki erişilebilir referanslar ile kullanıcı düzeltmesi ayrı kaynak olarak kaydedildi: `docs/video-NGqOn5o0dHE.md`. Yeni ücretli model üretimi yok; mevcut düşük poligonlu modeller ve yerel Blender rig'i düzenlendi.

@@ -1,4 +1,4 @@
-"""Create an initial articulated rig and three editable preview clips.
+"""Create editable articulated rigs and gameplay animation clips.
 Uses the existing Meshy/Blender meshes; no new remote generation or charge.
 """
 import bpy,math,json
@@ -11,7 +11,14 @@ MODELS=ROOT/'app/src/main/assets/models'
 model_meta=json.loads((ROOT/'art/3d/model-report.json').read_text())
 BACKUP=ROOT/model_meta.get('static_source_dir','art/3d/source/static');BACKUP.mkdir(parents=True,exist_ok=True)
 profiles=model_meta['variants']
-report={'rig_type':'initial procedural humanoid/quadrupedal preview rig','clips':['WolfIdle','WolfMove','WolfRoll','WolfRunQuad','WolfClaw','WolfRoar','WolfJump','WolfTransform','HumanIdle','HumanMove'],'shared_run_roll_template':'wolf-shared-v1','root_motion':False,'new_meshy_credits':0,'notes':['Preview animation in equipment screen, not collision-tested gameplay.','Weights use geometric regions and bone distance; manual deformation polish remains.'],'models':[]}
+report={'rig_type':'procedural humanoid/quadrupedal prototype rig','clips':['WolfIdle','WolfMove','WolfRoll','WolfRunQuad','WolfClaw','WolfRoar','WolfJump','WolfTransform','HumanIdle','HumanMove'],'shared_run_roll_template':'wolf-shared-v2','root_motion':False,'new_meshy_credits':0,'notes':['Shared phased roll: anticipation, tuck/360 rotation, landing and recovery.','Roar: anticipation, raised/open arms, held chest/head lift, recovery; no articulated jaw yet.','Timings are local gameplay tuning from prior accessible references; the new NGqOn5o0dHE video was blocked and was not observed.','Weights use geometric regions and bone distance; manual deformation polish remains.'],'models':[]}
+
+def smoothstep(a,b,t):
+ u=max(0,min(1,(t-a)/(b-a)))
+ return u*u*(3-2*u)
+
+def roll_angle(t):
+ return math.tau*smoothstep(.10,.82,t)
 
 # Reproducible from the committed static Blender scene. Never back up an
 # already-rigged GLB as an unrigged source on a clean checkout.
@@ -80,13 +87,14 @@ def pose_points(base,kind,t,h,variant="shared"):
    for part,drop in [('wrist',0),('finger',.04)]:p[part+side]=p[part+side].lerp(Vector((x,-.28,z-drop))*h,strength)
   p['chest'].y-=.035*h*math.sin(math.pi*t)
  elif kind in ['WolfRoar','WolfTransform']:
-  p=pose_points(base,'WolfIdle',0,h,variant);strength=math.sin(math.pi*t)**2
+  p=pose_points(base,'WolfIdle',0,h,variant)
+  strength=smoothstep(.10,.42,t)*(1-smoothstep(.70,1,t)) if kind=='WolfRoar' else math.sin(math.pi*t)**2
   for k in ['chest','neck','head','headEnd']:p[k].z+=strength*.025*h
   p['head'].y+=.035*h*strength;p['headEnd'].y+=.08*h*strength
   for side,sg in [('L',1),('R',-1)]:
-   p['elbow'+side]=p['elbow'+side].lerp(Vector((sg*.28*span,-.06,.64))*h,strength)
-   p['wrist'+side]=p['wrist'+side].lerp(Vector((sg*.33*span,-.12,.54))*h,strength)
-   p['finger'+side]=p['finger'+side].lerp(Vector((sg*.35*span,-.13,.50))*h,strength)
+   p['elbow'+side]=p['elbow'+side].lerp(Vector((sg*.30*span,-.06,.68))*h,strength)
+   p['wrist'+side]=p['wrist'+side].lerp(Vector((sg*.34*span,-.17,.64))*h,strength)
+   p['finger'+side]=p['finger'+side].lerp(Vector((sg*.35*span,-.20,.60))*h,strength)
  elif kind=='WolfJump':
   p=pose_points(base,'WolfIdle',0,h,variant);strength=math.sin(math.pi*t)**2
   for side,sg in [('L',1),('R',-1)]:
@@ -105,12 +113,13 @@ def pose_points(base,kind,t,h,variant="shared"):
     if any(part in k for part in ['shoulder','elbow','wrist','finger']):p[k].x*=span
  elif kind=='WolfRoll':
   p=pose_points(base,'WolfIdle',0,h)
-  tuck=math.sin(math.pi*t)**2
+  tuck=smoothstep(.02,.16,t)*(1-smoothstep(.76,1,t))
   for side,sg in [('L',1),('R',-1)]:
    targets={f'elbow{side}':(sg*.18,-.10,.60),f'wrist{side}':(sg*.13,-.18,.68),f'finger{side}':(sg*.1,-.20,.69),f'knee{side}':(sg*.13,-.23,.47),f'ankle{side}':(sg*.13,-.11,.32),f'toe{side}':(sg*.13,-.22,.32)}
    for k,v in targets.items():p[k]=p[k].lerp(Vector(v)*h,tuck)
-  pivot=Vector((0,0,.5*h));jump=Vector((0,-.18*h*math.sin(math.pi*t),.36*h*math.sin(math.pi*t)))
-  rot=Matrix.Rotation(math.tau*t,4,'X')
+  flight=max(0,min(1,(t-.08)/.78));arc=math.sin(math.pi*flight)
+  pivot=Vector((0,0,.5*h));jump=Vector((0,-.13*h*arc,.32*h*arc))
+  rot=Matrix.Rotation(roll_angle(t),4,'X')
   for k in p:p[k]=pivot+jump+rot.to_3x3()@(p[k]-pivot)
  return p
 
@@ -186,7 +195,7 @@ for profile in profiles:
    t=(frame-1)/frames;points=pose_points(base,kind,min(t,1),h,key);desired={}
    for name,a,b,parent in chains:
     start,end=points[a],points[b];direction=end-start
-    global_rotation=Matrix.Rotation(math.tau*min(t,1),3,'X') if kind=='WolfRoll' else Matrix.Identity(3)
+    global_rotation=Matrix.Rotation(roll_angle(min(t,1)),3,'X') if kind=='WolfRoll' else Matrix.Identity(3)
     local_direction=global_rotation.inverted()@direction
     rest_rotation=rest_mats[name].to_3x3()
     rest_direction=rest_rotation@Vector((0,1,0))

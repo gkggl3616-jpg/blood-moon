@@ -2,7 +2,7 @@
 sounds.roar = new Audio('media/roar.mp3');
 const wolfBodyProfiles={basibozuk:{body:'Atletik • dar bel',width:1,height:1,color:'#91bac4'},kul:{body:'Çevik • ince bel • uzun uzuv',width:.85,height:1.03,color:'#b3a29b'},ayaz:{body:'Geniş omuz • yoğun yele',width:1.13,height:.98,color:'#80c5dc'},bilge:{body:'Uzun gövde • örgülü yele • kağan tasması',width:.94,height:1.12,color:'#d2b367'},kultigin:{body:'Kısa, kaslı omuz • dar bel • omuzluk',width:1.28,height:.94,color:'#db6977'},alparslan:{body:'Ağır göğüs • dar bel • bronz boyunluk',width:1.42,height:1.06,color:'#d5a565'},konuralp:{body:'İnce akıncı • uzun kollar • deri kayışlar',width:.82,height:1.09,color:'#77d3c6'}};
 let wolfEquipment={skill:'none',run:false,roll:false,accessory:'none'};
-const rollItems=[{id:'normal',title:'KURT TAKLASI',price:450,rarity:'STANDART',desc:'Yalnızca takla atmayı açar. Dört ayak koşu vermez; takla ek hasar vermez.'},{id:'legendary',title:'EFSANEVİ KURT TAKLASI',price:1200,rarity:'EFSANEVİ',desc:'Dört ayak üzerinde koşu ve taklayı birlikte açar. Standart takla ayrıca takılmaz.'}];
+const rollItems=[{id:'normal',title:'KURT TAKLASI',price:450,rarity:'STANDART',desc:'Temas hasarı veren taklayı açar. Dört ayak koşu vermez.'},{id:'legendary',title:'EFSANEVİ KURT TAKLASI',price:1200,rarity:'EFSANEVİ',desc:'Dört ayak üzerinde koşu ve temas hasarlı taklayı birlikte açar. Standart takla ayrıca takılmaz.'}];
 const ownedRollSkills=new Set();
 try{const saved=JSON.parse(localStorage.getItem('rogue-roll-items'));if(Array.isArray(saved))for(const id of saved)if(['normal','legendary'].includes(id))ownedRollSkills.add(id);}catch(_){}
 let wolfLoadouts={};
@@ -35,7 +35,7 @@ window.renderCatalog=(key)=>{const items=shopBlueprints[key];$('collectionCount'
 function renderRollEquipment(){
  const select=$('equipRollTier');for(const option of select.options)option.disabled=option.value!=='none'&&!ownedRollSkills.has(option.value);
  select.value=wolfEquipment.skill||'none';
- $('rollTierInfo').textContent=wolfEquipment.skill==='legendary'?'Efsanevi takılı: dört ayak koşu ve takla açık.':wolfEquipment.skill==='normal'?'Standart takla takılı: yalnızca takla açık.':'Özelliği mağazadan alıp bu yuvaya tak.';
+ $('rollTierInfo').textContent=wolfEquipment.skill==='legendary'?'Efsanevi takılı: dört ayak koşu ve takla açık.':wolfEquipment.skill==='normal'?'Standart takla takılı: temas hasarlı takla açık.':'Özelliği mağazadan alıp bu yuvaya tak.';
  $('runPreview').disabled=!wolfEquipment.run;$('rollPreview').disabled=!wolfEquipment.roll;
  window.checkWolfMotionAccess?.();
 }
@@ -47,7 +47,7 @@ window.renderRollShop=()=>{
  const list=libraryMode==='shop'?rollItems:rollItems.filter(item=>ownedRollSkills.has(item.id));
  $('collectionCount').textContent=list.length+' ÖZELLİK';
  $('collectionCards').innerHTML=list.length?list.map(item=>`<article class="roll-item ${item.id}"><span>${item.rarity}</span><div class="roll-symbol">${item.id==='legendary'?'◈':'↻'}</div><h3>${item.title}</h3><p>${item.desc}</p><strong>${ownedRollSkills.has(item.id)?'ENVANTERDE':item.price+' DENEME KREDİSİ'}</strong><button class="primary" data-buy-roll="${item.id}" ${ownedRollSkills.has(item.id)?'disabled':''}>${ownedRollSkills.has(item.id)?'ALINDI':'SATIN AL'} →</button></article>`).join(''):'<div class="empty-collection"><h3>KURT ÖZELLİĞİ YOK</h3><p>Standart veya efsanevi taklayı mağazadan alabilirsin.</p></div>';
- $('collectionDetail').innerHTML='<span class="eyebrow">KUŞANMA KURALI</span><h2>TEK TAKLA YUVASI</h2><p><strong>Standart:</strong> yalnızca takla.</p><p><strong>Efsanevi:</strong> dört ayak koşu + takla.</p><p>Önce satın al, sonra seçili kurdun takla yuvasına tak. İki özellik aynı anda üst üste eklenmez.</p><button id="goWolfEquip" class="primary">KURDA TAK →</button><p class="collection-note">Deneme kredisi kullanılır. Gerçek ödeme yapılmaz.</p>';
+ $('collectionDetail').innerHTML='<span class="eyebrow">KUŞANMA KURALI</span><h2>TEK TAKLA YUVASI</h2><p><strong>Standart:</strong> temas hasarlı takla.</p><p><strong>Efsanevi:</strong> dört ayak koşu + temas hasarlı takla.</p><p>Önce satın al, sonra seçili kurdun takla yuvasına tak. İki özellik aynı anda üst üste eklenmez.</p><button id="goWolfEquip" class="primary">KURDA TAK →</button><p class="collection-note">Deneme kredisi kullanılır. Gerçek ödeme yapılmaz.</p>';
  $('goWolfEquip').onclick=openWolfEquipment;
  document.querySelectorAll('[data-buy-roll]').forEach(button=>button.onclick=()=>{const item=rollItems.find(item=>item.id===button.dataset.buyRoll);if(ownedRollSkills.has(item.id))return;if(collectionState.credits<item.price){toast('Deneme kredisi yetersiz.');return;}collectionState.credits-=item.price;ownedRollSkills.add(item.id);saveCollection();try{localStorage.setItem('rogue-roll-items',JSON.stringify([...ownedRollSkills]));}catch(_){toast('Özellik bu oturumda alındı; cihaz kaydı başarısız.');}renderCollection();toast(item.title+' envantere eklendi. Kurda takmayı unutma.');});
 };

@@ -19,6 +19,15 @@ with sync_playwright() as p:
  page.wait_for_function('()=>window.arenaDebug&&arenaDebug.state().ready',timeout=90000)
  def state():return page.evaluate('arenaDebug.state()')
  assert state()['form']=='human' and state()['render']['contexts']==1
+ def check_vertical_look():
+  baseline=state()['lookDirection'][1]
+  page.mouse.move(750,330);page.mouse.down();page.mouse.move(750,260,steps=4);page.mouse.up()
+  page.wait_for_function('(base)=>arenaDebug.state().lookDirection[1]>base+.12',arg=baseline,timeout=10000)
+  raised=state()['lookDirection'][1]
+  page.mouse.move(750,260);page.mouse.down();page.mouse.move(750,400,steps=4);page.mouse.up()
+  page.wait_for_function('(base)=>arenaDebug.state().lookDirection[1]<base-.18',arg=raised,timeout=10000)
+ check_vertical_look()
+ page.evaluate('arenaDebug.place(0,8)')
  page.evaluate('arenaDebug.aimAt(0)');page.wait_for_timeout(200);page.locator('#arenaFire').click()
  page.wait_for_function('()=>arenaDebug.state().targets[0].hp<100',timeout=15000)
  assert state()['ammo']<30
@@ -28,9 +37,19 @@ with sync_playwright() as p:
  page.evaluate('arenaDebug.place(0,5)');page.locator('#arenaTransform').click();page.wait_for_function('()=>arenaDebug.state().form==="wolf"',timeout=10000);page.wait_for_timeout(500)
  page.locator('#arenaTrial').select_option('normal');assert page.locator('#arenaRun').is_disabled()
  assert not page.evaluate('arenaDebug.action("run")')
- hp=state()['targets'][0]['hp'];page.locator('#arenaRoll').click();page.wait_for_function('()=>arenaDebug.state().position[2]<3',timeout=15000)
+ check_vertical_look()
+ page.evaluate('arenaDebug.place(0,-3)')
+ hp=state()['targets'][0]['hp'];hit_count=state()['hits'];expected=38*state()['stats']['damage']/100
+ page.locator('#arenaRoll').click()
+ page.wait_for_function('(n)=>arenaDebug.state().hits===n+1',arg=hit_count,timeout=15000)
  page.wait_for_function('()=>arenaDebug.state().rollTime===0',timeout=15000)
- assert state()['targets'][0]['hp']==hp or state()['targets'][0]['hp']==100,'roll damaged target'
+ assert abs(state()['targets'][0]['hp']-(hp-expected))<.02,'wrong roll damage or repeated damage'
+ assert state()['hits']==hit_count+1 and state()['rollHitTargets']==[0]
+ # A straight roll into cover must stop at its near side; no distant dummy takes damage.
+ page.evaluate('arenaDebug.place(-8,-10,0)');hp_cover=state()['targets'][1]['hp']
+ page.locator('#arenaRoll').click();page.wait_for_function('()=>arenaDebug.state().rollTime===0',timeout=15000)
+ assert state()['position'][2]>=-11.84 and state()['targets'][1]['hp']==hp_cover,'roll crossed cover'
+ page.evaluate('arenaDebug.place(0,5)')
  page.locator('#arenaTrial').select_option('legendary')
  page.locator('#moveForward').click(click_count=2,delay=70)
  page.wait_for_function('()=>arenaDebug.state().run',timeout=10000)
@@ -43,6 +62,8 @@ with sync_playwright() as p:
  assert state()['position'][2]<.5,'wolf did not jump forward'
  page.locator('#arenaRoarButton').click();page.wait_for_function('()=>arenaDebug.state().effects.particles>0',timeout=10000)
  assert 17<state()['roarTime']<=20 and max(state()['stats'].values())<=180.001
+ assert not page.evaluate('arenaDebug.action("roll")'),'roar pose was interrupted'
+ page.wait_for_function('()=>arenaDebug.state().roarPoseTime===0',timeout=10000)
  page.evaluate('arenaDebug.place(0,-5.8)');page.locator('#arenaFire').click()
  page.wait_for_function('()=>arenaDebug.state().attackTime>0',timeout=10000)
  assert state()['effects']['trail']
@@ -66,4 +87,4 @@ with sync_playwright() as p:
  page.screenshot(path=str(ROOT/'dist/bilge-human-preview.png'))
  assert not errors,errors
  browser.close()
- print('PASS: FPS fire/reload, cover collision, human/wolf transition, normal/legendary gates, double-tap direction run, roll without damage, forward jump, melee and VFX, roar cap/expiry, soft character shadow, bounded cache and one WebGL context.')
+ print('PASS: FPS fire/reload, cover collision, human/wolf transition, normal/legendary gates, double-tap direction run, one-hit swept roll damage and cover blocking, consistent vertical drag in both forms, forward jump, melee and VFX, roar cap/expiry, soft character shadow, bounded cache and one WebGL context.')

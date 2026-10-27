@@ -29,6 +29,12 @@
       "version": "0.1.8",
       "operation": "Athletic torso sculpt, 28k body LOD, detailed alpha ink atlas and skin-weight transfer",
       "additional_meshy_credits": 0
+    },
+    {
+      "version": "0.1.10",
+      "operation": "Shared v2 phased roll and held roar pose; swept contact damage, cover blocking, consistent FPS/TPS vertical look",
+      "additional_meshy_credits": 0,
+      "reference_note": "New YouTube NGqOn5o0dHE inaccessible (proxy 403), not watched; explicit user corrections and prior accessible contact sheets used."
     }
   ],
   "bilge_v019": {

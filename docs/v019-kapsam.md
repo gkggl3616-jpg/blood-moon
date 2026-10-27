@@ -18,7 +18,7 @@ Son kullanıcı mesajları aynı görevi genişletiyor; hepsi birlikte uygulanac
 - Çevrimdışı düz zemin, sınırlar, birkaç siper ve canı azalan eğitim hedefleri. Tam oyun/çevrimiçi maç olduğu iddia edilmez.
 - Sol dört yön düğmesiyle hareket, sağ sürükleme ile bakış; klavyede WASD ve ok/sağ fare, telefon yatay yerleşim.
 - İnsan kamerası birinci şahıs, görünür eller ve geçici silah ile atış/geri tepme. Kurt kamerası arkadan üçüncü şahıs; gerçek iskelet klipleri.
-- İnsan–kurt dönüşümü, ileri sıçrama ve düşüş/yere basma, normal hareket, dört ayak koşu, ileri takla. Takla saldırı hasarı üretmez.
+- İnsan–kurt dönüşümü, ileri sıçrama ve düşüş/yere basma, normal hareket, dört ayak koşu, ileri takla. Bu sürümde takla hasarsızdı; v0.1.10 kullanıcı düzeltmesi bunu kaldırdı, artık temas hasarı verir.
 - Pençe klibi ve kısa ömürlü ışık izleri; yakın mesafe/ön koni içinde hedef hasarı; insan atışı engellerle kesilir.
 - Kükreme ve 20 saniyelik bonuslar, ellerde mor alev, dövme parlaması; pasif/aktif toplam 180 tavanı.
 - Envanter kuşanması oyuna aktarılır. Test modu geçici deneme donanımı kullanıyorsa açıkça belirtilir ve mağaza sahipliği değiştirilmez.
