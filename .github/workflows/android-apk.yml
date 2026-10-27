@@ -53,7 +53,7 @@ jobs:
       - name: Upload installable Android prototype
         uses: actions/upload-artifact@v4
         with:
-          name: Rogue-Blood-Moon-v0.1.6-APK
+          name: Rogue-Blood-Moon-v0.1.7-APK
           path: |
             dist/*.apk
             dist/build-report.json
@@ -69,11 +69,14 @@ jobs:
           name: Wolf-Modelleri-Blender-GLB
           path: |
             art/3d/wolves-modular.blend
+            art/3d/wolves-rigged.blend
             art/3d/model-report.json
+            art/3d/animation-report.json
             art/3d/task-trail.json
             art/3d/PLAN.md
             art/3d/scripts/*.py
             art/3d/wolves-*.png
+            art/3d/wolf-*-rig.png
             app/src/main/assets/models/*.glb
           if-no-files-found: error
           retention-days: 30

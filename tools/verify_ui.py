@@ -149,21 +149,52 @@ with sync_playwright() as p:
     page.locator('[data-category="knives"]').click()
     assert 'KAMA-01' in page.locator('#collectionCards').inner_text()
     page.locator('#openWolfGear').click()
-    page.locator('#equipRun').check()
-    page.locator('#equipRoll').check()
+    assert page.locator('#runPreview').is_disabled()
+    assert page.locator('#rollPreview').is_disabled()
+    page.locator('#openRollShop').click()
+    page.locator('[data-buy-roll="normal"]').click()
+    assert page.locator('#walletAmount').inner_text() == '1.300'
+    assert page.locator('[data-buy-roll="normal"]').is_disabled()
+    page.locator('#goWolfEquip').click()
+    assert page.locator('#equipRollTier').input_value() == 'none'
+    page.locator('#equipRollTier').select_option('normal')
+    assert not page.locator('#rollPreview').is_disabled()
+    assert page.locator('#runPreview').is_disabled()
+    assert page.evaluate('getWolfMotionAccess()') == {'roll':True,'run':False}
+    page.locator('#openRollShop').click()
+    page.locator('[data-buy-roll="legendary"]').click()
+    assert page.locator('#walletAmount').inner_text() == '100'
+    page.locator('#inventoryMode').click()
+    assert page.locator('.roll-item').count() == 2
+    page.screenshot(path=str(ROOT / 'dist/roll-shop-preview.png'), animations='disabled')
+    page.locator('#goWolfEquip').click()
+    page.locator('#equipRollTier').select_option('legendary')
     page.locator('#wolfAccessory').select_option('shoulder')
     page.locator('#saveWolfGear').click()
     equipment=json.loads(page.evaluate("localStorage.getItem('rogue-wolf-equipment')"))
-    assert equipment == {'run':True,'roll':True,'accessory':'shoulder'}
-    assert page.evaluate('wolfLoadouts.kul.run && wolfLoadouts.kul.roll')
+    assert equipment == {'skill':'legendary','run':True,'roll':True,'accessory':'shoulder'}
     page.evaluate('collectionState.equipped="basibozuk";openWolfEquipment()')
-    assert not page.locator('#equipRun').is_checked()
-    assert not page.locator('#equipRoll').is_checked()
+    assert page.locator('#equipRollTier').input_value() == 'none'
     page.evaluate('collectionState.equipped="kul";openWolfEquipment()')
-    assert page.locator('#equipRun').is_checked()
+    assert page.locator('#equipRollTier').input_value() == 'legendary'
     page.wait_for_function('() => document.getElementById("wolfModelViewport").dataset.modelReady === "true"', timeout=60000)
     assert page.locator('#wolfModelViewport canvas').count() == 1
     assert page.evaluate('wolf3DInfo().meshes.every(m=>m.map)')
+    assert page.evaluate('wolf3DInfo().skinned')
+    assert set(page.evaluate('wolf3DInfo().clips')) == {'WolfIdle','WolfRoll','WolfRunQuad'}
+    page.locator('#equipRollTier').select_option('normal')
+    assert not page.evaluate('playWolfMotion("WolfRunQuad")')
+    page.locator('#rollPreview').click()
+    assert page.evaluate('wolf3DInfo().motion') == 'WolfRoll'
+    page.wait_for_function('()=>wolf3DInfo().motion==="WolfIdle"', timeout=15000)
+    page.locator('#equipRollTier').select_option('legendary')
+    page.locator('#runPreview').click()
+    assert page.evaluate('wolf3DInfo().motion') == 'WolfRunQuad'
+    page.wait_for_function('()=>wolf3DInfo().actionTime>.1',timeout=10000)
+    page.locator('#equipRollTier').select_option('normal')
+    assert page.evaluate('wolf3DInfo().motion') == 'WolfIdle'
+    page.locator('#equipRollTier').select_option('legendary')
+
     page.locator('#tattooBack').select_option('phoenix')
     page.locator('#tattooLeft').select_option('none')
     page.locator('#saveWolfGear').click()
@@ -185,6 +216,16 @@ with sync_playwright() as p:
     page.evaluate('collectionState.equipped="kul";roarUntil=0;renderWolfEquipment()')
     assert_fits(page, ['.wolf-slots','.wolf-showcase','.roar-panel','#activateRoar','#wolfModelViewport'])
     page.screenshot(path=str(ROOT / 'dist/wolf-equipment-preview.png'), animations='disabled')
+    # Purchases, balance and the selected wolf's loadout survive an app reload.
+    page.reload()
+    page.evaluate('document.getElementById("skipIntro").click()')
+    page.locator('[data-nav="inventory"]').click()
+    page.locator('[data-category="skills"]').click()
+    assert page.locator('.roll-item').count() == 2
+    assert page.locator('#walletAmount').inner_text() == '100'
+    page.locator('#goWolfEquip').click()
+    assert page.locator('#equipRollTier').input_value() == 'legendary'
+    assert page.evaluate('getWolfMotionAccess()') == {'roll':True,'run':True}
     page.evaluate('window.goBack()')
     (ROOT / 'dist/character-profiles.json').write_text(json.dumps(profiles, ensure_ascii=False, indent=2))
     page.screenshot(path=str(ROOT / 'dist/characters-preview.png'), animations='disabled')
@@ -210,4 +251,4 @@ with sync_playwright() as p:
     fallback.wait_for_selector('#lobby.active', timeout=10000)
     assert not errors, errors
     browser.close()
-    print('PASS: automatic video start and natural menu transition; skip and replay; media failure fallback; mobile viewport containment at five sizes and safe insets; lobby, events, map, tabs and persisted audio; no JS errors.')
+    print('PASS: automatic intro and fallback; viewport containment at five mobile sizes and safe insets; lobby/events/map/audio; shop purchase and persistence; per-wolf normal roll vs legendary run+roll permissions; skinned GLB clips playback and return to idle; roar expiry and 180 cap; no JS errors.')

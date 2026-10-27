@@ -1,0 +1,44 @@
+{
+  "rig_type": "initial procedural humanoid/quadrupedal preview rig",
+  "clips": [
+    "WolfIdle",
+    "WolfRoll",
+    "WolfRunQuad"
+  ],
+  "root_motion": false,
+  "new_meshy_credits": 0,
+  "notes": [
+    "Preview animation in equipment screen, not collision-tested gameplay.",
+    "Weights use geometric regions and bone distance; manual deformation polish remains."
+  ],
+  "models": [
+    {
+      "id": "bilge",
+      "bones": 22,
+      "skinned_parts": 30,
+      "file": "bilge.glb",
+      "bytes": 6034944
+    },
+    {
+      "id": "kultigin",
+      "bones": 22,
+      "skinned_parts": 37,
+      "file": "kultigin.glb",
+      "bytes": 6071476
+    },
+    {
+      "id": "alparslan",
+      "bones": 22,
+      "skinned_parts": 37,
+      "file": "alparslan.glb",
+      "bytes": 6073820
+    },
+    {
+      "id": "konuralp",
+      "bones": 22,
+      "skinned_parts": 25,
+      "file": "konuralp.glb",
+      "bytes": 6011156
+    }
+  ]
+}

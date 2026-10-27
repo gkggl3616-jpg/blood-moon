@@ -9,7 +9,7 @@
       "triangles": 20044,
       "objects": 30,
       "file": "bilge.glb",
-      "bytes": 5518580
+      "bytes": 6034944
     },
     {
       "id": "kultigin",
@@ -17,7 +17,7 @@
       "triangles": 20872,
       "objects": 37,
       "file": "kultigin.glb",
-      "bytes": 5542264
+      "bytes": 6071476
     },
     {
       "id": "alparslan",
@@ -25,7 +25,7 @@
       "triangles": 20920,
       "objects": 37,
       "file": "alparslan.glb",
-      "bytes": 5544128
+      "bytes": 6073820
     },
     {
       "id": "konuralp",
@@ -33,10 +33,12 @@
       "triangles": 19540,
       "objects": 25,
       "file": "konuralp.glb",
-      "bytes": 5502832
+      "bytes": 6011156
     }
   ],
-  "rigged": false,
+  "rigged": true,
   "tattoo_method": "separate projected emissive curve meshes",
-  "scale_unit": "meters"
+  "scale_unit": "meters",
+  "rig_status": "Initial 22-bone preview rig; manual weight polish required",
+  "animation_report": "animation-report.json"
 }

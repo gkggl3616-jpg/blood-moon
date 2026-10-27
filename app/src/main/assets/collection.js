@@ -21,7 +21,7 @@ function renderCollection(){
  $('collectionTitle').textContent=libraryMode==='shop'?'MAĞAZA':'ENVANTER';$('walletAmount').textContent=collectionState.credits.toLocaleString('tr');
  $('inventoryMode').classList.toggle('active',libraryMode==='inventory');$('shopMode').classList.toggle('active',libraryMode==='shop');
  document.querySelectorAll('[data-category]').forEach(b=>b.classList.toggle('active',b.dataset.category===category));
- const labels={weapons:'SİLAHLAR',grenades:'BOMBALAR',knives:'BIÇAKLAR',characters:'KARAKTERLER',wolves:'KURT FORMLARI',equipment:'EKİPMAN',cosmetics:'GÖRÜNÜMLER'};
+ const labels={skills:'KURT ÖZELLİKLERİ',weapons:'SİLAHLAR',grenades:'BOMBALAR',knives:'BIÇAKLAR',characters:'KARAKTERLER',wolves:'KURT FORMLARI',equipment:'EKİPMAN',cosmetics:'GÖRÜNÜMLER'};
  $('categoryTitle').textContent=labels[category];
  const list=libraryMode==='shop'?roster:roster.filter(c=>collectionState.owned.includes(c.id));
  $('collectionCount').textContent=(['characters','wolves'].includes(category)?list.length:category==='cosmetics'?1:0)+' KAYIT';
@@ -29,6 +29,7 @@ function renderCollection(){
   if(!list.some(c=>c.id===selectedCharacter))selectedCharacter=list[0].id;
   $('collectionCards').innerHTML=list.map(c=>`<button class="character-card ${selectedCharacter===c.id?'active':''}" data-character="${c.id}" style="--character-color:${c.color}"><span class="character-mark">${category==='wolves'?'◈':c.name[0]}</span><small>${c.role}</small><strong>${category==='wolves'?c.wolf:c.name}</strong><span class="ownership">${collectionState.equipped===c.id?'SEÇİLİ':collectionState.owned.includes(c.id)?'ENVANTERDE':c.price+' DENEME KREDİSİ'}</span></button>`).join('');
   document.querySelectorAll('[data-character]').forEach(b=>b.addEventListener('click',()=>{playSound();selectedCharacter=b.dataset.character;renderCollection();}));renderCharacter();
+ }else if(category==='skills'){window.renderRollShop();
  }else if(['weapons','grenades','knives'].includes(category)){ window.renderCatalog(category);
  }else{
   $('collectionCards').innerHTML=category==='equipment'?'<div class="empty-collection"><b>＋</b><h3>EKİPMAN ALANI HAZIR</h3><p>Silahlar ve ekipman modelleri sonraki aşamada eklenecek.</p></div>':'<div class="cosmetic-card"><span>◈</span><h3>STANDART GÖRÜNÜM</h3><p>Başlangıç görünümü • Envanterde</p></div>';

@@ -5,6 +5,7 @@ import json
 import os
 import shutil
 import subprocess
+import struct
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -36,7 +37,7 @@ def main():
     run(TOOLS / 'aapt2', 'link', '-o', BUILD / 'base.apk', '-I', ANDROID,
         '--manifest', manifest,
         '--min-sdk-version', '26', '--target-sdk-version', '35',
-        '--version-code', '7', '--version-name', '0.1.6',
+        '--version-code', '8', '--version-name', '0.1.7',
         '-A', ROOT / 'app/src/main/assets', BUILD / 'resources.zip')
     sources = list((ROOT / 'app/src/main/java').rglob('*.java'))
     run('java', '-m', 'jdk.compiler/com.sun.tools.javac.Main', '-source', '17', '-target', '17', '-encoding', 'UTF-8',
@@ -60,7 +61,7 @@ def main():
             '-alias', 'androiddebugkey', '-keyalg', 'RSA', '-keysize', '2048', '-validity', '10000',
             '-dname', 'CN=Rogue Prototype,O=Local Development,C=TR')
         key.chmod(0o600)
-    apk = ROOT / 'dist/Rogue-Blood-Moon-v0.1.6-debug.apk'
+    apk = ROOT / 'dist/Rogue-Blood-Moon-v0.1.7-debug.apk'
     run('java', '-jar', TOOLS / 'lib/apksigner.jar', 'sign', '--ks', key,
         '--ks-pass', 'pass:android', '--key-pass', 'pass:android', '--ks-key-alias', 'androiddebugkey',
         '--out', apk, aligned)
@@ -71,9 +72,15 @@ def main():
     with zipfile.ZipFile(apk) as z:
         assert z.testzip() is None
         assert {'classes.dex', 'AndroidManifest.xml', 'assets/index.html', 'assets/media/intro.mp4'} <= set(z.namelist())
+        for model_id in ['bilge', 'kultigin', 'alparslan', 'konuralp']:
+            data = z.read('assets/models/' + model_id + '.glb')
+            magic, glb_version, length, json_length, chunk_type = struct.unpack_from('<4sIIII', data)
+            assert magic == b'glTF' and glb_version == 2 and length == len(data) and chunk_type == 0x4E4F534A
+            gltf = json.loads(data[20:20 + json_length])
+            assert gltf['skins'] and {a['name'] for a in gltf['animations']} == {'WolfIdle','WolfRoll','WolfRunQuad'}
     report = {'apk': apk.name, 'size_bytes': apk.stat().st_size, 'sha256': hashlib.sha256(apk.read_bytes()).hexdigest(),
-              'package': 'com.roguebloodmoon.prototype', 'version': '0.1.6', 'min_android': '8.0',
-              'signed': True, 'device_tested': False, 'scope': 'Offline menu, intro and map concept preview'}
+              'package': 'com.roguebloodmoon.prototype', 'version': '0.1.7', 'min_android': '8.0',
+              'signed': True, 'device_tested': False, 'scope': 'Offline menu, wolf equipment, shop and rigged 3D motion previews'}
     (ROOT / 'dist/build-report.json').write_text(json.dumps(report, indent=2))
     print(json.dumps(report, indent=2))
 
