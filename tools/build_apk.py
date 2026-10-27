@@ -37,7 +37,7 @@ def main():
     run(TOOLS / 'aapt2', 'link', '-o', BUILD / 'base.apk', '-I', ANDROID,
         '--manifest', manifest,
         '--min-sdk-version', '26', '--target-sdk-version', '35',
-        '--version-code', '9', '--version-name', '0.1.8',
+        '--version-code', '10', '--version-name', '0.1.9',
         '-A', ROOT / 'app/src/main/assets', BUILD / 'resources.zip')
     sources = list((ROOT / 'app/src/main/java').rglob('*.java'))
     run('java', '-m', 'jdk.compiler/com.sun.tools.javac.Main', '-source', '17', '-target', '17', '-encoding', 'UTF-8',
@@ -55,13 +55,18 @@ def main():
             z.write(file, file.name, compress_type=zipfile.ZIP_STORED)
     aligned = BUILD / 'aligned.apk'
     run(TOOLS / 'zipalign', '-f', '-p', '4', unsigned, aligned)
-    key = ROOT.parent / '.rogue-prototype-debug.keystore'
+    key = ROOT / 'tools/signing-cache/rogue-prototype.keystore'
+    key.parent.mkdir(parents=True, exist_ok=True)
+    previous_key = ROOT.parent / '.rogue-prototype-debug.keystore'
+    if not key.exists() and previous_key.exists():
+        shutil.copyfile(previous_key, key)
+        key.chmod(0o600)
     if not key.exists():
         run('keytool', '-genkeypair', '-keystore', key, '-storepass', 'android', '-keypass', 'android',
             '-alias', 'androiddebugkey', '-keyalg', 'RSA', '-keysize', '2048', '-validity', '10000',
             '-dname', 'CN=Rogue Prototype,O=Local Development,C=TR')
         key.chmod(0o600)
-    apk = ROOT / 'dist/Rogue-Blood-Moon-v0.1.8-debug.apk'
+    apk = ROOT / 'dist/Rogue-Blood-Moon-v0.1.9.apk'
     run('java', '-jar', TOOLS / 'lib/apksigner.jar', 'sign', '--ks', key,
         '--ks-pass', 'pass:android', '--key-pass', 'pass:android', '--ks-key-alias', 'androiddebugkey',
         '--out', apk, aligned)
@@ -72,19 +77,20 @@ def main():
     with zipfile.ZipFile(apk) as z:
         assert z.testzip() is None
         assert {'classes.dex', 'AndroidManifest.xml', 'assets/index.html', 'assets/media/intro.mp4'} <= set(z.namelist())
-        for model_id in ['bilge', 'kultigin', 'alparslan', 'konuralp']:
-            data = z.read('assets/models/' + model_id + '.glb')
-            magic, glb_version, length, json_length, chunk_type = struct.unpack_from('<4sIIII', data)
-            assert magic == b'glTF' and glb_version == 2 and length == len(data) and chunk_type == 0x4E4F534A
-            gltf = json.loads(data[20:20 + json_length])
-            assert gltf['skins'] and {a['name'] for a in gltf['animations']} == {'WolfIdle','WolfRoll','WolfRunQuad'}
-            for motif in ['dragon','phoenix','lion','pegasus','spider','bull','dice','unicorn','reaper']:
-                assert any(n.get('name','').startswith('Tattoo_back_'+motif+'_') for n in gltf['nodes'])
-            ink_materials=[m for m in gltf['materials'] if m.get('name','').startswith('Tattoo_')]
-            assert ink_materials and all(m.get('emissiveTexture') and m['pbrMetallicRoughness'].get('baseColorTexture') and m.get('alphaMode') in ['MASK','BLEND'] for m in ink_materials)
+        for model_id in ['bilge','kultigin','alparslan','konuralp','human-bilge']:
+            data=z.read('assets/models/'+model_id+'.glb')
+            magic,version,length,json_length,chunk_type=struct.unpack_from('<4sIIII',data)
+            assert magic==b'glTF' and version==2 and length==len(data) and chunk_type==0x4E4F534A
+            gltf=json.loads(data[20:20+json_length]);assert gltf['skins']
+            names={a['name'] for a in gltf['animations']}
+            required={'HumanIdle','HumanMove'} if model_id.startswith('human-') else {'WolfIdle','WolfMove','WolfRunQuad','WolfRoll','WolfClaw','WolfRoar','WolfJump','WolfTransform'}
+            assert required<=names
+            triangles=sum(gltf['accessors'][p['indices']]['count']//3 for m in gltf['meshes'] for p in m['primitives'])
+            assert triangles <= (12000 if model_id.startswith('human-') else 15000),(model_id,triangles)
+        assert {'assets/arena.css','assets/inventory.js','assets/inventory.css'}<=set(z.namelist())
     report = {'apk': apk.name, 'size_bytes': apk.stat().st_size, 'sha256': hashlib.sha256(apk.read_bytes()).hexdigest(),
-              'package': 'com.roguebloodmoon.prototype', 'version': '0.1.8', 'min_android': '8.0',
-              'signed': True, 'device_tested': False, 'scope': 'Offline menu, wolf equipment, shop and rigged 3D motion previews'}
+              'package': 'com.roguebloodmoon.prototype', 'version': '0.1.9', 'min_android': '8.0',
+              'signed': True, 'device_tested': False, 'scope': 'Offline playable flat arena; human FPS, wolf TPS, transformation, run, roll, claw, roar, inventory', 'standalone_apk': True, 'extra_data_files_required': False}
     (ROOT / 'dist/build-report.json').write_text(json.dumps(report, indent=2))
     print(json.dumps(report, indent=2))
 

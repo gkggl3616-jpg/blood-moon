@@ -1,0 +1,86 @@
+{
+  "bilge": {
+    "name": "Boz Kagan",
+    "height": 2.35,
+    "shoulder": 1.08,
+    "waist": 0.88,
+    "depth": 0.98,
+    "waist_depth": 0.8,
+    "tint": [
+      0.68,
+      0.75,
+      0.84,
+      1
+    ],
+    "color": [
+      1,
+      0.58,
+      0.06,
+      1
+    ],
+    "accessory": "collar"
+  },
+  "kultigin": {
+    "name": "Kara Tigin",
+    "height": 2.08,
+    "shoulder": 1.24,
+    "waist": 0.94,
+    "depth": 1.08,
+    "waist_depth": 0.78,
+    "tint": [
+      0.48,
+      0.57,
+      0.7,
+      1
+    ],
+    "color": [
+      1,
+      0.1,
+      0.12,
+      1
+    ],
+    "accessory": "shoulder"
+  },
+  "alparslan": {
+    "name": "Boz Arslan",
+    "height": 2.4,
+    "shoulder": 1.34,
+    "waist": 0.99,
+    "depth": 1.15,
+    "waist_depth": 0.8,
+    "tint": [
+      0.78,
+      0.69,
+      0.57,
+      1
+    ],
+    "color": [
+      1,
+      0.42,
+      0.05,
+      1
+    ],
+    "accessory": "collar"
+  },
+  "konuralp": {
+    "name": "Uc Avcisi",
+    "height": 2.25,
+    "shoulder": 0.97,
+    "waist": 0.84,
+    "depth": 0.91,
+    "waist_depth": 0.77,
+    "tint": [
+      0.62,
+      0.69,
+      0.59,
+      1
+    ],
+    "color": [
+      0.09,
+      0.85,
+      0.76,
+      1
+    ],
+    "accessory": "charm"
+  }
+}

@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: android-apk-${{ github.ref }}
@@ -44,8 +44,15 @@ jobs:
           else
             python -m playwright install --with-deps chrome
           fi
+      - name: Cache prototype signing key
+        uses: actions/cache@v4
+        with:
+          path: tools/signing-cache
+          key: rogue-prototype-signing-v1
       - name: Verify offline mobile interface
         run: python tools/verify_ui.py
+      - name: Verify playable flat test arena
+        run: python tools/verify_arena.py
       - name: Download verified Android build tools
         run: python tools/bootstrap_android.py
       - name: Compile and sign APK
@@ -53,34 +60,20 @@ jobs:
       - name: Upload installable Android prototype
         uses: actions/upload-artifact@v4
         with:
-          name: Rogue-Blood-Moon-v0.1.8-APK
-          path: |
-            dist/*.apk
-            dist/build-report.json
-            dist/character-profiles.json
-            dist/signature-verification.txt
-            dist/apk-badging.txt
-            dist/*-preview.png
+          name: Rogue-Blood-Moon-v0.1.9-APK
+          path: dist/Rogue-Blood-Moon-v0.1.9.apk
           if-no-files-found: error
           retention-days: 30
-      - name: Upload editable 3D source and models
-        uses: actions/upload-artifact@v4
-        with:
-          name: Wolf-Modelleri-Blender-GLB
-          path: |
-            art/3d/wolves-modular.blend
-            art/3d/wolves-rigged.blend
-            art/3d/model-report.json
-            art/3d/animation-report.json
-            art/3d/task-trail.json
-            art/3d/PLAN.md
-            art/3d/scripts/*.py
-            art/3d/textures/*
-            art/3d/wolves-*.png
-            art/3d/wolf-*-rig.png
-            app/src/main/assets/models/*.glb
-          if-no-files-found: error
-          retention-days: 30
+      - name: Publish one directly installable APK
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          apk_tag="prototype-v0.1.9-${GITHUB_RUN_NUMBER}"
+          if gh release view "$apk_tag" >/dev/null 2>&1; then
+            gh release upload "$apk_tag" dist/Rogue-Blood-Moon-v0.1.9.apk --clobber
+          else
+            gh release create "$apk_tag" dist/Rogue-Blood-Moon-v0.1.9.apk --target "$GITHUB_SHA" --prerelease --title "Rogue: Blood Moon v0.1.9" --notes-file docs/release-v019.md
+          fi
       - name: Upload UI preview on failure
         if: failure()
         uses: actions/upload-artifact@v4

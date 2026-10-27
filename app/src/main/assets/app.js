@@ -28,7 +28,7 @@ fit();
 function saveSettings() { try { localStorage.setItem('rogue-settings', JSON.stringify({ audio: audioEnabled, volume })); } catch (_) {} updateSound(); }
 function updateSound() { $('openingSound').textContent = audioEnabled ? 'SES AÇIK' : 'SES KAPALI'; intro.muted = !audioEnabled; intro.volume = volume; }
 function playSound(type = 'click') { if (!audioEnabled || document.hidden) return; const a = sounds[type]; if (!a) return; a.volume = volume; a.currentTime = 0; a.play().catch(() => {}); }
-function screen(name) { if(name!=='wolfGear')window.stopWolfMotion?.(); if (name !== 'opening') { intro.pause(); intro.classList.remove('playing'); } for (const el of document.querySelectorAll('.screen')) { const active = el.id === name; el.classList.toggle('active', active); el.inert = !active; } currentScreen = name; }
+function screen(name) { if(name!=='arena')window.stopArena?.(); if(name!=='wolfGear'&&name!=='collection')window.stopWolfMotion?.(); if (name !== 'opening') { intro.pause(); intro.classList.remove('playing'); } for (const el of document.querySelectorAll('.screen')) { const active = el.id === name; el.classList.toggle('active', active); el.inert = !active; } currentScreen = name; }
 function toast(text) { $('toast').textContent = text; $('toast').classList.add('show'); clearTimeout(toastTimer); toastTimer = setTimeout(() => $('toast').classList.remove('show'), 3500); }
 function showModal(title, html, label = 'ROGUE: BLOOD MOON') { modal.classList.remove('events-modal','settings-modal'); $('modalTitle').textContent = title; $('modalBody').innerHTML = html; $('modalLabel').textContent = label; document.getElementById(currentScreen).inert = true; modal.hidden = false; modal.open = true; modal.setAttribute('open', ''); $('closeModal').focus(); }
 function closeModal() { playSound('back'); modal.hidden = true; modal.open = false; modal.removeAttribute('open'); document.getElementById(currentScreen).inert = false; }
@@ -65,7 +65,7 @@ document.querySelectorAll('[data-room]').forEach(b => b.addEventListener('click'
 $('join').addEventListener('click', () => {
   playSound('confirm');
   if (selectedRoom !== 'bunker') { showModal(rooms[selectedRoom][0], '<p>Bu harita ileriki sürümler için ayrıldı. İlk prototipte <strong>Sığınak 07</strong> konseptini inceleyebilirsin.</p><p class="modal-note">Bu sürümde çevrimiçi oda ve oynanabilir maç bulunmuyor.</p>', 'HARİTA • TASARIM AŞAMASINDA'); return; }
-  screen('map');
+  if(window.openArena)window.openArena();else toast('Test alanı hazırlanıyor…');
 });
 const eventData = {
  moon: {title:'KANLI AY', tag:'GECE OPERASYONU', description:'Dolunay altında Sığınak 07 kontrolünü ele geçir. Açık alanlarda insan formunu, çatı rotalarında kurdunu kullan.', tasks:['3 gece operasyonuna katıl','Takımınla 2 galibiyet kazan','İnsan ve kurt formunda 5’er eleme yap'], benefits:['+%25 deneyim bonusu','Kanlı Ay profil çerçevesi','750 kredi görev ödülü'], goal:'0 / 3 operasyon', tone:'moon'},
@@ -89,7 +89,7 @@ $('mapDetails').addEventListener('click', () => { playSound(); document.querySel
 document.querySelector('.map-image').addEventListener('click', e => { e.currentTarget.classList.remove('expanded'); });
 
 function settings() {
-  showModal('AYARLAR', `<p class="settings-intro">Ses tercihleri</p><div class="setting"><span>Ses efektleri</span><button id="soundToggle" class="toggle ${audioEnabled ? '' : 'off'}">${audioEnabled ? 'AÇIK' : 'KAPALI'}</button></div><label class="setting"><span>Ses düzeyi</span><input id="volume" type="range" min="0" max="100" value="${Math.round(volume * 100)}" aria-label="Ses düzeyi"></label><button id="testSound" class="toggle">DÜĞME SESİNİ DENE</button><p class="settings-version">ROGUE: BLOOD MOON • v0.1.8</p>`, 'TERCİHLER'); modal.classList.add('settings-modal');
+  showModal('AYARLAR', `<p class="settings-intro">Ses tercihleri</p><div class="setting"><span>Ses efektleri</span><button id="soundToggle" class="toggle ${audioEnabled ? '' : 'off'}">${audioEnabled ? 'AÇIK' : 'KAPALI'}</button></div><label class="setting"><span>Ses düzeyi</span><input id="volume" type="range" min="0" max="100" value="${Math.round(volume * 100)}" aria-label="Ses düzeyi"></label><button id="testSound" class="toggle">DÜĞME SESİNİ DENE</button><p class="settings-version">ROGUE: BLOOD MOON • v0.1.9</p>`, 'TERCİHLER'); modal.classList.add('settings-modal');
   $('soundToggle').addEventListener('click', e => { audioEnabled = !audioEnabled; e.currentTarget.textContent = audioEnabled ? 'AÇIK' : 'KAPALI'; e.currentTarget.classList.toggle('off', !audioEnabled); saveSettings(); playSound(); });
   $('volume').addEventListener('input', e => { volume = Number(e.target.value) / 100; saveSettings(); });
   $('testSound').addEventListener('click', () => { if (!audioEnabled) toast('Sesi denemek için ses efektlerini aç.'); else playSound('confirm'); });
@@ -106,7 +106,7 @@ document.querySelectorAll('[data-nav]').forEach(b => b.addEventListener('click',
     case 'clan': showModal('KLAN', '<p>Kendi sürünü kur. Takım kimliği, klan etiketi ve arkadaşlarla oda kurma gelecek sürümler için planlanıyor.</p><p class="modal-note">Bu sürümde hesap veya klan sunucusu bulunmuyor.</p>', 'SOSYAL • PLANLANAN'); break;
   }
 }));
-window.goBack = () => { if (modal.open) closeModal(); else if (document.querySelector('.map-image.expanded')) document.querySelector('.map-image').classList.remove('expanded'); else if (['map','gear','collection','wolfGear'].includes(currentScreen)) { playSound('back'); screen('lobby'); } else if (currentScreen === 'opening') screen('lobby'); else toast('Uygulamadan çıkmak için ana ekran hareketini kullan.'); };
+window.goBack = () => { if (modal.open) closeModal(); else if (document.querySelector('.map-image.expanded')) document.querySelector('.map-image').classList.remove('expanded'); else if (['map','gear','collection','wolfGear','arena'].includes(currentScreen)) { playSound('back'); screen('lobby'); } else if (currentScreen === 'opening') screen('lobby'); else toast('Uygulamadan çıkmak için ana ekran hareketini kullan.'); };
 window.pauseApp = () => { intro.pause(); Object.values(sounds).forEach(a => a.pause()); };
 window.resumeApp = () => { if (currentScreen === 'opening' && !intro.ended) startIntro(false); };
 document.addEventListener('visibilitychange', () => { if (document.hidden) window.pauseApp(); else window.resumeApp(); });
@@ -133,3 +133,5 @@ renderGear();
 
 updateSound();
 startIntro();
+
+window.rogueOpenScreen=screen;window.roguePlaySound=playSound;

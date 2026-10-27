@@ -1,52 +1,74 @@
 {
-  "source": "Existing Meshy refine; athletic sculpt v2",
-  "source_faces": 1040602,
-  "base_faces": 28000,
+  "source": "Approved Bilge image-to-3D pair and existing Meshy/Blender wolf variants",
+  "static_source_dir": "art/3d/source/mobile-v019",
   "variants": [
     {
       "id": "bilge",
-      "height_m": 2.35,
-      "triangles": 50576,
-      "objects": 22,
-      "shape_profile": {
-        "name": "Boz Kagan",
-        "height": 2.35,
-        "shoulder": 1.08,
-        "waist": 0.88,
-        "depth": 0.98,
-        "waist_depth": 0.8,
-        "tint": [
-          0.68,
-          0.75,
-          0.84,
-          1
-        ],
-        "color": [
-          1,
-          0.58,
-          0.06,
-          1
-        ],
-        "accessory": "collar"
-      },
-      "normalized_trunk_sections": {
-        "waist": {
-          "width": 0.1693,
-          "depth": 0.1457
-        },
-        "chest": {
-          "width": 0.3365,
-          "depth": 0.1842
-        }
-      },
+      "kind": "wolf",
+      "height_m": 2.25,
+      "new": true,
+      "has_tail": false,
       "file": "bilge.glb",
-      "bytes": 10811324
+      "source_faces": 3751650,
+      "triangles": 13773,
+      "body_triangles": 11999,
+      "objects": 4,
+      "rest_joints": {
+        "shoulderL": [
+          0.19144155085086823,
+          0.0066773914732038975,
+          0.75
+        ],
+        "elbowL": [
+          0.2319415956735611,
+          -0.0048288521356880665,
+          0.61
+        ],
+        "wristL": [
+          0.3004080355167389,
+          -0.04031038284301758,
+          0.44
+        ],
+        "fingerL": [
+          0.26051026582717896,
+          -0.010472804307937622,
+          0.375
+        ],
+        "shoulderR": [
+          -0.19015994668006897,
+          0.003688277443870902,
+          0.75
+        ],
+        "elbowR": [
+          -0.21675486862659454,
+          0.010052868165075779,
+          0.61
+        ],
+        "wristR": [
+          -0.2979412078857422,
+          -0.04203872010111809,
+          0.44
+        ],
+        "fingerR": [
+          -0.24131400883197784,
+          -0.005289576947689056,
+          0.375
+        ]
+      },
+      "bytes": 13702940
     },
     {
       "id": "kultigin",
+      "kind": "wolf",
       "height_m": 2.08,
-      "triangles": 49005,
-      "objects": 22,
+      "has_tail": true,
+      "file": "kultigin.glb",
+      "source_faces": 28000,
+      "triangles": 9598,
+      "body_triangles": 8200,
+      "objects": 8,
+      "rest_joints": {},
+      "bytes": 10651988,
       "shape_profile": {
         "name": "Kara Tigin",
         "height": 2.08,
@@ -67,25 +89,20 @@
           1
         ],
         "accessory": "shoulder"
-      },
-      "normalized_trunk_sections": {
-        "waist": {
-          "width": 0.1833,
-          "depth": 0.1567
-        },
-        "chest": {
-          "width": 0.3863,
-          "depth": 0.203
-        }
-      },
-      "file": "kultigin.glb",
-      "bytes": 10713892
+      }
     },
     {
       "id": "alparslan",
+      "kind": "wolf",
       "height_m": 2.4,
-      "triangles": 48233,
-      "objects": 22,
+      "has_tail": true,
+      "file": "alparslan.glb",
+      "source_faces": 28000,
+      "triangles": 9595,
+      "body_triangles": 8200,
+      "objects": 8,
+      "rest_joints": {},
+      "bytes": 10651712,
       "shape_profile": {
         "name": "Boz Arslan",
         "height": 2.4,
@@ -106,25 +123,20 @@
           1
         ],
         "accessory": "collar"
-      },
-      "normalized_trunk_sections": {
-        "waist": {
-          "width": 0.1944,
-          "depth": 0.171
-        },
-        "chest": {
-          "width": 0.4175,
-          "depth": 0.2161
-        }
-      },
-      "file": "alparslan.glb",
-      "bytes": 10665400
+      }
     },
     {
       "id": "konuralp",
+      "kind": "wolf",
       "height_m": 2.25,
-      "triangles": 51983,
-      "objects": 22,
+      "has_tail": true,
+      "file": "konuralp.glb",
+      "source_faces": 28000,
+      "triangles": 9653,
+      "body_triangles": 8200,
+      "objects": 8,
+      "rest_joints": {},
+      "bytes": 10656916,
       "shape_profile": {
         "name": "Uc Avcisi",
         "height": 2.25,
@@ -145,26 +157,68 @@
           1
         ],
         "accessory": "charm"
+      }
+    },
+    {
+      "id": "human-bilge",
+      "kind": "human",
+      "height_m": 1.85,
+      "new": true,
+      "has_tail": false,
+      "file": "human-bilge.glb",
+      "source_faces": 3293572,
+      "triangles": 9000,
+      "body_triangles": 9000,
+      "objects": 1,
+      "rest_joints": {
+        "shoulderL": [
+          0.17,
+          -0.02,
+          0.775
+        ],
+        "elbowL": [
+          0.265,
+          -0.04,
+          0.66
+        ],
+        "wristL": [
+          0.33,
+          -0.075,
+          0.565
+        ],
+        "fingerL": [
+          0.35,
+          -0.09,
+          0.52
+        ],
+        "shoulderR": [
+          -0.17,
+          -0.02,
+          0.775
+        ],
+        "elbowR": [
+          -0.265,
+          -0.04,
+          0.66
+        ],
+        "wristR": [
+          -0.33,
+          -0.075,
+          0.565
+        ],
+        "fingerR": [
+          -0.35,
+          -0.09,
+          0.52
+        ]
       },
-      "normalized_trunk_sections": {
-        "waist": {
-          "width": 0.16,
-          "depth": 0.1304
-        },
-        "chest": {
-          "width": 0.3022,
-          "depth": 0.171
-        }
-      },
-      "file": "konuralp.glb",
-      "bytes": 10900812
+      "bytes": 9875644
     }
   ],
   "rigged": true,
-  "tattoo_method": "skin-triangle alpha ink; nine detailed back motifs",
-  "new_meshy_credits": 0,
-  "static_source_dir": "art/3d/source/athletic-static",
+  "tattoo_method": "one skinned surface per slot, shared atlas with runtime UV selection",
   "scale_unit": "meters",
+  "new_meshy_credits": 60,
   "rig_status": "Initial 22-bone preview rig; manual weight polish required",
   "animation_report": "animation-report.json"
 }

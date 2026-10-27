@@ -11,7 +11,7 @@ MODELS=ROOT/'app/src/main/assets/models'
 model_meta=json.loads((ROOT/'art/3d/model-report.json').read_text())
 BACKUP=ROOT/model_meta.get('static_source_dir','art/3d/source/static');BACKUP.mkdir(parents=True,exist_ok=True)
 profiles=model_meta['variants']
-report={'rig_type':'initial procedural humanoid/quadrupedal preview rig','clips':['WolfIdle','WolfRoll','WolfRunQuad'],'root_motion':False,'new_meshy_credits':0,'notes':['Preview animation in equipment screen, not collision-tested gameplay.','Weights use geometric regions and bone distance; manual deformation polish remains.'],'models':[]}
+report={'rig_type':'initial procedural humanoid/quadrupedal preview rig','clips':['WolfIdle','WolfMove','WolfRoll','WolfRunQuad','WolfClaw','WolfRoar','WolfJump','WolfTransform','HumanIdle','HumanMove'],'shared_run_roll_template':'wolf-shared-v1','root_motion':False,'new_meshy_credits':0,'notes':['Preview animation in equipment screen, not collision-tested gameplay.','Weights use geometric regions and bone distance; manual deformation polish remains.'],'models':[]}
 
 # Reproducible from the committed static Blender scene. Never back up an
 # already-rigged GLB as an unrigged source on a clean checkout.
@@ -44,15 +44,54 @@ chains=[('Root','root','rootEnd',None),('Hips','hip','spine','Root'),('Spine','s
 for side in ['L','R']:
  chains += [(f'Clavicle{side}','chest',f'shoulder{side}','Chest'),(f'UpperArm{side}',f'shoulder{side}',f'elbow{side}',f'Clavicle{side}'),(f'Forearm{side}',f'elbow{side}',f'wrist{side}',f'UpperArm{side}'),(f'Hand{side}',f'wrist{side}',f'finger{side}',f'Forearm{side}'),(f'Thigh{side}',f'hip{side}',f'knee{side}','Hips'),(f'Shin{side}',f'knee{side}',f'ankle{side}',f'Thigh{side}'),(f'Foot{side}',f'ankle{side}',f'toe{side}',f'Shin{side}')]
 
-def pose_points(base,kind,t,h):
+def pose_points(base,kind,t,h,variant="shared"):
  p={k:v.copy() for k,v in base.items()}
  span=base['shoulderL'].x/(.16*h)
- if kind=='WolfIdle':
+ if kind in ['WolfIdle','HumanIdle']:
   breath=.003*h*math.sin(t*math.tau)
   for k in ['chest','neck','head','headEnd']:p[k].z+=breath
   # Lower the A-pose arms into a relaxed standing stance.
   for side,sg in [('L',1),('R',-1)]:
-   p[f'elbow{side}']=Vector((sg*.22*span,-.01,.62))*h;p[f'wrist{side}']=Vector((sg*.23*span,-.025,.47))*h;p[f'finger{side}']=Vector((sg*.24*span,-.03,.42))*h
+   p[f'elbow{side}']=Vector((sg*.22*span,-.025,.60))*h;p[f'wrist{side}']=Vector((sg*.235*span,-.055,.43))*h;p[f'finger{side}']=Vector((sg*.24*span,-.065,.37))*h
+  if kind=='WolfIdle':
+   lean=.06 if variant=='konuralp' else .024
+   for k in ['chest','neck','head','headEnd']:p[k].y-=lean*h
+  else:
+   for k in ['neck','head','headEnd']:p[k]=base[k].copy()
+   for side,sg in [('L',1),('R',-1)]:
+    for part,x,z in [('elbow',.18,.635),('wrist',.20,.51),('finger',.205,.465)]:p[part+side]=Vector((sg*x,-.035,z))*h
+ elif kind in ['WolfMove','HumanMove']:
+  p=pose_points(base,'HumanIdle' if kind=='HumanMove' else 'WolfIdle',t,h,variant)
+  for side,sg,offset in [('L',1,0),('R',-1,math.pi)]:
+   a=t*math.tau+offset;swing=math.sin(a)
+   for part in ['knee','ankle','toe']:p[part+side].y-=.065*h*swing
+   for part in ['ankle','toe']:p[part+side].z+=.045*h*max(0,swing)
+   for part in ['elbow','wrist','finger']:p[part+side].y+=.07*h*swing
+  bob=.008*h*math.cos(t*math.tau*2)
+  for k in ['hip','spine','chest','neck','head','headEnd']:p[k].z+=bob
+ elif kind=='WolfClaw':
+  p=pose_points(base,'WolfIdle',0,h,variant)
+  for side,sg,phase in [('L',1,0),('R',-1,.5)]:
+   if variant=='kultigin':u=max(0,min(1,(t-phase)*2));strength=math.sin(math.pi*u)**2;x=sg*.30*math.cos(math.pi*u);z=.55+.13*math.sin(math.tau*u)
+   elif variant=='alparslan':strength=math.sin(math.pi*t)**2;x=sg*.13;z=.49+.33*math.sin(math.pi*t)
+   elif variant=='konuralp':strength=math.sin(math.pi*t)**2;x=sg*.24*math.cos(t*math.pi*3+phase*2);z=.52+.13*math.sin(t*math.pi*3)
+   else:strength=math.sin(math.pi*t)**2;x=sg*(.28-.40*t);z=.63-.23*t
+   p['elbow'+side]=p['elbow'+side].lerp(Vector((sg*.24,-.12,.65))*h,strength)
+   for part,drop in [('wrist',0),('finger',.04)]:p[part+side]=p[part+side].lerp(Vector((x,-.28,z-drop))*h,strength)
+  p['chest'].y-=.035*h*math.sin(math.pi*t)
+ elif kind in ['WolfRoar','WolfTransform']:
+  p=pose_points(base,'WolfIdle',0,h,variant);strength=math.sin(math.pi*t)**2
+  for k in ['chest','neck','head','headEnd']:p[k].z+=strength*.025*h
+  p['head'].y+=.035*h*strength;p['headEnd'].y+=.08*h*strength
+  for side,sg in [('L',1),('R',-1)]:
+   p['elbow'+side]=p['elbow'+side].lerp(Vector((sg*.28*span,-.06,.64))*h,strength)
+   p['wrist'+side]=p['wrist'+side].lerp(Vector((sg*.33*span,-.12,.54))*h,strength)
+   p['finger'+side]=p['finger'+side].lerp(Vector((sg*.35*span,-.13,.50))*h,strength)
+ elif kind=='WolfJump':
+  p=pose_points(base,'WolfIdle',0,h,variant);strength=math.sin(math.pi*t)**2
+  for side,sg in [('L',1),('R',-1)]:
+   for part,dz,dy in [('knee',.08,-.11),('ankle',.16,-.05),('toe',.16,-.07)]:p[part+side].z+=dz*h*strength;p[part+side].y+=dy*h*strength
+   for part in ['wrist','finger']:p[part+side].y-=.12*h*strength
  elif kind=='WolfRunQuad':
   b=.022*math.sin(t*math.tau*2)
   vals={'hip':(0,.13,.43+b),'spine':(0,.03,.45+b),'chest':(0,-.16,.45+b),'neck':(0,-.24,.46+b),'head':(0,-.31,.49+b),'headEnd':(0,-.40,.50+b),'tail':(0,.20,.43+b),'tailMid':(0,.33,.45+b),'tailEnd':(0,.43,.42+b)}
@@ -85,6 +124,7 @@ for profile in profiles:
  for o in meshes:
   bpy.ops.object.select_all(action='DESELECT');o.select_set(True);bpy.context.view_layer.objects.active=o;bpy.ops.object.transform_apply(location=True,rotation=True,scale=True)
  base=rest_points(h,profile.get('shape_profile',{}))
+ for joint,co in profile.get('rest_joints',{}).items():base[joint]=Vector(co)*h
  data=bpy.data.armatures.new('WolfSkeleton');rig=bpy.data.objects.new('WolfRig',data);bpy.context.scene.collection.objects.link(rig)
  bpy.context.view_layer.objects.active=rig;rig.select_set(True);bpy.ops.object.mode_set(mode='EDIT')
  for name,a,b,parent in chains:
@@ -102,10 +142,12 @@ for profile in profiles:
    ab=b-a;u=np.clip(((xyz-a)@ab)/np.dot(ab,ab),0,1);dist[:,j]=np.linalg.norm(xyz-(a+u[:,None]*ab),axis=1)
    z=xyz[:,2]/h;x=xyz[:,0]/h;y=xyz[:,1]/h
    if any(s in name for s in ['Arm','Hand','Clavicle']):
-    side=1 if name.endswith('L') else -1;dist[(x*side<.13)|(z<.42),j]+=h
+    side=1 if name.endswith('L') else -1;dist[(x*side<.13)|(z<.28),j]+=h
    elif any(s in name for s in ['Thigh','Shin','Foot']):
     side=1 if name.endswith('L') else -1;dist[(x*side<-.01)|(z>.54),j]+=h
-   elif name.startswith('Tail'):dist[(y<.06)|(z>.52),j]+=h
+   elif name.startswith('Tail'):
+    if not profile.get('has_tail',True):dist[:,j]+=h*3
+    else:dist[(y<.06)|(z>.52),j]+=h
    else:dist[((np.abs(x)>.20)&(z<.76))|((z<.43)&(np.abs(x)>.035)),j]+=h
   near=np.argsort(dist,axis=1)[:,:3];weights=1/np.maximum(.01*h,np.take_along_axis(dist,near,axis=1))**4;weights/=weights.sum(axis=1,keepdims=True)
   groups=[o.vertex_groups.new(name=n) for n,_,_ in segments]
@@ -137,10 +179,11 @@ for profile in profiles:
    for index in top:
     if weights[index]>.0001:groups[index].add([vertex.index],float(weights[index]/total),'REPLACE')
  rig.animation_data_create();bpy.context.scene.render.fps=30
- for kind,frames in [('WolfIdle',30),('WolfRunQuad',24),('WolfRoll',42)]:
+ specs=[('HumanIdle',60),('HumanMove',30)] if profile.get('kind')=='human' else [('WolfIdle',30),('WolfMove',30),('WolfRunQuad',24),('WolfRoll',42),('WolfClaw',20),('WolfRoar',36),('WolfJump',24),('WolfTransform',30)]
+ for kind,frames in specs:
   action=bpy.data.actions.new(kind);rig.animation_data.action=action
   for frame in range(1,frames+2,2):
-   t=(frame-1)/frames;points=pose_points(base,kind,min(t,1),h);desired={}
+   t=(frame-1)/frames;points=pose_points(base,kind,min(t,1),h,key);desired={}
    for name,a,b,parent in chains:
     start,end=points[a],points[b];direction=end-start
     global_rotation=Matrix.Rotation(math.tau*min(t,1),3,'X') if kind=='WolfRoll' else Matrix.Identity(3)
@@ -158,7 +201,7 @@ for profile in profiles:
    for point in fc.keyframe_points:point.interpolation='LINEAR'
   track=rig.animation_data.nla_tracks.new();track.name=kind;strip=track.strips.new(kind,1,action);strip.extrapolation='NOTHING'
  rig.animation_data.action=None
- bpy.context.scene.frame_start=1;bpy.context.scene.frame_end=43;bpy.context.scene.frame_set(1)
+ bpy.context.scene.frame_start=1;bpy.context.scene.frame_end=61;bpy.context.scene.frame_set(1)
  # The exporter's NLA track mode makes three distinct clips, not a single mixed timeline.
  bpy.ops.object.select_all(action='DESELECT');rig.select_set(True)
  for o in meshes:o.select_set(True)
@@ -166,7 +209,7 @@ for profile in profiles:
  for o in meshes:
   if o.name.startswith('Body_'):o['rig_status']='Initial 22-bone preview rig; manual weight polish required'
  bpy.ops.export_scene.gltf(filepath=str(MODELS/(key+'.glb')),export_format='GLB',use_selection=True,export_extras=True,export_animations=True,export_animation_mode='NLA_TRACKS',export_force_sampling=True)
- report['models'].append({'id':key,'bones':len(data.bones),'skinned_parts':len(meshes),'tattoo_skinning':'barycentric transfer from body triangles','file':key+'.glb','bytes':(MODELS/(key+'.glb')).stat().st_size})
+ report['models'].append({'id':key,'bones':len(data.bones),'skinned_parts':len(meshes),'tattoo_skinning':'barycentric transfer from body triangles','clips':{name:frames/30 for name,frames in specs},'file':key+'.glb','bytes':(MODELS/(key+'.glb')).stat().st_size})
  print('RIGGED',key,flush=True)
 # Assemble the exported characters into an editable source scene.
 bpy.ops.object.select_all(action='SELECT');bpy.ops.object.delete(use_global=False)

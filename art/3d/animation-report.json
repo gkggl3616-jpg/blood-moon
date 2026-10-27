@@ -2,9 +2,17 @@
   "rig_type": "initial procedural humanoid/quadrupedal preview rig",
   "clips": [
     "WolfIdle",
+    "WolfMove",
     "WolfRoll",
-    "WolfRunQuad"
+    "WolfRunQuad",
+    "WolfClaw",
+    "WolfRoar",
+    "WolfJump",
+    "WolfTransform",
+    "HumanIdle",
+    "HumanMove"
   ],
+  "shared_run_roll_template": "wolf-shared-v1",
   "root_motion": false,
   "new_meshy_credits": 0,
   "notes": [
@@ -15,34 +23,86 @@
     {
       "id": "bilge",
       "bones": 22,
-      "skinned_parts": 22,
+      "skinned_parts": 4,
       "tattoo_skinning": "barycentric transfer from body triangles",
+      "clips": {
+        "WolfIdle": 1.0,
+        "WolfMove": 1.0,
+        "WolfRunQuad": 0.8,
+        "WolfRoll": 1.4,
+        "WolfClaw": 0.6666666666666666,
+        "WolfRoar": 1.2,
+        "WolfJump": 0.8,
+        "WolfTransform": 1.0
+      },
       "file": "bilge.glb",
-      "bytes": 10811324
+      "bytes": 13702940
     },
     {
       "id": "kultigin",
       "bones": 22,
-      "skinned_parts": 22,
+      "skinned_parts": 8,
       "tattoo_skinning": "barycentric transfer from body triangles",
+      "clips": {
+        "WolfIdle": 1.0,
+        "WolfMove": 1.0,
+        "WolfRunQuad": 0.8,
+        "WolfRoll": 1.4,
+        "WolfClaw": 0.6666666666666666,
+        "WolfRoar": 1.2,
+        "WolfJump": 0.8,
+        "WolfTransform": 1.0
+      },
       "file": "kultigin.glb",
-      "bytes": 10713892
+      "bytes": 10651988
     },
     {
       "id": "alparslan",
       "bones": 22,
-      "skinned_parts": 22,
+      "skinned_parts": 8,
       "tattoo_skinning": "barycentric transfer from body triangles",
+      "clips": {
+        "WolfIdle": 1.0,
+        "WolfMove": 1.0,
+        "WolfRunQuad": 0.8,
+        "WolfRoll": 1.4,
+        "WolfClaw": 0.6666666666666666,
+        "WolfRoar": 1.2,
+        "WolfJump": 0.8,
+        "WolfTransform": 1.0
+      },
       "file": "alparslan.glb",
-      "bytes": 10665400
+      "bytes": 10651712
     },
     {
       "id": "konuralp",
       "bones": 22,
-      "skinned_parts": 22,
+      "skinned_parts": 8,
       "tattoo_skinning": "barycentric transfer from body triangles",
+      "clips": {
+        "WolfIdle": 1.0,
+        "WolfMove": 1.0,
+        "WolfRunQuad": 0.8,
+        "WolfRoll": 1.4,
+        "WolfClaw": 0.6666666666666666,
+        "WolfRoar": 1.2,
+        "WolfJump": 0.8,
+        "WolfTransform": 1.0
+      },
       "file": "konuralp.glb",
-      "bytes": 10900812
+      "bytes": 10656916
+    },
+    {
+      "id": "human-bilge",
+      "bones": 22,
+      "skinned_parts": 1,
+      "tattoo_skinning": "barycentric transfer from body triangles",
+      "clips": {
+        "HumanIdle": 2.0,
+        "HumanMove": 1.0
+      },
+      "file": "human-bilge.glb",
+      "bytes": 9875644
     }
   ]
 }

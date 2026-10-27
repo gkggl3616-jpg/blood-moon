@@ -1,4 +1,4 @@
-# Rogue: Blood Moon — Android Prototype 0.1.8
+# Rogue: Blood Moon — Android Prototype 0.1.9
 
 Yatay Android ekranı için menü ve harita konsepti prototipi.
 
@@ -43,3 +43,11 @@ Dört gerçek gövdenin beli ve karın derinliği yeniden biçimlendirildi. Ağ�
 Gövde LOD'si 18.000'den 28.000 üçgene çıkarıldı. Dokuz ayrıntılı, özgün sırt dövmesi: ejder, anka, aslan, kanatlı at, örümcek, boğa, kader zarı, tekboynuz ve ölüm. Kaynak sayfa `art/3d/textures/tattoo-atlas.png`, UV bölmeleri aynı klasördeki JSON dosyasıdır. Dövmeler görüntü üretimiyle hazırlanan şeffaf renk/emisyon dokularını kullanır; referans oyundan doku dosyası alınmadı. Her dövme gerçek gövde yüzey üçgenlerini izleyen ayrı bir mesh'tir. Sol ve sağ kol bağımsız olarak kanat şeridi, ejder, anka veya ölüm deseni seçer. Kükreme bu renkli mürekkepleri parlatır.
 
 Dövme iskelet ağırlıkları gövdenin en yakın üçgeninden ara değerleme ile aktarılır. İlk rig ve üç hareket klibi korunur; final üretim topolojisi, yüz ifadesi ve deformasyon cilası henüz tamamlanmadı. Bu bir kalite geliştirme geçişidir; nihai AAA model iddiası yoktur. Yedi karakter hâlâ dört temel geometriyi paylaşır.
+
+## v0.1.9 — oynanabilir düz test alanı
+
+Yeni Bilge Kağan insan/kurt çifti Meshy image-to-3D ile üretildi; onaylanan ve tüketilen toplam 60 kredi. Diğer altı insan/kurt referansı 2B konsepttir, yeni ücretli üretimleri yapılmadı. Bilge bu geliştirme sürümünde başlangıç envanterine dahildir. Oyun LOD'ları insan 9.000, Bilge kurt 13.773 üçgen; diğer üç kurt 10 bin üçgenden az. İnsan FPS, kurt TPS, dönüşüm, ileri sıçrama, ortak dört ayak koşu/takla, pençe klipleri ve vuruş efektleri düz alanda denenir. Hedeflerin canı azalır ve 3 saniyede yenilenir. Deneme donanımı mağaza sahipliğini değiştirmez.
+
+Sol dört yön düğmesi; ileriye 330 ms içinde iki basış efsanevi özellik takılıysa koşuyu açar. Sağda simgeli yuvarlak eylemler. Klavye WASD, E dönüşüm, Q takla, Shift koşu, Space sıçrama, F saldırı, R kükreme/şarjör, T iz sürme. Sağ ekranı sürüklemek bakışı değiştirir. Kükreme 20 saniye, mor el alevleri ve dövme parlaması; 180 tavanı korunur. Tek WebGL context, iki kayıtla sınırlı model cache'i, 72 parçacık havuzu, karakterden düşen 1024 PCF gölge kullanılır.
+
+Tek APK release varlığı bütün çalışma zamanı dosyalarını içerir; ek model/OBB/ZIP kurulumu yoktur. Actions imza sırrı yazma yetkisi 403 verdiği için geliştirme imzası cache ile korunur; üretim imzası kurulmuş değildir. Fiziksel Android testi ve çevrimiçi maç yoktur. Deformasyon ve yüz cilası geliştirme aşamasındadır. TikTok sayfalarına erişildi, yeni akış 403 verdi; yüklenen yerel referans videolarının kareleri incelendi.

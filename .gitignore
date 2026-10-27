@@ -13,3 +13,7 @@ tools/viewer/node_modules/
 art/3d/source/
 art/3d/*.log
 *.blend1
+
+tools/signing-cache/
+
+art/3d/*-mobile.blend

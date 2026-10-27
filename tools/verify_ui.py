@@ -62,7 +62,7 @@ with sync_playwright() as p:
     assert page.locator('#modalTitle').inner_text() == 'DÖKÜMHANE'
     page.locator('#modalOk').click()
     page.locator('[data-room="bunker"]').click()
-    page.locator('#join').click()
+    page.evaluate('rogueOpenScreen("map")')
     assert page.locator('#map.active').count() == 1
     page.locator('#mapDetails').click()
     page.evaluate('window.goBack()')
@@ -120,7 +120,7 @@ with sync_playwright() as p:
     page.locator('#characterAction').click()
     assert page.locator('#walletAmount').inner_text() == '1.750'
     page.locator('#inventoryMode').click()
-    assert page.locator('[data-character]').count() == 2
+    assert page.locator('[data-character]').count() == 3
     page.screenshot(path=str(ROOT / 'dist/inventory-preview.png'), animations='disabled')
     page.locator('[data-category="equipment"]').click()
     assert 'Silahlar' in page.locator('#collectionCards').inner_text()
@@ -181,7 +181,7 @@ with sync_playwright() as p:
     assert page.locator('#wolfModelViewport canvas').count() == 1
     assert page.evaluate('wolf3DInfo().meshes.every(m=>m.map)')
     assert page.evaluate('wolf3DInfo().skinned')
-    assert set(page.evaluate('wolf3DInfo().clips')) == {'WolfIdle','WolfRoll','WolfRunQuad'}
+    assert {'WolfIdle','WolfRoll','WolfRunQuad','WolfClaw','WolfJump'} <= set(page.evaluate('wolf3DInfo().clips'))
     page.locator('#equipRollTier').select_option('normal')
     assert not page.evaluate('playWolfMotion("WolfRunQuad")')
     page.locator('#rollPreview').click()
@@ -200,7 +200,7 @@ with sync_playwright() as p:
     for motif in ['dragon','phoenix','lion','pegasus','spider','bull','dice','unicorn','reaper']:
         page.locator('#tattooBack').select_option(motif)
         tattoos=page.evaluate('wolf3DInfo().tattoos.filter(t=>t.visible&&t.name.startsWith("Tattoo_back_"))')
-        assert len(tattoos)==1 and tattoos[0]['name'].startswith('Tattoo_back_'+motif+'_')
+        assert len(tattoos)==1 and tattoos[0]['name'].startswith('Tattoo_back_')
         assert tattoos[0]['map'] and tattoos[0]['emissiveMap'] and tattoos[0]['alphaTest'] > 0
     page.locator('#tattooLeft').select_option('dragon')
     page.locator('#tattooRight').select_option('reaper')

@@ -30,5 +30,25 @@
       "operation": "Athletic torso sculpt, 28k body LOD, detailed alpha ink atlas and skin-weight transfer",
       "additional_meshy_credits": 0
     }
-  ]
+  ],
+  "bilge_v019": {
+    "resource": "image-to-3d",
+    "human_task": "01a17e05-aad6-758d-a5f3-2798f5d5e346",
+    "wolf_task": "01a17e06-56db-768a-842d-4e48c10575cb",
+    "project_root": "meshy_output/bilge-v019",
+    "consumed_credits": {
+      "human": 30,
+      "wolf": 30,
+      "total": 60
+    },
+    "approved_scope": "Bilge pair only; no other paid variants",
+    "source_triangles": {
+      "human": 3293572,
+      "wolf": 3751650
+    },
+    "mobile_triangles": {
+      "human": 9000,
+      "wolf": 13773
+    }
+  }
 }

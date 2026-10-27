@@ -10,24 +10,24 @@ const roster = [
 
 ];
 for (const c of roster) { c.power=Math.max(100,Math.min(180,c.power)); const t=(c.power-100)/80; c.beast=[['Hasar',Math.floor(t*(180/1.15-100)*1000)/1000],['Dayanıklılık',Math.floor(t*(180/1.30-100)*1000)/1000]]; }
-let collectionState={credits:2500,owned:['basibozuk'],equipped:'basibozuk'};
-try{const v=JSON.parse(localStorage.getItem('rogue-collection'));if(v){collectionState.credits=Number.isFinite(v.credits)?Math.max(0,v.credits):2500;collectionState.owned=roster.filter(c=>v.owned?.includes(c.id)).map(c=>c.id);if(!collectionState.owned.includes('basibozuk'))collectionState.owned.push('basibozuk');collectionState.equipped=collectionState.owned.includes(v.equipped)?v.equipped:'basibozuk';}}catch(_){}
-let libraryMode='inventory',category='characters',selectedCharacter='basibozuk',previewForm='human';
+let collectionState={credits:2500,owned:['basibozuk','bilge'],equipped:'bilge'};
+try{const v=JSON.parse(localStorage.getItem('rogue-collection'));if(v){collectionState.credits=Number.isFinite(v.credits)?Math.max(0,v.credits):2500;collectionState.owned=roster.filter(c=>v.owned?.includes(c.id)).map(c=>c.id);if(!collectionState.owned.includes('basibozuk'))collectionState.owned.push('basibozuk');if(!collectionState.owned.includes('bilge'))collectionState.owned.push('bilge');collectionState.equipped=collectionState.owned.includes(v.equipped)?v.equipped:'basibozuk';}}catch(_){}
+let libraryMode='inventory',category='characters',selectedCharacter='basibozuk',previewForm='wolf';
 function saveCollection(){try{localStorage.setItem('rogue-collection',JSON.stringify(collectionState));}catch(_){toast('Cihaz kaydı kullanılamıyor.');}}
 function bonusRows(rows){return rows.map(([label,value])=>`<div class="bonus-row"><span>${label}</span><strong class="${value>0?'positive':value<0?'negative':''}">${value>0?'+':''}${Number(value.toFixed(1))}%</strong></div>`).join('');}
-window.refreshCharacter=()=>{const c=roster.find(c=>c.id===collectionState.equipped);$('operatorName').textContent=gearForm==='human'?c.name:c.wolf;$('operatorRole').textContent=c.role+' • Temsilî görsel';$('gearRole').textContent=c.role;};
-window.openCollection=(mode='inventory')=>{libraryMode=mode;screen('collection');renderCollection();};
+window.refreshCharacter=()=>{const c=roster.find(c=>c.id===collectionState.equipped);$('operatorName').textContent=gearForm==='human'?c.name:c.wolf;$('operatorRole').textContent=c.role+' • Temsilî görsel';$('gearRole').textContent=c.role;$('operatorPortrait').style.backgroundImage='url(media/characters/'+characterModelId(c.id)+'-'+gearForm+'.webp)';$('operatorPortrait').style.backgroundSize='contain';$('operatorPortrait').style.backgroundPosition='center';};
+window.openCollection=(mode='inventory')=>{libraryMode=mode;selectedCharacter=collectionState.equipped;screen('collection');renderCollection();};
 function renderCollection(){
  $('collectionTitle').textContent=libraryMode==='shop'?'MAĞAZA':'ENVANTER';$('walletAmount').textContent=collectionState.credits.toLocaleString('tr');
  $('inventoryMode').classList.toggle('active',libraryMode==='inventory');$('shopMode').classList.toggle('active',libraryMode==='shop');
  document.querySelectorAll('[data-category]').forEach(b=>b.classList.toggle('active',b.dataset.category===category));
  const labels={skills:'KURT ÖZELLİKLERİ',weapons:'SİLAHLAR',grenades:'BOMBALAR',knives:'BIÇAKLAR',characters:'KARAKTERLER',wolves:'KURT FORMLARI',equipment:'EKİPMAN',cosmetics:'GÖRÜNÜMLER'};
- $('categoryTitle').textContent=labels[category];
+ $('categoryTitle').textContent=labels[category];updateInventoryCharacter();
  const list=libraryMode==='shop'?roster:roster.filter(c=>collectionState.owned.includes(c.id));
  $('collectionCount').textContent=(['characters','wolves'].includes(category)?list.length:category==='cosmetics'?1:0)+' KAYIT';
  if(['characters','wolves'].includes(category)){
   if(!list.some(c=>c.id===selectedCharacter))selectedCharacter=list[0].id;
-  $('collectionCards').innerHTML=list.map(c=>`<button class="character-card ${selectedCharacter===c.id?'active':''}" data-character="${c.id}" style="--character-color:${c.color}"><span class="character-mark">${category==='wolves'?'◈':c.name[0]}</span><small>${c.role}</small><strong>${category==='wolves'?c.wolf:c.name}</strong><span class="ownership">${collectionState.equipped===c.id?'SEÇİLİ':collectionState.owned.includes(c.id)?'ENVANTERDE':c.price+' DENEME KREDİSİ'}</span></button>`).join('');
+  $('collectionCards').innerHTML=list.map(c=>`<button class="character-card ${selectedCharacter===c.id?'active':''}" data-character="${c.id}" style="--character-color:${c.color}"><img class="character-art" src="media/characters/${characterModelId(c.id)}-${category==='wolves'?'wolf':'human'}.webp" alt="${category==='wolves'?c.wolf:c.name} tasarım önizlemesi"><small>${c.role}</small><strong>${category==='wolves'?c.wolf:c.name}</strong><span class="ownership">${collectionState.equipped===c.id?'SEÇİLİ':collectionState.owned.includes(c.id)?'ENVANTERDE':c.price+' DENEME KREDİSİ'}</span></button>`).join('');
   document.querySelectorAll('[data-character]').forEach(b=>b.addEventListener('click',()=>{playSound();selectedCharacter=b.dataset.character;renderCollection();}));renderCharacter();
  }else if(category==='skills'){window.renderRollShop();
  }else if(['weapons','grenades','knives'].includes(category)){ window.renderCatalog(category);
@@ -37,10 +37,16 @@ function renderCollection(){
  }
 }
 function renderCharacter(){const c=roster.find(c=>c.id===selectedCharacter);const owned=collectionState.owned.includes(c.id);
- $('collectionDetail').innerHTML=`<span class="eyebrow">${c.role} / KARAKTER DETAYI</span><h2>${previewForm==='human'?c.name:c.wolf}</h2><div class="collection-form"><button id="previewHuman" class="${previewForm==='human'?'active':''}">İNSAN</button><button id="previewWolf" class="${previewForm==='wolf'?'active':''}">KURT</button></div><p>${c.desc}</p><h4>FORM BONUSLARI</h4>${bonusRows(previewForm==='human'?c.human:c.beast)}<div class="signature-details"><strong>GÜÇ ENDEKSİ ${c.power} / 180</strong><p>${c.body}<br>${c.claw}<br>İz: ${c.trail}</p><small>İz sürme korunur. Sıçrama düz ileriye; yerde alan göstergesi yok.</small></div><p class="balance-note">Kükreme dahil toplam güç en fazla 180. Pasif bonuslar kükremeye pay bırakır. Animasyonlar gövdeye göre üretilecek.</p><button class="primary" id="characterAction">${owned?(collectionState.equipped===c.id?'SEÇİLİ KARAKTER':'TEÇHİZATA SEÇ'):c.price+' KREDİYLE DENE'} →</button><p class="collection-note">${owned?'Tercihin cihazda kaydedilir.':'Sadece deneme kredisi kullanılır; ödeme yapılmaz.'}</p>`;
- $('previewHuman').onclick=()=>{previewForm='human';playSound();renderCharacter();};$('previewWolf').onclick=()=>{previewForm='wolf';playSound();renderCharacter();};
+ $('collectionDetail').innerHTML=`<div class="detail-art"><img src="media/characters/${characterModelId(c.id)}-${previewForm}.webp" alt="${c.name} tasarım referansı"><small>TASARIM REFERANSI</small></div><div class="detail-copy"><span class="eyebrow">${c.role} / ${previewForm==='human'?'İNSAN':'KURT'}</span><h2>${previewForm==='human'?c.name:c.wolf}</h2><div class="detail-scroll"><p>${c.desc}</p>${bonusRows(previewForm==='human'?c.human:c.beast)}<div class="signature-details"><strong>GÜÇ ${c.power} / 180</strong><p>${c.body} · ${c.claw}<br>İz: ${c.trail}</p><small>İz sürme korunur. Sıçrama düz ileriye; yerde alan göstergesi yok.</small></div><p class="balance-note">Kükreme dahil toplam güç en fazla 180. Koşu ve takla bütün kurtlarda aynı şablondadır.</p></div><button class="primary" id="characterAction">${owned?(collectionState.equipped===c.id?'SEÇİLİ KARAKTER':'TEÇHİZATA SEÇ'):c.price+' KREDİYLE DENE'} →</button></div>`;
  $('characterAction').onclick=()=>{playSound();if(!owned){if(collectionState.credits<c.price){toast('Deneme kredisi yetersiz.');return;}collectionState.credits-=c.price;collectionState.owned.push(c.id);toast(c.name+' deneme envanterine eklendi.');}else{collectionState.equipped=c.id;toast(c.name+' teçhizata seçildi.');}saveCollection();renderGear();renderCollection();};
+ updateInventoryCharacter();
 }
+function characterModelId(id){return ({basibozuk:'kultigin',kul:'konuralp',ayaz:'alparslan'})[id]||id;}
+window.rogueModelId=characterModelId;
+function updateInventoryCharacter(){const c=roster.find(c=>c.id===selectedCharacter)||roster[0];$('inventoryCharacterName').textContent=previewForm==='human'?c.name:c.wolf;$('previewHuman').classList.toggle('active',previewForm==='human');$('previewWolf').classList.toggle('active',previewForm==='wolf');const element=({bilge:'BUZ',kultigin:'KAN',alparslan:'KÖZ',konuralp:'GÖLGE'})[characterModelId(c.id)];$('inventoryElement').textContent=element+' · '+(previewForm==='wolf'?'KURT':'İNSAN');$('inventoryStats').innerHTML=[['GÜÇ',c.power],['HASAR',100+c.beast[0][1]],['SAVUNMA',100+c.beast[1][1]]].map(([label,value])=>`<div><span>${label}</span><i><b style="width:${Math.min(100,value/180*100)}%"></b></i><strong>${value.toFixed(0)}</strong></div>`).join('');window.previewCharacter3D?.(c.id,previewForm);}
+$('previewHuman').onclick=()=>{previewForm='human';renderCollection();};$('previewWolf').onclick=()=>{previewForm='wolf';renderCollection();};
+$('inventoryBackView').onclick=()=>window.wolf3DView?.(false);
+$('inventoryTestArea').onclick=()=>{if(['bilge','kultigin','alparslan','konuralp'].includes(characterModelId(selectedCharacter)))$('arenaCharacter').value=characterModelId(selectedCharacter);window.openArena?.();};
 $('inventoryMode').onclick=()=>{libraryMode='inventory';renderCollection();};$('shopMode').onclick=()=>{libraryMode='shop';renderCollection();};
 for(const b of document.querySelectorAll('[data-category]'))b.onclick=()=>{playSound();category=b.dataset.category;renderCollection();};
 $('openInventory').onclick=()=>window.openCollection();

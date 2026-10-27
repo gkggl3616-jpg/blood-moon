@@ -51,3 +51,15 @@ window.renderRollShop=()=>{
  $('goWolfEquip').onclick=openWolfEquipment;
  document.querySelectorAll('[data-buy-roll]').forEach(button=>button.onclick=()=>{const item=rollItems.find(item=>item.id===button.dataset.buyRoll);if(ownedRollSkills.has(item.id))return;if(collectionState.credits<item.price){toast('Deneme kredisi yetersiz.');return;}collectionState.credits-=item.price;ownedRollSkills.add(item.id);saveCollection();try{localStorage.setItem('rogue-roll-items',JSON.stringify([...ownedRollSkills]));}catch(_){toast('Özellik bu oturumda alındı; cihaz kaydı başarısız.');}renderCollection();toast(item.title+' envantere eklendi. Kurda takmayı unutma.');});
 };
+
+window.getArenaConfig=(id,trial='equipped')=>{
+ const c=roster.find(c=>c.id===id)||roster[0],e=wolfLoadouts[c.id]||{};
+ const skill=trial==='equipped'?(ownedRollSkills.has(e.skill)?e.skill:'none'):trial;
+ return {id:c.id,name:c.name,wolf:c.wolf,power:c.power,damage:100+c.beast[0][1],defense:100+c.beast[1][1],accessory:e.accessory||'none',tattoos:e.tattoos||{back:'dragon',left:'runes',right:'runes'},run:skill==='legendary',roll:['normal','legendary'].includes(skill),trial:trial!=='equipped'};
+};
+window.saveInventoryTattoo=(id,slot,motif)=>{
+ if(!collectionState.owned.includes(id)||!['back','left','right'].includes(slot))return false;
+ const old=wolfLoadouts[id]||{};const tattoos={back:'dragon',left:'runes',right:'runes',...old.tattoos,[slot]:motif};wolfLoadouts[id]={...old,tattoos};
+ try{localStorage.setItem('rogue-wolf-loadouts',JSON.stringify(wolfLoadouts));}catch(_){toast('Cihaz kaydı kullanılamıyor.');}
+ if(id===collectionState.equipped)loadWolfLoadout();window.refreshWolf3D?.();toast(motif==='none'?'Dövme bırakıldı.':'Dövme kuşanıldı.');return true;
+};

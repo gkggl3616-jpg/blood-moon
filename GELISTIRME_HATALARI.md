@@ -59,3 +59,11 @@ Bu dosya bu konuşmada tespit edilen hataları, bunların sonucunu ve gerçek du
 - Mağaza sahipliği, kurt başına takla kuşanması ve kükreme hesabı çalışır. Donanım ekranında gerçek 3B model, ayrı emisif dövmeler ve üç ilk iskelet animasyonu bulunur. Rig ağırlıklarında elle deformasyon cilası gerekir; gerçek 3B savaş hareketi, çarpışma ve hasar testi yoktur.
 - Yeni silah/bomba/bıçak kategorileri katalog taslağıdır; modelleri, atış veya hasar fiziği yoktur.
 - Tarihî esinli karakter görselleri kurgu konseptleridir; tarihsel portre doğruluğu iddiası yoktur.
+
+35. **Ortak baş ve kürk yapısı karakterleri benzer bıraktı.** Kullanıcının son onayıyla yalnız Bilge Kağan insan/kurt çifti yeni kaynaklardan üretildi (30+30 kredi). Diğer altı yeni model konsept olarak hazır, ücretli üretimleri onaylanmadı. Koşu/takla ortak; pençe şablonları farklıdır.
+36. **APK indirmesini ZIP ve model paketi bağlantılarıyla karıştırdım.** Yeni teslim doğrudan tek `.apk` release varlığıdır; bütün modeller ve veriler içinde bulunur. Kaynak modeller ayrı kurulum paketi değildir.
+37. **Blender'da yeniden boyutlanan packed dokunun kopyası piksel verisini kaybetti.** Dışa aktarma durdu. Düzeltme: küçültülen dokuyu gerçek PNG'ye kaydedip yeniden yükleyerek paketlemek; yeni Meshy görevi açılmadı.
+38. **GitHub bağlantısının imza sırrı yazma yetkisini varsaydım.** API 403 döndü. Özel anahtar depoya konmadı. Geliştirme anahtarı Actions cache'inde korunur; kalıcı üretim sırrı ayrıca kurulmalıdır. Cache kaybolursa imza sürekliliği garanti edilmez.
+39. **İlk test alanında gölge sert daire, hareket kontrolü joystick ve eylemler köşeliydi.** Kullanıcı düzeltmesi: karakterden düşen 1024 PCF yumuşak gölge, dört yön düğmesi, ileriye iki basışta koşu, simgeli yuvarlak eylemler.
+
+40. **İnsan kamerasından envantere dönünce paylaşılan model gizli kalıyordu.** Düzeltildi: önizleme sahipliği devralınca kök görünürlüğü sıfırlanır. Test artık yalnız yükleme bayrağını değil, görünür modeli ve gerçek çizilen üçgenleri de kontrol eder.
