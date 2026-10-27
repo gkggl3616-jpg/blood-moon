@@ -9,8 +9,8 @@ export const identity={bilge:{name:'BOZ KAĞAN',element:'BUZ',color:0x70dfff,cla
 export function keyFor(id,form='wolf'){const key=modelIds[id]||'kultigin';return form==='human'?'human-'+key:key;}
 export function getRenderer(){
  if(renderer)return renderer;
- renderer=new THREE.WebGLRenderer({antialias:true,alpha:true,powerPreference:'low-power'});
- renderer.setPixelRatio(Math.min(devicePixelRatio,1.25));renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.25;
+ renderer=new THREE.WebGLRenderer({antialias:true,alpha:true,powerPreference:'high-performance'});
+ renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.06;
  renderer.domElement.style.cssText='width:100%;height:100%;display:block;touch-action:none';
  const pmrem=new THREE.PMREMGenerator(renderer);env=pmrem.fromScene(new RoomEnvironment(),.08).texture;pmrem.dispose();
  renderer.setAnimationLoop(time=>{
@@ -18,7 +18,10 @@ export function getRenderer(){
   if(!active||document.hidden)return;
   const r=active.host.getBoundingClientRect();if(r.width<2||r.height<2)return;
   const w=Math.round(r.width),h=Math.round(r.height);
-  if(active.width!==w||active.height!==h){renderer.setSize(w,h,false);active.camera.aspect=w/h;active.camera.updateProjectionMatrix();active.width=w;active.height=h;}
+  const budget=window.getRoguePreferences?.().graphicsQuality==='balanced'?2e6:4.2e6;
+  const cap=renderer.capabilities.maxTextureSize;
+  const ratio=Math.min(window.devicePixelRatio||1,Math.sqrt(budget/(w*h)),cap/w,cap/h);
+  if(active.width!==w||active.height!==h||Math.abs(renderer.getPixelRatio()-ratio)>.001){renderer.setPixelRatio(ratio);renderer.setSize(w,h,false);active.camera.aspect=w/h;active.camera.updateProjectionMatrix();active.width=w;active.height=h;}
   active.update?.(dt,time/1000);renderer.render(active.scene,active.camera);
  });
  return renderer;
@@ -53,10 +56,11 @@ export function configureCharacter(object,state={}){
   if(o.name.startsWith('Accessory_')){const name=o.name.replace(/\.\d+$/,'');o.visible=name==='Accessory_'+state.accessory||(name==='Accessory_cross_strap'&&state.accessory==='charm');}
   for(const mat of Array.isArray(o.material)?o.material:[o.material]){
    if(!mat)continue;
-   if(mat.name.startsWith('Fur_')){mat.metalness=0;mat.roughness=.78;mat.normalScale?.set(.4,.4);}
+   if(mat.map)mat.map.anisotropy=Math.min(8,getRenderer().capabilities.getMaxAnisotropy());
+   if(mat.name.startsWith('Fur_')){mat.metalness=0;mat.roughness=.88;mat.normalScale?.set(.65,.65);}
    if(mat.name.startsWith('Tattoo_')){mat.emissiveIntensity=state.roaring?3:.15;mat.alphaTest=.3;mat.transparent=false;mat.depthWrite=true;mat.polygonOffset=true;mat.polygonOffsetFactor=-1;mat.polygonOffsetUnits=-1;}
   }
  });
 }
-export function engineInfo(){return {contexts:renderer?1:0,stage:active?.name||null,cacheKeys:[...cache.keys()],triangles:renderer?.info.render.triangles||0,drawCalls:renderer?.info.render.calls||0,textures:renderer?.info.memory.textures||0};}
+export function engineInfo(){return {contexts:renderer?1:0,stage:active?.name||null,cacheKeys:[...cache.keys()],triangles:renderer?.info.render.triangles||0,drawCalls:renderer?.info.render.calls||0,textures:renderer?.info.memory.textures||0,pixelRatio:renderer?.getPixelRatio(),buffer:renderer?[renderer.domElement.width,renderer.domElement.height]:[0,0],quality:window.getRoguePreferences?.().graphicsQuality||'sharp'};}
 window.rogueEngineInfo=engineInfo;

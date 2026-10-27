@@ -13,3 +13,5 @@
 - Tespit edilen hatalar ve gerçek düzeltme durumu GELISTIRME_HATALARI.md dosyasında tutulur. Konsept çizimi, 3B geometri, animasyon önizlemesi, oynanış ve fiziksel Android testi birbirinin yerine sunulmaz.
 
 - Son kontrol tercihi: joystick yerine dört yön düğmesi. İleriye 330 ms içinde iki ayrı basış, efsanevi özellik varsa ortak kurt koşusunu açar. Sağ eylemler yuvarlak, arka planlı ve uluma/pençe/sıçrama/takla simgeli. Gölge gerçek karakter geometrisinden yumuşak olarak yere düşer. İnsan ve kurt bakışı aynı yönde çalışır: yukarı sürükle yukarı bak; aşağı sürükle aşağı bak.
+
+- Son hareket/netlik düzeltmesi: takla kısa mesafe (~2m) olacak; koşarken sıçrama ve takla mümkün, kükremede karakter durur. Koşu/duruş uzuvları germemeli; yere basma, ağırlık aktarımı ve geçişler görsel olarak kontrol edilir. Dikey/yatay hassasiyet ekran boyutundan bağımsız ve ayarlanabilir; başlangıç hassasiyeti artırılır. Yüksek yoğunluklu telefonda düşük çözünürlük hissi giderilecek; Net varsayılanı ve Dengeli seçeneği bulunur. Netlik kazanımı, telefonda ölçülmeden yüksek FPS/çökmez garantisi sayılmaz.

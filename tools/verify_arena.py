@@ -27,6 +27,8 @@ with sync_playwright() as p:
   page.mouse.move(750,260);page.mouse.down();page.mouse.move(750,400,steps=4);page.mouse.up()
   page.wait_for_function('(base)=>arenaDebug.state().lookDirection[1]<base-.18',arg=raised,timeout=10000)
  check_vertical_look()
+ before_yaw=state()['yaw'];page.mouse.move(700,320);page.mouse.down();page.mouse.move(800,320,steps=4);page.mouse.up()
+ assert abs((state()['yaw']-before_yaw)+100*1.45*6.28318530718/1280)<.015,'look sensitivity incorrect'
  page.evaluate('arenaDebug.place(0,8)')
  page.evaluate('arenaDebug.aimAt(0)');page.wait_for_timeout(200);page.locator('#arenaFire').click()
  page.wait_for_function('()=>arenaDebug.state().targets[0].hp<100',timeout=15000)
@@ -38,13 +40,14 @@ with sync_playwright() as p:
  page.locator('#arenaTrial').select_option('normal');assert page.locator('#arenaRun').is_disabled()
  assert not page.evaluate('arenaDebug.action("run")')
  check_vertical_look()
- page.evaluate('arenaDebug.place(0,-3)')
+ page.evaluate('arenaDebug.place(0,-5.5)')
  hp=state()['targets'][0]['hp'];hit_count=state()['hits'];expected=38*state()['stats']['damage']/100
  page.locator('#arenaRoll').click()
  page.wait_for_function('(n)=>arenaDebug.state().hits===n+1',arg=hit_count,timeout=15000)
  page.wait_for_function('()=>arenaDebug.state().rollTime===0',timeout=15000)
  assert abs(state()['targets'][0]['hp']-(hp-expected))<.02,'wrong roll damage or repeated damage'
  assert state()['hits']==hit_count+1 and state()['rollHitTargets']==[0]
+ assert -7.85<state()['position'][2]<-6.9,'roll is not compact'
  # A straight roll into cover must stop at its near side; no distant dummy takes damage.
  page.evaluate('arenaDebug.place(-8,-10,0)');hp_cover=state()['targets'][1]['hp']
  page.locator('#arenaRoll').click();page.wait_for_function('()=>arenaDebug.state().rollTime===0',timeout=15000)
@@ -56,14 +59,39 @@ with sync_playwright() as p:
  rect=page.locator('#moveForward').bounding_box();page.mouse.move(rect['x']+rect['width']/2,rect['y']+rect['height']/2);page.mouse.down()
  page.wait_for_function('()=>arenaDebug.state().motion==="WolfRunQuad"',timeout=10000);page.mouse.up()
  assert state()['input']=={'x':0,'y':0}
+ # A running jump keeps the run state and carries one horizontal speed, not two added speeds.
+ page.evaluate('arenaDebug.place(0,15)');page.keyboard.down('KeyW')
+ page.wait_for_function('()=>arenaDebug.state().motion==="WolfRunQuad"',timeout=10000)
+ jump_start=state()['position'];page.locator('#arenaJump').click()
+ page.wait_for_function('()=>arenaDebug.state().position[1]>.3&&arenaDebug.state().motion==="WolfJump"',timeout=10000)
+ assert state()['run']
+ assert (state()['velocity'][0]**2+state()['velocity'][2]**2)**.5<5.8,'jump stacked two speeds'
+ page.wait_for_function('()=>arenaDebug.state().grounded',timeout=15000)
+ assert .7<jump_start[2]-state()['position'][2]<8.2,'running jump has stacked impulse'
+ page.wait_for_function('()=>arenaDebug.state().motion==="WolfRunQuad"',timeout=10000)
+ # Rolling directly from running is allowed; it keeps the selected run mode but only travels ~2m.
+ roll_start=state()['position'];page.locator('#arenaRoll').click();page.keyboard.up('KeyW')
+ page.wait_for_function('()=>arenaDebug.state().rollTime===0',timeout=15000)
+ assert state()['run'] and 1.3<state()['rollDistance']<2.25,(state()['run'],state()['rollDistance'])
+ # An airborne running wolf can also tuck into the same short roll.
+ page.evaluate('arenaDebug.place(0,15)');page.keyboard.down('KeyW');page.wait_for_function('()=>arenaDebug.state().motion==="WolfRunQuad"',timeout=10000)
+ page.locator('#arenaJump').click();page.wait_for_function('()=>arenaDebug.state().position[1]>.25',timeout=10000)
+ assert page.evaluate('arenaDebug.action("roll")')
+ page.keyboard.up('KeyW');page.wait_for_function('()=>arenaDebug.state().rollTime===0&&arenaDebug.state().grounded',timeout=15000)
  page.locator('#arenaRun').click();page.evaluate('arenaDebug.place(0,1)');page.locator('#arenaJump').click()
  page.wait_for_function('()=>arenaDebug.state().position[1]>.3',timeout=10000)
  page.wait_for_function('()=>arenaDebug.state().grounded',timeout=15000)
  assert state()['position'][2]<.5,'wolf did not jump forward'
- page.locator('#arenaRoarButton').click();page.wait_for_function('()=>arenaDebug.state().effects.particles>0',timeout=10000)
+ page.evaluate('arenaDebug.place(0,4)');page.locator('#arenaRun').click();page.keyboard.down('KeyW')
+ page.wait_for_function('()=>arenaDebug.state().motion==="WolfRunQuad"',timeout=10000)
+ page.locator('#arenaRoarButton').click();roar_start=state()['position']
+ page.wait_for_function('()=>arenaDebug.state().effects.particles>0',timeout=10000)
  assert 17<state()['roarTime']<=20 and max(state()['stats'].values())<=180.001
  assert not page.evaluate('arenaDebug.action("roll")'),'roar pose was interrupted'
- page.wait_for_function('()=>arenaDebug.state().roarPoseTime===0',timeout=10000)
+ page.wait_for_function('()=>arenaDebug.state().roarPoseTime<.45&&arenaDebug.state().roarPoseTime>0',timeout=10000)
+ assert sum((a-b)**2 for a,b in zip(state()['position'],roar_start))<.0001,'roar did not stop held movement'
+ assert not state()['run'] and state()['motion']=='WolfRoar'
+ page.keyboard.up('KeyW');page.wait_for_function('()=>arenaDebug.state().roarPoseTime===0',timeout=10000)
  page.evaluate('arenaDebug.place(0,-5.8)');page.locator('#arenaFire').click()
  page.wait_for_function('()=>arenaDebug.state().attackTime>0',timeout=10000)
  assert state()['effects']['trail']
@@ -85,6 +113,22 @@ with sync_playwright() as p:
  page.screenshot(path=str(ROOT/'dist/inventory-v019-preview.png'))
  page.locator('#previewHuman').click();page.wait_for_function('()=>wolf3DInfo().loaded==="human-bilge"&&wolf3DInfo().visible',timeout=60000)
  page.screenshot(path=str(ROOT/'dist/bilge-human-preview.png'))
+ # High-density phone: render native pixels instead of the old 1.25 DPR cap.
+ hd=browser.new_page(viewport={'width':800,'height':360},device_scale_factor=3,is_mobile=True,has_touch=True)
+ hd.on('pageerror',lambda e:errors.append(str(e)));hd.route('https://rogue.local/**',serve)
+ hd.goto('https://rogue.local/index.html');hd.locator('#skipIntro').click();hd.locator('#join').click()
+ hd.wait_for_function('()=>window.arenaDebug&&arenaDebug.state().ready&&rogueEngineInfo().buffer[0]>=2395',timeout=90000)
+ assert hd.evaluate('rogueEngineInfo().pixelRatio')==3
+ hd.screenshot(path=str(ROOT/'dist/arena-native-phone.png'))
+ hd.locator('#arenaExit').click();hd.locator('[data-nav="settings"]').click()
+ hd.locator('#graphicsQuality').select_option('balanced');hd.locator('#lookSensitivity').evaluate('(el)=>{el.value=180;el.dispatchEvent(new Event("input",{bubbles:true}));}')
+ assert hd.evaluate('getRoguePreferences().lookSensitivity')==1.8
+ hd.locator('#closeModal').click();hd.locator('#join').click()
+ hd.wait_for_function('()=>rogueEngineInfo().quality==="balanced"&&rogueEngineInfo().pixelRatio<3',timeout=15000)
+ assert hd.evaluate('rogueEngineInfo().buffer.reduce((a,b)=>a*b)')<=2001000
+ hd.reload();hd.locator('#skipIntro').click()
+ assert hd.evaluate('getRoguePreferences()')=={'lookSensitivity':1.8,'graphicsQuality':'balanced'}
+ hd.close()
  assert not errors,errors
  browser.close()
- print('PASS: FPS fire/reload, cover collision, human/wolf transition, normal/legendary gates, double-tap direction run, one-hit swept roll damage and cover blocking, consistent vertical drag in both forms, forward jump, melee and VFX, roar cap/expiry, soft character shadow, bounded cache and one WebGL context.')
+ print('PASS: FPS fire/reload, cover collision, human/wolf transition, normal/legendary gates, double-tap direction run, one-hit swept roll damage and cover blocking, consistent vertical drag in both forms, run/jump/roll transitions, stopped roar, native high-DPI render and saved quality/sensitivity, forward jump, melee and VFX, roar cap/expiry, soft character shadow, bounded cache and one WebGL context.')

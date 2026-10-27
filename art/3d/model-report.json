@@ -55,7 +55,7 @@
           0.375
         ]
       },
-      "bytes": 13702940
+      "bytes": 13682260
     },
     {
       "id": "kultigin",
@@ -68,7 +68,7 @@
       "body_triangles": 8200,
       "objects": 8,
       "rest_joints": {},
-      "bytes": 10651988,
+      "bytes": 10631432,
       "shape_profile": {
         "name": "Kara Tigin",
         "height": 2.08,
@@ -102,7 +102,7 @@
       "body_triangles": 8200,
       "objects": 8,
       "rest_joints": {},
-      "bytes": 10651712,
+      "bytes": 10631160,
       "shape_profile": {
         "name": "Boz Arslan",
         "height": 2.4,
@@ -136,7 +136,7 @@
       "body_triangles": 8200,
       "objects": 8,
       "rest_joints": {},
-      "bytes": 10656916,
+      "bytes": 10636364,
       "shape_profile": {
         "name": "Uc Avcisi",
         "height": 2.25,
@@ -212,7 +212,7 @@
           0.52
         ]
       },
-      "bytes": 9875644
+      "bytes": 9875504
     }
   ],
   "rigged": true,

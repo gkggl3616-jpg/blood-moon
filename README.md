@@ -1,4 +1,4 @@
-# Rogue: Blood Moon — Android Prototype 0.1.10
+# Rogue: Blood Moon — Android Prototype 0.1.11
 
 Yatay Android ekranı için menü ve harita konsepti prototipi.
 
@@ -57,3 +57,9 @@ Tek APK release varlığı bütün çalışma zamanı dosyalarını içerir; ek 
 Takla temas hasarı verir: 38 taban hasar, karakter hasar değeri/kükreme çarpanı ve 180 tavanıyla ölçeklenir. Bu yerel denge ayarıdır; yeni YouTube videosundan ölçülmüş değer değildir. Süpürülen gövde teması, hedef başına taklada bir vuruş, siper engeli, sabit takla yönü kullanılır. Koşu/takla dört kurtta ortak v2 şablonu; taklada hazırlık–toplanma–360 dönüş–iniş, kükremede hazırlık–açılma–tutma–toparlanma vardır. Çene kemiği/yüz animasyonu henüz yoktur. İnsan ve kurt dikey sürüklemesi aynı yönde düzeltilmiştir.
 
 Yeni video `https://youtube.com/shorts/NGqOn5o0dHE` ortam ağ geçidinde 403 ile engellendi; tamamı izlenmedi. Zaman kodlu içerik analizi bekliyor. Önceki erişilebilir referanslar ile kullanıcı düzeltmesi ayrı kaynak olarak kaydedildi: `docs/video-NGqOn5o0dHE.md`. Yeni ücretli model üretimi yok; mevcut düşük poligonlu modeller ve yerel Blender rig'i düzenlendi.
+
+## v0.1.11 — yüklenen hareket kaydı ve görüntü netliği
+
+Yüklenen 4.91 saniyelik videonun 119 karesi zaman sırasıyla incelendi. Ayrıntılı gözlemler ve uygulama kararları `docs/video-screenrecorder-20261027.md` içinde. Ortak v3 koşu/duruş iki kemikli IK ile kol/bacak uzunluklarını korur; yere basma ve toparlanma fazları, daha sabit baş ve kısa döngü kullanır. Takla 0.8 saniye / yaklaşık 2m; temas hasarı korunur. Koşarken sıçrama/takla, havada taklaya geçiş ve kükremede durma test edilir. Sıçramada koşu hızına ikinci bir yatay hız eklenmez.
+
+1.25 DPR sınırı kaldırıldı. Net varsayılanı ekran piksel yoğunluğunu 4.2M piksel bütçesi içinde izler; Dengeli 2M bütçe kullanır. Kenar yumuşatma ve 8x'e kadar doku filtreleme korunur, aşırı parlak ışık azaltılır. Hassasiyet ekran genişliğine göre normalize edilir; varsayılan 1.45x, ayarlardan 0.60–2.40x. Tercihler kalıcıdır. Poligon ve parçacık bütçeleri değişmez; fiziksel telefon performansı henüz ölçülmedi. Yeni Meshy kredisi harcanmadı.

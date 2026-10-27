@@ -4,8 +4,9 @@ const $=id=>document.getElementById(id),host=$('arenaCanvas');
 let releaseDirections=()=>{};
 let initialized=false,active=false,scene,camera,actor,mixer,fx,viewmodel,action,config,loadToken=0;
 let form='human',character='bilge',trial='legendary',motion='',yaw=0,pitch=0;
-const ROLL={duration:1.4,windup:.12,impactEnd:1.15,speed:7,damage:38,radius:.95};
-const rollHitTargets=new Set(),rollFrom=new THREE.Vector3();let rollYaw=0,roarPoseTime=0;
+const ROLL={duration:.8,windup:.08,impactEnd:.60,speed:3.2,damage:38,radius:.95};
+const rollHitTargets=new Set(),rollFrom=new THREE.Vector3(),rollStart=new THREE.Vector3();let rollYaw=0,roarPoseTime=0,rollDistance=0;
+let groundVX=0,groundVZ=0,cameraTargetHeight=1.3;
 const player=new THREE.Vector3(0,0,8),velocity=new THREE.Vector3();
 let grounded=true,run=false,rollTime=0,jumpTime=0,attackTime=0,attackHit=false,transformTime=0,pendingForm='',roarTime=0,trackTime=0,ammo=30,reloadTime=0,hits=0,elapsed=0,fireHeld=false,nextFire=0,hitFlash=0,noticeTime=0,fps=60,hudTime=0;
 const keys={},stick={x:0,y:0},blocks=[],targets=[],shootable=[];
@@ -41,7 +42,7 @@ function createViewmodel(){
  for(const [x,y,z,r] of [[.22,-.34,-.25,-.15],[-.12,-.34,-.5,-.6]]){piece(new THREE.CylinderGeometry(.055,.075,.34,8),gloveMat,[x,y,z],[Math.PI/2,0,r]);piece(new THREE.SphereGeometry(.07,8,6),gloveMat,[x,y+.05,z-.16]);piece(new THREE.CylinderGeometry(.075,.08,.10,8),metal,[x,y,z+.08],[Math.PI/2,0,r]);}
  viewmodel.userData.recoil=0;
 }
-function reset(){releaseDirections();player.set(0,0,8);velocity.set(0,0,0);yaw=0;pitch=0;grounded=true;run=false;rollTime=jumpTime=attackTime=transformTime=roarTime=roarPoseTime=trackTime=reloadTime=0;rollHitTargets.clear();form='human';ammo=30;hits=0;nextFire=0;elapsed=0;fireHeld=false;Object.keys(keys).forEach(k=>keys[k]=false);stick.x=stick.y=0;for(const t of targets){t.hp=100;t.respawn=0;t.group.visible=true;t.health.scale.x=1;}motion='';}
+function reset(){releaseDirections();player.set(0,0,8);velocity.set(0,0,0);yaw=0;pitch=0;grounded=true;run=false;rollTime=jumpTime=attackTime=transformTime=roarTime=roarPoseTime=trackTime=reloadTime=0;rollHitTargets.clear();rollDistance=0;groundVX=groundVZ=0;cameraTargetHeight=1.3;form='human';ammo=30;hits=0;nextFire=0;elapsed=0;fireHeld=false;Object.keys(keys).forEach(k=>keys[k]=false);stick.x=stick.y=0;for(const t of targets){t.hp=100;t.respawn=0;t.group.visible=true;t.health.scale.x=1;}motion='';}
 function play(name,once=false){
  if(!mixer||!actor||motion===name)return;
  const clips=actor.userData.motionClips||[],clip=clips.find(c=>c.name===name)||clips.find(c=>c.name==='WolfIdle');if(!clip)return;
@@ -61,9 +62,9 @@ export function stopArena(){++loadToken;releaseDirections();active=false;fireHel
 function allowed(){return active&&config&&actor&&transformTime<=0&&roarPoseTime<=0;}
 function transform(){if(!allowed()||rollTime>0)return false;pendingForm=form==='human'?'wolf':'human';transformTime=.6;attackTime=0;run=false;fireHeld=false;$('arenaFlash').classList.remove('active');void $('arenaFlash').offsetWidth;$('arenaFlash').classList.add('active');fx.burst(player.clone().add(new THREE.Vector3(0,1.1,0)),0x9b6bff);notice(pendingForm==='wolf'?'Kurt formuna dönüşüyorsun.':'İnsan formuna dönüşüyorsun.',1.5);return true;}
 function toggleRun(){if(!allowed())return false;if(form!=='wolf'){notice('Dört ayak koşu kurt formunda kullanılır.');return false;}if(!config.run){notice('Dört ayak koşu için efsanevi takla kuşan veya deneme donanımını seç.');return false;}run=!run;updateHUD();return true;}
-function roll(){if(!allowed()||form!=='wolf'||rollTime>0||!grounded)return false;if(!config.roll){notice('Takla özelliği takılı değil.');return false;}rollTime=ROLL.duration;rollYaw=yaw;rollHitTargets.clear();run=false;attackTime=0;fireHeld=false;velocity.x=velocity.z=0;play('WolfRoll',true);notice('Takla • temas ettiğin hedefe hasar verir.',1.4);return true;}
-function jump(){if(!allowed()||!grounded||rollTime>0)return false;grounded=false;velocity.y=6.8;jumpTime=.8;velocity.x=-Math.sin(yaw)*(form==='wolf'?4.2:.5);velocity.z=-Math.cos(yaw)*(form==='wolf'?4.2:.5);play('WolfJump',true);return true;}
-function roar(){if(!allowed()||rollTime>0)return false;if(form==='human'){if(reloadTime<=0&&ammo<30){reloadTime=1.4;notice('Şarjör değiştiriliyor.',1.4);return true;}return false;}if(roarTime>0)return false;roarTime=20;roarPoseTime=1.2;run=false;fireHeld=false;window.roguePlaySound?.('roar');configureCharacter(actor,{...config,roaring:true});play('WolfRoar',true);attackTime=0;notice('20 sn: hız +%20, hasar +%15, savunma +%30. Mor alevler etkin.',4);return true;}
+function roll(){if(!allowed()||form!=='wolf'||rollTime>0)return false;if(!config.roll){notice('Takla özelliği takılı değil.');return false;}rollTime=ROLL.duration;rollYaw=yaw;rollStart.copy(player);rollDistance=0;rollHitTargets.clear();attackTime=jumpTime=0;fireHeld=false;velocity.x=velocity.z=0;play('WolfRoll',true);notice('Kısa takla • temas hasarı',1);return true;}
+function jump(){if(!allowed()||!grounded||rollTime>0)return false;grounded=false;velocity.y=6.8;jumpTime=.85;const moving=Math.hypot(groundVX,groundVZ)>.1;velocity.x=moving?groundVX:-Math.sin(yaw)*(form==='wolf'?4.2:.5);velocity.z=moving?groundVZ:-Math.cos(yaw)*(form==='wolf'?4.2:.5);play('WolfJump',true);return true;}
+function roar(){if(!allowed()||rollTime>0)return false;if(form==='human'){if(reloadTime<=0&&ammo<30){reloadTime=1.4;notice('Şarjör değiştiriliyor.',1.4);return true;}return false;}if(roarTime>0)return false;roarTime=20;roarPoseTime=1.2;run=false;fireHeld=false;velocity.x=velocity.z=groundVX=groundVZ=0;window.roguePlaySound?.('roar');configureCharacter(actor,{...config,roaring:true});play('WolfRoar',true);attackTime=0;notice('20 sn: hız +%20, hasar +%15, savunma +%30. Mor alevler etkin.',4);return true;}
 function track(){if(!allowed()||form!=='wolf')return false;trackTime=8;notice('İz sürme: eğitim hedefleri 8 sn vurgulanıyor.',3);return true;}
 function damage(t,amount,critical=false,kind='claw'){if(t.hp<=0)return;t.hp=Math.max(0,t.hp-amount);t.flash=.16;t.health.scale.x=Math.max(.01,t.hp/100);hits++;hitFlash=.18;$('arenaDamage').textContent=(kind==='roll'?'TAKLA ':critical?'KRİTİK ':'')+Math.round(amount);fx.burst(t.position.clone().add(new THREE.Vector3(0,1.3,0)),critical?0xffc45c:0x84ddff);if(t.hp===0){t.respawn=3;t.group.visible=false;notice('Hedef devrildi. 3 saniye sonra yenilenir.',2);}}
 function fire(){
@@ -100,38 +101,42 @@ function rollImpact(from,to){
  }
 }
 function simulate(dt){
- const oldY=player.y;rollFrom.copy(player);velocity.y-=16*dt;
+ const oldY=player.y,rollingStep=rollTime>0;rollFrom.copy(player);velocity.y-=16*dt;
+ if(rollingStep)rollTime=Math.max(0,rollTime-dt);
  let x=stick.x+(keys.KeyD?1:0)-(keys.KeyA?1:0),z=stick.y+(keys.KeyS?1:0)-(keys.KeyW?1:0);const n=Math.hypot(x,z);if(n>1){x/=n;z/=n;}
- let speed=form==='wolf'?(run&&config.run?6.9:4.4):4.1;speed*=roarTime>0?1.2:1;if(transformTime>0)speed*=.2;if(roarPoseTime>0)speed=0;
+ let speed=form==='wolf'?(run&&config.run?5.6:3.6):4.1;speed*=roarTime>0?1.2:1;if(transformTime>0)speed*=.2;if(roarPoseTime>0)speed=0;
  const sin=Math.sin(yaw),cos=Math.cos(yaw);let dx=(x*cos+z*sin)*speed*dt,dz=(-x*sin+z*cos)*speed*dt;
- if(rollTime>0){const age=ROLL.duration-rollTime,factor=age<ROLL.windup?0:age>ROLL.impactEnd?Math.max(0,rollTime/(ROLL.duration-ROLL.impactEnd)):1;dx=-Math.sin(rollYaw)*ROLL.speed*factor*dt;dz=-Math.cos(rollYaw)*ROLL.speed*factor*dt;}
- player.x+=dx+velocity.x*dt;player.z+=dz+velocity.z*dt;velocity.x*=Math.exp(-(grounded?7:2)*dt);velocity.z*=Math.exp(-(grounded?7:2)*dt);player.y+=velocity.y*dt;
+ if(!grounded){if(n>.07&&roarPoseTime<=0&&rollTime<=0){const turn=Math.min(1,dt*1.5);velocity.x+=(dx/dt-velocity.x)*turn;velocity.z+=(dz/dt-velocity.z)*turn;}dx=dz=0;}
+ if(roarPoseTime>0){dx=dz=0;velocity.x=velocity.z=0;}
+ if(rollingStep){const age=ROLL.duration-rollTime,factor=age<ROLL.windup?0:age>ROLL.impactEnd?Math.max(0,rollTime/(ROLL.duration-ROLL.impactEnd)):1;dx=-Math.sin(rollYaw)*ROLL.speed*factor*dt;dz=-Math.cos(rollYaw)*ROLL.speed*factor*dt;}
+ if(grounded&&rollTime<=0){groundVX=dx/dt;groundVZ=dz/dt;velocity.x=velocity.z=0;}
+ player.x+=dx+velocity.x*dt;player.z+=dz+velocity.z*dt;velocity.x*=Math.exp(-.12*dt);velocity.z*=Math.exp(-.12*dt);player.y+=velocity.y*dt;
  const radius=.37,height=form==='wolf'?2.05:1.78;let ground=0;
  for(const b of blocks){const minX=b.x-b.w/2-radius,maxX=b.x+b.w/2+radius,minZ=b.z-b.d/2-radius,maxZ=b.z+b.d/2+radius;if(player.x<minX||player.x>maxX||player.z<minZ||player.z>maxZ)continue;
   if(oldY>=b.h-.08&&velocity.y<=0){ground=Math.max(ground,b.h);continue;}if(player.y>=b.h||player.y+height<=0)continue;
   const sides=[player.x-minX,maxX-player.x,player.z-minZ,maxZ-player.z],side=sides.indexOf(Math.min(...sides));if(side===0)player.x=minX;else if(side===1)player.x=maxX;else if(side===2)player.z=minZ;else player.z=maxZ;
  }
  player.x=THREE.MathUtils.clamp(player.x,-31.3,31.3);player.z=THREE.MathUtils.clamp(player.z,-31.3,31.3);
- if(player.y<=ground&&velocity.y<=0){player.y=ground;velocity.y=0;grounded=true;}else grounded=false;
- if(rollTime>0)rollImpact(rollFrom,player);
- return n>.07;
+ if(player.y<=ground&&velocity.y<=0){player.y=ground;velocity.y=velocity.x=velocity.z=0;grounded=true;}else grounded=false;
+ if(rollingStep){rollImpact(rollFrom,player);rollDistance=Math.hypot(player.x-rollStart.x,player.z-rollStart.z);}
+ return Math.hypot(player.x-rollFrom.x,player.z-rollFrom.z)>.0005;
 }
 function update(dt,time){
  if(!active||!config)return;elapsed+=dt;fps+=(1/Math.max(.005,dt)-fps)*.05;
  if(keys.ArrowLeft)yaw+=dt*1.7;if(keys.ArrowRight)yaw-=dt*1.7;if(keys.ArrowUp)pitch+=dt;if(keys.ArrowDown)pitch-=dt;pitch=THREE.MathUtils.clamp(pitch,-1.15,1.1);
  if(transformTime>0){const before=transformTime;transformTime=Math.max(0,transformTime-dt);if(before>.3&&transformTime<=.3){form=pendingForm;attackTime=0;rollTime=0;motion='';if(form==='wolf')play('WolfTransform',true);updateHUD();}}
- rollTime=Math.max(0,rollTime-dt);roarPoseTime=Math.max(0,roarPoseTime-dt);jumpTime=Math.max(0,jumpTime-dt);attackTime=Math.max(0,attackTime-dt);if(attackTime>0&&attackTime<.42&&!attackHit){attackHit=true;meleeImpact();}
+ roarPoseTime=Math.max(0,roarPoseTime-dt);jumpTime=Math.max(0,jumpTime-dt);attackTime=Math.max(0,attackTime-dt);if(attackTime>0&&attackTime<.42&&!attackHit){attackHit=true;meleeImpact();}
  if(roarTime>0){roarTime=Math.max(0,roarTime-dt);if(roarTime===0)configureCharacter(actor,config);}trackTime=Math.max(0,trackTime-dt);
  if(reloadTime>0){reloadTime=Math.max(0,reloadTime-dt);if(reloadTime===0)ammo=30;}
  let moving=false;accumulator=Math.min(.18,accumulator+dt);while(accumulator>=fixedStep){moving=simulate(fixedStep);accumulator-=fixedStep;}
  if(fireHeld)fire();
  if(actor){actor.visible=form==='wolf';actor.position.copy(player);actor.rotation.set(0,(rollTime>0?rollYaw:yaw)+Math.PI,0);
-  if(form==='wolf'){if(transformTime>0)play('WolfTransform',true);else if(rollTime>0)play('WolfRoll',true);else if(roarPoseTime>0)play('WolfRoar',true);else if(attackTime>0)play('WolfClaw',true);else if(jumpTime>0&&!grounded)play('WolfJump',true);else if(moving)play(run?'WolfRunQuad':'WolfMove');else play('WolfIdle');mixer?.update(dt);}
+  if(form==='wolf'){if(transformTime>0)play('WolfTransform',true);else if(rollTime>0)play('WolfRoll',true);else if(roarPoseTime>0)play('WolfRoar',true);else if(attackTime>0)play('WolfClaw',true);else if(!grounded)play('WolfJump',true);else if(moving)play(run?'WolfRunQuad':'WolfMove');else play('WolfIdle');if(action)action.setEffectiveTimeScale(['WolfRunQuad','WolfMove'].includes(motion)&&roarTime>0?1.2:1);mixer?.update(dt);}
  }
  const sin=Math.sin(yaw),cos=Math.cos(yaw);
  if(form==='human'){desiredCam.set(player.x,player.y+1.66,player.z);camQuaternion.setFromEuler(new THREE.Euler(pitch,yaw,0,'YXZ'));camera.position.lerp(desiredCam,Math.min(1,dt*22));camera.quaternion.slerp(camQuaternion,Math.min(1,dt*22));}
- else{const distance=rollTime>0?4.8:4.2,elevation=.22-pitch;desiredCam.set(player.x+sin*distance*Math.cos(elevation),Math.max(player.y+.25,player.y+1.3+Math.sin(elevation)*distance),player.z+cos*distance*Math.cos(elevation));camera.position.lerp(desiredCam,Math.min(1,dt*11));camera.lookAt(player.x-sin*.8,player.y+1.3,player.z-cos*.8);}
- camera.fov+=( (run&&form==='wolf'?75:67)-camera.fov)*Math.min(1,dt*6);camera.updateProjectionMatrix();
+ else{cameraTargetHeight+=((run&&moving&&grounded&&rollTime<=0?.88:1.3)-cameraTargetHeight)*Math.min(1,dt*8);const distance=rollTime>0?4.0:3.8,elevation=.22-pitch;desiredCam.set(player.x+sin*distance*Math.cos(elevation),Math.max(player.y+.25,player.y+cameraTargetHeight+Math.sin(elevation)*distance),player.z+cos*distance*Math.cos(elevation));camera.position.lerp(desiredCam,Math.min(1,dt*11));camera.lookAt(player.x-sin*.8,player.y+cameraTargetHeight,player.z-cos*.8);}
+ camera.fov+=( (run&&form==='wolf'?70:67)-camera.fov)*Math.min(1,dt*6);camera.updateProjectionMatrix();
  viewmodel.visible=form==='human';viewmodel.position.copy(camera.position);viewmodel.quaternion.copy(camera.quaternion);viewmodel.userData.recoil*=Math.exp(-14*dt);viewmodel.translateZ(viewmodel.userData.recoil);if(moving){viewmodel.translateY(Math.sin(elapsed*12)*.01);viewmodel.translateX(Math.cos(elapsed*6)*.009);}if(reloadTime>0)viewmodel.rotateZ(Math.sin((1.4-reloadTime)/1.4*Math.PI)*-.55);
  const sun=scene.userData.sun;sun.position.set(player.x-8,15,player.z+6);sun.target.position.set(player.x,0,player.z);
  for(const t of targets){t.health.lookAt(camera.position);if(t.respawn>0){t.respawn-=dt;if(t.respawn<=0){t.hp=100;t.group.visible=true;t.health.scale.x=1;}}t.flash=Math.max(0,t.flash-dt);for(const m of t.meshes){m.material.emissive.setHex(t.flash>0?0xff6633:trackTime>0?0x196959:0);m.material.emissiveIntensity=t.flash>0?1:trackTime>0?.5:0;}}
@@ -152,8 +157,8 @@ function bindControls(){
   for(const name of ['pointerup','pointercancel','lostpointercapture'])button.addEventListener(name,e=>{heldDirections.delete(e.pointerId);syncDirections();});
  }
  const releaseStick=()=>{heldDirections.clear();lastForward=-Infinity;syncDirections();};releaseDirections=releaseStick;
- let lookPointer=null,lx=0,ly=0;host.addEventListener('contextmenu',e=>e.preventDefault());host.addEventListener('pointerdown',e=>{if(!active)return;lookPointer=e.pointerId;lx=e.clientX;ly=e.clientY;host.setPointerCapture(e.pointerId);e.preventDefault();});host.addEventListener('pointermove',e=>{if(e.pointerId!==lookPointer)return;yaw-=(e.clientX-lx)*.006;pitch-=(e.clientY-ly)*.005;lx=e.clientX;ly=e.clientY;});for(const name of ['pointerup','pointercancel','lostpointercapture'])host.addEventListener(name,()=>lookPointer=null);
+ let lookPointer=null,lx=0,ly=0;host.addEventListener('contextmenu',e=>e.preventDefault());host.addEventListener('pointerdown',e=>{if(!active)return;lookPointer=e.pointerId;lx=e.clientX;ly=e.clientY;host.setPointerCapture(e.pointerId);e.preventDefault();});host.addEventListener('pointermove',e=>{if(e.pointerId!==lookPointer)return;const sensitivity=(window.getRoguePreferences?.().lookSensitivity||1.45)*Math.PI*2/Math.max(1,host.getBoundingClientRect().width);yaw-=(e.clientX-lx)*sensitivity;pitch-=(e.clientY-ly)*sensitivity*.8;lx=e.clientX;ly=e.clientY;});for(const name of ['pointerup','pointercancel','lostpointercapture'])host.addEventListener(name,()=>lookPointer=null);
  window.addEventListener('keydown',e=>{if(!active||/SELECT|INPUT/.test(e.target.tagName))return;keys[e.code]=true;if(['Space','ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.code))e.preventDefault();if(e.repeat)return;({KeyE:transform,KeyQ:roll,Space:jump,KeyR:roar,KeyT:track,KeyF:fire,ShiftLeft:toggleRun,ShiftRight:toggleRun})[e.code]?.();});window.addEventListener('keyup',e=>{keys[e.code]=false;});window.addEventListener('blur',()=>{fireHeld=false;Object.keys(keys).forEach(k=>keys[k]=false);releaseStick();});
 }
 window.openArena=openArena;window.stopArena=stopArena;
-window.arenaDebug={state:()=>({active,time:elapsed,ready:!!actor,character,form,camera:camera?.position.toArray(),position:player.toArray(),yaw,pitch,grounded,run,rollTime,roarTime,roarPoseTime,attackTime,ammo,hits,rollHitTargets:[...rollHitTargets],lookDirection:camera?.getWorldDirection(new THREE.Vector3()).toArray(),targets:targets.map(t=>({hp:t.hp,position:t.position.toArray(),respawn:t.respawn})),motion,stats:{speed:Math.min(180,(run?115:100)*(roarTime>0?1.2:1)),damage:Math.min(180,(config?.damage||100)*(roarTime>0?1.15:1)),defense:Math.min(180,(config?.defense||100)*(roarTime>0?1.3:1))},effects:fx?.info(),render:engineInfo(),shadow:{type:'PCFSoft',resolution:1024},input:{...stick}}),action:name=>({transform,run:toggleRun,roll,jump,roar,track,fire})[name]?.(),place:(x,z,angle=0,lookPitch=0)=>{player.set(x,0,z);yaw=angle;pitch=lookPitch;velocity.set(0,0,0);},aimAt:id=>{const p=targets[id].position.clone();p.y=1.3;const d=p.sub(player.clone().add(new THREE.Vector3(0,1.66,0)));yaw=Math.atan2(-d.x,-d.z);pitch=Math.atan2(d.y,Math.hypot(d.x,d.z));},expireRoar:()=>{roarTime=0;configureCharacter(actor,config);},setCharacter};
+window.arenaDebug={state:()=>({active,time:elapsed,ready:!!actor,character,form,camera:camera?.position.toArray(),position:player.toArray(),yaw,pitch,velocity:velocity.toArray(),grounded,run,rollTime,rollDistance,roarTime,roarPoseTime,attackTime,ammo,hits,rollHitTargets:[...rollHitTargets],lookDirection:camera?.getWorldDirection(new THREE.Vector3()).toArray(),targets:targets.map(t=>({hp:t.hp,position:t.position.toArray(),respawn:t.respawn})),motion,stats:{speed:Math.min(180,(run?115:100)*(roarTime>0?1.2:1)),damage:Math.min(180,(config?.damage||100)*(roarTime>0?1.15:1)),defense:Math.min(180,(config?.defense||100)*(roarTime>0?1.3:1))},effects:fx?.info(),render:engineInfo(),shadow:{type:'PCFSoft',resolution:1024},input:{...stick}}),action:name=>({transform,run:toggleRun,roll,jump,roar,track,fire})[name]?.(),place:(x,z,angle=0,lookPitch=0)=>{player.set(x,0,z);yaw=angle;pitch=lookPitch;velocity.set(0,0,0);},aimAt:id=>{const p=targets[id].position.clone();p.y=1.3;const d=p.sub(player.clone().add(new THREE.Vector3(0,1.66,0)));yaw=Math.atan2(-d.x,-d.z);pitch=Math.atan2(d.y,Math.hypot(d.x,d.z));},expireRoar:()=>{roarTime=0;configureCharacter(actor,config);},setCharacter};

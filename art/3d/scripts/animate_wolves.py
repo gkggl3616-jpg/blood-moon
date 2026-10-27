@@ -11,7 +11,7 @@ MODELS=ROOT/'app/src/main/assets/models'
 model_meta=json.loads((ROOT/'art/3d/model-report.json').read_text())
 BACKUP=ROOT/model_meta.get('static_source_dir','art/3d/source/static');BACKUP.mkdir(parents=True,exist_ok=True)
 profiles=model_meta['variants']
-report={'rig_type':'procedural humanoid/quadrupedal prototype rig','clips':['WolfIdle','WolfMove','WolfRoll','WolfRunQuad','WolfClaw','WolfRoar','WolfJump','WolfTransform','HumanIdle','HumanMove'],'shared_run_roll_template':'wolf-shared-v2','root_motion':False,'new_meshy_credits':0,'notes':['Shared phased roll: anticipation, tuck/360 rotation, landing and recovery.','Roar: anticipation, raised/open arms, held chest/head lift, recovery; no articulated jaw yet.','Timings are local gameplay tuning from prior accessible references; the new NGqOn5o0dHE video was blocked and was not observed.','Weights use geometric regions and bone distance; manual deformation polish remains.'],'models':[]}
+report={'rig_type':'procedural humanoid/quadrupedal prototype rig with length-constrained limbs','clips':['WolfIdle','WolfMove','WolfRoll','WolfRunQuad','WolfClaw','WolfRoar','WolfJump','WolfTransform','HumanIdle','HumanMove'],'shared_run_roll_template':'wolf-shared-v3','root_motion':False,'new_meshy_credits':0,'notes':['All 119 frames of the uploaded 4.91-second screen recording reviewed; it is a short edited excerpt, not the complete YouTube source.','Shared 0.533s bounding run: timed paw contacts/recovery, stabilized head, source limb lengths preserved by two-bone IK.','Shared 0.8s compact roll; gameplay travel is about 2m. Values are local tuning, not measured world units from the video.','Roar: anticipation, raised/open arms, held chest/head lift, recovery; no articulated jaw yet.','Weights use geometric regions and bone distance; manual deformation polish remains.'],'models':[]}
 
 def smoothstep(a,b,t):
  u=max(0,min(1,(t-a)/(b-a)))
@@ -19,6 +19,34 @@ def smoothstep(a,b,t):
 
 def roll_angle(t):
  return math.tau*smoothstep(.10,.82,t)
+
+def two_bone(start,goal,pole,l1,l2):
+ axis=goal-start
+ if axis.length<1e-7:axis=Vector((0,0,-1))
+ d=max(abs(l1-l2)+1e-5,min(axis.length,(l1+l2)*.985));axis.normalize()
+ along=(l1*l1-l2*l2+d*d)/(2*d);lift=math.sqrt(max(0,l1*l1-along*along))
+ bend=pole-start; bend-=axis*bend.dot(axis)
+ if bend.length<1e-7:
+  bend=axis.cross(Vector((1,0,0)))
+  if bend.length<1e-7:bend=axis.cross(Vector((0,1,0)))
+ bend.normalize()
+ return start+axis*along+bend*lift,start+axis*d
+
+def fit_limbs(p,base):
+ for side in ['L','R']:
+  for a,j,b,tip in [('shoulder','elbow','wrist','finger'),('hip','knee','ankle','toe')]:
+   a+=side;j+=side;b+=side;tip+=side
+   tip_direction=p[tip]-p[b]
+   p[j],p[b]=two_bone(p[a],p[b],p[j],(base[j]-base[a]).length,(base[b]-base[j]).length)
+   if tip_direction.length<1e-7:tip_direction=base[tip]-base[b]
+   p[tip]=p[b]+tip_direction.normalized()*(base[tip]-base[b]).length
+ return p
+
+def paw_cycle(t,stance=.26):
+ u=t%1
+ if u<stance:return -1+2*u/stance,0
+ s=(u-stance)/(1-stance)
+ return math.cos(math.pi*s),math.sin(math.pi*s)**1.5
 
 # Reproducible from the committed static Blender scene. Never back up an
 # already-rigged GLB as an unrigged source on a clean checkout.
@@ -61,13 +89,27 @@ def pose_points(base,kind,t,h,variant="shared"):
   for side,sg in [('L',1),('R',-1)]:
    p[f'elbow{side}']=Vector((sg*.22*span,-.025,.60))*h;p[f'wrist{side}']=Vector((sg*.235*span,-.055,.43))*h;p[f'finger{side}']=Vector((sg*.24*span,-.065,.37))*h
   if kind=='WolfIdle':
-   lean=.06 if variant=='konuralp' else .024
+   lean=.07 if variant=='konuralp' else .045
    for k in ['chest','neck','head','headEnd']:p[k].y-=lean*h
+   for k in ['hip','hipL','hipR']:p[k].z-=.025*h
+   p['spine'].z-=.02*h
+   for k in ['chest','shoulderL','shoulderR']:p[k].z-=.015*h
+   for k in ['neck','head','headEnd']:p[k].z-=.01*h
   else:
    for k in ['neck','head','headEnd']:p[k]=base[k].copy()
    for side,sg in [('L',1),('R',-1)]:
     for part,x,z in [('elbow',.18,.635),('wrist',.20,.51),('finger',.205,.465)]:p[part+side]=Vector((sg*x,-.035,z))*h
- elif kind in ['WolfMove','HumanMove']:
+ elif kind=='WolfMove':
+  p=pose_points(base,'WolfIdle',t,h,variant)
+  bob=.008*h*math.cos(t*math.tau*2)
+  for k in ['hip','hipL','hipR','spine','chest','shoulderL','shoulderR','neck']:p[k].z+=bob
+  for side,sg,phase in [('L',1,0),('R',-1,.5)]:
+   stride,lift=paw_cycle(t+phase,.38)
+   p['ankle'+side]=Vector((sg*.105,.025+.16*stride,.07+.10*lift))*h
+   p['toe'+side]=p['ankle'+side]+Vector((0,-.08,-.045))*h
+   p['knee'+side]=p['hip'+side]+Vector((sg*.04,-.15,-.15))*h
+   for part in ['elbow','wrist','finger']:p[part+side].y-=.065*h*math.sin((t+phase)*math.tau)
+ elif kind=='HumanMove':
   p=pose_points(base,'HumanIdle' if kind=='HumanMove' else 'WolfIdle',t,h,variant)
   for side,sg,offset in [('L',1,0),('R',-1,math.pi)]:
    a=t*math.tau+offset;swing=math.sin(a)
@@ -101,16 +143,16 @@ def pose_points(base,kind,t,h,variant="shared"):
    for part,dz,dy in [('knee',.08,-.11),('ankle',.16,-.05),('toe',.16,-.07)]:p[part+side].z+=dz*h*strength;p[part+side].y+=dy*h*strength
    for part in ['wrist','finger']:p[part+side].y-=.12*h*strength
  elif kind=='WolfRunQuad':
-  b=.022*math.sin(t*math.tau*2)
-  vals={'hip':(0,.13,.43+b),'spine':(0,.03,.45+b),'chest':(0,-.16,.45+b),'neck':(0,-.24,.46+b),'head':(0,-.31,.49+b),'headEnd':(0,-.40,.50+b),'tail':(0,.20,.43+b),'tailMid':(0,.33,.45+b),'tailEnd':(0,.43,.42+b)}
+  arm=sum((base[b+'L']-base[a+'L']).length for a,b in [('shoulder','elbow'),('elbow','wrist')])/h
+  leg=sum((base[b+'L']-base[a+'L']).length for a,b in [('hip','knee'),('knee','ankle')])/h
+  b=.012*math.sin(t*math.tau*2);front_z=.07+arm*.70+b;rear_z=.07+leg*.78+b
+  vals={'hip':(0,.15,rear_z),'spine':(0,.015,(front_z+rear_z)/2),'chest':(0,-.12,front_z),'neck':(0,-.19,front_z+.045),'head':(0,-.29,front_z+.11-b*.8),'headEnd':(0,-.38,front_z+.12-b*.8),'tail':(0,.23,rear_z),'tailMid':(0,.36,rear_z+.025),'tailEnd':(0,.46,rear_z-.02)}
   for k,v in vals.items():p[k]=Vector(v)*h
-  for side,sg,phase in [('L',1,0),('R',-1,.35)]:
-   front=t*math.tau+phase;rear=front+math.pi
-   fy=.11*math.cos(front);fz=.06*max(0,math.sin(front));ry=.11*math.cos(rear);rz=.065*max(0,math.sin(rear))
-   vals={f'shoulder{side}':(sg*.15,-.16,.44+b),f'elbow{side}':(sg*.165,-.20+fy*.4,.25+b),f'wrist{side}':(sg*.17,-.20+fy,.055+fz),f'finger{side}':(sg*.17,-.26+fy,.018+fz),f'hip{side}':(sg*.075,.13,.43+b),f'knee{side}':(sg*.11,.05+ry*.3,.25+b),f'ankle{side}':(sg*.11,.20+ry,.07+rz),f'toe{side}':(sg*.11,.12+ry,.025+rz)}
+  for side,sg,phase in [('L',1,0),('R',-1,.09)]:
+   fy,fz=paw_cycle(t+phase);ry,rz=paw_cycle(t+phase+.5)
+   vals={f'shoulder{side}':(sg*.16*span,-.12,front_z),f'elbow{side}':(sg*.19*span,.015,front_z-.12),f'wrist{side}':(sg*.17*span,-.14+.17*fy,.075+.11*fz),f'finger{side}':(sg*.17*span,-.20+.17*fy,.018+.11*fz),f'hip{side}':(sg*.075,.15,rear_z),f'knee{side}':(sg*.11,-.04,rear_z-.12),f'ankle{side}':(sg*.11,.17+.17*ry,.07+.10*rz),f'toe{side}':(sg*.11,.09+.17*ry,.025+.10*rz)}
    for k,v in vals.items():
     p[k]=Vector(v)*h
-    if any(part in k for part in ['shoulder','elbow','wrist','finger']):p[k].x*=span
  elif kind=='WolfRoll':
   p=pose_points(base,'WolfIdle',0,h)
   tuck=smoothstep(.02,.16,t)*(1-smoothstep(.76,1,t))
@@ -118,10 +160,16 @@ def pose_points(base,kind,t,h,variant="shared"):
    targets={f'elbow{side}':(sg*.18,-.10,.60),f'wrist{side}':(sg*.13,-.18,.68),f'finger{side}':(sg*.1,-.20,.69),f'knee{side}':(sg*.13,-.23,.47),f'ankle{side}':(sg*.13,-.11,.32),f'toe{side}':(sg*.13,-.22,.32)}
    for k,v in targets.items():p[k]=p[k].lerp(Vector(v)*h,tuck)
   flight=max(0,min(1,(t-.08)/.78));arc=math.sin(math.pi*flight)
-  pivot=Vector((0,0,.5*h));jump=Vector((0,-.13*h*arc,.32*h*arc))
+  p=fit_limbs(p,base)
+  pivot=Vector((0,0,.5*h));jump=Vector((0,-.05*h*arc,.16*h*arc))
   rot=Matrix.Rotation(roll_angle(t),4,'X')
   for k in p:p[k]=pivot+jump+rot.to_3x3()@(p[k]-pivot)
- return p
+ if kind=='WolfRunQuad':
+  # Joint targets describe ankle/wrist centers; lift the body by the paw sole
+  # thickness so the actual skinned claws, not just the joints, meet the floor.
+  for name in p:
+   if name not in ['root','rootEnd']:p[name].z+=.04*h
+ return fit_limbs(p,base) if kind.startswith('Wolf') else p
 
 for profile in profiles:
  key=profile['id'];h=profile['height_m'];src=BACKUP/(key+'.glb')
@@ -188,11 +236,12 @@ for profile in profiles:
    for index in top:
     if weights[index]>.0001:groups[index].add([vertex.index],float(weights[index]/total),'REPLACE')
  rig.animation_data_create();bpy.context.scene.render.fps=30
- specs=[('HumanIdle',60),('HumanMove',30)] if profile.get('kind')=='human' else [('WolfIdle',30),('WolfMove',30),('WolfRunQuad',24),('WolfRoll',42),('WolfClaw',20),('WolfRoar',36),('WolfJump',24),('WolfTransform',30)]
+ specs=[('HumanIdle',60),('HumanMove',30)] if profile.get('kind')=='human' else [('WolfIdle',30),('WolfMove',20),('WolfRunQuad',16),('WolfRoll',24),('WolfClaw',20),('WolfRoar',36),('WolfJump',24),('WolfTransform',30)]
  for kind,frames in specs:
   action=bpy.data.actions.new(kind);rig.animation_data.action=action
-  for frame in range(1,frames+2,2):
-   t=(frame-1)/frames;points=pose_points(base,kind,min(t,1),h,key);desired={}
+  previous_quaternions={}
+  for frame in range(0,frames+1,2):
+   t=frame/frames;points=pose_points(base,kind,min(t,1),h,key);desired={}
    for name,a,b,parent in chains:
     start,end=points[a],points[b];direction=end-start
     global_rotation=Matrix.Rotation(roll_angle(min(t,1)),3,'X') if kind=='WolfRoll' else Matrix.Identity(3)
@@ -205,12 +254,17 @@ for profile in profiles:
     desired[name]=mat
     basis=rest_mats[name].inverted()@mat if parent is None else rest_mats[name].inverted()@rest_mats[parent]@desired[parent].inverted()@mat
     pb=rig.pose.bones[name];pb.rotation_mode='QUATERNION';pb.matrix_basis=basis
+    # Blender's component F-curves otherwise interpolate opposite quaternion
+    # signs through zero at a 180-degree turn, briefly straightening the roll.
+    if name in previous_quaternions and pb.rotation_quaternion.dot(previous_quaternions[name])<0:
+     pb.rotation_quaternion.negate()
+    previous_quaternions[name]=pb.rotation_quaternion.copy()
     pb.keyframe_insert('location',frame=frame,group=name);pb.keyframe_insert('rotation_quaternion',frame=frame,group=name)
   for fc in action.fcurves:
    for point in fc.keyframe_points:point.interpolation='LINEAR'
-  track=rig.animation_data.nla_tracks.new();track.name=kind;strip=track.strips.new(kind,1,action);strip.extrapolation='NOTHING'
+  track=rig.animation_data.nla_tracks.new();track.name=kind;strip=track.strips.new(kind,0,action);strip.extrapolation='NOTHING'
  rig.animation_data.action=None
- bpy.context.scene.frame_start=1;bpy.context.scene.frame_end=61;bpy.context.scene.frame_set(1)
+ bpy.context.scene.frame_start=0;bpy.context.scene.frame_end=60;bpy.context.scene.frame_set(0)
  # The exporter's NLA track mode makes three distinct clips, not a single mixed timeline.
  bpy.ops.object.select_all(action='DESELECT');rig.select_set(True)
  for o in meshes:o.select_set(True)

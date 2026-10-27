@@ -1,5 +1,5 @@
 {
-  "rig_type": "procedural humanoid/quadrupedal prototype rig",
+  "rig_type": "procedural humanoid/quadrupedal prototype rig with length-constrained limbs",
   "clips": [
     "WolfIdle",
     "WolfMove",
@@ -12,13 +12,14 @@
     "HumanIdle",
     "HumanMove"
   ],
-  "shared_run_roll_template": "wolf-shared-v2",
+  "shared_run_roll_template": "wolf-shared-v3",
   "root_motion": false,
   "new_meshy_credits": 0,
   "notes": [
-    "Shared phased roll: anticipation, tuck/360 rotation, landing and recovery.",
+    "All 119 frames of the uploaded 4.91-second screen recording reviewed; it is a short edited excerpt, not the complete YouTube source.",
+    "Shared 0.533s bounding run: timed paw contacts/recovery, stabilized head, source limb lengths preserved by two-bone IK.",
+    "Shared 0.8s compact roll; gameplay travel is about 2m. Values are local tuning, not measured world units from the video.",
     "Roar: anticipation, raised/open arms, held chest/head lift, recovery; no articulated jaw yet.",
-    "Timings are local gameplay tuning from prior accessible references; the new NGqOn5o0dHE video was blocked and was not observed.",
     "Weights use geometric regions and bone distance; manual deformation polish remains."
   ],
   "models": [
@@ -29,16 +30,16 @@
       "tattoo_skinning": "barycentric transfer from body triangles",
       "clips": {
         "WolfIdle": 1.0,
-        "WolfMove": 1.0,
-        "WolfRunQuad": 0.8,
-        "WolfRoll": 1.4,
+        "WolfMove": 0.6666666666666666,
+        "WolfRunQuad": 0.5333333333333333,
+        "WolfRoll": 0.8,
         "WolfClaw": 0.6666666666666666,
         "WolfRoar": 1.2,
         "WolfJump": 0.8,
         "WolfTransform": 1.0
       },
       "file": "bilge.glb",
-      "bytes": 13702940
+      "bytes": 13682260
     },
     {
       "id": "kultigin",
@@ -47,16 +48,16 @@
       "tattoo_skinning": "barycentric transfer from body triangles",
       "clips": {
         "WolfIdle": 1.0,
-        "WolfMove": 1.0,
-        "WolfRunQuad": 0.8,
-        "WolfRoll": 1.4,
+        "WolfMove": 0.6666666666666666,
+        "WolfRunQuad": 0.5333333333333333,
+        "WolfRoll": 0.8,
         "WolfClaw": 0.6666666666666666,
         "WolfRoar": 1.2,
         "WolfJump": 0.8,
         "WolfTransform": 1.0
       },
       "file": "kultigin.glb",
-      "bytes": 10651988
+      "bytes": 10631432
     },
     {
       "id": "alparslan",
@@ -65,16 +66,16 @@
       "tattoo_skinning": "barycentric transfer from body triangles",
       "clips": {
         "WolfIdle": 1.0,
-        "WolfMove": 1.0,
-        "WolfRunQuad": 0.8,
-        "WolfRoll": 1.4,
+        "WolfMove": 0.6666666666666666,
+        "WolfRunQuad": 0.5333333333333333,
+        "WolfRoll": 0.8,
         "WolfClaw": 0.6666666666666666,
         "WolfRoar": 1.2,
         "WolfJump": 0.8,
         "WolfTransform": 1.0
       },
       "file": "alparslan.glb",
-      "bytes": 10651712
+      "bytes": 10631160
     },
     {
       "id": "konuralp",
@@ -83,16 +84,16 @@
       "tattoo_skinning": "barycentric transfer from body triangles",
       "clips": {
         "WolfIdle": 1.0,
-        "WolfMove": 1.0,
-        "WolfRunQuad": 0.8,
-        "WolfRoll": 1.4,
+        "WolfMove": 0.6666666666666666,
+        "WolfRunQuad": 0.5333333333333333,
+        "WolfRoll": 0.8,
         "WolfClaw": 0.6666666666666666,
         "WolfRoar": 1.2,
         "WolfJump": 0.8,
         "WolfTransform": 1.0
       },
       "file": "konuralp.glb",
-      "bytes": 10656916
+      "bytes": 10636364
     },
     {
       "id": "human-bilge",
@@ -104,7 +105,7 @@
         "HumanMove": 1.0
       },
       "file": "human-bilge.glb",
-      "bytes": 9875644
+      "bytes": 9875504
     }
   ]
 }

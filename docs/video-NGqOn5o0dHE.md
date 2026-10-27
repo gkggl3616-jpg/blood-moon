@@ -35,3 +35,7 @@
 Tarayıcıda iki formda gerçek sürükleme, takla başına tek hasar, siper çarpışması, koşu donanımı, kükreme kilidi/bonus bitişi, pençe, model değişimi ve tek WebGL context kontrol edilir. APK içerik ve imza kontrolü ayrıca yapılır. Fiziksel Android testi yapılmadı. Yeni YouTube videosunun bütününü inceleme işi erişilebilir dosya gelene kadar açık kalır; bu eksik, mevcut hata düzeltmelerinin teslimini durdurmaz.
 
 27 Ekim yerel sonuçları: `tools/verify_arena.py` ve `tools/verify_ui.py` geçti; 15 pozdan oluşan yerel GLB animasyon sayfası oluşturulup görsel olarak kontrol edildi (`dist/motion-v0110-review.jpg`, bu oyunun çıktısıdır). `tools/build_apk.py` APK içerik/imza/üçgen bütçesi kontrolünden geçti. Bunlar yeni YouTube videosuna erişildiği anlamına gelmez.
+
+## Sonraki yükleme
+
+Kullanıcı `Screenrecorder-2026-10-27-20-54-17-670.mp4` adlı yaklaşık 5 saniyelik yerel kayıt sağladı. Bu dosyanın 119 görüntü karesi incelendi; gözlem ve sonraki uygulama kaydı `docs/video-screenrecorder-20261027.md` dosyasındadır. Önceki bağlantı erişim hatası geçmiş kaydıdır; artık yüklenen kısmın görsel analizi mevcuttur.

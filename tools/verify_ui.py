@@ -72,7 +72,7 @@ with sync_playwright() as p:
     page.locator('#soundToggle').click()
     page.locator('#volume').evaluate('(el) => { el.value = "25"; }')
     page.locator('#volume').dispatch_event('input')
-    assert json.loads(page.evaluate("localStorage.getItem('rogue-settings')")) == {'audio': False, 'volume': .25}
+    assert json.loads(page.evaluate("localStorage.getItem('rogue-settings')")) == {'audio': False, 'volume': .25, 'lookSensitivity': 1.45, 'graphicsQuality': 'sharp'}
     page.reload()
     assert page.locator('#openingSound').inner_text() == 'SES KAPALI'
     page.evaluate('document.getElementById("skipIntro").click()')

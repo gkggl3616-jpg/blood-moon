@@ -35,6 +35,12 @@
       "operation": "Shared v2 phased roll and held roar pose; swept contact damage, cover blocking, consistent FPS/TPS vertical look",
       "additional_meshy_credits": 0,
       "reference_note": "New YouTube NGqOn5o0dHE inaccessible (proxy 403), not watched; explicit user corrections and prior accessible contact sheets used."
+    },
+    {
+      "version": "0.1.11",
+      "operation": "All 119 uploaded frames reviewed; length-constrained shared v3 run/stance, compact roll, continuous quaternion turns and zero-based clips; native-density render, sensitivity and running action transitions",
+      "additional_meshy_credits": 0,
+      "reference_file": "Screenrecorder-2026-10-27-20-54-17-670.mp4"
     }
   ],
   "bilge_v019": {

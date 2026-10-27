@@ -7,10 +7,11 @@ const modal = $('modal');
 const sounds = { click: new Audio('media/click.wav'), confirm: new Audio('media/enter.mp3'), back: new Audio('media/back.wav') };
 let audioEnabled = true;
 let volume = 0.65;
+let lookSensitivity = 1.45, graphicsQuality = "sharp";
 let selectedRoom = 'bunker';
 let currentScreen = 'opening';
 let toastTimer;
-try { const saved = JSON.parse(localStorage.getItem('rogue-settings')); if (saved) { audioEnabled = saved.audio !== false; volume = Math.max(0, Math.min(1, Number(saved.volume) || 0)); } } catch (_) {}
+try { const saved = JSON.parse(localStorage.getItem('rogue-settings')); if (saved) { audioEnabled = saved.audio !== false; volume = Math.max(0, Math.min(1, Number(saved.volume) || 0)); lookSensitivity = Math.max(.6, Math.min(2.4, Number(saved.lookSensitivity) || 1.45)); graphicsQuality = saved.graphicsQuality === "balanced" ? "balanced" : "sharp"; } } catch (_) {}
 
 function fit() {
   const width = viewport.clientWidth;
@@ -25,7 +26,8 @@ addEventListener('orientationchange', fit);
 if (window.visualViewport) window.visualViewport.addEventListener('resize', fit);
 if (window.ResizeObserver) new ResizeObserver(fit).observe(viewport);
 fit();
-function saveSettings() { try { localStorage.setItem('rogue-settings', JSON.stringify({ audio: audioEnabled, volume })); } catch (_) {} updateSound(); }
+function saveSettings() { try { localStorage.setItem('rogue-settings', JSON.stringify({ audio: audioEnabled, volume, lookSensitivity, graphicsQuality })); } catch (_) {} updateSound(); }
+window.getRoguePreferences = () => ({ lookSensitivity, graphicsQuality });
 function updateSound() { $('openingSound').textContent = audioEnabled ? 'SES AÇIK' : 'SES KAPALI'; intro.muted = !audioEnabled; intro.volume = volume; }
 function playSound(type = 'click') { if (!audioEnabled || document.hidden) return; const a = sounds[type]; if (!a) return; a.volume = volume; a.currentTime = 0; a.play().catch(() => {}); }
 function screen(name) { if(name!=='arena')window.stopArena?.(); if(name!=='wolfGear'&&name!=='collection')window.stopWolfMotion?.(); if (name !== 'opening') { intro.pause(); intro.classList.remove('playing'); } for (const el of document.querySelectorAll('.screen')) { const active = el.id === name; el.classList.toggle('active', active); el.inert = !active; } currentScreen = name; }
@@ -35,7 +37,7 @@ function closeModal() { playSound('back'); modal.hidden = true; modal.open = fal
 $('closeModal').addEventListener('click', closeModal);
 $('modalOk').addEventListener('click', closeModal);
 modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
-modal.addEventListener('keydown', e => { if (e.key === 'Escape') { e.preventDefault(); closeModal(); } if (e.key === 'Tab') { const items = Array.from(modal.querySelectorAll('button,input')).filter(el => !el.disabled); const first=items[0], last=items[items.length-1]; if (e.shiftKey && document.activeElement===first) { e.preventDefault(); last.focus(); } else if (!e.shiftKey && document.activeElement===last) { e.preventDefault(); first.focus(); } } });
+modal.addEventListener('keydown', e => { if (e.key === 'Escape') { e.preventDefault(); closeModal(); } if (e.key === 'Tab') { const items = Array.from(modal.querySelectorAll('button,input,select')).filter(el => !el.disabled); const first=items[0], last=items[items.length-1]; if (e.shiftKey && document.activeElement===first) { e.preventDefault(); last.focus(); } else if (!e.shiftKey && document.activeElement===last) { e.preventDefault(); first.focus(); } } });
 
 $('skipIntro').addEventListener('click', () => screen('lobby'));
 $('openingSound').addEventListener('click', () => { audioEnabled = !audioEnabled; saveSettings(); playSound(); });
@@ -89,9 +91,11 @@ $('mapDetails').addEventListener('click', () => { playSound(); document.querySel
 document.querySelector('.map-image').addEventListener('click', e => { e.currentTarget.classList.remove('expanded'); });
 
 function settings() {
-  showModal('AYARLAR', `<p class="settings-intro">Ses tercihleri</p><div class="setting"><span>Ses efektleri</span><button id="soundToggle" class="toggle ${audioEnabled ? '' : 'off'}">${audioEnabled ? 'AÇIK' : 'KAPALI'}</button></div><label class="setting"><span>Ses düzeyi</span><input id="volume" type="range" min="0" max="100" value="${Math.round(volume * 100)}" aria-label="Ses düzeyi"></label><button id="testSound" class="toggle">DÜĞME SESİNİ DENE</button><p class="settings-version">ROGUE: BLOOD MOON • v0.1.10</p>`, 'TERCİHLER'); modal.classList.add('settings-modal');
+  showModal('AYARLAR', `<p class="settings-intro">Ses, bakış ve görüntü tercihleri</p><div class="setting"><span>Ses efektleri</span><button id="soundToggle" class="toggle ${audioEnabled ? '' : 'off'}">${audioEnabled ? 'AÇIK' : 'KAPALI'}</button></div><label class="setting"><span>Ses düzeyi</span><input id="volume" type="range" min="0" max="100" value="${Math.round(volume * 100)}" aria-label="Ses düzeyi"></label><label class="setting"><span>Bakış hassasiyeti <b id="lookValue">${lookSensitivity.toFixed(2)}×</b></span><input id="lookSensitivity" type="range" min="60" max="240" step="5" value="${Math.round(lookSensitivity*100)}" aria-label="Bakış hassasiyeti"></label><label class="setting"><span>Görüntü</span><select id="graphicsQuality"><option value="sharp" ${graphicsQuality==='sharp'?'selected':''}>NET · Yüksek çözünürlük</option><option value="balanced" ${graphicsQuality==='balanced'?'selected':''}>DENGELİ · Daha az yük</option></select></label><button id="testSound" class="toggle">DÜĞME SESİNİ DENE</button><p class="settings-version">ROGUE: BLOOD MOON • v0.1.11</p>`, 'TERCİHLER'); modal.classList.add('settings-modal');
   $('soundToggle').addEventListener('click', e => { audioEnabled = !audioEnabled; e.currentTarget.textContent = audioEnabled ? 'AÇIK' : 'KAPALI'; e.currentTarget.classList.toggle('off', !audioEnabled); saveSettings(); playSound(); });
   $('volume').addEventListener('input', e => { volume = Number(e.target.value) / 100; saveSettings(); });
+  $('lookSensitivity').addEventListener('input', e => { lookSensitivity = Number(e.target.value)/100; $('lookValue').textContent=lookSensitivity.toFixed(2)+'×'; saveSettings(); });
+  $('graphicsQuality').addEventListener('change', e => { graphicsQuality = e.target.value; saveSettings(); });
   $('testSound').addEventListener('click', () => { if (!audioEnabled) toast('Sesi denemek için ses efektlerini aç.'); else playSound('confirm'); });
 }
 document.querySelectorAll('[data-nav]').forEach(b => b.addEventListener('click', () => {
