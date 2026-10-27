@@ -15,17 +15,17 @@
     <video id="intro" src="media/intro.mp4" playsinline autoplay preload="auto" poster="media/opening.jpg"></video>
     <div class="opening-top"><span class="badge">ROGUE: BLOOD MOON</span><div class="intro-controls"><button class="icon-button" id="openingSound" aria-label="Sesi aç veya kapat">SES AÇIK</button><button class="icon-button" id="skipIntro">ATLA →</button></div></div>
     <button class="primary intro-start" id="startIntro" hidden>AÇILIŞI BAŞLAT <span>▶</span></button>
-    <footer class="opening-footer"><span>AÇILIŞTAN SONRA MENÜYE GEÇİLECEK</span><span>v0.1.1</span></footer>
+    <footer class="opening-footer"><span>AÇILIŞTAN SONRA MENÜYE GEÇİLECEK</span><span>v0.1.2</span></footer>
   </section>
 
   <section id="lobby" class="screen" aria-label="Oyun lobisi" inert>
     <img class="lobby-art" src="media/opening.jpg" alt=""><div class="lobby-shade"></div>
-    <header class="topbar"><button class="brand" data-action="opening" aria-label="Açılışa dön"><span class="crest">◈</span><span>ROGUE<small>BLOOD MOON</small></span></button><span class="prototype-tag">ÖNİZLEME 01</span><div class="profile"><span class="avatar">B</span><span>BAŞIBOZUK<small><i></i> ÇEVRİMDIŞI PROTOTİP</small></span><span class="level">01<small>SEVİYE</small></span></div></header>
+    <header class="topbar"><button class="brand" data-action="opening" aria-label="Açılışa dön"><span class="crest">◈</span><span>ROGUE<small>BLOOD MOON</small></span></button><span class="prototype-tag">SEZON 00 • KANLI AY</span><div class="profile"><span class="avatar">B</span><span>BAŞIBOZUK<small><i></i> ÇEVRİMDIŞI PROTOTİP</small></span><span class="level">01<small>SEVİYE</small></span></div></header>
     <div class="lobby-content">
       <aside class="events"><div class="section-heading"><h2>ETKİNLİKLER</h2><span>01 / 03</span></div>
-        <button class="event-card moon-card" data-event="moon"><span class="event-tag">ÖZEL MOD</span><strong>KANLI AY</strong><small>Gece operasyonu <span>↗</span></small></button>
-        <button class="event-card hunt-card" data-event="hunt"><span class="event-tag">BAŞLANGIÇ</span><strong>İLK AV</strong><small>Eğitim görevleri <span>↗</span></small></button>
-        <button class="event-card pack-card" data-event="pack"><span class="event-tag">TAKIM MODU</span><strong>SÜRÜ KAPIŞMASI</strong><small>Birlikte avlan <span>↗</span></small></button>
+        <button class="event-card moon-card" data-event="moon"><span class="event-tag">ÖZEL MOD</span><strong>KANLI AY</strong><small>+%25 deneyim • Örnek ödül <span>↗</span></small></button>
+        <button class="event-card hunt-card" data-event="hunt"><span class="event-tag">BAŞLANGIÇ</span><strong>İLK AV</strong><small>Başlangıç seti • Görev serisi <span>↗</span></small></button>
+        <button class="event-card pack-card" data-event="pack"><span class="event-tag">TAKIM MODU</span><strong>SÜRÜ KAPIŞMASI</strong><small>Takım arması • Haftalık hedef <span>↗</span></small></button>
         <p class="muted micro">Etkinlikler konsept içeriktir.</p>
       </aside>
       <div class="character-caption"><span class="eyebrow">İNSAN OLARAK SAVAŞ.</span><strong>KURT OLARAK AVLAN.</strong><div class="mini-line"></div><span class="micro">ROGUE: BLOOD MOON</span></div>
@@ -49,7 +49,19 @@
     <div class="map-footer"><div><span class="eyebrow">İLK OPERASYON</span><h2>SIĞINAK 07</h2><p>Merkez avlu. İki yan rota. Çatı kestirmeleri.</p></div><button class="primary" id="mapDetails">HARİTAYI İNCELE <span>↗</span></button></div>
   </section>
 
-  <dialog id="modal"><div class="modal-label" id="modalLabel">ROGUE: BLOOD MOON</div><button id="closeModal" class="close" aria-label="Kapat">×</button><h2 id="modalTitle"></h2><div id="modalBody"></div><button class="primary" id="modalOk">ANLADIM <span>→</span></button></dialog>
+
+  <section id="gear" class="screen" aria-label="Teçhizat" inert>
+    <header class="topbar"><button class="back-button" data-action="lobby">← LOBİYE DÖN</button><div class="page-title"><span class="eyebrow">OPERATÖR HAZIRLIĞI</span><h2>TEÇHİZAT</h2></div><span class="status-pill">GÖRSEL PROTOTİP</span></header>
+    <div class="gear-layout">
+      <aside class="gear-left"><div class="section-heading"><h2>MUHAREBE SETİ</h2></div><div class="loadout-tabs"><button class="loadout active" data-loadout="1">SET 01</button><button class="loadout" data-loadout="2">SET 02</button><button class="loadout" data-loadout="3">SET 03</button></div>
+      <div class="slot-list"><button class="gear-slot selected" data-slot="Ana silah"><span class="slot-number">01</span><span><strong>ANA SİLAH</strong><small>Silah yuvası • Boş</small></span><b>＋</b></button><button class="gear-slot" data-slot="İkincil silah"><span class="slot-number">02</span><span><strong>İKİNCİL SİLAH</strong><small>Silah yuvası • Boş</small></span><b>＋</b></button><button class="gear-slot" data-slot="Yakın dövüş"><span class="slot-number">03</span><span><strong>YAKIN DÖVÜŞ</strong><small>Ekipman yuvası • Boş</small></span><b>＋</b></button><button class="gear-slot" data-slot="Taktik ekipman"><span class="slot-number">04</span><span><strong>TAKTİK EKİPMAN</strong><small>Destek yuvası • Boş</small></span><b>＋</b></button></div><p class="micro muted">Silah modelleri sonraki aşamada eklenecek.</p></aside>
+      <div class="operator-preview"><div class="form-tabs"><button class="form-tab active" data-form="human">İNSAN</button><button class="form-tab" data-form="wolf">KURT</button></div><div class="operator-portrait human" id="operatorPortrait"></div><div class="operator-label"><span class="eyebrow">SEÇİLİ FORM</span><h2 id="operatorName">BAŞIBOZUK</h2><small id="operatorRole">Taktik operatör • Görsel önizleme</small></div></div>
+      <aside class="gear-right"><span class="eyebrow">SET DETAYLARI</span><h2 id="loadoutName">SET 01</h2><div class="gear-stat"><span>Rol</span><strong id="gearRole">TAKTİK OPERATÖR</strong></div><div class="gear-stat"><span>Donatılan eşya</span><strong>0 / 4</strong></div><div class="gear-stat"><span>Görünüm</span><strong>STANDART</strong></div><div class="slot-preview"><span class="slot-grid">＋</span><strong id="slotName">ANA SİLAH</strong><p id="slotHelp">Bu yuvaya henüz silah eklenmedi.</p></div><button class="primary" id="saveLoadout">SETİ KAYDET <span>→</span></button><p class="micro muted">Yalnızca arayüz tercihleri kaydedilir.</p></aside>
+    </div>
+    <footer class="gear-footer"><span>TEÇHİZAT / <b id="loadoutFooter">SET 01</b></span><span>ENVANTER ALANI HAZIR • SİLAHLAR YAKINDA</span></footer>
+  </section>
+
+  <div id="modal" class="modal-layer" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden><div class="modal-panel"><div class="modal-label" id="modalLabel">ROGUE: BLOOD MOON</div><button id="closeModal" class="close" aria-label="Kapat">×</button><h2 id="modalTitle"></h2><div id="modalBody"></div><button class="primary" id="modalOk">ANLADIM <span>→</span></button></div></div>
   <div id="toast" role="status" aria-live="polite"></div>
 </main>
 </div>

@@ -55,7 +55,7 @@ with sync_playwright() as p:
     page.wait_for_selector('#lobby.active', timeout=15000)
     assert page.locator('#intro').evaluate('(v) => v.ended')
     page.locator('[data-event="moon"]').click()
-    assert page.locator('#modalTitle').inner_text() == 'KANLI AY'
+    assert page.locator('#modalTitle').inner_text() == 'ETKİNLİK MERKEZİ'
     page.locator('#modalOk').click()
     page.locator('[data-room="foundry"]').click()
     page.locator('#join').click()
@@ -76,15 +76,40 @@ with sync_playwright() as p:
     page.reload()
     assert page.locator('#openingSound').inner_text() == 'SES KAPALI'
     page.locator('#skipIntro').click()
-    for key, title in [('gear', 'TEÇHİZAT'), ('events', 'ETKİNLİKLER'), ('clan', 'KLAN')]:
+    for key, title in [('events', 'ETKİNLİK MERKEZİ'), ('clan', 'KLAN')]:
         page.locator(f'[data-nav="{key}"]').click()
         assert page.locator('#modalTitle').inner_text() == title
         page.locator('#closeModal').click()
-    # Include the exact screenshot aspect ratio, narrow phones and ultrawide phones.
+    # Full-width design and compact overlays on real mobile viewports.
     for width, height in [(1280, 576), (800, 360), (915, 412), (740, 360), (1280, 720)]:
         page.set_viewport_size({'width': width, 'height': height})
         assert_fits(page, ['.brand', '#join', '[data-room="bunker"]', '[data-event="moon"]', '.bottomnav'])
-    # Simulate safe space taken by a display cutout and navigation area.
+        page.wait_for_function('() => Math.abs(document.getElementById("stage").getBoundingClientRect().width - document.getElementById("viewport").clientWidth) < 1')
+        for tab in ['settings', 'events']:
+            page.locator(f'[data-nav="{tab}"]').click()
+            assert_fits(page, ['.modal-panel', '#modalOk', '#closeModal'])
+            assert page.locator('.modal-panel').evaluate('(el) => el.scrollHeight <= el.clientHeight + 1'), tab
+            page.locator('#closeModal').click()
+    page.locator('[data-nav="events"]').click()
+    page.locator('[data-event-tab="pack"]').click()
+    assert '1.000 kredi' in page.locator('#modalBody').inner_text()
+    assert 'henüz aktif değil' in page.locator('#modalBody').inner_text()
+    page.screenshot(path=str(ROOT / 'dist/events-preview.png'))
+    page.locator('#closeModal').click()
+    page.locator('[data-nav="settings"]').click()
+    page.screenshot(path=str(ROOT / 'dist/settings-preview.png'))
+    page.locator('#closeModal').click()
+    page.locator('[data-nav="gear"]').click()
+    assert page.locator('#gear.active').count() == 1
+    page.locator('[data-loadout="2"]').click()
+    page.locator('[data-form="wolf"]').click()
+    page.locator('[data-slot="Taktik ekipman"]').click()
+    assert page.locator('#slotName').inner_text() == 'TAKTİK EKİPMAN'
+    page.locator('#saveLoadout').click()
+    assert json.loads(page.evaluate("localStorage.getItem('rogue-loadout')")) == {'set':'2','form':'wolf'}
+    assert_fits(page, ['.gear-left', '.gear-right', '#saveLoadout', '.gear-footer'])
+    page.screenshot(path=str(ROOT / 'dist/gear-preview.png'))
+    page.evaluate('window.goBack()')
     page.locator('#viewport').evaluate('(v) => { v.style.left="32px"; v.style.right="24px"; v.style.bottom="16px"; }')
     assert_fits(page, ['.brand', '#join', '.bottomnav'])
     page.locator('#viewport').evaluate('(v) => { v.style.left="0"; v.style.right="0"; v.style.bottom="0"; }')
