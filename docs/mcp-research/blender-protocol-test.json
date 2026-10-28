@@ -1,0 +1,54 @@
+{
+  "package": "mcp-for-blender",
+  "version_pin": "2.2.4",
+  "initialize": "PASS",
+  "server": {
+    "name": "MCP for Blender",
+    "title": null,
+    "version": "1.29.0",
+    "websiteUrl": null,
+    "icons": null
+  },
+  "tools": [
+    {
+      "name": "get_addon_status",
+      "description": "\n    Check the connected Blender: its version, whether the addon matches this server, and which\n    asset libraries and 3D generators are switched on. Call it once at the start.\n\n "
+    },
+    {
+      "name": "disable_telemetry",
+      "description": "\n    Turn OFF collection of prompts, code, screenshots and scene data.\n\n    Use this whenever the user asks to stop data collection, opt out of\n    telemetry, or stop sharing their"
+    },
+    {
+      "name": "get_scene_info",
+      "description": "\n    Facts about the scene as text: what's there, where, how big, and how healthy meshes and rigs\n    are. No image; to see the scene, use look.\n\n    One header line (object counts"
+    },
+    {
+      "name": "execute_blender_code",
+      "description": "\n    Run Python in the user's live Blender (bpy, bmesh, mathutils). Whatever it prints is returned.\n\n    Work in small steps and print what you need to know.\n\n    Parameters:\n    -"
+    },
+    {
+      "name": "record_trajectory_feedback",
+      "description": "\n    Record evaluation feedback for a captured trajectory step.\n\n    Call it when the user reacts to a result: \"accept\" when they keep it (\"looks good\"),\n    \"reject\" or \"undo\" whe"
+    },
+    {
+      "name": "look",
+      "description": "\n    See the scene as one image. For counts, sizes and positions, use get_scene_info.\n\n    Choose where from (mode) and how it's drawn (shading):\n    - mode: viewport (what the use"
+    },
+    {
+      "name": "generate_3d",
+      "description": "\n    Make one new textured 3D model from a text prompt or an image, and import it.\n\n    One object per call: not a whole scene, the ground, or parts to assemble. It arrives at\n    "
+    },
+    {
+      "name": "search_assets",
+      "description": "\n    Search a library of existing assets. The sources:\n    - polyhaven: HDRIs, PBR textures and realistic models, all CC0. Search understands intent and\n      synonyms (\"couch\" fin"
+    },
+    {
+      "name": "import_asset",
+      "description": "\n    Download an asset found with search_assets and bring it into the scene.\n\n    Parameters:\n    - source: polyhaven, sketchfab or polypizza.\n    - id: The asset's id (UID for ske"
+    }
+  ],
+  "blender_addon_connected": false,
+  "paid_generation_submitted": false,
+  "global_codex_registered": false,
+  "note": "Isolated stdio protocol test only. No Blender scene, GUI or animation edit was attempted."
+}

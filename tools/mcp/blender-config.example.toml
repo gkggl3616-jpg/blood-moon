@@ -1,0 +1,6 @@
+# Example only; not registered in the active conversation.
+# Blender + its addon must be running on this same machine.
+[mcp_servers.blender]
+command = "uvx"
+args = ["--from", "mcp-for-blender==2.2.4", "mcp-for-blender"]
+env = { BLENDER_HOST = "127.0.0.1", BLENDER_PORT = "9876", DISABLE_TELEMETRY = "true" }

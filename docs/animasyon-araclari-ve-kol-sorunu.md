@@ -1,5 +1,7 @@
 # Animasyon yöntemi, araç seçimi ve kol deformasyonu
 
+**Güncelleme:** Bu ilk kontrol yalnız eklenti kataloğuyla sınırlıydı. Sonraki kapsamlı web/kurulum araştırmasında MCP for Blender, Codex entegrasyonu ve Cascadeur’un resmî yerel MCP sunucusu bulundu. Güncel bulgular ve gerçek protokol testi [MCP araştırmasında](mcp-research/README.md).
+
 Kullanıcı çalışma 02'nin de yetersiz olduğunu ve kolların bozulduğunu belirtti; referanstaki hareket ve efektlerin çok daha yakın olmasını istiyor. Önceki görsel çalışmalar kabul edilmiş değildir.
 
 ## Doğrulanan mevcut yöntem
