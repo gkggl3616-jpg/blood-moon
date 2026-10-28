@@ -24,6 +24,12 @@ jobs:
         run: |
           python -m pip install pyinstaller==6.16.0
           python -m PyInstaller --clean --noconfirm --onefile --windowed --name XFS-Gezgini app.py
+      - name: Launch packaged executable
+        shell: pwsh
+        run: |
+          $process = Start-Process -FilePath desktop/xfs_browser/dist/XFS-Gezgini.exe -ArgumentList '--smoke-test' -PassThru
+          if (-not $process.WaitForExit(60000)) { $process.Kill(); throw 'Packaged application did not close successfully' }
+          if ($process.ExitCode -ne 0) { throw "Packaged application failed: $($process.ExitCode)" }
       - name: Package application
         shell: pwsh
         run: |

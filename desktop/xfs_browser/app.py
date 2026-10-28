@@ -3,6 +3,7 @@ from __future__ import annotations
 import math
 import os
 import queue
+import sys
 import threading
 import time
 import tkinter as tk
@@ -222,4 +223,8 @@ def format_size(value):
         if value<1024 or suffix=='GiB':return f'{value:.1f} {suffix}' if suffix!='B' else f'{value} B'
         value/=1024
 
-if __name__=='__main__':Browser().mainloop()
+if __name__=='__main__':
+    app = Browser()
+    if '--smoke-test' in sys.argv:
+        app.after(1000, app.close)
+    app.mainloop()
