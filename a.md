@@ -306,3 +306,13 @@ Bilge Kağan → Ice 40; Kül Tigin → R1 54; Alp Arslan → Power 42; Konuralp
 Bu tur oyun hareket kodu ve klipleri değiştirilmedi; ücretli üretim yapılmadı. Yeni karakter tasarımları tamamlandı diye sunulmadı.
 
 Dört kaynak gövdenin statik nötr poz görüntüleri hazırlandı; kemik/mesh grupları orijinal isimlerle referans BLEND dosyalarına alındı. Hiçbir animation action oluşturulmadı. İşlem sonunda seçili altı benzersiz kaynak dosyanın SHA-256 değeri başlangıçla birebir eşleşti (`docs/four-character-rigs/preview-check.json`). Bu tur `app/` çalışma zamanı dosyalarında değişiklik yapılmadı. Görüntüler nihai karakter tasarımı olarak sunulmaz.
+
+## Özgün tasarım şartı ve model bazında kükreme
+
+Kullanıcı kaynak iskelet/kemik sayısı/animasyonların korunmasını, buna karşılık Wolfteam görünüşü ve DTX giysilerinin kopyalanmamasını istedi. Karakter DTX'leri **reference-only**: yeni giysiye bake/kaplama yapılmaz, kaynak giysi mesh'i yeni model olarak sunulmaz. `art/characters/original-roster/asset-policy.json` ve dört model planı bu kuralla güncellendi.
+
+Dört kurt + dört insan eşi için `design-board-v1.png` özgün konsept paftası oluşturuldu; kaynak DTX'ler görsel üretimine verilmedi. İlk üç modelin iskeletinde olmayan konsept kuyrukları düzeltildi; yalnız Wraith/Konuralp kuyruğu kalır. Bu 2B konsepttir; gerçek 3B karakter üretimi/skin/oyun entegrasyonu tamamlandı iddiası değildir. Ana kadro dört; kullanıcının verdiği 6–7'ye çıkma izni zorunlu yeni model üretimi sayılmadı.
+
+**Kükreme karakter başına değil model türüne göre ayrılır.** `T_CRY` kaynakları doğrudan okunup olaylar ve hareket verisi hash'lendi: Ice40 1933 ms/23 anahtar, R1_54 1500 ms/46, Power42/WT_NEW 1333 ms/41, Wraith58 1500 ms/55. Native efekt olayları sırasıyla 933, 500, 633 ve 1111 ms'de kaydedildi. Ham metinler asset verisidir, çalıştırılmadı. Aynı model türünü kullanan karakterler aynı kükremeyi paylaşır; bütün model türleri tek klibe zorlanmaz. Kaynak klip ve iskeletlere dokunulmadı. Kükreme efektinin önceki tam video referansı ve el alevi/dövme/sönme aşamaları korunacak; yeni zaman eşlemesi henüz oyuna bağlanmadı.
+
+Mevcut oyun GLB'lerindeki 23 görüntü, seçili 13 karakter DTX atlasının piksel hash'iyle kontrol edildi; eşleşme bulunmadı. Test yalnız seçili atlasları kapsar. Yeni Meshy ücretli işi başlatılmadı; ücretsiz CLI planlayıcısı 30 kredi/model tahmini verdi, bakiye OAuth süresi dolduğu için doğrulanamadı. Yeni maliyet onayı olmadan yeniden üretim yapılmayacak. Üretim sahnesine source giysi sokulmadı, bu tur APK değiştirilmedi.

@@ -72,3 +72,43 @@ Kürk mat, metal kontrollü parlak, deri ve kumaş ayrı pürüzlülükte olmal�
 **Statik inceleme:** `*-front.png` ve `*-three.png` dosyaları kaynakların nötr pozunu karşılaştırır. Bunlar bitmiş tasarım veya oyun içi bekleme animasyonu değildir.
 
 **Henüz yapılmadı:** dört yeni nihai mesh/kostüm/doku tasarımı, dört yeni insan iskeleti seçimi, oyuna bu dört yeni tasarımın geçirilmesi veya yeni APK. Önceki oyundaki karakterler değiştirilmedi.
+
+## Güncel özgünlük ve kaynak kullanım kararı
+
+Kullanıcının son düzeltmesi: modeller Wolfteam'in birebir kopyası olmayacak. Kaynak iskeletin kemik sayısı, isimleri, parent bağlantıları, bind matrisi ve animasyonları aynı kalacak; **yeni gövde/yüz/kürk, kostüm, donanım ve giysi dokuları özgün tasarlanacak**. Kaynak kıyafeti yalnız yeniden boyamak ayrı tasarım sayılmaz. Kaynak giysi mesh'i de yeni kostümün yerine konulmaz.
+
+**Karakter DTX'leri yalnız kontrol içindir.** UV/slot eşlemesini ve eski modelin neden bozulduğunu incelemeye yarar; giysi atlasları yeni karaktere bake edilmez, yeniden renklendirilip kullanılmaz, yeni APK'ya taşınmaz. Önceki `textured-references` çalışmaları bu nedenle teknik inceleme klasöründe kalır. Yeni üretim ilkesi `art/characters/original-roster/asset-policy.json` içinde.
+
+Kullanıcı 6–7 model seçilmesine izin verdi; bu zorunlu artış sayılmadı. İlk kadro dört ayrı iskeletle devam eder. Yeni bir model ancak ayrı anatomi/iskelet/kostüm yönü kazandırırsa eklenir; aynı modelin palet değişimi yeni iskelet gibi sayılmaz.
+
+### Özgün tasarım paftası
+
+`art/characters/original-roster/design-board-v1.png`: dört kurt + dört insan eşi için özgün konsept. Kaynak DTX görselleri bu görsel üretimine verilmedi; giysiler aktarılmadı. Görselin ilk sürümünde ilk üç kurtta iskeletlerinde bulunmayan kuyruklar oluştu; düzeltildi. Son sürümde yalnız Wraith/Konuralp kuyruğu korunur. Konuralp insanının yüz yönü de Kül Tigin'den ayrıldı.
+
+Pafta gerçek 3B mesh, UV, skin veya iskelet uyumu kanıtı değildir. Çizimdeki oranlar nihai mesh'te kaynak bind eklemlerine uyarlanacak; paftaya uydurmak için kemikler taşınmayacak. Dirsek içi, bilek, kalça ve diz çevresinde kostüm boşluğu korunacak. Görseldeki süslemeler mobil bütçeye göre sadeleştirilecek; bütün nakışlar geometri olmayacak.
+
+### Kükreme sahibi karakter adı değil model türüdür
+
+Kullanıcının düzeltmesine göre yeni veri ayrımı `model_type` üzerinden: `ice40`, `r1_54`, `power42`, `wraith58`. Aynı model türünü kullanan farklı karakterler aynı native kükremeyi paylaşır; ayrı model türleri tek bir genel kükremeye zorlanmaz. Bu turda mevcut oyun klibi veya oynama hızı değiştirilmedi.
+
+`roar-model-profiles.json` yalnız okunarak çıkarılan kaynak sözleşmesidir:
+
+| Model | T_CRY süresi | Kaynak anahtar | LTB'de görülen efekt olayı |
+|---|---:|---:|---|
+| Ice40 | 1.933 ms | 23 | 933 ms: `create_attachfx 3` |
+| R1_54 | 1.500 ms | 46 | 0 ms: dört attachfx gösterimi; 500 ms: `create_attachfx 3` |
+| Power42 / WT_NEW | 1.333 ms | 41 | 633 ms: `create_attachfx 3` |
+| Wraith58 | 1.500 ms | 55 | 1.111 ms: `FX ChangeCharEffect` |
+
+Bütün kliplerde 0 ms'de `WolfCrySnd` kaydı var. Bunlar kaynak asset olay metinleridir; kabuk komutu olarak çalıştırılmaz. Sayısal attachfx kimliği tek başına hangi emitter/doku ayarının kullanılacağını kanıtlamaz. Hareket, olay metni ve anahtar zamanlarının hash'leri kaydedildi; kaynak LTB'ler değişmedi.
+
+**Power/WT_NEW kükremesi 41 anahtar içerir**; önceki eski paket tablosundaki 22 anahtar bu yeni paketin sayısı değildir. Güncel sözleşme doğrudan kaynak dosyadan doğrulandı.
+
+Daha önce gelen tam kükreme videosundaki el alevleri, dövme parlaması, sönme ve geç izler efekt referansı olmaya devam eder. Var olan `reference-roar-fx.js` ve `effects.js` çalışmalarının sahneye bağlanma durumları aynı değildir; eski çalışma raporundaki efekt `runtime_installed:false` kaydı tamamlandı diye değiştirilmeyecek. Yeni modelde efekt bağlanması, doğru el kemiği, kendi native olay zamanı, özgün video ve modelin gerçek oynanışı birlikte kontrol edilerek yapılacak. Genel 1,2/1,7 saniyelik zamanla bütün klipler kesilmeyecek. Efekt kimlik rengi değişebilir; bunun için animasyon yeniden üretilmez.
+
+### Bu tur kontrol sonucu
+
+- Seçili kaynak gövde/hareket dosyalarının hash'leri değişmedi.
+- Kükreme klipleri yalnız okundu; kesme, retarget, keyframe düzenleme veya yeniden örnekleme yok.
+- Seçili 13 karakter DTX atlasının piksel hash'i mevcut oyun GLB'lerindeki 23 gömülü görüntüyle karşılaştırıldı: eşleşme yok. Bu dar kapsamlı bir aktarım kontrolüdür; tüm 33.624 DTX'nin yokluğu veya tam görsel özgünlük garantisi değildir. Rapor `reference-texture-audit.json`.
+- Pafta dışında yeni nihai 3B karakter üretilmedi. Yeni ücretli Meshy işi başlatılmadı. CLI ücretsiz planlayıcısı görüntüden dokulu model başına 30 kredi tahmini verdi; bu tablo paftası üretime gönderilmedi. Bilge insan/kurt için olası iki yeni üretim 60 kredi tahminidir; yeni bütçe onayı ve temiz tek-figür üretim referansları olmadan gönderilmeyecek. Bakiye sorgusunda OAuth süresi dolmuş olduğundan güncel bakiye doğrulanamadı. Eski bakiye güncel gibi sunulmaz.

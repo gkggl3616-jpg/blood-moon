@@ -106,5 +106,15 @@
     }
   },
   "runtime_changed": false,
-  "animation_edits_permitted": false
+  "animation_edits_permitted": false,
+  "design_policy": {
+    "character_meshes": "New original geometry; native source body used only for fit/UV/pose reference",
+    "clothing": "Original authored design and textures only; no clothing from source-game DTX",
+    "skeleton": "Preserve native count, names, hierarchy and bind matrices",
+    "animation": "Preserve native clips unmodified; no resampling, keyframe changes or generic forced roar",
+    "roar_owner": "model_type, not character id",
+    "roster": "Four primary model types; optional extra models only if they add distinct anatomy/rig",
+    "concept_board": "art/characters/original-roster/design-board-v1.png",
+    "concept_is_3d_model": false
+  }
 }

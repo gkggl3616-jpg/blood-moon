@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "native_skeleton_and_animation_use": "retain unchanged",
+  "character_mesh_and_clothing_textures": "original_authored_only",
+  "source_character_DTX": "reference_only_do_not_package",
+  "source_clothing_geometry": "reference_only_do_not_copy_into_new_design",
+  "native_reference_exports": "review_only_do_not_replace_game_characters_with_them",
+  "roar_profile_owner": "model_type",
+  "existing_roar_fx_reference": "User-provided full roar videos; hand flames, tattoo pulse and decay retained in design brief; final sync verification pending",
+  "paid_3d_generation_authorized_by_this_turn": false
+}
