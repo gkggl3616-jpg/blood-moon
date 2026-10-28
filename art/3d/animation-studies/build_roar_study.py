@@ -4,7 +4,7 @@ Run with Blender. Individually authored rotation poses; foot targets alone use I
 import bpy,math,json,sys
 from pathlib import Path
 from mathutils import Vector,Matrix,Quaternion
-R=Path(__file__).resolve().parents[3];OUT=R/'dist/roar-study-01';OUT.mkdir(parents=True,exist_ok=True)
+R=Path(__file__).resolve().parents[3];STUDY='02' if '--study02' in sys.argv else '01';END=51 if STUDY=='02' else 36;OUT=R/('dist/roar-study-'+STUDY);OUT.mkdir(parents=True,exist_ok=True)
 bpy.ops.object.select_all(action='SELECT');bpy.ops.object.delete(use_global=False)
 bpy.ops.import_scene.gltf(filepath=str(R/'app/src/main/assets/models/bilge.glb'))
 rig=next(o for o in bpy.context.scene.objects if o.type=='ARMATURE')
@@ -42,8 +42,11 @@ KEYS=[
  (27,.015,2,4,-8,-12,3,63,-.03,0,.55,.45),
  (32,.018,3,4,2,0,-45,-37,-.10,-10,.08,.05),
  (36,0,0,0,0,0,None,None,0,0,0,0)]
-scene=bpy.context.scene;scene.render.fps=30;scene.frame_start=0;scene.frame_end=36
-act=bpy.data.actions.new('BilgeRoarStudy01_FK');rig.animation_data.action=act
+if STUDY=='02':
+ # Full 08-04-29 reference starts with arms already open; preserve the full recovery.
+ KEYS=[(f,*KEYS[i][1:]) for f,i in [(0,2),(4,3),(8,4),(17,5),(23,6),(30,7),(43,8),(51,8)]]
+scene=bpy.context.scene;scene.render.fps=30;scene.frame_start=0;scene.frame_end=END
+act=bpy.data.actions.new('BilgeRoarStudy'+STUDY+'_FK');rig.animation_data.action=act
 
 def rotation(name,direction,twist=0):
  r=rest[name].to_3x3();v=r@Vector((0,1,0));m=v.rotation_difference(direction.normalized()).to_matrix()@r
@@ -93,7 +96,7 @@ for row in KEYS:
 for fc in act.fcurves:
  delay=.7 if any(n in fc.data_path for n in ['Hand','Digits']) else .35 if 'Forearm' in fc.data_path else 0
  for point in fc.keyframe_points:
-  if point.co.x not in [0,36]:point.co.x+=delay
+  if point.co.x not in [0,END]:point.co.x+=delay
   point.interpolation='BEZIER';point.handle_left_type='AUTO_CLAMPED';point.handle_right_type='AUTO_CLAMPED'
 
 # Neutral matte lighting: remove only temporary glow; keep approved textures/geometry.
@@ -116,21 +119,21 @@ scene.render.resolution_x=420;scene.render.resolution_y=500;scene.render.resolut
 def view(name):
  cam.location=views[name];cam.rotation_euler=(Vector((0,0,1.18))-cam.location).to_track_quat('-Z','Y').to_euler()
 view('reference');scene.frame_set(0)
-bpy.ops.wm.save_as_mainfile(filepath=str(R/'art/3d/animation-studies/bilge-roar-study-01.blend'),compress=True)
-(OUT/'authored-keys.json').write_text(json.dumps({'fps':30,'duration':1.2,'keys':KEYS,'method':'FK joint orientation keys with separate finger/wrist timing. Foot IK only. No runtime replacement.'},indent=2))
+bpy.ops.wm.save_as_mainfile(filepath=str(R/('art/3d/animation-studies/bilge-roar-study-'+STUDY+'.blend')),compress=True)
+(OUT/'authored-keys.json').write_text(json.dumps({'fps':30,'duration':END/30,'keys':KEYS,'method':'FK joint orientation keys with separate finger/wrist timing. Foot IK only. No runtime replacement.'},indent=2))
 # Audit actual skin near shoulders at every frame, preserving the approved bind mesh.
 body=next(o for o in scene.objects if o.name.startswith('Body_'));stats=[]
-for frame in range(37):
+for frame in range(END+1):
  scene.frame_set(frame);ev=body.evaluated_get(bpy.context.evaluated_depsgraph_get());me=ev.to_mesh();zs=[v.co.z for v in me.vertices];stats.append({'frame':frame,'min_z':min(zs),'max_z':max(zs)});ev.to_mesh_clear()
 (OUT/'mesh-bounds.json').write_text(json.dumps(stats,indent=2))
 if '--stills' in sys.argv:
  for name in views:
   view(name)
-  for f in [0,5,9,17,27,36]:
+  for f in ([0,4,8,23,30,51] if STUDY=='02' else [0,5,9,17,27,36]):
    scene.frame_set(f);scene.render.filepath=str(OUT/f'{name}-{f:02}.png');bpy.ops.render.render(write_still=True)
 else:
  for name in views:
   view(name);folder=OUT/name;folder.mkdir(exist_ok=True)
-  for f in range(37):
+  for f in range(END+1):
    scene.frame_set(f);scene.render.filepath=str(folder/f'{f:03}.png');bpy.ops.render.render(write_still=True)
 print('STUDY_COMPLETE',str(OUT))

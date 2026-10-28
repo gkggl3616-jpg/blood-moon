@@ -113,3 +113,7 @@ v0.1.13 baş üstü el testi, fazla düz/dar kol duruşunu yakalamadı. Bu sonu�
 ## Bilge kükreme çalışması 01 — APK öncesi inceleme
 
 Kol hedeflerini tekrar ayarlamak, referans hareketin gücünü üretmedi; kullanıcı sonucu yeniden reddetti. Ayrı bir düzenlenebilir FK çalışma klibi kuruldu. Geniş kol açılışının ön görünüşü, ön kol ağırlıklarının bel/kıyafete sızdığını gösterdi: eski el/parmak odaklı test bunu yakalamıyordu. Yeni çalışma içinde 415 merkez bölge köşesi düzeltildi; özgün bind geometrisi değişmedi. Çene işareti ön görünüşte kontrol edilip aşağı açılacak şekilde düzeltildi. Bunlar henüz çalışma zamanı modellerine taşınmadı. Hareket/renk/teknik testlerin geçmesi görsel kabul değildir. Ayrıntı ve videolar: docs/bilge-roar-study-01/README.md.
+
+- Çalışma 01 karşılaştırmasının kaynak kesiti kullanıcıya göre kükremenin sonunu erken kesiyordu. Sonraki 08-04-29 kaydı tam ana referans oldu. Karşılaştırma yeni kaydın tamamını ve 38 kareyi kullanır; dar kadraj kaldırıldı, erken tekrar engellendi. Mevcut 1,2 sn çalışma sağ panelde eski çalışma olarak etiketlidir; yeni süreyle eşleştiği iddia edilmez.
+
+- Tam kaynak düzeltmesinin uygulaması çalışma 02 içinde: 1,7 sn eylem, yeni görünür ilk açık kol pozu ve tamamlanan toparlanma. Önceki çalışma 01 karşılaştırması tarihî yanlış kesit olarak işaretlendi; güncel video 02 kullanılır.

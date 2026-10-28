@@ -1,0 +1,12 @@
+{
+  "jaw_tip_opening_down_m": 0.07511544227600098,
+  "action": "BilgeRoarStudy02_FK",
+  "duration_s": 1.7,
+  "fps": 30,
+  "unique_frames": 52,
+  "max_sampled_ankle_drift_m": 0.0009598459006359564,
+  "garment_all_arm_chain_weight_max": 0,
+  "runtime_assets_modified": false,
+  "visual_approval": "PENDING",
+  "physical_device_tested": false
+}

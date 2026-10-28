@@ -1,5 +1,7 @@
 # Bilge kükreme — görsel inceleme çalışması 01
 
+**Tarihî çalışma: kaynak kesiti kullanıcı tarafından yanlış bulundu.** Aşağıdaki ilk karşılaştırma kükremenin sonunu erken kesiyordu. Güncel kaynak ve tam son bölümle hazırlanan çalışma [02 kaydındadır](../bilge-roar-study-02/README.md). Bu ilk kesit ve 1,2 sn çalışma yeni tam hareketin kabulü sayılmaz.
+
 Son karar: önce yalnız Bilge üzerinde gerçek düzenlenebilir animasyon ve efeksiz karşılaştırma; görsel kontrolün ardından diğer kurtlara aktarım ve oyun paketi. Bu dosyalar APK yayını değildir. Çalışma zamanı GLB'leri ve v0.1.14 APK değiştirilmedi.
 
 ## Hazırlanan çalışma

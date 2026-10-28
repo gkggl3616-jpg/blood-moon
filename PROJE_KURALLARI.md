@@ -26,3 +26,7 @@
 - Son 07-19-41 videosu bizim oyunun reddedilen v0.1.13 kükremesidir; hedef video olarak kullanılmaz. Yalnız elleri baş üstüne taşımak yeterli değildir: geniş bükülü dirsekler, içe eğimli ön kollar, hazırlık ve göğüs/boyun açılması önceki hedef kayıtla kontrol edilir. Teknik test başarısı kullanıcı görsel kabulü değildir. v0.1.14 odaklı düzeltme: docs/kukreme-duzeltmesi-v014.md.
 
 - Son animasyon çalışma kararı: kullanıcı v0.1.13/v0.1.14 kükremesini yeterli bulmadı. Önce yalnız Bilge üzerinde düzenlenebilir FK anahtar pozları, omuz/kıyafet ağırlık kontrolü, efeksiz gerçek zamanlı referans karşılaştırması ve ön/yan tam hareket videosu hazırlanır. Görsel değerlendirmeden sonra ortak kurt aktarımı ve APK aşaması gelir. Sayısal testler görsel kabul yerine geçmez. Çalışma: docs/bilge-roar-study-01/README.md.
+
+- Kükreme referansı düzeltmesi: 08-04-29-656 kaydı yeni tam ana referanstır. Önceki 1,32–2,44 sn seçimi toparlanmayı erken kesmiştir. Kullanıcı bitişin yaklaşık yarım saniye sonrasını da istedi. Yeni kaydın bütün 38 karesi korunur; karşılaştırma hareket tamamlanmadan başa dönmez. Önceki Bilge çalışma klibi 1,2 sn’dir ve yeni referansa süre/poz uyarlaması henüz tamamlanmış sayılmaz.
+
+- Çalışma 02, yeni 08-04-29 kaydındaki görünür ilk açık kol pozundan başlar; 0–51 kare / 1,7 sn aralıkta son toparlanmayı da içerir. Tam 38 kareli kaynak korunur ve karşılaştırma erken tekrarlanmaz. Güncel çalışma docs/bilge-roar-study-02/README.md içindedir; çalışma 01 kesiti tarihî/geçersiz kabul edilir. Bu, APK veya görsel onay değildir.

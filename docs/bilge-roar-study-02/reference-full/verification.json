@@ -1,0 +1,55 @@
+{
+  "new_authoritative_upload": "Screenrecorder-2026-10-28-08-04-29-656.mp4",
+  "uploaded_copy_byte_identical": true,
+  "frames_preserved": 38,
+  "source_duration_s": 1.671792,
+  "temporal_trim": null,
+  "spatial_crop": null,
+  "study_action_still_1_2s_not_retimed": true,
+  "files": {
+    "original.mp4": {
+      "sha256": "0bbc9782a8a3384ddbc689ff7768b9ed7195314661a8b8bdd150cad048c042fb",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "aac",
+            "nb_read_frames": "70"
+          },
+          {
+            "codec_name": "hevc",
+            "width": 1220,
+            "height": 2712,
+            "nb_read_frames": "38"
+          }
+        ],
+        "format": {
+          "duration": "1.671792"
+        }
+      }
+    },
+    "full-frame-h264.mp4": {
+      "sha256": "9b712fe8e35c555d4eeab2a0051e5c206c7d5a7f86eaa37c33cf7784a10d47fe",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "width": 610,
+            "height": 1356,
+            "nb_read_frames": "38"
+          },
+          {
+            "codec_name": "aac",
+            "nb_read_frames": "70"
+          }
+        ],
+        "format": {
+          "duration": "1.671406"
+        }
+      }
+    }
+  }
+}
