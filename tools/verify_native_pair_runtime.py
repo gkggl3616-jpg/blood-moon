@@ -14,7 +14,7 @@ with sync_playwright() as p:
  page.screenshot(path=str(R/'docs/native-pair-review/runtime-roar.png'))
  page.wait_for_function('()=>arenaDebug.state().canAct',timeout=15000);page.evaluate('arenaDebug.action("fire")');assert page.evaluate('arenaDebug.state().motion')=='WolfClawRight'
  page.wait_for_function('()=>arenaDebug.state().attackCooldown===0',timeout=10000);page.evaluate('arenaDebug.action("fire")');assert page.evaluate('arenaDebug.state().motion')=='WolfClawLeft'
- page.locator('#arenaExit').click();page.locator('[data-nav=inventory]').click();page.evaluate('previewCharacter3D("bilge","human")');page.wait_for_function('()=>wolf3DInfo().loaded==="human-bilge"',timeout=90000);info=page.evaluate('wolf3DInfo()');assert 'HumanWalk' in info['clips']
+ page.locator('#arenaExit').click();page.locator('[data-nav=inventory]').click();page.locator('#loadoutCharacter').select_option('bilge');page.locator('#previewHuman').click();page.wait_for_function('()=>wolf3DInfo().loaded==="human-bilge"',timeout=90000);info=page.evaluate('wolf3DInfo()');assert 'HumanWalk' in info['clips']
  page.wait_for_timeout(1000);page.screenshot(path=str(R/'docs/native-pair-review/runtime-human.png'))
  # GLB selection in engine is explicit; confirm network fetched both new files.
  paths=page.evaluate('performance.getEntriesByType("resource").map(r=>r.name)');assert any('guardian-wolf.glb' in n for n in paths);assert any('guardian-human.glb' in n for n in paths)
