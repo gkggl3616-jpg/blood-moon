@@ -19,3 +19,7 @@ v0.1.13'te yalnız iki eli başın üstüne çıkaran bir hedef kurmuştum. Koll
 Bu çalışma görünen hareketi yeniden kurar; referans oyunun özgün animasyon dosyaları elimizde değildir. Matematiksel kabul sınırları tek başına sanatsal kaliteyi kanıtlamaz. Kullanıcının onayı yerine geçecek bir “aynısı oldu” iddiası yoktur. Diğer insan modellerinin önceki açık işleri bu odaklı düzeltmeyle tamamlanmış sayılmaz. Fiziksel telefon testi yapılmadı.
 
 Yerel kaynak/mesh/klip kontrolleri geçti. Dört kurtta gerçek oyun testi de geçti: bükülü/dışarıdaki dirsekler, baş üstü eller, hareket kilidi, efekt renkleri ve bonuslar kontrol edildi. [Gerçek oyun görüntüsü](verification-v014/actual-game-bilge.png). Temiz yayın testleri ayrıca kaydedilir. Teslim v0.1.14, versionCode 15; önceki sertifika korunarak tek APK üretilir.
+
+## Yayın doğrulaması
+
+[TEK APK v0.1.14](https://github.com/gkggl3616-jpg/blood-moon/releases/download/prototype-v0.1.14-20/Rogue-Blood-Moon-v0.1.14.apk). [Temiz yayın çalışması](https://github.com/gkggl3616-jpg/blood-moon/actions/runs/40632494108) başarılı: envanter, genel arena, dört kurt için yeni kol pozu/koşu/efekt ve paket testleri geçti. Yayımlanan dosya yeniden indirildi; sürüm kodu 15, CRC sağlam, 52 çalışma zamanı dosyası kaynakla birebir aynı, sertifika v0.1.13 ile aynı. [Paket raporu](verification-v014/published-apk.json). Görsel birebirlik kullanıcı tarafından henüz kabul edilmedi; fiziksel telefon testi yapılmadı.
