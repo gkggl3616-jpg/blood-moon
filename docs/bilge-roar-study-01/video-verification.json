@@ -1,0 +1,46 @@
+[
+  {
+    "file": "comparison.mp4",
+    "metadata": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 864,
+          "height": 570,
+          "avg_frame_rate": "30/1",
+          "nb_read_frames": "207"
+        }
+      ],
+      "format": {
+        "duration": "6.900000"
+      }
+    },
+    "bytes": 2615406,
+    "sha256": "b23e1cc9636e6a77488a3907b7ebfac80d3cc5896780afdecd85d44d646fe8a9",
+    "full_decode": "PASS"
+  },
+  {
+    "file": "front-side.mp4",
+    "metadata": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 864,
+          "height": 570,
+          "avg_frame_rate": "30/1",
+          "nb_read_frames": "207"
+        }
+      ],
+      "format": {
+        "duration": "6.900000"
+      }
+    },
+    "bytes": 2345883,
+    "sha256": "3e480b803cd471bc47d314767cb30423a26dff140d1093859c30ac084511bb57",
+    "full_decode": "PASS"
+  }
+]
