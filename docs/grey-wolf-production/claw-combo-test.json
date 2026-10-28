@@ -1,0 +1,17 @@
+{
+  "right_clip": "WolfClawRight",
+  "left_clip": "WolfClawLeft",
+  "rejected_input_does_not_advance": true,
+  "single_hit_first_attack": true,
+  "first_target_hp": 42.60000000000001,
+  "held_input_sides": [
+    "right",
+    "left",
+    "right"
+  ],
+  "left_trail_matches_hand": true,
+  "errors": [],
+  "distance_driven_human_sway": true,
+  "sway_settles_on_stop": true,
+  "new_character_animation_quality": "NOT evaluated; legacy arm-mask compatibility only"
+}

@@ -17,3 +17,20 @@ Sonraki uygulama sırası: onay → gerekirse cihaz girişi ve bakiye kontrolü 
 ## Son el ve ayak düzeltmesi
 
 Kullanıcı tam açık parmakları ve mekanik ayak duruşunu reddetti. Yeni [doğal duruş referansı](../../art/characters/grey-wolf-production/fullbody-natural-pose.png) bu noktada önceki tam boy A-pozu görselinin yerini alır. Eller yarı kapalı, parmaklar kademeli kıvrık, bilekler doğal; dizler esnek ve ağırlık dağılımı hafif asimetriktir. A-pozu teknik iskelet gereksinimi olarak kalabilir, ancak açık mekanik eller görsel hedef değildir. Ana prompt, İngilizce brif, negatif prompt ve henüz gönderilmemiş üretim kaydı güncellendi. Yeni ücretli 3B görev başlatılmadı.
+
+## İnsan formu, yürüyüş ve tek kollu saldırı ek kapsamı
+
+Kullanıcı iki form için doğal yürüyüş/salınım, bu kurdun insan karşılığı ve her vuruşta değişen tek saldıran kol istedi. Ana promptun 10. bölümü bu hareketleri, fazları, geçişleri ve testlerini ayrıntılandırır. [İnsan görünüş referansı](../../art/characters/grey-wolf-production/human-counterpart-reference.png) ve [insan üretim brifi](../../art/characters/grey-wolf-production/HUMAN-PROMPT-EN.txt) kaydedildi; bunlar henüz rigli 3B insan varlığı değildir.
+
+Oyunun kaynak kodunda sağ/sol saldırı sırası, sadece kabul edilmiş vuruşta ilerleme ve tarafa göre pençe izi eklendi. Mevcut eski çift kollu klip için taraf maskesi oluşturulur; yeni varlıkta özel `WolfClawRight/Left` varsa onlar korunur. Bu uyumluluk katmanı yeni karakterin tamamlanmış profesyonel saldırı animasyonu olarak sunulmaz. Yeni yürüyüş klipleri, insan 3B modeli ve yeni karaktere özel saldırı klipleri henüz üretilmedi. Yeni ücretli Meshy görevi gönderilmedi; önceki tek kurt iş kaydı otomatik olarak iki karakterlik onay sayılmaz.
+
+### Bu turdaki uygulama ve doğrulama
+
+- `tools/viewer/claw-combo.js`: kabul edilen vuruşlarda sağ/sol sırası; geçersiz basış sırayı ilerletmez. Yeni modele ait özel taraf klipleri korunur; eski `WolfClaw` için karşı kol izleri klipten çıkarılan bir uyumluluk maskesi oluşturulur.
+- Arena, vuruş tarafına uygun klibi ve pençe izi yönünü kullanır. Mevcut tek temas/tek hasar ve siper kontrolü korunur.
+- `motion.js`, yeni `WolfWalk/HumanWalk` kliplerini ve `walk_stride_m` verisini okuyabilir; gerçek ilerleme hızına göre klip hızını ayarlar. Eski klipler için mevcut 3,6 m/sn kalibrasyon varsayımı uyumluluk olarak kalır; bu eski kliplerin yeni gerçekçi yürüyüş olduğu anlamına gelmez. Yeni kliplerde gerçek adım mesafesi kaydedilmelidir.
+- İnsan birinci şahıs el/silah salınımı artık yalnız geçen zamana göre ilerlemez: yerde kat edilen mesafeden faz alır, duruşta ve havada yumuşakça söner. Bu, tam bedenin pelvis/göğüs animasyonunun yerine geçmez.
+- `node tools/test_walk_contract.mjs`: yeni yürüyüş seçimi, mesafe/süre kalibrasyonu, eski klip uyumluluğu geçti.
+- `node tools/test_claw_combo.mjs`: sıra ve tek etkin kol maskeleri geçti.
+- `python tools/verify_claw_combo.py`: gerçek arena üzerinde sağ/sol, reddedilen basış, basılı tutmada sağ/sol/sağ, ilk saldırıda tek hasar, sol el izi ve insan salınımının duruşta sönmesi geçti. JavaScript hata listesi boş. Kanıt: [claw-combo-test.json](claw-combo-test.json).
+- Web varlık paketi yeniden derlendi. Yeni APK yayımlanmadı. İnsan görünüş referansı 2B'dir; yeni iki formun gerçek mesh/iskeletleri ve doğal tam beden yürüyüş/özel saldırı klipleri açık iştir.

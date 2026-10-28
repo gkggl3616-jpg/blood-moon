@@ -123,3 +123,38 @@ Net görüntü varsayılanı, ayarlanabilir bakış hassasiyeti, yumuşak gerçe
 ## 9. Kesin ret nedenleri
 
 Referanstan uzak oyuncak yüz; yuvarlak gözler; kısa/şişkin burun; aşırı iri yele; kâğıt gibi sivri levha kürk; kopuk kürelerden oluşan deri; yana taşan dirsekler; eriyen koltuk altı; esneyen kemikler; avuçtan ayrılan parmaklar; kumaşı sürükleyen kol ağırlıkları; sahte ağız açıklığı; zeminden kopan destek ayakları; kayarak ilerleme; uzun ileri fırlatan takla; hareketi erken kesen döngü; efektsiz bakıldığında bozulan gövde; yalnız renk değiştirip yeni model tamamlandı deme; 2B renderı gerçek 3B teslim gibi sunma.
+
+## 10. Güncel ek kapsam — insan formu, doğal yürüyüş ve dönüşümlü pençe
+
+### Aynı karakterin insan formu
+
+Bu kurtla eşleşen bir insan formu da gereklidir. Görsel tasarım referansı `art/characters/grey-wolf-production/human-counterpart-reference.png`; bu 2B referans, tamamlanmış 3B insan modeli değildir. Yetişkin, güçlü ve gerçekçi oranlı bir erkek savaşçı; koyu kısa saç, ölçülü gri şakak, köşeli yüz ve kısa sakal; normal gri/mavi gözler. Koyu antrasit taktik gömlek, aynı kamuflaj pantolon, aynı kemer, aynı uyluk kılıfı ve görüntünün sağındaki aynı deri kol bağı iki formun kimliğini bağlasın. İnsan elleri beş parmaklı, normal insan anatomisinde; ayaklarda işlevsel botlar olsun. Kurt tırnağı, parlayan göz veya yeni kraliyet kostümü ekleme.
+
+İnsan ve kurt ayrı doğru oranlı mesh/iskelet varlıklarıdır. İnsanı kurdun derisini renklendirerek üretme. İnsan için toplam yaklaşık 12.000, kurt için yaklaşık 15.000 üçgen hedefi geçerlidir. İki forma da aynı fiziksel boy veya aynı omuz genişliğini zorla uygulama; poz aktarımında oran uyarlaması yap. İnsan birinci şahıs görünümü, dönüşüm ve envanterdeki tam beden önizleme aynı donanım verilerini paylaşmalı. İnsan formunun ayrı ücretli 3B üretimi bu yeni isteğin gereğidir; önceki tek kurt üretim onayına otomatik eklenmiş sayılmaz.
+
+### Yürüyüş — yalnız koşuyu yavaşlatma
+
+İnsan ve kurt için ayrı doğal iki ayak yürüyüşü üret. Kurdun dört ayak koşusu bundan ayrı kliptir. Yeni kaynakta `HumanWalk` ve `WolfWalk` adları kullanılabilir; eski `HumanMove` / `WolfMove` adları için açık uyumluluk eşlemesi yap. Yürüyüşü dört ayak koşu klibinin hızını düşürerek oluşturma.
+
+1. Sol topuk/ayak tabanı temas → ağırlığı kabul → tek ayak üzerinde taşıma → diğer bacağın geçişi → itiş → karşı ayak temas fazlarını kur. İki taraf arasında doğal ama kontrollü küçük farklar olabilir.
+2. Kalça taşıyan ayağa doğru hafifçe yer değiştirsin. Pelviste küçük dönme ve yana eğilme; göğüste buna karşı hafif dönüş bulunsun. Gövde tek parça yana sallanan direk gibi olmasın.
+3. Baş ve bakış hedefi gövde hareketini yumuşakça dengelesin. Omuz ve baş her adımda aynı açıyla mekanik biçimde dönmesin. Büyük kafa sallanması veya mide bulandıran kamera hareketi yok.
+4. Başlangıç sanat ayarı olarak pelvis yana hareketi yaklaşık 1–2 cm, dikey hareket 1–3 cm; pelvis dönüşü 2–4°, göğüs karşı dönüşü 1–3°, serbest kol salınımı 8–15° denenebilir. Bunlar ölçülmüş referans değerleri veya sabit zorunlu sınırlar değildir; model boyuna ve görüntüye göre ayarlanır.
+5. Sağ bacak öne giderken sol kol, sol bacak öne giderken sağ kol doğal karşı salınım yapsın. Dirsek ve bilekte küçük gecikme olsun; el parmakları gevşek yarı kıvrık kalsın. İnsan silahı iki eliyle tutuyorsa serbest kol salınımını silahın üzerine zorla bindirme; üst beden nişan katmanı ile alt beden yürüyüşünü ayır.
+6. Destek tabanı dünya üzerinde kaymasın; sallanan ayak yeterince yerden ayrılsın. Diz yönü ayakla uyumlu olsun; dizler birbirinin içinden geçmesin, bacak boyları değişmesin.
+7. Gerçek ilerleme hızı, adım boyu ve klip süresi birlikte ayarlansın: tam döngü mesafesi / döngü süresi = referans oynanış hızı. Karakter boyu farklıysa mesafeyi ve süreyi açıkça yeniden değerlendir. İleri yürüyüş yanında geri ve yan hareketlerin gereksinimi de kaydedilsin; ileri yürüyüşü yanlış yönde kaydırarak tamamlandı deme.
+8. Bekleme→ilk adım, yürüme→durma, yön değiştirme ve yürüme→koşu geçişleri ayağın o anki destek fazını korusun. Tek karelik poz sıçraması veya ani kamera zıplaması olmasın.
+9. İnsan birinci şahısta silah/ellerde hafif, adımla uyumlu sallanma olabilir. Kamera etkisi küçük ve ayarlanabilir olsun; nişangâhı büyük dairelerde gezdirme. Mobil bakış yönü ve hassasiyet düzeltmeleri korunur.
+10. Yürüyüş kliplerini tam döngüde ön, yan ve arka açılardan izle. Başlangıç/son dikişi, destek ayağının dünya konum hatası, topuk/ayak ucu yerden açıklığı ve gerçek mesafe/zaman ayrı ölçülsün.
+
+### Pençe — her vuruşta yalnız bir saldıran kol
+
+Başlangıç sırası sağ → sol → sağ → sol olsun. Her kabul edilmiş saldırı bir sonraki kolu belirlesin. Bekleme süresinde, kükremede, dönüşümde veya geçersiz durumda reddedilen düğme basışı sırayı ilerletmesin. Yeni doğuşta veya karakter değişiminde başlangıç sağ kola dönebilir; bu davranış açıkça tanımlansın.
+
+`WolfClawRight` ve `WolfClawLeft` ayrı kliplerdir. Saldıran kol hazırlık, hızlanma, temas ve toparlanma yayını tamamlar. Diğer kol büyük bir saldırı savurmaz; denge/koruma pozunda kalır, gövde aktarımından küçük doğal hareket alabilir. Omuz, kürek kemiği, göğüs ve pelvis vuruşla uyumlu dönsün. Animasyon sırf bütün karakteri aynalayarak üretilmesin; deri sarımı ve kılıf karşı kola taşınmasın.
+
+İlk zamanlama denemesi olarak yaklaşık 0,65 sn vuruş içinde 0–0,12 hazırlık, 0,12–0,30 hızlanma/temas ve kalan bölüm toparlanma kullanılabilir. Bunlar yerel başlangıç ayarıdır. Temas penceresi son klibin el yoluna göre düzenlenir. Hasar bir saldırı kimliği için tek kez uygulanır; her karede veya her pençe parçasında tekrar tekrar sayılmaz. Mevcut siper görüş/temas kontrolü korunur. Sağ/sol için sırf animasyon değişti diye farklı hasar veya erişim uydurma.
+
+Pençe izi saldıran elin tarafını ve gerçek el yolunu izlemeli; sol vuruşta sağ kolun önünde görünmemeli. Hazırlıkta erken iz başlatma; toparlanma sonunda iz kısa sürede sönsün. Alev/dövme katmanı vuruşun iskeletini ve temas anını örtmesin.
+
+Testler: art arda dört vuruş sağ/sol/sağ/sol; bekleme süresindeki ek basışın sırayı etkilememesi; basılı tuş ile aynı sıra; tek vuruş/tek hasar; siper arkasına hasar geçmemesi; vuruş sırasında yalnız etkin kolun saldırı yayı; doğru tarafta iz; karakter değişiminde sıfırlama; yeni rigde kemik adlarının eşlenmesi. Eski iki kollu klibi maskelemek bir uyumluluk çözümüdür; yeni karakterin özel sol/sağ animasyonlarının tamamlandığı anlamına gelmez.
