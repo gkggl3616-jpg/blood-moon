@@ -1,0 +1,13 @@
+{
+  "version": "0.1.0",
+  "built_commit": "2099d747cfbd841ef58d78134e179307ee01a6f3",
+  "windows_run": "https://github.com/gkggl3616-jpg/blood-moon/actions/runs/40719305472",
+  "release": "https://github.com/gkggl3616-jpg/blood-moon/releases/tag/xfs-browser-v0.1.0",
+  "download": "https://github.com/gkggl3616-jpg/blood-moon/releases/download/xfs-browser-v0.1.0/XFS-Gezgini.exe",
+  "exe_bytes": 11409927,
+  "sha256": "de6cd9bf52959f06927dd3be55ef22739339a04c4dec47c9bbc2cdc7de41b0a5",
+  "packaged_exe_smoke_test": "PASS on Windows",
+  "local_core_and_gui": "14 passed",
+  "real_user_xfs_tested": false,
+  "three_d_preview": false
+}
