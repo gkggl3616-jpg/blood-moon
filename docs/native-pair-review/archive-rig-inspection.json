@@ -1,0 +1,8838 @@
+[
+  {
+    "file": "r1_wolf.ltb",
+    "bytes": 3485256,
+    "sha256": "09ae380ec3e42173d4223e7c998268d91d27f53ce16a20cdbbd96baf5d3542e3",
+    "parsed": true,
+    "version": 25,
+    "node_count": 54,
+    "nodes": [
+      {
+        "name": "Scene Root",
+        "index": 0,
+        "parent": null
+      },
+      {
+        "name": "Bip01",
+        "index": 1,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "Bip01 Pelvis",
+        "index": 2,
+        "parent": "Bip01"
+      },
+      {
+        "name": "Bip01 Spine",
+        "index": 3,
+        "parent": "Bip01 Pelvis"
+      },
+      {
+        "name": "Bip01 Spine1",
+        "index": 4,
+        "parent": "Bip01 Spine"
+      },
+      {
+        "name": "Bip01 Spine2",
+        "index": 5,
+        "parent": "Bip01 Spine1"
+      },
+      {
+        "name": "Bip01 Neck",
+        "index": 6,
+        "parent": "Bip01 Spine2"
+      },
+      {
+        "name": "Bip01 Head",
+        "index": 7,
+        "parent": "Bip01 Neck"
+      },
+      {
+        "name": "Bip01 Ponytail1",
+        "index": 8,
+        "parent": "Bip01 Head"
+      },
+      {
+        "name": "hair01",
+        "index": 9,
+        "parent": "Bip01 Head"
+      },
+      {
+        "name": "hair02",
+        "index": 10,
+        "parent": "Bip01 Neck"
+      },
+      {
+        "name": "Bip01 L Clavicle",
+        "index": 11,
+        "parent": "Bip01 Neck"
+      },
+      {
+        "name": "Bip01 L UpperArm",
+        "index": 12,
+        "parent": "Bip01 L Clavicle"
+      },
+      {
+        "name": "Bip01 L Forearm",
+        "index": 13,
+        "parent": "Bip01 L UpperArm"
+      },
+      {
+        "name": "Bip01 L Hand",
+        "index": 14,
+        "parent": "Bip01 L Forearm"
+      },
+      {
+        "name": "Bip01 L Finger0",
+        "index": 15,
+        "parent": "Bip01 L Hand"
+      },
+      {
+        "name": "Bip01 L Finger01",
+        "index": 16,
+        "parent": "Bip01 L Finger0"
+      },
+      {
+        "name": "Bip01 L Finger1",
+        "index": 17,
+        "parent": "Bip01 L Hand"
+      },
+      {
+        "name": "Bip01 L Finger11",
+        "index": 18,
+        "parent": "Bip01 L Finger1"
+      },
+      {
+        "name": "Bip01 L Finger2",
+        "index": 19,
+        "parent": "Bip01 L Hand"
+      },
+      {
+        "name": "Bip01 L Finger21",
+        "index": 20,
+        "parent": "Bip01 L Finger2"
+      },
+      {
+        "name": "L_Twist",
+        "index": 21,
+        "parent": "Bip01 L Forearm"
+      },
+      {
+        "name": "Bip01 L ForeTwist",
+        "index": 22,
+        "parent": "Bip01 L UpperArm"
+      },
+      {
+        "name": "Bip01 R Clavicle",
+        "index": 23,
+        "parent": "Bip01 Neck"
+      },
+      {
+        "name": "Bip01 R UpperArm",
+        "index": 24,
+        "parent": "Bip01 R Clavicle"
+      },
+      {
+        "name": "Bip01 R Forearm",
+        "index": 25,
+        "parent": "Bip01 R UpperArm"
+      },
+      {
+        "name": "Bip01 R Hand",
+        "index": 26,
+        "parent": "Bip01 R Forearm"
+      },
+      {
+        "name": "Bip01 R Finger0",
+        "index": 27,
+        "parent": "Bip01 R Hand"
+      },
+      {
+        "name": "Bip01 R Finger01",
+        "index": 28,
+        "parent": "Bip01 R Finger0"
+      },
+      {
+        "name": "Bip01 R Finger1",
+        "index": 29,
+        "parent": "Bip01 R Hand"
+      },
+      {
+        "name": "Bip01 R Finger11",
+        "index": 30,
+        "parent": "Bip01 R Finger1"
+      },
+      {
+        "name": "Bip01 R Finger2",
+        "index": 31,
+        "parent": "Bip01 R Hand"
+      },
+      {
+        "name": "Bip01 R Finger21",
+        "index": 32,
+        "parent": "Bip01 R Finger2"
+      },
+      {
+        "name": "R_Twist",
+        "index": 33,
+        "parent": "Bip01 R Forearm"
+      },
+      {
+        "name": "Bip01 R ForeTwist",
+        "index": 34,
+        "parent": "Bip01 R UpperArm"
+      },
+      {
+        "name": "Neck_Bone001",
+        "index": 35,
+        "parent": "Bip01 Spine2"
+      },
+      {
+        "name": "hair03",
+        "index": 36,
+        "parent": "Bip01 Spine2"
+      },
+      {
+        "name": "Bip01 L Thigh",
+        "index": 37,
+        "parent": "Bip01 Pelvis"
+      },
+      {
+        "name": "Bip01 L Calf",
+        "index": 38,
+        "parent": "Bip01 L Thigh"
+      },
+      {
+        "name": "Bip01 L HorseLink",
+        "index": 39,
+        "parent": "Bip01 L Calf"
+      },
+      {
+        "name": "Bip01 L Foot",
+        "index": 40,
+        "parent": "Bip01 L HorseLink"
+      },
+      {
+        "name": "Bip01 L Toe0",
+        "index": 41,
+        "parent": "Bip01 L Foot"
+      },
+      {
+        "name": "Bip01 R Thigh",
+        "index": 42,
+        "parent": "Bip01 Pelvis"
+      },
+      {
+        "name": "Bip01 R Calf",
+        "index": 43,
+        "parent": "Bip01 R Thigh"
+      },
+      {
+        "name": "Bip01 R HorseLink",
+        "index": 44,
+        "parent": "Bip01 R Calf"
+      },
+      {
+        "name": "Bip01 R Foot",
+        "index": 45,
+        "parent": "Bip01 R HorseLink"
+      },
+      {
+        "name": "Bip01 R Toe0",
+        "index": 46,
+        "parent": "Bip01 R Foot"
+      },
+      {
+        "name": "n_PosRoute",
+        "index": 47,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend01",
+        "index": 48,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend02",
+        "index": 49,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend03",
+        "index": 50,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend04",
+        "index": 51,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend05",
+        "index": 52,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_bFollowB",
+        "index": 53,
+        "parent": "Scene Root"
+      }
+    ],
+    "children": [],
+    "command_string": "",
+    "sockets": [
+      {
+        "name": "RightHand",
+        "node_index": 26
+      },
+      {
+        "name": "ChangeEffect",
+        "node_index": 5
+      },
+      {
+        "name": "Trail_Hand2",
+        "node_index": 18
+      },
+      {
+        "name": "Trail_Hand1",
+        "node_index": 30
+      },
+      {
+        "name": "WolfeyeL",
+        "node_index": 7
+      },
+      {
+        "name": "Fire_Start",
+        "node_index": 4
+      },
+      {
+        "name": "cry",
+        "node_index": 6
+      },
+      {
+        "name": "WolfeyeR",
+        "node_index": 7
+      },
+      {
+        "name": "Backpack",
+        "node_index": 4
+      },
+      {
+        "name": "RightHand2",
+        "node_index": 25
+      },
+      {
+        "name": "GlowL",
+        "node_index": 13
+      },
+      {
+        "name": "GlowR",
+        "node_index": 25
+      },
+      {
+        "name": "ice_ball",
+        "node_index": 26
+      },
+      {
+        "name": "LeftHand",
+        "node_index": 14
+      },
+      {
+        "name": "s_Identify",
+        "node_index": 12
+      },
+      {
+        "name": "LeftHand2",
+        "node_index": 13
+      },
+      {
+        "name": "FreezePoint0",
+        "node_index": 7
+      },
+      {
+        "name": "FreezePoint1",
+        "node_index": 11
+      },
+      {
+        "name": "FreezePoint2",
+        "node_index": 23
+      },
+      {
+        "name": "FreezePoint3",
+        "node_index": 4
+      },
+      {
+        "name": "FreezePoint4",
+        "node_index": 5
+      },
+      {
+        "name": "FreezePoint5",
+        "node_index": 4
+      },
+      {
+        "name": "FreezePoint6",
+        "node_index": 5
+      },
+      {
+        "name": "Trail_Hand3",
+        "node_index": 18
+      },
+      {
+        "name": "Illusion_1",
+        "node_index": 12
+      },
+      {
+        "name": "Illusion_2",
+        "node_index": 13
+      },
+      {
+        "name": "ChangeEffect1",
+        "node_index": 0
+      }
+    ],
+    "pieces": [
+      {
+        "name": "R1_Wolf_fur",
+        "material_index": 2,
+        "lods": [
+          {
+            "vertices": 581,
+            "triangles": 496,
+            "texture_slots": [
+              2,
+              1,
+              2,
+              3
+            ],
+            "vertices_with_weights": 581
+          }
+        ]
+      },
+      {
+        "name": "R1_Wolf_Body",
+        "material_index": 0,
+        "lods": [
+          {
+            "vertices": 5207,
+            "triangles": 4966,
+            "texture_slots": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "vertices_with_weights": 5207
+          }
+        ]
+      },
+      {
+        "name": "R1_Wolf_Armor2",
+        "material_index": 0,
+        "lods": [
+          {
+            "vertices": 238,
+            "triangles": 236,
+            "texture_slots": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "vertices_with_weights": 238
+          }
+        ]
+      },
+      {
+        "name": "R1_Wolf_Armor1",
+        "material_index": 0,
+        "lods": [
+          {
+            "vertices": 240,
+            "triangles": 208,
+            "texture_slots": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "vertices_with_weights": 240
+          }
+        ]
+      },
+      {
+        "name": "Tattoo_body",
+        "material_index": 10,
+        "lods": [
+          {
+            "vertices": 175,
+            "triangles": 186,
+            "texture_slots": [
+              10,
+              11,
+              12,
+              13
+            ],
+            "vertices_with_weights": 175
+          }
+        ]
+      },
+      {
+        "name": "Tattoo_Arm_L",
+        "material_index": 14,
+        "lods": [
+          {
+            "vertices": 42,
+            "triangles": 50,
+            "texture_slots": [
+              14,
+              15,
+              16,
+              17
+            ],
+            "vertices_with_weights": 42
+          }
+        ]
+      },
+      {
+        "name": "Tattoo_Arm_R",
+        "material_index": 18,
+        "lods": [
+          {
+            "vertices": 48,
+            "triangles": 50,
+            "texture_slots": [
+              18,
+              19,
+              20,
+              21
+            ],
+            "vertices_with_weights": 48
+          }
+        ]
+      }
+    ],
+    "animations": [
+      {
+        "name": "LSt",
+        "frames": 18,
+        "duration_ms": 1666,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "LC",
+        "frames": 51,
+        "duration_ms": 1666,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "LCWR",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "LCWB",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "LCWF",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "LCWL",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "LCWFR",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "LCWFL",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "LCWBL",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "LCWBR",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "LJJ",
+        "frames": 11,
+        "duration_ms": 133,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "LJL",
+        "frames": 11,
+        "duration_ms": 333,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "LJT",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "LRF",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "LRR",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "LRL",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "LRFR",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "LRFL",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "LWR",
+        "frames": 29,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "LWB",
+        "frames": 29,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "LWF",
+        "frames": 29,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "LWL",
+        "frames": 29,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "LWFR",
+        "frames": 29,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "LWFL",
+        "frames": 29,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "LWBL",
+        "frames": 29,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "LWBR",
+        "frames": 29,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "UMC",
+        "frames": 51,
+        "duration_ms": 1666,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "UMJJ",
+        "frames": 7,
+        "duration_ms": 133,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "UMJL",
+        "frames": 7,
+        "duration_ms": 333,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "UMJT",
+        "frames": 12,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "UMRF",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "UMRR",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "UMRL",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "UMWR",
+        "frames": 29,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "UMWF",
+        "frames": 29,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "UMWB",
+        "frames": 29,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "UMWL",
+        "frames": 29,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "UMCWR",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "UMCWB",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "UMCWF",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "UMCWL",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "UMSt",
+        "frames": 18,
+        "duration_ms": 1666,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "T_WallRide",
+        "frames": 19,
+        "duration_ms": 600,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "T_WallRide2",
+        "frames": 12,
+        "duration_ms": 1333,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "T_WallRideL",
+        "frames": 17,
+        "duration_ms": 533,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "T_WallRideR",
+        "frames": 17,
+        "duration_ms": 533,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "T_WallHold_L",
+        "frames": 41,
+        "duration_ms": 1333,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "T_WallHold_R",
+        "frames": 41,
+        "duration_ms": 1333,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "T_DFHS1",
+        "frames": 98,
+        "duration_ms": 3233,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "T_DFBS1",
+        "frames": 59,
+        "duration_ms": 1933,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "T_DFBB1",
+        "frames": 46,
+        "duration_ms": 1500,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "Twitch",
+        "frames": 1,
+        "duration_ms": 0,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "T_DBBS1",
+        "frames": 62,
+        "duration_ms": 2033,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "T_DBBB1",
+        "frames": 42,
+        "duration_ms": 1366,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "T_DBHS1",
+        "frames": 75,
+        "duration_ms": 2466,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "T_CRY",
+        "frames": 46,
+        "duration_ms": 1500,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "T_BITE",
+        "frames": 7,
+        "duration_ms": 267,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "T_DFBF1",
+        "frames": 45,
+        "duration_ms": 1466,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "T_DBBF1",
+        "frames": 78,
+        "duration_ms": 2566,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "LJA",
+        "frames": 24,
+        "duration_ms": 1166,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "UMFi3",
+        "frames": 11,
+        "duration_ms": 400,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "UMFi2",
+        "frames": 6,
+        "duration_ms": 400,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "UMFi1",
+        "frames": 7,
+        "duration_ms": 334,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "UMTR",
+        "frames": 9,
+        "duration_ms": 666,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "UMTH",
+        "frames": 10,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "UMTF",
+        "frames": 9,
+        "duration_ms": 667,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "Ui_idle",
+        "frames": 18,
+        "duration_ms": 1666,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "T_Specialatk",
+        "frames": 23,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "T_Bodyatk",
+        "frames": 4,
+        "duration_ms": 200,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "T_BodyatkL",
+        "frames": 7,
+        "duration_ms": 267,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "T_BodyatkR",
+        "frames": 9,
+        "duration_ms": 400,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "T_WallDash",
+        "frames": 19,
+        "duration_ms": 600,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "T_WallDashL",
+        "frames": 19,
+        "duration_ms": 600,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "T_WallDashR",
+        "frames": 19,
+        "duration_ms": 600,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "UMDe",
+        "frames": 11,
+        "duration_ms": 1333,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "T_WallDashAtk",
+        "frames": 36,
+        "duration_ms": 1166,
+        "compression": 0,
+        "transform_nodes": 54
+      }
+    ]
+  },
+  {
+    "file": "wt_wolf_ch.ltb",
+    "bytes": 2016341,
+    "sha256": "e86bf17b460b0654c2e3893087014412808caa2e3c3227046aecbc19d099a441",
+    "parsed": true,
+    "version": 25,
+    "node_count": 42,
+    "nodes": [
+      {
+        "name": "Scene Root",
+        "index": 0,
+        "parent": null
+      },
+      {
+        "name": "Bip01",
+        "index": 1,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "Bip01 Pelvis",
+        "index": 2,
+        "parent": "Bip01"
+      },
+      {
+        "name": "Bip01 Spine",
+        "index": 3,
+        "parent": "Bip01 Pelvis"
+      },
+      {
+        "name": "Bip01 Spine1",
+        "index": 4,
+        "parent": "Bip01 Spine"
+      },
+      {
+        "name": "Bip01 Spine2",
+        "index": 5,
+        "parent": "Bip01 Spine1"
+      },
+      {
+        "name": "Bip01 Neck",
+        "index": 6,
+        "parent": "Bip01 Spine2"
+      },
+      {
+        "name": "Bip01 Head",
+        "index": 7,
+        "parent": "Bip01 Neck"
+      },
+      {
+        "name": "Bip01 Ponytail1",
+        "index": 8,
+        "parent": "Bip01 Head"
+      },
+      {
+        "name": "Bip01 Ponytail11",
+        "index": 9,
+        "parent": "Bip01 Ponytail1"
+      },
+      {
+        "name": "Bip01 Ponytail2",
+        "index": 10,
+        "parent": "Bip01 Head"
+      },
+      {
+        "name": "Bip01 L Clavicle",
+        "index": 11,
+        "parent": "Bip01 Neck"
+      },
+      {
+        "name": "Bip01 L UpperArm",
+        "index": 12,
+        "parent": "Bip01 L Clavicle"
+      },
+      {
+        "name": "Bip01 L Forearm",
+        "index": 13,
+        "parent": "Bip01 L UpperArm"
+      },
+      {
+        "name": "Bip01 L Hand",
+        "index": 14,
+        "parent": "Bip01 L Forearm"
+      },
+      {
+        "name": "Bip01 L Finger0",
+        "index": 15,
+        "parent": "Bip01 L Hand"
+      },
+      {
+        "name": "Bip01 L Finger01",
+        "index": 16,
+        "parent": "Bip01 L Finger0"
+      },
+      {
+        "name": "Bip01 L Finger1",
+        "index": 17,
+        "parent": "Bip01 L Hand"
+      },
+      {
+        "name": "Bip01 L Finger11",
+        "index": 18,
+        "parent": "Bip01 L Finger1"
+      },
+      {
+        "name": "Bip01 R Clavicle",
+        "index": 19,
+        "parent": "Bip01 Neck"
+      },
+      {
+        "name": "Bip01 R UpperArm",
+        "index": 20,
+        "parent": "Bip01 R Clavicle"
+      },
+      {
+        "name": "Bip01 R Forearm",
+        "index": 21,
+        "parent": "Bip01 R UpperArm"
+      },
+      {
+        "name": "Bip01 R Hand",
+        "index": 22,
+        "parent": "Bip01 R Forearm"
+      },
+      {
+        "name": "Bip01 R Finger0",
+        "index": 23,
+        "parent": "Bip01 R Hand"
+      },
+      {
+        "name": "Bip01 R Finger01",
+        "index": 24,
+        "parent": "Bip01 R Finger0"
+      },
+      {
+        "name": "Bip01 R Finger1",
+        "index": 25,
+        "parent": "Bip01 R Hand"
+      },
+      {
+        "name": "Bip01 R Finger11",
+        "index": 26,
+        "parent": "Bip01 R Finger1"
+      },
+      {
+        "name": "Bip01 L Thigh",
+        "index": 27,
+        "parent": "Bip01 Spine"
+      },
+      {
+        "name": "Bip01 L Calf",
+        "index": 28,
+        "parent": "Bip01 L Thigh"
+      },
+      {
+        "name": "Bip01 L Foot",
+        "index": 29,
+        "parent": "Bip01 L Calf"
+      },
+      {
+        "name": "Bip01 L Toe0",
+        "index": 30,
+        "parent": "Bip01 L Foot"
+      },
+      {
+        "name": "Bip01 R Thigh",
+        "index": 31,
+        "parent": "Bip01 Spine"
+      },
+      {
+        "name": "Bip01 R Calf",
+        "index": 32,
+        "parent": "Bip01 R Thigh"
+      },
+      {
+        "name": "Bip01 R Foot",
+        "index": 33,
+        "parent": "Bip01 R Calf"
+      },
+      {
+        "name": "Bip01 R Toe0",
+        "index": 34,
+        "parent": "Bip01 R Foot"
+      },
+      {
+        "name": "n_PosRoute",
+        "index": 35,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend01",
+        "index": 36,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend02",
+        "index": 37,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend03",
+        "index": 38,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend04",
+        "index": 39,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend05",
+        "index": 40,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_bFollowBone",
+        "index": 41,
+        "parent": "Scene Root"
+      }
+    ],
+    "children": [],
+    "command_string": "",
+    "sockets": [
+      {
+        "name": "Backpack",
+        "node_index": 4
+      },
+      {
+        "name": "RightHand",
+        "node_index": 22
+      },
+      {
+        "name": "ChangeEffect",
+        "node_index": 5
+      },
+      {
+        "name": "Trail_Hand2",
+        "node_index": 18
+      },
+      {
+        "name": "Trail_Hand1",
+        "node_index": 26
+      },
+      {
+        "name": "Trail_Hand3",
+        "node_index": 25
+      },
+      {
+        "name": "WolfeyeL",
+        "node_index": 7
+      },
+      {
+        "name": "WolfeyeR",
+        "node_index": 7
+      },
+      {
+        "name": "Fire_Start",
+        "node_index": 4
+      },
+      {
+        "name": "cry",
+        "node_index": 6
+      },
+      {
+        "name": "ChangeEffect1",
+        "node_index": 5
+      }
+    ],
+    "pieces": [
+      {
+        "name": "WOLF_BODY_B",
+        "material_index": 0,
+        "lods": [
+          {
+            "vertices": 4590,
+            "triangles": 4026,
+            "texture_slots": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "vertices_with_weights": 4590
+          }
+        ]
+      },
+      {
+        "name": "WOLF_OBJ_B",
+        "material_index": 1,
+        "lods": [
+          {
+            "vertices": 415,
+            "triangles": 300,
+            "texture_slots": [
+              1,
+              1,
+              2,
+              3
+            ],
+            "vertices_with_weights": 415
+          }
+        ]
+      },
+      {
+        "name": "WOLF_Tattoo",
+        "material_index": 10,
+        "lods": [
+          {
+            "vertices": 279,
+            "triangles": 290,
+            "texture_slots": [
+              10,
+              11,
+              12,
+              13
+            ],
+            "vertices_with_weights": 279
+          }
+        ]
+      }
+    ],
+    "animations": [
+      {
+        "name": "LSt",
+        "frames": 12,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LC",
+        "frames": 12,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LCWR",
+        "frames": 20,
+        "duration_ms": 1266,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LCWB",
+        "frames": 27,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LCWF",
+        "frames": 24,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LCWL",
+        "frames": 22,
+        "duration_ms": 1266,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LCWFR",
+        "frames": 24,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LCWFL",
+        "frames": 24,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LCWBL",
+        "frames": 27,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LCWBR",
+        "frames": 27,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LJJ",
+        "frames": 5,
+        "duration_ms": 133,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LJL",
+        "frames": 9,
+        "duration_ms": 366,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LJT",
+        "frames": 3,
+        "duration_ms": 67,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LRF",
+        "frames": 17,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LRR",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LRL",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LRFR",
+        "frames": 17,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LRFL",
+        "frames": 17,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LWR",
+        "frames": 18,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LWB",
+        "frames": 24,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LWF",
+        "frames": 20,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LWL",
+        "frames": 14,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LWFR",
+        "frames": 20,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LWFL",
+        "frames": 21,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LWBL",
+        "frames": 24,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LWBR",
+        "frames": 24,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMC",
+        "frames": 12,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMJJ",
+        "frames": 5,
+        "duration_ms": 133,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMJL",
+        "frames": 9,
+        "duration_ms": 366,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMJT",
+        "frames": 3,
+        "duration_ms": 67,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMRF",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMRR",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMRL",
+        "frames": 22,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMWR",
+        "frames": 18,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMWF",
+        "frames": 20,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMWB",
+        "frames": 24,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMWL",
+        "frames": 14,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMCWR",
+        "frames": 20,
+        "duration_ms": 1266,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMCWB",
+        "frames": 27,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMCWF",
+        "frames": 24,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMCWL",
+        "frames": 22,
+        "duration_ms": 1266,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMSt",
+        "frames": 12,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMTr",
+        "frames": 3,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_WallRide",
+        "frames": 13,
+        "duration_ms": 533,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_wallRide2",
+        "frames": 27,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_DFHS1",
+        "frames": 54,
+        "duration_ms": 2733,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_DFBS1",
+        "frames": 36,
+        "duration_ms": 1866,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_DFBB1",
+        "frames": 19,
+        "duration_ms": 967,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "Twitch",
+        "frames": 5,
+        "duration_ms": 166,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_DBBS1",
+        "frames": 41,
+        "duration_ms": 1900,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_DBBB1",
+        "frames": 20,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_DBHS1",
+        "frames": 35,
+        "duration_ms": 2133,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_CRY",
+        "frames": 22,
+        "duration_ms": 1333,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_BITE",
+        "frames": 17,
+        "duration_ms": 1166,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_DFBF1",
+        "frames": 32,
+        "duration_ms": 1033,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_DBBF1",
+        "frames": 38,
+        "duration_ms": 1233,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LJA",
+        "frames": 18,
+        "duration_ms": 1200,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMFi3",
+        "frames": 14,
+        "duration_ms": 600,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMFi2",
+        "frames": 10,
+        "duration_ms": 400,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMFi1",
+        "frames": 10,
+        "duration_ms": 333,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "Ui_idle",
+        "frames": 41,
+        "duration_ms": 1333,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_Specialatk",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_Bodyatk",
+        "frames": 28,
+        "duration_ms": 900,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_BodyatkL",
+        "frames": 28,
+        "duration_ms": 900,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_BodyatkR",
+        "frames": 28,
+        "duration_ms": 900,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_WallDash",
+        "frames": 17,
+        "duration_ms": 533,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_WallDashL",
+        "frames": 17,
+        "duration_ms": 533,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_WallDashR",
+        "frames": 17,
+        "duration_ms": 533,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMDe",
+        "frames": 41,
+        "duration_ms": 1333,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_WallDashAtk",
+        "frames": 34,
+        "duration_ms": 900,
+        "compression": 0,
+        "transform_nodes": 42
+      }
+    ]
+  },
+  {
+    "file": "wt_wolf_guardian_ch.ltb",
+    "bytes": 1751902,
+    "sha256": "f5e1e35d3c95726ac8f47dd9200570697dd53c725731a243dbf7b96ae704deb7",
+    "parsed": true,
+    "version": 25,
+    "node_count": 40,
+    "nodes": [
+      {
+        "name": "Scene Root",
+        "index": 0,
+        "parent": null
+      },
+      {
+        "name": "Bip01",
+        "index": 1,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "Bip01 Pelvis",
+        "index": 2,
+        "parent": "Bip01"
+      },
+      {
+        "name": "Bip01 Spine",
+        "index": 3,
+        "parent": "Bip01 Pelvis"
+      },
+      {
+        "name": "Bip01 Spine1",
+        "index": 4,
+        "parent": "Bip01 Spine"
+      },
+      {
+        "name": "Bip01 Spine2",
+        "index": 5,
+        "parent": "Bip01 Spine1"
+      },
+      {
+        "name": "Bip01 Neck",
+        "index": 6,
+        "parent": "Bip01 Spine2"
+      },
+      {
+        "name": "Bip01 Head",
+        "index": 7,
+        "parent": "Bip01 Neck"
+      },
+      {
+        "name": "Bip01 Ponytail2",
+        "index": 8,
+        "parent": "Bip01 Head"
+      },
+      {
+        "name": "Bip01 L Clavicle",
+        "index": 9,
+        "parent": "Bip01 Neck"
+      },
+      {
+        "name": "Bip01 L UpperArm",
+        "index": 10,
+        "parent": "Bip01 L Clavicle"
+      },
+      {
+        "name": "Bip01 L Forearm",
+        "index": 11,
+        "parent": "Bip01 L UpperArm"
+      },
+      {
+        "name": "Bip01 L Hand",
+        "index": 12,
+        "parent": "Bip01 L Forearm"
+      },
+      {
+        "name": "Bip01 L Finger0",
+        "index": 13,
+        "parent": "Bip01 L Hand"
+      },
+      {
+        "name": "Bip01 L Finger01",
+        "index": 14,
+        "parent": "Bip01 L Finger0"
+      },
+      {
+        "name": "Bip01 L Finger1",
+        "index": 15,
+        "parent": "Bip01 L Hand"
+      },
+      {
+        "name": "Bip01 L Finger11",
+        "index": 16,
+        "parent": "Bip01 L Finger1"
+      },
+      {
+        "name": "Bip01 R Clavicle",
+        "index": 17,
+        "parent": "Bip01 Neck"
+      },
+      {
+        "name": "Bip01 R UpperArm",
+        "index": 18,
+        "parent": "Bip01 R Clavicle"
+      },
+      {
+        "name": "Bip01 R Forearm",
+        "index": 19,
+        "parent": "Bip01 R UpperArm"
+      },
+      {
+        "name": "Bip01 R Hand",
+        "index": 20,
+        "parent": "Bip01 R Forearm"
+      },
+      {
+        "name": "Bip01 R Finger0",
+        "index": 21,
+        "parent": "Bip01 R Hand"
+      },
+      {
+        "name": "Bip01 R Finger01",
+        "index": 22,
+        "parent": "Bip01 R Finger0"
+      },
+      {
+        "name": "Bip01 R Finger1",
+        "index": 23,
+        "parent": "Bip01 R Hand"
+      },
+      {
+        "name": "Bip01 R Finger11",
+        "index": 24,
+        "parent": "Bip01 R Finger1"
+      },
+      {
+        "name": "Bip01 L Thigh",
+        "index": 25,
+        "parent": "Bip01 Spine"
+      },
+      {
+        "name": "Bip01 L Calf",
+        "index": 26,
+        "parent": "Bip01 L Thigh"
+      },
+      {
+        "name": "Bip01 L Foot",
+        "index": 27,
+        "parent": "Bip01 L Calf"
+      },
+      {
+        "name": "Bip01 L Toe0",
+        "index": 28,
+        "parent": "Bip01 L Foot"
+      },
+      {
+        "name": "Bip01 R Thigh",
+        "index": 29,
+        "parent": "Bip01 Spine"
+      },
+      {
+        "name": "Bip01 R Calf",
+        "index": 30,
+        "parent": "Bip01 R Thigh"
+      },
+      {
+        "name": "Bip01 R Foot",
+        "index": 31,
+        "parent": "Bip01 R Calf"
+      },
+      {
+        "name": "Bip01 R Toe0",
+        "index": 32,
+        "parent": "Bip01 R Foot"
+      },
+      {
+        "name": "n_PosRoute",
+        "index": 33,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend01",
+        "index": 34,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend02",
+        "index": 35,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend03",
+        "index": 36,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend04",
+        "index": 37,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend05",
+        "index": 38,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_bFollowBone",
+        "index": 39,
+        "parent": "Scene Root"
+      }
+    ],
+    "children": [],
+    "command_string": "",
+    "sockets": [
+      {
+        "name": "RightHand",
+        "node_index": 20
+      },
+      {
+        "name": "ChangeEffect",
+        "node_index": 5
+      },
+      {
+        "name": "Trail_Hand2",
+        "node_index": 16
+      },
+      {
+        "name": "Trail_Hand1",
+        "node_index": 24
+      },
+      {
+        "name": "Trail_Hand3",
+        "node_index": 23
+      },
+      {
+        "name": "Fire_Start",
+        "node_index": 4
+      },
+      {
+        "name": "WolfeyeL",
+        "node_index": 7
+      },
+      {
+        "name": "WolfeyeR",
+        "node_index": 7
+      },
+      {
+        "name": "cry",
+        "node_index": 6
+      },
+      {
+        "name": "Backpack",
+        "node_index": 4
+      },
+      {
+        "name": "ChangeEffect1",
+        "node_index": 5
+      }
+    ],
+    "pieces": [
+      {
+        "name": "GUARDIAN",
+        "material_index": 0,
+        "lods": [
+          {
+            "vertices": 4464,
+            "triangles": 3946,
+            "texture_slots": [
+              0,
+              2,
+              2,
+              3
+            ],
+            "vertices_with_weights": 4464
+          }
+        ]
+      },
+      {
+        "name": "GUARDIAN_Tattoo",
+        "material_index": 10,
+        "lods": [
+          {
+            "vertices": 364,
+            "triangles": 388,
+            "texture_slots": [
+              10,
+              11,
+              12,
+              13
+            ],
+            "vertices_with_weights": 364
+          }
+        ]
+      },
+      {
+        "name": "Object01",
+        "material_index": 0,
+        "lods": [
+          {
+            "vertices": 547,
+            "triangles": 386,
+            "texture_slots": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "vertices_with_weights": 547
+          }
+        ]
+      }
+    ],
+    "animations": [
+      {
+        "name": "LSt",
+        "frames": 10,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LC",
+        "frames": 11,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LCWR",
+        "frames": 21,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LCWB",
+        "frames": 27,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LCWF",
+        "frames": 24,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LCWL",
+        "frames": 19,
+        "duration_ms": 1266,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LCWFR",
+        "frames": 24,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LCWFL",
+        "frames": 24,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LCWBL",
+        "frames": 27,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LCWBR",
+        "frames": 27,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LJJ",
+        "frames": 3,
+        "duration_ms": 133,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LJL",
+        "frames": 9,
+        "duration_ms": 366,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LJT",
+        "frames": 2,
+        "duration_ms": 66,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LRF",
+        "frames": 13,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LRR",
+        "frames": 13,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LRL",
+        "frames": 13,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LRFR",
+        "frames": 13,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LRFL",
+        "frames": 13,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LWR",
+        "frames": 17,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LWB",
+        "frames": 22,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LWF",
+        "frames": 24,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LWL",
+        "frames": 14,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LWFR",
+        "frames": 20,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LWFL",
+        "frames": 20,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LWBL",
+        "frames": 22,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LWBR",
+        "frames": 22,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMC",
+        "frames": 11,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMJJ",
+        "frames": 3,
+        "duration_ms": 133,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMJL",
+        "frames": 9,
+        "duration_ms": 366,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMJT",
+        "frames": 2,
+        "duration_ms": 66,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMRF",
+        "frames": 14,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMRR",
+        "frames": 19,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMRL",
+        "frames": 17,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMWR",
+        "frames": 17,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMWF",
+        "frames": 20,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMWB",
+        "frames": 22,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMWL",
+        "frames": 14,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMCWR",
+        "frames": 21,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMCWB",
+        "frames": 27,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMCWF",
+        "frames": 24,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMCWL",
+        "frames": 19,
+        "duration_ms": 1266,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMSt",
+        "frames": 11,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMTr",
+        "frames": 3,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "T_WallRide",
+        "frames": 13,
+        "duration_ms": 533,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "T_wallRide2",
+        "frames": 27,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "T_DFHS1",
+        "frames": 50,
+        "duration_ms": 2733,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "T_DFBS1",
+        "frames": 35,
+        "duration_ms": 1866,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "T_DFBB1",
+        "frames": 22,
+        "duration_ms": 1233,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "Twitch",
+        "frames": 5,
+        "duration_ms": 166,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "T_DBBS1",
+        "frames": 37,
+        "duration_ms": 1900,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "T_DBBB1",
+        "frames": 11,
+        "duration_ms": 1200,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "T_DBHS1",
+        "frames": 35,
+        "duration_ms": 2133,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "T_CRY",
+        "frames": 15,
+        "duration_ms": 1333,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "T_BITE",
+        "frames": 15,
+        "duration_ms": 1166,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMJA",
+        "frames": 14,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMFi3",
+        "frames": 15,
+        "duration_ms": 600,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMFi2",
+        "frames": 9,
+        "duration_ms": 400,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMFi1",
+        "frames": 9,
+        "duration_ms": 333,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "Ui_idle",
+        "frames": 41,
+        "duration_ms": 1333,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "T_Specialatk",
+        "frames": 37,
+        "duration_ms": 1200,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "T_Bodyatk",
+        "frames": 28,
+        "duration_ms": 900,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "T_BodyatkL",
+        "frames": 28,
+        "duration_ms": 900,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "T_BodyatkR",
+        "frames": 28,
+        "duration_ms": 900,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "T_WallDash",
+        "frames": 17,
+        "duration_ms": 533,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "T_WallDashL",
+        "frames": 17,
+        "duration_ms": 533,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "T_WallDashR",
+        "frames": 17,
+        "duration_ms": 533,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMDe",
+        "frames": 41,
+        "duration_ms": 1333,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "T_WallDashAtk",
+        "frames": 34,
+        "duration_ms": 900,
+        "compression": 0,
+        "transform_nodes": 40
+      }
+    ]
+  },
+  {
+    "file": "wt_wolf_guardian_r.ltb",
+    "bytes": 273811,
+    "sha256": "17e42588a9cc9250aba1dbc5c855af1124775bb51434bd9beeafa4b4f0cb336a",
+    "parsed": true,
+    "version": 25,
+    "node_count": 40,
+    "nodes": [
+      {
+        "name": "Scene Root",
+        "index": 0,
+        "parent": null
+      },
+      {
+        "name": "Bip01",
+        "index": 1,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "Bip01 Pelvis",
+        "index": 2,
+        "parent": "Bip01"
+      },
+      {
+        "name": "Bip01 Spine",
+        "index": 3,
+        "parent": "Bip01 Pelvis"
+      },
+      {
+        "name": "Bip01 Spine1",
+        "index": 4,
+        "parent": "Bip01 Spine"
+      },
+      {
+        "name": "Bip01 Spine2",
+        "index": 5,
+        "parent": "Bip01 Spine1"
+      },
+      {
+        "name": "Bip01 Neck",
+        "index": 6,
+        "parent": "Bip01 Spine2"
+      },
+      {
+        "name": "Bip01 Head",
+        "index": 7,
+        "parent": "Bip01 Neck"
+      },
+      {
+        "name": "Bip01 Ponytail2",
+        "index": 8,
+        "parent": "Bip01 Head"
+      },
+      {
+        "name": "Bip01 L Clavicle",
+        "index": 9,
+        "parent": "Bip01 Neck"
+      },
+      {
+        "name": "Bip01 L UpperArm",
+        "index": 10,
+        "parent": "Bip01 L Clavicle"
+      },
+      {
+        "name": "Bip01 L Forearm",
+        "index": 11,
+        "parent": "Bip01 L UpperArm"
+      },
+      {
+        "name": "Bip01 L Hand",
+        "index": 12,
+        "parent": "Bip01 L Forearm"
+      },
+      {
+        "name": "Bip01 L Finger0",
+        "index": 13,
+        "parent": "Bip01 L Hand"
+      },
+      {
+        "name": "Bip01 L Finger01",
+        "index": 14,
+        "parent": "Bip01 L Finger0"
+      },
+      {
+        "name": "Bip01 L Finger1",
+        "index": 15,
+        "parent": "Bip01 L Hand"
+      },
+      {
+        "name": "Bip01 L Finger11",
+        "index": 16,
+        "parent": "Bip01 L Finger1"
+      },
+      {
+        "name": "Bip01 R Clavicle",
+        "index": 17,
+        "parent": "Bip01 Neck"
+      },
+      {
+        "name": "Bip01 R UpperArm",
+        "index": 18,
+        "parent": "Bip01 R Clavicle"
+      },
+      {
+        "name": "Bip01 R Forearm",
+        "index": 19,
+        "parent": "Bip01 R UpperArm"
+      },
+      {
+        "name": "Bip01 R Hand",
+        "index": 20,
+        "parent": "Bip01 R Forearm"
+      },
+      {
+        "name": "Bip01 R Finger0",
+        "index": 21,
+        "parent": "Bip01 R Hand"
+      },
+      {
+        "name": "Bip01 R Finger01",
+        "index": 22,
+        "parent": "Bip01 R Finger0"
+      },
+      {
+        "name": "Bip01 R Finger1",
+        "index": 23,
+        "parent": "Bip01 R Hand"
+      },
+      {
+        "name": "Bip01 R Finger11",
+        "index": 24,
+        "parent": "Bip01 R Finger1"
+      },
+      {
+        "name": "Bip01 L Thigh",
+        "index": 25,
+        "parent": "Bip01 Spine"
+      },
+      {
+        "name": "Bip01 L Calf",
+        "index": 26,
+        "parent": "Bip01 L Thigh"
+      },
+      {
+        "name": "Bip01 L Foot",
+        "index": 27,
+        "parent": "Bip01 L Calf"
+      },
+      {
+        "name": "Bip01 L Toe0",
+        "index": 28,
+        "parent": "Bip01 L Foot"
+      },
+      {
+        "name": "Bip01 R Thigh",
+        "index": 29,
+        "parent": "Bip01 Spine"
+      },
+      {
+        "name": "Bip01 R Calf",
+        "index": 30,
+        "parent": "Bip01 R Thigh"
+      },
+      {
+        "name": "Bip01 R Foot",
+        "index": 31,
+        "parent": "Bip01 R Calf"
+      },
+      {
+        "name": "Bip01 R Toe0",
+        "index": 32,
+        "parent": "Bip01 R Foot"
+      },
+      {
+        "name": "n_PosRoute",
+        "index": 33,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend01",
+        "index": 34,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend02",
+        "index": 35,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend03",
+        "index": 36,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend04",
+        "index": 37,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend05",
+        "index": 38,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_bFollowBone",
+        "index": 39,
+        "parent": "Scene Root"
+      }
+    ],
+    "children": [
+      "WT_WOLF_GUARDIAN_CH.ltb"
+    ],
+    "command_string": "",
+    "sockets": [
+      {
+        "name": "ChangeEffect",
+        "node_index": 5
+      },
+      {
+        "name": "Trail_Hand2",
+        "node_index": 16
+      },
+      {
+        "name": "Trail_Hand1",
+        "node_index": 24
+      },
+      {
+        "name": "Trail_Hand3",
+        "node_index": 23
+      },
+      {
+        "name": "Fire_Start",
+        "node_index": 4
+      },
+      {
+        "name": "WolfeyeL",
+        "node_index": 7
+      },
+      {
+        "name": "WolfeyeR",
+        "node_index": 7
+      },
+      {
+        "name": "cry",
+        "node_index": 6
+      },
+      {
+        "name": "Backpack",
+        "node_index": 4
+      },
+      {
+        "name": "FreezePoint0",
+        "node_index": 7
+      },
+      {
+        "name": "FreezePoint1",
+        "node_index": 9
+      },
+      {
+        "name": "FreezePoint2",
+        "node_index": 17
+      },
+      {
+        "name": "FreezePoint3",
+        "node_index": 4
+      },
+      {
+        "name": "FreezePoint4",
+        "node_index": 5
+      },
+      {
+        "name": "FreezePoint5",
+        "node_index": 4
+      },
+      {
+        "name": "FreezePoint6",
+        "node_index": 5
+      },
+      {
+        "name": "GlowL",
+        "node_index": 11
+      },
+      {
+        "name": "GlowR",
+        "node_index": 19
+      },
+      {
+        "name": "RightHand2",
+        "node_index": 19
+      },
+      {
+        "name": "LeftHand2",
+        "node_index": 11
+      },
+      {
+        "name": "RightHand",
+        "node_index": 20
+      },
+      {
+        "name": "LeftHand",
+        "node_index": 12
+      },
+      {
+        "name": "s_Identify",
+        "node_index": 10
+      }
+    ],
+    "pieces": [
+      {
+        "name": "GUARDIAN",
+        "material_index": 0,
+        "lods": [
+          {
+            "vertices": 4464,
+            "triangles": 3946,
+            "texture_slots": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "vertices_with_weights": 4464
+          }
+        ]
+      },
+      {
+        "name": "Tattoo_Body",
+        "material_index": 10,
+        "lods": [
+          {
+            "vertices": 321,
+            "triangles": 388,
+            "texture_slots": [
+              10,
+              11,
+              12,
+              13
+            ],
+            "vertices_with_weights": 321
+          }
+        ]
+      },
+      {
+        "name": "Object01",
+        "material_index": 0,
+        "lods": [
+          {
+            "vertices": 547,
+            "triangles": 386,
+            "texture_slots": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "vertices_with_weights": 547
+          }
+        ]
+      },
+      {
+        "name": "Tattoo_Arm_L",
+        "material_index": 14,
+        "lods": [
+          {
+            "vertices": 44,
+            "triangles": 51,
+            "texture_slots": [
+              14,
+              15,
+              16,
+              17
+            ],
+            "vertices_with_weights": 44
+          }
+        ]
+      },
+      {
+        "name": "Tattoo_Arm_R",
+        "material_index": 18,
+        "lods": [
+          {
+            "vertices": 44,
+            "triangles": 51,
+            "texture_slots": [
+              18,
+              19,
+              20,
+              21
+            ],
+            "vertices_with_weights": 44
+          }
+        ]
+      }
+    ],
+    "animations": [
+      {
+        "name": "@figure",
+        "frames": 1,
+        "duration_ms": 0,
+        "compression": 0,
+        "transform_nodes": 40
+      }
+    ]
+  },
+  {
+    "file": "wt_wolf_hacker.ltb",
+    "bytes": 3971123,
+    "sha256": "cf28d05143189dedb2f76c59c13cd78a8809220f2c7e0564e7bd68016419a279",
+    "parsed": true,
+    "version": 25,
+    "node_count": 54,
+    "nodes": [
+      {
+        "name": "Scene Root",
+        "index": 0,
+        "parent": null
+      },
+      {
+        "name": "Bip01",
+        "index": 1,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "Bip01 Pelvis",
+        "index": 2,
+        "parent": "Bip01"
+      },
+      {
+        "name": "Bip01 Spine",
+        "index": 3,
+        "parent": "Bip01 Pelvis"
+      },
+      {
+        "name": "Bip01 Spine1",
+        "index": 4,
+        "parent": "Bip01 Spine"
+      },
+      {
+        "name": "Bip01 Spine2",
+        "index": 5,
+        "parent": "Bip01 Spine1"
+      },
+      {
+        "name": "Bip01 Neck",
+        "index": 6,
+        "parent": "Bip01 Spine2"
+      },
+      {
+        "name": "Bip01 Head",
+        "index": 7,
+        "parent": "Bip01 Neck"
+      },
+      {
+        "name": "Bip01 Ponytail1",
+        "index": 8,
+        "parent": "Bip01 Head"
+      },
+      {
+        "name": "hair01",
+        "index": 9,
+        "parent": "Bip01 Head"
+      },
+      {
+        "name": "hair02",
+        "index": 10,
+        "parent": "Bip01 Neck"
+      },
+      {
+        "name": "Bip01 L Clavicle",
+        "index": 11,
+        "parent": "Bip01 Neck"
+      },
+      {
+        "name": "Bip01 L UpperArm",
+        "index": 12,
+        "parent": "Bip01 L Clavicle"
+      },
+      {
+        "name": "Bip01 L Forearm",
+        "index": 13,
+        "parent": "Bip01 L UpperArm"
+      },
+      {
+        "name": "Bip01 L Hand",
+        "index": 14,
+        "parent": "Bip01 L Forearm"
+      },
+      {
+        "name": "Bip01 L Finger0",
+        "index": 15,
+        "parent": "Bip01 L Hand"
+      },
+      {
+        "name": "Bip01 L Finger01",
+        "index": 16,
+        "parent": "Bip01 L Finger0"
+      },
+      {
+        "name": "Bip01 L Finger1",
+        "index": 17,
+        "parent": "Bip01 L Hand"
+      },
+      {
+        "name": "Bip01 L Finger11",
+        "index": 18,
+        "parent": "Bip01 L Finger1"
+      },
+      {
+        "name": "Bip01 L Finger2",
+        "index": 19,
+        "parent": "Bip01 L Hand"
+      },
+      {
+        "name": "Bip01 L Finger21",
+        "index": 20,
+        "parent": "Bip01 L Finger2"
+      },
+      {
+        "name": "L_Twist",
+        "index": 21,
+        "parent": "Bip01 L Forearm"
+      },
+      {
+        "name": "Bip01 L ForeTwist",
+        "index": 22,
+        "parent": "Bip01 L UpperArm"
+      },
+      {
+        "name": "Bip01 R Clavicle",
+        "index": 23,
+        "parent": "Bip01 Neck"
+      },
+      {
+        "name": "Bip01 R UpperArm",
+        "index": 24,
+        "parent": "Bip01 R Clavicle"
+      },
+      {
+        "name": "Bip01 R Forearm",
+        "index": 25,
+        "parent": "Bip01 R UpperArm"
+      },
+      {
+        "name": "Bip01 R Hand",
+        "index": 26,
+        "parent": "Bip01 R Forearm"
+      },
+      {
+        "name": "Bip01 R Finger0",
+        "index": 27,
+        "parent": "Bip01 R Hand"
+      },
+      {
+        "name": "Bip01 R Finger01",
+        "index": 28,
+        "parent": "Bip01 R Finger0"
+      },
+      {
+        "name": "Bip01 R Finger1",
+        "index": 29,
+        "parent": "Bip01 R Hand"
+      },
+      {
+        "name": "Bip01 R Finger11",
+        "index": 30,
+        "parent": "Bip01 R Finger1"
+      },
+      {
+        "name": "Bip01 R Finger2",
+        "index": 31,
+        "parent": "Bip01 R Hand"
+      },
+      {
+        "name": "Bip01 R Finger21",
+        "index": 32,
+        "parent": "Bip01 R Finger2"
+      },
+      {
+        "name": "R_Twist",
+        "index": 33,
+        "parent": "Bip01 R Forearm"
+      },
+      {
+        "name": "Bip01 R ForeTwist",
+        "index": 34,
+        "parent": "Bip01 R UpperArm"
+      },
+      {
+        "name": "Neck_Bone001",
+        "index": 35,
+        "parent": "Bip01 Spine2"
+      },
+      {
+        "name": "hair03",
+        "index": 36,
+        "parent": "Bip01 Spine2"
+      },
+      {
+        "name": "Bip01 L Thigh",
+        "index": 37,
+        "parent": "Bip01 Pelvis"
+      },
+      {
+        "name": "Bip01 L Calf",
+        "index": 38,
+        "parent": "Bip01 L Thigh"
+      },
+      {
+        "name": "Bip01 L HorseLink",
+        "index": 39,
+        "parent": "Bip01 L Calf"
+      },
+      {
+        "name": "Bip01 L Foot",
+        "index": 40,
+        "parent": "Bip01 L HorseLink"
+      },
+      {
+        "name": "Bip01 L Toe0",
+        "index": 41,
+        "parent": "Bip01 L Foot"
+      },
+      {
+        "name": "Bip01 R Thigh",
+        "index": 42,
+        "parent": "Bip01 Pelvis"
+      },
+      {
+        "name": "Bip01 R Calf",
+        "index": 43,
+        "parent": "Bip01 R Thigh"
+      },
+      {
+        "name": "Bip01 R HorseLink",
+        "index": 44,
+        "parent": "Bip01 R Calf"
+      },
+      {
+        "name": "Bip01 R Foot",
+        "index": 45,
+        "parent": "Bip01 R HorseLink"
+      },
+      {
+        "name": "Bip01 R Toe0",
+        "index": 46,
+        "parent": "Bip01 R Foot"
+      },
+      {
+        "name": "n_PosRoute",
+        "index": 47,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend01",
+        "index": 48,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend02",
+        "index": 49,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend03",
+        "index": 50,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend04",
+        "index": 51,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend05",
+        "index": 52,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_bFollowB",
+        "index": 53,
+        "parent": "Scene Root"
+      }
+    ],
+    "children": [],
+    "command_string": "",
+    "sockets": [
+      {
+        "name": "ChangeEffect1",
+        "node_index": 0
+      }
+    ],
+    "pieces": [
+      {
+        "name": "SEAN_Wolf_Body",
+        "material_index": 0,
+        "lods": [
+          {
+            "vertices": 6989,
+            "triangles": 6310,
+            "texture_slots": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "vertices_with_weights": 6989
+          }
+        ]
+      },
+      {
+        "name": "SEAN_Wolf_fur",
+        "material_index": 2,
+        "lods": [
+          {
+            "vertices": 406,
+            "triangles": 340,
+            "texture_slots": [
+              2,
+              1,
+              2,
+              3
+            ],
+            "vertices_with_weights": 406
+          }
+        ]
+      },
+      {
+        "name": "Tattoo_Arm_R",
+        "material_index": 18,
+        "lods": [
+          {
+            "vertices": 32,
+            "triangles": 30,
+            "texture_slots": [
+              18,
+              19,
+              20,
+              21
+            ],
+            "vertices_with_weights": 32
+          }
+        ]
+      },
+      {
+        "name": "Tattoo_Body",
+        "material_index": 10,
+        "lods": [
+          {
+            "vertices": 165,
+            "triangles": 182,
+            "texture_slots": [
+              10,
+              11,
+              12,
+              13
+            ],
+            "vertices_with_weights": 165
+          }
+        ]
+      },
+      {
+        "name": "Tattoo_Arm_L",
+        "material_index": 14,
+        "lods": [
+          {
+            "vertices": 24,
+            "triangles": 30,
+            "texture_slots": [
+              14,
+              15,
+              16,
+              17
+            ],
+            "vertices_with_weights": 24
+          }
+        ]
+      }
+    ],
+    "animations": [
+      {
+        "name": "LSt",
+        "frames": 51,
+        "duration_ms": 1666,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "LC",
+        "frames": 51,
+        "duration_ms": 1666,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "LCWR",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "LCWB",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "LCWF",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "LCWL",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "LCWFR",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "LCWFL",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "LCWBL",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "LCWBR",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "LJJ",
+        "frames": 10,
+        "duration_ms": 300,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "LJL",
+        "frames": 11,
+        "duration_ms": 333,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "LJT",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "LRF",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "LRR",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "LRL",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "LRFR",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "LRFL",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "LWR",
+        "frames": 29,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "LWB",
+        "frames": 29,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "LWF",
+        "frames": 29,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "LWL",
+        "frames": 29,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "LWFR",
+        "frames": 29,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "LWFL",
+        "frames": 29,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "LWBL",
+        "frames": 29,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "LWBR",
+        "frames": 29,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "UMC",
+        "frames": 51,
+        "duration_ms": 1666,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "UMJJ",
+        "frames": 10,
+        "duration_ms": 300,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "UMJL",
+        "frames": 11,
+        "duration_ms": 333,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "UMJT",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "UMRF",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "UMRR",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "UMRL",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "UMWR",
+        "frames": 29,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "UMWF",
+        "frames": 29,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "UMWB",
+        "frames": 29,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "UMWL",
+        "frames": 29,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "UMCWR",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "UMCWB",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "UMCWF",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "UMCWL",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "UMSt",
+        "frames": 51,
+        "duration_ms": 1666,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "T_WallRide",
+        "frames": 20,
+        "duration_ms": 634,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "T_WallRide2",
+        "frames": 41,
+        "duration_ms": 1333,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "T_WallRideL",
+        "frames": 17,
+        "duration_ms": 533,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "T_WallRideR",
+        "frames": 17,
+        "duration_ms": 533,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "T_WallHold_L",
+        "frames": 41,
+        "duration_ms": 1333,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "T_WallHold_R",
+        "frames": 41,
+        "duration_ms": 1333,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "T_DFHS1",
+        "frames": 98,
+        "duration_ms": 3233,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "T_DFBS1",
+        "frames": 59,
+        "duration_ms": 1933,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "T_DFBB1",
+        "frames": 42,
+        "duration_ms": 1366,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "Twitch",
+        "frames": 1,
+        "duration_ms": 0,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "T_DBBS1",
+        "frames": 64,
+        "duration_ms": 2100,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "T_DBBB1",
+        "frames": 42,
+        "duration_ms": 1366,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "T_DBHS1",
+        "frames": 75,
+        "duration_ms": 2466,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "T_CRY",
+        "frames": 51,
+        "duration_ms": 1666,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "T_BITE",
+        "frames": 13,
+        "duration_ms": 400,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "T_DFBF1",
+        "frames": 45,
+        "duration_ms": 1466,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "T_DBBF1",
+        "frames": 75,
+        "duration_ms": 2466,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "LJA",
+        "frames": 36,
+        "duration_ms": 1166,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "UMFi3",
+        "frames": 13,
+        "duration_ms": 400,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "UMFi2",
+        "frames": 13,
+        "duration_ms": 400,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "UMFi1",
+        "frames": 11,
+        "duration_ms": 334,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "UMTR",
+        "frames": 20,
+        "duration_ms": 633,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "UMTH",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "UMTF",
+        "frames": 21,
+        "duration_ms": 667,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "Ui_idle",
+        "frames": 51,
+        "duration_ms": 1666,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "T_Specialatk",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "T_Bodyatk",
+        "frames": 11,
+        "duration_ms": 334,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "T_BodyatkL",
+        "frames": 11,
+        "duration_ms": 334,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "T_BodyatkR",
+        "frames": 11,
+        "duration_ms": 334,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "T_WallDash",
+        "frames": 20,
+        "duration_ms": 634,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "T_WallDashL",
+        "frames": 20,
+        "duration_ms": 634,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "T_WallDashR",
+        "frames": 20,
+        "duration_ms": 634,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "UMDe",
+        "frames": 41,
+        "duration_ms": 1333,
+        "compression": 0,
+        "transform_nodes": 54
+      },
+      {
+        "name": "T_WallDashAtk",
+        "frames": 36,
+        "duration_ms": 1166,
+        "compression": 0,
+        "transform_nodes": 54
+      }
+    ]
+  },
+  {
+    "file": "wt_wolf_ice_ch.ltb",
+    "bytes": 2323994,
+    "sha256": "0461cf9aca3a1f0b3f8c8297c392fb5a6b10177ae21afdaaa31c3046090740cc",
+    "parsed": true,
+    "version": 25,
+    "node_count": 40,
+    "nodes": [
+      {
+        "name": "Scene Root",
+        "index": 0,
+        "parent": null
+      },
+      {
+        "name": "Bip01",
+        "index": 1,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "Bip01 Pelvis",
+        "index": 2,
+        "parent": "Bip01"
+      },
+      {
+        "name": "Bip01 Spine",
+        "index": 3,
+        "parent": "Bip01 Pelvis"
+      },
+      {
+        "name": "Bip01 Spine1",
+        "index": 4,
+        "parent": "Bip01 Spine"
+      },
+      {
+        "name": "Bip01 Spine2",
+        "index": 5,
+        "parent": "Bip01 Spine1"
+      },
+      {
+        "name": "Bip01 Neck",
+        "index": 6,
+        "parent": "Bip01 Spine2"
+      },
+      {
+        "name": "Bip01 Head",
+        "index": 7,
+        "parent": "Bip01 Neck"
+      },
+      {
+        "name": "Bip01 Ponytail2",
+        "index": 8,
+        "parent": "Bip01 Head"
+      },
+      {
+        "name": "Bip01 L Clavicle",
+        "index": 9,
+        "parent": "Bip01 Neck"
+      },
+      {
+        "name": "Bip01 L UpperArm",
+        "index": 10,
+        "parent": "Bip01 L Clavicle"
+      },
+      {
+        "name": "Bip01 L Forearm",
+        "index": 11,
+        "parent": "Bip01 L UpperArm"
+      },
+      {
+        "name": "Bip01 L Hand",
+        "index": 12,
+        "parent": "Bip01 L Forearm"
+      },
+      {
+        "name": "Bip01 L Finger0",
+        "index": 13,
+        "parent": "Bip01 L Hand"
+      },
+      {
+        "name": "Bip01 L Finger01",
+        "index": 14,
+        "parent": "Bip01 L Finger0"
+      },
+      {
+        "name": "Bip01 L Finger1",
+        "index": 15,
+        "parent": "Bip01 L Hand"
+      },
+      {
+        "name": "Bip01 L Finger11",
+        "index": 16,
+        "parent": "Bip01 L Finger1"
+      },
+      {
+        "name": "Bip01 R Clavicle",
+        "index": 17,
+        "parent": "Bip01 Neck"
+      },
+      {
+        "name": "Bip01 R UpperArm",
+        "index": 18,
+        "parent": "Bip01 R Clavicle"
+      },
+      {
+        "name": "Bip01 R Forearm",
+        "index": 19,
+        "parent": "Bip01 R UpperArm"
+      },
+      {
+        "name": "Bip01 R Hand",
+        "index": 20,
+        "parent": "Bip01 R Forearm"
+      },
+      {
+        "name": "Bip01 R Finger0",
+        "index": 21,
+        "parent": "Bip01 R Hand"
+      },
+      {
+        "name": "Bip01 R Finger01",
+        "index": 22,
+        "parent": "Bip01 R Finger0"
+      },
+      {
+        "name": "Bip01 R Finger1",
+        "index": 23,
+        "parent": "Bip01 R Hand"
+      },
+      {
+        "name": "Bip01 R Finger11",
+        "index": 24,
+        "parent": "Bip01 R Finger1"
+      },
+      {
+        "name": "Bip01 L Thigh",
+        "index": 25,
+        "parent": "Bip01 Spine"
+      },
+      {
+        "name": "Bip01 L Calf",
+        "index": 26,
+        "parent": "Bip01 L Thigh"
+      },
+      {
+        "name": "Bip01 L Foot",
+        "index": 27,
+        "parent": "Bip01 L Calf"
+      },
+      {
+        "name": "Bip01 L Toe0",
+        "index": 28,
+        "parent": "Bip01 L Foot"
+      },
+      {
+        "name": "Bip01 R Thigh",
+        "index": 29,
+        "parent": "Bip01 Spine"
+      },
+      {
+        "name": "Bip01 R Calf",
+        "index": 30,
+        "parent": "Bip01 R Thigh"
+      },
+      {
+        "name": "Bip01 R Foot",
+        "index": 31,
+        "parent": "Bip01 R Calf"
+      },
+      {
+        "name": "Bip01 R Toe0",
+        "index": 32,
+        "parent": "Bip01 R Foot"
+      },
+      {
+        "name": "n_PosRoute",
+        "index": 33,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend01",
+        "index": 34,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend02",
+        "index": 35,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend03",
+        "index": 36,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend04",
+        "index": 37,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend05",
+        "index": 38,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_bFollowBone",
+        "index": 39,
+        "parent": "Scene Root"
+      }
+    ],
+    "children": [],
+    "command_string": "",
+    "sockets": [
+      {
+        "name": "ChangeEffect1",
+        "node_index": 5
+      }
+    ],
+    "pieces": [
+      {
+        "name": "belt",
+        "material_index": 0,
+        "lods": [
+          {
+            "vertices": 102,
+            "triangles": 62,
+            "texture_slots": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "vertices_with_weights": 102
+          }
+        ]
+      },
+      {
+        "name": "icewolf",
+        "material_index": 0,
+        "lods": [
+          {
+            "vertices": 4970,
+            "triangles": 4712,
+            "texture_slots": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "vertices_with_weights": 4970
+          }
+        ]
+      },
+      {
+        "name": "cap",
+        "material_index": 0,
+        "lods": [
+          {
+            "vertices": 605,
+            "triangles": 526,
+            "texture_slots": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "vertices_with_weights": 605
+          }
+        ]
+      },
+      {
+        "name": "icewolf_Tattoo",
+        "material_index": 0,
+        "lods": [
+          {
+            "vertices": 321,
+            "triangles": 380,
+            "texture_slots": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "vertices_with_weights": 321
+          }
+        ]
+      }
+    ],
+    "animations": [
+      {
+        "name": "LSt",
+        "frames": 9,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LC",
+        "frames": 27,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LCWR",
+        "frames": 41,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LCWB",
+        "frames": 43,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LCWF",
+        "frames": 43,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LCWL",
+        "frames": 41,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LCWFR",
+        "frames": 43,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LCWFL",
+        "frames": 43,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LCWBL",
+        "frames": 43,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LCWBR",
+        "frames": 43,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LJJ",
+        "frames": 4,
+        "duration_ms": 133,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LJL",
+        "frames": 6,
+        "duration_ms": 267,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LJT",
+        "frames": 2,
+        "duration_ms": 33,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LRF",
+        "frames": 14,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LRR",
+        "frames": 17,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LRL",
+        "frames": 17,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LRFR",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LRFL",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LWR",
+        "frames": 17,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LWB",
+        "frames": 29,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LWF",
+        "frames": 29,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LWL",
+        "frames": 14,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LWFR",
+        "frames": 29,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LWFL",
+        "frames": 29,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LWBL",
+        "frames": 29,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LWBR",
+        "frames": 29,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMC",
+        "frames": 27,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMJJ",
+        "frames": 4,
+        "duration_ms": 133,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMJL",
+        "frames": 6,
+        "duration_ms": 267,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMJT",
+        "frames": 2,
+        "duration_ms": 33,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMRF",
+        "frames": 14,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMRR",
+        "frames": 17,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMRL",
+        "frames": 17,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMWR",
+        "frames": 17,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMWF",
+        "frames": 29,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMWB",
+        "frames": 29,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMWL",
+        "frames": 14,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMCWR",
+        "frames": 41,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMCWB",
+        "frames": 43,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMCWF",
+        "frames": 43,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMCWL",
+        "frames": 41,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMSt",
+        "frames": 9,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "T_WallRide",
+        "frames": 17,
+        "duration_ms": 533,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "T_wallRide2",
+        "frames": 27,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "T_DFHS1",
+        "frames": 83,
+        "duration_ms": 2733,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "T_DFBS1",
+        "frames": 57,
+        "duration_ms": 1866,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "T_DBBS1",
+        "frames": 58,
+        "duration_ms": 1900,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "T_DBHS1",
+        "frames": 65,
+        "duration_ms": 2133,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "T_DFBB1",
+        "frames": 30,
+        "duration_ms": 967,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "T_DBBB1",
+        "frames": 30,
+        "duration_ms": 967,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LJA",
+        "frames": 18,
+        "duration_ms": 1200,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "T_CRY",
+        "frames": 23,
+        "duration_ms": 1933,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMTR",
+        "frames": 13,
+        "duration_ms": 800,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMTH",
+        "frames": 2,
+        "duration_ms": 34,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMTF",
+        "frames": 15,
+        "duration_ms": 467,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMFi3",
+        "frames": 15,
+        "duration_ms": 766,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMFi2",
+        "frames": 7,
+        "duration_ms": 333,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMFi1",
+        "frames": 9,
+        "duration_ms": 400,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "Ui_idle",
+        "frames": 41,
+        "duration_ms": 1333,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "T_Specialatk",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "T_Bodyatk",
+        "frames": 28,
+        "duration_ms": 900,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "T_BodyatkL",
+        "frames": 28,
+        "duration_ms": 900,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "T_BodyatkR",
+        "frames": 28,
+        "duration_ms": 900,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "T_WallDash",
+        "frames": 17,
+        "duration_ms": 533,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "T_WallDashL",
+        "frames": 17,
+        "duration_ms": 533,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "T_WallDashR",
+        "frames": 17,
+        "duration_ms": 533,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMDe",
+        "frames": 41,
+        "duration_ms": 1333,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "T_WallDashAtk",
+        "frames": 34,
+        "duration_ms": 900,
+        "compression": 0,
+        "transform_nodes": 40
+      }
+    ]
+  },
+  {
+    "file": "wt_wolf_ice_r.ltb",
+    "bytes": 304560,
+    "sha256": "32e2637bd78560ce7a1c0099b48dcbf84b19ef1b5d3a66b5e4d1dfde9c975798",
+    "parsed": true,
+    "version": 25,
+    "node_count": 40,
+    "nodes": [
+      {
+        "name": "Scene Root",
+        "index": 0,
+        "parent": null
+      },
+      {
+        "name": "Bip01",
+        "index": 1,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "Bip01 Pelvis",
+        "index": 2,
+        "parent": "Bip01"
+      },
+      {
+        "name": "Bip01 Spine",
+        "index": 3,
+        "parent": "Bip01 Pelvis"
+      },
+      {
+        "name": "Bip01 Spine1",
+        "index": 4,
+        "parent": "Bip01 Spine"
+      },
+      {
+        "name": "Bip01 Spine2",
+        "index": 5,
+        "parent": "Bip01 Spine1"
+      },
+      {
+        "name": "Bip01 Neck",
+        "index": 6,
+        "parent": "Bip01 Spine2"
+      },
+      {
+        "name": "Bip01 Head",
+        "index": 7,
+        "parent": "Bip01 Neck"
+      },
+      {
+        "name": "Bip01 Ponytail2",
+        "index": 8,
+        "parent": "Bip01 Head"
+      },
+      {
+        "name": "Bip01 L Clavicle",
+        "index": 9,
+        "parent": "Bip01 Neck"
+      },
+      {
+        "name": "Bip01 L UpperArm",
+        "index": 10,
+        "parent": "Bip01 L Clavicle"
+      },
+      {
+        "name": "Bip01 L Forearm",
+        "index": 11,
+        "parent": "Bip01 L UpperArm"
+      },
+      {
+        "name": "Bip01 L Hand",
+        "index": 12,
+        "parent": "Bip01 L Forearm"
+      },
+      {
+        "name": "Bip01 L Finger0",
+        "index": 13,
+        "parent": "Bip01 L Hand"
+      },
+      {
+        "name": "Bip01 L Finger01",
+        "index": 14,
+        "parent": "Bip01 L Finger0"
+      },
+      {
+        "name": "Bip01 L Finger1",
+        "index": 15,
+        "parent": "Bip01 L Hand"
+      },
+      {
+        "name": "Bip01 L Finger11",
+        "index": 16,
+        "parent": "Bip01 L Finger1"
+      },
+      {
+        "name": "Bip01 R Clavicle",
+        "index": 17,
+        "parent": "Bip01 Neck"
+      },
+      {
+        "name": "Bip01 R UpperArm",
+        "index": 18,
+        "parent": "Bip01 R Clavicle"
+      },
+      {
+        "name": "Bip01 R Forearm",
+        "index": 19,
+        "parent": "Bip01 R UpperArm"
+      },
+      {
+        "name": "Bip01 R Hand",
+        "index": 20,
+        "parent": "Bip01 R Forearm"
+      },
+      {
+        "name": "Bip01 R Finger0",
+        "index": 21,
+        "parent": "Bip01 R Hand"
+      },
+      {
+        "name": "Bip01 R Finger01",
+        "index": 22,
+        "parent": "Bip01 R Finger0"
+      },
+      {
+        "name": "Bip01 R Finger1",
+        "index": 23,
+        "parent": "Bip01 R Hand"
+      },
+      {
+        "name": "Bip01 R Finger11",
+        "index": 24,
+        "parent": "Bip01 R Finger1"
+      },
+      {
+        "name": "Bip01 L Thigh",
+        "index": 25,
+        "parent": "Bip01 Spine"
+      },
+      {
+        "name": "Bip01 L Calf",
+        "index": 26,
+        "parent": "Bip01 L Thigh"
+      },
+      {
+        "name": "Bip01 L Foot",
+        "index": 27,
+        "parent": "Bip01 L Calf"
+      },
+      {
+        "name": "Bip01 L Toe0",
+        "index": 28,
+        "parent": "Bip01 L Foot"
+      },
+      {
+        "name": "Bip01 R Thigh",
+        "index": 29,
+        "parent": "Bip01 Spine"
+      },
+      {
+        "name": "Bip01 R Calf",
+        "index": 30,
+        "parent": "Bip01 R Thigh"
+      },
+      {
+        "name": "Bip01 R Foot",
+        "index": 31,
+        "parent": "Bip01 R Calf"
+      },
+      {
+        "name": "Bip01 R Toe0",
+        "index": 32,
+        "parent": "Bip01 R Foot"
+      },
+      {
+        "name": "n_PosRoute",
+        "index": 33,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend01",
+        "index": 34,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend02",
+        "index": 35,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend03",
+        "index": 36,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend04",
+        "index": 37,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend05",
+        "index": 38,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_bFollowBone",
+        "index": 39,
+        "parent": "Scene Root"
+      }
+    ],
+    "children": [
+      "WT_WOLF_ICE_CH.ltb"
+    ],
+    "command_string": "",
+    "sockets": [
+      {
+        "name": "ChangeEffect",
+        "node_index": 5
+      },
+      {
+        "name": "Fire_Start",
+        "node_index": 4
+      },
+      {
+        "name": "Backpack",
+        "node_index": 4
+      },
+      {
+        "name": "WolfeyeL",
+        "node_index": 7
+      },
+      {
+        "name": "WolfeyeR",
+        "node_index": 7
+      },
+      {
+        "name": "Trail_Hand3",
+        "node_index": 16
+      },
+      {
+        "name": "Trail_Hand2",
+        "node_index": 24
+      },
+      {
+        "name": "ice_ball",
+        "node_index": 20
+      },
+      {
+        "name": "FreezePoint0",
+        "node_index": 7
+      },
+      {
+        "name": "FreezePoint1",
+        "node_index": 9
+      },
+      {
+        "name": "FreezePoint2",
+        "node_index": 17
+      },
+      {
+        "name": "FreezePoint3",
+        "node_index": 4
+      },
+      {
+        "name": "FreezePoint4",
+        "node_index": 5
+      },
+      {
+        "name": "FreezePoint5",
+        "node_index": 4
+      },
+      {
+        "name": "FreezePoint6",
+        "node_index": 5
+      },
+      {
+        "name": "GlowL",
+        "node_index": 11
+      },
+      {
+        "name": "GlowR",
+        "node_index": 19
+      },
+      {
+        "name": "RightHand2",
+        "node_index": 19
+      },
+      {
+        "name": "LeftHand2",
+        "node_index": 11
+      },
+      {
+        "name": "RightHand",
+        "node_index": 20
+      },
+      {
+        "name": "LeftHand",
+        "node_index": 12
+      },
+      {
+        "name": "s_Identify",
+        "node_index": 10
+      },
+      {
+        "name": "cry",
+        "node_index": 6
+      }
+    ],
+    "pieces": [
+      {
+        "name": "belt",
+        "material_index": 0,
+        "lods": [
+          {
+            "vertices": 102,
+            "triangles": 62,
+            "texture_slots": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "vertices_with_weights": 102
+          }
+        ]
+      },
+      {
+        "name": "icewolf",
+        "material_index": 0,
+        "lods": [
+          {
+            "vertices": 4970,
+            "triangles": 4712,
+            "texture_slots": [
+              0,
+              2,
+              2,
+              3
+            ],
+            "vertices_with_weights": 4970
+          }
+        ]
+      },
+      {
+        "name": "cap",
+        "material_index": 0,
+        "lods": [
+          {
+            "vertices": 605,
+            "triangles": 526,
+            "texture_slots": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "vertices_with_weights": 605
+          }
+        ]
+      },
+      {
+        "name": "Tattoo_Body",
+        "material_index": 10,
+        "lods": [
+          {
+            "vertices": 321,
+            "triangles": 380,
+            "texture_slots": [
+              10,
+              11,
+              12,
+              13
+            ],
+            "vertices_with_weights": 321
+          }
+        ]
+      },
+      {
+        "name": "Tattoo_Arm_L",
+        "material_index": 14,
+        "lods": [
+          {
+            "vertices": 46,
+            "triangles": 55,
+            "texture_slots": [
+              14,
+              15,
+              16,
+              17
+            ],
+            "vertices_with_weights": 46
+          }
+        ]
+      },
+      {
+        "name": "Tattoo_Arm_R",
+        "material_index": 18,
+        "lods": [
+          {
+            "vertices": 46,
+            "triangles": 55,
+            "texture_slots": [
+              18,
+              19,
+              20,
+              21
+            ],
+            "vertices_with_weights": 46
+          }
+        ]
+      }
+    ],
+    "animations": [
+      {
+        "name": "@figure",
+        "frames": 1,
+        "duration_ms": 0,
+        "compression": 0,
+        "transform_nodes": 40
+      }
+    ]
+  },
+  {
+    "file": "wt_wolf_power_ch.ltb",
+    "bytes": 1916185,
+    "sha256": "b8612db22690c92ce8cbffff6aae0f8f175bfd13762b61dc1708b579a41df66a",
+    "parsed": true,
+    "version": 25,
+    "node_count": 42,
+    "nodes": [
+      {
+        "name": "Scene Root",
+        "index": 0,
+        "parent": null
+      },
+      {
+        "name": "Bip01",
+        "index": 1,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "Bip01 Pelvis",
+        "index": 2,
+        "parent": "Bip01"
+      },
+      {
+        "name": "Bip01 Spine",
+        "index": 3,
+        "parent": "Bip01 Pelvis"
+      },
+      {
+        "name": "Bip01 Spine1",
+        "index": 4,
+        "parent": "Bip01 Spine"
+      },
+      {
+        "name": "Bip01 Spine2",
+        "index": 5,
+        "parent": "Bip01 Spine1"
+      },
+      {
+        "name": "Bip01 Neck",
+        "index": 6,
+        "parent": "Bip01 Spine2"
+      },
+      {
+        "name": "Bip01 Head",
+        "index": 7,
+        "parent": "Bip01 Neck"
+      },
+      {
+        "name": "Bip01 Ponytail1",
+        "index": 8,
+        "parent": "Bip01 Head"
+      },
+      {
+        "name": "Bip01 Ponytail11",
+        "index": 9,
+        "parent": "Bip01 Ponytail1"
+      },
+      {
+        "name": "Bip01 Ponytail2",
+        "index": 10,
+        "parent": "Bip01 Head"
+      },
+      {
+        "name": "Bip01 L Clavicle",
+        "index": 11,
+        "parent": "Bip01 Neck"
+      },
+      {
+        "name": "Bip01 L UpperArm",
+        "index": 12,
+        "parent": "Bip01 L Clavicle"
+      },
+      {
+        "name": "Bip01 L Forearm",
+        "index": 13,
+        "parent": "Bip01 L UpperArm"
+      },
+      {
+        "name": "Bip01 L Hand",
+        "index": 14,
+        "parent": "Bip01 L Forearm"
+      },
+      {
+        "name": "Bip01 L Finger0",
+        "index": 15,
+        "parent": "Bip01 L Hand"
+      },
+      {
+        "name": "Bip01 L Finger01",
+        "index": 16,
+        "parent": "Bip01 L Finger0"
+      },
+      {
+        "name": "Bip01 L Finger1",
+        "index": 17,
+        "parent": "Bip01 L Hand"
+      },
+      {
+        "name": "Bip01 L Finger11",
+        "index": 18,
+        "parent": "Bip01 L Finger1"
+      },
+      {
+        "name": "Bip01 R Clavicle",
+        "index": 19,
+        "parent": "Bip01 Neck"
+      },
+      {
+        "name": "Bip01 R UpperArm",
+        "index": 20,
+        "parent": "Bip01 R Clavicle"
+      },
+      {
+        "name": "Bip01 R Forearm",
+        "index": 21,
+        "parent": "Bip01 R UpperArm"
+      },
+      {
+        "name": "Bip01 R Hand",
+        "index": 22,
+        "parent": "Bip01 R Forearm"
+      },
+      {
+        "name": "Bip01 R Finger0",
+        "index": 23,
+        "parent": "Bip01 R Hand"
+      },
+      {
+        "name": "Bip01 R Finger01",
+        "index": 24,
+        "parent": "Bip01 R Finger0"
+      },
+      {
+        "name": "Bip01 R Finger1",
+        "index": 25,
+        "parent": "Bip01 R Hand"
+      },
+      {
+        "name": "Bip01 R Finger11",
+        "index": 26,
+        "parent": "Bip01 R Finger1"
+      },
+      {
+        "name": "Bip01 L Thigh",
+        "index": 27,
+        "parent": "Bip01 Spine"
+      },
+      {
+        "name": "Bip01 L Calf",
+        "index": 28,
+        "parent": "Bip01 L Thigh"
+      },
+      {
+        "name": "Bip01 L Foot",
+        "index": 29,
+        "parent": "Bip01 L Calf"
+      },
+      {
+        "name": "Bip01 L Toe0",
+        "index": 30,
+        "parent": "Bip01 L Foot"
+      },
+      {
+        "name": "Bip01 R Thigh",
+        "index": 31,
+        "parent": "Bip01 Spine"
+      },
+      {
+        "name": "Bip01 R Calf",
+        "index": 32,
+        "parent": "Bip01 R Thigh"
+      },
+      {
+        "name": "Bip01 R Foot",
+        "index": 33,
+        "parent": "Bip01 R Calf"
+      },
+      {
+        "name": "Bip01 R Toe0",
+        "index": 34,
+        "parent": "Bip01 R Foot"
+      },
+      {
+        "name": "n_PosRoute",
+        "index": 35,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend01",
+        "index": 36,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend02",
+        "index": 37,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend03",
+        "index": 38,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend04",
+        "index": 39,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend05",
+        "index": 40,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_bFollowBone",
+        "index": 41,
+        "parent": "Scene Root"
+      }
+    ],
+    "children": [],
+    "command_string": "",
+    "sockets": [
+      {
+        "name": "Backpack",
+        "node_index": 4
+      },
+      {
+        "name": "RightHand",
+        "node_index": 22
+      },
+      {
+        "name": "ChangeEffect",
+        "node_index": 5
+      },
+      {
+        "name": "Trail_Hand2",
+        "node_index": 18
+      },
+      {
+        "name": "Trail_Hand1",
+        "node_index": 26
+      },
+      {
+        "name": "Trail_Hand3",
+        "node_index": 25
+      },
+      {
+        "name": "WolfeyeL",
+        "node_index": 7
+      },
+      {
+        "name": "WolfeyeR",
+        "node_index": 7
+      },
+      {
+        "name": "Fire_Start",
+        "node_index": 4
+      },
+      {
+        "name": "cry",
+        "node_index": 6
+      },
+      {
+        "name": "ChangeEffect1",
+        "node_index": 5
+      }
+    ],
+    "pieces": [
+      {
+        "name": "WOLF_BODY_B",
+        "material_index": 0,
+        "lods": [
+          {
+            "vertices": 4590,
+            "triangles": 4026,
+            "texture_slots": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "vertices_with_weights": 4590
+          }
+        ]
+      },
+      {
+        "name": "WOLF_OBJ_B",
+        "material_index": 1,
+        "lods": [
+          {
+            "vertices": 415,
+            "triangles": 300,
+            "texture_slots": [
+              1,
+              1,
+              2,
+              3
+            ],
+            "vertices_with_weights": 415
+          }
+        ]
+      },
+      {
+        "name": "WOLF_Tattoo",
+        "material_index": 10,
+        "lods": [
+          {
+            "vertices": 279,
+            "triangles": 290,
+            "texture_slots": [
+              10,
+              11,
+              12,
+              13
+            ],
+            "vertices_with_weights": 279
+          }
+        ]
+      }
+    ],
+    "animations": [
+      {
+        "name": "LSt",
+        "frames": 12,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LC",
+        "frames": 12,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LCWR",
+        "frames": 20,
+        "duration_ms": 1266,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LCWB",
+        "frames": 27,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LCWF",
+        "frames": 24,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LCWL",
+        "frames": 22,
+        "duration_ms": 1266,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LCWFR",
+        "frames": 24,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LCWFL",
+        "frames": 24,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LCWBL",
+        "frames": 27,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LCWBR",
+        "frames": 27,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LJJ",
+        "frames": 2,
+        "duration_ms": 100,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LJL",
+        "frames": 9,
+        "duration_ms": 366,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LJT",
+        "frames": 2,
+        "duration_ms": 34,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LRF",
+        "frames": 17,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LRR",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LRL",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LRFR",
+        "frames": 17,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LRFL",
+        "frames": 17,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LWR",
+        "frames": 18,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LWB",
+        "frames": 24,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LWF",
+        "frames": 20,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LWL",
+        "frames": 14,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LWFR",
+        "frames": 20,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LWFL",
+        "frames": 21,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LWBL",
+        "frames": 24,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LWBR",
+        "frames": 24,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMC",
+        "frames": 12,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMJJ",
+        "frames": 2,
+        "duration_ms": 100,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMJL",
+        "frames": 9,
+        "duration_ms": 366,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMJT",
+        "frames": 2,
+        "duration_ms": 34,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMRF",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMRR",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMRL",
+        "frames": 22,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMWR",
+        "frames": 18,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMWF",
+        "frames": 20,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMWB",
+        "frames": 24,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMWL",
+        "frames": 14,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMCWR",
+        "frames": 20,
+        "duration_ms": 1266,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMCWB",
+        "frames": 27,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMCWF",
+        "frames": 24,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMCWL",
+        "frames": 22,
+        "duration_ms": 1266,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMSt",
+        "frames": 12,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMTr",
+        "frames": 3,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_WallRide",
+        "frames": 13,
+        "duration_ms": 533,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_wallRide2",
+        "frames": 27,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_DFHS1",
+        "frames": 54,
+        "duration_ms": 2733,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_DFBS1",
+        "frames": 36,
+        "duration_ms": 1866,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_DFBB1",
+        "frames": 19,
+        "duration_ms": 967,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "Twitch",
+        "frames": 5,
+        "duration_ms": 166,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_DBBS1",
+        "frames": 41,
+        "duration_ms": 1900,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_DBBB1",
+        "frames": 20,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_DBHS1",
+        "frames": 35,
+        "duration_ms": 2133,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_CRY",
+        "frames": 18,
+        "duration_ms": 1333,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_BITE",
+        "frames": 17,
+        "duration_ms": 1166,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LJA",
+        "frames": 18,
+        "duration_ms": 1200,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMFi3",
+        "frames": 14,
+        "duration_ms": 600,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMFi2",
+        "frames": 10,
+        "duration_ms": 400,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMFi1",
+        "frames": 10,
+        "duration_ms": 333,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "Ui_idle",
+        "frames": 41,
+        "duration_ms": 1333,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_Specialatk",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_Bodyatk",
+        "frames": 28,
+        "duration_ms": 900,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_BodyatkL",
+        "frames": 28,
+        "duration_ms": 900,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_BodyatkR",
+        "frames": 28,
+        "duration_ms": 900,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_WallDash",
+        "frames": 17,
+        "duration_ms": 533,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_WallDashL",
+        "frames": 17,
+        "duration_ms": 533,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_WallDashR",
+        "frames": 17,
+        "duration_ms": 533,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMDe",
+        "frames": 41,
+        "duration_ms": 1333,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_WallDashAtk",
+        "frames": 31,
+        "duration_ms": 900,
+        "compression": 0,
+        "transform_nodes": 42
+      }
+    ]
+  },
+  {
+    "file": "wt_wolf_power_r.ltb",
+    "bytes": 264204,
+    "sha256": "5674cda28cc4c623acb9906839c766c100a41a5bbca6b73898bb7ea2c83259ab",
+    "parsed": true,
+    "version": 25,
+    "node_count": 42,
+    "nodes": [
+      {
+        "name": "Scene Root",
+        "index": 0,
+        "parent": null
+      },
+      {
+        "name": "Bip01",
+        "index": 1,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "Bip01 Pelvis",
+        "index": 2,
+        "parent": "Bip01"
+      },
+      {
+        "name": "Bip01 Spine",
+        "index": 3,
+        "parent": "Bip01 Pelvis"
+      },
+      {
+        "name": "Bip01 Spine1",
+        "index": 4,
+        "parent": "Bip01 Spine"
+      },
+      {
+        "name": "Bip01 Spine2",
+        "index": 5,
+        "parent": "Bip01 Spine1"
+      },
+      {
+        "name": "Bip01 Neck",
+        "index": 6,
+        "parent": "Bip01 Spine2"
+      },
+      {
+        "name": "Bip01 Head",
+        "index": 7,
+        "parent": "Bip01 Neck"
+      },
+      {
+        "name": "Bip01 Ponytail1",
+        "index": 8,
+        "parent": "Bip01 Head"
+      },
+      {
+        "name": "Bip01 Ponytail11",
+        "index": 9,
+        "parent": "Bip01 Ponytail1"
+      },
+      {
+        "name": "Bip01 Ponytail2",
+        "index": 10,
+        "parent": "Bip01 Head"
+      },
+      {
+        "name": "Bip01 L Clavicle",
+        "index": 11,
+        "parent": "Bip01 Neck"
+      },
+      {
+        "name": "Bip01 L UpperArm",
+        "index": 12,
+        "parent": "Bip01 L Clavicle"
+      },
+      {
+        "name": "Bip01 L Forearm",
+        "index": 13,
+        "parent": "Bip01 L UpperArm"
+      },
+      {
+        "name": "Bip01 L Hand",
+        "index": 14,
+        "parent": "Bip01 L Forearm"
+      },
+      {
+        "name": "Bip01 L Finger0",
+        "index": 15,
+        "parent": "Bip01 L Hand"
+      },
+      {
+        "name": "Bip01 L Finger01",
+        "index": 16,
+        "parent": "Bip01 L Finger0"
+      },
+      {
+        "name": "Bip01 L Finger1",
+        "index": 17,
+        "parent": "Bip01 L Hand"
+      },
+      {
+        "name": "Bip01 L Finger11",
+        "index": 18,
+        "parent": "Bip01 L Finger1"
+      },
+      {
+        "name": "Bip01 R Clavicle",
+        "index": 19,
+        "parent": "Bip01 Neck"
+      },
+      {
+        "name": "Bip01 R UpperArm",
+        "index": 20,
+        "parent": "Bip01 R Clavicle"
+      },
+      {
+        "name": "Bip01 R Forearm",
+        "index": 21,
+        "parent": "Bip01 R UpperArm"
+      },
+      {
+        "name": "Bip01 R Hand",
+        "index": 22,
+        "parent": "Bip01 R Forearm"
+      },
+      {
+        "name": "Bip01 R Finger0",
+        "index": 23,
+        "parent": "Bip01 R Hand"
+      },
+      {
+        "name": "Bip01 R Finger01",
+        "index": 24,
+        "parent": "Bip01 R Finger0"
+      },
+      {
+        "name": "Bip01 R Finger1",
+        "index": 25,
+        "parent": "Bip01 R Hand"
+      },
+      {
+        "name": "Bip01 R Finger11",
+        "index": 26,
+        "parent": "Bip01 R Finger1"
+      },
+      {
+        "name": "Bip01 L Thigh",
+        "index": 27,
+        "parent": "Bip01 Spine"
+      },
+      {
+        "name": "Bip01 L Calf",
+        "index": 28,
+        "parent": "Bip01 L Thigh"
+      },
+      {
+        "name": "Bip01 L Foot",
+        "index": 29,
+        "parent": "Bip01 L Calf"
+      },
+      {
+        "name": "Bip01 L Toe0",
+        "index": 30,
+        "parent": "Bip01 L Foot"
+      },
+      {
+        "name": "Bip01 R Thigh",
+        "index": 31,
+        "parent": "Bip01 Spine"
+      },
+      {
+        "name": "Bip01 R Calf",
+        "index": 32,
+        "parent": "Bip01 R Thigh"
+      },
+      {
+        "name": "Bip01 R Foot",
+        "index": 33,
+        "parent": "Bip01 R Calf"
+      },
+      {
+        "name": "Bip01 R Toe0",
+        "index": 34,
+        "parent": "Bip01 R Foot"
+      },
+      {
+        "name": "n_PosRoute",
+        "index": 35,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend01",
+        "index": 36,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend02",
+        "index": 37,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend03",
+        "index": 38,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend04",
+        "index": 39,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend05",
+        "index": 40,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_bFollowBone",
+        "index": 41,
+        "parent": "Scene Root"
+      }
+    ],
+    "children": [
+      "WT_NEW_WOLF_CH.ltb"
+    ],
+    "command_string": "",
+    "sockets": [
+      {
+        "name": "Backpack",
+        "node_index": 4
+      },
+      {
+        "name": "ChangeEffect",
+        "node_index": 5
+      },
+      {
+        "name": "Trail_Hand2",
+        "node_index": 18
+      },
+      {
+        "name": "Trail_Hand1",
+        "node_index": 26
+      },
+      {
+        "name": "Trail_Hand3",
+        "node_index": 25
+      },
+      {
+        "name": "WolfeyeL",
+        "node_index": 7
+      },
+      {
+        "name": "WolfeyeR",
+        "node_index": 7
+      },
+      {
+        "name": "Fire_Start",
+        "node_index": 4
+      },
+      {
+        "name": "FreezePoint0",
+        "node_index": 7
+      },
+      {
+        "name": "FreezePoint1",
+        "node_index": 11
+      },
+      {
+        "name": "FreezePoint2",
+        "node_index": 19
+      },
+      {
+        "name": "FreezePoint3",
+        "node_index": 4
+      },
+      {
+        "name": "FreezePoint4",
+        "node_index": 5
+      },
+      {
+        "name": "FreezePoint5",
+        "node_index": 4
+      },
+      {
+        "name": "FreezePoint6",
+        "node_index": 5
+      },
+      {
+        "name": "LeftHand2",
+        "node_index": 13
+      },
+      {
+        "name": "RightHand2",
+        "node_index": 21
+      },
+      {
+        "name": "GlowL",
+        "node_index": 13
+      },
+      {
+        "name": "GlowR",
+        "node_index": 21
+      },
+      {
+        "name": "RightHand",
+        "node_index": 22
+      },
+      {
+        "name": "LeftHand",
+        "node_index": 14
+      },
+      {
+        "name": "cry",
+        "node_index": 6
+      },
+      {
+        "name": "s_Identify",
+        "node_index": 12
+      }
+    ],
+    "pieces": [
+      {
+        "name": "WOLF_OBJ_R",
+        "material_index": 1,
+        "lods": [
+          {
+            "vertices": 371,
+            "triangles": 292,
+            "texture_slots": [
+              1,
+              1,
+              2,
+              3
+            ],
+            "vertices_with_weights": 371
+          }
+        ]
+      },
+      {
+        "name": "WOLF_BODY_R",
+        "material_index": 0,
+        "lods": [
+          {
+            "vertices": 4220,
+            "triangles": 3794,
+            "texture_slots": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "vertices_with_weights": 4220
+          }
+        ]
+      },
+      {
+        "name": "Shoulder",
+        "material_index": 3,
+        "lods": [
+          {
+            "vertices": 354,
+            "triangles": 258,
+            "texture_slots": [
+              3,
+              1,
+              2,
+              3
+            ],
+            "vertices_with_weights": 354
+          }
+        ]
+      },
+      {
+        "name": "Tattoo_Body",
+        "material_index": 10,
+        "lods": [
+          {
+            "vertices": 263,
+            "triangles": 301,
+            "texture_slots": [
+              10,
+              11,
+              12,
+              13
+            ],
+            "vertices_with_weights": 263
+          }
+        ]
+      },
+      {
+        "name": "Tattoo_Arm_L",
+        "material_index": 14,
+        "lods": [
+          {
+            "vertices": 55,
+            "triangles": 65,
+            "texture_slots": [
+              14,
+              15,
+              16,
+              17
+            ],
+            "vertices_with_weights": 55
+          }
+        ]
+      },
+      {
+        "name": "Tattoo_Arm_R",
+        "material_index": 18,
+        "lods": [
+          {
+            "vertices": 54,
+            "triangles": 66,
+            "texture_slots": [
+              18,
+              19,
+              20,
+              21
+            ],
+            "vertices_with_weights": 54
+          }
+        ]
+      }
+    ],
+    "animations": [
+      {
+        "name": "@figure",
+        "frames": 1,
+        "duration_ms": 0,
+        "compression": 0,
+        "transform_nodes": 42
+      }
+    ]
+  },
+  {
+    "file": "wt_wolf_r.ltb",
+    "bytes": 251093,
+    "sha256": "b5e0fceef94a67beac751b99a0d061fec572254cbc451f6f3cdac5cb310b7492",
+    "parsed": true,
+    "version": 25,
+    "node_count": 42,
+    "nodes": [
+      {
+        "name": "Scene Root",
+        "index": 0,
+        "parent": null
+      },
+      {
+        "name": "Bip01",
+        "index": 1,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "Bip01 Pelvis",
+        "index": 2,
+        "parent": "Bip01"
+      },
+      {
+        "name": "Bip01 Spine",
+        "index": 3,
+        "parent": "Bip01 Pelvis"
+      },
+      {
+        "name": "Bip01 Spine1",
+        "index": 4,
+        "parent": "Bip01 Spine"
+      },
+      {
+        "name": "Bip01 Spine2",
+        "index": 5,
+        "parent": "Bip01 Spine1"
+      },
+      {
+        "name": "Bip01 Neck",
+        "index": 6,
+        "parent": "Bip01 Spine2"
+      },
+      {
+        "name": "Bip01 Head",
+        "index": 7,
+        "parent": "Bip01 Neck"
+      },
+      {
+        "name": "Bip01 Ponytail1",
+        "index": 8,
+        "parent": "Bip01 Head"
+      },
+      {
+        "name": "Bip01 Ponytail11",
+        "index": 9,
+        "parent": "Bip01 Ponytail1"
+      },
+      {
+        "name": "Bip01 Ponytail2",
+        "index": 10,
+        "parent": "Bip01 Head"
+      },
+      {
+        "name": "Bip01 L Clavicle",
+        "index": 11,
+        "parent": "Bip01 Neck"
+      },
+      {
+        "name": "Bip01 L UpperArm",
+        "index": 12,
+        "parent": "Bip01 L Clavicle"
+      },
+      {
+        "name": "Bip01 L Forearm",
+        "index": 13,
+        "parent": "Bip01 L UpperArm"
+      },
+      {
+        "name": "Bip01 L Hand",
+        "index": 14,
+        "parent": "Bip01 L Forearm"
+      },
+      {
+        "name": "Bip01 L Finger0",
+        "index": 15,
+        "parent": "Bip01 L Hand"
+      },
+      {
+        "name": "Bip01 L Finger01",
+        "index": 16,
+        "parent": "Bip01 L Finger0"
+      },
+      {
+        "name": "Bip01 L Finger1",
+        "index": 17,
+        "parent": "Bip01 L Hand"
+      },
+      {
+        "name": "Bip01 L Finger11",
+        "index": 18,
+        "parent": "Bip01 L Finger1"
+      },
+      {
+        "name": "Bip01 R Clavicle",
+        "index": 19,
+        "parent": "Bip01 Neck"
+      },
+      {
+        "name": "Bip01 R UpperArm",
+        "index": 20,
+        "parent": "Bip01 R Clavicle"
+      },
+      {
+        "name": "Bip01 R Forearm",
+        "index": 21,
+        "parent": "Bip01 R UpperArm"
+      },
+      {
+        "name": "Bip01 R Hand",
+        "index": 22,
+        "parent": "Bip01 R Forearm"
+      },
+      {
+        "name": "Bip01 R Finger0",
+        "index": 23,
+        "parent": "Bip01 R Hand"
+      },
+      {
+        "name": "Bip01 R Finger01",
+        "index": 24,
+        "parent": "Bip01 R Finger0"
+      },
+      {
+        "name": "Bip01 R Finger1",
+        "index": 25,
+        "parent": "Bip01 R Hand"
+      },
+      {
+        "name": "Bip01 R Finger11",
+        "index": 26,
+        "parent": "Bip01 R Finger1"
+      },
+      {
+        "name": "Bip01 L Thigh",
+        "index": 27,
+        "parent": "Bip01 Spine"
+      },
+      {
+        "name": "Bip01 L Calf",
+        "index": 28,
+        "parent": "Bip01 L Thigh"
+      },
+      {
+        "name": "Bip01 L Foot",
+        "index": 29,
+        "parent": "Bip01 L Calf"
+      },
+      {
+        "name": "Bip01 L Toe0",
+        "index": 30,
+        "parent": "Bip01 L Foot"
+      },
+      {
+        "name": "Bip01 R Thigh",
+        "index": 31,
+        "parent": "Bip01 Spine"
+      },
+      {
+        "name": "Bip01 R Calf",
+        "index": 32,
+        "parent": "Bip01 R Thigh"
+      },
+      {
+        "name": "Bip01 R Foot",
+        "index": 33,
+        "parent": "Bip01 R Calf"
+      },
+      {
+        "name": "Bip01 R Toe0",
+        "index": 34,
+        "parent": "Bip01 R Foot"
+      },
+      {
+        "name": "n_PosRoute",
+        "index": 35,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend01",
+        "index": 36,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend02",
+        "index": 37,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend03",
+        "index": 38,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend04",
+        "index": 39,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend05",
+        "index": 40,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_bFollowBone",
+        "index": 41,
+        "parent": "Scene Root"
+      }
+    ],
+    "children": [
+      "WT_NEW_WOLF_CH.ltb"
+    ],
+    "command_string": "",
+    "sockets": [
+      {
+        "name": "PrideMark",
+        "node_index": 4
+      },
+      {
+        "name": "Backpack",
+        "node_index": 0
+      },
+      {
+        "name": "ChangeEffect",
+        "node_index": 5
+      },
+      {
+        "name": "Trail_Hand2",
+        "node_index": 18
+      },
+      {
+        "name": "Trail_Hand1",
+        "node_index": 26
+      },
+      {
+        "name": "Trail_Hand3",
+        "node_index": 25
+      },
+      {
+        "name": "WolfeyeL",
+        "node_index": 7
+      },
+      {
+        "name": "WolfeyeR",
+        "node_index": 7
+      },
+      {
+        "name": "Fire_Start",
+        "node_index": 4
+      },
+      {
+        "name": "FreezePoint0",
+        "node_index": 7
+      },
+      {
+        "name": "FreezePoint1",
+        "node_index": 11
+      },
+      {
+        "name": "FreezePoint2",
+        "node_index": 19
+      },
+      {
+        "name": "FreezePoint3",
+        "node_index": 4
+      },
+      {
+        "name": "FreezePoint4",
+        "node_index": 5
+      },
+      {
+        "name": "FreezePoint5",
+        "node_index": 4
+      },
+      {
+        "name": "FreezePoint6",
+        "node_index": 5
+      },
+      {
+        "name": "RightHand2",
+        "node_index": 21
+      },
+      {
+        "name": "LeftHand2",
+        "node_index": 13
+      },
+      {
+        "name": "GlowL",
+        "node_index": 13
+      },
+      {
+        "name": "GlowR",
+        "node_index": 21
+      },
+      {
+        "name": "RightHand",
+        "node_index": 22
+      },
+      {
+        "name": "LeftHand",
+        "node_index": 14
+      },
+      {
+        "name": "s_Identify",
+        "node_index": 12
+      }
+    ],
+    "pieces": [
+      {
+        "name": "WOLF_OBJ_R",
+        "material_index": 1,
+        "lods": [
+          {
+            "vertices": 371,
+            "triangles": 292,
+            "texture_slots": [
+              1,
+              1,
+              2,
+              3
+            ],
+            "vertices_with_weights": 371
+          }
+        ]
+      },
+      {
+        "name": "WOLF_BODY_R",
+        "material_index": 0,
+        "lods": [
+          {
+            "vertices": 4220,
+            "triangles": 3794,
+            "texture_slots": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "vertices_with_weights": 4220
+          }
+        ]
+      },
+      {
+        "name": "Tattoo_Body",
+        "material_index": 10,
+        "lods": [
+          {
+            "vertices": 260,
+            "triangles": 300,
+            "texture_slots": [
+              10,
+              11,
+              12,
+              13
+            ],
+            "vertices_with_weights": 260
+          }
+        ]
+      },
+      {
+        "name": "Tattoo_Arm_L",
+        "material_index": 14,
+        "lods": [
+          {
+            "vertices": 55,
+            "triangles": 66,
+            "texture_slots": [
+              14,
+              15,
+              16,
+              17
+            ],
+            "vertices_with_weights": 55
+          }
+        ]
+      },
+      {
+        "name": "Tattoo_Arm_R",
+        "material_index": 18,
+        "lods": [
+          {
+            "vertices": 54,
+            "triangles": 66,
+            "texture_slots": [
+              18,
+              19,
+              20,
+              21
+            ],
+            "vertices_with_weights": 54
+          }
+        ]
+      }
+    ],
+    "animations": [
+      {
+        "name": "@figure",
+        "frames": 1,
+        "duration_ms": 0,
+        "compression": 0,
+        "transform_nodes": 42
+      }
+    ]
+  },
+  {
+    "file": "wt_wolf_smart_ch.ltb",
+    "bytes": 1631615,
+    "sha256": "c2031051bd0f8785e624af3790eb51e3ba22220c6502e456d00813d78f6679dc",
+    "parsed": true,
+    "version": 25,
+    "node_count": 40,
+    "nodes": [
+      {
+        "name": "Scene Root",
+        "index": 0,
+        "parent": null
+      },
+      {
+        "name": "Bip01",
+        "index": 1,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "Bip01 Pelvis",
+        "index": 2,
+        "parent": "Bip01"
+      },
+      {
+        "name": "Bip01 Spine",
+        "index": 3,
+        "parent": "Bip01 Pelvis"
+      },
+      {
+        "name": "Bip01 Spine1",
+        "index": 4,
+        "parent": "Bip01 Spine"
+      },
+      {
+        "name": "Bip01 Spine2",
+        "index": 5,
+        "parent": "Bip01 Spine1"
+      },
+      {
+        "name": "Bip01 Neck",
+        "index": 6,
+        "parent": "Bip01 Spine2"
+      },
+      {
+        "name": "Bip01 Head",
+        "index": 7,
+        "parent": "Bip01 Neck"
+      },
+      {
+        "name": "Bip01 Ponytail2",
+        "index": 8,
+        "parent": "Bip01 Head"
+      },
+      {
+        "name": "Bip01 L Clavicle",
+        "index": 9,
+        "parent": "Bip01 Neck"
+      },
+      {
+        "name": "Bip01 L UpperArm",
+        "index": 10,
+        "parent": "Bip01 L Clavicle"
+      },
+      {
+        "name": "Bip01 L Forearm",
+        "index": 11,
+        "parent": "Bip01 L UpperArm"
+      },
+      {
+        "name": "Bip01 L Hand",
+        "index": 12,
+        "parent": "Bip01 L Forearm"
+      },
+      {
+        "name": "Bip01 L Finger0",
+        "index": 13,
+        "parent": "Bip01 L Hand"
+      },
+      {
+        "name": "Bip01 L Finger01",
+        "index": 14,
+        "parent": "Bip01 L Finger0"
+      },
+      {
+        "name": "Bip01 L Finger1",
+        "index": 15,
+        "parent": "Bip01 L Hand"
+      },
+      {
+        "name": "Bip01 L Finger11",
+        "index": 16,
+        "parent": "Bip01 L Finger1"
+      },
+      {
+        "name": "Bip01 R Clavicle",
+        "index": 17,
+        "parent": "Bip01 Neck"
+      },
+      {
+        "name": "Bip01 R UpperArm",
+        "index": 18,
+        "parent": "Bip01 R Clavicle"
+      },
+      {
+        "name": "Bip01 R Forearm",
+        "index": 19,
+        "parent": "Bip01 R UpperArm"
+      },
+      {
+        "name": "Bip01 R Hand",
+        "index": 20,
+        "parent": "Bip01 R Forearm"
+      },
+      {
+        "name": "Bip01 R Finger0",
+        "index": 21,
+        "parent": "Bip01 R Hand"
+      },
+      {
+        "name": "Bip01 R Finger01",
+        "index": 22,
+        "parent": "Bip01 R Finger0"
+      },
+      {
+        "name": "Bip01 R Finger1",
+        "index": 23,
+        "parent": "Bip01 R Hand"
+      },
+      {
+        "name": "Bip01 R Finger11",
+        "index": 24,
+        "parent": "Bip01 R Finger1"
+      },
+      {
+        "name": "Bip01 L Thigh",
+        "index": 25,
+        "parent": "Bip01 Spine"
+      },
+      {
+        "name": "Bip01 L Calf",
+        "index": 26,
+        "parent": "Bip01 L Thigh"
+      },
+      {
+        "name": "Bip01 L Foot",
+        "index": 27,
+        "parent": "Bip01 L Calf"
+      },
+      {
+        "name": "Bip01 L Toe0",
+        "index": 28,
+        "parent": "Bip01 L Foot"
+      },
+      {
+        "name": "Bip01 R Thigh",
+        "index": 29,
+        "parent": "Bip01 Spine"
+      },
+      {
+        "name": "Bip01 R Calf",
+        "index": 30,
+        "parent": "Bip01 R Thigh"
+      },
+      {
+        "name": "Bip01 R Foot",
+        "index": 31,
+        "parent": "Bip01 R Calf"
+      },
+      {
+        "name": "Bip01 R Toe0",
+        "index": 32,
+        "parent": "Bip01 R Foot"
+      },
+      {
+        "name": "n_PosRoute",
+        "index": 33,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend01",
+        "index": 34,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend02",
+        "index": 35,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend03",
+        "index": 36,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend04",
+        "index": 37,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend05",
+        "index": 38,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_bFollowBone",
+        "index": 39,
+        "parent": "Scene Root"
+      }
+    ],
+    "children": [],
+    "command_string": "",
+    "sockets": [
+      {
+        "name": "Backpack",
+        "node_index": 4
+      },
+      {
+        "name": "RightHand",
+        "node_index": 20
+      },
+      {
+        "name": "ChangeEffect",
+        "node_index": 5
+      },
+      {
+        "name": "WolfeyeL",
+        "node_index": 7
+      },
+      {
+        "name": "WolfeyeR",
+        "node_index": 7
+      },
+      {
+        "name": "Fire_Start",
+        "node_index": 4
+      },
+      {
+        "name": "Trail_Hand3",
+        "node_index": 16
+      },
+      {
+        "name": "Trail_Hand2",
+        "node_index": 24
+      },
+      {
+        "name": "SmartSuction",
+        "node_index": 5
+      },
+      {
+        "name": "ChangeEffect1",
+        "node_index": 5
+      }
+    ],
+    "pieces": [
+      {
+        "name": "Smart_Wolf_B",
+        "material_index": 0,
+        "lods": [
+          {
+            "vertices": 4085,
+            "triangles": 4164,
+            "texture_slots": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "vertices_with_weights": 4085
+          }
+        ]
+      },
+      {
+        "name": "Smart_Tattoo",
+        "material_index": 10,
+        "lods": [
+          {
+            "vertices": 93,
+            "triangles": 96,
+            "texture_slots": [
+              10,
+              11,
+              12,
+              13
+            ],
+            "vertices_with_weights": 93
+          }
+        ]
+      }
+    ],
+    "animations": [
+      {
+        "name": "LSt",
+        "frames": 10,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LC",
+        "frames": 11,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LCWR",
+        "frames": 20,
+        "duration_ms": 1266,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LCWB",
+        "frames": 27,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LCWF",
+        "frames": 24,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LCWL",
+        "frames": 20,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LCWFR",
+        "frames": 24,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LCWFL",
+        "frames": 24,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LCWBL",
+        "frames": 27,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LCWBR",
+        "frames": 27,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LJJ",
+        "frames": 3,
+        "duration_ms": 133,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LJL",
+        "frames": 9,
+        "duration_ms": 366,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LJT",
+        "frames": 2,
+        "duration_ms": 34,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LRF",
+        "frames": 15,
+        "duration_ms": 600,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LRR",
+        "frames": 17,
+        "duration_ms": 600,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LRL",
+        "frames": 17,
+        "duration_ms": 600,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LRFR",
+        "frames": 14,
+        "duration_ms": 600,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LRFL",
+        "frames": 14,
+        "duration_ms": 600,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LWR",
+        "frames": 17,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LWB",
+        "frames": 22,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LWF",
+        "frames": 20,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LWL",
+        "frames": 14,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LWFR",
+        "frames": 20,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LWFL",
+        "frames": 20,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LWBL",
+        "frames": 22,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LWBR",
+        "frames": 22,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMC",
+        "frames": 11,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMJJ",
+        "frames": 2,
+        "duration_ms": 100,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMJL",
+        "frames": 15,
+        "duration_ms": 466,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMJT",
+        "frames": 2,
+        "duration_ms": 34,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMRF",
+        "frames": 15,
+        "duration_ms": 600,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMRR",
+        "frames": 17,
+        "duration_ms": 600,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMRL",
+        "frames": 17,
+        "duration_ms": 600,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMWR",
+        "frames": 17,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMWF",
+        "frames": 20,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMWB",
+        "frames": 22,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMWL",
+        "frames": 14,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMCWR",
+        "frames": 20,
+        "duration_ms": 1266,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMCWB",
+        "frames": 27,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMCWF",
+        "frames": 24,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMCWL",
+        "frames": 19,
+        "duration_ms": 1266,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMSt",
+        "frames": 10,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMJA",
+        "frames": 24,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMFi1",
+        "frames": 17,
+        "duration_ms": 566,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "T_WallRide",
+        "frames": 13,
+        "duration_ms": 400,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "T_WallRide2",
+        "frames": 3,
+        "duration_ms": 800,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "T_CRY",
+        "frames": 17,
+        "duration_ms": 1333,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "T_DBBB1",
+        "frames": 18,
+        "duration_ms": 967,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "T_DFBB1",
+        "frames": 24,
+        "duration_ms": 1067,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "T_DBHS1",
+        "frames": 35,
+        "duration_ms": 2133,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "T_DFHS1",
+        "frames": 50,
+        "duration_ms": 2733,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "T_DBBS1",
+        "frames": 37,
+        "duration_ms": 1900,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "T_DFBS1",
+        "frames": 35,
+        "duration_ms": 1866,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "LJA",
+        "frames": 24,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "Ui_idle",
+        "frames": 41,
+        "duration_ms": 1333,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "T_Bodyatk",
+        "frames": 28,
+        "duration_ms": 900,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "T_BodyatkL",
+        "frames": 28,
+        "duration_ms": 900,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "T_BodyatkR",
+        "frames": 28,
+        "duration_ms": 900,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "T_WallDash",
+        "frames": 17,
+        "duration_ms": 533,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "T_WallDashL",
+        "frames": 17,
+        "duration_ms": 533,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "T_WallDashR",
+        "frames": 17,
+        "duration_ms": 533,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "UMDe",
+        "frames": 41,
+        "duration_ms": 1333,
+        "compression": 0,
+        "transform_nodes": 40
+      },
+      {
+        "name": "T_WallDashAtk",
+        "frames": 34,
+        "duration_ms": 900,
+        "compression": 0,
+        "transform_nodes": 40
+      }
+    ]
+  },
+  {
+    "file": "wt_wolf_smart_r.ltb",
+    "bytes": 225121,
+    "sha256": "40719a3f93f578b215c7f5b47247a8dbff74c7bf3b219a994ec0408eaeda501d",
+    "parsed": true,
+    "version": 25,
+    "node_count": 40,
+    "nodes": [
+      {
+        "name": "Scene Root",
+        "index": 0,
+        "parent": null
+      },
+      {
+        "name": "Bip01",
+        "index": 1,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "Bip01 Pelvis",
+        "index": 2,
+        "parent": "Bip01"
+      },
+      {
+        "name": "Bip01 Spine",
+        "index": 3,
+        "parent": "Bip01 Pelvis"
+      },
+      {
+        "name": "Bip01 Spine1",
+        "index": 4,
+        "parent": "Bip01 Spine"
+      },
+      {
+        "name": "Bip01 Spine2",
+        "index": 5,
+        "parent": "Bip01 Spine1"
+      },
+      {
+        "name": "Bip01 Neck",
+        "index": 6,
+        "parent": "Bip01 Spine2"
+      },
+      {
+        "name": "Bip01 Head",
+        "index": 7,
+        "parent": "Bip01 Neck"
+      },
+      {
+        "name": "Bip01 Ponytail2",
+        "index": 8,
+        "parent": "Bip01 Head"
+      },
+      {
+        "name": "Bip01 L Clavicle",
+        "index": 9,
+        "parent": "Bip01 Neck"
+      },
+      {
+        "name": "Bip01 L UpperArm",
+        "index": 10,
+        "parent": "Bip01 L Clavicle"
+      },
+      {
+        "name": "Bip01 L Forearm",
+        "index": 11,
+        "parent": "Bip01 L UpperArm"
+      },
+      {
+        "name": "Bip01 L Hand",
+        "index": 12,
+        "parent": "Bip01 L Forearm"
+      },
+      {
+        "name": "Bip01 L Finger0",
+        "index": 13,
+        "parent": "Bip01 L Hand"
+      },
+      {
+        "name": "Bip01 L Finger01",
+        "index": 14,
+        "parent": "Bip01 L Finger0"
+      },
+      {
+        "name": "Bip01 L Finger1",
+        "index": 15,
+        "parent": "Bip01 L Hand"
+      },
+      {
+        "name": "Bip01 L Finger11",
+        "index": 16,
+        "parent": "Bip01 L Finger1"
+      },
+      {
+        "name": "Bip01 R Clavicle",
+        "index": 17,
+        "parent": "Bip01 Neck"
+      },
+      {
+        "name": "Bip01 R UpperArm",
+        "index": 18,
+        "parent": "Bip01 R Clavicle"
+      },
+      {
+        "name": "Bip01 R Forearm",
+        "index": 19,
+        "parent": "Bip01 R UpperArm"
+      },
+      {
+        "name": "Bip01 R Hand",
+        "index": 20,
+        "parent": "Bip01 R Forearm"
+      },
+      {
+        "name": "Bip01 R Finger0",
+        "index": 21,
+        "parent": "Bip01 R Hand"
+      },
+      {
+        "name": "Bip01 R Finger01",
+        "index": 22,
+        "parent": "Bip01 R Finger0"
+      },
+      {
+        "name": "Bip01 R Finger1",
+        "index": 23,
+        "parent": "Bip01 R Hand"
+      },
+      {
+        "name": "Bip01 R Finger11",
+        "index": 24,
+        "parent": "Bip01 R Finger1"
+      },
+      {
+        "name": "Bip01 L Thigh",
+        "index": 25,
+        "parent": "Bip01 Spine"
+      },
+      {
+        "name": "Bip01 L Calf",
+        "index": 26,
+        "parent": "Bip01 L Thigh"
+      },
+      {
+        "name": "Bip01 L Foot",
+        "index": 27,
+        "parent": "Bip01 L Calf"
+      },
+      {
+        "name": "Bip01 L Toe0",
+        "index": 28,
+        "parent": "Bip01 L Foot"
+      },
+      {
+        "name": "Bip01 R Thigh",
+        "index": 29,
+        "parent": "Bip01 Spine"
+      },
+      {
+        "name": "Bip01 R Calf",
+        "index": 30,
+        "parent": "Bip01 R Thigh"
+      },
+      {
+        "name": "Bip01 R Foot",
+        "index": 31,
+        "parent": "Bip01 R Calf"
+      },
+      {
+        "name": "Bip01 R Toe0",
+        "index": 32,
+        "parent": "Bip01 R Foot"
+      },
+      {
+        "name": "n_PosRoute",
+        "index": 33,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend01",
+        "index": 34,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend02",
+        "index": 35,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend03",
+        "index": 36,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend04",
+        "index": 37,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend05",
+        "index": 38,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_bFollowBone",
+        "index": 39,
+        "parent": "Scene Root"
+      }
+    ],
+    "children": [
+      "WT_WOLF_SMART_CH.ltb"
+    ],
+    "command_string": "",
+    "sockets": [
+      {
+        "name": "Backpack",
+        "node_index": 4
+      },
+      {
+        "name": "ChangeEffect",
+        "node_index": 5
+      },
+      {
+        "name": "WolfeyeL",
+        "node_index": 7
+      },
+      {
+        "name": "WolfeyeR",
+        "node_index": 7
+      },
+      {
+        "name": "Fire_Start",
+        "node_index": 4
+      },
+      {
+        "name": "Trail_Hand3",
+        "node_index": 16
+      },
+      {
+        "name": "Trail_Hand2",
+        "node_index": 24
+      },
+      {
+        "name": "SmartSuction",
+        "node_index": 5
+      },
+      {
+        "name": "FreezePoint0",
+        "node_index": 7
+      },
+      {
+        "name": "FreezePoint1",
+        "node_index": 9
+      },
+      {
+        "name": "FreezePoint2",
+        "node_index": 17
+      },
+      {
+        "name": "FreezePoint3",
+        "node_index": 4
+      },
+      {
+        "name": "FreezePoint4",
+        "node_index": 5
+      },
+      {
+        "name": "FreezePoint5",
+        "node_index": 4
+      },
+      {
+        "name": "FreezePoint6",
+        "node_index": 5
+      },
+      {
+        "name": "GlowL",
+        "node_index": 11
+      },
+      {
+        "name": "GlowR",
+        "node_index": 19
+      },
+      {
+        "name": "RightHand2",
+        "node_index": 19
+      },
+      {
+        "name": "LeftHand2",
+        "node_index": 11
+      },
+      {
+        "name": "RightHand",
+        "node_index": 20
+      },
+      {
+        "name": "LeftHand",
+        "node_index": 12
+      },
+      {
+        "name": "s_Identify",
+        "node_index": 10
+      }
+    ],
+    "pieces": [
+      {
+        "name": "body",
+        "material_index": 0,
+        "lods": [
+          {
+            "vertices": 3945,
+            "triangles": 3912,
+            "texture_slots": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "vertices_with_weights": 3945
+          }
+        ]
+      },
+      {
+        "name": "Tattoo_Body",
+        "material_index": 10,
+        "lods": [
+          {
+            "vertices": 225,
+            "triangles": 278,
+            "texture_slots": [
+              10,
+              11,
+              12,
+              13
+            ],
+            "vertices_with_weights": 225
+          }
+        ]
+      },
+      {
+        "name": "Tattoo_Arm_L",
+        "material_index": 14,
+        "lods": [
+          {
+            "vertices": 64,
+            "triangles": 87,
+            "texture_slots": [
+              14,
+              15,
+              16,
+              17
+            ],
+            "vertices_with_weights": 64
+          }
+        ]
+      },
+      {
+        "name": "Tattoo_Arm_R",
+        "material_index": 18,
+        "lods": [
+          {
+            "vertices": 64,
+            "triangles": 87,
+            "texture_slots": [
+              18,
+              19,
+              20,
+              21
+            ],
+            "vertices_with_weights": 64
+          }
+        ]
+      }
+    ],
+    "animations": [
+      {
+        "name": "@figure",
+        "frames": 1,
+        "duration_ms": 0,
+        "compression": 0,
+        "transform_nodes": 40
+      }
+    ]
+  },
+  {
+    "file": "wt_wolf_wraith.ltb",
+    "bytes": 4881752,
+    "sha256": "02775da4048109d5bfa6635d64420fe388094da1638eca6c4f73f75b1ad64c8f",
+    "parsed": true,
+    "version": 25,
+    "node_count": 58,
+    "nodes": [
+      {
+        "name": "Scene Root",
+        "index": 0,
+        "parent": null
+      },
+      {
+        "name": "n_PosRoute",
+        "index": 1,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend01",
+        "index": 2,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend02",
+        "index": 3,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend03",
+        "index": 4,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend04",
+        "index": 5,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend05",
+        "index": 6,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_bFollowB",
+        "index": 7,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "Point001",
+        "index": 8,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "Bip01",
+        "index": 9,
+        "parent": "Point001"
+      },
+      {
+        "name": "Bip01 Pelvis",
+        "index": 10,
+        "parent": "Bip01"
+      },
+      {
+        "name": "Bip01 Spine",
+        "index": 11,
+        "parent": "Bip01 Pelvis"
+      },
+      {
+        "name": "Bip01 Spine1",
+        "index": 12,
+        "parent": "Bip01 Spine"
+      },
+      {
+        "name": "Bip01 Spine2",
+        "index": 13,
+        "parent": "Bip01 Spine1"
+      },
+      {
+        "name": "Bip01 Neck",
+        "index": 14,
+        "parent": "Bip01 Spine2"
+      },
+      {
+        "name": "Bip01 Head",
+        "index": 15,
+        "parent": "Bip01 Neck"
+      },
+      {
+        "name": "Bone_jaw",
+        "index": 16,
+        "parent": "Bip01 Head"
+      },
+      {
+        "name": "Bip01 L Clavicle",
+        "index": 17,
+        "parent": "Bip01 Neck"
+      },
+      {
+        "name": "Bip01 L UpperArm",
+        "index": 18,
+        "parent": "Bip01 L Clavicle"
+      },
+      {
+        "name": "Bip01 L Forearm",
+        "index": 19,
+        "parent": "Bip01 L UpperArm"
+      },
+      {
+        "name": "Bip01 L Hand",
+        "index": 20,
+        "parent": "Bip01 L Forearm"
+      },
+      {
+        "name": "Bip01 L Finger0",
+        "index": 21,
+        "parent": "Bip01 L Hand"
+      },
+      {
+        "name": "Bip01 L Finger01",
+        "index": 22,
+        "parent": "Bip01 L Finger0"
+      },
+      {
+        "name": "Bip01 L Finger1",
+        "index": 23,
+        "parent": "Bip01 L Hand"
+      },
+      {
+        "name": "Bip01 L Finger11",
+        "index": 24,
+        "parent": "Bip01 L Finger1"
+      },
+      {
+        "name": "Bip01 L Finger2",
+        "index": 25,
+        "parent": "Bip01 L Hand"
+      },
+      {
+        "name": "Bip01 L Finger21",
+        "index": 26,
+        "parent": "Bip01 L Finger2"
+      },
+      {
+        "name": "Bip01 L ForeTwist",
+        "index": 27,
+        "parent": "Bip01 L UpperArm"
+      },
+      {
+        "name": "Bip01 R Clavicle",
+        "index": 28,
+        "parent": "Bip01 Neck"
+      },
+      {
+        "name": "Bip01 R UpperArm",
+        "index": 29,
+        "parent": "Bip01 R Clavicle"
+      },
+      {
+        "name": "Bip01 R Forearm",
+        "index": 30,
+        "parent": "Bip01 R UpperArm"
+      },
+      {
+        "name": "Bip01 R Hand",
+        "index": 31,
+        "parent": "Bip01 R Forearm"
+      },
+      {
+        "name": "Bip01 R Finger0",
+        "index": 32,
+        "parent": "Bip01 R Hand"
+      },
+      {
+        "name": "Bip01 R Finger01",
+        "index": 33,
+        "parent": "Bip01 R Finger0"
+      },
+      {
+        "name": "Bip01 R Finger1",
+        "index": 34,
+        "parent": "Bip01 R Hand"
+      },
+      {
+        "name": "Bip01 R Finger11",
+        "index": 35,
+        "parent": "Bip01 R Finger1"
+      },
+      {
+        "name": "Bip01 R Finger2",
+        "index": 36,
+        "parent": "Bip01 R Hand"
+      },
+      {
+        "name": "Bip01 R Finger21",
+        "index": 37,
+        "parent": "Bip01 R Finger2"
+      },
+      {
+        "name": "Bip01 R ForeTwist",
+        "index": 38,
+        "parent": "Bip01 R UpperArm"
+      },
+      {
+        "name": "Bone_hair01",
+        "index": 39,
+        "parent": "Bip01 Neck"
+      },
+      {
+        "name": "Bone_hair02",
+        "index": 40,
+        "parent": "Bip01 Neck"
+      },
+      {
+        "name": "Bone_hair03",
+        "index": 41,
+        "parent": "Bip01 Neck"
+      },
+      {
+        "name": "Bip01 L Thigh",
+        "index": 42,
+        "parent": "Bip01 Pelvis"
+      },
+      {
+        "name": "Bip01 L Calf",
+        "index": 43,
+        "parent": "Bip01 L Thigh"
+      },
+      {
+        "name": "Bip01 L HorseLink",
+        "index": 44,
+        "parent": "Bip01 L Calf"
+      },
+      {
+        "name": "Bip01 L Foot",
+        "index": 45,
+        "parent": "Bip01 L HorseLink"
+      },
+      {
+        "name": "Bip01 L Toe0",
+        "index": 46,
+        "parent": "Bip01 L Foot"
+      },
+      {
+        "name": "Bip01 R Thigh",
+        "index": 47,
+        "parent": "Bip01 Pelvis"
+      },
+      {
+        "name": "Bip01 R Calf",
+        "index": 48,
+        "parent": "Bip01 R Thigh"
+      },
+      {
+        "name": "Bip01 R HorseLink",
+        "index": 49,
+        "parent": "Bip01 R Calf"
+      },
+      {
+        "name": "Bip01 R Foot",
+        "index": 50,
+        "parent": "Bip01 R HorseLink"
+      },
+      {
+        "name": "Bip01 R Toe0",
+        "index": 51,
+        "parent": "Bip01 R Foot"
+      },
+      {
+        "name": "Bone_tail00",
+        "index": 52,
+        "parent": "Bip01 Pelvis"
+      },
+      {
+        "name": "Bone_tail01",
+        "index": 53,
+        "parent": "Bone_tail00"
+      },
+      {
+        "name": "Bone_tail02",
+        "index": 54,
+        "parent": "Bone_tail01"
+      },
+      {
+        "name": "Bone_tail03",
+        "index": 55,
+        "parent": "Bone_tail02"
+      },
+      {
+        "name": "Bone_tail04",
+        "index": 56,
+        "parent": "Bone_tail03"
+      },
+      {
+        "name": "Bone_tail05",
+        "index": 57,
+        "parent": "Bone_tail04"
+      }
+    ],
+    "children": [],
+    "command_string": "",
+    "sockets": [
+      {
+        "name": "ChangeEffect1",
+        "node_index": 0
+      }
+    ],
+    "pieces": [
+      {
+        "name": "Blue_Body",
+        "material_index": 0,
+        "lods": [
+          {
+            "vertices": 5171,
+            "triangles": 4947,
+            "texture_slots": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "vertices_with_weights": 5171
+          }
+        ]
+      },
+      {
+        "name": "Blue_Fur",
+        "material_index": 2,
+        "lods": [
+          {
+            "vertices": 157,
+            "triangles": 150,
+            "texture_slots": [
+              2,
+              1,
+              2,
+              3
+            ],
+            "vertices_with_weights": 157
+          }
+        ]
+      }
+    ],
+    "animations": [
+      {
+        "name": "LSt",
+        "frames": 51,
+        "duration_ms": 1666,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "LC",
+        "frames": 51,
+        "duration_ms": 1666,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "LCWR",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "LCWB",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "LCWF",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "LCWL",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "LCWFR",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "LCWFL",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "LCWBL",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "LCWBR",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "LJJ",
+        "frames": 11,
+        "duration_ms": 333,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "LJL",
+        "frames": 11,
+        "duration_ms": 333,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "LJT",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "LRF",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "LRR",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "LRL",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "LRFR",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "LRFL",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "LWR",
+        "frames": 29,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "LWB",
+        "frames": 29,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "LWF",
+        "frames": 29,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "LWL",
+        "frames": 29,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "LWFR",
+        "frames": 29,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "LWFL",
+        "frames": 29,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "LWBL",
+        "frames": 29,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "LWBR",
+        "frames": 29,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "UMC",
+        "frames": 51,
+        "duration_ms": 1666,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "UMJJ",
+        "frames": 11,
+        "duration_ms": 333,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "UMJL",
+        "frames": 11,
+        "duration_ms": 333,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "UMJT",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "UMRF",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "UMRR",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "UMRL",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "UMWR",
+        "frames": 29,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "UMWF",
+        "frames": 29,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "UMWB",
+        "frames": 29,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "UMWL",
+        "frames": 29,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "UMCWR",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "UMCWB",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "UMCWF",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "UMCWL",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "UMSt",
+        "frames": 51,
+        "duration_ms": 1666,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "T_WallRide",
+        "frames": 17,
+        "duration_ms": 533,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "T_WallRide2",
+        "frames": 51,
+        "duration_ms": 1666,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "T_WallRideL",
+        "frames": 17,
+        "duration_ms": 533,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "T_WallRideR",
+        "frames": 17,
+        "duration_ms": 533,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "T_WallHold_L",
+        "frames": 51,
+        "duration_ms": 1666,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "T_WallHold_R",
+        "frames": 51,
+        "duration_ms": 1666,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "T_DFHS1",
+        "frames": 58,
+        "duration_ms": 1900,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "T_DFBS1",
+        "frames": 73,
+        "duration_ms": 2400,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "T_DFBB1",
+        "frames": 47,
+        "duration_ms": 1533,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "Twitch",
+        "frames": 3,
+        "duration_ms": 34,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "T_DBBS1",
+        "frames": 81,
+        "duration_ms": 2666,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "T_DBBB1",
+        "frames": 56,
+        "duration_ms": 1833,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "T_DBHS1",
+        "frames": 57,
+        "duration_ms": 1866,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "T_CRY",
+        "frames": 55,
+        "duration_ms": 1500,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "T_BITE",
+        "frames": 51,
+        "duration_ms": 1666,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "T_DFBF1",
+        "frames": 95,
+        "duration_ms": 3133,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "T_DBBF1",
+        "frames": 81,
+        "duration_ms": 2666,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "LJA",
+        "frames": 35,
+        "duration_ms": 1133,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "UMFi2",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "UMFi1",
+        "frames": 19,
+        "duration_ms": 600,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "UMTR",
+        "frames": 51,
+        "duration_ms": 1666,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "UMTH",
+        "frames": 51,
+        "duration_ms": 1666,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "UMTF",
+        "frames": 51,
+        "duration_ms": 1666,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "Ui_idle",
+        "frames": 51,
+        "duration_ms": 1666,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "T_Specialatk",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "T_Bodyatk",
+        "frames": 51,
+        "duration_ms": 1666,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "T_BodyatkL",
+        "frames": 51,
+        "duration_ms": 1666,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "T_BodyatkR",
+        "frames": 51,
+        "duration_ms": 1666,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "T_WallDash",
+        "frames": 17,
+        "duration_ms": 533,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "T_WallDashL",
+        "frames": 17,
+        "duration_ms": 533,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "T_WallDashR",
+        "frames": 17,
+        "duration_ms": 533,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "UMDe",
+        "frames": 51,
+        "duration_ms": 1666,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "LRF2",
+        "frames": 17,
+        "duration_ms": 533,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "LRR2",
+        "frames": 19,
+        "duration_ms": 600,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "LRL2",
+        "frames": 19,
+        "duration_ms": 600,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "LRFR2",
+        "frames": 17,
+        "duration_ms": 533,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "LRFL2",
+        "frames": 17,
+        "duration_ms": 533,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "UMRF2",
+        "frames": 17,
+        "duration_ms": 533,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "UMRR2",
+        "frames": 19,
+        "duration_ms": 600,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "UMRL2",
+        "frames": 19,
+        "duration_ms": 600,
+        "compression": 0,
+        "transform_nodes": 58
+      },
+      {
+        "name": "T_WallDashAtk",
+        "frames": 32,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 58
+      }
+    ]
+  }
+]

@@ -1,0 +1,4876 @@
+{
+  "archive_bytes": 133326447,
+  "sha256": "1868710594dea82e4cbff01a00c0a957faef6a9869cdebaa6401711786fa1a1a",
+  "entries": [
+    {
+      "path": "models/1x1_square.ltb",
+      "bytes": 1403,
+      "directory": false
+    },
+    {
+      "path": "models/default.ltb",
+      "bytes": 1720,
+      "directory": false
+    },
+    {
+      "path": "models/keypadlight.ltb",
+      "bytes": 1024,
+      "directory": false
+    },
+    {
+      "path": "models/sphere.ltb",
+      "bytes": 5307,
+      "directory": false
+    },
+    {
+      "path": "wt_models/1x1_square.ltb",
+      "bytes": 1403,
+      "directory": false
+    },
+    {
+      "path": "wt_models/anzuplan/1m_object_new.ltb",
+      "bytes": 702,
+      "directory": false
+    },
+    {
+      "path": "wt_models/bombarea/mainarea.ltb",
+      "bytes": 20448,
+      "directory": false
+    },
+    {
+      "path": "wt_models/cylinder.ltb",
+      "bytes": 40642,
+      "directory": false
+    },
+    {
+      "path": "wt_models/door/door.ltb",
+      "bytes": 1935,
+      "directory": false
+    },
+    {
+      "path": "wt_models/pridemarkplane/planeberserker.ltb",
+      "bytes": 667,
+      "directory": false
+    },
+    {
+      "path": "wt_models/pridemarkplane/planeghost.ltb",
+      "bytes": 655,
+      "directory": false
+    },
+    {
+      "path": "wt_models/pridemarkplane/planeguardian.ltb",
+      "bytes": 664,
+      "directory": false
+    },
+    {
+      "path": "wt_models/pridemarkplane/planehuman.ltb",
+      "bytes": 735,
+      "directory": false
+    },
+    {
+      "path": "wt_models/pridemarkplane/planewolf.ltb",
+      "bytes": 652,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/door.ltb",
+      "bytes": 3730,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/3party_blue.ltb",
+      "bytes": 4123628,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/3party_red.ltb",
+      "bytes": 4938941,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/bluelegend_re_wolf.ltb",
+      "bytes": 3602625,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/r1_combat edition_wolf.ltb",
+      "bytes": 3560056,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/r1_wolf.ltb",
+      "bytes": 3485256,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/r2_man_wolf.ltb",
+      "bytes": 3640003,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/r2_woman_wolf.ltb",
+      "bytes": 3596042,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/r3_man_wolf.ltb",
+      "bytes": 3515801,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/r3_woman_wolf.ltb",
+      "bytes": 3535332,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/redlegend_re_wolf.ltb",
+      "bytes": 3602556,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/sanmartin_reborn_wolf.ltb",
+      "bytes": 2088088,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/simon_bolivar_reborn_wolf.ltb",
+      "bytes": 2109358,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/tupac_amaru_reborn_wolf.ltb",
+      "bytes": 2088088,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/turkey_wolf.ltb",
+      "bytes": 3508210,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/wt_10th anniversary_wolf_ch.ltb",
+      "bytes": 2088235,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/wt_3party_armed_woman_wolf_ch.ltb",
+      "bytes": 5889424,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/wt_3party_wolf_woman_ch.ltb",
+      "bytes": 3855661,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/wt_man_b.ltb",
+      "bytes": 208807,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/wt_man_b_snow.ltb",
+      "bytes": 224667,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/wt_man_ch.ltb",
+      "bytes": 2301141,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/wt_man_r.ltb",
+      "bytes": 201626,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/wt_man_r_snow.ltb",
+      "bytes": 217286,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/wt_new_man_ch.ltb",
+      "bytes": 20579112,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/wt_new_wolf_ch.ltb",
+      "bytes": 2088235,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/wt_new_woman_ch.ltb",
+      "bytes": 19812152,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/wt_ramadan_blue_wolf_ch.ltb",
+      "bytes": 2158280,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/wt_ramadan_red_wolf_ch.ltb",
+      "bytes": 2128667,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/wt_se_firewolf_ch.ltb",
+      "bytes": 2109507,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/wt_se_icewolf_ch.ltb",
+      "bytes": 2109506,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/wt_se_lightningwolf_ch.ltb",
+      "bytes": 2109506,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/wt_se_radiationwolf_ch.ltb",
+      "bytes": 2109507,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/wt_wolf_b.ltb",
+      "bytes": 272861,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/wt_wolf_berserker.ltb",
+      "bytes": 323067,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/wt_wolf_berserker_ch.ltb",
+      "bytes": 2011342,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/wt_wolf_berserker_r.ltb",
+      "bytes": 323067,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/wt_wolf_berserker_r_ai.ltb",
+      "bytes": 310876,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/wt_wolf_b_turkey_lightning.ltb",
+      "bytes": 3508225,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/wt_wolf_ch.ltb",
+      "bytes": 2016341,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/wt_wolf_ghost.ltb",
+      "bytes": 351627,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/wt_wolf_ghost2.ltb",
+      "bytes": 280903,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/wt_wolf_ghost2_ch.ltb",
+      "bytes": 2397356,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/wt_wolf_ghost2_r.ltb",
+      "bytes": 280903,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/wt_wolf_ghost_ch.ltb",
+      "bytes": 2437714,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/wt_wolf_ghost_r.ltb",
+      "bytes": 351627,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/wt_wolf_guardian.ltb",
+      "bytes": 273811,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/wt_wolf_guardian_ch.ltb",
+      "bytes": 1751902,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/wt_wolf_guardian_r.ltb",
+      "bytes": 273811,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/wt_wolf_hacker.ltb",
+      "bytes": 3971123,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/wt_wolf_ice_b.ltb",
+      "bytes": 304560,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/wt_wolf_ice_ch.ltb",
+      "bytes": 2323994,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/wt_wolf_ice_r.ltb",
+      "bytes": 304560,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/wt_wolf_power.ltb",
+      "bytes": 285781,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/wt_wolf_power_ch.ltb",
+      "bytes": 1916185,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/wt_wolf_power_r.ltb",
+      "bytes": 264204,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/wt_wolf_psycho_b.ltb",
+      "bytes": 288823,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/wt_wolf_psycho_b_ai.ltb",
+      "bytes": 292644,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/wt_wolf_psycho_ch.ltb",
+      "bytes": 1744598,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/wt_wolf_psycho_r.ltb",
+      "bytes": 288823,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/wt_wolf_r.ltb",
+      "bytes": 251093,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/wt_wolf_reboot_mn.ltb",
+      "bytes": 3535332,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/wt_wolf_r_turkey_radiation.ltb",
+      "bytes": 3508210,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/wt_wolf_smart.ltb",
+      "bytes": 225121,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/wt_wolf_smart_ch.ltb",
+      "bytes": 1631615,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/wt_wolf_smart_r.ltb",
+      "bytes": 225121,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/wt_wolf_woman_b_ch.ltb",
+      "bytes": 3985607,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/wt_wolf_woman_ch.ltb",
+      "bytes": 3635720,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/wt_wolf_woman_r_ch.ltb",
+      "bytes": 3985566,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/wt_wolf_wraith.ltb",
+      "bytes": 4881752,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/wt_wtk_wolf_ch.ltb",
+      "bytes": 2088247,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/models/wt_yavuzselimwolf_ch.ltb",
+      "bytes": 2109506,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/10th anniversary/10th anniversary blue character human.ltb",
+      "bytes": 223517,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/10th anniversary/10th anniversary blue wolf.ltb",
+      "bytes": 306637,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/10th anniversary/10th anniversary red character human.ltb",
+      "bytes": 218573,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/10th anniversary/10th anniversary red wolf.ltb",
+      "bytes": 298370,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/3party_caracin/3party_caracin.ltb",
+      "bytes": 245283,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/3party_caracin_armed/caracin_armed.ltb",
+      "bytes": 395008,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/3party_caracin_armed_wolf/caracin_armed_wolf.ltb",
+      "bytes": 580268,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/3party_caracin_wolf/3party_caracin_wolf.ltb",
+      "bytes": 448503,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/3party_kyle/3party_kyle.ltb",
+      "bytes": 289621,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/3party_kyle wolf/3party_kyle wolf.ltb",
+      "bytes": 526428,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/3party_ruslan/3party_ruslan.ltb",
+      "bytes": 318653,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/3party_ruslan wolf/3party_ruslan wolf.ltb",
+      "bytes": 596952,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/3party_tetra/3party_tetra.ltb",
+      "bytes": 248009,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/3party_tetra_armed/tetra_armed.ltb",
+      "bytes": 393152,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/3party_tetra_armed_wolf/tetra_armed_wolf.ltb",
+      "bytes": 582359,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/3party_tetra_wolf/3party_tetra_wolf.ltb",
+      "bytes": 460385,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/adriana_action/adriana_action.ltb",
+      "bytes": 215916,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/adriana_adult/adriana_adult.ltb",
+      "bytes": 191914,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/adriana_chrismas/adriana_chrismas.ltb",
+      "bytes": 271998,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/adriana_deops/adriana_deops.ltb",
+      "bytes": 237103,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/adriana_hero/adriana_hero.ltb",
+      "bytes": 249349,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/adriana_re/adriana_re.ltb",
+      "bytes": 288395,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/adriana_red/adriana.ltb",
+      "bytes": 192355,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/adriana_red/adriana_ch.ltb",
+      "bytes": 12405116,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/adriana_re_active/adriana_re_active.ltb",
+      "bytes": 425302,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/adriana_re_active_wolf/adriana_re_active_wolf.ltb",
+      "bytes": 404607,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/adriana_re_wolf/adriana_re_wolf.ltb",
+      "bytes": 352958,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/adriana_se/adriana_ch.ltb",
+      "bytes": 12405116,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/adriana_se/adriana_se.ltb",
+      "bytes": 217953,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/adriana_se_wolf/adriana_se_wolf.ltb",
+      "bytes": 234335,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/adriana_se_wolf/wt_wolf_ch.ltb",
+      "bytes": 1741721,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/adriana_soccer/adriana_soccer.ltb",
+      "bytes": 175551,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/adriana_swat/adriana_swat.ltb",
+      "bytes": 345407,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/adriana_udt/adriana_udt.ltb",
+      "bytes": 281866,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/adriana_vallantine/adriana_vallantine.ltb",
+      "bytes": 250261,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/adriana_wolf/adriana_wolf.ltb",
+      "bytes": 239111,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/adriana_wolf/wt_wolf_ch.ltb",
+      "bytes": 1649151,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/adriana_worldwar/adriana_worldwar.ltb",
+      "bytes": 301884,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/ahmed_elsaka_reboot/ahmed_elsaka_reboot.ltb",
+      "bytes": 423351,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/ahmed_elsaka_reboot_wolf/ahmed_elsaka_reboot_wolf.ltb",
+      "bytes": 411718,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/ai/ai_boss/hell hound boss/hell hound boss.ltb",
+      "bytes": 2179189,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/ai/ai_boss/hell hound boss/hell hound boss_scene.ltb",
+      "bytes": 2988446,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/ai/ai_boss/hound boss/hound boss.ltb",
+      "bytes": 1074361,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/ai/ai_boss/hound boss/hound boss_scene.ltb",
+      "bytes": 1084437,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/ai/ch/wt_wolfrush_behamah_ch.ltb",
+      "bytes": 1579787,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/ai/ch/wt_wolfrush_berserker_ch.ltb",
+      "bytes": 1971803,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/ai/ch/wt_wolfrush_experiment_ch.ltb",
+      "bytes": 1907670,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/ai/ch/wt_wolfrush_leviathan_ch.ltb",
+      "bytes": 1335749,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/ai/ch/wt_wolfrush_lusian_ch.ltb",
+      "bytes": 1509661,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/ai/ch/wt_wolfrush_psycho_mystic.ltb",
+      "bytes": 1610321,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/ai/ch/wt_wolfrush_psycho_psychic.ltb",
+      "bytes": 1610321,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/ai/wt_wolfrush_behamah_type_ai.ltb",
+      "bytes": 319209,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/ai/wt_wolfrush_berserker_type_ai.ltb",
+      "bytes": 304055,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/ai/wt_wolfrush_experiment_ai.ltb",
+      "bytes": 229150,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/ai/wt_wolfrush_leviathan_ai.ltb",
+      "bytes": 364656,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/ai/wt_wolfrush_lusian_ai.ltb",
+      "bytes": 242441,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/ai/wt_wolfrush_psycho_mystic.ltb",
+      "bytes": 271161,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/ai/wt_wolfrush_psycho_psychic.ltb",
+      "bytes": 271162,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/ai_boss/hell hound boss/hell hound boss.ltb",
+      "bytes": 2179489,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/ai_boss/hell hound boss/hell hound boss_scene.ltb",
+      "bytes": 2988478,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/ai_boss/hound boss/hound boss.ltb",
+      "bytes": 1074346,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/ai_boss/hound boss/hound boss_scene.ltb",
+      "bytes": 1084485,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/ai_boss/hound_boss.ltb",
+      "bytes": 1907346,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/amelli_binoche/amelli.ltb",
+      "bytes": 309107,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/amelli_binoche_wolf/amelli_wolf.ltb",
+      "bytes": 283338,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/angela mao_nano/angela_mao_nano.ltb",
+      "bytes": 468474,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/angela mao_nano_wolf/angela_mao_nano_wolf.ltb",
+      "bytes": 472303,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/angela_action/angela_action.ltb",
+      "bytes": 260240,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/angela_adult/angela_adult.ltb",
+      "bytes": 193544,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/angela_adult02/angela_adult02.ltb",
+      "bytes": 253819,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/angela_blue/angela.ltb",
+      "bytes": 176977,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/angela_blue/angela_ch.ltb",
+      "bytes": 6690071,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/angela_christmas/angela_christmas.ltb",
+      "bytes": 303724,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/angela_deops/angela_deops.ltb",
+      "bytes": 271690,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/angela_hero/angela_hero.ltb",
+      "bytes": 272333,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/angela_re/angela_re.ltb",
+      "bytes": 372667,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/angela_re wolf/angela_re wolf.ltb",
+      "bytes": 426577,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/angela_se/angela_ch.ltb",
+      "bytes": 6690071,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/angela_se/angela_se.ltb",
+      "bytes": 268914,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/angela_se_wolf/angela_se_wolf.ltb",
+      "bytes": 219285,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/angela_se_wolf/wt_wolf_ch.ltb",
+      "bytes": 1741721,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/angela_soccer/angela_soccer.ltb",
+      "bytes": 175166,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/angela_swat/angela_swat.ltb",
+      "bytes": 342958,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/angela_udt/angela_udt.ltb",
+      "bytes": 290037,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/angela_valentine/angela_valentine.ltb",
+      "bytes": 254749,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/angela_vallantine/angela_valentine.ltb",
+      "bytes": 254749,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/angela_wolf/angela_wolf.ltb",
+      "bytes": 219494,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/angela_wolf/wt_wolf_ch.ltb",
+      "bytes": 1649151,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/angela_worldwar/angela_worldwa.ltb",
+      "bytes": 251866,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/antonela_roman/antonela_roman.ltb",
+      "bytes": 372703,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/antonela_roman_wolf/antonela_roman_wolf.ltb",
+      "bytes": 353409,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/ates/ates.ltb",
+      "bytes": 181099,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/ates reboot/ates reboot.ltb",
+      "bytes": 303138,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/ates reboot_wolf/ates reboot_wolf.ltb",
+      "bytes": 396108,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/ates_wolf/ates_wolf.ltb",
+      "bytes": 222734,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/azap/azap.ltb",
+      "bytes": 278536,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/azap_wolf/azap_wolf.ltb",
+      "bytes": 373485,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/baker_wolf/baker_wolf.ltb",
+      "bytes": 241473,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/bane_legend/bane_legend.ltb",
+      "bytes": 224451,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/bane_legend/hair.ltb",
+      "bytes": 8396,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/bane_wolf/bane_wolf.ltb",
+      "bytes": 319871,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/barut/barut.ltb",
+      "bytes": 220840,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/barut reboot/barut reboot.ltb",
+      "bytes": 366266,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/barut reboot_wolf/barut reboot_wolf.ltb",
+      "bytes": 414405,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/barut_wolf/barut_wolf.ltb",
+      "bytes": 255427,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/blume_wolf/blume_wolf.ltb",
+      "bytes": 255545,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/bolivar_se_wolf/bolivar_se_wolf.ltb",
+      "bytes": 207945,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/brian/brian.ltb",
+      "bytes": 391361,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/brian_wolf/brian_wolf.ltb",
+      "bytes": 379975,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/b_riccardo_se/b_riccardo_se.ltb",
+      "bytes": 271691,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/b_sarah_se/b_sarah_se.ltb",
+      "bytes": 296796,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/celebrity/ceyda/ceyda.ltb",
+      "bytes": 961478,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/celebrity/eliana/eliana.ltb",
+      "bytes": 405346,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/celebrity/eliana_xmas/eliana_xmas.ltb",
+      "bytes": 433941,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/celebrity/esra/esra.ltb",
+      "bytes": 365003,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/celebrity/hanna/hanna.ltb",
+      "bytes": 340370,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/celebrity/hanna_xmas/hanna_xmas.ltb",
+      "bytes": 334922,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/ceyda/ceyda.ltb",
+      "bytes": 365194,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/ceyda_swimsuit/ceyda_swimsuit.ltb",
+      "bytes": 510742,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/ceyda_swimsuit_wolf/ceyda_swimsuit_wolf.ltb",
+      "bytes": 409233,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/ceyda_wolf/ceyda_wolf.ltb",
+      "bytes": 373032,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/chiristopher_worldwar/chiristopher_worldwar.ltb",
+      "bytes": 237377,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/christopher_action/christopher_action.ltb",
+      "bytes": 246697,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/christopher_blue/christopher.ltb",
+      "bytes": 161398,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/christopher_blue/christopher_ch.ltb",
+      "bytes": 2637496,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/christopher_ce/christopher_ce.ltb",
+      "bytes": 353531,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/christopher_ce_wolf/christopher_ce_wolf.ltb",
+      "bytes": 374615,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/christopher_christmas/christopher_christmas.ltb",
+      "bytes": 335496,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/christopher_deops/christopher_deops.ltb",
+      "bytes": 265479,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/christopher_hero/christopher_hero.ltb",
+      "bytes": 257637,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/christopher_nano/christopher_nano.ltb",
+      "bytes": 267498,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/christopher_nano_wolf/christopher_nano_wolf.ltb",
+      "bytes": 366377,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/christopher_re/christopher_re.ltb",
+      "bytes": 387981,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/christopher_re_wolf/christopher_re_wolf.ltb",
+      "bytes": 386490,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/christopher_se/christopher_ch.ltb",
+      "bytes": 6997271,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/christopher_se/christopher_se.ltb",
+      "bytes": 235600,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/christopher_se_wolf/christopher_se_wolf.ltb",
+      "bytes": 234428,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/christopher_se_wolf/wt_wolf_ch.ltb",
+      "bytes": 1741721,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/christopher_soccer/christopher_soccer.ltb",
+      "bytes": 167313,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/christopher_soccer_t/christopher_soccer_t.ltb",
+      "bytes": 164406,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/christopher_swat/christopher_swat.ltb",
+      "bytes": 303048,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/christopher_udt/christopher_udt.ltb",
+      "bytes": 291671,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/christopher_valentine/christopher_valentine.ltb",
+      "bytes": 187348,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/christopher_vallantine/christopher_valentine.ltb",
+      "bytes": 187348,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/christopher_wolf/christopher_wolf.ltb",
+      "bytes": 237661,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/christopher_wolf/wt_wolf_ch.ltb",
+      "bytes": 1649151,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/christopher_wolf_sc/christopher_wolf_sc.ltb",
+      "bytes": 227121,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/el-17/el-17.ltb",
+      "bytes": 513869,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/el-17_wolf/el-17_wolf.ltb",
+      "bytes": 437306,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/eliana/eliana.ltb",
+      "bytes": 413237,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/eliana_wolf/eliana_wolf.ltb",
+      "bytes": 376311,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/eliana_xmas/eliana_xmas.ltb",
+      "bytes": 435881,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/eliana_xmas_wolf/eliana_xmas_wolf.ltb",
+      "bytes": 376311,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/esra/esra.ltb",
+      "bytes": 354810,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/esra_swimsuit/esra_swimsuit.ltb",
+      "bytes": 535006,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/esra_swimsuit_wolf/esra_swimsuit_wolf.ltb",
+      "bytes": 437017,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/esra_wolf/esra_wolf.ltb",
+      "bytes": 373920,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/ezel/ezel.ltb",
+      "bytes": 241983,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/ezel_wolf/ezel_wolf.ltb",
+      "bytes": 319806,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/fatih aslan/fatih aslan.ltb",
+      "bytes": 279402,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/fatih_wolf/fatih_wolf.ltb",
+      "bytes": 246390,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/geremi song_christmas02/geremi song_christmas02.ltb",
+      "bytes": 198504,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/geremi song_re/geremi song_re.ltb",
+      "bytes": 312975,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/geremi song_red/geremi song.ltb",
+      "bytes": 175250,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/geremi song_re_wolf/geremi song_re_wolf.ltb",
+      "bytes": 357220,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/geremi song_se/geremi song_se.ltb",
+      "bytes": 222453,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/geremi song_soccer/geremi song_soccer.ltb",
+      "bytes": 187088,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/geremi song_soccer_t/geremi song_soccer_t.ltb",
+      "bytes": 152650,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/geremi song_suit/geremi_suit.ltb",
+      "bytes": 157844,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/geremi_military/geremi_military.ltb",
+      "bytes": 251971,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/geremi_se_wolf/geremi_se_wolf.ltb",
+      "bytes": 267839,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/geremi_sfmovie/geremi_sfmovie.ltb",
+      "bytes": 208751,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/geremi_ski/geremi_ski.ltb",
+      "bytes": 321012,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/geremi_valentine/geremi_valentine.ltb",
+      "bytes": 206413,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/geremi_wolf/geremi_wolf.ltb",
+      "bytes": 238928,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/geremi_wolf_soccer/geremi_wolf_soccer.ltb",
+      "bytes": 236872,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/geremi_worldwar/geremi_worldwar.ltb",
+      "bytes": 234114,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/hamadah_gi/hamadah_gi.ltb",
+      "bytes": 190532,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/hamadah_re/hamadah_re.ltb",
+      "bytes": 273987,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/hamadah_re wolf/hamadah_re wolf.ltb",
+      "bytes": 334923,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/hanna/hanna.ltb",
+      "bytes": 323617,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/hanna_wolf/hanna_wolf.ltb",
+      "bytes": 375357,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/hanna_xmas/hanna_xmas.ltb",
+      "bytes": 325280,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/hanna_xmas_wolf/hanna_xmas_wolf.ltb",
+      "bytes": 375357,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/hans schneider/hans schneider.ltb",
+      "bytes": 250210,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/hans schneider_wolf/hans schneider_wolf.ltb",
+      "bytes": 255473,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/hans_scout/hans_scout.ltb",
+      "bytes": 228686,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/illude_re/illude_re.ltb",
+      "bytes": 454388,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/illude_re wolf/illude_re_wolf.ltb",
+      "bytes": 499536,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/ivanov_adult/ivanov_adult.ltb",
+      "bytes": 243482,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/ivanov_adult02/ivanov_adult02.ltb",
+      "bytes": 229306,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/ivanov_christmas02/ivanov_christmas02.ltb",
+      "bytes": 209420,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/ivanov_military/ivanov_military.ltb",
+      "bytes": 225452,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/ivanov_red/ivanov.ltb",
+      "bytes": 155774,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/ivanov_se/ivanov_se.ltb",
+      "bytes": 208814,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/ivanov_se_wolf/ivanov_se_wolf.ltb",
+      "bytes": 277310,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/ivanov_sfmovie/ivanov_sfmovie.ltb",
+      "bytes": 270032,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/ivanov_ski/ivanov_ski.ltb",
+      "bytes": 332064,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/ivanov_soccer/ivanov_soccer.ltb",
+      "bytes": 178675,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/ivanov_suit/ivanov_suit.ltb",
+      "bytes": 147757,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/ivanov_valentine/ivanov_valentine.ltb",
+      "bytes": 263828,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/ivanov_wolf/ivanov_wolf.ltb",
+      "bytes": 224146,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/ivanov_worldwar/ivanov_worldwar.ltb",
+      "bytes": 262720,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/jacy brewster/jacy brewster.ltb",
+      "bytes": 318309,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/jacy brewster wolf/jacy brewster wolf.ltb",
+      "bytes": 356498,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/jacy_madmax/jacy_madmax.ltb",
+      "bytes": 338024,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/jacy_madmax_wolf/jacy_madmax_wolf.ltb",
+      "bytes": 335989,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/james douglas/james douglas.ltb",
+      "bytes": 275229,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/james douglas wolf/james douglas wolf.ltb",
+      "bytes": 424150,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/james_madmax/james_madmax.ltb",
+      "bytes": 365958,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/james_madmax_wolf/james_madmax_wolf.ltb",
+      "bytes": 401118,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/jose de san martin/jose de san martin.ltb",
+      "bytes": 270107,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/jose de san martin_wolf/jose de san martin_wolf.ltb",
+      "bytes": 231791,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/kate_adult/kate_adult.ltb",
+      "bytes": 266950,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/kate_adult02/kate_adult02.ltb",
+      "bytes": 201867,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/kate_christmas/kate_christmas.ltb",
+      "bytes": 220126,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/kate_jungle/kate_jungle.ltb",
+      "bytes": 307754,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/kate_red/kate.ltb",
+      "bytes": 178354,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/kate_se_wolf/kate_se_wolf.ltb",
+      "bytes": 271172,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/kate_soccer/kate_soccer.ltb",
+      "bytes": 163766,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/kate_suit/kate_suit.ltb",
+      "bytes": 177602,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/leona/leona.ltb",
+      "bytes": 306213,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/leona_wolf/leona_wolf.ltb",
+      "bytes": 360953,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/lin meiling_nano/lin_meiling_nano.ltb",
+      "bytes": 418346,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/lin meiling_nano_wolf/lin_meiling_nano_wolf.ltb",
+      "bytes": 465910,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/linda_wolf/linda_wolf.ltb",
+      "bytes": 235538,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/linmeiling_adult/linmeiling_adult.ltb",
+      "bytes": 204923,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/linmeiling_adult02/linmeiling_adult02.ltb",
+      "bytes": 201398,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/linmeiling_casual/linmeiling_casual.ltb",
+      "bytes": 218873,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/linmeiling_desert/linmeiling_desert.ltb",
+      "bytes": 345885,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/linmeiling_halloween/linmeiling_halloween.ltb",
+      "bytes": 282239,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/linmeiling_halloween02/linmeiling_halloween02.ltb",
+      "bytes": 236003,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/linmeiling_re/linmeiling_re.ltb",
+      "bytes": 291367,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/linmeiling_re wolf/linmeiling_re wolf.ltb",
+      "bytes": 352811,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/linmeiling_red/linmeiling.ltb",
+      "bytes": 163019,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/linmeiling_red/linmeiling_ch.ltb",
+      "bytes": 12405116,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/linmeiling_se/linmeiling_se.ltb",
+      "bytes": 281461,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/linmeiling_se_wolf/linmeiling_se_wolf.ltb",
+      "bytes": 221478,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/linmeiling_soccer/linmeiling_soccer.ltb",
+      "bytes": 180242,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/linmeiling_thanksgiving/linmeiling_thanksgiving.ltb",
+      "bytes": 191492,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/linmeiling_wolf/linmeiling_wolf.ltb",
+      "bytes": 226380,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/linmeiling_wolf/wt_wolf_ch.ltb",
+      "bytes": 1649151,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/lin_gi/lin_gi.ltb",
+      "bytes": 216242,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/marien_adult/marien_adult.ltb",
+      "bytes": 234162,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/marien_adult02/marien_adult02.ltb",
+      "bytes": 211487,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/marien_blue/marien.ltb",
+      "bytes": 206205,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/marien_blue/marien_ch.ltb",
+      "bytes": 12405116,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/marien_casua/marien_casua.ltb",
+      "bytes": 263566,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/marien_casua/marien_casual.ltb",
+      "bytes": 263566,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/marien_casual/marien_casual.ltb",
+      "bytes": 265008,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/marien_desert/marien_desert.ltb",
+      "bytes": 361382,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/marien_gi/marien_gi.ltb",
+      "bytes": 194921,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/marien_gi/marien_gi_.ltb",
+      "bytes": 194867,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/marien_halloween/marien_halloween.ltb",
+      "bytes": 227156,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/marien_halloween02/marien_halloween02.ltb",
+      "bytes": 291491,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/marien_re/marien_re.ltb",
+      "bytes": 421162,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/marien_re_active/marien_re_active.ltb",
+      "bytes": 449274,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/marien_re_active_wolf/marien_re_active_wolf.ltb",
+      "bytes": 454891,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/marien_re_wolf/marien_re_wolf.ltb",
+      "bytes": 409152,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/marien_se/marien_se.ltb",
+      "bytes": 288182,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/marien_se_wolf/marien_se_wolf.ltb",
+      "bytes": 232987,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/marien_soccer/marien_soccer.ltb",
+      "bytes": 185806,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/marien_thanksgiving/marien_thanksgiving.ltb",
+      "bytes": 263934,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/marien_wolf/marien_wolf.ltb",
+      "bytes": 218248,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/marien_wolf/wt_wolf_ch.ltb",
+      "bytes": 1649151,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/matt baker_suit/matt baker_suit.ltb",
+      "bytes": 239654,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/matt_christmas/matt_christmas.ltb",
+      "bytes": 201838,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/matt_jungle/matt_jungle.ltb",
+      "bytes": 277190,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/matt_red/matt.ltb",
+      "bytes": 203735,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/matt_se_wolf/matt_se_wolf.ltb",
+      "bytes": 243069,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/matt_soccer/matt baker_soccer.ltb",
+      "bytes": 173224,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/megan_neon/megan_savante_neon.ltb",
+      "bytes": 186888,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/megan_neon_wolf/megan_savante_neon_wolf.ltb",
+      "bytes": 247091,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/megan_wtk/megan_wtk.ltb",
+      "bytes": 191938,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/megan_wtk_wolf/megan_wtk_wolf.ltb",
+      "bytes": 247035,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/mert/mert.ltb",
+      "bytes": 232387,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/mert_wolf/mert_wolf.ltb",
+      "bytes": 381764,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/moshin_casual/moshin_casual.ltb",
+      "bytes": 229980,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/moshin_desert/moshin_desert.ltb",
+      "bytes": 331024,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/moshin_halloween/moshin_halloween.ltb",
+      "bytes": 208519,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/moshin_halloween02/moshin_halloween02.ltb",
+      "bytes": 206352,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/moshin_red/moshin.ltb",
+      "bytes": 164633,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/moshin_red/moshin_ch.ltb",
+      "bytes": 12003197,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/moshin_se/moshin_se.ltb",
+      "bytes": 286682,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/moshin_se_wolf/moshin_se_wolf.ltb",
+      "bytes": 286221,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/moshin_soccer/moshin_soccer.ltb",
+      "bytes": 167358,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/moshin_soccer_t/moshin_soccer_t.ltb",
+      "bytes": 163176,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/moshin_thanksgivingday/moshin_thanksgiving.ltb",
+      "bytes": 190732,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/moshin_wolf/moshin_wolf.ltb",
+      "bytes": 256132,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/moshin_wolf/wt_wolf_ch.ltb",
+      "bytes": 1649151,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/moshin_wolf_soccer/moshin_wolf_soccer.ltb",
+      "bytes": 243864,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/muhammad_ramadan_reboot/muhammad_ramadan_reboot.ltb",
+      "bytes": 309946,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/muhammad_ramadan_reboot_wolf/muhammad_ramadan_reboot_wolf.ltb",
+      "bytes": 364906,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/pedro_action/pedro_action.ltb",
+      "bytes": 304470,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/pedro_ce/pedro_ce.ltb",
+      "bytes": 324146,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/pedro_ce wolf/pedro_ce wolf.ltb",
+      "bytes": 381210,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/pedro_christmas/pedro_christmas.ltb",
+      "bytes": 270526,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/pedro_deops/pedro_deops.ltb",
+      "bytes": 254770,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/pedro_hero/pedro_hero.ltb",
+      "bytes": 266799,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/pedro_nano/pedro_nano.ltb",
+      "bytes": 249082,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/pedro_nano_wolf/pedro_nano_wolf.ltb",
+      "bytes": 322571,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/pedro_re/pedro_re.ltb",
+      "bytes": 275285,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/pedro_re wolf/pedro_re wolf.ltb",
+      "bytes": 327921,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/pedro_red/pedro.ltb",
+      "bytes": 154764,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/pedro_red/pedro_ch.ltb",
+      "bytes": 12003197,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/pedro_se/pedro_ch.ltb",
+      "bytes": 12003256,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/pedro_se/pedro_se.ltb",
+      "bytes": 261768,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/pedro_se_wolf/pedro_se_wolf.ltb",
+      "bytes": 261485,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/pedro_se_wolf/wt_wolf_ch.ltb",
+      "bytes": 1741721,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/pedro_soccer/pedro_soccer.ltb",
+      "bytes": 177426,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/pedro_soccer_t/pedro_soccer_t.ltb",
+      "bytes": 167652,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/pedro_swat/pedro_swat.ltb",
+      "bytes": 302911,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/pedro_udt/pedro_udt.ltb",
+      "bytes": 295327,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/pedro_valentine/pedro_valentine.ltb",
+      "bytes": 251401,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/pedro_vallantine/pedro_valentine.ltb",
+      "bytes": 251401,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/pedro_wolf/pedro_wolf.ltb",
+      "bytes": 246086,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/pedro_wolf/wt_wolf_ch.ltb",
+      "bytes": 1649151,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/pedro_wolf_soccer/pedro_wolf_soccer.ltb",
+      "bytes": 243134,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/pedro_worldwar/pedro_worldwar.ltb",
+      "bytes": 272919,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/rashid_neo_ramadan/rashid_neo_ramadan.ltb",
+      "bytes": 408802,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/rashid_neo_ramadan_wolf/rashid_neo_ramadan_wolf.ltb",
+      "bytes": 286402,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/rashid_ramadan/rashid_ramadan.ltb",
+      "bytes": 354506,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/rashid_ramadan_wolf/rashid_ramadan_wolf.ltb",
+      "bytes": 290403,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/rashid_reboot/rashid_reboot.ltb",
+      "bytes": 320717,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/rashid_reboot_ce/rashid_reboot_ce.ltb",
+      "bytes": 409109,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/rashid_reboot_ce_wolf/rashid_reboot_ce_wolf.ltb",
+      "bytes": 449815,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/rashid_reboot_wolf/rashid_reboot_wolf.ltb",
+      "bytes": 348046,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/raynor_legend/raynor_legend.ltb",
+      "bytes": 221540,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/raynor_wolf/raynor_wolf.ltb",
+      "bytes": 274368,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/reinhard_blue/reinhard.ltb",
+      "bytes": 158337,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/reinhard_blue/reinhard_ch.ltb",
+      "bytes": 6997271,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/reinhard_casual/reinhard_casual.ltb",
+      "bytes": 187086,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/reinhard_desert/reinhard_deser.ltb",
+      "bytes": 321954,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/reinhard_gi/reinhard_gi.ltb",
+      "bytes": 193872,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/reinhard_halloween/reinhard_halloween.ltb",
+      "bytes": 202147,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/reinhard_halloween02/reinhard_halloween02.ltb",
+      "bytes": 252627,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/reinhard_re/reinhard_re.ltb",
+      "bytes": 318850,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/reinhard_re_wolf/reinhard_re wolf.ltb",
+      "bytes": 420164,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/reinhard_se/reinhard_se.ltb",
+      "bytes": 214267,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/reinhard_se_wolf/reinhard_se_wolf.ltb",
+      "bytes": 223099,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/reinhard_soccer/reinhard_soccer.ltb",
+      "bytes": 165586,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/reinhard_thanksgiving/reinhard_thanksgiving.ltb",
+      "bytes": 247866,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/reinhard_wolf/reinhard_wolf.ltb",
+      "bytes": 247788,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/reinhard_wolf/wt_wolf_ch.ltb",
+      "bytes": 1649151,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/revekah savante/revekah savante.ltb",
+      "bytes": 186832,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/revekah_scout/revekah_scout.ltb",
+      "bytes": 236470,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/revekah_wolf/revekah_wolf.ltb",
+      "bytes": 247035,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/riccardo_blue/riccardo.ltb",
+      "bytes": 161900,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/riccardo_christmas/riccardo_christmas.ltb",
+      "bytes": 246362,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/riccardo_gm/riccardo_gm.ltb",
+      "bytes": 275470,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/riccardo_gm_2019/riccardo_gm_2019.ltb",
+      "bytes": 275470,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/riccardo_gm_2019_wolf/riccardo_gm_2019_wolf.ltb",
+      "bytes": 211739,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/riccardo_gm_wolf/riccardo_gm_wolf.ltb",
+      "bytes": 211739,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/riccardo_jungle/riccardo_jungle.ltb",
+      "bytes": 359365,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/riccardo_se_wolf/riccardo_se_wolf.ltb",
+      "bytes": 210867,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/riccardo_soccer/riccardo_soccer.ltb",
+      "bytes": 170036,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/riccardo_suit/riccardo_suit.ltb",
+      "bytes": 178980,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/riccardo_wolf/riccardo_wolf.ltb",
+      "bytes": 234846,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/rose fox/rose fox.ltb",
+      "bytes": 334445,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/rose fox wolf/rose fox wolf.ltb",
+      "bytes": 435813,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/rose_madmax/rose_madmax.ltb",
+      "bytes": 399369,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/rose_madmax_wolf/rose_madmax_wolf.ltb",
+      "bytes": 365753,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/r_kate_se/r_kate_se.ltb",
+      "bytes": 286091,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/r_matt_se/r_matt_se.ltb",
+      "bytes": 340660,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/sahale mora/sahale mora.ltb",
+      "bytes": 283371,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/sahale mora wolf/sahale mora wolf.ltb",
+      "bytes": 320437,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/sahale_madmax/sahale_madmax.ltb",
+      "bytes": 379033,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/sahale_madmax_wolf/sahale_madmax_wolf.ltb",
+      "bytes": 390270,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/saladin_neo_ramadan/saladin_neo_ramadan.ltb",
+      "bytes": 316287,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/saladin_neo_ramadan_wolf/saladin_neo_ramadan_wolf.ltb",
+      "bytes": 275209,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/saladin_ramadan/saladin_ramadan.ltb",
+      "bytes": 333935,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/saladin_ramadan_wolf/saladin_ramadan_wolf.ltb",
+      "bytes": 281953,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/saladin_reboot/saladin_reboot.ltb",
+      "bytes": 420487,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/saladin_reboot_ce/saladin_reboot_ce.ltb",
+      "bytes": 392329,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/saladin_reboot_ce_wolf/saladin_reboot_ce_wolf.ltb",
+      "bytes": 413649,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/saladin_reboot_wolf/saladin_reboot_wolf.ltb",
+      "bytes": 467452,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/sanmartin_reborn/san_martin_reborn.ltb",
+      "bytes": 270107,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/sanmartin_reborn_wolf/sanmartin_reborn_wolf.ltb",
+      "bytes": 231795,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/sarah_adult/sarah_adult.ltb",
+      "bytes": 246982,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/sarah_adult02/sarah_adult02.ltb",
+      "bytes": 278413,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/sarah_blue/sarah.ltb",
+      "bytes": 166055,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/sarah_christmas/sarah_christmas.ltb",
+      "bytes": 274209,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/sarah_gm/sarah_gm.ltb",
+      "bytes": 306695,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/sarah_gm_2019/sarah_gm_2019.ltb",
+      "bytes": 306695,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/sarah_gm_2019_wolf/sarah_gm_2019_wolf.ltb",
+      "bytes": 212226,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/sarah_gm_wolf/sarah_gm_wolf.ltb",
+      "bytes": 212225,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/sarah_jungle/sarah_jungle.ltb",
+      "bytes": 300126,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/sarah_se_wolf/sarah_se_wolf.ltb",
+      "bytes": 211285,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/sarah_soccer/sarah linda_soccer.ltb",
+      "bytes": 173519,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/sarah_suit/sarah_suit.ltb",
+      "bytes": 222710,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/sarp/sarp.ltb",
+      "bytes": 259494,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/sarp_wolf/sarp_wolf.ltb",
+      "bytes": 343087,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/sean/sean.ltb",
+      "bytes": 319745,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/sean_wolf/sean_wolf.ltb",
+      "bytes": 394506,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/seif_scout/seif_scout.ltb",
+      "bytes": 307456,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/selma/selma.ltb",
+      "bytes": 342526,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/selma_wolf/selma_wolf.ltb",
+      "bytes": 381290,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/simonbolivar/simonbolivar.ltb",
+      "bytes": 214420,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/simonbolivar_reborn/simon_bolivar_reborn.ltb",
+      "bytes": 214420,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/simonbolivar_reborn_wolf/simon_bolivar_reborn_wolf.ltb",
+      "bytes": 207948,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/simon_glazkov/simonglazkov.ltb",
+      "bytes": 292785,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/simon_glazkov_wolf/simon_glazkov_wolf.ltb",
+      "bytes": 287583,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/stephanie_oliveira/stephanie_oliveira.ltb",
+      "bytes": 355601,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/stephanie_oliveira_wolf/stephanie_oliveira_wolf.ltb",
+      "bytes": 353409,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/steven gerrard/steven gerrard.ltb",
+      "bytes": 383133,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/steven gerrard_wolf/steven gerrard_wolf.ltb",
+      "bytes": 398843,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/tomita_adult/tomita_adult.ltb",
+      "bytes": 247663,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/tomita_adult02/tomita_adult02.ltb",
+      "bytes": 271739,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/tomita_blue/tomita.ltb",
+      "bytes": 160502,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/tomita_christmas02/tomita_christmas02.ltb",
+      "bytes": 207991,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/tomita_military/tomita_military.ltb",
+      "bytes": 210408,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/tomita_re/tomita_re.ltb",
+      "bytes": 458013,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/tomita_re wolf/tomita_re_wolf.ltb",
+      "bytes": 429823,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/tomita_se/tomita_se.ltb",
+      "bytes": 266825,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/tomita_se_wolf/tomita_se_wolf.ltb",
+      "bytes": 251275,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/tomita_sfmovie/tomita_sfmovie.ltb",
+      "bytes": 242923,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/tomita_ski/tomita_ski.ltb",
+      "bytes": 263327,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/tomita_soccer/tomita_soccer.ltb",
+      "bytes": 176413,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/tomita_suit/tomita_suit.ltb",
+      "bytes": 165048,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/tomita_valentine/tomita_valentine.ltb",
+      "bytes": 240913,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/tomita_wolf/tomita_wolf.ltb",
+      "bytes": 236646,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/tomita_worldwar/tomita_worldwar.ltb",
+      "bytes": 314390,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/tupac amaru/tupac amaru.ltb",
+      "bytes": 271918,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/tupac amaru_wolf/tupac amaru_wolf.ltb",
+      "bytes": 266225,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/tupacamaru_reborn/tupac_amaru_reborn.ltb",
+      "bytes": 271918,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/tupacamaru_reborn_wolf/tupac_amaru_reborn_wolf.ltb",
+      "bytes": 266234,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/vanessa/vanessa.ltb",
+      "bytes": 225975,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/vanessa_neon/vanessa_furtado_neon.ltb",
+      "bytes": 226031,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/vanessa_neon_wolf/vanessa_furtado_neon_wolf.ltb",
+      "bytes": 224915,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/vanessa_scout/vanessa_scout.ltb",
+      "bytes": 295854,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/vanessa_wolf/vanessa_wolf.ltb",
+      "bytes": 224859,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/vanessa_wtk/vanessa.ltb",
+      "bytes": 232744,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/vanessa_wtk_wolf/vanessa_wtk_wolf.ltb",
+      "bytes": 224859,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/wilson_strotsky/wilson_strotsky.ltb",
+      "bytes": 295784,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/wilson_strotsky_wolf/wilson_strotsky_wolf.ltb",
+      "bytes": 410389,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/wolf_king/wolf_king.ltb",
+      "bytes": 258108,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/wolf_king/wolf_king02.ltb",
+      "bytes": 286157,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/wolf_king/wolf_kingasmon_ch.ltb",
+      "bytes": 1579784,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/wolf_king/wolf_king_ai.ltb",
+      "bytes": 311313,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/wolf_king/wolf_king_behamah.ltb",
+      "bytes": 267860,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/wolf_king/wolf_king_behamah_ai.ltb",
+      "bytes": 319196,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/wolf_king/wolf_king_ch.ltb",
+      "bytes": 1509661,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/wolf_king/wt_wolfking_ch(leviathan).ltb",
+      "bytes": 664387,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/wolf_king/wt_wolf_king_leviathan.ltb",
+      "bytes": 380619,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/wolf_king/wt_wolf_zombie_ch.ltb",
+      "bytes": 1907672,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/wolf_king/zombi_wolf.ltb",
+      "bytes": 246550,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/wolf_king/zombi_wolf_ai.ltb",
+      "bytes": 255243,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/yavuzselim_blue/yavuzselim.ltb",
+      "bytes": 241905,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/yavuz_selim_wolf/yavuz_selim_wolf.ltb",
+      "bytes": 321933,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/yigit demir_re/yigit demir_re.ltb",
+      "bytes": 366031,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/yigit demir_re wolf/yigit demir_re wolf.ltb",
+      "bytes": 447108,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/yigit_blue/yigit.ltb",
+      "bytes": 186459,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/yigit_cristmas02/yigit_cristmas02.ltb",
+      "bytes": 181508,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/yigit_military/yigit_military.ltb",
+      "bytes": 197763,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/yigit_se/yigit_se.ltb",
+      "bytes": 268798,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/yigit_se_wolf/yigit_se_wolf.ltb",
+      "bytes": 280300,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/yigit_sfmovie/yigit_sfmovie.ltb",
+      "bytes": 232844,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/yigit_ski/yigit_ski.ltb",
+      "bytes": 358168,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/yigit_soccer/yigit_soccer.ltb",
+      "bytes": 164353,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/yigit_soccer_t/yigit_soccer_t.ltb",
+      "bytes": 172637,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/yigit_suit/yigit_suit.ltb",
+      "bytes": 164143,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/yigit_valentine/yigit_valentine.ltb",
+      "bytes": 238946,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/yigit_wolf/yigit_wolf.ltb",
+      "bytes": 258719,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/yigit_wolf_soccer/yigit_wolf_soccer.ltb",
+      "bytes": 238881,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/yigit_worldwar/yigit_worldwar.ltb",
+      "bytes": 294039,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/youjin/youjin.ltb",
+      "bytes": 286100,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/youjin_wolf/youjin_wolf.ltb",
+      "bytes": 355266,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/wt_yavuzselimwolf_ch.ltb",
+      "bytes": 2020417,
+      "directory": false
+    },
+    {
+      "path": "wt_chars/newchars/ai/ai_boss/hell hound boss",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/ai/ai_boss/hound boss",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/ai/ai_boss",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/ai/ch",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/ai_boss/hell hound boss",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/ai_boss/hound boss",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/celebrity/ceyda",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/celebrity/eliana",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/celebrity/eliana_xmas",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/celebrity/esra",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/celebrity/hanna",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/celebrity/hanna_xmas",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/10th anniversary",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/3party_caracin",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/3party_caracin_armed",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/3party_caracin_armed_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/3party_caracin_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/3party_kyle",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/3party_kyle wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/3party_ruslan",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/3party_ruslan wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/3party_tetra",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/3party_tetra_armed",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/3party_tetra_armed_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/3party_tetra_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/adriana_action",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/adriana_adult",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/adriana_chrismas",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/adriana_deops",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/adriana_hero",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/adriana_re",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/adriana_red",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/adriana_re_active",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/adriana_re_active_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/adriana_re_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/adriana_se",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/adriana_se_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/adriana_soccer",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/adriana_swat",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/adriana_udt",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/adriana_vallantine",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/adriana_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/adriana_worldwar",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/ahmed_elsaka_reboot",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/ahmed_elsaka_reboot_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/ai",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/ai_boss",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/amelli_binoche",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/amelli_binoche_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/angela mao_nano",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/angela mao_nano_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/angela_action",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/angela_adult",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/angela_adult02",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/angela_blue",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/angela_christmas",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/angela_deops",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/angela_hero",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/angela_re",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/angela_re wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/angela_se",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/angela_se_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/angela_soccer",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/angela_swat",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/angela_udt",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/angela_valentine",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/angela_vallantine",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/angela_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/angela_worldwar",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/antonela_roman",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/antonela_roman_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/ates",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/ates reboot",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/ates reboot_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/ates_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/azap",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/azap_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/baker_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/bane_legend",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/bane_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/barut",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/barut reboot",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/barut reboot_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/barut_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/blume_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/bolivar_se_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/brian",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/brian_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/b_riccardo_se",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/b_sarah_se",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/celebrity",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/ceyda",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/ceyda_swimsuit",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/ceyda_swimsuit_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/ceyda_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/chiristopher_worldwar",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/christopher_action",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/christopher_blue",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/christopher_ce",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/christopher_ce_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/christopher_christmas",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/christopher_deops",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/christopher_hero",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/christopher_nano",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/christopher_nano_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/christopher_re",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/christopher_re_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/christopher_se",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/christopher_se_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/christopher_soccer",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/christopher_soccer_t",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/christopher_swat",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/christopher_udt",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/christopher_valentine",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/christopher_vallantine",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/christopher_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/christopher_wolf_sc",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/el-17",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/el-17_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/eliana",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/eliana_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/eliana_xmas",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/eliana_xmas_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/esra",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/esra_swimsuit",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/esra_swimsuit_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/esra_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/ezel",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/ezel_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/fatih aslan",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/fatih_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/geremi song_christmas02",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/geremi song_re",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/geremi song_red",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/geremi song_re_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/geremi song_se",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/geremi song_soccer",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/geremi song_soccer_t",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/geremi song_suit",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/geremi_military",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/geremi_se_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/geremi_sfmovie",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/geremi_ski",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/geremi_valentine",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/geremi_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/geremi_wolf_soccer",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/geremi_worldwar",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/hamadah_gi",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/hamadah_re",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/hamadah_re wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/hanna",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/hanna_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/hanna_xmas",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/hanna_xmas_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/hans schneider",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/hans schneider_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/hans_scout",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/illude_re",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/illude_re wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/ivanov_adult",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/ivanov_adult02",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/ivanov_christmas02",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/ivanov_military",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/ivanov_red",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/ivanov_se",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/ivanov_se_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/ivanov_sfmovie",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/ivanov_ski",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/ivanov_soccer",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/ivanov_suit",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/ivanov_valentine",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/ivanov_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/ivanov_worldwar",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/jacy brewster",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/jacy brewster wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/jacy_madmax",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/jacy_madmax_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/james douglas",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/james douglas wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/james_madmax",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/james_madmax_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/jose de san martin",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/jose de san martin_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/kate_adult",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/kate_adult02",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/kate_christmas",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/kate_jungle",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/kate_red",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/kate_se_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/kate_soccer",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/kate_suit",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/leona",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/leona_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/lin meiling_nano",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/lin meiling_nano_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/linda_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/linmeiling_adult",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/linmeiling_adult02",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/linmeiling_casual",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/linmeiling_desert",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/linmeiling_halloween",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/linmeiling_halloween02",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/linmeiling_re",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/linmeiling_re wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/linmeiling_red",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/linmeiling_se",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/linmeiling_se_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/linmeiling_soccer",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/linmeiling_thanksgiving",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/linmeiling_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/lin_gi",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/marien_adult",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/marien_adult02",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/marien_blue",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/marien_casua",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/marien_casual",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/marien_desert",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/marien_gi",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/marien_halloween",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/marien_halloween02",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/marien_re",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/marien_re_active",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/marien_re_active_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/marien_re_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/marien_se",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/marien_se_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/marien_soccer",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/marien_thanksgiving",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/marien_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/matt baker_suit",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/matt_christmas",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/matt_jungle",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/matt_red",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/matt_se_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/matt_soccer",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/megan_neon",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/megan_neon_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/megan_wtk",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/megan_wtk_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/mert",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/mert_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/moshin_casual",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/moshin_desert",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/moshin_halloween",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/moshin_halloween02",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/moshin_red",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/moshin_se",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/moshin_se_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/moshin_soccer",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/moshin_soccer_t",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/moshin_thanksgivingday",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/moshin_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/moshin_wolf_soccer",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/muhammad_ramadan_reboot",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/muhammad_ramadan_reboot_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/pedro_action",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/pedro_ce",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/pedro_ce wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/pedro_christmas",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/pedro_deops",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/pedro_hero",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/pedro_nano",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/pedro_nano_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/pedro_re",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/pedro_re wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/pedro_red",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/pedro_se",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/pedro_se_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/pedro_soccer",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/pedro_soccer_t",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/pedro_swat",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/pedro_udt",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/pedro_valentine",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/pedro_vallantine",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/pedro_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/pedro_wolf_soccer",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/pedro_worldwar",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/rashid_neo_ramadan",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/rashid_neo_ramadan_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/rashid_ramadan",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/rashid_ramadan_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/rashid_reboot",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/rashid_reboot_ce",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/rashid_reboot_ce_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/rashid_reboot_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/raynor_legend",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/raynor_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/reinhard_blue",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/reinhard_casual",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/reinhard_desert",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/reinhard_gi",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/reinhard_halloween",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/reinhard_halloween02",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/reinhard_re",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/reinhard_re_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/reinhard_se",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/reinhard_se_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/reinhard_soccer",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/reinhard_thanksgiving",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/reinhard_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/revekah savante",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/revekah_scout",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/revekah_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/riccardo_blue",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/riccardo_christmas",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/riccardo_gm",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/riccardo_gm_2019",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/riccardo_gm_2019_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/riccardo_gm_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/riccardo_jungle",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/riccardo_se_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/riccardo_soccer",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/riccardo_suit",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/riccardo_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/rose fox",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/rose fox wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/rose_madmax",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/rose_madmax_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/r_kate_se",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/r_matt_se",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/sahale mora",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/sahale mora wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/sahale_madmax",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/sahale_madmax_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/saladin_neo_ramadan",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/saladin_neo_ramadan_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/saladin_ramadan",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/saladin_ramadan_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/saladin_reboot",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/saladin_reboot_ce",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/saladin_reboot_ce_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/saladin_reboot_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/sanmartin_reborn",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/sanmartin_reborn_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/sarah_adult",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/sarah_adult02",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/sarah_blue",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/sarah_christmas",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/sarah_gm",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/sarah_gm_2019",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/sarah_gm_2019_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/sarah_gm_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/sarah_jungle",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/sarah_se_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/sarah_soccer",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/sarah_suit",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/sarp",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/sarp_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/sean",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/sean_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/seif_scout",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/selma",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/selma_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/simonbolivar",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/simonbolivar_reborn",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/simonbolivar_reborn_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/simon_glazkov",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/simon_glazkov_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/stephanie_oliveira",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/stephanie_oliveira_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/steven gerrard",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/steven gerrard_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/tomita_adult",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/tomita_adult02",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/tomita_blue",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/tomita_christmas02",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/tomita_military",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/tomita_re",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/tomita_re wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/tomita_se",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/tomita_se_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/tomita_sfmovie",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/tomita_ski",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/tomita_soccer",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/tomita_suit",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/tomita_valentine",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/tomita_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/tomita_worldwar",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/tupac amaru",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/tupac amaru_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/tupacamaru_reborn",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/tupacamaru_reborn_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/vanessa",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/vanessa_neon",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/vanessa_neon_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/vanessa_scout",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/vanessa_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/vanessa_wtk",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/vanessa_wtk_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/wilson_strotsky",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/wilson_strotsky_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/wolf_king",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/yavuzselim_blue",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/yavuz_selim_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/yigit demir_re",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/yigit demir_re wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/yigit_blue",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/yigit_cristmas02",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/yigit_military",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/yigit_se",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/yigit_se_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/yigit_sfmovie",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/yigit_ski",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/yigit_soccer",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/yigit_soccer_t",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/yigit_suit",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/yigit_valentine",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/yigit_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/yigit_wolf_soccer",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/yigit_worldwar",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/youjin",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars/youjin_wolf",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_models/anzuplan",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_models/bombarea",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_models/door",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_models/pridemarkplane",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/models",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars/newchars",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "models",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_models",
+      "bytes": 0,
+      "directory": true
+    },
+    {
+      "path": "wt_chars",
+      "bytes": 0,
+      "directory": true
+    }
+  ]
+}

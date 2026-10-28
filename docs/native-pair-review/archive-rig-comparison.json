@@ -1,0 +1,203 @@
+[
+  {
+    "file": "r1_wolf.ltb",
+    "nodes": 54,
+    "common_names": 39,
+    "extra_names": [
+      "Bip01 L Finger2",
+      "Bip01 L Finger21",
+      "Bip01 L ForeTwist",
+      "Bip01 L HorseLink",
+      "Bip01 R Finger2",
+      "Bip01 R Finger21",
+      "Bip01 R ForeTwist",
+      "Bip01 R HorseLink",
+      "L_Twist",
+      "Neck_Bone001",
+      "R_Twist",
+      "hair01",
+      "hair02",
+      "hair03",
+      "n_bFollowB"
+    ],
+    "missing_names": [
+      "Bip01 Ponytail11",
+      "Bip01 Ponytail2",
+      "n_bFollowBone"
+    ],
+    "shared_parent_hierarchy_matches": false,
+    "max_shared_bind_matrix_element_difference": 42.9710636138916
+  },
+  {
+    "file": "wt_wolf_ch.ltb",
+    "nodes": 42,
+    "common_names": 42,
+    "extra_names": [],
+    "missing_names": [],
+    "shared_parent_hierarchy_matches": true,
+    "max_shared_bind_matrix_element_difference": 0.00040300000512161205
+  },
+  {
+    "file": "wt_wolf_guardian_ch.ltb",
+    "nodes": 40,
+    "common_names": 40,
+    "extra_names": [],
+    "missing_names": [
+      "Bip01 Ponytail1",
+      "Bip01 Ponytail11"
+    ],
+    "shared_parent_hierarchy_matches": true,
+    "max_shared_bind_matrix_element_difference": 14.367332458496094
+  },
+  {
+    "file": "wt_wolf_guardian_r.ltb",
+    "nodes": 40,
+    "common_names": 40,
+    "extra_names": [],
+    "missing_names": [
+      "Bip01 Ponytail1",
+      "Bip01 Ponytail11"
+    ],
+    "shared_parent_hierarchy_matches": true,
+    "max_shared_bind_matrix_element_difference": 14.367332458496094
+  },
+  {
+    "file": "wt_wolf_hacker.ltb",
+    "nodes": 54,
+    "common_names": 39,
+    "extra_names": [
+      "Bip01 L Finger2",
+      "Bip01 L Finger21",
+      "Bip01 L ForeTwist",
+      "Bip01 L HorseLink",
+      "Bip01 R Finger2",
+      "Bip01 R Finger21",
+      "Bip01 R ForeTwist",
+      "Bip01 R HorseLink",
+      "L_Twist",
+      "Neck_Bone001",
+      "R_Twist",
+      "hair01",
+      "hair02",
+      "hair03",
+      "n_bFollowB"
+    ],
+    "missing_names": [
+      "Bip01 Ponytail11",
+      "Bip01 Ponytail2",
+      "n_bFollowBone"
+    ],
+    "shared_parent_hierarchy_matches": false,
+    "max_shared_bind_matrix_element_difference": 31.300094604492188
+  },
+  {
+    "file": "wt_wolf_ice_ch.ltb",
+    "nodes": 40,
+    "common_names": 40,
+    "extra_names": [],
+    "missing_names": [
+      "Bip01 Ponytail1",
+      "Bip01 Ponytail11"
+    ],
+    "shared_parent_hierarchy_matches": true,
+    "max_shared_bind_matrix_element_difference": 10.571418762207031
+  },
+  {
+    "file": "wt_wolf_ice_r.ltb",
+    "nodes": 40,
+    "common_names": 40,
+    "extra_names": [],
+    "missing_names": [
+      "Bip01 Ponytail1",
+      "Bip01 Ponytail11"
+    ],
+    "shared_parent_hierarchy_matches": true,
+    "max_shared_bind_matrix_element_difference": 10.000297546386719
+  },
+  {
+    "file": "wt_wolf_power_ch.ltb",
+    "nodes": 42,
+    "common_names": 42,
+    "extra_names": [],
+    "missing_names": [],
+    "shared_parent_hierarchy_matches": true,
+    "max_shared_bind_matrix_element_difference": 0.00040300000512161205
+  },
+  {
+    "file": "wt_wolf_power_r.ltb",
+    "nodes": 42,
+    "common_names": 42,
+    "extra_names": [],
+    "missing_names": [],
+    "shared_parent_hierarchy_matches": true,
+    "max_shared_bind_matrix_element_difference": 1.1920928955078125e-05
+  },
+  {
+    "file": "wt_wolf_r.ltb",
+    "nodes": 42,
+    "common_names": 42,
+    "extra_names": [],
+    "missing_names": [],
+    "shared_parent_hierarchy_matches": true,
+    "max_shared_bind_matrix_element_difference": 1.4781951904296875e-05
+  },
+  {
+    "file": "wt_wolf_smart_ch.ltb",
+    "nodes": 40,
+    "common_names": 40,
+    "extra_names": [],
+    "missing_names": [
+      "Bip01 Ponytail1",
+      "Bip01 Ponytail11"
+    ],
+    "shared_parent_hierarchy_matches": true,
+    "max_shared_bind_matrix_element_difference": 38.79039764404297
+  },
+  {
+    "file": "wt_wolf_smart_r.ltb",
+    "nodes": 40,
+    "common_names": 40,
+    "extra_names": [],
+    "missing_names": [
+      "Bip01 Ponytail1",
+      "Bip01 Ponytail11"
+    ],
+    "shared_parent_hierarchy_matches": true,
+    "max_shared_bind_matrix_element_difference": 38.79039764404297
+  },
+  {
+    "file": "wt_wolf_wraith.ltb",
+    "nodes": 58,
+    "common_names": 38,
+    "extra_names": [
+      "Bip01 L Finger2",
+      "Bip01 L Finger21",
+      "Bip01 L ForeTwist",
+      "Bip01 L HorseLink",
+      "Bip01 R Finger2",
+      "Bip01 R Finger21",
+      "Bip01 R ForeTwist",
+      "Bip01 R HorseLink",
+      "Bone_hair01",
+      "Bone_hair02",
+      "Bone_hair03",
+      "Bone_jaw",
+      "Bone_tail00",
+      "Bone_tail01",
+      "Bone_tail02",
+      "Bone_tail03",
+      "Bone_tail04",
+      "Bone_tail05",
+      "Point001",
+      "n_bFollowB"
+    ],
+    "missing_names": [
+      "Bip01 Ponytail1",
+      "Bip01 Ponytail11",
+      "Bip01 Ponytail2",
+      "n_bFollowBone"
+    ],
+    "shared_parent_hierarchy_matches": false,
+    "max_shared_bind_matrix_element_difference": 38.304203033447266
+  }
+]

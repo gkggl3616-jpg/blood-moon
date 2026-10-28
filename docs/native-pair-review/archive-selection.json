@@ -1,0 +1,93 @@
+[
+  {
+    "archive_path": "wt_chars/models/r1_wolf.ltb",
+    "local_path": "art/3d/source/wolfteam-archive/selected/r1_wolf.ltb",
+    "bytes": 3485256,
+    "sha256": "09ae380ec3e42173d4223e7c998268d91d27f53ce16a20cdbbd96baf5d3542e3",
+    "purpose": "native rig/body and motion candidate comparison"
+  },
+  {
+    "archive_path": "wt_chars/models/wt_wolf_ch.ltb",
+    "local_path": "art/3d/source/wolfteam-archive/selected/wt_wolf_ch.ltb",
+    "bytes": 2016341,
+    "sha256": "e86bf17b460b0654c2e3893087014412808caa2e3c3227046aecbc19d099a441",
+    "purpose": "native rig/body and motion candidate comparison"
+  },
+  {
+    "archive_path": "wt_chars/models/wt_wolf_guardian_ch.ltb",
+    "local_path": "art/3d/source/wolfteam-archive/selected/wt_wolf_guardian_ch.ltb",
+    "bytes": 1751902,
+    "sha256": "f5e1e35d3c95726ac8f47dd9200570697dd53c725731a243dbf7b96ae704deb7",
+    "purpose": "native rig/body and motion candidate comparison"
+  },
+  {
+    "archive_path": "wt_chars/models/wt_wolf_guardian_r.ltb",
+    "local_path": "art/3d/source/wolfteam-archive/selected/wt_wolf_guardian_r.ltb",
+    "bytes": 273811,
+    "sha256": "17e42588a9cc9250aba1dbc5c855af1124775bb51434bd9beeafa4b4f0cb336a",
+    "purpose": "native rig/body and motion candidate comparison"
+  },
+  {
+    "archive_path": "wt_chars/models/wt_wolf_hacker.ltb",
+    "local_path": "art/3d/source/wolfteam-archive/selected/wt_wolf_hacker.ltb",
+    "bytes": 3971123,
+    "sha256": "cf28d05143189dedb2f76c59c13cd78a8809220f2c7e0564e7bd68016419a279",
+    "purpose": "native rig/body and motion candidate comparison"
+  },
+  {
+    "archive_path": "wt_chars/models/wt_wolf_ice_ch.ltb",
+    "local_path": "art/3d/source/wolfteam-archive/selected/wt_wolf_ice_ch.ltb",
+    "bytes": 2323994,
+    "sha256": "0461cf9aca3a1f0b3f8c8297c392fb5a6b10177ae21afdaaa31c3046090740cc",
+    "purpose": "native rig/body and motion candidate comparison"
+  },
+  {
+    "archive_path": "wt_chars/models/wt_wolf_ice_r.ltb",
+    "local_path": "art/3d/source/wolfteam-archive/selected/wt_wolf_ice_r.ltb",
+    "bytes": 304560,
+    "sha256": "32e2637bd78560ce7a1c0099b48dcbf84b19ef1b5d3a66b5e4d1dfde9c975798",
+    "purpose": "native rig/body and motion candidate comparison"
+  },
+  {
+    "archive_path": "wt_chars/models/wt_wolf_power_ch.ltb",
+    "local_path": "art/3d/source/wolfteam-archive/selected/wt_wolf_power_ch.ltb",
+    "bytes": 1916185,
+    "sha256": "b8612db22690c92ce8cbffff6aae0f8f175bfd13762b61dc1708b579a41df66a",
+    "purpose": "native rig/body and motion candidate comparison"
+  },
+  {
+    "archive_path": "wt_chars/models/wt_wolf_power_r.ltb",
+    "local_path": "art/3d/source/wolfteam-archive/selected/wt_wolf_power_r.ltb",
+    "bytes": 264204,
+    "sha256": "5674cda28cc4c623acb9906839c766c100a41a5bbca6b73898bb7ea2c83259ab",
+    "purpose": "native rig/body and motion candidate comparison"
+  },
+  {
+    "archive_path": "wt_chars/models/wt_wolf_r.ltb",
+    "local_path": "art/3d/source/wolfteam-archive/selected/wt_wolf_r.ltb",
+    "bytes": 251093,
+    "sha256": "b5e0fceef94a67beac751b99a0d061fec572254cbc451f6f3cdac5cb310b7492",
+    "purpose": "native rig/body and motion candidate comparison"
+  },
+  {
+    "archive_path": "wt_chars/models/wt_wolf_smart_ch.ltb",
+    "local_path": "art/3d/source/wolfteam-archive/selected/wt_wolf_smart_ch.ltb",
+    "bytes": 1631615,
+    "sha256": "c2031051bd0f8785e624af3790eb51e3ba22220c6502e456d00813d78f6679dc",
+    "purpose": "native rig/body and motion candidate comparison"
+  },
+  {
+    "archive_path": "wt_chars/models/wt_wolf_smart_r.ltb",
+    "local_path": "art/3d/source/wolfteam-archive/selected/wt_wolf_smart_r.ltb",
+    "bytes": 225121,
+    "sha256": "40719a3f93f578b215c7f5b47247a8dbff74c7bf3b219a994ec0408eaeda501d",
+    "purpose": "native rig/body and motion candidate comparison"
+  },
+  {
+    "archive_path": "wt_chars/models/wt_wolf_wraith.ltb",
+    "local_path": "art/3d/source/wolfteam-archive/selected/wt_wolf_wraith.ltb",
+    "bytes": 4881752,
+    "sha256": "02775da4048109d5bfa6635d64420fe388094da1638eca6c4f73f75b1ad64c8f",
+    "purpose": "native rig/body and motion candidate comparison"
+  }
+]

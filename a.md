@@ -243,3 +243,31 @@ Yeni çalışma dosyaları: `art/3d/native-pair/guardian-wolf.blend`, `.glb`, `g
 - Yayımlanan arşiv ve APK tekrar indirildi. Arşiv içindeki SHA-256 değerleri, APK CRC'si, yeni GLB'lerin paketle byte eşitliği ve eski yayımlanan sertifika kontrol edildi. Ayrıntı `docs/native-pair-review/delivery.json`. Fiziksel telefon testi yapılmadı. Sanat/animasyon açık işleri önceki bölümdeki gibi duruyor.
 
 Kullanıcının `wt models, wt charts ,models.rar` dosyası (`file_000000009eac820aa20a3e4c2cdaa8e6`) alıntısı geldi. İndirme aracı **file exceeds the executor transfer limit of 32 MiB** hatası verdi. Yerel çalışma alanında bu arşivin kopyası bulunmadı; dolayısıyla içindekiler henüz listelenemedi veya doğrulanamadı. Kullanıcıdan indirmeye açık bağlantı veya 30 MB WinRAR ciltleri istendi. Eksiksiz arşiv gelince ana gövde/hareket/doku ayrımı, native klip adaylarının incelenmesi ve doğru dört ayak koşu/takla eşlemesi sürdürülecek. Arşiv adı tüm ihtiyaçların bulunduğunun teknik doğrulaması sayılmadı.
+
+### Drive bağlantısı ve seçici içe aktarım kararı
+
+Kullanıcı aynı arşivi `https://drive.google.com/file/d/1feaeVe0-F5OkB130x3jM631UmWOYfRMD/view` ile paylaştı. Genel Drive ve doğrudan usercontent indirme denemeleri oturum açma sayfasına yönlendi; view isteği 401 verdi. Son yeniden denemede de RAR yerine `Google Drive: Sign-in` HTML'i döndü. Arşiv henüz indirilmedi, içeriği listelenmedi.
+
+Kullanıcı yalnız gerekli varlıkların alınmasını istedi. Erişim açılınca önce arşiv dizini listelenecek; uygun birkaç kurt iskeleti, karşılık gelen gövdeler, gerekli hareket paketleri ve yalnız bağlı dokular seçilecek. Kurt geometri oranlarına göre iskelet uyumu karşılaştırılacak. Bütün arşiv oyuna veya APK'ya eklenmeyecek. Paket listesi ve seçilen/reddedilen dosya gerekçeleri kaydedilecek. Şu aşamada hangi ek iskeletlerin bulunduğu doğrulanmış değildir.
+
+## Drive erişimi açıldı — seçici arşiv incelemesi
+
+Son `usp=sharing` bağlantısında indirme başarılı oldu. RAR5 imzası doğrulandı; arşiv **133.326.447 bayt**. SHA-256 ve tam dizin listesi `docs/native-pair-review/archive-index.json` içinde. 974 kayıt: **553 LTB dosyası ve 421 dizin**; bu arşivde DTX dosyası yok. İçeriğin açılmış toplam boyutu 469.570.615 bayt. Yalnız seçilen **13 dosya / 23.296.957 bayt** `art/3d/source/wolfteam-archive/selected/` altına çıkarıldı; geri kalan dosyalar oyuna aktarılmadı. Ham RAR ve seçili kaynaklar Git dışında tutuluyor.
+
+### Seçilen ve karşılaştırılan kaynaklar
+
+Manifest: `archive-selection.json`; tam geometri/iskelet/klip raporu: `archive-rig-inspection.json`; mevcut Pedro ile isim/parent/bind karşılaştırması: `archive-rig-comparison.json` (üçü de `docs/native-pair-review/` altında).
+
+| Grup | Kemik | Sonuç |
+|---|---:|---|
+| `wt_wolf_r`, `wt_wolf_ch`, `wt_wolf_power_r`, `wt_wolf_power_ch` | 42 | Pedro ile 42 ortak düğüm ve aynı parent yapısı; paylaşılan bind matrisi farkı raporda yaklaşık sıfır. İlk uyarlama için tercih. |
+| Ice, Guardian | 40 | 40 ortak düğüm; bind pozları farklı. İlgili gövde ve kendi klibi birlikte değerlendirilmeli. |
+| Smart | 40 | Daha büyük bind-pozu farkı; mevcut gövdeye doğrudan takılmayacak. |
+| R1, Hacker | 54 | Yalnız 39 ortak isim ve farklı parent ilişkileri. Ayrı retarget gerekir. |
+| Wraith | 58 | 38 ortak isim ve farklı parent ilişkileri; ek kemikler nedeniyle doğrudan rig değişimi kabul edilmedi. |
+
+Kaynak poz incelemeleri dokusuz teşhis render'larıdır; bitmiş karakter tasarımı değildir. `motion-candidates/` karelerinde Wraith `LRF2/UMRF2` dahil koşu adayları örneklendi. İkinci set de dört ayak koşu olarak doğrulanmadı. `T_Specialatk` hareketinde havada dönüş görülüyor; yalnız isminden veya birkaç pozdan hedeflenen kısa takla kabul edilmedi. `T_Bodyatk` hâlâ tam takla olarak doğrulanmış değil. Hazır olmayan eşlemeler oyuna eklendi diye sunulmuyor.
+
+### Kullanıcının yeni aktarım tercihi
+
+Kullanıcı tüm oyun veya tüm LTB/DTX'leri gönderebileceğini belirtti. Gerekli uzantı **LTB** olarak açıklandı. Mevcut 553 LTB'nin yeniden yüklenmesi istenmedi; öncelik ilgili insan/kurt modellerinin DTX dokuları ve varsa ModelButes gibi model–doku eşleştirme kayıtları. Klasör yapısı korunacak; gereksiz tüm oyun dosyaları alınmayacak. Doku slotları LTB içinde sayısal; yalnız bu slotlardan kesin DTX dosya yolu çıkarılamıyor. Doğru kaplama eşlemesi için doku/kayıt incelemesi açık. Mevcut oyun modelleri bu arşiv incelemesi sırasında değiştirilmedi.
