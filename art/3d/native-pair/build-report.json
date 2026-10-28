@@ -1,0 +1,130 @@
+[
+  {
+    "form": "wolf",
+    "source_body": "art/characters/grey-wolf-production/working/grey-wolf-working.glb",
+    "native_bones": 42,
+    "triangles": 14865,
+    "height_m": 2.4,
+    "transfer": {
+      "maximum_native_distance_units": 13.574654579162598,
+      "p95_native_distance_units": 10.092761993408203,
+      "unweighted_vertices": 0,
+      "max_influences": 4
+    },
+    "clips": [
+      {
+        "name": "WolfIdle",
+        "native_lower": "LSt",
+        "native_upper": "UMSt",
+        "duration_s": 0.8666666666666667,
+        "frames": 27
+      },
+      {
+        "name": "WolfWalk",
+        "native_lower": "LWF",
+        "native_upper": "UMWF",
+        "duration_s": 0.9333333333333333,
+        "frames": 29
+      },
+      {
+        "name": "WolfRunNative",
+        "native_lower": "LRF",
+        "native_upper": "UMRF",
+        "duration_s": 0.7333333333333333,
+        "frames": 23
+      },
+      {
+        "name": "WolfRoar",
+        "native_lower": "T_CRY",
+        "native_upper": null,
+        "duration_s": 1.3333333333333333,
+        "frames": 41
+      },
+      {
+        "name": "WolfBodyAttack",
+        "native_lower": "T_Bodyatk",
+        "native_upper": null,
+        "duration_s": 0.8,
+        "frames": 25
+      },
+      {
+        "name": "WolfClawRight",
+        "native_lower": "LSt",
+        "native_upper": "UMFi1",
+        "duration_s": 0.6666666666666666,
+        "frames": 21
+      },
+      {
+        "name": "WolfClawLeft",
+        "native_lower": "LSt",
+        "native_upper": "UMFi2",
+        "duration_s": 0.6666666666666666,
+        "frames": 21
+      },
+      {
+        "name": "WolfJump",
+        "native_lower": "LJA",
+        "native_upper": "UMJJ",
+        "duration_s": 0.9,
+        "frames": 28
+      },
+      {
+        "name": "WolfTransform",
+        "native_lower": "Ui_idle",
+        "native_upper": null,
+        "duration_s": 0.6,
+        "frames": 19
+      }
+    ],
+    "visual_approval": false
+  },
+  {
+    "form": "man",
+    "source_body": "native Pedro body; PBR baked from existing authored Bilge human appearance",
+    "native_bones": 47,
+    "triangles": 3926,
+    "height_m": 1.85,
+    "transfer": {
+      "method": "original native vertex weights",
+      "unweighted_vertices": 0
+    },
+    "clips": [
+      {
+        "name": "HumanIdle",
+        "native_lower": "UI_Default_Idle",
+        "native_upper": null,
+        "duration_s": 1.6333333333333333,
+        "frames": 50
+      },
+      {
+        "name": "HumanWalk",
+        "native_lower": "LWF",
+        "native_upper": "URi1WF",
+        "duration_s": 1.0,
+        "frames": 31
+      },
+      {
+        "name": "HumanRun",
+        "native_lower": "LRF",
+        "native_upper": "URi1RF",
+        "duration_s": 0.7333333333333333,
+        "frames": 23
+      },
+      {
+        "name": "HumanFire",
+        "native_lower": "LSt",
+        "native_upper": "URi1Fi",
+        "duration_s": 0.8666666666666667,
+        "frames": 27
+      },
+      {
+        "name": "HumanReload",
+        "native_lower": "LSt",
+        "native_upper": "URi1Re",
+        "duration_s": 1.6666666666666667,
+        "frames": 51
+      }
+    ],
+    "visual_approval": false
+  }
+]

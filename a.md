@@ -1,0 +1,236 @@
+# Pedro — alınan native LTB dosyaları
+
+Kayıt tarihi: 2026-10-28 (Europe/Istanbul).
+
+Kullanıcıdan **36 LTB** alındı; tamamı indirildi, toplam **610,858 bayt**. Orijinaller değiştirilmeden `art/3d/source/pedro-native/` altında saklandı. Her dosyanın boyutu ve SHA-256 değeri aşağıda; ayrıntılı yerel manifest aynı klasörde `manifest.json`. Kaynak klasörü mevcut Git dışlama kuralı kapsamındadır; bu kayıt dosyaların dış servise yayımlandığı anlamına gelmez.
+
+## Kullanıcının model ve varyant ayrımı
+
+- Oyunda birden fazla Pedro sürümü var; insan ve kurt formları ayrı ele alınacak.
+- Numaralı `01/02/03/04/05/06` dosyaları ile `deops` grubu otomatik olarak aynı karaktere atanmayacak. Varyant kimliği eşya/model kaydı veya kaynak bağlantısı ile doğrulanacak.
+- `_wolf` taşıyan 6 dosya kurt ekipmanı adayı; `deops` taşıyan 6 dosya ayrı ekipman grubu adayı; kalan 24 dosyanın formu adından kesinleşmiyor.
+- `_l` ve `_r` sol/sağ parça ayrımı korunacak. Eksik eşler otomatik üretilmiş veya tamamlanmış sayılmayacak.
+
+## Dosya adlarından görülen kapsam ve açık işler
+
+Bu yüklemenin isimleri çanta, gözlük, kask/şapka, maske, yelek, dirsek ve diz koruyucuları gösteriyor. Bunlar 36 ayrı tam karakter olarak sayılmıyor. Ana insan/kurt gövdesi bu dosyalar arasında henüz doğrulanmadı. Ekipman dosyasının da node, kemik veya hareket verisi taşıması mümkündür; yalnız adından tam iskelet/animasyon var veya yok sonucu çıkarılmadı.
+
+**Yapıldı:** 36/36 indirme, değişmeden yerel kopya, boyut/SHA-256 kaydı, dosya adı üzerinden geçici parça sınıflandırması.
+
+**Henüz yapılmadı:** LTB ayrıştırma, Blender mesh/armature importu, doku eşleştirme, kemik/skin/klip raporu, Pedro varyant eşleştirmesi, GLB dönüşümü veya oyun entegrasyonu. Bu yüklemede DTX dokusu gelmedi.
+
+**Sonraki gerekli kontrol:** Ana Pedro insan ve kurt gövdelerini kaynak klasör/listeden saptamak; ilgili LTB ve bağlı DTX dosyalarını almak. `pedro.ltb`, `pedro_wolf.ltb` gibi adlar yalnız arama örnekleridir, mevcut arşiv yolu olarak doğrulanmış değildir. Kullanıcının eski rehberindeki sayılar/yollar bu dosyaların kanıtı sayılmaz.
+
+## Envanter
+
+| Dosya | Bayt | Adına göre parça | Geçici grup | SHA-256 |
+|---|---:|---|---|---|
+| `pedro_deops_elbow_r.ltb` | 10171 | Dirsek koruyucu | DEOPS ekipmanı adayı | `72be9a1a049d50d06fc7d75381d85323f4bad99f4ac9569bd2acd6962ce34bd8` |
+| `pedro_bag01.ltb` | 7577 | Çanta | Pedro ekipmanı adayı; formu doğrulanmadı | `da7daa51d282902328c0a48c485745f12150b68ac8d75d9030685315ea2724a6` |
+| `pedro_deops_goggle01.ltb` | 8755 | Gözlük | DEOPS ekipmanı adayı | `91dea2a0b11ece2968a88bf238c8b309d36d4a36169a20d3b9a39740fed1f7ad` |
+| `pedro_bag02.ltb` | 9209 | Çanta | Pedro ekipmanı adayı; formu doğrulanmadı | `31f72f2d0952baad3c32aa7d25893b34c2ae8b61698e604487475c3690fb0f1e` |
+| `pedro_deops_knee.ltb` | 10197 | Diz koruyucu | DEOPS ekipmanı adayı | `18ebb2c24dd72c436a8a538fa871150d1b7249ea3d7f3778a06cb5de0da42482` |
+| `pedro_deops_helmet01.ltb` | 5863 | Kask | DEOPS ekipmanı adayı | `85bc623ce7dea9d60052051e8342528ee79d1af70fe054efe5d9cee259e8ec13` |
+| `pedro_deops_mask01.ltb` | 6839 | Maske | DEOPS ekipmanı adayı | `a779471f42abb561f8dff6f5d50f475c11c2ff41c1a11b328e144c334c48f6d9` |
+| `pedro_elbowprotector_wolf_l.ltb` | 7053 | Dirsek koruyucu | Kurt ekipmanı adayı (_wolf) | `7d2251c846dde91a72bcae39b8d8433ae7b638a4fa25e7de80461a384c56131f` |
+| `pedro_elbowprotector_wolf_r.ltb` | 7053 | Dirsek koruyucu | Kurt ekipmanı adayı (_wolf) | `0ef5957a02fe13ddf7f0653364aeb201b0114a3a80d04fcfbf72db8756e735fc` |
+| `pedro_deops_vest01.ltb` | 118397 | Yelek | DEOPS ekipmanı adayı | `4d974804cc5fc7909464c89ba95f96eded1b9e73b0cbe53edade415c3b7dfc3f` |
+| `pedro_elbowprotector01_r.ltb` | 6846 | Dirsek koruyucu | Pedro ekipmanı adayı; formu doğrulanmadı | `1a158a1f30b01cd9988f74ca60709cf2a2e85fe518b3f2f7bedef2b18decef21` |
+| `pedro_elbowprotector03_r.ltb` | 5748 | Dirsek koruyucu | Pedro ekipmanı adayı; formu doğrulanmadı | `991550c3cb65c4ec8a3fae4290a1813f472e9dd0316c19825b4fef3047e2d8a1` |
+| `pedro_elbowprotector01_l.ltb` | 6846 | Dirsek koruyucu | Pedro ekipmanı adayı; formu doğrulanmadı | `4d5c04bb45efc6b447900445ac2cf3cf7f7079550a6b635af083481a5a63aab9` |
+| `pedro_elbowprotector04_l.ltb` | 7484 | Dirsek koruyucu | Pedro ekipmanı adayı; formu doğrulanmadı | `c0b8ab0e2487a95361af5a15b82b217c4b5edf0aea6369a9a05f0cd80af73081` |
+| `pedro_goggles01.ltb` | 2720 | Gözlük | Pedro ekipmanı adayı; formu doğrulanmadı | `b272d19c66f8ab465d8f8f2dab9d23dc785a79c3c612c18fe10a099ca6f6d5bc` |
+| `pedro_elbowprotector05_l.ltb` | 7847 | Dirsek koruyucu | Pedro ekipmanı adayı; formu doğrulanmadı | `a5b3f65b2f4bf602e143b73cecb7be79c22805f8b8fc8b7939c18a8c9ead30aa` |
+| `pedro_elbowprotector05_r.ltb` | 7847 | Dirsek koruyucu | Pedro ekipmanı adayı; formu doğrulanmadı | `822e00de9bde202bffbfaf489dc9ef2cc97c59932923c823ba049d7a31b21f6e` |
+| `pedro_goggles02.ltb` | 5876 | Gözlük | Pedro ekipmanı adayı; formu doğrulanmadı | `b7ba9998b6db523ff66a77c12c85ec41111b1a419a481edd9ef5dcd2a54e359c` |
+| `pedro_helmet01.ltb` | 7799 | Kask | Pedro ekipmanı adayı; formu doğrulanmadı | `83076f525c9f1d8a34226c93ad03d5df740dc2ff8023c48c7f24cb12d05d756f` |
+| `pedro_goggles05.ltb` | 15730 | Gözlük | Pedro ekipmanı adayı; formu doğrulanmadı | `c0a5ae9ef5e97bd0a70c4d5cc76e86cd080b92007a3b3c415ce99bb4f696ba16` |
+| `pedro_helmet_wolf.ltb` | 9002 | Kask | Kurt ekipmanı adayı (_wolf) | `bb6ed63be28f23db24d6885b2754f96f2a2576fdc44ff2b92db92534d95c0f08` |
+| `pedro_helmet06.ltb` | 75711 | Kask | Pedro ekipmanı adayı; formu doğrulanmadı | `b9fbce9515e6af18b6b372cdbe780c98c971a0a9f5274fe8273a4d5879875b1a` |
+| `pedro_helmet02.ltb` | 7303 | Kask | Pedro ekipmanı adayı; formu doğrulanmadı | `45459fad9722e63ddb382f9e0bb16749356dc962521ca49bde15d7aead3e6465` |
+| `pedro_kneeprotector_wolf_l.ltb` | 9368 | Diz koruyucu | Kurt ekipmanı adayı (_wolf) | `7258ece9f848c92a3d63edff5009ee247b2ec2bae9452a22ab8888fdf77d4ad3` |
+| `pedro_junglehat01.ltb` | 13668 | Şapka | Pedro ekipmanı adayı; formu doğrulanmadı | `bdac9e9488f3ab3996e51cbe2a97c468a6f5e290c43ff5adaab01d9378717ad3` |
+| `pedro_junglehat04.ltb` | 14270 | Şapka | Pedro ekipmanı adayı; formu doğrulanmadı | `a2de89676459594818867c699ce42bf2cc5f522492cb69aa6e1c9d6e907ce66f` |
+| `pedro_kneeprotector01_l.ltb` | 6409 | Diz koruyucu | Pedro ekipmanı adayı; formu doğrulanmadı | `50ae1af2891073fd3d86874887866fb897903308cb917c63bc36bb81d6a02031` |
+| `pedro_kneeprotector01_r.ltb` | 6409 | Diz koruyucu | Pedro ekipmanı adayı; formu doğrulanmadı | `cae612c4cded0246e951e43552b14596ca016fa981e265aafaf4fdd8d0b00963` |
+| `pedro_kneeprotector05_r.ltb` | 9010 | Diz koruyucu | Pedro ekipmanı adayı; formu doğrulanmadı | `0c673aef149a42bb21051743120af0423608d5b4f919ecfa0fc5064063b1d10a` |
+| `pedro_mask_wolf.ltb` | 9232 | Maske | Kurt ekipmanı adayı (_wolf) | `6e533af83d7412a74b326158df20f8bdf0912e383d4d26d2836e4e6c0366d0d4` |
+| `pedro_kneeprotector05_l.ltb` | 9010 | Diz koruyucu | Pedro ekipmanı adayı; formu doğrulanmadı | `cebec0b0a4179bb958eb26b7df70d9aa4cdda77efbd0e3c20655f3de2577a032` |
+| `pedro_vest_wolf.ltb` | 35216 | Yelek | Kurt ekipmanı adayı (_wolf) | `d0cdf7c561446b9cbaaab480b6e8a529e33491b75ed5165ddf9dd6a810d9b807` |
+| `pedro_vest02.ltb` | 22698 | Yelek | Pedro ekipmanı adayı; formu doğrulanmadı | `3e721126ba54ad9cfd7740eb494838a53fed7d4b165510cf301cf343a1172b0b` |
+| `pedro_vest01.ltb` | 8643 | Yelek | Pedro ekipmanı adayı; formu doğrulanmadı | `a629b9aab8fb4a85c213e7cdfaf2702dc4a4e69ea6a702ea94b73fc0b9dc1a27` |
+| `pedro_vest05.ltb` | 92725 | Yelek | Pedro ekipmanı adayı; formu doğrulanmadı | `c1cd8301342a0533b8f151f535e1a79455a90537755f385fd9bf5b13fd85f9e5` |
+| `pedro_vest03.ltb` | 16327 | Yelek | Pedro ekipmanı adayı; formu doğrulanmadı | `2d2eaf59eb7baa731b787db6d4ebd20eb26f85886b21acc8b608bae89ff3575a` |
+
+## Koruma ve aktarım kuralları
+
+XFS salt okunur kalacak; repack/yeni kayıt ekleme yok. Orijinal isimler ve model varyantları korunacak. İnsan/kurt formları ve ekipmanlar birbirinin üzerine yazılmayacak. Kaynak iskelet ve varsa özgün animasyonlar önce beraber denenecek; eski bozuk rig üzerine doğrudan uygulanmayacak. Model ve animasyon doğrulanmadan oyuna hazır kabul edilmeyecek.
+
+
+## XFS Studio Pro videosunda görülen ana model adayları
+
+2026-10-28 tarihli 60,496 saniyelik, 1920×992 ekran kaydı incelendi. Önce 3 saniye aralıklarla görüntüler, model listelerinin hızla geçtiği 16–32 saniye bölümü için ayrıca 0,5 saniye aralıklı görüntüler çıkarıldı. OCR'den sonra aşağıdaki önemli adlar görüntü üzerinde elle okundu. Bu, dosya içeriği/iskelet/animasyon doğrulaması değildir; dosyalar henüz alınmadı.
+
+İlk inceleme için istenen üç LTB:
+
+| Geçici rol | Videoda görülen tam yol | Görünen açılmış boyut | Kanıt |
+|---|---|---:|---|
+| Pedro insan ana gövde adayı | `Root\wt_chars\newchars\pedro_red\pedro.ltb` | 154.764 bayt | [Yaklaşık 26. saniye](docs/pedro-native-video/files-21.png) |
+| Pedro kurt ana gövde adayı | `Root\wt_chars\newchars\pedro_wolf\pedro_wolf.ltb` | 246.086 bayt | [Yaklaşık 30. saniye](docs/pedro-native-video/files-28.png) |
+| Aynı kurt klasöründeki ek LTB; içeriği incelenecek | `Root\wt_chars\newchars\pedro_wolf\wt_wolf_ch.ltb` | 1.649.151 bayt | [Aynı görüntü](docs/pedro-native-video/files-28.png) |
+
+`wt_wolf_ch.ltb` boyutu veya adı tek başına animasyon içerdiğinin kanıtı değildir. Üç dosya mevcut rig/klip/bağlantılarla birlikte çözümlenecek. İnsan ve kurt adaylarının oyun içindeki aynı varyant çifti olduğu henüz model/eşya kaydıyla doğrulanmadı.
+
+Diğer görülen seçenekler: `pedro_nano_wolf\pedro_nano_wolf.ltb`, `pedro_re\pedro_re.ltb`, `pedro_re_wolf\pedro_re_wolf.ltb`, `pedro_action\pedro_action.ltb`, `pedro_christmas\pedro_christmas.ltb`, `pedro_soccer\pedro_soccer.ltb`. Bunlar `Root\wt_chars\newchars\` altında farklı varyant adayları; şimdilik birbirine karıştırılmayacak. Örnek [RE insan modeli görüntüsü](docs/pedro-native-video/files-16.png).
+
+Doku ayrımı: `Root\wt_interface\item\character\...` ve `killsystemmessage` kayıtları arayüz/kart/mesaj görseli adaylarıdır; model kaplaması diye eşlenmez. Öncelik seçilen modelin `wt_chars\newchars\...` klasöründeki DTX'ler ve ekipmanlar için `wt_charparts\skins\...` dosyalarıdır. Videoda `pedro_nano_wolf_fur.dtx`, `pedro_re_body.dtx`, `pedro_re_head.dtx` gibi model dokuları da görülüyor. Tam doku eşleştirmesi LTB içeriğiyle kontrol edilecek.
+
+Kullanıcı işlemi: arama kutusuna üç dosya adını sırayla yaz → tam yolu doğrula → kaydı seç → üstteki `Seçili Dışa Aktar` → çıkan LTB'yi yükle. Bu videonun alınması önceki 36 ekipman dosyasının tamamlanmış karakter olduğu anlamına gelmez.
+
+## Üç ana LTB alındı ve ayrıştırıldı — 2026-10-28
+
+Dosyalar indirildi; orijinaller değiştirilmeden `art/3d/source/pedro-native/main/` altında saklandı. Native PC LTB okuyucusuyla (MelissaAutumn/io_scene_lithtech, commit `495372d59d00e019a7143c961d94f05df2cc5c72`) üçü de v25 olarak ayrıştırıldı. Aşağıdaki sayılar artık dosya içeriğinden ölçülüdür.
+
+| Dosya | Bayt | İskelet düğümü | Üçgen (mevcut LOD) | Klip | SHA-256 |
+|---|---:|---:|---:|---|---|
+| `pedro.ltb` | 154764 | 47 | 3204 | Yalnız tek karelik @figure | `ef1111e1bf1804da63de457551ff48a13882dcd34e71e1d0924fd6130b34535a` |
+| `pedro_wolf.ltb` | 246086 | 42 | 4244 | Yalnız tek karelik @figure | `9f27a26f19d5174523e1c9a273afd5d23bc6b837d360992c5d3419f797698c2b` |
+| `wt_wolf_ch.ltb` | 2016341 | 42 | 4616 | 70 | `e86bf17b460b0654c2e3893087014412808caa2e3c3227046aecbc19d099a441` |
+
+**Gerçek bağlantılar:** `pedro.ltb` → `..\..\Models\WT_NEW_MAN_CH.ltb`; `pedro_wolf.ltb` → `..\..\Models\WT_NEW_WOLF_CH.ltb`. Bu iki dosya henüz gelmedi. `wt_wolf_ch.ltb` 42 düğümlü ve 70 klipli farklı bir kaynak olarak korunuyor; beklenen `WT_NEW_WOLF_CH.ltb` ile aynı olduğu varsayılmıyor. Gelen `wt_wolf_ch.ltb` boyutu 2.016.341 bayt; videoda görünen 1.649.151 bayttan farklı. Kaynak/sürüm uyumluluğu kontrol edilmeli.
+
+**Blender sonucu:** Üç model de kendi armature ve skin gruplarıyla içe aktarıldı. `pedro.blend` (47 kemik), `pedro_wolf.blend` (42 kemik), `wt_wolf_ch.blend` (42 kemik, 70 Action) kaynak çalışma klasörüne kaydedildi. Tüm Action kayıtları Blender dosyası kapatılınca kaybolmamaları için fake-user ile korundu. Model aynalama, bind/rest matrisleri, kliplerin görsel doğruluğu ve başka gövdeye uyarlaması henüz onaylanmadı. DTX dokuları henüz yok; oyun entegrasyonu ve yeni APK yapılmadı.
+
+**İçe aktarıcı UV düzeltmesi:** Pedro kurtta materyal indeksleri 10/14/18 bulundu. Upstream importer her materyal için UV katmanı oluşturup materyal indeksiyle katman seçiyordu; Blender katman sınırı bu düzeni karşılamıyor. Yerel kopya her mesh için tek UV katmanı kullanacak, materyal slotlarını ve yüz köşesi UV verisini ayrı koruyacak şekilde düzeltildi. Patch: [lithtech-uv.patch](docs/pedro-native-video/lithtech-uv.patch). Kaynak LTB değiştirilmedi; vertex birleştirme devre dışı bırakıldı.
+
+**Klipler:** `T_CRY` 22 kaynak kare / 1.333 ms; `LRF` 17 kare / 733 ms; `LWF` 20 kare / 933 ms; `T_Bodyatk`, `T_BodyatkL`, `T_BodyatkR` 28 kare / 900 ms. İsimlere göre kükreme/koşu/yürüme/saldırı adayıdırlar; görsel inceleme yapılmadan kesin hareket eşlemesi sayılmaz. Bütün 70 klibin süreleri, kemik hiyerarşileri, parçalar, socket ve child-model bağlantıları [ltb-inspection.json](docs/pedro-native-video/ltb-inspection.json) içinde. Blender veri raporu: [blender-import-report.json](docs/pedro-native-video/blender-import-report.json).
+
+**Sonraki gerekli girdiler:** arşivde `WT_NEW_WOLF_CH.ltb` ve `WT_NEW_MAN_CH.ltb` aranıp dışarı alınmalı. Doku eşleştirmesi için karakter DTX dosyaları ve mümkünse modellerin texture slot eşlemesini tutan `ModelButes.txt` kaydı gerekli. Anahtar/hesap bilgisi veya tüm XFS istenmez.
+
+### Gelen wt_wolf_ch.ltb içindeki klip listesi
+
+| Native ad | Kaynak kare | Süre (ms) |
+|---|---:|---:|
+| `LSt` | 12 | 866 |
+| `LC` | 12 | 866 |
+| `LCWR` | 20 | 1266 |
+| `LCWB` | 27 | 1400 |
+| `LCWF` | 24 | 1400 |
+| `LCWL` | 22 | 1266 |
+| `LCWFR` | 24 | 1400 |
+| `LCWFL` | 24 | 1400 |
+| `LCWBL` | 27 | 1400 |
+| `LCWBR` | 27 | 1400 |
+| `LJJ` | 5 | 133 |
+| `LJL` | 9 | 366 |
+| `LJT` | 3 | 67 |
+| `LRF` | 17 | 733 |
+| `LRR` | 23 | 733 |
+| `LRL` | 23 | 733 |
+| `LRFR` | 17 | 733 |
+| `LRFL` | 17 | 733 |
+| `LWR` | 18 | 733 |
+| `LWB` | 24 | 933 |
+| `LWF` | 20 | 933 |
+| `LWL` | 14 | 733 |
+| `LWFR` | 20 | 933 |
+| `LWFL` | 21 | 933 |
+| `LWBL` | 24 | 933 |
+| `LWBR` | 24 | 933 |
+| `UMC` | 12 | 866 |
+| `UMJJ` | 5 | 133 |
+| `UMJL` | 9 | 366 |
+| `UMJT` | 3 | 67 |
+| `UMRF` | 23 | 733 |
+| `UMRR` | 23 | 733 |
+| `UMRL` | 22 | 733 |
+| `UMWR` | 18 | 733 |
+| `UMWF` | 20 | 933 |
+| `UMWB` | 24 | 933 |
+| `UMWL` | 14 | 733 |
+| `UMCWR` | 20 | 1266 |
+| `UMCWB` | 27 | 1400 |
+| `UMCWF` | 24 | 1400 |
+| `UMCWL` | 22 | 1266 |
+| `UMSt` | 12 | 866 |
+| `UMTr` | 3 | 733 |
+| `T_WallRide` | 13 | 533 |
+| `T_wallRide2` | 27 | 866 |
+| `T_DFHS1` | 54 | 2733 |
+| `T_DFBS1` | 36 | 1866 |
+| `T_DFBB1` | 19 | 967 |
+| `Twitch` | 5 | 166 |
+| `T_DBBS1` | 41 | 1900 |
+| `T_DBBB1` | 20 | 1000 |
+| `T_DBHS1` | 35 | 2133 |
+| `T_CRY` | 22 | 1333 |
+| `T_BITE` | 17 | 1166 |
+| `T_DFBF1` | 32 | 1033 |
+| `T_DBBF1` | 38 | 1233 |
+| `LJA` | 18 | 1200 |
+| `UMFi3` | 14 | 600 |
+| `UMFi2` | 10 | 400 |
+| `UMFi1` | 10 | 333 |
+| `Ui_idle` | 41 | 1333 |
+| `T_Specialatk` | 31 | 1000 |
+| `T_Bodyatk` | 28 | 900 |
+| `T_BodyatkL` | 28 | 900 |
+| `T_BodyatkR` | 28 | 900 |
+| `T_WallDash` | 17 | 533 |
+| `T_WallDashL` | 17 | 533 |
+| `T_WallDashR` | 17 | 533 |
+| `UMDe` | 41 | 1333 |
+| `T_WallDashAtk` | 34 | 900 |
+
+## Ayrı XFS masaüstü aracı başlatıldı
+
+Kullanıcının filtreleme ve donma sorununu çözme isteğiyle `desktop/xfs_browser/` altında salt okunur bir XFS tarayıcısı geliştirildi. Uzantı/ad/yol filtresi, sayfalama, çoklu seçim, arka planda çıkarma, iptal, metin/hex ve CSV var. Kaynak arşiv değiştirilmez. 3B önizleme ve repack yok; gerçek kullanıcı XFS paketiyle henüz denenmedi. Ayrıntılı yapılan/test edilen/açık iş kaydı: [docs/xfs-browser/README.md](docs/xfs-browser/README.md). Bu araç çalışması Pedro'nun oyun entegrasyonunun tamamlandığı anlamına gelmez.
+
+## İstenen yeni hareket paketleri alındı — 2026-10-28
+
+İki native PC LTB v25 dosyası indirildi ve içerikleri ayrıştırıldı. Bunlar yürütülebilir kod değil, model/iskelet/hareket verisi paketleridir. Kaynaklar değiştirilmeden `art/3d/source/pedro-native/new-motion/` altında saklanıyor.
+
+| Dosya | Bayt | Düğüm | Klip | SHA-256 |
+|---|---:|---:|---:|---|
+| `wt_new_wolf_ch.ltb` | 2088235 | 42 | 72 | `c06e7e9347968a1987126450bdb7ba3d37353ac97c414ace261bfca9873bbfc4` |
+| `wt_new_man_ch.ltb` | 20579112 | 47 | 569 | `f026978087746f5b44df7cf90a8927a189d2596f2660e01f369518a209fbd950` |
+
+### Uyum sonucu
+
+- Kurt: 42 düğümün isimleri ve parent hiyerarşisi Pedro kurt gövdesiyle eşleşti. En büyük bind-matris eleman farkı yaklaşık 0,000403 kaynak birimi.
+- İnsan: 47 düğümün isimleri ve parent hiyerarşisi eşleşti; bind pozu birebir aynı değil (en büyük eleman farkı 6,31433 kaynak birimi). Doğrudan farklı rest-poza klip bağlamak yerine rest farkına göre dönüşüm yapılıyor; segment uzunlukları korunuyor.
+- Kaynak `Upper` ve `Lower` ağırlık setleri ayrı. Yürüme/koşuda yalnız alt veya yalnız üst gövde klibini kullanmak yerine iki katman birleştiriliyor.
+- Kurt paketindeki 72 klip, önceki `wt_wolf_ch.ltb` dosyasındaki 70 kliple aynı paket olarak sayılmıyor. Gerçek model bağı bu yeni dosyayı gösteriyor.
+- Kaynakların tamamı ve klip isim/süreleri [new-motion-inspection.json](docs/pedro-native-video/new-motion-inspection.json); karşılaştırma [native-compatibility.json](docs/pedro-native-video/native-compatibility.json) içinde.
+
+### Tasarım ve uygulama çalışması
+
+Mevcut onaylı koyu gri, kamuflaj pantolonlu kurt görünüşü ve mevcut dokulu insan tasarımının görünüşü, native iskeletlere uyarlanıyor. Ortak turkuaz/bronz bileklikler ve kemer mührü ekleniyor. Yeni ücretli üretim yapılmadı. Bu bir sıfırdan yeni ücretli model üretimi değil; eldeki dokulu geometri ve native hareketlerden türetilen uyarlamadır.
+
+İlk testte hatalı kök yönü ve Blender edit-bone matrisinin sıfır uzunlukta kemiğe atanması nedeniyle poz bozulması görüldü; kemik önce sıfır olmayan uzunlukla oluşturulup native bind matrisinin korunduğu assert ile denetleniyor. Native kliplerin oynama yönü 180° sabit kalibrasyonla oyun ileri yönüne hizalanıyor. Kesirli son karelerin dışa aktarımda kırpılmaması için klip süresi üst tam kareye taşınıyor ve kaynak son poz korunuyor.
+
+İlk insan denemesinde uzun etek panelinin bacağa bağlanması kötü deformasyon verdi. Bu deneme kabul edilmedi. İnsan gövdesi native topoloji/orijinal ağırlıklarla yeniden kurulup mevcut görünüş seçili-kaynak → hedef UV aktarımıyla 2K renk/normal/pürüzlülük haritalarına taşınıyor. Modelin görünüşü ve bütün klipleri henüz onaylanmış değildir.
+
+Yeni çalışma dosyaları: `art/3d/native-pair/guardian-wolf.blend`, `.glb`, `guardian-human.blend`, `.glb`. Yapım raporu `art/3d/native-pair/build-report.json`. Başlangıç çalışma raporu: kurt 14.865, insan 3.256 üçgen; 42/47 kemik. Aktarım mesafeleri ve kalibrasyonlar teknik kontrol verisidir; sanat kalitesi onayı değildir.
+
+**Açık işler:** yeni dosyaların son görsel kontrolü, koşu/takla/pençe/jump eşlemelerinin bütün döngüsü, ayak teması, ağırlık deformasyonu, runtime testleri, oyuna entegrasyon ve kullanıcıya son varlık dosyalarının teslimi. `WolfTransform` çalışma klibi henüz gerçek insan-kurt morph animasyonu değil, dönüşüm sırasında kullanılan bekleme pozu yer tutucusudur. `HumanFire` ve `HumanReload` üst/alt gövde denemeleri gerçek silah modeliyle henüz eşlenmedi.
+
+## Native çift denemesi — son kontrol, 28 Ekim 2026
+
+**Yapıldı:** 42 kemikli / 14.865 üçgen kurt ve 47 kemikli / 3.926 üçgen insan üretildi; GLB ve dokuları paketlenmiş BLEND dosyaları hazırlandı. Kurtun UV dikişlerinde aynı konumdaki vertex ağırlıkları birleştirildi, komşuluk boyunca 18 geçiş yumuşatıldı ve en fazla 4 etki korundu. Dirsek gerilmesi azaldı; tamamen çözülmüş kabul edilmedi. İnsan native gövde topolojisi ve ağırlıkları korunup mevcut Bilge görünüşü 2K PBR haritalarına aktarıldı; dokulu baş ayrı korunuyor. Beklemede zemin hizası düzeltildi. Ücretli üretim yok.
+
+**Önemli eşleme düzeltmesi:** Görsel inceleme LRF+UMRF'nin iki ayaklı koşu olduğunu, T_Bodyatk'nin de tam takla olmadığını gösterdi. Önceki çalışma isimleri yanlıştı. Gerçek isimler artık `WolfRunNative` ve `WolfBodyAttack`. Bu hareketleri dört ayak koşu/takla diye sunmuyoruz. Doğru animasyon kaynakları henüz bulunmadı. Bu iki hareket yeni çiftin oynanışında kapalı; varsayılan eski modellerin koşu/taklası değişmedi.
+
+**Oyuna ekleme:** Envanterde `YENİ ÇİFT · DENEME` seçeneği `?nativePair=1` açar. Bilge Kağan seçildiğinde yalnız model kaynağı yeni çifte yönlendirilir. Menü ve arena aynı GLB'yi kullanır. Eski modele dönme düğmesi vardır. Sahiplik, kredi, ekipman şeması ve varsayılan modeller korunur. Bu değişiklik sanat kalitesi tamamlandı anlamına gelmez.
+
+**Test edildi:** Gerçek WebGL oyun motorunda yeni kurt ve insanın yüklenmesi, 1,333333 saniyelik T_CRY kükremesi, 2 ele bağlı alev parçacıkları, sağ/sol pençe sırası ve hazır olmayan koşu/taklanın reddi geçti; sayfa JS hatası yok. İskelette ağırlıksız gövde vertex'i yok, örneklenen koordinatlar sonlu. İki mevcut pençe/yürüyüş sözleşme testi geçti. Rapor: `docs/native-pair-review/runtime-check.json`.
+
+**Kalite testi sonucu / açık işler:** `geometry-check.json` 9 faz örnekli ölçümüdür. En az 0,45 native birim uzunluğundaki kenarlar değerlendirilir; kurtun anlamlı kenarlarında P99 gerilme hâlâ klibe göre yaklaşık 1,64–2,42 kat, insanda 1,48–2,31 kat. Bunlar kalite geçişi değildir. Bazı kliplerde ara kare zemin sapması 1–7 cm kalıyor; sıçrama pozunun kaynak eşlemesi ayrıca incelenmeli. Parmak/dirsek/omuz skin ince ayarı, bağımsız çene/ağız içi hareketi, insan doku dikişleri, silahla ateş/doldurma uyumu ve gerçek dört ayak koşu/takla açık. `WolfTransform` gerçek morph değil. Adım mesafesi metadatası 3,6/8 m/sn başlangıç temposuna göre kurulmuştur; yer temasıyla ölçülmüş stride değildir. Telefon FPS/çökmezlik garantisi verilmedi.
+
+**Teslim biçimi:** Yeni çift deneme APK'sının tüm GLB/dokuları APK içinde; model düzenleme için ayrıca GLB/BLEND paketi verilir, APK kurulumu bu pakete bağlı değildir. v0.1.15 / sürüm kodu 16 için eski yayımlanan sertifika SHA-256 kontrolü CI içinde zorunlu. Yayın bağlantısı ve CI sonucu doğrulandıktan sonra bu kayda eklenir.
+
+### Yeni XFS arama videosu — 58,6 saniye
+
+`20261028-1657-23.0142458.mp4` (918×618, 18.569.538 bayt) alındı. 5 saniye aralıkla 12 kare çıkarılıp OCR ve görüntüyle kontrol edildi; bu aralıklı örnekleme hızla geçen her dosyanın tespit edildiği iddiası değildir. Kareler `docs/native-pair-review/search-video/` altında.
+
+İlk bölüm `wt_interface/item/...special...` DTX kartları; yaklaşık 27,5 saniye `cherokee_axe_runes` balta UI/PV/HH LTB ve dokuları; yaklaşık 32,5 saniye `Root/wt_attributes/wolfvars.dat`, `aiwolfdata.dat`, `wolfsound.dat`, `wolfparts.dat`; sonra harita/path ve `wt_charparts/models` ekipmanları, pençe LTA/LTB ve ekipman DTX'leri görünüyor. Bu kayıtta gerçek dört ayak koşu/takla dosyası doğrulanmadı. Balta modeli veya özel paket kartı animasyon diye içe aktarılmayacak. Kullanıcıdan boş ad filtresi + `.ltb` uzantısı ile `Filtre Listesini CSV Kaydet` çıktısı istendi; tüm XFS'yi yüklemesi gerekmiyor.

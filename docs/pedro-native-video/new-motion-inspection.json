@@ -1,0 +1,5151 @@
+[
+  {
+    "file": "wt_new_man_ch.ltb",
+    "bytes": 20579112,
+    "sha256": "f026978087746f5b44df7cf90a8927a189d2596f2660e01f369518a209fbd950",
+    "parsed": true,
+    "version": 25,
+    "node_count": 47,
+    "nodes": [
+      {
+        "name": "Scene Root",
+        "index": 0,
+        "parent": null
+      },
+      {
+        "name": "Bip01",
+        "index": 1,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "Bip01 Pelvis",
+        "index": 2,
+        "parent": "Bip01"
+      },
+      {
+        "name": "Bip01 Spine",
+        "index": 3,
+        "parent": "Bip01 Pelvis"
+      },
+      {
+        "name": "Bip01 Spine1",
+        "index": 4,
+        "parent": "Bip01 Spine"
+      },
+      {
+        "name": "Bip01 Spine2",
+        "index": 5,
+        "parent": "Bip01 Spine1"
+      },
+      {
+        "name": "Bip01 Neck",
+        "index": 6,
+        "parent": "Bip01 Spine2"
+      },
+      {
+        "name": "Bip01 Head",
+        "index": 7,
+        "parent": "Bip01 Neck"
+      },
+      {
+        "name": "Bip01 L Clavicle",
+        "index": 8,
+        "parent": "Bip01 Neck"
+      },
+      {
+        "name": "Bip01 L UpperArm",
+        "index": 9,
+        "parent": "Bip01 L Clavicle"
+      },
+      {
+        "name": "Bip01 L Forearm",
+        "index": 10,
+        "parent": "Bip01 L UpperArm"
+      },
+      {
+        "name": "Bip01 L Hand",
+        "index": 11,
+        "parent": "Bip01 L Forearm"
+      },
+      {
+        "name": "Bip01 L Finger0",
+        "index": 12,
+        "parent": "Bip01 L Hand"
+      },
+      {
+        "name": "Bip01 L Finger01",
+        "index": 13,
+        "parent": "Bip01 L Finger0"
+      },
+      {
+        "name": "Bip01 L Finger02",
+        "index": 14,
+        "parent": "Bip01 L Finger01"
+      },
+      {
+        "name": "Bip01 L Finger1",
+        "index": 15,
+        "parent": "Bip01 L Hand"
+      },
+      {
+        "name": "Bip01 L Finger11",
+        "index": 16,
+        "parent": "Bip01 L Finger1"
+      },
+      {
+        "name": "Bip01 L Finger12",
+        "index": 17,
+        "parent": "Bip01 L Finger11"
+      },
+      {
+        "name": "Bip01 L Finger2",
+        "index": 18,
+        "parent": "Bip01 L Hand"
+      },
+      {
+        "name": "Bip01 L Finger21",
+        "index": 19,
+        "parent": "Bip01 L Finger2"
+      },
+      {
+        "name": "Bip01 L Finger22",
+        "index": 20,
+        "parent": "Bip01 L Finger21"
+      },
+      {
+        "name": "Bip01 R Clavicle",
+        "index": 21,
+        "parent": "Bip01 Neck"
+      },
+      {
+        "name": "Bip01 R UpperArm",
+        "index": 22,
+        "parent": "Bip01 R Clavicle"
+      },
+      {
+        "name": "Bip01 R Forearm",
+        "index": 23,
+        "parent": "Bip01 R UpperArm"
+      },
+      {
+        "name": "Bip01 R Hand",
+        "index": 24,
+        "parent": "Bip01 R Forearm"
+      },
+      {
+        "name": "Bip01 R Finger0",
+        "index": 25,
+        "parent": "Bip01 R Hand"
+      },
+      {
+        "name": "Bip01 R Finger01",
+        "index": 26,
+        "parent": "Bip01 R Finger0"
+      },
+      {
+        "name": "Bip01 R Finger02",
+        "index": 27,
+        "parent": "Bip01 R Finger01"
+      },
+      {
+        "name": "Bip01 R Finger1",
+        "index": 28,
+        "parent": "Bip01 R Hand"
+      },
+      {
+        "name": "Bip01 R Finger11",
+        "index": 29,
+        "parent": "Bip01 R Finger1"
+      },
+      {
+        "name": "Bip01 R Finger12",
+        "index": 30,
+        "parent": "Bip01 R Finger11"
+      },
+      {
+        "name": "Bip01 R Finger2",
+        "index": 31,
+        "parent": "Bip01 R Hand"
+      },
+      {
+        "name": "Bip01 R Finger21",
+        "index": 32,
+        "parent": "Bip01 R Finger2"
+      },
+      {
+        "name": "Bip01 R Finger22",
+        "index": 33,
+        "parent": "Bip01 R Finger21"
+      },
+      {
+        "name": "Bip01 L Thigh",
+        "index": 34,
+        "parent": "Bip01 Spine"
+      },
+      {
+        "name": "Bip01 L Calf",
+        "index": 35,
+        "parent": "Bip01 L Thigh"
+      },
+      {
+        "name": "Bip01 L Foot",
+        "index": 36,
+        "parent": "Bip01 L Calf"
+      },
+      {
+        "name": "Bip01 R Thigh",
+        "index": 37,
+        "parent": "Bip01 Spine"
+      },
+      {
+        "name": "Bip01 R Calf",
+        "index": 38,
+        "parent": "Bip01 R Thigh"
+      },
+      {
+        "name": "Bip01 R Foot",
+        "index": 39,
+        "parent": "Bip01 R Calf"
+      },
+      {
+        "name": "n_PosRoute",
+        "index": 40,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend01",
+        "index": 41,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend02",
+        "index": 42,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend03",
+        "index": 43,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend04",
+        "index": 44,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend05",
+        "index": 45,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_bFollowBone",
+        "index": 46,
+        "parent": "Scene Root"
+      }
+    ],
+    "children": [],
+    "command_string": "",
+    "sockets": [
+      {
+        "name": "PrideMark",
+        "node_index": 5
+      },
+      {
+        "name": "RightHand",
+        "node_index": 24
+      },
+      {
+        "name": "ChangeEffect",
+        "node_index": 5
+      },
+      {
+        "name": "MGInst0",
+        "node_index": 2
+      },
+      {
+        "name": "MGInst1",
+        "node_index": 2
+      },
+      {
+        "name": "MGInst2",
+        "node_index": 2
+      },
+      {
+        "name": "MGInst3",
+        "node_index": 2
+      },
+      {
+        "name": "MGInstTop",
+        "node_index": 2
+      },
+      {
+        "name": "MGInstBottom",
+        "node_index": 2
+      },
+      {
+        "name": "Backpack",
+        "node_index": 0
+      },
+      {
+        "name": "EM_2HBPos",
+        "node_index": 2
+      },
+      {
+        "name": "MG_AllPos",
+        "node_index": 2
+      },
+      {
+        "name": "s_Riot_Shield",
+        "node_index": 10
+      }
+    ],
+    "pieces": [
+      {
+        "name": "Red_Lowerbody",
+        "material_index": 0,
+        "lods": [
+          {
+            "vertices": 1021,
+            "triangles": 1100,
+            "texture_slots": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "vertices_with_weights": 1021
+          }
+        ]
+      },
+      {
+        "name": "Red_Upperbody",
+        "material_index": 0,
+        "lods": [
+          {
+            "vertices": 2080,
+            "triangles": 2196,
+            "texture_slots": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "vertices_with_weights": 2080
+          }
+        ]
+      }
+    ],
+    "animations": [
+      {
+        "name": "LSt",
+        "frames": 27,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "LC",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "LCWR",
+        "frames": 22,
+        "duration_ms": 700,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "LCWB",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "LCWF",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "LCWL",
+        "frames": 22,
+        "duration_ms": 700,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "LCWFR",
+        "frames": 25,
+        "duration_ms": 800,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "LCWFL",
+        "frames": 25,
+        "duration_ms": 800,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "LCWBL",
+        "frames": 25,
+        "duration_ms": 800,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "LCWBR",
+        "frames": 25,
+        "duration_ms": 800,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "LJJ",
+        "frames": 9,
+        "duration_ms": 766,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "LJL",
+        "frames": 4,
+        "duration_ms": 100,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "LJT",
+        "frames": 1,
+        "duration_ms": 0,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "LRF",
+        "frames": 23,
+        "duration_ms": 726,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "LRR",
+        "frames": 23,
+        "duration_ms": 726,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "LRL",
+        "frames": 23,
+        "duration_ms": 726,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "LRFR",
+        "frames": 23,
+        "duration_ms": 726,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "LRFL",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "LWR",
+        "frames": 31,
+        "duration_ms": 561,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "LWB",
+        "frames": 26,
+        "duration_ms": 833,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "LWF",
+        "frames": 31,
+        "duration_ms": 726,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "LWL",
+        "frames": 31,
+        "duration_ms": 561,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "LWFR",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "LWFL",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "LWBL",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "LWBR",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm1Se",
+        "frames": 14,
+        "duration_ms": 433,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm1St",
+        "frames": 27,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm1Fi2",
+        "frames": 16,
+        "duration_ms": 500,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm1Fi1",
+        "frames": 2,
+        "duration_ms": 33,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm1WB",
+        "frames": 2,
+        "duration_ms": 167,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm1Da",
+        "frames": 2,
+        "duration_ms": 33,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm1RF",
+        "frames": 2,
+        "duration_ms": 167,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm1RL",
+        "frames": 2,
+        "duration_ms": 167,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm1RR",
+        "frames": 2,
+        "duration_ms": 167,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm1WF",
+        "frames": 2,
+        "duration_ms": 167,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm1WL",
+        "frames": 2,
+        "duration_ms": 167,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm1WR",
+        "frames": 2,
+        "duration_ms": 167,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm2WR",
+        "frames": 2,
+        "duration_ms": 33,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm2Da",
+        "frames": 6,
+        "duration_ms": 166,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm2RF",
+        "frames": 2,
+        "duration_ms": 33,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm2RL",
+        "frames": 2,
+        "duration_ms": 33,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm2RR",
+        "frames": 2,
+        "duration_ms": 33,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm2Se",
+        "frames": 14,
+        "duration_ms": 433,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm2St",
+        "frames": 27,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm2WB",
+        "frames": 2,
+        "duration_ms": 33,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm2WF",
+        "frames": 2,
+        "duration_ms": 33,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm2WL",
+        "frames": 2,
+        "duration_ms": 33,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm2IN",
+        "frames": 51,
+        "duration_ms": 1666,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UMG1Fi",
+        "frames": 4,
+        "duration_ms": 100,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UMGSt",
+        "frames": 27,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UMGSt2",
+        "frames": 27,
+        "duration_ms": 867,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UMGSe",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UMG1W",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UMGDa",
+        "frames": 7,
+        "duration_ms": 166,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UMGWB",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UMGWF",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UMGWL",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UMGWR",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UP1Se",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UP1St",
+        "frames": 27,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UP1Fi",
+        "frames": 36,
+        "duration_ms": 1166,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UP1Fi2",
+        "frames": 6,
+        "duration_ms": 166,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UP1Da",
+        "frames": 6,
+        "duration_ms": 166,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UP1RR",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UP1RL",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UP1Re",
+        "frames": 71,
+        "duration_ms": 2333,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UP1RF",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UP1WF",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UP1WB",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UP1WL",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UP1WR",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi1Se",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi1StZ",
+        "frames": 27,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi1Da",
+        "frames": 14,
+        "duration_ms": 666,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi1St",
+        "frames": 27,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi1RR",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi1RL",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi1RF",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi1Fi",
+        "frames": 9,
+        "duration_ms": 266,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi1Fi2",
+        "frames": 4,
+        "duration_ms": 100,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi1Re",
+        "frames": 81,
+        "duration_ms": 1666,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi1WB",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi1WF",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi1WL",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi1WR",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URLSe",
+        "frames": 31,
+        "duration_ms": 666,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URLSe2",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URLSt",
+        "frames": 27,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URLZ",
+        "frames": 27,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URLSt2",
+        "frames": 27,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URLZ2",
+        "frames": 8,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URLDa",
+        "frames": 6,
+        "duration_ms": 166,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URLDa2",
+        "frames": 6,
+        "duration_ms": 166,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URLFi",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URLFi2",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URLWB",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URLWB2",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URLWR",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URLWR2",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URLWF",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URLWF2",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URLWL",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URLWL2",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi2St",
+        "frames": 27,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi2Da",
+        "frames": 6,
+        "duration_ms": 166,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi2RR",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi2RL",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi4RR",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi2Fi",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi2StZ",
+        "frames": 27,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi2Se",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi3RR",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi3RF",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi3RL",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi2Re",
+        "frames": 81,
+        "duration_ms": 2000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi2RF",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi2WB",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi2WF",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi2WR",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi2WL",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi3Se",
+        "frames": 31,
+        "duration_ms": 666,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi3Re",
+        "frames": 81,
+        "duration_ms": 2000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi3Fi",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi3St",
+        "frames": 27,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi3StZ",
+        "frames": 27,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi3Da",
+        "frames": 6,
+        "duration_ms": 166,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi3WF",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi3WB",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi3WL",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi3WR",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi4Re",
+        "frames": 81,
+        "duration_ms": 2333,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi4StZ",
+        "frames": 27,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi4Fi",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi4RF",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi4RL",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi4St",
+        "frames": 27,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi4Se",
+        "frames": 21,
+        "duration_ms": 666,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi4WB",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi4WR",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi4WF",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi4WL",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi5Fi",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi5RF",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi5Re",
+        "frames": 81,
+        "duration_ms": 2000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi5RR",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi5RL",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi5Se",
+        "frames": 21,
+        "duration_ms": 666,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi5St",
+        "frames": 27,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi5StZ",
+        "frames": 27,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi5WB",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi5WF",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi5WR",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi5WL",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi6WF",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi6WB",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi6WR",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi6RF",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi6RR",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi6RL",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi6St",
+        "frames": 27,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi6Se",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi6WL",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi6Da",
+        "frames": 6,
+        "duration_ms": 166,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi6Fi",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi6Fi2",
+        "frames": 4,
+        "duration_ms": 100,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi6StZ",
+        "frames": 27,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi6Re",
+        "frames": 71,
+        "duration_ms": 2333,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi7WF",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi7WB",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi7WR",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi7WL",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi7Fi",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi7Fi2",
+        "frames": 4,
+        "duration_ms": 100,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi7StZ",
+        "frames": 27,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi7Re",
+        "frames": 71,
+        "duration_ms": 1900,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi7RR",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi7RL",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi7St",
+        "frames": 27,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi7RF",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi7Se",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi7Da",
+        "frames": 6,
+        "duration_ms": 166,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi8Fi2",
+        "frames": 4,
+        "duration_ms": 100,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi8Re",
+        "frames": 81,
+        "duration_ms": 2000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi8Fi",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi8StZ",
+        "frames": 27,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi8RL",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi8RR",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi8Se",
+        "frames": 21,
+        "duration_ms": 666,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi8St",
+        "frames": 27,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi8WB",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi8WF",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi8WR",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi8RF",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi8WL",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi9Fi",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi9WF",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi9WR",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi9WL",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi9WB",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi9RF",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi9RR",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi9Se",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi9RL",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi9St",
+        "frames": 27,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi9StZ",
+        "frames": 27,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi9Fi2",
+        "frames": 4,
+        "duration_ms": 100,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi9Re",
+        "frames": 81,
+        "duration_ms": 2666,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi10WF",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi10WR",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi10WL",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi10Fi",
+        "frames": 9,
+        "duration_ms": 266,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi10WB",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi10StZ",
+        "frames": 27,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi10Fi2",
+        "frames": 4,
+        "duration_ms": 100,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi10Re",
+        "frames": 81,
+        "duration_ms": 1666,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi10RR",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi10RF",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi10Se",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi10St",
+        "frames": 27,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi10RL",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi11Re",
+        "frames": 76,
+        "duration_ms": 2500,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi11WF",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi11WL",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi11WR",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi11WB",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi11RR",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi11RF",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi11RL",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi11Fi",
+        "frames": 29,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi11Se",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi11StZ",
+        "frames": 27,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi11St",
+        "frames": 27,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi11Fi2",
+        "frames": 4,
+        "duration_ms": 100,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "U2HBSe",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "U2HBDa",
+        "frames": 6,
+        "duration_ms": 166,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "U2HBSt",
+        "frames": 27,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "U2HBSt2",
+        "frames": 27,
+        "duration_ms": 867,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "U2HB1W",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "U2HBWF",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "U2HBWB",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "U2HBWL",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "U2HBWR",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "U2HB1Fi",
+        "frames": 5,
+        "duration_ms": 100,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "T_DBBF1",
+        "frames": 32,
+        "duration_ms": 1033,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "T_DFBF1",
+        "frames": 30,
+        "duration_ms": 1133,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "T_DBHF1",
+        "frames": 28,
+        "duration_ms": 900,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "T_DFHF1",
+        "frames": 25,
+        "duration_ms": 800,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "T_DBBS1",
+        "frames": 45,
+        "duration_ms": 1466,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "T_DFBS1",
+        "frames": 32,
+        "duration_ms": 1133,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "T_DBHS1",
+        "frames": 45,
+        "duration_ms": 1466,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "T_DFHS1",
+        "frames": 38,
+        "duration_ms": 1233,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "T_DBBS2",
+        "frames": 50,
+        "duration_ms": 1633,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "T_DFBS2",
+        "frames": 50,
+        "duration_ms": 1633,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "T_DFBB1",
+        "frames": 35,
+        "duration_ms": 1133,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "T_DBBB1",
+        "frames": 32,
+        "duration_ms": 1033,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "Twitch",
+        "frames": 6,
+        "duration_ms": 166,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "T_DD2",
+        "frames": 6,
+        "duration_ms": 166,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "T_DD3",
+        "frames": 6,
+        "duration_ms": 166,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "T_DD4",
+        "frames": 6,
+        "duration_ms": 166,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UDAHF",
+        "frames": 12,
+        "duration_ms": 300,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UDABB",
+        "frames": 12,
+        "duration_ms": 300,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UDABF",
+        "frames": 12,
+        "duration_ms": 300,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UDAHB",
+        "frames": 12,
+        "duration_ms": 300,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "DaUB0",
+        "frames": 11,
+        "duration_ms": 333,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "DaUB1",
+        "frames": 11,
+        "duration_ms": 333,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "DaUB2",
+        "frames": 11,
+        "duration_ms": 333,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "DaLB0",
+        "frames": 11,
+        "duration_ms": 333,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "DaLB1",
+        "frames": 12,
+        "duration_ms": 366,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "DaLB2",
+        "frames": 11,
+        "duration_ms": 333,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "DaUF0",
+        "frames": 13,
+        "duration_ms": 333,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "DaUF1",
+        "frames": 12,
+        "duration_ms": 333,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "DaUF2",
+        "frames": 12,
+        "duration_ms": 333,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "DaLF0",
+        "frames": 13,
+        "duration_ms": 333,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "DaLF1",
+        "frames": 10,
+        "duration_ms": 333,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "DaLF2",
+        "frames": 12,
+        "duration_ms": 333,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "T_MG_Uninstall",
+        "frames": 78,
+        "duration_ms": 2667,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "T_MG_Install",
+        "frames": 59,
+        "duration_ms": 1933,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "T_MG_Reload",
+        "frames": 56,
+        "duration_ms": 1834,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "T_2HB_Uninstall",
+        "frames": 43,
+        "duration_ms": 2667,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "T_2HB_Install",
+        "frames": 60,
+        "duration_ms": 1933,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "T_2HB_Reload",
+        "frames": 61,
+        "duration_ms": 1800,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UKSt",
+        "frames": 27,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UKSe",
+        "frames": 14,
+        "duration_ms": 433,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UKFi2",
+        "frames": 37,
+        "duration_ms": 1200,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UKFi",
+        "frames": 14,
+        "duration_ms": 433,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi12RL",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi12WF",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi12WB",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi12WL",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi12WR",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi12RR",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi12RF",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi12Fi",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi12Fi2",
+        "frames": 5,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi12Se",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi12St",
+        "frames": 27,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi12Re",
+        "frames": 51,
+        "duration_ms": 1666,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi12StZ",
+        "frames": 27,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi13Re",
+        "frames": 81,
+        "duration_ms": 2666,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi13WF",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi13WR",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi13WL",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi13WB",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi13RR",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi13RF",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi13RL",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi13Fi",
+        "frames": 19,
+        "duration_ms": 600,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi13Se",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi13St",
+        "frames": 27,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UKCRe",
+        "frames": 22,
+        "duration_ms": 700,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UKCFi",
+        "frames": 25,
+        "duration_ms": 800,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UKCEnd",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "Ui_Mainweapon_Idle",
+        "frames": 51,
+        "duration_ms": 1666,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "Ui_Mainweapon_select",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "Ui_Launcher_Idle",
+        "frames": 50,
+        "duration_ms": 1633,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "Ui_Launcher_Select",
+        "frames": 36,
+        "duration_ms": 1166,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UI_MountedMG_Idle",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UI_MountedMG_Select",
+        "frames": 25,
+        "duration_ms": 800,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "Ui_2ndWeapon_Idle",
+        "frames": 41,
+        "duration_ms": 1333,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "Ui_2ndWeapon_Select",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "Ui_Knife_Idle",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "Ui_Knife_Select",
+        "frames": 20,
+        "duration_ms": 633,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "Ui_Grenade_Idle",
+        "frames": 64,
+        "duration_ms": 2100,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "Ui_Grenade_Select",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UI_Default_Idle",
+        "frames": 50,
+        "duration_ms": 1633,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "Ui_LongMainweapon_Idle",
+        "frames": 51,
+        "duration_ms": 1667,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "Ui_LongMainweapon_Select",
+        "frames": 36,
+        "duration_ms": 1166,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "Ui_ShortMainweapon_select",
+        "frames": 36,
+        "duration_ms": 1166,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "Ui_ShortMainweapon_Idle",
+        "frames": 51,
+        "duration_ms": 1667,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "USSe",
+        "frames": 36,
+        "duration_ms": 1166,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "USSt",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "USFi1_Pre",
+        "frames": 19,
+        "duration_ms": 600,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "USFi1",
+        "frames": 14,
+        "duration_ms": 433,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "USFi1_Post",
+        "frames": 29,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "ST_Damage1",
+        "frames": 5,
+        "duration_ms": 133,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "ST_Damage2",
+        "frames": 12,
+        "duration_ms": 366,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "USRe",
+        "frames": 49,
+        "duration_ms": 1600,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "USFi2",
+        "frames": 40,
+        "duration_ms": 1300,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "USFi3",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "USStA",
+        "frames": 26,
+        "duration_ms": 1666,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "Ui_Gatling_Idle",
+        "frames": 61,
+        "duration_ms": 2000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "GC",
+        "frames": 45,
+        "duration_ms": 1466,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "GCDa",
+        "frames": 6,
+        "duration_ms": 166,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "GCFi_ready",
+        "frames": 25,
+        "duration_ms": 800,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "GCFi_fire",
+        "frames": 11,
+        "duration_ms": 333,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "GCFi_end",
+        "frames": 25,
+        "duration_ms": 800,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "GCRe",
+        "frames": 96,
+        "duration_ms": 3166,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "GCSe",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "GCWB",
+        "frames": 43,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "GCWBL",
+        "frames": 43,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "GCWBR",
+        "frames": 43,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "GCWF",
+        "frames": 43,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "GCWFL",
+        "frames": 43,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "GCWFR",
+        "frames": 43,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "GCWL",
+        "frames": 39,
+        "duration_ms": 1266,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "GCWR",
+        "frames": 39,
+        "duration_ms": 1266,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "GST",
+        "frames": 45,
+        "duration_ms": 1466,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "GSTDa",
+        "frames": 6,
+        "duration_ms": 166,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "GSTFi_ready",
+        "frames": 25,
+        "duration_ms": 800,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "GSTFi_fire",
+        "frames": 11,
+        "duration_ms": 333,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "GSTFi_end",
+        "frames": 25,
+        "duration_ms": 800,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "GSTRe",
+        "frames": 96,
+        "duration_ms": 3166,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "GSTSe",
+        "frames": 36,
+        "duration_ms": 1166,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "GWB",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "GWBL",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "GWBR",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "GWF",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "GWFL",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "GWFR",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "GWL",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "GWR",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "Ui_Gatling_select",
+        "frames": 36,
+        "duration_ms": 1167,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UGWC",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UGWCDa",
+        "frames": 6,
+        "duration_ms": 166,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UGWCFi",
+        "frames": 11,
+        "duration_ms": 333,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UGWCFi2",
+        "frames": 26,
+        "duration_ms": 833,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UGWCRe",
+        "frames": 56,
+        "duration_ms": 1833,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UGWCSe",
+        "frames": 21,
+        "duration_ms": 666,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UGWDa",
+        "frames": 6,
+        "duration_ms": 166,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UGWFi",
+        "frames": 11,
+        "duration_ms": 333,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UGWFi2",
+        "frames": 26,
+        "duration_ms": 833,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UGWRe",
+        "frames": 56,
+        "duration_ms": 1833,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UGWSe",
+        "frames": 21,
+        "duration_ms": 666,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UGWSt",
+        "frames": 27,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "Ui_GW-106_Idle",
+        "frames": 36,
+        "duration_ms": 1167,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "Ui_GW-106_select",
+        "frames": 97,
+        "duration_ms": 3200,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UK2St",
+        "frames": 27,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UK2Se",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UK2Fi",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UK2CRe",
+        "frames": 21,
+        "duration_ms": 666,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UK2CFi",
+        "frames": 25,
+        "duration_ms": 800,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UK2CEnd",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UP2Fi",
+        "frames": 10,
+        "duration_ms": 600,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UP2Fi2",
+        "frames": 11,
+        "duration_ms": 600,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UP2RE",
+        "frames": 58,
+        "duration_ms": 2333,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UP2Se",
+        "frames": 9,
+        "duration_ms": 500,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UP2St",
+        "frames": 31,
+        "duration_ms": 2000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "LUBm4Da",
+        "frames": 6,
+        "duration_ms": 166,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "LUBm4Fi2",
+        "frames": 37,
+        "duration_ms": 1200,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "LUBm4Se",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "LUBm4St",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm4Da",
+        "frames": 6,
+        "duration_ms": 166,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm4Fi2",
+        "frames": 37,
+        "duration_ms": 1200,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm4Se",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm4St",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "Ui_claymore_Idle",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "Ui_claymore_select",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "LUBm4Fi1",
+        "frames": 1,
+        "duration_ms": 0,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm4Fi1",
+        "frames": 2,
+        "duration_ms": 33,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm3Da",
+        "frames": 5,
+        "duration_ms": 200,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm3Fi2",
+        "frames": 9,
+        "duration_ms": 267,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm3Se",
+        "frames": 7,
+        "duration_ms": 333,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm3St",
+        "frames": 31,
+        "duration_ms": 2000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "Ui_Mine_idle",
+        "frames": 24,
+        "duration_ms": 1667,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "Ui_Mine_Select",
+        "frames": 17,
+        "duration_ms": 666,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "LRLDa",
+        "frames": 6,
+        "duration_ms": 166,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "LRLFi",
+        "frames": 16,
+        "duration_ms": 500,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "LRLRe",
+        "frames": 106,
+        "duration_ms": 3500,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "LRLSe",
+        "frames": 33,
+        "duration_ms": 1066,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "LRLSt",
+        "frames": 27,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "Ui_RPZ-7_Idle",
+        "frames": 51,
+        "duration_ms": 1666,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "Ui_RPZ-7_Select",
+        "frames": 43,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URLDa3",
+        "frames": 6,
+        "duration_ms": 166,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URLFi3",
+        "frames": 16,
+        "duration_ms": 500,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URLRe",
+        "frames": 106,
+        "duration_ms": 3500,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URLSe3",
+        "frames": 33,
+        "duration_ms": 1066,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URLSt3",
+        "frames": 27,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URLRe2",
+        "frames": 49,
+        "duration_ms": 2666,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "LCBRe",
+        "frames": 25,
+        "duration_ms": 2333,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UCBRe",
+        "frames": 39,
+        "duration_ms": 2333,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm3Fi1",
+        "frames": 2,
+        "duration_ms": 234,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UK2Fi2",
+        "frames": 35,
+        "duration_ms": 1133,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "Ui_Axe_Idle",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "Ui_Axe_Select",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "Ui_FullMoon_Select",
+        "frames": 46,
+        "duration_ms": 1500,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "Ui_FullMoon_Idle",
+        "frames": 61,
+        "duration_ms": 2000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UFMFi",
+        "frames": 16,
+        "duration_ms": 500,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UFMRe",
+        "frames": 66,
+        "duration_ms": 2166,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UFMSe",
+        "frames": 21,
+        "duration_ms": 666,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UFMSt",
+        "frames": 27,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UFMFiZ",
+        "frames": 16,
+        "duration_ms": 500,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UFMStZ",
+        "frames": 27,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "Ui_EM202_idle",
+        "frames": 21,
+        "duration_ms": 1667,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "Ui_EM202_Select",
+        "frames": 33,
+        "duration_ms": 1500,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "USPSe",
+        "frames": 14,
+        "duration_ms": 500,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "USPSt",
+        "frames": 35,
+        "duration_ms": 2000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "Ui_Spear_idle",
+        "frames": 22,
+        "duration_ms": 1500,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "Ui_Spear_select",
+        "frames": 24,
+        "duration_ms": 1166,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "USPCRe",
+        "frames": 9,
+        "duration_ms": 333,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "USPEnd",
+        "frames": 9,
+        "duration_ms": 333,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "USPCFi",
+        "frames": 16,
+        "duration_ms": 667,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "USPFi2",
+        "frames": 13,
+        "duration_ms": 666,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "USPFi",
+        "frames": 15,
+        "duration_ms": 600,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "Ui_Knife3_Idle",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "Ui_Knife3_select",
+        "frames": 20,
+        "duration_ms": 633,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UK3CRe",
+        "frames": 22,
+        "duration_ms": 700,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UK3Fi",
+        "frames": 14,
+        "duration_ms": 433,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UK3Fi2",
+        "frames": 37,
+        "duration_ms": 1200,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UK3Se",
+        "frames": 14,
+        "duration_ms": 433,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UK3St",
+        "frames": 27,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UK3CFi",
+        "frames": 25,
+        "duration_ms": 800,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UK3CEnd",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UDWDa",
+        "frames": 6,
+        "duration_ms": 166,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UDWFi",
+        "frames": 16,
+        "duration_ms": 500,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UDWFi2",
+        "frames": 6,
+        "duration_ms": 166,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UDWRe",
+        "frames": 61,
+        "duration_ms": 1500,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UDWSe",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UDWSt",
+        "frames": 27,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "Ui_TEAC-9_Idle",
+        "frames": 41,
+        "duration_ms": 1333,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "Ui_TEAC-9_select",
+        "frames": 35,
+        "duration_ms": 1134,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UDWRL",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UDWRR",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UDWRF",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UDWWL",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UDWWR",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UDWWF",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UDWWB",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UDWMdFi",
+        "frames": 16,
+        "duration_ms": 500,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UDWMdOff",
+        "frames": 11,
+        "duration_ms": 333,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UDWMdOn",
+        "frames": 11,
+        "duration_ms": 333,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "Ui_Glove_idle",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "Ui_Glove_select",
+        "frames": 21,
+        "duration_ms": 666,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UGLCRe",
+        "frames": 22,
+        "duration_ms": 700,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UGLCFi",
+        "frames": 27,
+        "duration_ms": 867,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UGLCEnd",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UGLFi",
+        "frames": 25,
+        "duration_ms": 800,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UGLFi2",
+        "frames": 48,
+        "duration_ms": 1567,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UGLSe",
+        "frames": 17,
+        "duration_ms": 534,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UGLSt",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm5Se",
+        "frames": 21,
+        "duration_ms": 666,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm5St",
+        "frames": 27,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm5Fi2",
+        "frames": 11,
+        "duration_ms": 334,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm5Fi1",
+        "frames": 1,
+        "duration_ms": 0,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm5WB",
+        "frames": 1,
+        "duration_ms": 0,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm5Da",
+        "frames": 8,
+        "duration_ms": 233,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm5RF",
+        "frames": 1,
+        "duration_ms": 0,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm5RL",
+        "frames": 1,
+        "duration_ms": 0,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm5RR",
+        "frames": 1,
+        "duration_ms": 0,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm5WF",
+        "frames": 1,
+        "duration_ms": 0,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm5WL",
+        "frames": 1,
+        "duration_ms": 0,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm5WR",
+        "frames": 1,
+        "duration_ms": 0,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UK4St",
+        "frames": 35,
+        "duration_ms": 1134,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UK4Se",
+        "frames": 24,
+        "duration_ms": 766,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UK4Fi2",
+        "frames": 29,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UK4CRe",
+        "frames": 29,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UK4Fi",
+        "frames": 29,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UK4CFi",
+        "frames": 29,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UK4CEnd",
+        "frames": 29,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "LRF2",
+        "frames": 29,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "LRR2",
+        "frames": 29,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "LRL2",
+        "frames": 29,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "LRFR2",
+        "frames": 29,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "LRFL2",
+        "frames": 29,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi14Se",
+        "frames": 21,
+        "duration_ms": 666,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi14WF",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi14WR",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi14WL",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi14WB",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi14RR",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi14RL",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi14RF",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi14Re",
+        "frames": 81,
+        "duration_ms": 2666,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi14Fi",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi14StZ",
+        "frames": 27,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "URi14St",
+        "frames": 27,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "Ui_BullpupMainweapon_Idle",
+        "frames": 51,
+        "duration_ms": 1667,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "Ui_BullpupMainweapon_select",
+        "frames": 36,
+        "duration_ms": 1166,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "Ui_UPH1_Idle",
+        "frames": 41,
+        "duration_ms": 1333,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "Ui_UPH1_Select",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UPH1Da",
+        "frames": 6,
+        "duration_ms": 166,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UPH1Fi",
+        "frames": 36,
+        "duration_ms": 1166,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UPH1Fi2",
+        "frames": 6,
+        "duration_ms": 166,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UPH1Re",
+        "frames": 76,
+        "duration_ms": 2500,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UPH1RF",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UPH1RL",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UPH1RR",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UPH1Se",
+        "frames": 29,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UPH1St",
+        "frames": 27,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UPH1WB",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UPH1WF",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UPH1WL",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UPH1WR",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm6da",
+        "frames": 6,
+        "duration_ms": 167,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm6Fi1",
+        "frames": 1,
+        "duration_ms": 0,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm6Fi2",
+        "frames": 16,
+        "duration_ms": 500,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm6MdOff",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm6MdOn",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm6RF",
+        "frames": 1,
+        "duration_ms": 0,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm6RL",
+        "frames": 1,
+        "duration_ms": 0,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm6RR",
+        "frames": 1,
+        "duration_ms": 0,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm6Se",
+        "frames": 14,
+        "duration_ms": 433,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm6St",
+        "frames": 27,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm6WF",
+        "frames": 1,
+        "duration_ms": 0,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm6WL",
+        "frames": 1,
+        "duration_ms": 0,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UBm6WR",
+        "frames": 1,
+        "duration_ms": 0,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UP4Se",
+        "frames": 20,
+        "duration_ms": 633,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UP4St",
+        "frames": 27,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UP4Fi",
+        "frames": 18,
+        "duration_ms": 566,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UP4Fi2",
+        "frames": 6,
+        "duration_ms": 166,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UP4Da",
+        "frames": 6,
+        "duration_ms": 166,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UP4RR",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UP4RL",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UP4Re",
+        "frames": 76,
+        "duration_ms": 2500,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UP4RF",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UP4WF",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UP4WB",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UP4WL",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      },
+      {
+        "name": "UP4WR",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 47
+      }
+    ]
+  },
+  {
+    "file": "wt_new_wolf_ch.ltb",
+    "bytes": 2088235,
+    "sha256": "c06e7e9347968a1987126450bdb7ba3d37353ac97c414ace261bfca9873bbfc4",
+    "parsed": true,
+    "version": 25,
+    "node_count": 42,
+    "nodes": [
+      {
+        "name": "Scene Root",
+        "index": 0,
+        "parent": null
+      },
+      {
+        "name": "Bip01",
+        "index": 1,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "Bip01 Pelvis",
+        "index": 2,
+        "parent": "Bip01"
+      },
+      {
+        "name": "Bip01 Spine",
+        "index": 3,
+        "parent": "Bip01 Pelvis"
+      },
+      {
+        "name": "Bip01 Spine1",
+        "index": 4,
+        "parent": "Bip01 Spine"
+      },
+      {
+        "name": "Bip01 Spine2",
+        "index": 5,
+        "parent": "Bip01 Spine1"
+      },
+      {
+        "name": "Bip01 Neck",
+        "index": 6,
+        "parent": "Bip01 Spine2"
+      },
+      {
+        "name": "Bip01 Head",
+        "index": 7,
+        "parent": "Bip01 Neck"
+      },
+      {
+        "name": "Bip01 Ponytail1",
+        "index": 8,
+        "parent": "Bip01 Head"
+      },
+      {
+        "name": "Bip01 Ponytail11",
+        "index": 9,
+        "parent": "Bip01 Ponytail1"
+      },
+      {
+        "name": "Bip01 Ponytail2",
+        "index": 10,
+        "parent": "Bip01 Head"
+      },
+      {
+        "name": "Bip01 L Clavicle",
+        "index": 11,
+        "parent": "Bip01 Neck"
+      },
+      {
+        "name": "Bip01 L UpperArm",
+        "index": 12,
+        "parent": "Bip01 L Clavicle"
+      },
+      {
+        "name": "Bip01 L Forearm",
+        "index": 13,
+        "parent": "Bip01 L UpperArm"
+      },
+      {
+        "name": "Bip01 L Hand",
+        "index": 14,
+        "parent": "Bip01 L Forearm"
+      },
+      {
+        "name": "Bip01 L Finger0",
+        "index": 15,
+        "parent": "Bip01 L Hand"
+      },
+      {
+        "name": "Bip01 L Finger01",
+        "index": 16,
+        "parent": "Bip01 L Finger0"
+      },
+      {
+        "name": "Bip01 L Finger1",
+        "index": 17,
+        "parent": "Bip01 L Hand"
+      },
+      {
+        "name": "Bip01 L Finger11",
+        "index": 18,
+        "parent": "Bip01 L Finger1"
+      },
+      {
+        "name": "Bip01 R Clavicle",
+        "index": 19,
+        "parent": "Bip01 Neck"
+      },
+      {
+        "name": "Bip01 R UpperArm",
+        "index": 20,
+        "parent": "Bip01 R Clavicle"
+      },
+      {
+        "name": "Bip01 R Forearm",
+        "index": 21,
+        "parent": "Bip01 R UpperArm"
+      },
+      {
+        "name": "Bip01 R Hand",
+        "index": 22,
+        "parent": "Bip01 R Forearm"
+      },
+      {
+        "name": "Bip01 R Finger0",
+        "index": 23,
+        "parent": "Bip01 R Hand"
+      },
+      {
+        "name": "Bip01 R Finger01",
+        "index": 24,
+        "parent": "Bip01 R Finger0"
+      },
+      {
+        "name": "Bip01 R Finger1",
+        "index": 25,
+        "parent": "Bip01 R Hand"
+      },
+      {
+        "name": "Bip01 R Finger11",
+        "index": 26,
+        "parent": "Bip01 R Finger1"
+      },
+      {
+        "name": "Bip01 L Thigh",
+        "index": 27,
+        "parent": "Bip01 Spine"
+      },
+      {
+        "name": "Bip01 L Calf",
+        "index": 28,
+        "parent": "Bip01 L Thigh"
+      },
+      {
+        "name": "Bip01 L Foot",
+        "index": 29,
+        "parent": "Bip01 L Calf"
+      },
+      {
+        "name": "Bip01 L Toe0",
+        "index": 30,
+        "parent": "Bip01 L Foot"
+      },
+      {
+        "name": "Bip01 R Thigh",
+        "index": 31,
+        "parent": "Bip01 Spine"
+      },
+      {
+        "name": "Bip01 R Calf",
+        "index": 32,
+        "parent": "Bip01 R Thigh"
+      },
+      {
+        "name": "Bip01 R Foot",
+        "index": 33,
+        "parent": "Bip01 R Calf"
+      },
+      {
+        "name": "Bip01 R Toe0",
+        "index": 34,
+        "parent": "Bip01 R Foot"
+      },
+      {
+        "name": "n_PosRoute",
+        "index": 35,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend01",
+        "index": 36,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend02",
+        "index": 37,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend03",
+        "index": 38,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend04",
+        "index": 39,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_extend05",
+        "index": 40,
+        "parent": "Scene Root"
+      },
+      {
+        "name": "n_bFollowBone",
+        "index": 41,
+        "parent": "Scene Root"
+      }
+    ],
+    "children": [],
+    "command_string": "",
+    "sockets": [
+      {
+        "name": "Backpack",
+        "node_index": 4
+      },
+      {
+        "name": "RightHand",
+        "node_index": 22
+      },
+      {
+        "name": "ChangeEffect",
+        "node_index": 5
+      },
+      {
+        "name": "Trail_Hand2",
+        "node_index": 18
+      },
+      {
+        "name": "Trail_Hand1",
+        "node_index": 26
+      },
+      {
+        "name": "Trail_Hand3",
+        "node_index": 25
+      },
+      {
+        "name": "WolfeyeL",
+        "node_index": 7
+      },
+      {
+        "name": "WolfeyeR",
+        "node_index": 7
+      },
+      {
+        "name": "Fire_Start",
+        "node_index": 4
+      },
+      {
+        "name": "cry",
+        "node_index": 6
+      },
+      {
+        "name": "ChangeEffect1",
+        "node_index": 5
+      }
+    ],
+    "pieces": [
+      {
+        "name": "WOLF_BODY_B",
+        "material_index": 0,
+        "lods": [
+          {
+            "vertices": 4590,
+            "triangles": 4026,
+            "texture_slots": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "vertices_with_weights": 4590
+          }
+        ]
+      },
+      {
+        "name": "WOLF_OBJ_B",
+        "material_index": 1,
+        "lods": [
+          {
+            "vertices": 415,
+            "triangles": 300,
+            "texture_slots": [
+              1,
+              1,
+              2,
+              3
+            ],
+            "vertices_with_weights": 415
+          }
+        ]
+      },
+      {
+        "name": "WOLF_Tattoo",
+        "material_index": 10,
+        "lods": [
+          {
+            "vertices": 279,
+            "triangles": 290,
+            "texture_slots": [
+              10,
+              11,
+              12,
+              13
+            ],
+            "vertices_with_weights": 279
+          }
+        ]
+      }
+    ],
+    "animations": [
+      {
+        "name": "LSt",
+        "frames": 12,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LC",
+        "frames": 12,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LCWR",
+        "frames": 20,
+        "duration_ms": 1266,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LCWB",
+        "frames": 27,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LCWF",
+        "frames": 24,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LCWL",
+        "frames": 22,
+        "duration_ms": 1266,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LCWFR",
+        "frames": 24,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LCWFL",
+        "frames": 24,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LCWBL",
+        "frames": 27,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LCWBR",
+        "frames": 27,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LJJ",
+        "frames": 5,
+        "duration_ms": 133,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LJL",
+        "frames": 9,
+        "duration_ms": 366,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LJT",
+        "frames": 3,
+        "duration_ms": 67,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LRF",
+        "frames": 17,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LRR",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LRL",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LRFR",
+        "frames": 17,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LRFL",
+        "frames": 17,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LWR",
+        "frames": 18,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LWB",
+        "frames": 24,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LWF",
+        "frames": 20,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LWL",
+        "frames": 14,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LWFR",
+        "frames": 20,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LWFL",
+        "frames": 21,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LWBL",
+        "frames": 24,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LWBR",
+        "frames": 24,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMC",
+        "frames": 12,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMJJ",
+        "frames": 5,
+        "duration_ms": 133,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMJL",
+        "frames": 9,
+        "duration_ms": 366,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMJT",
+        "frames": 3,
+        "duration_ms": 67,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMRF",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMRR",
+        "frames": 23,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMRL",
+        "frames": 22,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMWR",
+        "frames": 18,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMWF",
+        "frames": 20,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMWB",
+        "frames": 24,
+        "duration_ms": 933,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMWL",
+        "frames": 14,
+        "duration_ms": 733,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMCWR",
+        "frames": 20,
+        "duration_ms": 1266,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMCWB",
+        "frames": 27,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMCWF",
+        "frames": 24,
+        "duration_ms": 1400,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMCWL",
+        "frames": 22,
+        "duration_ms": 1266,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMSt",
+        "frames": 12,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_WallRide",
+        "frames": 13,
+        "duration_ms": 533,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_wallRide2",
+        "frames": 27,
+        "duration_ms": 866,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_DFHS1",
+        "frames": 54,
+        "duration_ms": 2733,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_DFBS1",
+        "frames": 36,
+        "duration_ms": 1866,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_DFBB1",
+        "frames": 19,
+        "duration_ms": 967,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "Twitch",
+        "frames": 5,
+        "duration_ms": 166,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_DBBS1",
+        "frames": 41,
+        "duration_ms": 1900,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_DBBB1",
+        "frames": 20,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_DBHS1",
+        "frames": 35,
+        "duration_ms": 2133,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_CRY",
+        "frames": 41,
+        "duration_ms": 1333,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_BITE",
+        "frames": 17,
+        "duration_ms": 1166,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_DFBF1",
+        "frames": 32,
+        "duration_ms": 1033,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_DBBF1",
+        "frames": 38,
+        "duration_ms": 1233,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "LJA",
+        "frames": 18,
+        "duration_ms": 1200,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMFi3",
+        "frames": 14,
+        "duration_ms": 600,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMFi2",
+        "frames": 10,
+        "duration_ms": 400,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMFi1",
+        "frames": 10,
+        "duration_ms": 333,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMTR",
+        "frames": 21,
+        "duration_ms": 666,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMTH",
+        "frames": 2,
+        "duration_ms": 33,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMTF",
+        "frames": 21,
+        "duration_ms": 667,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "Ui_idle",
+        "frames": 41,
+        "duration_ms": 1333,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_Specialatk",
+        "frames": 31,
+        "duration_ms": 1000,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_Bodyatk",
+        "frames": 28,
+        "duration_ms": 900,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_BodyatkL",
+        "frames": 28,
+        "duration_ms": 900,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_BodyatkR",
+        "frames": 28,
+        "duration_ms": 900,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_WallDash",
+        "frames": 17,
+        "duration_ms": 533,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_WallDashL",
+        "frames": 17,
+        "duration_ms": 533,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_WallDashR",
+        "frames": 17,
+        "duration_ms": 533,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "UMDe",
+        "frames": 41,
+        "duration_ms": 1333,
+        "compression": 0,
+        "transform_nodes": 42
+      },
+      {
+        "name": "T_WallDashAtk",
+        "frames": 34,
+        "duration_ms": 900,
+        "compression": 0,
+        "transform_nodes": 42
+      }
+    ]
+  }
+]

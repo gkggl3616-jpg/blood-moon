@@ -1,0 +1,16 @@
+| =~
+
+| Root/wt_interface/item/forge/cherokee_axe_runes f.dtx idtx 64.2 KiB 7
+
+| Root/wt_interface/item/cherokee_axe_runes_n.dtx tx 128.2 KiB 104
+Root/wt_interface/item/name/cherokee_axe_runes.dtx dt 16.2 KiB q
+Root/wt_interface/killsystemmessage/pl_k cherokee_axe_runes.dtx dt 16.2 KiB d
+Root/wt_interface/killsystemmessage/pl_k cherokee_axe_runes_revx.dtx adtx 16.2 KiB
+
+| Root/wt_guns/models_ui/wt_ui_cherokee_axe_runes.ltb tb 24.3 KiB 14,
+Root/wt_guns/models_pv/wt_pv_cherokee_axe_runes.itb tb 576.3 KiB 196,
+Root/wt_guns/skins_hh/wt_hh_cherokee_axe_runes.dtx dt. 64.2 KiB 46,
+Root/wt_guns/skins_pv/wt_pv_cherokee_axe_runes.dtx dtx 256.2 KiB 178, l
+Root/wt_guns/models_hh/wt_hh_cherokee_axe_runes.itb wtb 6.6 KiB 34
+
+| | "

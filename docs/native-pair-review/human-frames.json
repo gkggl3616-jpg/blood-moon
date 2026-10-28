@@ -1,0 +1,10 @@
+[
+  {
+    "form": "human",
+    "clip": "HumanIdle",
+    "phase": 0.2,
+    "frame": 7.840000152587891,
+    "view": "front",
+    "file": "human-idle-front.png"
+  }
+]

@@ -1,0 +1,146 @@
+[
+  {
+    "form": "wolf",
+    "clip": "WolfIdle",
+    "phase": 0.2,
+    "frame": 4.159999847412109,
+    "view": "front",
+    "file": "wolf-idle-front.png"
+  },
+  {
+    "form": "wolf",
+    "clip": "WolfIdle",
+    "phase": 0.2,
+    "frame": 4.159999847412109,
+    "view": "back",
+    "file": "wolf-idle-back.png"
+  },
+  {
+    "form": "wolf",
+    "clip": "WolfIdle",
+    "phase": 0.2,
+    "frame": 4.159999847412109,
+    "view": "side",
+    "file": "wolf-idle-side.png"
+  },
+  {
+    "form": "wolf",
+    "clip": "WolfRoar",
+    "phase": 0,
+    "frame": 0.0,
+    "view": "three",
+    "file": "wolf-roar-0.png"
+  },
+  {
+    "form": "wolf",
+    "clip": "WolfRoar",
+    "phase": 0.25,
+    "frame": 8.0,
+    "view": "three",
+    "file": "wolf-roar-1.png"
+  },
+  {
+    "form": "wolf",
+    "clip": "WolfRoar",
+    "phase": 0.5,
+    "frame": 16.0,
+    "view": "three",
+    "file": "wolf-roar-2.png"
+  },
+  {
+    "form": "wolf",
+    "clip": "WolfRoar",
+    "phase": 0.75,
+    "frame": 24.0,
+    "view": "three",
+    "file": "wolf-roar-3.png"
+  },
+  {
+    "form": "wolf",
+    "clip": "WolfRoar",
+    "phase": 1,
+    "frame": 32.0,
+    "view": "three",
+    "file": "wolf-roar-4.png"
+  },
+  {
+    "form": "wolf",
+    "clip": "WolfRunQuad",
+    "phase": 0,
+    "frame": 0.0,
+    "view": "three",
+    "file": "wolf-run-0.png"
+  },
+  {
+    "form": "wolf",
+    "clip": "WolfRunQuad",
+    "phase": 0.25,
+    "frame": 4.400000095367432,
+    "view": "three",
+    "file": "wolf-run-1.png"
+  },
+  {
+    "form": "wolf",
+    "clip": "WolfRunQuad",
+    "phase": 0.5,
+    "frame": 8.800000190734863,
+    "view": "three",
+    "file": "wolf-run-2.png"
+  },
+  {
+    "form": "wolf",
+    "clip": "WolfRunQuad",
+    "phase": 0.75,
+    "frame": 13.200000286102295,
+    "view": "three",
+    "file": "wolf-run-3.png"
+  },
+  {
+    "form": "wolf",
+    "clip": "WolfRunQuad",
+    "phase": 1,
+    "frame": 17.600000381469727,
+    "view": "three",
+    "file": "wolf-run-4.png"
+  },
+  {
+    "form": "wolf",
+    "clip": "WolfRoll",
+    "phase": 0,
+    "frame": 0.0,
+    "view": "three",
+    "file": "wolf-roll-0.png"
+  },
+  {
+    "form": "wolf",
+    "clip": "WolfRoll",
+    "phase": 0.25,
+    "frame": 4.800000190734863,
+    "view": "three",
+    "file": "wolf-roll-1.png"
+  },
+  {
+    "form": "wolf",
+    "clip": "WolfRoll",
+    "phase": 0.5,
+    "frame": 9.600000381469727,
+    "view": "three",
+    "file": "wolf-roll-2.png"
+  },
+  {
+    "form": "wolf",
+    "clip": "WolfRoll",
+    "phase": 0.75,
+    "frame": 14.40000057220459,
+    "view": "three",
+    "file": "wolf-roll-3.png"
+  },
+  {
+    "form": "wolf",
+    "clip": "WolfRoll",
+    "phase": 1,
+    "frame": 19.200000762939453,
+    "view": "three",
+    "file": "wolf-roll-4.png"
+  }
+]
