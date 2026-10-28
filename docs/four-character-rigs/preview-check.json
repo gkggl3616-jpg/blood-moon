@@ -1,0 +1,30 @@
+{
+  "models": [
+    {
+      "character": "bilge",
+      "bones": 40,
+      "reference_only": true,
+      "animations_created_or_edited": false
+    },
+    {
+      "character": "kultigin",
+      "bones": 54,
+      "reference_only": true,
+      "animations_created_or_edited": false
+    },
+    {
+      "character": "alparslan",
+      "bones": 42,
+      "reference_only": true,
+      "animations_created_or_edited": false
+    },
+    {
+      "character": "konuralp",
+      "bones": 58,
+      "reference_only": true,
+      "animations_created_or_edited": false
+    }
+  ],
+  "all_frozen_source_hashes_match": true,
+  "runtime_changed": false
+}

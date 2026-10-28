@@ -296,3 +296,13 @@ Aynı Drive kimliğindeki dosya güncellendi. Son arşiv **2.145.027.885 bayt**,
 Ön/yan/arka GLB yeniden içe aktarım render'ları `docs/native-pair-review/textured-reference/` içinde. Üst/alt/kürk, insan yüz/gövde ve el/ayak UV eşleşmesi görsel olarak kontrol edildi. Kaynak pozu/floor kalibrasyonu ve saç/yelenin tek yüzlü yüzeyleri hâlâ inceleme konusu; özellikle insan referansında zeminden ayrılma görülüyor. Referans yalnız tek başlangıç bekleme pozu taşır; tamamlanmış yürüyüş, koşu, takla veya kükreme paketi değildir.
 
 Yerel çalışma dosyaları `art/3d/source/wolfteam-archive/textured-references/{wolf,human}.{blend,glb}` altında; dokular dosyalara gömülü. Ham RAR/LTB/DTX ve kaynak referans dosyaları Git dışında. Yapım/eşleme raporu `textured-native-reference.json`. Bu turda oyun çalışma zamanı modeli değiştirilmedi ve yeni APK yayımlanmadı. Yeni ücretli üretim yok. Kullanıcıdan bu aşama için tekrar aynı kaynakların yüklenmesi istenmiyor.
+
+## Kullanıcının yeni kararı: 4 karakter / 4 farklı kurt iskeleti, animasyonlar kilitli
+
+Bilge Kağan → Ice 40; Kül Tigin → R1 54; Alp Arslan → Power 42; Konuralp → Wraith 58 seçildi. R1'in ek kol burulma ve boyun kemikleri, Wraith'in kuyruk zinciri tasarımda korunacak. Dört kaynak hiyerarşisinin SHA-256 imzası farklı. Ayrıntılı tablo ve karakter/insan eşi tasarım briefleri: `docs/four-character-rigs/TASARIM-VE-ISKELET-PLANI-TR.md`.
+
+**Son kullanıcı talimatı önceki hareket işlerinin önüne geçer: şu aşamada animasyonlara kesinlikle dokunulmaz.** Yeni keyframe/retarget/klip kesme veya hız değişikliği yapılmayacak. Statik tasarım ve gövde/kostüm, kaynak bind hiyerarşisi ve eklem oranlarına göre yapılacak. Kaynaklar silinmeyecek. `selection.json` içinde seçili gövde ve hareket kaynaklarının hash'leri donduruldu. Bu karar dört insan iskeletinin de birbirinden farklı seçildiği anlamına gelmez; dört ayrı iskelet seçimi burada kurt formları içindir. Dört insan eşinde karakter kimliği aynı briefte planlandı.
+
+Bu tur oyun hareket kodu ve klipleri değiştirilmedi; ücretli üretim yapılmadı. Yeni karakter tasarımları tamamlandı diye sunulmadı.
+
+Dört kaynak gövdenin statik nötr poz görüntüleri hazırlandı; kemik/mesh grupları orijinal isimlerle referans BLEND dosyalarına alındı. Hiçbir animation action oluşturulmadı. İşlem sonunda seçili altı benzersiz kaynak dosyanın SHA-256 değeri başlangıçla birebir eşleşti (`docs/four-character-rigs/preview-check.json`). Bu tur `app/` çalışma zamanı dosyalarında değişiklik yapılmadı. Görüntüler nihai karakter tasarımı olarak sunulmaz.

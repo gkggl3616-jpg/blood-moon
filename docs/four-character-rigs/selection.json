@@ -1,0 +1,110 @@
+{
+  "scope": "Four distinct wolf rigs; human partners retain matching identity, human skeleton selection not asserted here",
+  "characters": [
+    {
+      "id": "bilge",
+      "character": "Bilge Kağan",
+      "form": "wolf",
+      "source": "art/3d/source/wolfteam-archive/selected/wt_wolf_ice_r.ltb",
+      "motion_source": "art/3d/source/wolfteam-archive/selected/wt_wolf_ice_ch.ltb",
+      "nodes": 40,
+      "hierarchy_sha256": "8060279894256b0ae78ac02410fe7fa5d5f90b861711f9d032b31d22d704d3c7",
+      "source_triangles": 5790,
+      "native_pieces": [
+        "belt",
+        "icewolf",
+        "cap",
+        "Tattoo_Body",
+        "Tattoo_Arm_L",
+        "Tattoo_Arm_R"
+      ],
+      "design_direction": "Buz; lacivert-altın komutan; kontrollü buz önkolu",
+      "animations_locked": true
+    },
+    {
+      "id": "kultigin",
+      "character": "Kül Tigin",
+      "form": "wolf",
+      "source": "art/3d/source/wolfteam-archive/selected/r1_wolf.ltb",
+      "motion_source": "art/3d/source/wolfteam-archive/selected/r1_wolf.ltb",
+      "nodes": 54,
+      "hierarchy_sha256": "a0f8031376b94afd1351f3e0264bb0fa38590e0c8ebe1242fe96ca4185bede5d",
+      "source_triangles": 6192,
+      "native_pieces": [
+        "R1_Wolf_fur",
+        "R1_Wolf_Body",
+        "R1_Wolf_Armor2",
+        "R1_Wolf_Armor1",
+        "Tattoo_body",
+        "Tattoo_Arm_L",
+        "Tattoo_Arm_R"
+      ],
+      "design_direction": "Kan; kömür siyahı-kızıl savaşçı; parçalı hafif zırh",
+      "animations_locked": true
+    },
+    {
+      "id": "alparslan",
+      "character": "Alp Arslan",
+      "form": "wolf",
+      "source": "art/3d/source/wolfteam-archive/selected/wt_wolf_power_r.ltb",
+      "motion_source": "art/3d/source/pedro-native/new-motion/wt_new_wolf_ch.ltb",
+      "nodes": 42,
+      "hierarchy_sha256": "65f32f0ddb6db19ba058b3a5c40b25ee83abb3cc319b2ec82994187c9175e318",
+      "source_triangles": 4776,
+      "native_pieces": [
+        "WOLF_OBJ_R",
+        "WOLF_BODY_R",
+        "Shoulder",
+        "Tattoo_Body",
+        "Tattoo_Arm_L",
+        "Tattoo_Arm_R"
+      ],
+      "design_direction": "Köz; geniş göğüs/omuz; bronz deri kemer ve omuzluk",
+      "animations_locked": true
+    },
+    {
+      "id": "konuralp",
+      "character": "Konuralp",
+      "form": "wolf",
+      "source": "art/3d/source/wolfteam-archive/selected/wt_wolf_wraith.ltb",
+      "motion_source": "art/3d/source/wolfteam-archive/selected/wt_wolf_wraith.ltb",
+      "nodes": 58,
+      "hierarchy_sha256": "7f30fa6651947cfe32a1e7a423ccade36e50ff1135ff004fbfcb773fb30fdf1e",
+      "source_triangles": 5097,
+      "native_pieces": [
+        "Blue_Body",
+        "Blue_Fur"
+      ],
+      "design_direction": "Gölge; ince çevik silüet; mor işaretler ve doğal kuyruk",
+      "animations_locked": true
+    }
+  ],
+  "frozen_source_files": {
+    "art/3d/source/wolfteam-archive/selected/wt_wolf_ice_r.ltb": {
+      "bytes": 304560,
+      "sha256": "32e2637bd78560ce7a1c0099b48dcbf84b19ef1b5d3a66b5e4d1dfde9c975798"
+    },
+    "art/3d/source/wolfteam-archive/selected/wt_wolf_ice_ch.ltb": {
+      "bytes": 2323994,
+      "sha256": "0461cf9aca3a1f0b3f8c8297c392fb5a6b10177ae21afdaaa31c3046090740cc"
+    },
+    "art/3d/source/wolfteam-archive/selected/r1_wolf.ltb": {
+      "bytes": 3485256,
+      "sha256": "09ae380ec3e42173d4223e7c998268d91d27f53ce16a20cdbbd96baf5d3542e3"
+    },
+    "art/3d/source/wolfteam-archive/selected/wt_wolf_power_r.ltb": {
+      "bytes": 264204,
+      "sha256": "5674cda28cc4c623acb9906839c766c100a41a5bbca6b73898bb7ea2c83259ab"
+    },
+    "art/3d/source/pedro-native/new-motion/wt_new_wolf_ch.ltb": {
+      "bytes": 2088235,
+      "sha256": "c06e7e9347968a1987126450bdb7ba3d37353ac97c414ace261bfca9873bbfc4"
+    },
+    "art/3d/source/wolfteam-archive/selected/wt_wolf_wraith.ltb": {
+      "bytes": 4881752,
+      "sha256": "02775da4048109d5bfa6635d64420fe388094da1638eca6c4f73f75b1ad64c8f"
+    }
+  },
+  "runtime_changed": false,
+  "animation_edits_permitted": false
+}
