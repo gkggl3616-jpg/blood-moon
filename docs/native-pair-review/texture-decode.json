@@ -1,0 +1,206 @@
+[
+  {
+    "source": "wt_chars/newchars/pedro_red/pedro_boots01.dtx",
+    "png": "art/3d/source/wolfteam-archive/decoded/wt_chars/newchars/pedro_red/pedro_boots01.png",
+    "width": 256,
+    "height": 256,
+    "format": 6,
+    "alpha_range": [
+      255,
+      255
+    ],
+    "rgba_sha256": "c173c4fa7258281ae1a53a65ec81437fbd68df8c5c97d013a50cd164ad08ac41"
+  },
+  {
+    "source": "wt_chars/newchars/pedro_red/pedro_gloves01.dtx",
+    "png": "art/3d/source/wolfteam-archive/decoded/wt_chars/newchars/pedro_red/pedro_gloves01.png",
+    "width": 256,
+    "height": 256,
+    "format": 5,
+    "alpha_range": [
+      255,
+      255
+    ],
+    "rgba_sha256": "43ca8aa974ba03a71b394bf09005b62befd8c2d72e6d9a28a66569e579c4812f"
+  },
+  {
+    "source": "wt_chars/newchars/pedro_red/pedro_r_lowerbody.dtx",
+    "png": "art/3d/source/wolfteam-archive/decoded/wt_chars/newchars/pedro_red/pedro_r_lowerbody.png",
+    "width": 512,
+    "height": 512,
+    "format": 6,
+    "alpha_range": [
+      255,
+      255
+    ],
+    "rgba_sha256": "c243603a35c288210635d1bad3c5c8e85b7eded98b0e97755b133515f1c05806"
+  },
+  {
+    "source": "wt_chars/newchars/pedro_red/pedro_r_upperbody.dtx",
+    "png": "art/3d/source/wolfteam-archive/decoded/wt_chars/newchars/pedro_red/pedro_r_upperbody.png",
+    "width": 512,
+    "height": 512,
+    "format": 6,
+    "alpha_range": [
+      255,
+      255
+    ],
+    "rgba_sha256": "fed030157d0097788cac3e37da8d546de3c171f28d807c3ce8a4ad9965be8ba7"
+  },
+  {
+    "source": "wt_chars/newchars/pedro_wolf/pedro_wolf_hair.dtx",
+    "png": "art/3d/source/wolfteam-archive/decoded/wt_chars/newchars/pedro_wolf/pedro_wolf_hair.png",
+    "width": 512,
+    "height": 512,
+    "format": 6,
+    "alpha_range": [
+      0,
+      255
+    ],
+    "rgba_sha256": "3dc773676c8003447e51c71f7ed1f9f2290932bb2c098daefd5da01aded6d410"
+  },
+  {
+    "source": "wt_chars/newchars/pedro_wolf/pedro_wolf_lower.dtx",
+    "png": "art/3d/source/wolfteam-archive/decoded/wt_chars/newchars/pedro_wolf/pedro_wolf_lower.png",
+    "width": 512,
+    "height": 512,
+    "format": 6,
+    "alpha_range": [
+      0,
+      255
+    ],
+    "rgba_sha256": "2df4c8ccb54bf3f197cdaa3d2c50e07ce880dca4e792cf2f105b8abf2195cf7b"
+  },
+  {
+    "source": "wt_chars/newchars/pedro_wolf/pedro_wolf_upper.dtx",
+    "png": "art/3d/source/wolfteam-archive/decoded/wt_chars/newchars/pedro_wolf/pedro_wolf_upper.png",
+    "width": 512,
+    "height": 512,
+    "format": 6,
+    "alpha_range": [
+      0,
+      255
+    ],
+    "rgba_sha256": "68c3dc32a60e5a7f84f1c10a4de58ba6a1e695adb5dc6e2304d03c00e41e3b81"
+  },
+  {
+    "source": "wt_chars/skins/helmet.dtx",
+    "png": "art/3d/source/wolfteam-archive/decoded/wt_chars/skins/helmet.png",
+    "width": 128,
+    "height": 128,
+    "format": 6,
+    "alpha_range": [
+      255,
+      255
+    ],
+    "rgba_sha256": "f1bfa4c7d67accd19fa97d84502c494bd20fb80a5f230276d165b13fce92a98f"
+  },
+  {
+    "source": "wt_chars/skins/wt_icewolf_r.dtx",
+    "png": "art/3d/source/wolfteam-archive/decoded/wt_chars/skins/wt_icewolf_r.png",
+    "width": 512,
+    "height": 512,
+    "format": 6,
+    "alpha_range": [
+      255,
+      255
+    ],
+    "rgba_sha256": "a9766b88922c5678d11b7cb2b7abeaaa46174b18fc863af5056983cb4c70d02f"
+  },
+  {
+    "source": "wt_chars/skins/wt_wolf_guardian_r.dtx",
+    "png": "art/3d/source/wolfteam-archive/decoded/wt_chars/skins/wt_wolf_guardian_r.png",
+    "width": 512,
+    "height": 512,
+    "format": 6,
+    "alpha_range": [
+      255,
+      255
+    ],
+    "rgba_sha256": "e13036a05acc4a410d01facc06c6487a8f8739ade15108e882e9931125d91614"
+  },
+  {
+    "source": "wt_chars/skins/wt_wolf_powershoulder_r.dtx",
+    "png": "art/3d/source/wolfteam-archive/decoded/wt_chars/skins/wt_wolf_powershoulder_r.png",
+    "width": 256,
+    "height": 128,
+    "format": 6,
+    "alpha_range": [
+      0,
+      0
+    ],
+    "rgba_sha256": "70175bf2ab8be9299f6d93507e2e29445e2c28a512268e2123da0225714e27ef"
+  },
+  {
+    "source": "wt_chars/skins/wt_wolf_r.dtx",
+    "png": "art/3d/source/wolfteam-archive/decoded/wt_chars/skins/wt_wolf_r.png",
+    "width": 512,
+    "height": 512,
+    "format": 6,
+    "alpha_range": [
+      0,
+      0
+    ],
+    "rgba_sha256": "9307f58cbeb6857898437fac311fa7b6cbff14152fa6571ea35161cc0b98e591"
+  },
+  {
+    "source": "wt_chars/skins/wt_wolf_smart_r.dtx",
+    "png": "art/3d/source/wolfteam-archive/decoded/wt_chars/skins/wt_wolf_smart_r.png",
+    "width": 512,
+    "height": 512,
+    "format": 6,
+    "alpha_range": [
+      0,
+      0
+    ],
+    "rgba_sha256": "f64dbd48d79b8a90d14e0ed069d444e49419d5af48dc8ee725d35ac9e2ac46b9"
+  },
+  {
+    "source": "wt_fx/glow/purplefire_ptcle_1.dtx",
+    "png": "art/3d/source/wolfteam-archive/decoded/wt_fx/glow/purplefire_ptcle_1.png",
+    "width": 256,
+    "height": 256,
+    "format": 6,
+    "alpha_range": [
+      0,
+      254
+    ],
+    "rgba_sha256": "6b63d6254f5a61143dc2ca805f6f8462d6defe5d4601cb525093ccac77c7aacd"
+  },
+  {
+    "source": "wt_fx/swingtrail/swingtrail_purplefire.dtx",
+    "png": "art/3d/source/wolfteam-archive/decoded/wt_fx/swingtrail/swingtrail_purplefire.png",
+    "width": 512,
+    "height": 128,
+    "format": 6,
+    "alpha_range": [
+      0,
+      255
+    ],
+    "rgba_sha256": "8a2331ac9dc5f9ee924105ba14778aad8deee64bfe5780c68b3e83e2f681482a"
+  },
+  {
+    "source": "wt_fx/swingtrail/swingtrail_special_gm_scratch.dtx",
+    "png": "art/3d/source/wolfteam-archive/decoded/wt_fx/swingtrail/swingtrail_special_gm_scratch.png",
+    "width": 512,
+    "height": 128,
+    "format": 6,
+    "alpha_range": [
+      0,
+      241
+    ],
+    "rgba_sha256": "1a2c881ce73dd99a2766ff86639fb68736646181a247a76466ff2140ecef95f2"
+  },
+  {
+    "source": "wt_fx/wolf_arm_glow/wolf_arm_glow.dtx",
+    "png": "art/3d/source/wolfteam-archive/decoded/wt_fx/wolf_arm_glow/wolf_arm_glow.png",
+    "width": 128,
+    "height": 128,
+    "format": 6,
+    "alpha_range": [
+      0,
+      235
+    ],
+    "rgba_sha256": "c003af841c9aeed25c873a99d8449fd991d58655e8f2c2d8f744df8e862890e7"
+  }
+]

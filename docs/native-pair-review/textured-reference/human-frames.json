@@ -1,0 +1,26 @@
+[
+  {
+    "form": "human",
+    "clip": "NativeReferenceIdle",
+    "phase": 0.2,
+    "frame": 0.0,
+    "view": "front",
+    "file": "human-idle-front.png"
+  },
+  {
+    "form": "human",
+    "clip": "NativeReferenceIdle",
+    "phase": 0.2,
+    "frame": 0.0,
+    "view": "back",
+    "file": "human-idle-back.png"
+  },
+  {
+    "form": "human",
+    "clip": "NativeReferenceIdle",
+    "phase": 0.2,
+    "frame": 0.0,
+    "view": "side",
+    "file": "human-idle-side.png"
+  }
+]

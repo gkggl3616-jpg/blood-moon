@@ -271,3 +271,28 @@ Kaynak poz incelemeleri dokusuz teşhis render'larıdır; bitmiş karakter tasar
 ### Kullanıcının yeni aktarım tercihi
 
 Kullanıcı tüm oyun veya tüm LTB/DTX'leri gönderebileceğini belirtti. Gerekli uzantı **LTB** olarak açıklandı. Mevcut 553 LTB'nin yeniden yüklenmesi istenmedi; öncelik ilgili insan/kurt modellerinin DTX dokuları ve varsa ModelButes gibi model–doku eşleştirme kayıtları. Klasör yapısı korunacak; gereksiz tüm oyun dosyaları alınmayacak. Doku slotları LTB içinde sayısal; yalnız bu slotlardan kesin DTX dosya yolu çıkarılamıyor. Doğru kaplama eşlemesi için doku/kayıt incelemesi açık. Mevcut oyun modelleri bu arşiv incelemesi sırasında değiştirilmedi.
+
+## Güncel LTB + DTX arşivi alındı — 28 Ekim 2026
+
+Aynı Drive kimliğindeki dosya güncellendi. Son arşiv **2.145.027.885 bayt**, SHA-256 **769306e95c928eee7623085ca7f27234b97b2e0cc503c50a0d21a0d93ca50394**. İlk indirme 60 saniye sınırında 1.951.580.160 baytta kaldı; HTTP Range ile kalan bölüm tamamlandı ve beklenen toplam boyut doğrulandı. RAR5 dizini sonuna kadar hatasız okundu. Bu, çıkarılmayan bütün dosyaların CRC kontrolü yapıldı anlamına gelmez.
+
+`updated-archive-index.json`: 37.892 kayıt, **36.879 dosya: 3.255 LTB + 33.624 DTX**, 1.013 dizin. Açılmış toplam boyut 8.723.184.832 bayt. Arşivin tamamı APK'ya veya çalışma klasörüne açılmadı. Bazı girdiler `wolfteam kurtları/Root/wt_guns/` altında silah dosyaları; yalnız üst klasör adındaki “wolf” nedeniyle kurt animasyonu sayılmadı.
+
+### Seçici doku aktarımı
+
+Önceki 13 LTB/23.296.957 bayt adayına ek olarak **17 DTX / 3.013.348 bayt** çıkarıldı. Klasör yapısı korundu, her dosyanın SHA-256 değeri `texture-selection.json` içinde.
+
+- Pedro kurt üst/alt/kürk için 3 gerçek model atlası.
+- Pedro insan üst/baş, alt, eldiven01 ve bot01 için 4 atlas. Baş UV'si üst gövde atlasında bulunuyor; ayrı baş dokusu icat edilmedi. Bot/eldiven varyantının kesin oyun kayıt bağı bu pakette ModelButes olmadığı için ayrıca doğrulanmış değil; 01 başlangıç adayı.
+- Standart/Power/Ice/Guardian/Smart karşılaştırmaları için 6 doku adayı. `helmet.dtx` yalnız eşleme adayı; özgün ekipman bağı kesinleşmiş sayılmadı.
+- Mor el alevi, mor pençe izi, çizik izi ve önkol parlaması için 4 efekt dokusu adayı. Dosya adının eşleşmesi, videodaki efekt zamanlamasının birebir çözüldüğü anlamına gelmez.
+
+17/17 DTX, v-5 başlığı doğrulanarak DXT3/DXT5'ten PNG'ye çözüldü. Alfa kanalı korundu; örneğin 512×128 izler ve 256×128 omuz dokusu kareye çevrilmedi. Çözüm raporu/piksel hash'leri `texture-decode.json`. Kaynak DTX'ler değiştirilmedi. Araç: `tools/decode_selected_dtx.py`.
+
+### Gerçek gövdede UV kontrolü
+
+Özgün LTB geometri, UV, iskelet ve deri ağırlıkları korunarak dokulu Pedro insan/kurt referansları hazırlandı. Modellerde uydurma kabartma/normal dokusu kullanılmadı; özgün renk atlasları ve sabit pürüzlülük var. Kuşanılmamış dövme yüzeyleri referansta gizli: kurt **3.876 üçgen / 42 kemik**, insan **3.204 üçgen / 47 kemik**. Bu sayılar önceki özel Guardian tasarımının 14.865/3.926 üçgen sayılarıyla karıştırılmayacak.
+
+Ön/yan/arka GLB yeniden içe aktarım render'ları `docs/native-pair-review/textured-reference/` içinde. Üst/alt/kürk, insan yüz/gövde ve el/ayak UV eşleşmesi görsel olarak kontrol edildi. Kaynak pozu/floor kalibrasyonu ve saç/yelenin tek yüzlü yüzeyleri hâlâ inceleme konusu; özellikle insan referansında zeminden ayrılma görülüyor. Referans yalnız tek başlangıç bekleme pozu taşır; tamamlanmış yürüyüş, koşu, takla veya kükreme paketi değildir.
+
+Yerel çalışma dosyaları `art/3d/source/wolfteam-archive/textured-references/{wolf,human}.{blend,glb}` altında; dokular dosyalara gömülü. Ham RAR/LTB/DTX ve kaynak referans dosyaları Git dışında. Yapım/eşleme raporu `textured-native-reference.json`. Bu turda oyun çalışma zamanı modeli değiştirilmedi ve yeni APK yayımlanmadı. Yeni ücretli üretim yok. Kullanıcıdan bu aşama için tekrar aynı kaynakların yüklenmesi istenmiyor.

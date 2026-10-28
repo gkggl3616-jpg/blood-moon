@@ -1,0 +1,30 @@
+[
+  {
+    "form": "wolf",
+    "native_nodes": 42,
+    "triangles_without_unequipped_tattoos": 3876,
+    "piece_textures": {
+      "upper": "wt_chars/newchars/pedro_wolf/pedro_wolf_upper.png",
+      "lower": "wt_chars/newchars/pedro_wolf/pedro_wolf_lower.png",
+      "hair": "wt_chars/newchars/pedro_wolf/pedro_wolf_hair.png"
+    },
+    "original_weights": true,
+    "reference_only": true,
+    "game_runtime_replaced": false
+  },
+  {
+    "form": "human",
+    "native_nodes": 47,
+    "triangles_without_unequipped_tattoos": 3204,
+    "piece_textures": {
+      "Red_Upperbody": "wt_chars/newchars/pedro_red/pedro_r_upperbody.png",
+      "Head": "wt_chars/newchars/pedro_red/pedro_r_upperbody.png",
+      "Red_Lowerbody": "wt_chars/newchars/pedro_red/pedro_r_lowerbody.png",
+      "Hand": "wt_chars/newchars/pedro_red/pedro_gloves01.png",
+      "Shoes": "wt_chars/newchars/pedro_red/pedro_boots01.png"
+    },
+    "original_weights": true,
+    "reference_only": true,
+    "game_runtime_replaced": false
+  }
+]

@@ -1,0 +1,104 @@
+[
+  {
+    "path": "wt_chars/newchars/pedro_red/pedro_boots01.dtx",
+    "bytes": 65700,
+    "sha256": "e1f0a722c03e90527413f1606361717bb6350eaa86e7cd9d58131f8b6f2711c8",
+    "purpose": "human base boot candidate"
+  },
+  {
+    "path": "wt_chars/newchars/pedro_red/pedro_gloves01.dtx",
+    "bytes": 65700,
+    "sha256": "a6263554c28f524eab82fd5ebe8782a0caac8372c38fd53b14227e5cf2a22ab6",
+    "purpose": "human base glove candidate"
+  },
+  {
+    "path": "wt_chars/newchars/pedro_red/pedro_r_lowerbody.dtx",
+    "bytes": 262308,
+    "sha256": "36481d84369262dd47d1cad8d206927414313d117b9f5513e7b737359e257a71",
+    "purpose": "human lower UV atlas"
+  },
+  {
+    "path": "wt_chars/newchars/pedro_red/pedro_r_upperbody.dtx",
+    "bytes": 262308,
+    "sha256": "c065dc6c65556923c4a7ad04f208e1f4e6cc78af48472ee1cccd80bb11a23335",
+    "purpose": "human torso/head UV atlas candidate"
+  },
+  {
+    "path": "wt_chars/newchars/pedro_wolf/pedro_wolf_hair.dtx",
+    "bytes": 348324,
+    "sha256": "3db538ea8e07f2135ba15bef24313d0bd4add54f13b8f369deb3f4bd8b5ae9db",
+    "purpose": "wolf fur UV atlas"
+  },
+  {
+    "path": "wt_chars/newchars/pedro_wolf/pedro_wolf_lower.dtx",
+    "bytes": 348324,
+    "sha256": "08c1b6a9228c86200c43d55987354bca2f7250d2feebf4f01d050c4cccb90233",
+    "purpose": "wolf lower UV atlas"
+  },
+  {
+    "path": "wt_chars/newchars/pedro_wolf/pedro_wolf_upper.dtx",
+    "bytes": 348324,
+    "sha256": "35905c015ca348e75a651364b2c428961474059fe7965bf5c961f1ed9d843240",
+    "purpose": "wolf upper UV atlas"
+  },
+  {
+    "path": "wt_chars/skins/helmet.dtx",
+    "bytes": 16548,
+    "sha256": "baea1519fd15fa3829e2919aa7ba909593b9ea10ba8151854939e4dfecfdf7f5",
+    "purpose": "standard wolf object material candidate"
+  },
+  {
+    "path": "wt_chars/skins/wt_icewolf_r.dtx",
+    "bytes": 262308,
+    "sha256": "13d94fd3527d0c7fdccf603004b0f7bf95d80b0ce52823c2ffd8af17df6b7f69",
+    "purpose": "Ice 40-bone body comparison"
+  },
+  {
+    "path": "wt_chars/skins/wt_wolf_guardian_r.dtx",
+    "bytes": 262308,
+    "sha256": "70f0a583337897bfb4882822181b8ae68fd4a92756bb485eec355685c114a008",
+    "purpose": "Guardian 40-bone body comparison"
+  },
+  {
+    "path": "wt_chars/skins/wt_wolf_powershoulder_r.dtx",
+    "bytes": 32932,
+    "sha256": "f9ff64546ec4feef3dded2dfe95ada30898774568d2786e0b15df58abc2b184d",
+    "purpose": "Power 42-bone shoulder comparison"
+  },
+  {
+    "path": "wt_chars/skins/wt_wolf_r.dtx",
+    "bytes": 262308,
+    "sha256": "177c557b511de9fb4628f12577307ea42483e49f43e015612702de9deff47b5a",
+    "purpose": "standard 42-bone wolf body comparison"
+  },
+  {
+    "path": "wt_chars/skins/wt_wolf_smart_r.dtx",
+    "bytes": 262308,
+    "sha256": "8b6e12b39bc2d89fdaa691403f67dec8e9901694a6011b57fb8b088140d51b1a",
+    "purpose": "Smart 40-bone body comparison"
+  },
+  {
+    "path": "wt_fx/glow/purplefire_ptcle_1.dtx",
+    "bytes": 65700,
+    "sha256": "cfddc0a30eeb57f588807a65e8cd95f9bfea5d28eb8a87e5af31f5ddc359c521",
+    "purpose": "purple hand flame sprite candidate"
+  },
+  {
+    "path": "wt_fx/swingtrail/swingtrail_purplefire.dtx",
+    "bytes": 65700,
+    "sha256": "e269d74472fcd47cb9fb1744e7a412fd7b93b47d7a430734f715e6c44bfeb5bf",
+    "purpose": "short purple claw trail candidate"
+  },
+  {
+    "path": "wt_fx/swingtrail/swingtrail_special_gm_scratch.dtx",
+    "bytes": 65700,
+    "sha256": "40c08dcfd5d937da050378921a5c1228b4d2c66965765bab1f9311e32fcb05ff",
+    "purpose": "scratch trail comparison"
+  },
+  {
+    "path": "wt_fx/wolf_arm_glow/wolf_arm_glow.dtx",
+    "bytes": 16548,
+    "sha256": "511e789a538c4a12907d188bfe5729cca750d8f34db3c856f88e7646e0e5df9b",
+    "purpose": "wolf forearm glow candidate"
+  }
+]

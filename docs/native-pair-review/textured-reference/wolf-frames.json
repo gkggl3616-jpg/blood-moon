@@ -1,0 +1,26 @@
+[
+  {
+    "form": "wolf",
+    "clip": "NativeReferenceIdle",
+    "phase": 0.2,
+    "frame": 0.0,
+    "view": "front",
+    "file": "wolf-idle-front.png"
+  },
+  {
+    "form": "wolf",
+    "clip": "NativeReferenceIdle",
+    "phase": 0.2,
+    "frame": 0.0,
+    "view": "back",
+    "file": "wolf-idle-back.png"
+  },
+  {
+    "form": "wolf",
+    "clip": "NativeReferenceIdle",
+    "phase": 0.2,
+    "frame": 0.0,
+    "view": "side",
+    "file": "wolf-idle-side.png"
+  }
+]
