@@ -1,0 +1,5 @@
+{
+  "verified": false,
+  "balance": null,
+  "reason": "OAuth token expired and refresh failed; login required before balance verification or submission"
+}
