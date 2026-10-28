@@ -1,0 +1,4987 @@
+{
+  "errors": [],
+  "samples": [
+    {
+      "time": -0.0,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": null,
+        "particles": 0,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0,
+        "roarStarts": 2,
+        "roarPeaks": 0,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.03333333333333333,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.15392790734767914,
+          0.7010148763656616,
+          0.949999988079071
+        ],
+        "particles": 2,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.0196078431372549,
+        "roarStarts": 3,
+        "roarPeaks": 0,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.03333333333333333
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.06666666666666667,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.13891993463039398,
+          0.6326659321784973,
+          0.8573749661445618
+        ],
+        "particles": 4,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.0392156862745098,
+        "roarStarts": 4,
+        "roarPeaks": 0,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.06666666666666667
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.1,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.12537524104118347,
+          0.570980966091156,
+          0.7737809419631958
+        ],
+        "particles": 6,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.058823529411764705,
+        "roarStarts": 5,
+        "roarPeaks": 0,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.09999999999999999
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.13333333333333333,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.11315115541219711,
+          0.5153102874755859,
+          0.6983373165130615
+        ],
+        "particles": 8,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.0784313725490196,
+        "roarStarts": 6,
+        "roarPeaks": 0,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.13333333333333333
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.16666666666666666,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.10211891680955887,
+          0.4650675356388092,
+          0.6302494406700134
+        ],
+        "particles": 10,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.09803921568627451,
+        "roarStarts": 7,
+        "roarPeaks": 0,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.16666666666666666
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.2,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.09216232597827911,
+          0.4197234511375427,
+          0.5688000917434692
+        ],
+        "particles": 12,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.11764705882352941,
+        "roarStarts": 8,
+        "roarPeaks": 0,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.19999999999999998
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.23333333333333334,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.08317650109529495,
+          0.3788004219532013,
+          0.5133420825004578
+        ],
+        "particles": 14,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.1372549019607843,
+        "roarStarts": 9,
+        "roarPeaks": 0,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.2333333333333333
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.26666666666666666,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.1462315171957016,
+          0.6659641265869141,
+          0.9024999737739563
+        ],
+        "particles": 42,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.1568627450980392,
+        "roarStarts": 10,
+        "roarPeaks": 1,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.26666666666666666
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.3,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.06774777919054031,
+          0.30853530764579773,
+          0.4181203246116638
+        ],
+        "particles": 44,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.17647058823529413,
+        "roarStarts": 11,
+        "roarPeaks": 2,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.3
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.3333333333333333,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.06774777919054031,
+          0.30853530764579773,
+          0.4181203246116638
+        ],
+        "particles": 46,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.19607843137254902,
+        "roarStarts": 12,
+        "roarPeaks": 3,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.3333333333333333
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.36666666666666664,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.10749359428882599,
+          0.4895447790622711,
+          0.6634204387664795
+        ],
+        "particles": 48,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.2156862745098039,
+        "roarStarts": 13,
+        "roarPeaks": 4,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.36666666666666664
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.4,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.04980084300041199,
+          0.2268018126487732,
+          0.3073568344116211
+        ],
+        "particles": 50,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.23529411764705882,
+        "roarStarts": 14,
+        "roarPeaks": 5,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.39999999999999997
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.43333333333333335,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.04980084300041199,
+          0.2268018126487732,
+          0.3073568344116211
+        ],
+        "particles": 52,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.2549019607843137,
+        "roarStarts": 15,
+        "roarPeaks": 6,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.4333333333333333
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.4666666666666667,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.07901767641305923,
+          0.3598603904247284,
+          0.4876749813556671
+        ],
+        "particles": 53,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.2745098039215686,
+        "roarStarts": 16,
+        "roarPeaks": 7,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.4666666666666666
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.5,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.07506678998470306,
+          0.3418673574924469,
+          0.4632912278175354
+        ],
+        "particles": 54,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.2941176470588235,
+        "roarStarts": 17,
+        "roarPeaks": 8,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.4999999999999999
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.5333333333333333,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.1462315171957016,
+          0.6659641265869141,
+          0.9024999737739563
+        ],
+        "particles": 58,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.3137254901960784,
+        "roarStarts": 18,
+        "roarPeaks": 9,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.5333333333333333
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.5666666666666667,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.029817601665854454,
+          0.13579460978507996,
+          0.18402591347694397
+        ],
+        "particles": 59,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.3333333333333333,
+        "roarStarts": 19,
+        "roarPeaks": 10,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.5666666666666667
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.6,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.036608193069696426,
+          0.1667201668024063,
+          0.22593554854393005
+        ],
+        "particles": 59,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.35294117647058826,
+        "roarStarts": 20,
+        "roarPeaks": 11,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.6
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.6333333333333333,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.04731079936027527,
+          0.21546171605587006,
+          0.2919889986515045
+        ],
+        "particles": 55,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.37254901960784315,
+        "roarStarts": 21,
+        "roarPeaks": 12,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.6333333333333333
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.6666666666666666,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.04269799590110779,
+          0.19445419311523438,
+          0.26352009177207947
+        ],
+        "particles": 57,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.39215686274509803,
+        "roarStarts": 22,
+        "roarPeaks": 13,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.6666666666666666
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.7,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.03853493928909302,
+          0.17549490928649902,
+          0.2378268986940384
+        ],
+        "particles": 55,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.4117647058823529,
+        "roarStarts": 23,
+        "roarPeaks": 14,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.7
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.7333333333333333,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.03477778285741806,
+          0.15838415920734406,
+          0.21463876962661743
+        ],
+        "particles": 55,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.4313725490196078,
+        "roarStarts": 24,
+        "roarPeaks": 15,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.7333333333333333
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.7666666666666667,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.03138694912195206,
+          0.1429416984319687,
+          0.19371148943901062
+        ],
+        "particles": 58,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.4509803921568628,
+        "roarStarts": 25,
+        "roarPeaks": 16,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.7666666666666667
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.8,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.033038895577192307,
+          0.1504649519920349,
+          0.2039068341255188
+        ],
+        "particles": 35,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.4705882352941177,
+        "roarStarts": 26,
+        "roarPeaks": 17,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.8
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.8333333333333334,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.029817601665854454,
+          0.13579460978507996,
+          0.18402591347694397
+        ],
+        "particles": 33,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.4901960784313726,
+        "roarStarts": 27,
+        "roarPeaks": 18,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.8333333333333334
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.8666666666666667,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.15392790734767914,
+          0.7010148763656616,
+          0.949999988079071
+        ],
+        "particles": 32,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.5098039215686275,
+        "roarStarts": 28,
+        "roarPeaks": 19,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.8666666666666668
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.9,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.0875542089343071,
+          0.3987372815608978,
+          0.5403600931167603
+        ],
+        "particles": 33,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.5294117647058824,
+        "roarStarts": 29,
+        "roarPeaks": 20,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.9
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.9333333333333333,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.04980084300041199,
+          0.2268018126487732,
+          0.3073568344116211
+        ],
+        "particles": 32,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.5490196078431373,
+        "roarStarts": 30,
+        "roarPeaks": 21,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.9333333333333333
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.9666666666666667,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.03477778285741806,
+          0.15838415920734406,
+          0.21463876962661743
+        ],
+        "particles": 31,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.5686274509803921,
+        "roarStarts": 31,
+        "roarPeaks": 22,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.9666666666666666
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.03138694912195206,
+          0.1429416984319687,
+          0.19371148943901062
+        ],
+        "particles": 32,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.5882352941176471,
+        "roarStarts": 32,
+        "roarPeaks": 23,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 1
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.0333333333333334,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.0970129743218422,
+          0.4418141543865204,
+          0.5987369418144226
+        ],
+        "particles": 35,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.607843137254902,
+        "roarStarts": 33,
+        "roarPeaks": 24,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 1.0333333333333334
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.0666666666666667,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.033038895577192307,
+          0.1504649519920349,
+          0.2039068341255188
+        ],
+        "particles": 36,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.6274509803921569,
+        "roarStarts": 34,
+        "roarPeaks": 25,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 1.0666666666666667
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.1,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.029817601665854454,
+          0.13579460978507996,
+          0.18402591347694397
+        ],
+        "particles": 32,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.6470588235294118,
+        "roarStarts": 35,
+        "roarPeaks": 26,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 1.1
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.1333333333333333,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.07131344825029373,
+          0.32477399706840515,
+          0.4401266574859619
+        ],
+        "particles": 33,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.6666666666666666,
+        "roarStarts": 36,
+        "roarPeaks": 27,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 1.1333333333333333
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.1666666666666667,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.026910385116934776,
+          0.12255463749170303,
+          0.16608339548110962
+        ],
+        "particles": 35,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.6862745098039217,
+        "roarStarts": 37,
+        "roarPeaks": 28,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 1.1666666666666667
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.2,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.11315115541219711,
+          0.5153102874755859,
+          0.6983373165130615
+        ],
+        "particles": 35,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.7058823529411765,
+        "roarStarts": 38,
+        "roarPeaks": 29,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 1.2
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.2333333333333334,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.03138694912195206,
+          0.1429416984319687,
+          0.19371148943901062
+        ],
+        "particles": 33,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.7254901960784315,
+        "roarStarts": 39,
+        "roarPeaks": 30,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 1.2333333333333334
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.2666666666666666,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.1191064789891243,
+          0.5424318909645081,
+          0.7350919246673584
+        ],
+        "particles": 33,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.7450980392156863,
+        "roarStarts": 40,
+        "roarPeaks": 31,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 1.2666666666666666
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.3,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.02556486614048481,
+          0.11642690747976303,
+          0.15777923166751862
+        ],
+        "particles": 35,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.7647058823529412,
+        "roarStarts": 41,
+        "roarPeaks": 32,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 1.3
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.3333333333333333,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.07506678998470306,
+          0.3418673574924469,
+          0.4632912278175354
+        ],
+        "particles": 34,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.7843137254901961,
+        "roarStarts": 42,
+        "roarPeaks": 33,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 1.3333333333333333
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.3666666666666667,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.024286622181534767,
+          0.11060556024312973,
+          0.14989027380943298
+        ],
+        "particles": 32,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.803921568627451,
+        "roarStarts": 43,
+        "roarPeaks": 34,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 1.3666666666666667
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.4,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.03138694912195206,
+          0.1429416984319687,
+          0.19371148943901062
+        ],
+        "particles": 36,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.8235294117647058,
+        "roarStarts": 44,
+        "roarPeaks": 35,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 1.4
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.4333333333333333,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.09216232597827911,
+          0.4197234511375427,
+          0.5688000917434692
+        ],
+        "particles": 33,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.8431372549019607,
+        "roarStarts": 45,
+        "roarPeaks": 36,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 1.4333333333333331
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.4666666666666666,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.02556486614048481,
+          0.11642690747976303,
+          0.15777923166751862
+        ],
+        "particles": 35,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.8627450980392155,
+        "roarStarts": 46,
+        "roarPeaks": 37,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 1.4666666666666663
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.5,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.03138694912195206,
+          0.1429416984319687,
+          0.19371148943901062
+        ],
+        "particles": 33,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.8823529411764703,
+        "roarStarts": 47,
+        "roarPeaks": 38,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 1.4999999999999996
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.5333333333333334,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.0524219386279583,
+          0.2387387454509735,
+          0.3235335052013397
+        ],
+        "particles": 34,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.9019607843137252,
+        "roarStarts": 48,
+        "roarPeaks": 39,
+        "flameSprites": 0,
+        "profile": "reference38",
+        "time": 1.5333333333333328
+      },
+      "renderer": {
+        "triangles": 14175,
+        "drawCalls": 11,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.5666666666666667,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.0970129743218422,
+          0.4418141543865204,
+          0.5987369418144226
+        ],
+        "particles": 34,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.92156862745098,
+        "roarStarts": 49,
+        "roarPeaks": 40,
+        "flameSprites": 0,
+        "profile": "reference38",
+        "time": 1.566666666666666
+      },
+      "renderer": {
+        "triangles": 14175,
+        "drawCalls": 11,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.6,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.036608193069696426,
+          0.1667201668024063,
+          0.22593554854393005
+        ],
+        "particles": 33,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.9411764705882348,
+        "roarStarts": 50,
+        "roarPeaks": 41,
+        "flameSprites": 0,
+        "profile": "reference38",
+        "time": 1.5999999999999992
+      },
+      "renderer": {
+        "triangles": 14175,
+        "drawCalls": 11,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.6333333333333333,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.024286622181534767,
+          0.11060556024312973,
+          0.14989027380943298
+        ],
+        "particles": 38,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.9607843137254897,
+        "roarStarts": 51,
+        "roarPeaks": 42,
+        "flameSprites": 0,
+        "profile": "reference38",
+        "time": 1.6333333333333324
+      },
+      "renderer": {
+        "triangles": 14175,
+        "drawCalls": 11,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.6666666666666667,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.029817601665854454,
+          0.13579460978507996,
+          0.18402591347694397
+        ],
+        "particles": 35,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.9803921568627445,
+        "roarStarts": 52,
+        "roarPeaks": 43,
+        "flameSprites": 0,
+        "profile": "reference38",
+        "time": 1.6666666666666656
+      },
+      "renderer": {
+        "triangles": 14175,
+        "drawCalls": 11,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.7,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.03138694912195206,
+          0.1429416984319687,
+          0.19371148943901062
+        ],
+        "particles": 35,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.9999999999999993,
+        "roarStarts": 53,
+        "roarPeaks": 44,
+        "flameSprites": 0,
+        "profile": "reference38",
+        "time": 1.6999999999999988
+      },
+      "renderer": {
+        "triangles": 14175,
+        "drawCalls": 11,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": -0.0,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": null,
+        "particles": 0,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0,
+        "roarStarts": 54,
+        "roarPeaks": 44,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.03333333333333333,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.15392790734767914,
+          0.7010148763656616,
+          0.949999988079071
+        ],
+        "particles": 2,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.0196078431372549,
+        "roarStarts": 55,
+        "roarPeaks": 44,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.03333333333333333
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.06666666666666667,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.13891993463039398,
+          0.6326659321784973,
+          0.8573749661445618
+        ],
+        "particles": 4,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.0392156862745098,
+        "roarStarts": 56,
+        "roarPeaks": 44,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.06666666666666667
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.1,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.12537524104118347,
+          0.570980966091156,
+          0.7737809419631958
+        ],
+        "particles": 6,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.058823529411764705,
+        "roarStarts": 57,
+        "roarPeaks": 44,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.09999999999999999
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.13333333333333333,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.11315115541219711,
+          0.5153102874755859,
+          0.6983373165130615
+        ],
+        "particles": 8,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.0784313725490196,
+        "roarStarts": 58,
+        "roarPeaks": 44,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.13333333333333333
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.16666666666666666,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.12537524104118347,
+          0.570980966091156,
+          0.7737809419631958
+        ],
+        "particles": 10,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.09803921568627451,
+        "roarStarts": 59,
+        "roarPeaks": 44,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.16666666666666666
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.2,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.09216232597827911,
+          0.4197234511375427,
+          0.5688000917434692
+        ],
+        "particles": 12,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.11764705882352941,
+        "roarStarts": 60,
+        "roarPeaks": 44,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.19999999999999998
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.23333333333333334,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.08317650109529495,
+          0.3788004219532013,
+          0.5133420825004578
+        ],
+        "particles": 14,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.1372549019607843,
+        "roarStarts": 61,
+        "roarPeaks": 44,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.2333333333333333
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.26666666666666666,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.15392790734767914,
+          0.7010148763656616,
+          0.949999988079071
+        ],
+        "particles": 42,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.1568627450980392,
+        "roarStarts": 62,
+        "roarPeaks": 45,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.26666666666666666
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.3,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.06774777919054031,
+          0.30853530764579773,
+          0.4181203246116638
+        ],
+        "particles": 44,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.17647058823529413,
+        "roarStarts": 63,
+        "roarPeaks": 46,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.3
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.3333333333333333,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.1191064789891243,
+          0.5424318909645081,
+          0.7350919246673584
+        ],
+        "particles": 46,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.19607843137254902,
+        "roarStarts": 64,
+        "roarPeaks": 47,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.3333333333333333
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.36666666666666664,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.05518098920583725,
+          0.25130394101142883,
+          0.3405615985393524
+        ],
+        "particles": 48,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.2156862745098039,
+        "roarStarts": 65,
+        "roarPeaks": 48,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.36666666666666664
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.4,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.061142370104789734,
+          0.27845311164855957,
+          0.37735357880592346
+        ],
+        "particles": 50,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.23529411764705882,
+        "roarStarts": 66,
+        "roarPeaks": 49,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.39999999999999997
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.43333333333333335,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.0875542089343071,
+          0.3987372815608978,
+          0.5403600931167603
+        ],
+        "particles": 52,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.2549019607843137,
+        "roarStarts": 67,
+        "roarPeaks": 50,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.4333333333333333
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.4666666666666667,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.11315115541219711,
+          0.5153102874755859,
+          0.6983373165130615
+        ],
+        "particles": 54,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.2745098039215686,
+        "roarStarts": 68,
+        "roarPeaks": 51,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.4666666666666666
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.5,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.036608193069696426,
+          0.1667201668024063,
+          0.22593554854393005
+        ],
+        "particles": 56,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.2941176470588235,
+        "roarStarts": 69,
+        "roarPeaks": 52,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.4999999999999999
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.5333333333333333,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.04731079936027527,
+          0.21546171605587006,
+          0.2919889986515045
+        ],
+        "particles": 57,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.3137254901960784,
+        "roarStarts": 70,
+        "roarPeaks": 53,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.5333333333333333
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.5666666666666667,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.05808525159955025,
+          0.2645304501056671,
+          0.3584859073162079
+        ],
+        "particles": 60,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.3333333333333333,
+        "roarStarts": 71,
+        "roarPeaks": 54,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.5666666666666667
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.6,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.0524219386279583,
+          0.2387387454509735,
+          0.3235335052013397
+        ],
+        "particles": 57,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.35294117647058826,
+        "roarStarts": 72,
+        "roarPeaks": 55,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.6
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.6333333333333333,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.04731079936027527,
+          0.21546171605587006,
+          0.2919889986515045
+        ],
+        "particles": 57,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.37254901960784315,
+        "roarStarts": 73,
+        "roarPeaks": 56,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.6333333333333333
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.6666666666666666,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.05518098920583725,
+          0.25130394101142883,
+          0.3405615985393524
+        ],
+        "particles": 55,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.39215686274509803,
+        "roarStarts": 74,
+        "roarPeaks": 57,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.6666666666666666
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.7,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.05808525159955025,
+          0.2645304501056671,
+          0.3584859073162079
+        ],
+        "particles": 55,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.4117647058823529,
+        "roarStarts": 75,
+        "roarPeaks": 58,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.7
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.7333333333333333,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.05808525159955025,
+          0.2645304501056671,
+          0.3584859073162079
+        ],
+        "particles": 55,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.4313725490196078,
+        "roarStarts": 76,
+        "roarPeaks": 59,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.7333333333333333
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.7666666666666667,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.0524219386279583,
+          0.2387387454509735,
+          0.3235335052013397
+        ],
+        "particles": 60,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.4509803921568628,
+        "roarStarts": 77,
+        "roarPeaks": 60,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.7666666666666667
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.8,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.04056309536099434,
+          0.18473148345947266,
+          0.25034409761428833
+        ],
+        "particles": 33,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.4705882352941177,
+        "roarStarts": 78,
+        "roarPeaks": 61,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.8
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.8333333333333334,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.033038895577192307,
+          0.1504649519920349,
+          0.2039068341255188
+        ],
+        "particles": 32,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.4901960784313726,
+        "roarStarts": 79,
+        "roarPeaks": 62,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.8333333333333334
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.8666666666666667,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.033038895577192307,
+          0.1504649519920349,
+          0.2039068341255188
+        ],
+        "particles": 32,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.5098039215686275,
+        "roarStarts": 80,
+        "roarPeaks": 63,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.8666666666666668
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.9,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.026910385116934776,
+          0.12255463749170303,
+          0.16608339548110962
+        ],
+        "particles": 33,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.5294117647058824,
+        "roarStarts": 81,
+        "roarPeaks": 64,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.9
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.9333333333333333,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.13197393715381622,
+          0.6010326147079468,
+          0.8145062327384949
+        ],
+        "particles": 29,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.5490196078431373,
+        "roarStarts": 82,
+        "roarPeaks": 65,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.9333333333333333
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.9666666666666667,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.06436038762331009,
+          0.2931085526943207,
+          0.3972143232822418
+        ],
+        "particles": 32,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.5686274509803921,
+        "roarStarts": 83,
+        "roarPeaks": 66,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.9666666666666666
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.028326721861958504,
+          0.12900488078594208,
+          0.17482462525367737
+        ],
+        "particles": 35,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.5882352941176471,
+        "roarStarts": 84,
+        "roarPeaks": 67,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 1
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.0333333333333334,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.03138694912195206,
+          0.1429416984319687,
+          0.19371148943901062
+        ],
+        "particles": 38,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.607843137254902,
+        "roarStarts": 85,
+        "roarPeaks": 68,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 1.0333333333333334
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.0666666666666667,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.0970129743218422,
+          0.4418141543865204,
+          0.5987369418144226
+        ],
+        "particles": 33,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.6274509803921569,
+        "roarStarts": 86,
+        "roarPeaks": 69,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 1.0666666666666667
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.1,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.033038895577192307,
+          0.1504649519920349,
+          0.2039068341255188
+        ],
+        "particles": 30,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.6470588235294118,
+        "roarStarts": 87,
+        "roarPeaks": 70,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 1.1
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.1333333333333333,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.026910385116934776,
+          0.12255463749170303,
+          0.16608339548110962
+        ],
+        "particles": 36,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.6666666666666666,
+        "roarStarts": 88,
+        "roarPeaks": 71,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 1.1333333333333333
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.1666666666666667,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.05518098920583725,
+          0.25130394101142883,
+          0.3405615985393524
+        ],
+        "particles": 29,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.6862745098039217,
+        "roarStarts": 89,
+        "roarPeaks": 72,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 1.1666666666666667
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.2,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.026910385116934776,
+          0.12255463749170303,
+          0.16608339548110962
+        ],
+        "particles": 35,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.7058823529411765,
+        "roarStarts": 90,
+        "roarPeaks": 73,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 1.2
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.2333333333333334,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.07131344825029373,
+          0.32477399706840515,
+          0.4401266574859619
+        ],
+        "particles": 35,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.7254901960784315,
+        "roarStarts": 91,
+        "roarPeaks": 74,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 1.2333333333333334
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.2666666666666666,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.03138694912195206,
+          0.1429416984319687,
+          0.19371148943901062
+        ],
+        "particles": 36,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.7450980392156863,
+        "roarStarts": 92,
+        "roarPeaks": 75,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 1.2666666666666666
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.3,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.05808525159955025,
+          0.2645304501056671,
+          0.3584859073162079
+        ],
+        "particles": 34,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.7647058823529412,
+        "roarStarts": 93,
+        "roarPeaks": 76,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 1.3
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.3333333333333333,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.029817601665854454,
+          0.13579460978507996,
+          0.18402591347694397
+        ],
+        "particles": 34,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.7843137254901961,
+        "roarStarts": 94,
+        "roarPeaks": 77,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 1.3333333333333333
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.3666666666666667,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.033038895577192307,
+          0.1504649519920349,
+          0.2039068341255188
+        ],
+        "particles": 30,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.803921568627451,
+        "roarStarts": 95,
+        "roarPeaks": 78,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 1.3666666666666667
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.4,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.0970129743218422,
+          0.4418141543865204,
+          0.5987369418144226
+        ],
+        "particles": 37,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.8235294117647058,
+        "roarStarts": 96,
+        "roarPeaks": 79,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 1.4
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.4333333333333333,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.028326721861958504,
+          0.12900488078594208,
+          0.17482462525367737
+        ],
+        "particles": 34,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.8431372549019607,
+        "roarStarts": 97,
+        "roarPeaks": 80,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 1.4333333333333331
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.4666666666666666,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.03138694912195206,
+          0.1429416984319687,
+          0.19371148943901062
+        ],
+        "particles": 33,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.8627450980392155,
+        "roarStarts": 98,
+        "roarPeaks": 81,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 1.4666666666666663
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.5,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.07131344825029373,
+          0.32477399706840515,
+          0.4401266574859619
+        ],
+        "particles": 33,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.8823529411764703,
+        "roarStarts": 99,
+        "roarPeaks": 82,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 1.4999999999999996
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.5333333333333334,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.15392790734767914,
+          0.7010148763656616,
+          0.949999988079071
+        ],
+        "particles": 33,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.9019607843137252,
+        "roarStarts": 100,
+        "roarPeaks": 83,
+        "flameSprites": 0,
+        "profile": "reference38",
+        "time": 1.5333333333333328
+      },
+      "renderer": {
+        "triangles": 14175,
+        "drawCalls": 11,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.5666666666666667,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.02556486614048481,
+          0.11642690747976303,
+          0.15777923166751862
+        ],
+        "particles": 38,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.92156862745098,
+        "roarStarts": 101,
+        "roarPeaks": 84,
+        "flameSprites": 0,
+        "profile": "reference38",
+        "time": 1.566666666666666
+      },
+      "renderer": {
+        "triangles": 14175,
+        "drawCalls": 11,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.6,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.02556486614048481,
+          0.11642690747976303,
+          0.15777923166751862
+        ],
+        "particles": 36,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.9411764705882348,
+        "roarStarts": 102,
+        "roarPeaks": 85,
+        "flameSprites": 0,
+        "profile": "reference38",
+        "time": 1.5999999999999992
+      },
+      "renderer": {
+        "triangles": 14175,
+        "drawCalls": 11,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.6333333333333333,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.029817601665854454,
+          0.13579460978507996,
+          0.18402591347694397
+        ],
+        "particles": 35,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.9607843137254897,
+        "roarStarts": 103,
+        "roarPeaks": 86,
+        "flameSprites": 0,
+        "profile": "reference38",
+        "time": 1.6333333333333324
+      },
+      "renderer": {
+        "triangles": 14175,
+        "drawCalls": 11,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.6666666666666667,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.04269799590110779,
+          0.19445419311523438,
+          0.26352009177207947
+        ],
+        "particles": 34,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.9803921568627445,
+        "roarStarts": 104,
+        "roarPeaks": 87,
+        "flameSprites": 0,
+        "profile": "reference38",
+        "time": 1.6666666666666656
+      },
+      "renderer": {
+        "triangles": 14175,
+        "drawCalls": 11,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.7,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.05518098920583725,
+          0.25130394101142883,
+          0.3405615985393524
+        ],
+        "particles": 34,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.9999999999999993,
+        "roarStarts": 105,
+        "roarPeaks": 88,
+        "flameSprites": 0,
+        "profile": "reference38",
+        "time": 1.6999999999999988
+      },
+      "renderer": {
+        "triangles": 14175,
+        "drawCalls": 11,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": -0.0,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": null,
+        "particles": 0,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0,
+        "roarStarts": 106,
+        "roarPeaks": 88,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.03333333333333333,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.15392790734767914,
+          0.7010148763656616,
+          0.949999988079071
+        ],
+        "particles": 2,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.0196078431372549,
+        "roarStarts": 107,
+        "roarPeaks": 88,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.03333333333333333
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.06666666666666667,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.13891993463039398,
+          0.6326659321784973,
+          0.8573749661445618
+        ],
+        "particles": 4,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.0392156862745098,
+        "roarStarts": 108,
+        "roarPeaks": 88,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.06666666666666667
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.1,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.12537524104118347,
+          0.570980966091156,
+          0.7737809419631958
+        ],
+        "particles": 6,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.058823529411764705,
+        "roarStarts": 109,
+        "roarPeaks": 88,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.09999999999999999
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.13333333333333333,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.11315115541219711,
+          0.5153102874755859,
+          0.6983373165130615
+        ],
+        "particles": 8,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.0784313725490196,
+        "roarStarts": 110,
+        "roarPeaks": 88,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.13333333333333333
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.16666666666666666,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.10211891680955887,
+          0.4650675356388092,
+          0.6302494406700134
+        ],
+        "particles": 10,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.09803921568627451,
+        "roarStarts": 111,
+        "roarPeaks": 88,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.16666666666666666
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.2,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.09216232597827911,
+          0.4197234511375427,
+          0.5688000917434692
+        ],
+        "particles": 12,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.11764705882352941,
+        "roarStarts": 112,
+        "roarPeaks": 88,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.19999999999999998
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.23333333333333334,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.11315115541219711,
+          0.5153102874755859,
+          0.6983373165130615
+        ],
+        "particles": 14,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.1372549019607843,
+        "roarStarts": 113,
+        "roarPeaks": 88,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.2333333333333333
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.26666666666666666,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.07506678998470306,
+          0.3418673574924469,
+          0.4632912278175354
+        ],
+        "particles": 42,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.1568627450980392,
+        "roarStarts": 114,
+        "roarPeaks": 89,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.26666666666666666
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.3,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.13197393715381622,
+          0.6010326147079468,
+          0.8145062327384949
+        ],
+        "particles": 44,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.17647058823529413,
+        "roarStarts": 115,
+        "roarPeaks": 90,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.3
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.3333333333333333,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.061142370104789734,
+          0.27845311164855957,
+          0.37735357880592346
+        ],
+        "particles": 46,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.19607843137254902,
+        "roarStarts": 116,
+        "roarPeaks": 91,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.3333333333333333
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.36666666666666664,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.06774777919054031,
+          0.30853530764579773,
+          0.4181203246116638
+        ],
+        "particles": 48,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.2156862745098039,
+        "roarStarts": 117,
+        "roarPeaks": 92,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.36666666666666664
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.4,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.0970129743218422,
+          0.4418141543865204,
+          0.5987369418144226
+        ],
+        "particles": 50,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.23529411764705882,
+        "roarStarts": 118,
+        "roarPeaks": 93,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.39999999999999997
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.43333333333333335,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.1462315171957016,
+          0.6659641265869141,
+          0.9024999737739563
+        ],
+        "particles": 52,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.2549019607843137,
+        "roarStarts": 119,
+        "roarPeaks": 94,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.4333333333333333
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.4666666666666667,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.04056309536099434,
+          0.18473148345947266,
+          0.25034409761428833
+        ],
+        "particles": 52,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.2745098039215686,
+        "roarStarts": 120,
+        "roarPeaks": 95,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.4666666666666666
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.5,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.07131344825029373,
+          0.32477399706840515,
+          0.4401266574859619
+        ],
+        "particles": 51,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.2941176470588235,
+        "roarStarts": 121,
+        "roarPeaks": 96,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.4999999999999999
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.5333333333333333,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.06436038762331009,
+          0.2931085526943207,
+          0.39721429347991943
+        ],
+        "particles": 56,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.3137254901960784,
+        "roarStarts": 122,
+        "roarPeaks": 97,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.5333333333333333
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.5666666666666667,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.07506678998470306,
+          0.3418673574924469,
+          0.4632912278175354
+        ],
+        "particles": 56,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.3333333333333333,
+        "roarStarts": 123,
+        "roarPeaks": 98,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.5666666666666667
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.6,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.10749359428882599,
+          0.4895447790622711,
+          0.6634204387664795
+        ],
+        "particles": 57,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.35294117647058826,
+        "roarStarts": 124,
+        "roarPeaks": 99,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.6
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.6333333333333333,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.13891993463039398,
+          0.6326659321784973,
+          0.8573749661445618
+        ],
+        "particles": 58,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.37254901960784315,
+        "roarStarts": 125,
+        "roarPeaks": 100,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.6333333333333333
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.6666666666666666,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.029817601665854454,
+          0.13579460978507996,
+          0.18402591347694397
+        ],
+        "particles": 55,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.39215686274509803,
+        "roarStarts": 126,
+        "roarPeaks": 101,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.6666666666666666
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.7,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.024286622181534767,
+          0.11060556024312973,
+          0.14989027380943298
+        ],
+        "particles": 57,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.4117647058823529,
+        "roarStarts": 127,
+        "roarPeaks": 102,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.7
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.7333333333333333,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.03477778285741806,
+          0.15838415920734406,
+          0.21463876962661743
+        ],
+        "particles": 54,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.4313725490196078,
+        "roarStarts": 128,
+        "roarPeaks": 103,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.7333333333333333
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.7666666666666667,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.15392790734767914,
+          0.7010148763656616,
+          0.949999988079071
+        ],
+        "particles": 58,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.4509803921568628,
+        "roarStarts": 129,
+        "roarPeaks": 104,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.7666666666666667
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.8,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.1191064789891243,
+          0.5424318909645081,
+          0.7350919246673584
+        ],
+        "particles": 34,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.4705882352941177,
+        "roarStarts": 130,
+        "roarPeaks": 105,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.8
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.8333333333333334,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.08317650109529495,
+          0.3788004219532013,
+          0.5133420825004578
+        ],
+        "particles": 35,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.4901960784313726,
+        "roarStarts": 131,
+        "roarPeaks": 106,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.8333333333333334
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.8666666666666667,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.0524219386279583,
+          0.2387387454509735,
+          0.3235335052013397
+        ],
+        "particles": 34,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.5098039215686275,
+        "roarStarts": 132,
+        "roarPeaks": 107,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.8666666666666668
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.9,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.03138694912195206,
+          0.1429416984319687,
+          0.19371148943901062
+        ],
+        "particles": 35,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.5294117647058824,
+        "roarStarts": 133,
+        "roarPeaks": 108,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.9
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.9333333333333333,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.026910385116934776,
+          0.12255463749170303,
+          0.16608339548110962
+        ],
+        "particles": 35,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.5490196078431373,
+        "roarStarts": 134,
+        "roarPeaks": 109,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.9333333333333333
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 0.9666666666666667,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.03138694912195206,
+          0.1429416984319687,
+          0.19371148943901062
+        ],
+        "particles": 33,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.5686274509803921,
+        "roarStarts": 135,
+        "roarPeaks": 110,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 0.9666666666666666
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.08317650109529495,
+          0.3788004219532013,
+          0.5133420825004578
+        ],
+        "particles": 32,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.5882352941176471,
+        "roarStarts": 136,
+        "roarPeaks": 111,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 1
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.0333333333333334,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.033038895577192307,
+          0.1504649519920349,
+          0.2039068341255188
+        ],
+        "particles": 34,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.607843137254902,
+        "roarStarts": 137,
+        "roarPeaks": 112,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 1.0333333333333334
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.0666666666666667,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.029817601665854454,
+          0.13579460978507996,
+          0.18402591347694397
+        ],
+        "particles": 33,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.6274509803921569,
+        "roarStarts": 138,
+        "roarPeaks": 113,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 1.0666666666666667
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.1,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.0875542089343071,
+          0.3987372815608978,
+          0.5403600931167603
+        ],
+        "particles": 34,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.6470588235294118,
+        "roarStarts": 139,
+        "roarPeaks": 114,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 1.1
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.1333333333333333,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.026910385116934776,
+          0.12255463749170303,
+          0.16608339548110962
+        ],
+        "particles": 34,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.6666666666666666,
+        "roarStarts": 140,
+        "roarPeaks": 115,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 1.1333333333333333
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.1666666666666667,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.029817601665854454,
+          0.13579460978507996,
+          0.18402591347694397
+        ],
+        "particles": 35,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.6862745098039217,
+        "roarStarts": 141,
+        "roarPeaks": 116,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 1.1666666666666667
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.2,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.03853493928909302,
+          0.17549490928649902,
+          0.2378268986940384
+        ],
+        "particles": 33,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.7058823529411765,
+        "roarStarts": 142,
+        "roarPeaks": 117,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 1.2
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.2333333333333334,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.02556486614048481,
+          0.11642690747976303,
+          0.15777923166751862
+        ],
+        "particles": 37,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.7254901960784315,
+        "roarStarts": 143,
+        "roarPeaks": 118,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 1.2333333333333334
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.2666666666666666,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.04056309536099434,
+          0.18473148345947266,
+          0.25034409761428833
+        ],
+        "particles": 37,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.7450980392156863,
+        "roarStarts": 144,
+        "roarPeaks": 119,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 1.2666666666666666
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.3,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.029817601665854454,
+          0.13579460978507996,
+          0.18402591347694397
+        ],
+        "particles": 34,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.7647058823529412,
+        "roarStarts": 145,
+        "roarPeaks": 120,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 1.3
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.3333333333333333,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.02556486614048481,
+          0.11642690747976303,
+          0.15777923166751862
+        ],
+        "particles": 33,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.7843137254901961,
+        "roarStarts": 146,
+        "roarPeaks": 121,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 1.3333333333333333
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.3666666666666667,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.0875542089343071,
+          0.3987372815608978,
+          0.5403600931167603
+        ],
+        "particles": 35,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.803921568627451,
+        "roarStarts": 147,
+        "roarPeaks": 122,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 1.3666666666666667
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.4,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.024286622181534767,
+          0.11060556024312973,
+          0.14989027380943298
+        ],
+        "particles": 33,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.8235294117647058,
+        "roarStarts": 148,
+        "roarPeaks": 123,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 1.4
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.4333333333333333,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.03477778285741806,
+          0.15838415920734406,
+          0.21463876962661743
+        ],
+        "particles": 33,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.8431372549019607,
+        "roarStarts": 149,
+        "roarPeaks": 124,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 1.4333333333333331
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.4666666666666666,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.08317650109529495,
+          0.3788004219532013,
+          0.5133420825004578
+        ],
+        "particles": 36,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.8627450980392155,
+        "roarStarts": 150,
+        "roarPeaks": 125,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 1.4666666666666663
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.5,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.03477778285741806,
+          0.15838415920734406,
+          0.21463876962661743
+        ],
+        "particles": 29,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.8823529411764703,
+        "roarStarts": 151,
+        "roarPeaks": 126,
+        "flameSprites": 6,
+        "profile": "reference38",
+        "time": 1.4999999999999996
+      },
+      "renderer": {
+        "triangles": 14187,
+        "drawCalls": 17,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.5333333333333334,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.036608193069696426,
+          0.1667201668024063,
+          0.22593554854393005
+        ],
+        "particles": 33,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.9019607843137252,
+        "roarStarts": 152,
+        "roarPeaks": 127,
+        "flameSprites": 0,
+        "profile": "reference38",
+        "time": 1.5333333333333328
+      },
+      "renderer": {
+        "triangles": 14175,
+        "drawCalls": 11,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.5666666666666667,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.036608193069696426,
+          0.1667201668024063,
+          0.22593554854393005
+        ],
+        "particles": 34,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.92156862745098,
+        "roarStarts": 153,
+        "roarPeaks": 128,
+        "flameSprites": 0,
+        "profile": "reference38",
+        "time": 1.566666666666666
+      },
+      "renderer": {
+        "triangles": 14175,
+        "drawCalls": 11,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.6,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.05518098920583725,
+          0.25130394101142883,
+          0.3405615985393524
+        ],
+        "particles": 34,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.9411764705882348,
+        "roarStarts": 154,
+        "roarPeaks": 129,
+        "flameSprites": 0,
+        "profile": "reference38",
+        "time": 1.5999999999999992
+      },
+      "renderer": {
+        "triangles": 14175,
+        "drawCalls": 11,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.6333333333333333,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.0875542089343071,
+          0.3987372815608978,
+          0.5403600931167603
+        ],
+        "particles": 33,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.9607843137254897,
+        "roarStarts": 155,
+        "roarPeaks": 130,
+        "flameSprites": 0,
+        "profile": "reference38",
+        "time": 1.6333333333333324
+      },
+      "renderer": {
+        "triangles": 14175,
+        "drawCalls": 11,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.6666666666666667,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.12537524104118347,
+          0.570980966091156,
+          0.7737809419631958
+        ],
+        "particles": 33,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.9803921568627445,
+        "roarStarts": 156,
+        "roarPeaks": 131,
+        "flameSprites": 0,
+        "profile": "reference38",
+        "time": 1.6666666666666656
+      },
+      "renderer": {
+        "triangles": 14175,
+        "drawCalls": 11,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    },
+    {
+      "time": 1.7,
+      "clip": "WolfRoar",
+      "duration": 1.7000000476837158,
+      "effects": {
+        "particleColor": [
+          0.03138694912195206,
+          0.1429416984319687,
+          0.19371148943901062
+        ],
+        "particles": 32,
+        "pool": 72,
+        "flames": 2,
+        "ice": false,
+        "trail": false,
+        "roarColor": "#70dfff",
+        "roarPhase": 0.9999999999999993,
+        "roarStarts": 157,
+        "roarPeaks": 132,
+        "flameSprites": 0,
+        "profile": "reference38",
+        "time": 1.6999999999999988
+      },
+      "renderer": {
+        "triangles": 14175,
+        "drawCalls": 11,
+        "buffer": [
+          960,
+          960
+        ]
+      }
+    }
+  ],
+  "physical_device_tested": false,
+  "runtime_assets_replaced": false
+}

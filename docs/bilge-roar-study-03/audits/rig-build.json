@@ -1,0 +1,36 @@
+{
+  "retarget_result": [
+    "FINISHED"
+  ],
+  "mapped_bones": {
+    "Root": "root",
+    "Hips": "spine_fk",
+    "Spine": "spine_fk.002",
+    "Chest": "spine_fk.003",
+    "Neck": "neck",
+    "Head": "head",
+    "Jaw": "jaw",
+    "ClavicleL": "shoulder.L",
+    "UpperArmL": "upper_arm_fk.L",
+    "ForearmL": "forearm_fk.L",
+    "HandL": "hand_fk.L",
+    "DigitsInnerL": "digits_inner.L",
+    "DigitsOuterL": "digits_outer.L",
+    "ClavicleR": "shoulder.R",
+    "UpperArmR": "upper_arm_fk.R",
+    "ForearmR": "forearm_fk.R",
+    "HandR": "hand_fk.R",
+    "DigitsInnerR": "digits_inner.R",
+    "DigitsOuterR": "digits_outer.R"
+  },
+  "rig_total_bones": 237,
+  "deform_bones": 40,
+  "reference_frames": 38,
+  "duration_s": 1.7,
+  "mesh_bind_max_delta": 0,
+  "arm_IK_stretch": 0,
+  "skin": "Linear ordinary segmented bones; no preserve-volume dependency",
+  "runtime_replaced": false,
+  "paid_credits": 0,
+  "visual_approval": "PENDING"
+}

@@ -28,3 +28,7 @@ Blender 4.3.2 kurulu. Önceki iskelet, poz anahtarları ve renderlar Blender'ın
 5. İskelet/hareket ve efektler tamamlanınca oyun geçişleri, gerçek kol deformasyonu ve telefon maliyeti kontrol edilerek tek APK teslim edilir. Bu aşama tamamlanmış değildir.
 
 Yeni eklenti bir kalite garantisi değildir. Bu oturumda tamamlanan iş: araç araştırması, Rigify'nin etkinleştirilmesi ve somut ön kol sınıflandırma hatasının kaynakta düzeltilmesi. Profesyonel görsel kalite, referansla birebirlik ve yeni efekt teslimi iddia edilmez.
+
+## Uygulama güncellemesi — çalışma 03
+
+Kullanıcı ilk öneriyi seçtikten sonra Blender MCP canlı GUI bağlantısı, Bilge için Rigify üretimi, gerçek Rokoko retarget ve efektli Three.js oynatımı tamamlandı. Önceki "henüz iskelet tamamlanmadı" notu araştırma anını anlatır. Güncel kanıtlar, sınırlamalar ve tamamlanmayan işler [çalışma 03](bilge-roar-study-03/README.md) içindedir. Bu bir yeni Android sürümü değildir; ana çalışma zamanı modeli korunur. Referans kareleri elle yorumlandı; otomatik MP4 mocap'i iddia edilmez.

@@ -2,8 +2,8 @@
 from pathlib import Path
 from PIL import Image,ImageChops,ImageStat
 from io import BytesIO
-import subprocess,json,hashlib
-R=Path(__file__).resolve().parents[3];D=R/'docs/bilge-roar-study-02';reports=[]
+import subprocess,json,hashlib,sys
+R=Path(__file__).resolve().parents[3];D=R/('docs/bilge-roar-study-03' if '--study03' in sys.argv else 'docs/bilge-roar-study-02');reports=[]
 for name in ['comparison.mp4','front-side.mp4']:
  p=D/name;info=json.loads(subprocess.check_output(['ffprobe','-v','error','-count_frames','-show_entries','format=duration:stream=codec_name,width,height,nb_read_frames,avg_frame_rate','-of','json',str(p)],text=True));v=info['streams'][0]
  assert v['codec_name']=='h264' and int(v['nb_read_frames'])==267

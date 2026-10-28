@@ -1,0 +1,16 @@
+{
+  "hand_flame_sprites": 12,
+  "hand_bones": [
+    "DEF-hand.L",
+    "DEF-hand.R"
+  ],
+  "tattoo_meshes": [
+    "Tattoo_back_surface",
+    "Tattoo_left_surface",
+    "Tattoo_right_surface"
+  ],
+  "palette": "Bilge cyan with violet flame edges",
+  "reference_timing": "38 sample timestamps, full 1.7s including recovery and late streak",
+  "new_credits": 0,
+  "runtime_installed": false
+}

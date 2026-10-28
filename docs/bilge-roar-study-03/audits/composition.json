@@ -1,0 +1,13 @@
+{
+  "source_frames_used": 38,
+  "reference_spatial_crop": false,
+  "duration_s": 8.9,
+  "fps": 30,
+  "output_frames": 267,
+  "speeds": [
+    1,
+    1,
+    0.5
+  ],
+  "gameplay_capture": "Three.js from exported GLB, not Blender movie"
+}

@@ -1,0 +1,89 @@
+{
+  "sample_frames": [
+    0,
+    4,
+    8,
+    14,
+    20,
+    27,
+    33,
+    44,
+    51
+  ],
+  "meshes": [
+    {
+      "mesh": "Accessory_charm",
+      "vertices": 60,
+      "max_influences": 4,
+      "max_error_m": 0.0,
+      "p99_error_m": 0.0,
+      "mean_error_m": 0.0
+    },
+    {
+      "mesh": "Accessory_collar",
+      "vertices": 246,
+      "max_influences": 4,
+      "max_error_m": 0.0,
+      "p99_error_m": 0.0,
+      "mean_error_m": 0.0
+    },
+    {
+      "mesh": "Accessory_shoulder",
+      "vertices": 272,
+      "max_influences": 4,
+      "max_error_m": 0.0,
+      "p99_error_m": 0.0,
+      "mean_error_m": 0.0
+    },
+    {
+      "mesh": "Body_bilge",
+      "vertices": 15771,
+      "max_influences": 4,
+      "max_error_m": 0.017252690872213115,
+      "p99_error_m": 0.003978758635109792,
+      "mean_error_m": 0.0003485423079260267
+    },
+    {
+      "mesh": "Mouth_Head",
+      "vertices": 460,
+      "max_influences": 4,
+      "max_error_m": 0.0,
+      "p99_error_m": 0.0,
+      "mean_error_m": 0.0
+    },
+    {
+      "mesh": "Mouth_Jaw",
+      "vertices": 480,
+      "max_influences": 4,
+      "max_error_m": 0.0,
+      "p99_error_m": 0.0,
+      "mean_error_m": 0.0
+    },
+    {
+      "mesh": "Tattoo_back_surface",
+      "vertices": 1942,
+      "max_influences": 4,
+      "max_error_m": 0.00023455185482247422,
+      "p99_error_m": 2.2584004427232467e-06,
+      "mean_error_m": 1.3344504119576848e-07
+    },
+    {
+      "mesh": "Tattoo_left_surface",
+      "vertices": 498,
+      "max_influences": 4,
+      "max_error_m": 0.009581442056569413,
+      "p99_error_m": 0.0016857623679318815,
+      "mean_error_m": 0.00012774563886844964
+    },
+    {
+      "mesh": "Tattoo_right_surface",
+      "vertices": 510,
+      "max_influences": 4,
+      "max_error_m": 0.0149956976393224,
+      "p99_error_m": 0.0036542415403271558,
+      "mean_error_m": 0.0002122409254458879
+    }
+  ],
+  "method": "Nonnegative four-influence pose fit; 35 candidate bone subsets, simplex projection",
+  "not_exact_mocap": true
+}

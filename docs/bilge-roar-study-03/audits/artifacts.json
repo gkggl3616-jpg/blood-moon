@@ -1,0 +1,15 @@
+{
+  "art/3d/animation-studies/bilge-roar-study-03.blend": {
+    "bytes": 13938450,
+    "sha256": "a5eb181e16476848206611f736a3f66a2948992b59641fcaaf93cd202cc08e64"
+  },
+  "art/3d/animation-studies/bilge-roar-study-03.glb": {
+    "bytes": 13280832,
+    "sha256": "8002c3c6568f93e2e2af462fd965fd7f86b40c86c610d3467a53da7de54b0590",
+    "triangles": 14173,
+    "joints": 40,
+    "animations": [
+      "WolfRoar"
+    ]
+  }
+}

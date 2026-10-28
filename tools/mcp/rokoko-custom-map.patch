@@ -1,0 +1,6 @@
+--- core/custom_schemes_manager.py (Rokoko 1.4.3)
++++ core/custom_schemes_manager.py (local compatibility fix)
+@@
+             # If the source bone got detected but the target bone got changed, save the target bone into the custom list
++            detection_manager.bone_detection_list_custom.setdefault(bone_name_key_detected, [])
+             if bone_name_target not in detection_manager.bone_detection_list_custom[bone_name_key_detected]:

@@ -1,0 +1,339 @@
+{
+  "deform_bones": 40,
+  "comparison": [
+    {
+      "frame": 0,
+      "mesh": "Body_bilge",
+      "max_vertex_error_m": 7.598496456249175e-07
+    },
+    {
+      "frame": 0,
+      "mesh": "Mouth_Head",
+      "max_vertex_error_m": 2.4027400458748785e-07
+    },
+    {
+      "frame": 0,
+      "mesh": "Mouth_Jaw",
+      "max_vertex_error_m": 2.457562461863554e-07
+    },
+    {
+      "frame": 0,
+      "mesh": "Tattoo_back_surface",
+      "max_vertex_error_m": 2.682209014892578e-07
+    },
+    {
+      "frame": 0,
+      "mesh": "Tattoo_left_surface",
+      "max_vertex_error_m": 3.870180406773584e-07
+    },
+    {
+      "frame": 0,
+      "mesh": "Tattoo_right_surface",
+      "max_vertex_error_m": 2.9050099424841853e-07
+    },
+    {
+      "frame": 4,
+      "mesh": "Body_bilge",
+      "max_vertex_error_m": 7.850469277420505e-07
+    },
+    {
+      "frame": 4,
+      "mesh": "Mouth_Head",
+      "max_vertex_error_m": 1.228781230931777e-07
+    },
+    {
+      "frame": 4,
+      "mesh": "Mouth_Jaw",
+      "max_vertex_error_m": 2.457562461863817e-07
+    },
+    {
+      "frame": 4,
+      "mesh": "Tattoo_back_surface",
+      "max_vertex_error_m": 2.669762502188819e-07
+    },
+    {
+      "frame": 4,
+      "mesh": "Tattoo_left_surface",
+      "max_vertex_error_m": 3.375038997204937e-07
+    },
+    {
+      "frame": 4,
+      "mesh": "Tattoo_right_surface",
+      "max_vertex_error_m": 5.623090941939713e-07
+    },
+    {
+      "frame": 8,
+      "mesh": "Body_bilge",
+      "max_vertex_error_m": 7.852501944455741e-07
+    },
+    {
+      "frame": 8,
+      "mesh": "Mouth_Head",
+      "max_vertex_error_m": 2.457562461863554e-07
+    },
+    {
+      "frame": 8,
+      "mesh": "Mouth_Jaw",
+      "max_vertex_error_m": 2.8115454709698567e-07
+    },
+    {
+      "frame": 8,
+      "mesh": "Tattoo_back_surface",
+      "max_vertex_error_m": 2.606904810208217e-07
+    },
+    {
+      "frame": 8,
+      "mesh": "Tattoo_left_surface",
+      "max_vertex_error_m": 5.354189600173151e-07
+    },
+    {
+      "frame": 8,
+      "mesh": "Tattoo_right_surface",
+      "max_vertex_error_m": 5.462855929083633e-07
+    },
+    {
+      "frame": 14,
+      "mesh": "Body_bilge",
+      "max_vertex_error_m": 7.552698789521567e-07
+    },
+    {
+      "frame": 14,
+      "mesh": "Mouth_Head",
+      "max_vertex_error_m": 1.3328003749250113e-07
+    },
+    {
+      "frame": 14,
+      "mesh": "Mouth_Jaw",
+      "max_vertex_error_m": 2.4575624618635703e-07
+    },
+    {
+      "frame": 14,
+      "mesh": "Tattoo_back_surface",
+      "max_vertex_error_m": 2.573418027038953e-07
+    },
+    {
+      "frame": 14,
+      "mesh": "Tattoo_left_surface",
+      "max_vertex_error_m": 5.4322857062692e-07
+    },
+    {
+      "frame": 14,
+      "mesh": "Tattoo_right_surface",
+      "max_vertex_error_m": 4.925419867061127e-07
+    },
+    {
+      "frame": 20,
+      "mesh": "Body_bilge",
+      "max_vertex_error_m": 7.504033036240442e-07
+    },
+    {
+      "frame": 20,
+      "mesh": "Mouth_Head",
+      "max_vertex_error_m": 2.384185791015625e-07
+    },
+    {
+      "frame": 20,
+      "mesh": "Mouth_Jaw",
+      "max_vertex_error_m": 2.6656007498552085e-07
+    },
+    {
+      "frame": 20,
+      "mesh": "Tattoo_back_surface",
+      "max_vertex_error_m": 2.827296549232345e-07
+    },
+    {
+      "frame": 20,
+      "mesh": "Tattoo_left_surface",
+      "max_vertex_error_m": 4.924151790695877e-07
+    },
+    {
+      "frame": 20,
+      "mesh": "Tattoo_right_surface",
+      "max_vertex_error_m": 3.8968477470906884e-07
+    },
+    {
+      "frame": 24,
+      "mesh": "Body_bilge",
+      "max_vertex_error_m": 7.668037504011641e-07
+    },
+    {
+      "frame": 24,
+      "mesh": "Mouth_Head",
+      "max_vertex_error_m": 1.1920928955078125e-07
+    },
+    {
+      "frame": 24,
+      "mesh": "Mouth_Jaw",
+      "max_vertex_error_m": 2.546311540996465e-07
+    },
+    {
+      "frame": 24,
+      "mesh": "Tattoo_back_surface",
+      "max_vertex_error_m": 2.9839552036674004e-07
+    },
+    {
+      "frame": 24,
+      "mesh": "Tattoo_left_surface",
+      "max_vertex_error_m": 3.819467311494439e-07
+    },
+    {
+      "frame": 24,
+      "mesh": "Tattoo_right_surface",
+      "max_vertex_error_m": 5.012730747758556e-07
+    },
+    {
+      "frame": 27,
+      "mesh": "Body_bilge",
+      "max_vertex_error_m": 7.492187672839484e-07
+    },
+    {
+      "frame": 27,
+      "mesh": "Mouth_Head",
+      "max_vertex_error_m": 2.4027400458748785e-07
+    },
+    {
+      "frame": 27,
+      "mesh": "Mouth_Jaw",
+      "max_vertex_error_m": 1.3328003749458928e-07
+    },
+    {
+      "frame": 27,
+      "mesh": "Tattoo_back_surface",
+      "max_vertex_error_m": 2.682209014892578e-07
+    },
+    {
+      "frame": 27,
+      "mesh": "Tattoo_left_surface",
+      "max_vertex_error_m": 5.02292924841737e-07
+    },
+    {
+      "frame": 27,
+      "mesh": "Tattoo_right_surface",
+      "max_vertex_error_m": 3.417738140618358e-07
+    },
+    {
+      "frame": 32,
+      "mesh": "Body_bilge",
+      "max_vertex_error_m": 7.78754985346156e-07
+    },
+    {
+      "frame": 32,
+      "mesh": "Mouth_Head",
+      "max_vertex_error_m": 2.384185791015625e-07
+    },
+    {
+      "frame": 32,
+      "mesh": "Mouth_Jaw",
+      "max_vertex_error_m": 4.805480091749757e-07
+    },
+    {
+      "frame": 32,
+      "mesh": "Tattoo_back_surface",
+      "max_vertex_error_m": 3.591767189858541e-07
+    },
+    {
+      "frame": 32,
+      "mesh": "Tattoo_left_surface",
+      "max_vertex_error_m": 4.770699320310986e-07
+    },
+    {
+      "frame": 32,
+      "mesh": "Tattoo_right_surface",
+      "max_vertex_error_m": 2.8361180887631e-07
+    },
+    {
+      "frame": 38,
+      "mesh": "Body_bilge",
+      "max_vertex_error_m": 7.758000898666519e-07
+    },
+    {
+      "frame": 38,
+      "mesh": "Mouth_Head",
+      "max_vertex_error_m": 1.2013700229374393e-07
+    },
+    {
+      "frame": 38,
+      "mesh": "Mouth_Jaw",
+      "max_vertex_error_m": 2.457562461865116e-07
+    },
+    {
+      "frame": 38,
+      "mesh": "Tattoo_back_surface",
+      "max_vertex_error_m": 3.7726726833498965e-07
+    },
+    {
+      "frame": 38,
+      "mesh": "Tattoo_left_surface",
+      "max_vertex_error_m": 3.6446973111137775e-07
+    },
+    {
+      "frame": 38,
+      "mesh": "Tattoo_right_surface",
+      "max_vertex_error_m": 3.6456491031836713e-07
+    },
+    {
+      "frame": 44,
+      "mesh": "Body_bilge",
+      "max_vertex_error_m": 7.869648201530231e-07
+    },
+    {
+      "frame": 44,
+      "mesh": "Mouth_Head",
+      "max_vertex_error_m": 1.228781230931777e-07
+    },
+    {
+      "frame": 44,
+      "mesh": "Mouth_Jaw",
+      "max_vertex_error_m": 3.769728732309794e-07
+    },
+    {
+      "frame": 44,
+      "mesh": "Tattoo_back_surface",
+      "max_vertex_error_m": 2.407356265396403e-07
+    },
+    {
+      "frame": 44,
+      "mesh": "Tattoo_left_surface",
+      "max_vertex_error_m": 4.0157177979385453e-07
+    },
+    {
+      "frame": 44,
+      "mesh": "Tattoo_right_surface",
+      "max_vertex_error_m": 2.9941839723073027e-07
+    },
+    {
+      "frame": 51,
+      "mesh": "Body_bilge",
+      "max_vertex_error_m": 7.865922016036008e-07
+    },
+    {
+      "frame": 51,
+      "mesh": "Mouth_Head",
+      "max_vertex_error_m": 2.9802322387695312e-08
+    },
+    {
+      "frame": 51,
+      "mesh": "Mouth_Jaw",
+      "max_vertex_error_m": 1.6858739404358916e-07
+    },
+    {
+      "frame": 51,
+      "mesh": "Tattoo_back_surface",
+      "max_vertex_error_m": 2.4586915969848633e-07
+    },
+    {
+      "frame": 51,
+      "mesh": "Tattoo_left_surface",
+      "max_vertex_error_m": 4.0122604423273384e-07
+    },
+    {
+      "frame": 51,
+      "mesh": "Tattoo_right_surface",
+      "max_vertex_error_m": 3.725290298461914e-07
+    }
+  ],
+  "max_vertex_error_m": 7.869648201530231e-07,
+  "ordinary_linear_skin": true,
+  "file": "bilge-roar-study-03.glb",
+  "runtime_replaced": false
+}
