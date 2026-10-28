@@ -1,6 +1,7 @@
 """XFS Gezgini: a bounded, paginated, read-only desktop archive browser."""
 from __future__ import annotations
 import math
+import os
 import queue
 import threading
 import time
@@ -25,11 +26,14 @@ class Browser(tk.Tk):
         self.summary = tk.StringVar(value='Arşiv açık değil')
         self.page_text = tk.StringVar(value='0 kayıt')
         style = ttk.Style(self); style.theme_use('clam')
+        family = 'Segoe UI' if os.name == 'nt' else 'DejaVu Sans'
+        style.configure('.', font=(family, 10))
+        style.map('TCombobox', fieldbackground=[('readonly', '#101820')], foreground=[('readonly', '#e8edf2')], selectbackground=[('readonly', '#101820')], selectforeground=[('readonly', '#e8edf2')])
         style.configure('.', background='#17212c', foreground='#e8edf2', fieldbackground='#101820')
         style.configure('Treeview', background='#101820', foreground='#edf1f4', fieldbackground='#101820', rowheight=29)
         style.map('Treeview', background=[('selected', '#536c83')])
         style.configure('TButton', padding=7)
-        style.configure('Title.TLabel', font=('Segoe UI', 18, 'bold'))
+        style.configure('Title.TLabel', font=(family, 18, 'bold'))
         self.configure(bg='#17212c')
         top = ttk.Frame(self, padding=14); top.pack(fill='x')
         ttk.Label(top, text='XFS GEZGİNİ', style='Title.TLabel').pack(side='left')
@@ -63,8 +67,8 @@ class Browser(tk.Tk):
         ttk.Label(nav, textvariable=self.page_text).pack(side='left',padx=10)
         ttk.Button(nav, text='Sonraki ▶', command=lambda:self.turn_page(1)).pack(side='left')
         ttk.Button(nav, text='Sayfayı Seç', command=lambda:self.tree.selection_set(self.tree.get_children())).pack(side='right')
-        ttk.Label(right,text='DOSYA BİLGİSİ / ÖNİZLEME',font=('Segoe UI',12,'bold')).pack(anchor='w',pady=(0,8))
-        self.details = tk.Text(right,wrap='word',bg='#101820',fg='#dbe6f0',insertbackground='white',font=('Consolas',10),borderwidth=0,padx=12,pady=12,state='disabled')
+        ttk.Label(right,text='DOSYA BİLGİSİ / ÖNİZLEME',font=(family,12,'bold')).pack(anchor='w',pady=(0,8))
+        self.details = tk.Text(right,wrap='word',bg='#101820',fg='#dbe6f0',insertbackground='white',font=('Consolas' if os.name == 'nt' else 'DejaVu Sans Mono',10),borderwidth=0,padx=12,pady=12,state='disabled')
         self.details.pack(fill='both',expand=True)
         self.set_details('Bir kayıt seçin.\n\nMetin ve hex önizleme: en fazla 256 KiB.\n\n3B model görüntüleyicisi bu sürümde yoktur.')
         actions = ttk.Frame(self,padding=14); actions.pack(fill='x')
@@ -111,7 +115,7 @@ class Browser(tk.Tk):
                 if channel=='preview':self.set_details(self.current_info+'\n\nÖnizleme açılamadı: '+value)
                 else:self.status.set('Hata: '+value);messagebox.showerror('İşlem tamamlanamadı',value,parent=self)
             elif channel=='main':self.status.set('İşlem iptal edildi. Tamamlanan dosyalar korundu; yarım dosya kaldırıldı.')
-        if not self.closing:self.after(50,self.drain)
+        if self.winfo_exists():self.after(50,self.drain)
     def busy(self,value):
         state='disabled' if value else 'normal'
         for button in (self.open_button,self.export_button,self.all_button,self.csv_button):button.configure(state=state)
@@ -204,7 +208,14 @@ class Browser(tk.Tk):
     def close(self):
         self.closing=True
         for _,cancel,_ in self.jobs.values():cancel.set()
-        self.destroy()
+        if self.jobs:
+            self.busy(True);self.search.configure(state='disabled');self.types.configure(state='disabled')
+            self.status.set('Kapatılıyor… Yarım dosyalar temizleniyor.')
+            self.after(50,self.finish_close)
+        else:self.destroy()
+    def finish_close(self):
+        if self.jobs:self.after(50,self.finish_close)
+        else:self.destroy()
 
 def format_size(value):
     for suffix in ('B','KiB','MiB','GiB'):

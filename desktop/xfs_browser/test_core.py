@@ -103,4 +103,25 @@ class ReaderTests(unittest.TestCase):
         save_list(archive,[0],self.root/'list.csv')
         self.assertIn('Root/a.txt',(self.root/'list.csv').read_text(encoding='utf-8-sig'))
 
+    def test_multiple_blocks_large_model_and_empty_file(self):
+        content=bytes(range(256))*6000
+        path=make_archive(self.root/'large_model.xfs',[('model.ltb',b'x',1),('empty.ltb',b'',1)])
+        archive=open_archive(path)
+        blocks=b''.join(chunk(content[i:i+65536]) for i in range(0,len(content),65536))
+        with path.open('ab') as output:off=output.tell();output.write(blocks)
+        stat=path.stat();entry=Entry('Root/model.ltb',off,len(content),len(blocks))
+        archive=Archive(path,archive.version,(entry,),stat.st_size,stat.st_mtime_ns)
+        extract_entry(archive,entry,self.root/'models')
+        self.assertEqual((self.root/'models/Root/model.ltb').read_bytes(),content)
+        empty=Entry('Root/empty.ltb',0,0,0)
+        extract_entry(archive,empty,self.root/'models')
+        self.assertEqual((self.root/'models/Root/empty.ltb').read_bytes(),b'')
+    def test_corrupt_payload_cleans_partial(self):
+        path=make_archive(self.root/'payload.xfs',[('bad.ltb',b'hello'*500,0)])
+        archive=open_archive(path)
+        with path.open('r+b') as output:output.seek(archive.entries[0].offset+5);output.write(b'BAD!')
+        stat=path.stat();archive=Archive(path,archive.version,archive.entries,stat.st_size,stat.st_mtime_ns)
+        with self.assertRaises(XFSError):extract_entry(archive,archive.entries[0],self.root/'bad')
+        self.assertFalse(list((self.root/'bad').rglob('*.part')))
+
 if __name__=='__main__':unittest.main(verbosity=2)
