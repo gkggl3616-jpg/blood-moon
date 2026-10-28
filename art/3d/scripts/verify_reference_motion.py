@@ -49,8 +49,14 @@ for profile in meta['variants']:
    rest=(rig.data.bones[b].head_local-rig.data.bones[a].head_local).length;now=(rig.pose.bones[b].head-rig.pose.bones[a].head).length;stretch.append(abs(now/rest-1))
  assert max(stretch)<.01,(key,'trunk or limb stretched',max(stretch))
  pose('WolfRoar',.56);overhead=min(rig.pose.bones['Hand'+s].head.z-rig.pose.bones['Head'].head.z for s in ['L','R']);assert overhead>.035*h,(key,'hands do not reach above head',overhead)
+ bends=[];insets=[]
+ for side in ['L','R']:
+  a=rig.pose.bones['UpperArm'+side].head;e=rig.pose.bones['Forearm'+side].head;w=rig.pose.bones['Hand'+side].head
+  bends.append(math.degrees((e-a).angle(w-e)));insets.append(abs(e.x)-abs(w.x))
+ assert min(bends)>65,(key,'raised arms too straight',bends)
+ assert min(insets)>.035*h,(key,'forearms must incline inward',insets)
  digits=[rig.pose.bones['Digits'+label+s].rotation_quaternion.angle for s in ['L','R'] for label in ['Inner','Outer']];assert min(digits)>.08,(key,'digits not animated',digits)
  pose('WolfRoar',0);jaw0=rig.pose.bones['Jaw'].rotation_quaternion.copy();pose('WolfRoar',.56);jaw=jaw0.rotation_difference(rig.pose.bones['Jaw'].rotation_quaternion).angle;assert jaw>.35
  oral=sum(o.name.startswith('Mouth_') and o.type=='MESH' for o in bpy.context.scene.objects);assert oral>=2,(key,'missing mouth geometry')
- result={'id':key,'approved_body_error_m':source_error,'body_triangles':source_tri,'bone_count':len(rig.data.bones),'garment_hand_weight_max':contamination,'contacts':contacts,'max_segment_length_error':max(stretch),'hands_above_head_m':overhead,'jaw_rotation_rad':jaw,'oral_parts':oral};results.append(result);print('REFERENCE_MOTION',json.dumps(result),flush=True)
+ result={'id':key,'approved_body_error_m':source_error,'body_triangles':source_tri,'bone_count':len(rig.data.bones),'garment_hand_weight_max':contamination,'contacts':contacts,'max_segment_length_error':max(stretch),'hands_above_head_m':overhead,'jaw_rotation_rad':jaw,'oral_parts':oral,'peak_elbow_bend_deg':bends,'elbow_outside_wrist_m':insets};results.append(result);print('REFERENCE_MOTION',json.dumps(result),flush=True)
 (R/'dist/reference-motion-verification.json').write_text(json.dumps(results,indent=2));print('PASS: actual contacts, preserved sources, fixed trunk/limbs, overhead hands, digits and jaws for all wolves.')

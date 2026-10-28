@@ -10,5 +10,5 @@ export function runRate(actor,metersPerSecond){const p=motionProfile(actor);retu
 
 export function motionJoints(actor){
  if(!actor)return {};actor.updateMatrixWorld(true);const result={};
- for(const name of ['Head','HandL','HandR','FootL','FootR']){const b=actor.getObjectByName(name);if(b){const e=b.matrixWorld.elements;result[name]=[e[12],e[13],e[14]];}}return result;
+ for(const name of ['Head','HandL','HandR','FootL','FootR','UpperArmL','UpperArmR','ForearmL','ForearmR']){const b=actor.getObjectByName(name);if(b){const e=b.matrixWorld.elements;result[name]=[e[12],e[13],e[14]];}}return result;
 }

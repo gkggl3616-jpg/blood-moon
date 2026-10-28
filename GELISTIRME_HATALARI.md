@@ -105,3 +105,7 @@ Bu dosya bu konuşmada tespit edilen hataları, bunların sonucunu ve gerçek du
 - Yeni parmak kemiklerine en yakın mesafeyle ağırlık atamak etek köşelerini ellere çekiyordu. El/kol bölgeleri anatomik sınırlarla ayrıldı; gerçek kaynak etek köşelerinde el ağırlığı sıfır olarak doğrulandı.
 - Sabit IK destek hedefi tek başına mesh temasını garanti etmedi. Avuç bağları, gerçek mesh tabanı kalibrasyonu ve 60 Hz FK aktarımıyla ara kare çökmesi giderildi; test gerçek dışa aktarılmış deri köşelerini ve destek kaymasını ölçer.
 - Ayrıntılar, ölçüm sınırları ve açık kalite işleri: docs/guncelleme-v013.md.
+
+## v0.1.14 — kullanıcı kükreme sonucunu reddetti
+
+v0.1.13 baş üstü el testi, fazla düz/dar kol duruşunu yakalamadı. Bu sonuç referans kabulü sayılmamalıydı. Yeni poz; dışarıda bükülü dirsek, içe eğimli ön kol, göğüs/boyun açılması ve belirgin hazırlık kullanır. Kısa kollu kurtlarda öne uzak el hedefi yeniden düzleşme üretiyordu; uzaklık düzeltildi. Gerçek GLB ve WebGL dirsek ölçümleri eklendi. Ayrıntı: docs/kukreme-duzeltmesi-v014.md.

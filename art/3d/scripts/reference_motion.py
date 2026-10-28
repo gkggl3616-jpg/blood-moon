@@ -22,7 +22,7 @@ RUN_KEYS=[
  (0.84,.360,99,98,66,44,66), # suspension / reach
  (1.00,.335,94,96,64,46,67)]
 # phase, anticipation, arm spread, overhead, chest lift, jaw opening.
-ROAR_KEYS=[(0,0,0,0,0,0),(.15,1,.14,0,0,0),(.30,.45,1,.08,.25,.2),(.49,0,.25,1,1,1),(.67,0,.18,1,1,1),(.82,.12,.65,.32,.4,.45),(1,0,0,0,0,0)]
+ROAR_KEYS=[(0,0,0,0,0,0),(.15,1,.12,0,0,0),(.30,.50,1,.05,.15,.15),(.49,0,.35,1,1,1),(.67,0,.30,1,1,1),(.82,.15,.85,.22,.25,.35),(1,0,0,0,0,0)]
 
 def ease(t):
  t=max(0,min(1,t));return t*t*(3-2*t)
@@ -87,18 +87,19 @@ def run_pose(base,t,h,two_bone):
 
 def roar_pose(base,t,h,two_bone):
  p={k:v.copy() for k,v in base.items()};charge,spread,high,lift,jaw=sample(ROAR_KEYS,t)
- p['hip'].z-=h*(.012*charge+.003*high)
- trunk(p,base,[6*charge,-5*lift+5*charge,-12*lift+8*charge,-12*lift+4*charge,-27*lift])
+ p['hip'].z-=h*(.040*charge+.006*high)
+ trunk(p,base,[14*charge-8*lift,12*charge-12*lift,12*charge-32*lift,6*charge-35*lift,-30*lift])
  for side,sg,delay in [('L',1,0),('R',-1,.018)]:
   _,s,up,_,_=sample(ROAR_KEYS,max(0,t-delay));shoulder=p['shoulder'+side]
   l1=(base['elbow'+side]-base['shoulder'+side]).length;l2=(base['wrist'+side]-base['elbow'+side]).length
   arm=l1+l2;rest=base['wrist'+side]+Vector((0,0,-.012*h*charge))
   wide=Vector((sg*(abs(shoulder.x)+.17*h),-.07*h,shoulder.z-.10*h))
-  top=Vector((sg*abs(shoulder.x)*.92,-.055*h,shoulder.z+.91*arm))
+  # Bent wide elbows and inward forearms, rather than two vertical arms.
+  top=Vector((sg*abs(shoulder.x)*.78,shoulder.y-.025*h,max(p['head'].z+.045*h,shoulder.z+.73*arm)))
   goal=rest.lerp(wide,s).lerp(top,up)
-  pole=shoulder+Vector((sg*.15*h,.045*h,.11*h*up-.12*h*(1-up)))
+  pole=shoulder+Vector((sg*.35*h,.015*h,.025*h*up-.12*h*(1-up)))
   p['elbow'+side],p['wrist'+side]=two_bone(shoulder,goal,pole,l1,l2)
-  rest_dir=base['finger'+side]-base['wrist'+side];up_dir=Vector((sg*.08,-.22,1)).normalized()*rest_dir.length
+  rest_dir=base['finger'+side]-base['wrist'+side];up_dir=Vector((-sg*.24,-.25,1)).normalized()*rest_dir.length
   p['finger'+side]=p['wrist'+side]+rest_dir.lerp(up_dir,up).normalized()*rest_dir.length
   p['hip'+side]=p['hip']+(base['hip'+side]-base['hip'])
   p['knee'+side],p['ankle'+side]=two_bone(p['hip'+side],base['ankle'+side],base['knee'+side],(base['knee'+side]-base['hip'+side]).length,(base['ankle'+side]-base['knee'+side]).length)

@@ -1,0 +1,142 @@
+[
+  {
+    "id": "bilge",
+    "clips": {
+      "WolfIdle": {
+        "min_z": 0.0008,
+        "max_z": 2.2462,
+        "max_limb_error": 0.0,
+        "loop_seam_m": 0.0
+      },
+      "WolfMove": {
+        "min_z": -0.028,
+        "max_z": 2.2462,
+        "max_limb_error": 0.0,
+        "loop_seam_m": 0.0
+      },
+      "WolfRunQuad": {
+        "min_z": -0.0074,
+        "max_z": 1.2568,
+        "max_limb_error": 1e-05,
+        "loop_seam_m": 0.0
+      },
+      "WolfRoll": {
+        "min_z": 0.0008,
+        "max_z": 2.4458,
+        "max_limb_error": 0.0,
+        "loop_seam_m": 0.0
+      },
+      "WolfRoar": {
+        "min_z": -0.0119,
+        "max_z": 2.3799,
+        "max_limb_error": 0.0,
+        "loop_seam_m": 0.01897
+      }
+    }
+  },
+  {
+    "id": "kultigin",
+    "clips": {
+      "WolfIdle": {
+        "min_z": -0.0066,
+        "max_z": 2.084,
+        "max_limb_error": 0.0,
+        "loop_seam_m": 0.0
+      },
+      "WolfMove": {
+        "min_z": -0.0467,
+        "max_z": 2.0836,
+        "max_limb_error": 0.0,
+        "loop_seam_m": 0.0
+      },
+      "WolfRunQuad": {
+        "min_z": -0.0143,
+        "max_z": 1.0074,
+        "max_limb_error": 0.0,
+        "loop_seam_m": 0.0
+      },
+      "WolfRoll": {
+        "min_z": -0.0066,
+        "max_z": 2.2454,
+        "max_limb_error": 0.0,
+        "loop_seam_m": 0.0
+      },
+      "WolfRoar": {
+        "min_z": -0.0087,
+        "max_z": 2.0821,
+        "max_limb_error": 0.0,
+        "loop_seam_m": 0.01126
+      }
+    }
+  },
+  {
+    "id": "alparslan",
+    "clips": {
+      "WolfIdle": {
+        "min_z": -0.0079,
+        "max_z": 2.4047,
+        "max_limb_error": 0.0,
+        "loop_seam_m": 0.0
+      },
+      "WolfMove": {
+        "min_z": -0.0683,
+        "max_z": 2.4042,
+        "max_limb_error": 0.0,
+        "loop_seam_m": 0.0
+      },
+      "WolfRunQuad": {
+        "min_z": -0.018,
+        "max_z": 1.2054,
+        "max_limb_error": 1e-05,
+        "loop_seam_m": 0.0
+      },
+      "WolfRoll": {
+        "min_z": -0.0079,
+        "max_z": 2.6042,
+        "max_limb_error": 0.0,
+        "loop_seam_m": 0.0
+      },
+      "WolfRoar": {
+        "min_z": -0.0104,
+        "max_z": 2.4028,
+        "max_limb_error": 0.0,
+        "loop_seam_m": 0.01299
+      }
+    }
+  },
+  {
+    "id": "konuralp",
+    "clips": {
+      "WolfIdle": {
+        "min_z": -0.0059,
+        "max_z": 2.2543,
+        "max_limb_error": 0.0,
+        "loop_seam_m": 0.0
+      },
+      "WolfMove": {
+        "min_z": -0.0281,
+        "max_z": 2.2539,
+        "max_limb_error": 0.0,
+        "loop_seam_m": 0.0
+      },
+      "WolfRunQuad": {
+        "min_z": -0.0328,
+        "max_z": 1.0544,
+        "max_limb_error": 1e-05,
+        "loop_seam_m": 0.0
+      },
+      "WolfRoll": {
+        "min_z": -0.0059,
+        "max_z": 2.4124,
+        "max_limb_error": 0.0,
+        "loop_seam_m": 0.0
+      },
+      "WolfRoar": {
+        "min_z": -0.008,
+        "max_z": 2.2573,
+        "max_limb_error": 0.0,
+        "loop_seam_m": 0.01265
+      }
+    }
+  }
+]
