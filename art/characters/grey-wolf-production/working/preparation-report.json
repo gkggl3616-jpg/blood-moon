@@ -1,0 +1,65 @@
+{
+  "source_name": "grey-wolf-source.glb",
+  "source_sha256": "1be2ec0d973881cdd8c3d7f459e348f063bcdb8e909c82e308fb0c37ce89ac6b",
+  "source_preserved": true,
+  "height_m": 2.4,
+  "rigged": false,
+  "animation_clips": [],
+  "ready_for_game": false,
+  "meshes": [
+    {
+      "name": "Mesh_0",
+      "source_vertices": 13885,
+      "welded_vertices": 9640,
+      "triangles": 14749,
+      "face_corner_uv_material_preserved": true,
+      "max_source_vertex_displacement": 0.0,
+      "max_corner_normal_error": 0.0029368283576760544,
+      "topology": {
+        "count": 56,
+        "largest_vertex_counts": [
+          5217,
+          2243,
+          837,
+          276,
+          271,
+          190,
+          120,
+          103,
+          65,
+          61,
+          59,
+          37,
+          8,
+          8,
+          6,
+          5,
+          5,
+          5,
+          5,
+          5
+        ],
+        "boundary_edges": 5835,
+        "nonmanifold_nonboundary_edges": 0
+      }
+    }
+  ],
+  "open_work": [
+    "Natural hand pose and finger articulation",
+    "Controlled mane silhouette",
+    "Inspect actual torso boundary holes; do not seal eyes/mouth/fur blindly",
+    "Jaw and mouth interior articulation",
+    "Rig, skin weights, animation authoring and GLB deformation review"
+  ],
+  "blend": "grey-wolf-working.blend",
+  "glb": "grey-wolf-working.glb",
+  "total_triangles": 14749,
+  "triangle_budget_pass": true,
+  "roundtrip": {
+    "height_m": 2.4000000953674316,
+    "feet_z_m": 0.0,
+    "has_uv": true,
+    "textured_materials": true,
+    "has_armature": false
+  }
+}

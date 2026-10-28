@@ -1,0 +1,21 @@
+{
+  "before_vertices": 13885,
+  "welded_vertices": 7719,
+  "components": [
+    4091,
+    1969,
+    702,
+    197,
+    193,
+    169,
+    120,
+    83,
+    61,
+    49,
+    48,
+    37
+  ],
+  "boundary_edges": 696,
+  "nonmanifold_nonboundary_edges": 0,
+  "method": "Coincident position weld for diagnostic only; source file unchanged"
+}

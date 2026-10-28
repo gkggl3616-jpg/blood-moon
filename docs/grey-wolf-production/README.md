@@ -1,36 +1,68 @@
-# Referansa sadık yeni kurt — üretim hazırlığı
+# Referansa sadık yeni kurt — gerçek kaynak modeli
 
-**Hazır:** [ayrıntılı Türkçe ana prompt](MASTER-PROMPT-TR.md), yaklaşık 1.845 sözcük; [İngilizce modelleme brifi](../../art/characters/grey-wolf-production/MODEL-PROMPT-EN.txt); [negatif prompt](../../art/characters/grey-wolf-production/NEGATIVE-PROMPT.txt); desteklenen sınırda ayrı doku promptu; son onaylı tasarımdan türetilmiş [tam boy A-pozu](../../art/characters/grey-wolf-production/fullbody-a-pose.png).
+## Güncel durum — 2026-10-28
 
-Bu görsel 2B üretim referansıdır. Ayaklar ve alt bacaklar, ilk referans kadrajında bulunmadıkları için aynı görsel dilde tamamlandı. Henüz oyun modeli veya animasyon teslimi değildir.
+Kullanıcının yüklediği `MASTER-PROMPT-TR.md` depo kopyasıyla aynı içerikte doğrulandı. "Promptu oku ve Başla" talimatıyla daha önce fiyatı belirtilen **15 kredilik tek kurt** üretimi başlatıldı ve tamamlandı. Ayrı insan modeli, ücretli rigging, animasyon, varyant veya ücretli tekrar başlatılmadı.
 
-**Hazırlanan işlem:** bir adet Smart Topology kurt, 15.000 üçgen hedefi, A pozu, PBR, 2K doku, GLB. Desteklenen tam CLI argümanları, kaynak görüntü hash'i ve kapsam [prepared-job.json](prepared-job.json) içindedir. Uzun ana prompt yalnız bir API metin parametresi değildir; üretim, Blender düzenlemesi ve kabul testlerinin talimatıdır. Image-to-3D genel geometri promptu kabul etmediği için görsel + desteklenen seçenekler + en fazla 600 karakter doku promptu kullanılır.
+- Kaynak görsel: [doğal el/ayak referansı](../../art/characters/grey-wolf-production/fullbody-natural-pose.png). Önceki açık parmaklı tam boy A-pozu kabul edilmiş hedef değildir.
+- İşlem: `image-to-3d`, görev `01a18237-eaff-7570-ada6-a9738305ab6b`.
+- Gerçek tüketim **15 kredi**; doğrulanan bakiye **950 → 935**. Kayıt: [balance-check.json](balance-check.json).
+- Gerçek sonuç: **14.749 üçgen**, UV, 2K PBR; **iskelet ve animasyon yok**. Menü/arena entegrasyonu henüz tamamlanmadı.
+- [İndirilen gerçek GLB](../../art/characters/grey-wolf-production/grey-wolf-source.glb) değişmeden korunuyor. SHA256: `1be2ec0d973881cdd8c3d7f459e348f063bcdb8e909c82e308fb0c37ce89ac6b`.
+- [Düzenlenebilir Blender çalışma dosyası](../../art/characters/grey-wolf-production/working/grey-wolf-working.blend) ve [çalışma GLB'si](../../art/characters/grey-wolf-production/working/grey-wolf-working.glb) hazırlandı. Bunlar tamamlanmış animasyonlu oyun varlığı değildir.
+- Ayrıntılı görev/kapsam kaydı: [prepared-job.json](prepared-job.json). Ham Meshy görev JSON'ları imzalı indirme adresleri içerdiğinden yayımlanmaz.
 
-**Ücret:** CLI `make --dry-run` standart dokulu görsel üretimi için 30 kredi tahmin etti; kayıt [cost-plan.json](cost-plan.json). Ardından 2026-10-28 tarihinde resmî [fiyat tablosu](https://docs.meshy.ai/en/api/pricing) kontrol edildi: CLI yardımının Smart Topology için belirttiği **meshy-t2 + 2K doku 15 kredi** olarak listeleniyor. İlk seçenek bu 15 kredilik tek üretimdir. Bu bir tahmindir; gerçek tüketim, sonuçtaki `consumed_credits` alanından raporlanacak. Ücretli otomatik rigging, ikinci varyant, yeniden üretim ve başka ücretli aşama bu kapsamda yoktur.
+## Yapılan hazırlık ve teknik doğrulama
 
-**Hesap durumu:** CLI 0.4.0 ve Node 24.19.0 çalışıyor, API adresleri resmî Meshy adresleri. Kayıtlı OAuth oturumu süresi dolmuş ve yenileme başarısız olmuş. Geçmişte bildirilen bakiye güncel bakiye sayılmadı; şimdiki bakiye bilinmiyor. Kimlik bilgileri okunmadı veya mesaja yazılmadı. Üretim onayı geldiğinde CLI cihaz oturumu açılmalı, aynı oturum tamamlanana kadar beklenmeli ve bakiye yeniden doğrulanmalı.
+`tools/prepare_character_source.py`, orijinali değiştirmeden çalışma kopyası oluşturur. Yalnız tam çakışan aktarım köşeleri birleştirildi: Blender mesh köşeleri 13.885 → 9.640; **bütün 14.749 üçgen ve 44.247 yüz köşesinin UV/malzeme verisi korundu**, kaynak köşe konumları değişmedi. Bu sayı GPU'da aynı köşe sayısı kullanılacağı anlamına gelmez; GLB, UV ve normal sınırlarında yeniden bölebilir.
 
-**Başlatılmayan:** yeni ücretli 3B görev; bu iş için görev ID'si ve gerçek tüketim henüz yok. Kullanıcının önceki ana kapsamındaki "yeni ücretli üretim gerekiyorsa kapsam ve gerçek maliyeti belirt; eski bütçeyi sınırsız yeni üretim izni sayma" talebi nedeniyle bu yeni harcama ayrıca onaylanacak.
+Daha geniş `1e-5` birleştirme denemesi küçük bir üçgeni kaldırdığı için çalışma kopyasına uygulanmadı. Yüzeyler körlemesine kapatılmadı. Ham GLB'deki açık kenar sayısının tamamı gerçek delik sayılamaz: UV/normal sınırları ve ayrı kürk/ağız parçaları vardır. Daha geniş tanısal birleştirme sonucu yalnız inceleme raporunda tutulur.
 
-Sonraki uygulama sırası: onay → gerekirse cihaz girişi ve bakiye kontrolü → tek asenkron üretim → sonucu ve gerçek maliyeti kaydetme → model ve önizleme indirme → referans benzerliği ve gerçek yüzey/UV kontrolü → Blender'da topoloji/çene/parmak/iskelet düzeltmeleri → tam hareket ve yeniden yüklenen GLB testleri → oyuna entegrasyon. Teknik veya görsel kalite geçmezse model tamamlandı diye sunulmayacak; otomatik ücretli tekrar yapılmayacak.
+Özel yüz köşesi normalleri aktarıldı; Blender'ın yeniden kodlamasındaki en büyük vektör sapması `0.00294` (yaklaşık 0,17°). Çalışma modeli **2,4 m**, ayak tabanı **Z=0**, ön yön **-Y** olacak şekilde düzenlendi. Dokular `.blend` içine paketlendi. GLB dışa aktarılıp yeniden açıldı: boy `2.400000095 m`, taban `0`, UV ve dokulu malzeme mevcut. İskeletten/animasyondan yoksun olduğu kontrol edilip raporda açıkça işaretlendi.
 
-## Son el ve ayak düzeltmesi
+Kanıt: [preparation-report.json](../../art/characters/grey-wolf-production/working/preparation-report.json). Tekrar üretilebilir komut:
 
-Kullanıcı tam açık parmakları ve mekanik ayak duruşunu reddetti. Yeni [doğal duruş referansı](../../art/characters/grey-wolf-production/fullbody-natural-pose.png) bu noktada önceki tam boy A-pozu görselinin yerini alır. Eller yarı kapalı, parmaklar kademeli kıvrık, bilekler doğal; dizler esnek ve ağırlık dağılımı hafif asimetriktir. A-pozu teknik iskelet gereksinimi olarak kalabilir, ancak açık mekanik eller görsel hedef değildir. Ana prompt, İngilizce brif, negatif prompt ve henüz gönderilmemiş üretim kaydı güncellendi. Yeni ücretli 3B görev başlatılmadı.
+```sh
+blender --factory-startup -b -t 2 --python-exit-code 1 \
+  --python tools/prepare_character_source.py -- \
+  art/characters/grey-wolf-production/grey-wolf-source.glb \
+  art/characters/grey-wolf-production/working
+```
 
-## İnsan formu, yürüyüş ve tek kollu saldırı ek kapsamı
+`tools/inspect_generated_character.py` gerçek GLB'yi açıp ön/arka/yan/üç çeyrek görüntüleri üretir; konsept görseli render yerine kullanılmaz. Kamera yalnız boya göre değil, görünen bütün köşelere göre ayarlanır; açık kollar ve eller kadrajdan kesilmez. [Çalışma modeli inceleme görüntüleri](../../art/characters/grey-wolf-production/working/review) aynı dışa aktarılmış dosyadan oluşturulur.
 
-Kullanıcı iki form için doğal yürüyüş/salınım, bu kurdun insan karşılığı ve her vuruşta değişen tek saldıran kol istedi. Ana promptun 10. bölümü bu hareketleri, fazları, geçişleri ve testlerini ayrıntılandırır. [İnsan görünüş referansı](../../art/characters/grey-wolf-production/human-counterpart-reference.png) ve [insan üretim brifi](../../art/characters/grey-wolf-production/HUMAN-PROMPT-EN.txt) kaydedildi; bunlar henüz rigli 3B insan varlığı değildir.
+## Görsel olarak açık kalan işler
 
-Oyunun kaynak kodunda sağ/sol saldırı sırası, sadece kabul edilmiş vuruşta ilerleme ve tarafa göre pençe izi eklendi. Mevcut eski çift kollu klip için taraf maskesi oluşturulur; yeni varlıkta özel `WolfClawRight/Left` varsa onlar korunur. Bu uyumluluk katmanı yeni karakterin tamamlanmış profesyonel saldırı animasyonu olarak sunulmaz. Yeni yürüyüş klipleri, insan 3B modeli ve yeni karaktere özel saldırı klipleri henüz üretilmedi. Yeni ücretli Meshy görevi gönderilmedi; önceki tek kurt iş kaydı otomatik olarak iki karakterlik onay sayılmaz.
+Gerçek modelin ön ve yan görüntüleri incelendi. Yüz, kaslı gövde, gri kürk, kamuflaj pantolon, kemer, kılıf ve kahverengi sargı onaylı yönle önceki beyaz prototipten daha uyumlu. Bu karşılaştırma modelin nihai kabulü değildir.
 
-### Bu turdaki uygulama ve doğrulama
+- Teknik A-pozunda eller hâlâ fazla açık. Doğal yarı kapalı bekleme pozu ve parmak kontrolü hazırlanmalı.
+- Yele özellikle yan silüette hâlâ iri ve sivri; kontrollü kürk kümelerine indirilmeli.
+- Gövdenin yanındaki küçük açıklıklar, ağız/diş parçaları ve gerçek çene ayrımı incelenmeli. Ayrı çene hareketi henüz yapılmadı.
+- Omuz, dirsek, bilek, kalça ve diz bükülmeleri için yeni iskelet, ağırlıklar ve hareket testleri yapılmadı.
+- `WolfIdle`, `WolfWalk`, `WolfRunQuad`, `WolfRoar`, `WolfRoll`, `WolfJump`, `WolfClawRight/Left` yeni modele ait hazır klipler değildir.
+- Menü ve arena aynı son rigli GLB'yi kullanmalı; dört açı ve hareketin tüm fazları kontrol edilmeli.
+- Yeni APK yayımlanmadı; mevcut yayımlanan sürüm değiştirilmedi.
 
-- `tools/viewer/claw-combo.js`: kabul edilen vuruşlarda sağ/sol sırası; geçersiz basış sırayı ilerletmez. Yeni modele ait özel taraf klipleri korunur; eski `WolfClaw` için karşı kol izleri klipten çıkarılan bir uyumluluk maskesi oluşturulur.
-- Arena, vuruş tarafına uygun klibi ve pençe izi yönünü kullanır. Mevcut tek temas/tek hasar ve siper kontrolü korunur.
-- `motion.js`, yeni `WolfWalk/HumanWalk` kliplerini ve `walk_stride_m` verisini okuyabilir; gerçek ilerleme hızına göre klip hızını ayarlar. Eski klipler için mevcut 3,6 m/sn kalibrasyon varsayımı uyumluluk olarak kalır; bu eski kliplerin yeni gerçekçi yürüyüş olduğu anlamına gelmez. Yeni kliplerde gerçek adım mesafesi kaydedilmelidir.
-- İnsan birinci şahıs el/silah salınımı artık yalnız geçen zamana göre ilerlemez: yerde kat edilen mesafeden faz alır, duruşta ve havada yumuşakça söner. Bu, tam bedenin pelvis/göğüs animasyonunun yerine geçmez.
-- `node tools/test_walk_contract.mjs`: yeni yürüyüş seçimi, mesafe/süre kalibrasyonu, eski klip uyumluluğu geçti.
-- `node tools/test_claw_combo.mjs`: sıra ve tek etkin kol maskeleri geçti.
-- `python tools/verify_claw_combo.py`: gerçek arena üzerinde sağ/sol, reddedilen basış, basılı tutmada sağ/sol/sağ, ilk saldırıda tek hasar, sol el izi ve insan salınımının duruşta sönmesi geçti. JavaScript hata listesi boş. Kanıt: [claw-combo-test.json](claw-combo-test.json).
-- Web varlık paketi yeniden derlendi. Yeni APK yayımlanmadı. İnsan görünüş referansı 2B'dir; yeni iki formun gerçek mesh/iskeletleri ve doğal tam beden yürüyüş/özel saldırı klipleri açık iştir.
+## Orijinal karakter dosyalarıyla devam etme
+
+Kullanıcı orijinal Wolfteam karakter dosyalarını yüklemeyi önerdi. İskeleti, kemik ağırlıkları ve özgün klipleri içeren kaynak dosyalar, video karelerinden yeniden hareket tahmininden çok daha doğrudan bir çalışma zemini sağlar. Dosya gelmeden içeriği veya sorunsuz aktarılacağı varsayılmaz. Yeni ücretli üretim bu öneriyle otomatik olarak yetkilendirilmiş sayılmaz.
+
+Tercih edilen içerik ve aktarım sırası [ORIGINAL-ASSET-IMPORT-TR.md](ORIGINAL-ASSET-IMPORT-TR.md) içinde kaydedildi. İlk denemede model, özgün iskelet/ağırlık/klipleriyle beraber açılacak; kolları bozan eski rig veya elle yazılmış pozlar üzerine hemen bindirilmeyecek. Yerel model doğru, oyun görünümü bozuksa koordinat, bind/rest matrisleri, animasyon karışımı ve GLB aktarımı incelenecek.
+
+## Korunan oyun kodu ve mevcut doğrulamalar
+
+Bu kaynak model hazırlığı oyun içi donanım, sahiplik, kredi veya kayıt verilerini değiştirmez. Önceki turda yapılan ortak sistem işleri:
+
+- `tools/viewer/claw-combo.js`: yalnız kabul edilen vuruşlarda sağ/sol sırası ilerler. Yeni modelin özel sağ/sol klipleri korunur. Eski çift kollu `WolfClaw` için karşı kol izlerini çıkartan uyumluluk maskesi vardır; yeni profesyonel klip yerine geçmez.
+- Arena uygun tarafın klibini ve pençe izini kullanır; tek temas/tek hasar ve siper kontrolü korunur.
+- `motion.js`: `WolfWalk/HumanWalk` ve `walk_stride_m` desteklenir; gerçek ilerleme hızıyla klip süresi ilişkilendirilir. Eski 3,6 m/sn kalibrasyon uyumluluğu yeni gerçekçi yürüyüş sayılmaz.
+- İnsan birinci şahıs el/silah salınımı yerde kat edilen mesafeden faz alır; duruşta/havada söner. Bu, tam beden yürüyüşü değildir.
+- `node tools/test_walk_contract.mjs`, `node tools/test_claw_combo.mjs` ve gerçek arena üzerinde `python tools/verify_claw_combo.py` geçti. [claw-combo-test.json](claw-combo-test.json) eski varlıklarla ortak davranışları doğrular; yeni Meshy kurdunun animasyon onayı değildir.
+
+## Brifler, insan formu ve bütçe sınırı
+
+[Ana Türkçe prompt](MASTER-PROMPT-TR.md), [İngilizce model brifi](../../art/characters/grey-wolf-production/MODEL-PROMPT-EN.txt), [negatif prompt](../../art/characters/grey-wolf-production/NEGATIVE-PROMPT.txt) ve ayrı 600 karakterlik doku promptu üretim/kabul kapsamını taşır. Image-to-3D genel geometri promptu almadığından bütün metin bir API parametresiymiş gibi sunulmaz.
+
+[İnsan karşılığı referansı](../../art/characters/grey-wolf-production/human-counterpart-reference.png) ve [brifi](../../art/characters/grey-wolf-production/HUMAN-PROMPT-EN.txt) hazırdır; **2B konsepttir, rigli 3B insan değildir**. Ayrı ücretli üretimi başlatılmadı.
+
+İlk istek `remove_lighting` seçeneğinin Smart Topology'de desteklenmemesi nedeniyle HTTP 400 ile reddedildi; görev oluşturulmadı, bakiye 950 kaldı. Aynı işlem anahtarıyla farklı gövde reddedildikten sonra, yalnız desteklenmeyen seçenek çıkarılarak ayrı düzeltilmiş işlem kaydıyla tek faturalı görev oluşturuldu. Gerçek tüketim 15'tir. CLI cihaz oturumu `NODE_USE_ENV_PROXY=1` ile mevcut proxy/CA güveni korunarak tamamlandı; kimlik bilgileri okunmadı veya yayımlanmadı.

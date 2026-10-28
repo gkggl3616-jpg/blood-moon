@@ -1,6 +1,6 @@
 {
-  "status": "PREPARED_NOT_SUBMITTED",
-  "new_credit_spend_authorized": false,
+  "status": "WORKING_SOURCE_PREPARED_NOT_RIGGED",
+  "new_credit_spend_authorized": true,
   "scope": "one new grey-wolf textured game model; no paid rigging, rerun or extra variant",
   "runner": "npm exec --yes --package=meshy-cli@0.4.0 -- meshy",
   "cli_argv": [
@@ -22,8 +22,6 @@
     "2k",
     "--texture-prompt",
     "Match the approved reference: directional charcoal-grey fur, lighter silver chest and abdomen, darker forearms, pale hands and small chin tuft, narrow cyan eyes, black nose, ivory fangs and claws. Olive-brown camouflage trousers, dark tactical belt, black thigh holster, brown leather forearm wrap at image right. Matte fur, coarse cloth, flexible leather and restrained metal. No ice armour, royal clothing, extra tattoos, baked lighting or magical effects.",
-    "--remove-lighting",
-    "true",
     "--target-formats",
     "glb",
     "--async",
@@ -33,7 +31,9 @@
     "v1",
     "--format",
     "json",
-    "--no-update-check"
+    "--no-update-check",
+    "--data",
+    "{\"ai_model\":\"meshy-t2\"}"
   ],
   "reference": "art/characters/grey-wolf-production/fullbody-natural-pose.png",
   "reference_sha256": "73be93e059db54125af895b3ef4c6b9d0bb459b9c78de329ac41ef6048f9a9e1",
@@ -44,10 +44,10 @@
     "read_date": "2026-10-28",
     "configuration": "Image to 3D, meshy-t2, 2K textures",
     "planner_default_standard_credits": 30,
-    "actual_consumed_credits": null
+    "actual_consumed_credits": 15
   },
-  "account": "stored OAuth session expired; current balance unknown",
-  "submission_task_id": null,
+  "account": "OAuth verified; 950 credits before request",
+  "submission_task_id": "01a18237-eaff-7570-ada6-a9738305ab6b",
   "master_prompt_note": "The detailed brief governs the production and Blender checks. Image-to-3D has no general geometry prompt flag; only its supported image/pose/topology options and <=600-character texture prompt are sent. Do not pretend the entire master brief is an API parameter.",
   "pose_quality_requirement": "Natural semi-closed hands and organic supported feet per latest user correction. Technical A-pose must not force wide open fingers; inspect actual geometry before accepting.",
   "additional_requested_assets": [
@@ -71,5 +71,33 @@
     "HumanIdle",
     "HumanWalk"
   ],
-  "runtime_preparation": "Alternating attack selection, one-arm legacy masks, side-specific trails, stride-aware walk playback, distance-driven first-person sway implemented and tested. New model-specific authored clips remain pending."
+  "runtime_preparation": "Alternating attack selection, one-arm legacy masks, side-specific trails, stride-aware walk playback, distance-driven first-person sway implemented and tested. New model-specific authored clips remain pending.",
+  "authorization": {
+    "user_message": "Promptu oku ve Başla",
+    "scope": "Start the previously quoted 15-credit SINGLE wolf generation. No additional human generation, paid rigging, rerun or variant is authorized.",
+    "attached_brief_sha256": "316cead6930522bc2425ad783843a88be1a42702b455563e3f3d68c0c047bb5f",
+    "date": "2026-10-28"
+  },
+  "operation_id": "grey-wolf-approved-20261028-02-corrected",
+  "validation_correction": {
+    "http_status": 400,
+    "message": "remove_lighting unsupported for smart-topology; omit flag",
+    "accepted_task": false,
+    "balance_after_rejection": 950
+  },
+  "rejected_operation": {
+    "id": "grey-wolf-approved-20261028-01",
+    "state": "rejected",
+    "task_id": null,
+    "reason": "HTTP 400 unsupported remove_lighting; corrected request is different payload",
+    "balance_after_rejection": 950
+  },
+  "project_dir": "/workspace/rogue-blood-moon/art/characters/grey-wolf-production/meshy_output/20261028_111512_grey-wolf-approved_01a18237",
+  "source_model": "art/characters/grey-wolf-production/grey-wolf-source.glb",
+  "source_preview": "art/characters/grey-wolf-production/meshy-preview.png",
+  "working_blend": "art/characters/grey-wolf-production/working/grey-wolf-working.blend",
+  "working_glb": "art/characters/grey-wolf-production/working/grey-wolf-working.glb",
+  "preparation_report": "art/characters/grey-wolf-production/working/preparation-report.json",
+  "actual_triangles": 14749,
+  "ready_for_game": false
 }

@@ -1,5 +1,10 @@
 {
-  "verified": false,
-  "balance": null,
-  "reason": "OAuth token expired and refresh failed; login required before balance verification or submission"
+  "verified": true,
+  "date": "2026-10-28",
+  "balance_before_submission": 950,
+  "actual_consumed_credits": 15,
+  "balance": 935,
+  "task_id": "01a18237-eaff-7570-ada6-a9738305ab6b",
+  "scope": "single textured unrigged wolf; no paid rigging or additional asset",
+  "verification": "authenticated Meshy CLI balance and completed task consumed_credits"
 }
