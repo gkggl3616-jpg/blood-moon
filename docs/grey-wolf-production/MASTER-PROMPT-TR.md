@@ -2,7 +2,7 @@
 
 ## 1. Yetkili görsel yön ve kapsam
 
-Bu işin hedefi, kullanıcının son gönderdiği koyu gri Wolfteam kurt görselini esas alan, güçlü anatomili ve animasyona uygun gerçek bir 3B oyun karakteridir. Onaylanan büyük/net görsel: `art/characters/reference/grey-wolf-faithful-large.png`.
+Bu işin hedefi, kullanıcının son gönderdiği koyu gri Wolfteam kurt görselini esas alan, güçlü anatomili ve animasyona uygun gerçek bir 3B oyun karakteridir. Onaylanan kimlik görseli: `art/characters/reference/grey-wolf-faithful-large.png`. Son el/ayak duruşu düzeltmesi: `art/characters/grey-wolf-production/fullbody-natural-pose.png`.
 
 Açık renk, pürüzsüz, oyuncak veya insan mankenine benzeyen son yerel prototip kullanıcı tarafından reddedildi. Onun kafa, yüz, kostüm ve silüetini yeni karakterin temeli yapma. Referansı yalnız renk paleti olarak yorumlama. Referansın karakter oranları, yüzü, silüeti, kürkü, kıyafetleri ve el biçimi birlikte hedef alınacak.
 
@@ -17,7 +17,7 @@ Açık renk, pürüzsüz, oyuncak veya insan mankenine benzeyen son yerel protot
 - Pektoral, deltoid, trapez, latissimus, karın ve oblik kasların yönleri kürkün altında okunabilsin. Kasları birbirinden ayrılan zırh plakaları gibi modelleme.
 - Baş, boyun ve omuzların sınırları önden, yandan ve arkadan ayrı seçilsin. Boynu saklayan dev bir yele yapma.
 - Üst kol ve ön kol dolgun; ön kollar referanstaki gibi iri ve uzun; bilek geçişi güçlü fakat hareket edebilir olsun. Dirsekleri yanlara fırlayan sürekli bir kanat duruşu oluşturma.
-- Elleri referanstaki gibi büyük ve tehditkâr tasarla. Parmak boğumları, avuç, karşılayan başparmak ve fildişi pençeler okunabilsin. Parmaklar birbirine kaynamasın, birbirini kesmesin veya ince çubuklara dönüşmesin.
+- Elleri referanstaki gibi büyük ve tehditkâr tasarla. Parmak boğumları, avuç, karşılayan başparmak ve fildişi pençeler okunabilsin. Parmaklar birbirine kaynamasın, birbirini kesmesin veya ince çubuklara dönüşmesin. Oyun bekleme duruşunda eller tam açık ve parmaklar yelpaze gibi ayrık olmasın: ağır eller hafif çukur, yarı kapalı ve doğal kıvrımlı dursun. Başparmak kıvrık işaret parmağına karşı gelsin; yüzük ve küçük parmak biraz daha bükülü, bilek ön kolun doğal devamı olsun.
 - Uyluk ve baldırlar güçlü; diz ve ayak bileği yönleri tutarlı olsun. Tam boy kaynakta görünmeyen alt bacaklar aynı anatomik dili sürdürsün: kamuflaj pantolondan çıkan koyu kürklü alt bacaklar ve geniş pençeli kurt ayakları. Bu bölümün ilk görselde ölçülmediğini kaydet.
 - Başlangıç çalışma ölçeği yaklaşık 2,4 metre olsun; bu yerel sanat/oyun ayarıdır, referanstan ölçülmüş boy değildir. Daha büyük önizleme isteğini yalnız dünya ölçeğini artırıp kamerayı kırparak çözme; karakter ekranda büyük ve tam görünmeli.
 
@@ -46,7 +46,7 @@ Açık renk, pürüzsüz, oyuncak veya insan mankenine benzeyen son yerel protot
 
 ## 3. Animasyona uygun modelleme ve topoloji
 
-Önce nötr A duruşunda oranları, eklemleri ve silüeti kur. Omuzdan dirseğe kadar yüzeyi tesadüfî üçgenlerle doldurma; bükülme çevresinde düzenli yüzey halkaları kullan.
+Önce teknik nötr A duruşunda oranları, eklemleri ve silüeti kur. Bu teknik iskelet pozu, oyun beklemesinde parmakları tamamen açma veya bacakları robot gibi kilitleme talimatı değildir. Görsel hedef doğal yarı kapalı eller ve yere ağırlık veren organik duruştur. Omuzdan dirseğe kadar yüzeyi tesadüfî üçgenlerle doldurma; bükülme çevresinde düzenli yüzey halkaları kullan.
 
 - Ana deri yüzeyi bağlı, temiz ve yönleri tutarlı olsun. Omuz–kol bağlantısı birbiri içine sokulmuş kopuk küre ve silindirlerden ibaret olmasın.
 - Omuzun kol kaldırma ve öne uzanma hareketleri için deltoid, koltuk altı, köprücük ve kürek kemiği çevresinde yeterli yüzey akışı bulunmalı.
@@ -72,7 +72,7 @@ Kök, pelvis, bel, göğüs, boyun ve baş için ayrı kontrol; iki omuz/köprü
 
 ### Bekleme
 
-Ayaklar dengeli, dizler hafif esnek, eller ağır, dirsekler hafif bükülü. Gövde hafif öne hazır; baş tek başına düşürülmüş kambur görünüm yok. Nefes küçük ve kontrollü; ayak kayması veya sürekli havada kalan bacak yok.
+Ayaklar dengeli, dizler hafif esnek, eller ağır, dirsekler hafif bükülü. İki ayak robot gibi kusursuz paralel ve özdeş konumda olmasın: birkaç derece dışa yönelim, bir ayakta küçük ilerilik ve hafif 55/45 ağırlık dağılımı olabilir. Ayak parmakları da mekanik bir yelpaze gibi açılmasın; pençeli kurt ayağı korunurken yük taşıması doğal olsun. Gövde hafif öne hazır; baş tek başına düşürülmüş kambur görünüm yok. Nefes küçük ve kontrollü; ayak kayması veya sürekli havada kalan bacak yok.
 
 ### Kükreme
 

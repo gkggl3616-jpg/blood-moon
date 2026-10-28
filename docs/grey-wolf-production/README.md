@@ -13,3 +13,7 @@ Bu görsel 2B üretim referansıdır. Ayaklar ve alt bacaklar, ilk referans kadr
 **Başlatılmayan:** yeni ücretli 3B görev; bu iş için görev ID'si ve gerçek tüketim henüz yok. Kullanıcının önceki ana kapsamındaki "yeni ücretli üretim gerekiyorsa kapsam ve gerçek maliyeti belirt; eski bütçeyi sınırsız yeni üretim izni sayma" talebi nedeniyle bu yeni harcama ayrıca onaylanacak.
 
 Sonraki uygulama sırası: onay → gerekirse cihaz girişi ve bakiye kontrolü → tek asenkron üretim → sonucu ve gerçek maliyeti kaydetme → model ve önizleme indirme → referans benzerliği ve gerçek yüzey/UV kontrolü → Blender'da topoloji/çene/parmak/iskelet düzeltmeleri → tam hareket ve yeniden yüklenen GLB testleri → oyuna entegrasyon. Teknik veya görsel kalite geçmezse model tamamlandı diye sunulmayacak; otomatik ücretli tekrar yapılmayacak.
+
+## Son el ve ayak düzeltmesi
+
+Kullanıcı tam açık parmakları ve mekanik ayak duruşunu reddetti. Yeni [doğal duruş referansı](../../art/characters/grey-wolf-production/fullbody-natural-pose.png) bu noktada önceki tam boy A-pozu görselinin yerini alır. Eller yarı kapalı, parmaklar kademeli kıvrık, bilekler doğal; dizler esnek ve ağırlık dağılımı hafif asimetriktir. A-pozu teknik iskelet gereksinimi olarak kalabilir, ancak açık mekanik eller görsel hedef değildir. Ana prompt, İngilizce brif, negatif prompt ve henüz gönderilmemiş üretim kaydı güncellendi. Yeni ücretli 3B görev başlatılmadı.
