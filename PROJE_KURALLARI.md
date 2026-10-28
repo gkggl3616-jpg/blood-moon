@@ -30,3 +30,5 @@
 - Kükreme referansı düzeltmesi: 08-04-29-656 kaydı yeni tam ana referanstır. Önceki 1,32–2,44 sn seçimi toparlanmayı erken kesmiştir. Kullanıcı bitişin yaklaşık yarım saniye sonrasını da istedi. Yeni kaydın bütün 38 karesi korunur; karşılaştırma hareket tamamlanmadan başa dönmez. Önceki Bilge çalışma klibi 1,2 sn’dir ve yeni referansa süre/poz uyarlaması henüz tamamlanmış sayılmaz.
 
 - Çalışma 02, yeni 08-04-29 kaydındaki görünür ilk açık kol pozundan başlar; 0–51 kare / 1,7 sn aralıkta son toparlanmayı da içerir. Tam 38 kareli kaynak korunur ve karşılaştırma erken tekrarlanmaz. Güncel çalışma docs/bilge-roar-study-02/README.md içindedir; çalışma 01 kesiti tarihî/geçersiz kabul edilir. Bu, APK veya görsel onay değildir.
+
+- Kullanıcı çalışma 02 kollarını/animasyonunu da yetersiz buldu; efektli ve referansa çok yakın sonuç istiyor. Rigify Blender içinde etkinleştirildi; yeni Bilge rig’i henüz hazırlanmadı. Ön kol ad eşleme hatası kaynakta düzeltildi, varlıklar yeniden üretilmedi. Araç seçimi ve açık durum: docs/animasyon-araclari-ve-kol-sorunu.md. Ücretli eklenti veya Meshy işlemi yapılmadı.

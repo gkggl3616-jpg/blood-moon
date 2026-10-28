@@ -218,7 +218,7 @@ for profile in profiles:
      jaw=(np.abs(x)<.047)&(y<-.10)&(z>.815)&(z<.849);dist[jaw,j]=.001*h
     elif legacy_face:
      jaw=(np.abs(x)<.05)&(y<-.112*face_depth)&(z>.79)&(z<.824);dist[jaw,j]=.001*h
-   elif any(s in name for s in ['Arm','Hand','Clavicle','Digits']):
+   elif any(part in name.lower() for part in ['arm','hand','clavicle','digits']):
     side=1 if name.endswith('L') else -1;ss='L' if side==1 else 'R'
     # Paint the A-pose hand/arm domain explicitly. A pure nearest-bone rule
     # attached skirt panels at x=.17,z=.32 to finger bones at x=.25,z=.37.

@@ -117,3 +117,5 @@ Kol hedeflerini tekrar ayarlamak, referans hareketin gücünü üretmedi; kullan
 - Çalışma 01 karşılaştırmasının kaynak kesiti kullanıcıya göre kükremenin sonunu erken kesiyordu. Sonraki 08-04-29 kaydı tam ana referans oldu. Karşılaştırma yeni kaydın tamamını ve 38 kareyi kullanır; dar kadraj kaldırıldı, erken tekrar engellendi. Mevcut 1,2 sn çalışma sağ panelde eski çalışma olarak etiketlidir; yeni süreyle eşleştiği iddia edilmez.
 
 - Tam kaynak düzeltmesinin uygulaması çalışma 02 içinde: 1,7 sn eylem, yeni görünür ilk açık kol pozu ve tamamlanan toparlanma. Önceki çalışma 01 karşılaştırması tarihî yanlış kesit olarak işaretlendi; güncel video 02 kullanılır.
+
+- Ön kol sınıflandırmasının kaynak hatası bulundu: büyük/küçük harfe duyarlı `Arm` araması `ForearmL/R` kemiklerini kapsamıyordu. `name.lower()` ile kol zincirinin tamamı kapsandı. Mevcut GLB/çalışma kollarının düzeldiği iddia edilmez; ağırlıkların yeniden üretilmesi ve gerçek deformasyon kontrolü gerekir. Kullanıcı çalışma 02’yi de reddetti.
