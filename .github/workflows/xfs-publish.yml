@@ -1,0 +1,36 @@
+name: Publish tested XFS Browser
+on:
+  push:
+    paths: ['.github/workflows/xfs-publish.yml']
+permissions:
+  contents: write
+  actions: read
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: XFS-Gezgini-Windows
+          run-id: 40719305472
+          github-token: ${{ github.token }}
+          path: package
+      - name: Publish verified executable
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          cat > notes.md <<'EOF'
+          LTB/DTX ve diğer dosya türlerini filtreleyen, salt okunur XFS masaüstü tarayıcısı.
+
+          Tam yol/ad araması, 200 satırlık sayfalama, çoklu seçim, arka planda çıkarma, iptal, CSV ve metin/hex önizleme içerir. Python kurulumu gerektirmez.
+
+          Windows testleri ve paketlenmiş EXE açılış testi geçti. Kullanıcının gerçek Wolfteam arşivi henüz bu okuyucuyla denenmedi. 3B önizleme ve repack bu sürümde yoktur. EXE kod imzalı değildir.
+
+          Doğrulanan kaynak: 2099d747cfbd841ef58d78134e179307ee01a6f3
+          Derleme: https://github.com/gkggl3616-jpg/blood-moon/actions/runs/40719305472
+          EOF
+          mapfile -t assets < <(find package -type f \( -name 'XFS-Gezgini.exe' -o -name 'XFS-Gezgini-Windows.zip' -o -name 'KULLANIM.md' -o -name 'SHA256.txt' \))
+          test "${#assets[@]}" -eq 4
+          gh release create xfs-browser-v0.1.0 "${assets[@]}" --target 2099d747cfbd841ef58d78134e179307ee01a6f3 --title 'XFS Gezgini 0.1.0 — Windows' --notes-file notes.md --prerelease --latest=false
