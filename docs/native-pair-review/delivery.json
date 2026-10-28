@@ -1,0 +1,10 @@
+{
+  "apk": "Rogue-Blood-Moon-v0.1.15.apk",
+  "sha256": "a2aff0c03d4aace437b56da0ffd468e568f80780115afbfcfb576c04084c9f1d",
+  "size_bytes": 89027054,
+  "certificate_sha256": "af43be4b6ee4d5b2e1feca6da3df36805a7b10bbb56b1f884136054ef7f98633",
+  "CI": "40732213876",
+  "runtime_models_match": true,
+  "standalone": true,
+  "device_tested": false
+}

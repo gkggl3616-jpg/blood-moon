@@ -234,3 +234,12 @@ Yeni çalışma dosyaları: `art/3d/native-pair/guardian-wolf.blend`, `.glb`, `g
 `20261028-1657-23.0142458.mp4` (918×618, 18.569.538 bayt) alındı. 5 saniye aralıkla 12 kare çıkarılıp OCR ve görüntüyle kontrol edildi; bu aralıklı örnekleme hızla geçen her dosyanın tespit edildiği iddiası değildir. Kareler `docs/native-pair-review/search-video/` altında.
 
 İlk bölüm `wt_interface/item/...special...` DTX kartları; yaklaşık 27,5 saniye `cherokee_axe_runes` balta UI/PV/HH LTB ve dokuları; yaklaşık 32,5 saniye `Root/wt_attributes/wolfvars.dat`, `aiwolfdata.dat`, `wolfsound.dat`, `wolfparts.dat`; sonra harita/path ve `wt_charparts/models` ekipmanları, pençe LTA/LTB ve ekipman DTX'leri görünüyor. Bu kayıtta gerçek dört ayak koşu/takla dosyası doğrulanmadı. Balta modeli veya özel paket kartı animasyon diye içe aktarılmayacak. Kullanıcıdan boş ad filtresi + `.ltb` uzantısı ile `Filtre Listesini CSV Kaydet` çıktısı istendi; tüm XFS'yi yüklemesi gerekmiyor.
+
+## Yayımlanan deneme dosyaları ve aktarım engeli
+
+- Android CI `40732213876` başarılı: arayüz, düz arena, mevcut referans hareket testleri, tek APK derleme ve imza doğrulaması geçti.
+- APK: https://github.com/gkggl3616-jpg/blood-moon/releases/download/prototype-v0.1.15-21/Rogue-Blood-Moon-v0.1.15.apk
+- Model GLB + düzenlenebilir BLEND paketi: https://github.com/gkggl3616-jpg/blood-moon/releases/download/native-pair-preview-01/Bilge-Native-Cift-DENEME.zip
+- Yayımlanan arşiv ve APK tekrar indirildi. Arşiv içindeki SHA-256 değerleri, APK CRC'si, yeni GLB'lerin paketle byte eşitliği ve eski yayımlanan sertifika kontrol edildi. Ayrıntı `docs/native-pair-review/delivery.json`. Fiziksel telefon testi yapılmadı. Sanat/animasyon açık işleri önceki bölümdeki gibi duruyor.
+
+Kullanıcının `wt models, wt charts ,models.rar` dosyası (`file_000000009eac820aa20a3e4c2cdaa8e6`) alıntısı geldi. İndirme aracı **file exceeds the executor transfer limit of 32 MiB** hatası verdi. Yerel çalışma alanında bu arşivin kopyası bulunmadı; dolayısıyla içindekiler henüz listelenemedi veya doğrulanamadı. Kullanıcıdan indirmeye açık bağlantı veya 30 MB WinRAR ciltleri istendi. Eksiksiz arşiv gelince ana gövde/hareket/doku ayrımı, native klip adaylarının incelenmesi ve doğru dört ayak koşu/takla eşlemesi sürdürülecek. Arşiv adı tüm ihtiyaçların bulunduğunun teknik doğrulaması sayılmadı.
