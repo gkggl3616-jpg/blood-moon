@@ -1,0 +1,43 @@
+name: XFS Browser Windows
+on:
+  push:
+    paths:
+      - 'desktop/xfs_browser/**'
+      - '.github/workflows/xfs-browser.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  windows:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Core and desktop interface tests
+        working-directory: desktop/xfs_browser
+        run: python -m unittest discover -s . -v
+      - name: Build standalone executable
+        working-directory: desktop/xfs_browser
+        run: |
+          python -m pip install pyinstaller==6.16.0
+          python -m PyInstaller --clean --noconfirm --onefile --windowed --name XFS-Gezgini app.py
+      - name: Package application
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path release
+          Copy-Item desktop/xfs_browser/dist/XFS-Gezgini.exe release/
+          Copy-Item desktop/xfs_browser/README.md release/KULLANIM.md
+          Get-FileHash release/XFS-Gezgini.exe -Algorithm SHA256 | Format-List | Out-File release/SHA256.txt
+          Compress-Archive -Path release/* -DestinationPath XFS-Gezgini-Windows.zip
+      - uses: actions/upload-artifact@v4
+        with:
+          name: XFS-Gezgini-Windows
+          path: |
+            release/XFS-Gezgini.exe
+            release/KULLANIM.md
+            release/SHA256.txt
+            XFS-Gezgini-Windows.zip
+          retention-days: 30
