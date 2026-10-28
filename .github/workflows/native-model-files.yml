@@ -1,0 +1,34 @@
+name: Native character review files
+on:
+  push:
+    branches: [animation/native-pair-preview]
+    paths:
+      - '.github/workflows/native-model-files.yml'
+      - 'art/3d/native-pair/*.blend'
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Package editable files and checks
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import zipfile,hashlib,json
+          r=Path('.');out=Path('model-delivery');out.mkdir()
+          files=[r/'art/3d/native-pair'/f for f in ['guardian-wolf.blend','guardian-human.blend','build-report.json']]+[r/'app/src/main/assets/models'/f for f in ['guardian-wolf.glb','guardian-human.glb']]+[r/'docs/native-pair-review'/f for f in ['README-TR.md','runtime-check.json','geometry-check.json']]+[r/'a.md']
+          with zipfile.ZipFile(out/'Bilge-Native-Cift-DENEME.zip','w',zipfile.ZIP_DEFLATED,compresslevel=4) as z:
+              for f in files:z.write(f,f.name)
+              z.writestr('SHA256.json',json.dumps({f.name:hashlib.sha256(f.read_bytes()).hexdigest() for f in files},indent=2))
+          PY
+      - name: Publish model files
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if gh release view native-pair-preview-01 >/dev/null 2>&1; then
+            gh release upload native-pair-preview-01 model-delivery/Bilge-Native-Cift-DENEME.zip app/src/main/assets/models/guardian-wolf.glb app/src/main/assets/models/guardian-human.glb --clobber
+          else
+            gh release create native-pair-preview-01 model-delivery/Bilge-Native-Cift-DENEME.zip app/src/main/assets/models/guardian-wolf.glb app/src/main/assets/models/guardian-human.glb --target "$GITHUB_SHA" --prerelease --title 'Native insan/kurt çifti — deneme dosyaları' --notes-file docs/release-v0115.md
+          fi
