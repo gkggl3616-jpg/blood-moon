@@ -1,0 +1,39 @@
+{
+  "approved_new_budget": 60,
+  "consumed_credits": 30,
+  "source_models": [
+    {
+      "form": "wolf",
+      "task_id": "01a1841d-613e-7186-9d4a-3f1b0de639ec",
+      "resource": "image-to-3d",
+      "project": "meshy_output/20261028_200509_bilge-original-wolf_01a1841d",
+      "consumed_credits": 15,
+      "model_type": "smart-topology",
+      "source_glb_sha256": "908993c25cdf27f362e758bd3308bf30ace75d51a9d904bc5fd2496a9d8104ac",
+      "reference": "art/characters/bilge-original/references/wolf-front.png",
+      "new_rigging_or_animation_task": false
+    },
+    {
+      "form": "human",
+      "task_id": "01a1841f-c961-7589-a721-fa95e6c95415",
+      "resource": "image-to-3d",
+      "project": "meshy_output/20261028_200757_bilge-original-human_01a1841f",
+      "consumed_credits": 15,
+      "model_type": "smart-topology",
+      "source_glb_sha256": "5b2b2c6cfa979f5ecc54f4ce4ad42e3c0cd2f2df5c1440c735bbdd7fa73f85d8",
+      "reference": "art/characters/bilge-original/references/human-front.png",
+      "new_rigging_or_animation_task": false
+    }
+  ],
+  "generation_complete": true,
+  "game_integration_complete": false,
+  "paid_regenerations": 0,
+  "scope": "Bilge original human/wolf pair; native skeletons and native animation keys retained; clothing DTX reference-only",
+  "runtime_asset_paths_connected": true,
+  "release_ready": false,
+  "quality_blockers": [
+    "Human wrist/cuff skin deformation remains visible; production acceptance not passed",
+    "Full source four-foot locomotion is not present in Ice40 selection; do not claim completion",
+    "Final Android certificate/update install and physical phone performance not validated"
+  ]
+}

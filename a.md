@@ -316,3 +316,16 @@ Dört kurt + dört insan eşi için `design-board-v1.png` özgün konsept paftas
 **Kükreme karakter başına değil model türüne göre ayrılır.** `T_CRY` kaynakları doğrudan okunup olaylar ve hareket verisi hash'lendi: Ice40 1933 ms/23 anahtar, R1_54 1500 ms/46, Power42/WT_NEW 1333 ms/41, Wraith58 1500 ms/55. Native efekt olayları sırasıyla 933, 500, 633 ve 1111 ms'de kaydedildi. Ham metinler asset verisidir, çalıştırılmadı. Aynı model türünü kullanan karakterler aynı kükremeyi paylaşır; bütün model türleri tek klibe zorlanmaz. Kaynak klip ve iskeletlere dokunulmadı. Kükreme efektinin önceki tam video referansı ve el alevi/dövme/sönme aşamaları korunacak; yeni zaman eşlemesi henüz oyuna bağlanmadı.
 
 Mevcut oyun GLB'lerindeki 23 görüntü, seçili 13 karakter DTX atlasının piksel hash'iyle kontrol edildi; eşleşme bulunmadı. Test yalnız seçili atlasları kapsar. Yeni Meshy ücretli işi başlatılmadı; ücretsiz CLI planlayıcısı 30 kredi/model tahmini verdi, bakiye OAuth süresi dolduğu için doğrulanamadı. Yeni maliyet onayı olmadan yeniden üretim yapılmayacak. Üretim sahnesine source giysi sokulmadı, bu tur APK değiştirilmedi.
+
+
+## 29 Ekim — Bilge özgün çift entegrasyonu / sürüm kalite kapısı
+
+60 yeni kredi onaylandı; iki özgün geometrinin gerçekleşen maliyeti toplam 30 kredi oldu. Üretim görevleri ve kaynak hash'leri `art/characters/bilge-original/production.json` içinde. Kaynak kıyafet dokuları yeni üretimde kullanılmadı. Yeni ücretli animasyon/rig yapılmadı.
+
+Ice40 kurt / Human47 insan GLB'leri Bilge model yollarına eklendi. Kaynak kemik ve animasyon anahtarları korunarak format dönüşümü yapıldı. Kükreme 1933 ms, efekt olayı 933 ms; kısa takla klibi 1000 ms. Ağız/diş, üç ayrı skin dövme yüzeyi ve ele bağlı pençe izi eklendi. Eski opt-in düğmesi kaldırıldı. Ayrıntı ve açık işler `docs/bilge-original-complete/DURUM-TR.md` dosyasında.
+
+İlk WebGL testi: gerçek koşu 8.400000000000064 m/sn (8 temel +%5 donanım), kısa takla 2.0125786163522097 m, kükremede ileri basılıyken durma, 1.933 sn kükreme ve 0.933 sn kaynak efekt olayı geçti. Envanter testi dokunma/fare, +%240 bağımsız bonus, kayıt/preset, satın alma ve silah oynanışını geçti. Test kayıtları ilgili dizinde. Geniş arena testinin ilk çalışması havada takla/iniş beklemesinde zaman aşımına uğradı; tek başına tekrar kontrol ediliyor. Son geometri değişikliklerinden sonra kontroller yeniden geçmeli.
+
+Kıyafet/kol deformasyonu ve zemine temas kalite kapıları sürüyor. Yeni APK henüz yayımlanmadı; cihaz performansı/kurulum/imza doğrulaması henüz yapılmadı. Bu kayıt tamamlandı beyanı değildir. Dört genel model tipinden yalnız Bilge'nin yeni özgün çiftinin entegrasyonu üzerinde çalışıldı. Kaynak Ice40 koşusu iki ayaklıdır; dört ayak koşu tamamlandı denmez.
+
+Son durum: geniş arena testi tek başına PASS; önceki havada takla/iniş zaman aşımı yeniden oluşmadı. Buna karşın insan bilek/kıyafet deformasyonu açık. `production.json` release_ready=false olarak işaretlendi. Bu çalışma için yeni APK yayımlanmadı.

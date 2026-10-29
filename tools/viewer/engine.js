@@ -32,11 +32,8 @@ export function pauseStage(name){if(active?.name===name)active=null;}
 export function pinAssets(keys){pins=new Set(keys);trimCache();}
 function disposeAsset(object){const geo=new Set(),mats=new Set(),textures=new Set();object.traverse(o=>{if(o.geometry)geo.add(o.geometry);for(const m of Array.isArray(o.material)?o.material:[o.material])if(m){mats.add(m);for(const v of Object.values(m))if(v?.isTexture)textures.add(v);}});geo.forEach(g=>g.dispose());mats.forEach(m=>m.dispose());textures.forEach(t=>t.dispose());}
 function trimCache(){for(const [key,value] of cache){if(cache.size<=2)break;if(!pins.has(key)){cache.delete(key);disposeAsset(value.scene);}}}
-export function cachedAsset(key,object){if(new URLSearchParams(location.search).get('nativePair')==='1')key=key==='bilge'?'guardian-wolf':key==='human-bilge'?'guardian-human':key;return cache.get(key)?.scene===object;}
+export function cachedAsset(key,object){return cache.get(key)?.scene===object;}
 export async function loadCharacter(key){
- const nativePair=new URLSearchParams(location.search).get('nativePair')==='1';
- if(nativePair&&key==='bilge')key='guardian-wolf';
- if(nativePair&&key==='human-bilge')key='guardian-human';
  if(cache.has(key)){const v=cache.get(key);cache.delete(key);cache.set(key,v);return v;}
  if(pending.has(key))return pending.get(key);
  const promise=loader.loadAsync('models/'+key+'.glb').then(gltf=>{gltf.scene.userData.motionClips=gltf.animations;cache.set(key,gltf);trimCache();return gltf;}).finally(()=>pending.delete(key));pending.set(key,promise);return promise;

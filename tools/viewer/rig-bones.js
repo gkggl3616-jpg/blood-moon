@@ -1,0 +1,5 @@
+const cache=new WeakMap();
+const normalize=name=>String(name).toLowerCase().replace(/[^a-z0-9]/g,'');
+const aliases={Head:['Head','DEF-head','Bip01 Head'],Neck:['Neck','DEF-neck','Bip01 Neck'],HandL:['HandL','DEF-hand.L','mixamorigHandL','mixamorigLeftHand','Bip01 L Hand'],HandR:['HandR','DEF-hand.R','mixamorigHandR','mixamorigRightHand','Bip01 R Hand'],ForearmL:['ForearmL','DEF-forearm.L','Bip01 L Forearm'],ForearmR:['ForearmR','DEF-forearm.R','Bip01 R Forearm'],UpperArmL:['UpperArmL','DEF-upper_arm.L','Bip01 L UpperArm'],UpperArmR:['UpperArmR','DEF-upper_arm.R','Bip01 R UpperArm'],FootL:['FootL','DEF-foot.L','Bip01 L Foot'],FootR:['FootR','DEF-foot.R','Bip01 R Foot']};
+export function rigBone(actor,name){if(!actor)return null;let bones=cache.get(actor);if(!bones){bones=new Map();actor.traverse(o=>{if(o.isBone)bones.set(normalize(o.name),o);});cache.set(actor,bones);}for(const key of aliases[name]||[name]){const bone=bones.get(normalize(key));if(bone)return bone;}return null;}
+export {normalize as normalizedBoneName};

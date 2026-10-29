@@ -45,7 +45,7 @@ with sync_playwright() as p:
         clip_distance=run['clipTime']/run['profile']['runDuration']*run['profile']['runStride']
         assert abs(clip_distance-run['distance'])<.025,(key,'stride drift',run,clip_distance)
         average_rate=run['clipTime']/run['seconds']
-        assert abs(average_rate-expected/8)<.005,(key,'old speed multiplier remains',run)
+        assert abs(average_rate-expected*run['profile']['runDuration']/run['profile']['runStride'])<.005,(key,'old speed multiplier remains',run)
         before=page.evaluate('()=>{const s=arenaDebug.state();if(!arenaDebug.action("roar"))throw new Error("roar blocked");return s;}')
         page.wait_for_function('()=>arenaDebug.state().effects.roarPhase>.5&&arenaDebug.state().effects.roarPhase<.72')
         peak=page.evaluate('arenaDebug.state()')
@@ -58,13 +58,23 @@ with sync_playwright() as p:
         elif key=='kultigin':assert rgb[0]>rgb[2]>rgb[1]
         elif key=='alparslan':assert rgb[0]>rgb[1]>rgb[2]
         else:assert rgb[2]>rgb[0]>rgb[1]
-        assert all(peak['joints'][hand][1]>peak['joints']['Head'][1]+.06 for hand in ['HandL','HandR']),(key,peak['joints'])
-        for side in ['L','R']:
-            a,e,w=[peak['joints'][joint+side] for joint in ['UpperArm','Forearm','Hand']]
-            u=[e[i]-a[i] for i in range(3)];v=[w[i]-e[i] for i in range(3)]
-            bend=math.degrees(math.acos(max(-1,min(1,sum(x*y for x,y in zip(u,v))/(sum(x*x for x in u)*sum(x*x for x in v))**.5))))
-            assert bend>65,(key,'straight raised arm',bend)
-            assert abs(e[0]-peak['position'][0])>abs(w[0]-peak['position'][0])+.06,(key,'missing inward forearm')
+        if peak.get('nativeClipContract'):
+            # Ice40's source roar keeps hands low. Do not demand the old authored
+            # overhead pose: check immutable limb lengths against the run pose.
+            assert abs(peak['effects']['nativeEventTime']-.933)<1e-6
+            assert peak['effects']['flameSprites']==6
+            for side in ['L','R']:
+                for a,b in [('UpperArm','Forearm'),('Forearm','Hand')]:
+                    length=lambda st:math.dist(st['joints'][a+side],st['joints'][b+side])
+                    assert abs(length(peak)-length(before))<.001
+        else:
+            assert all(peak['joints'][hand][1]>peak['joints']['Head'][1]+.06 for hand in ['HandL','HandR']),(key,peak['joints'])
+            for side in ['L','R']:
+                a,e,w=[peak['joints'][joint+side] for joint in ['UpperArm','Forearm','Hand']]
+                u=[e[i]-a[i] for i in range(3)];v=[w[i]-e[i] for i in range(3)]
+                bend=math.degrees(math.acos(max(-1,min(1,sum(x*y for x,y in zip(u,v))/(sum(x*x for x in u)*sum(x*x for x in v))**.5))))
+                assert bend>65,(key,'straight raised arm',bend)
+                assert abs(e[0]-peak['position'][0])>abs(w[0]-peak['position'][0])+.06,(key,'missing inward forearm')
         assert sum((a-b)**2 for a,b in zip(before['position'],peak['position']))<.0001,'held forward moved during roar'
         for stat,mult in [('damage',1.15),('defense',1.3),('speed',1.2)]:assert abs(peak['stats'][stat]-before['stats'][stat]*mult)<.001
         assert not page.evaluate('arenaDebug.action("roll")')
@@ -81,8 +91,8 @@ with sync_playwright() as p:
     assert page.evaluate('playWolfMotion("WolfRunQuad")')
     page.wait_for_function('()=>wolf3DInfo().actionTime>.1')
     preview=page.evaluate('wolf3DInfo()')
-    assert abs(preview['actionRate']-1.05)<.001
-    assert abs(preview['motionProfile']['runStride']-report[0]['measured_speed_mps']/1.05*16/30)<.002
+    assert abs(preview['actionRate']-8.4*preview['motionProfile']['runDuration']/preview['motionProfile']['runStride'])<.002
+    assert abs(preview['motionProfile']['roarDuration']-1.933)<1e-5
     assert not errors,errors
     (OUT/'reference-arena-verification.json').write_text(json.dumps({'wolves':report,'preview_run_rate':preview['actionRate'],'browser_errors':errors},indent=2))
     browser.close()

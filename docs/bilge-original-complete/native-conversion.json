@@ -1,0 +1,421 @@
+[
+  {
+    "form": "wolf",
+    "bones": 40,
+    "clips": [
+      {
+        "name": "LSt",
+        "key_count": 9,
+        "duration_ms": 866
+      },
+      {
+        "name": "LC",
+        "key_count": 27,
+        "duration_ms": 866
+      },
+      {
+        "name": "LCWR",
+        "key_count": 41,
+        "duration_ms": 1400
+      },
+      {
+        "name": "LCWB",
+        "key_count": 43,
+        "duration_ms": 1400
+      },
+      {
+        "name": "LCWF",
+        "key_count": 43,
+        "duration_ms": 1400
+      },
+      {
+        "name": "LCWL",
+        "key_count": 41,
+        "duration_ms": 1400
+      },
+      {
+        "name": "LCWFR",
+        "key_count": 43,
+        "duration_ms": 1400
+      },
+      {
+        "name": "LCWFL",
+        "key_count": 43,
+        "duration_ms": 1400
+      },
+      {
+        "name": "LCWBL",
+        "key_count": 43,
+        "duration_ms": 1400
+      },
+      {
+        "name": "LCWBR",
+        "key_count": 43,
+        "duration_ms": 1400
+      },
+      {
+        "name": "LJJ",
+        "key_count": 4,
+        "duration_ms": 133
+      },
+      {
+        "name": "LJL",
+        "key_count": 6,
+        "duration_ms": 267
+      },
+      {
+        "name": "LJT",
+        "key_count": 2,
+        "duration_ms": 33
+      },
+      {
+        "name": "LRF",
+        "key_count": 14,
+        "duration_ms": 733
+      },
+      {
+        "name": "LRR",
+        "key_count": 17,
+        "duration_ms": 733
+      },
+      {
+        "name": "LRL",
+        "key_count": 17,
+        "duration_ms": 733
+      },
+      {
+        "name": "LRFR",
+        "key_count": 23,
+        "duration_ms": 733
+      },
+      {
+        "name": "LRFL",
+        "key_count": 23,
+        "duration_ms": 733
+      },
+      {
+        "name": "LWR",
+        "key_count": 17,
+        "duration_ms": 733
+      },
+      {
+        "name": "LWB",
+        "key_count": 29,
+        "duration_ms": 933
+      },
+      {
+        "name": "LWF",
+        "key_count": 29,
+        "duration_ms": 933
+      },
+      {
+        "name": "LWL",
+        "key_count": 14,
+        "duration_ms": 733
+      },
+      {
+        "name": "LWFR",
+        "key_count": 29,
+        "duration_ms": 933
+      },
+      {
+        "name": "LWFL",
+        "key_count": 29,
+        "duration_ms": 933
+      },
+      {
+        "name": "LWBL",
+        "key_count": 29,
+        "duration_ms": 933
+      },
+      {
+        "name": "LWBR",
+        "key_count": 29,
+        "duration_ms": 933
+      },
+      {
+        "name": "UMC",
+        "key_count": 27,
+        "duration_ms": 866
+      },
+      {
+        "name": "UMJJ",
+        "key_count": 4,
+        "duration_ms": 133
+      },
+      {
+        "name": "UMJL",
+        "key_count": 6,
+        "duration_ms": 267
+      },
+      {
+        "name": "UMJT",
+        "key_count": 2,
+        "duration_ms": 33
+      },
+      {
+        "name": "UMRF",
+        "key_count": 14,
+        "duration_ms": 733
+      },
+      {
+        "name": "UMRR",
+        "key_count": 17,
+        "duration_ms": 733
+      },
+      {
+        "name": "UMRL",
+        "key_count": 17,
+        "duration_ms": 733
+      },
+      {
+        "name": "UMWR",
+        "key_count": 17,
+        "duration_ms": 733
+      },
+      {
+        "name": "UMWF",
+        "key_count": 29,
+        "duration_ms": 933
+      },
+      {
+        "name": "UMWB",
+        "key_count": 29,
+        "duration_ms": 933
+      },
+      {
+        "name": "UMWL",
+        "key_count": 14,
+        "duration_ms": 733
+      },
+      {
+        "name": "UMCWR",
+        "key_count": 41,
+        "duration_ms": 1400
+      },
+      {
+        "name": "UMCWB",
+        "key_count": 43,
+        "duration_ms": 1400
+      },
+      {
+        "name": "UMCWF",
+        "key_count": 43,
+        "duration_ms": 1400
+      },
+      {
+        "name": "UMCWL",
+        "key_count": 41,
+        "duration_ms": 1400
+      },
+      {
+        "name": "UMSt",
+        "key_count": 9,
+        "duration_ms": 866
+      },
+      {
+        "name": "T_WallRide",
+        "key_count": 17,
+        "duration_ms": 533
+      },
+      {
+        "name": "T_wallRide2",
+        "key_count": 27,
+        "duration_ms": 866
+      },
+      {
+        "name": "T_DFHS1",
+        "key_count": 83,
+        "duration_ms": 2733
+      },
+      {
+        "name": "T_DFBS1",
+        "key_count": 57,
+        "duration_ms": 1866
+      },
+      {
+        "name": "T_DBBS1",
+        "key_count": 58,
+        "duration_ms": 1900
+      },
+      {
+        "name": "T_DBHS1",
+        "key_count": 65,
+        "duration_ms": 2133
+      },
+      {
+        "name": "T_DFBB1",
+        "key_count": 30,
+        "duration_ms": 967
+      },
+      {
+        "name": "T_DBBB1",
+        "key_count": 30,
+        "duration_ms": 967
+      },
+      {
+        "name": "LJA",
+        "key_count": 18,
+        "duration_ms": 1200
+      },
+      {
+        "name": "T_CRY",
+        "key_count": 23,
+        "duration_ms": 1933
+      },
+      {
+        "name": "UMTR",
+        "key_count": 13,
+        "duration_ms": 800
+      },
+      {
+        "name": "UMTH",
+        "key_count": 2,
+        "duration_ms": 34
+      },
+      {
+        "name": "UMTF",
+        "key_count": 15,
+        "duration_ms": 467
+      },
+      {
+        "name": "UMFi3",
+        "key_count": 15,
+        "duration_ms": 766
+      },
+      {
+        "name": "UMFi2",
+        "key_count": 7,
+        "duration_ms": 333
+      },
+      {
+        "name": "UMFi1",
+        "key_count": 9,
+        "duration_ms": 400
+      },
+      {
+        "name": "Ui_idle",
+        "key_count": 41,
+        "duration_ms": 1333
+      },
+      {
+        "name": "T_Specialatk",
+        "key_count": 31,
+        "duration_ms": 1000
+      },
+      {
+        "name": "T_Bodyatk",
+        "key_count": 28,
+        "duration_ms": 900
+      },
+      {
+        "name": "T_BodyatkL",
+        "key_count": 28,
+        "duration_ms": 900
+      },
+      {
+        "name": "T_BodyatkR",
+        "key_count": 28,
+        "duration_ms": 900
+      },
+      {
+        "name": "T_WallDash",
+        "key_count": 17,
+        "duration_ms": 533
+      },
+      {
+        "name": "T_WallDashL",
+        "key_count": 17,
+        "duration_ms": 533
+      },
+      {
+        "name": "T_WallDashR",
+        "key_count": 17,
+        "duration_ms": 533
+      },
+      {
+        "name": "UMDe",
+        "key_count": 41,
+        "duration_ms": 1333
+      },
+      {
+        "name": "T_WallDashAtk",
+        "key_count": 34,
+        "duration_ms": 900
+      }
+    ],
+    "max_pose_matrix_conversion_error_native_units": 1.150369644165039e-05,
+    "max_coordinate_scale_roundoff": 1.1801719665527344e-05,
+    "source_files_unchanged": true,
+    "resampled_keys": 0,
+    "quaternion_normalization": "Unit normalization required by glTF; original source quaternion floats and files remain unchanged",
+    "output_bytes": 22171848
+  },
+  {
+    "form": "human",
+    "bones": 47,
+    "clips": [
+      {
+        "name": "LSt",
+        "key_count": 27,
+        "duration_ms": 866
+      },
+      {
+        "name": "LJJ",
+        "key_count": 9,
+        "duration_ms": 766
+      },
+      {
+        "name": "LJL",
+        "key_count": 4,
+        "duration_ms": 100
+      },
+      {
+        "name": "LJT",
+        "key_count": 1,
+        "duration_ms": 0
+      },
+      {
+        "name": "LRF",
+        "key_count": 23,
+        "duration_ms": 726
+      },
+      {
+        "name": "LWF",
+        "key_count": 31,
+        "duration_ms": 726
+      },
+      {
+        "name": "URi1RF",
+        "key_count": 23,
+        "duration_ms": 733
+      },
+      {
+        "name": "URi1Fi",
+        "key_count": 9,
+        "duration_ms": 266
+      },
+      {
+        "name": "URi1Re",
+        "key_count": 81,
+        "duration_ms": 1666
+      },
+      {
+        "name": "URi1WF",
+        "key_count": 31,
+        "duration_ms": 1000
+      },
+      {
+        "name": "UI_Default_Idle",
+        "key_count": 50,
+        "duration_ms": 1633
+      }
+    ],
+    "max_pose_matrix_conversion_error_native_units": 5.662441253662109e-06,
+    "max_coordinate_scale_roundoff": 5.841255187988281e-06,
+    "source_files_unchanged": true,
+    "resampled_keys": 0,
+    "quaternion_normalization": "Unit normalization required by glTF; original source quaternion floats and files remain unchanged",
+    "output_bytes": 15595484
+  }
+]

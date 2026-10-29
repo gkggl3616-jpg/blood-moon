@@ -1,0 +1,37 @@
+[
+  {
+    "form": "wolf",
+    "source": "meshy_output/20261028_200509_bilge-original-wolf_01a1841d/source.glb",
+    "bones": 40,
+    "triangles": 13550,
+    "bind_matrix_error": 1.3574957847595215e-05,
+    "skin": {
+      "max_native_distance": 15.772425651550293,
+      "p95_native_distance": 10.539533615112305,
+      "unweighted": 0,
+      "method": "anatomical_heat_guides",
+      "heat_unweighted_vertices": 0,
+      "mouth": {
+        "seam_edges": 28,
+        "mouth_vertices": 432,
+        "jaw_bone": "Bip01 Ponytail2"
+      }
+    },
+    "animation_edits": false
+  },
+  {
+    "form": "human",
+    "source": "meshy_output/20261028_200757_bilge-original-human_01a1841f/source.glb",
+    "bones": 47,
+    "triangles": 10349,
+    "bind_matrix_error": 1.52587890625e-05,
+    "skin": {
+      "max_native_distance": 17.16244125366211,
+      "p95_native_distance": 9.991377830505371,
+      "unweighted": 0,
+      "method": "native_surface_transfer",
+      "heat_unweighted_vertices": 0
+    },
+    "animation_edits": false
+  }
+]

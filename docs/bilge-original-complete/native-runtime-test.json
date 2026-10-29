@@ -1,0 +1,26 @@
+{
+  "assets": [
+    {
+      "form": "wolf",
+      "bones": 40,
+      "clips": 68,
+      "triangles": 13550,
+      "embedded_textures": true,
+      "sha256": "985fad3e5abc9147520de510a8aac100716e5b9a3ed21165f0d9ecc0c30fa894"
+    },
+    {
+      "form": "human",
+      "bones": 47,
+      "clips": 11,
+      "triangles": 10349,
+      "embedded_textures": true,
+      "sha256": "2af36ee233bca5e938b048e3ff3fcfac45cba8c0af92303b8ecb4e95c74065f6"
+    }
+  ],
+  "measured_run_mps": 8.400000000000064,
+  "roar_duration": 1.933,
+  "native_effect_event": 0.933,
+  "roll_distance_m": 2.0125786163522097,
+  "held_direction_stopped": true,
+  "browser_errors": []
+}

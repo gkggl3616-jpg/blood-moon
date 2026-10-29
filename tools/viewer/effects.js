@@ -1,3 +1,4 @@
+import {rigBone} from './rig-bones.js';
 import {THREE,identity} from './engine.js';
 const tmp=new THREE.Vector3();
 export class WolfEffects{
@@ -13,10 +14,10 @@ export class WolfEffects{
   const crystal=new THREE.ConeGeometry(.065,.32,4),iceMat=new THREE.MeshStandardMaterial({color:0x64d6ff,emissive:0x1376ab,emissiveIntensity:.7,metalness:.25,roughness:.22});
   for(let hand=0;hand<2;hand++)for(let j=0;j<4;j++){const mesh=new THREE.Mesh(crystal,iceMat);this.ice.add(mesh);}
  }
- bind(actor,key){this.actor=actor;this.key=key;this.roarColor=identity[key]?.color||0xaf65ff;this.life.fill(0);this.sizes.fill(0);this.wasRoaring=false;this.peakEmitted=false;this.trailLife=0;this.hasBuiltInIce=key==='bilge'&&actor?.getObjectByName('Body_bilge')?.userData.source_kind?.startsWith('new');this.handles=['L','R'].map(side=>actor?.getObjectByName('Hand'+side)||actor?.getObjectByName('mixamorigHand'+side)).filter(Boolean);this.elbows=['L','R'].map(side=>actor?.getObjectByName('Forearm'+side)).filter(Boolean);}
+ bind(actor,key){this.actor=actor;this.key=key;this.roarColor=identity[key]?.color||0xaf65ff;this.life.fill(0);this.sizes.fill(0);this.wasRoaring=false;this.peakEmitted=false;this.trailLife=0;this.hasBuiltInIce=key==='bilge'&&actor?.getObjectByName('Body_bilge')?.userData.source_kind?.startsWith('new');this.handles=['L','R'].map(side=>rigBone(actor,'Hand'+side)).filter(Boolean);this.elbows=['L','R'].map(side=>rigBone(actor,'Forearm'+side)).filter(Boolean);}
  spawn(pos,color=0xb14dff,n=5,burst=false){const c=new THREE.Color(color);for(let j=0;j<n;j++){const i=this.cursor++%this.count;this.life[i]=burst?.55:.38+Math.random()*.25;const p=i*3;this.positions[p]=pos.x+(Math.random()-.5)*.16;this.positions[p+1]=pos.y+(Math.random()-.5)*.14;this.positions[p+2]=pos.z+(Math.random()-.5)*.16;this.vel[p]=(Math.random()-.5)*(burst?4:.6);this.vel[p+1]=burst?Math.random()*3:1+Math.random();this.vel[p+2]=(Math.random()-.5)*(burst?4:.6);this.colors[p]=c.r;this.colors[p+1]=c.g;this.colors[p+2]=c.b;this.sizes[i]=burst?.35:.48;}}
  burst(pos,color=0xb14dff){this.spawn(pos,color,30,true);}
- claw(position,yaw,side='right'){this.trailSide=side;this.trailLife=.3;this.trailOrigin=position.clone();this.trailOrigin.y+=1.25;this.trailYaw=yaw;}
+ claw(position,yaw,side='right'){this.handTrace=[];this.trailSide=side;this.trailLife=.3;this.trailOrigin=position.clone();this.trailOrigin.y+=1.25;this.trailYaw=yaw;}
  update(dt,roaring,visible=true,posePhase=null){
   this.roarPhase=posePhase;const enabled=roaring&&visible;if(enabled&&!this.wasRoaring){this.peakEmitted=false;this.emissionCredit=0;this.roarStarts++;}this.wasRoaring=enabled;
   this.elapsed+=dt;this.particleMat.uniforms.uTime.value=this.elapsed;const chosen=this.actor?.userData.clawProfile;const profile=chosen==='standard'?{color:0xb7d9e6,claws:3,tilt:-.3}:identity[chosen]||identity[this.key]||identity.kultigin;
@@ -27,11 +28,14 @@ export class WolfEffects{
   for(const a of Object.values(this.particles.geometry.attributes))a.needsUpdate=true;
   this.trailLife=Math.max(0,this.trailLife-dt);
   const phase=(.3-this.trailLife)/.3;
+  const nativeTrace=this.actor?.userData.nativeSourceKeyPreserved&&this.trailLife>0;
+  if(nativeTrace){const hand=rigBone(this.actor,this.trailSide==='left'?'HandL':'HandR');if(hand){this.handTrace.push(hand.getWorldPosition(new THREE.Vector3()));if(this.handTrace.length>10)this.handTrace.shift();}}
+
   for(let stroke=0;stroke<this.trails.length;stroke++){
    const mesh=this.trails[stroke];mesh.visible=visible&&this.trailLife>0&&stroke<profile.claws;if(!mesh.visible)continue;
    mesh.material.color.setHex(profile.color);mesh.material.opacity=this.trailLife/.3;
    const arr=mesh.geometry.attributes.position.array;let offset=0;
-   const point=(t,edge)=>{const angle=this.trailSide==='left'?1.15-t*2.2:-1.15+t*2.2;const x=Math.sin(angle)*1.1,y=Math.cos(angle)*.75+stroke*.12-1;const tiltedX=x*Math.cos(profile.tilt)-y*Math.sin(profile.tilt),tiltedY=x*Math.sin(profile.tilt)+y*Math.cos(profile.tilt);return new THREE.Vector3(tiltedX+edge*.025,tiltedY,1.25+phase*.45).applyAxisAngle(new THREE.Vector3(0,1,0),this.trailYaw+Math.PI).add(this.trailOrigin);};
+   const point=(t,edge)=>{if(nativeTrace&&this.handTrace?.length){const index=t*(this.handTrace.length-1),a=Math.floor(index),b=Math.min(a+1,this.handTrace.length-1);return this.handTrace[a].clone().lerp(this.handTrace[b],index-a).add(new THREE.Vector3(edge*.018,stroke*.045,0));}const angle=this.trailSide==='left'?1.15-t*2.2:-1.15+t*2.2;const x=Math.sin(angle)*1.1,y=Math.cos(angle)*.75+stroke*.12-1;const tiltedX=x*Math.cos(profile.tilt)-y*Math.sin(profile.tilt),tiltedY=x*Math.sin(profile.tilt)+y*Math.cos(profile.tilt);return new THREE.Vector3(tiltedX+edge*.025,tiltedY,1.25+phase*.45).applyAxisAngle(new THREE.Vector3(0,1,0),this.trailYaw+Math.PI).add(this.trailOrigin);};
    for(let j=0;j<9;j++){const a=point(j/9,-1),b=point((j+1)/9,-1),c=point((j+1)/9,1),d=point(j/9,1);for(const v of [a,b,c,a,c,d]){arr[offset++]=v.x;arr[offset++]=v.y;arr[offset++]=v.z;}}
    mesh.geometry.attributes.position.needsUpdate=true;
   }

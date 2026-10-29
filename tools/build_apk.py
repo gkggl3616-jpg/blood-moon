@@ -92,27 +92,36 @@ def main():
             assert magic==b'glTF' and version==2 and length==len(data) and chunk_type==0x4E4F534A
             gltf=json.loads(data[20:20+json_length]);assert gltf['skins']
             names={a['name'] for a in gltf['animations']}
-            required={'HumanIdle','HumanMove'} if model_id.startswith('human-') else {'WolfIdle','WolfMove','WolfRunQuad','WolfRoll','WolfClaw','WolfRoar','WolfJump','WolfTransform'}
-            assert required<=names
-            if not model_id.startswith('human-'):
-                assert len(gltf['skins'][0]['joints'])==27
-                assert sum(n.get('name','').startswith('Mouth_') for n in gltf['nodes'])>=2
+            native=model_id in ['bilge','human-bilge']
+            if native:
+                meta=gltf['scenes'][gltf.get('scene',0)]['extras']
+                assert meta['nativeSourceKeyPreserved'] and meta['wardrobeOrigin']=='original_authored'
+                assert len(gltf['skins'][0]['joints'])==(47 if model_id.startswith('human-') else 40)
+                required={'UI_Default_Idle','LWF','LRF'} if model_id.startswith('human-') else {'LSt','UMSt','LWF','UMWF','LRF','UMRF','T_CRY','T_Specialatk','UMFi1','UMFi2','LJJ','LJT','LJL'}
+                assert required<=names
                 for animation in gltf['animations']:
-                    if animation['name'] in ['WolfRunQuad','WolfRoll','WolfRoar']:
-                        timing=gltf['accessors'][animation['samplers'][0]['input']]
-                        expected=16/30 if animation['name']=='WolfRunQuad' else .8 if animation['name']=='WolfRoll' else 1.2
-                        assert abs(timing['min'][0])<1e-5 and abs(timing['max'][0]-expected)<1e-5
+                    times=animation['extras']['nativeKeyTimesMs']
+                    for sampler in animation['samplers']:
+                        timing=gltf['accessors'][sampler['input']]
+                        assert timing['count']==len(times)
+                        assert abs(timing['min'][0]-times[0]/1000)<1e-6 and abs(timing['max'][0]-times[-1]/1000)<1e-6
+                if model_id=='bilge':
+                    assert len(gltf['animations'])==68
+                    assert len([n for n in gltf['nodes'] if n.get('name','').startswith('Tattoo_')])==3
+                    assert any(n.get('name','').startswith('Mouth_') for n in gltf['nodes'])
+            else:
+                required={'HumanIdle','HumanMove'} if model_id.startswith('human-') else {'WolfIdle','WolfMove','WolfRunQuad','WolfRoll','WolfClaw','WolfRoar','WolfJump','WolfTransform'}
+                assert required<=names
+                if not model_id.startswith('human-'):
+                    assert len(gltf['skins'][0]['joints'])==27
+                    assert sum(n.get('name','').startswith('Mouth_') for n in gltf['nodes'])>=2
+                    for animation in gltf['animations']:
+                        if animation['name'] in ['WolfRunQuad','WolfRoll','WolfRoar']:
+                            timing=gltf['accessors'][animation['samplers'][0]['input']]
+                            expected=16/30 if animation['name']=='WolfRunQuad' else .8 if animation['name']=='WolfRoll' else 1.2
+                            assert abs(timing['min'][0])<1e-5 and abs(timing['max'][0]-expected)<1e-5
             triangles=sum(gltf['accessors'][p['indices']]['count']//3 for m in gltf['meshes'] for p in m['primitives'])
             assert triangles <= (12000 if model_id.startswith('human-') else 15000),(model_id,triangles)
-        for model_id,bones,budget in [('guardian-wolf',42,15000),('guardian-human',47,12000)]:
-            raw=z.read('assets/models/'+model_id+'.glb')
-            size=struct.unpack_from('<I',raw,12)[0];model=json.loads(raw[20:20+size])
-            assert len(model['skins'][0]['joints'])==bones
-            triangles=sum(model['accessors'][p['indices']]['count']//3 for m in model['meshes'] for p in m['primitives'])
-            assert triangles<=budget
-            names={a['name'] for a in model['animations']}
-            assert ('WolfRoar' if bones==42 else 'HumanIdle') in names
-            if bones==42:assert not ({'WolfRunQuad','WolfRoll'} & names)
         assert {'assets/arena.css','assets/inventory.js','assets/inventory.css','assets/gear-system.js'}<=set(z.namelist())
     report = {'apk': apk.name, 'size_bytes': apk.stat().st_size, 'sha256': hashlib.sha256(apk.read_bytes()).hexdigest(),
               'package': 'com.roguebloodmoon.prototype', 'version': '0.1.15', 'min_android': '8.0',
