@@ -430,3 +430,9 @@ Modelin kendi kaynak kükreme klibi ve efekt bağlantısı çözülsün; yalnız
 ## Son somut durum — kalite promptu sonrası
 
 `docs/karahan-v0118/GUNCEL-RAPOR-TR.md` bütün bu tur hatalarını, gerçek model üretim zincirini, kısa test sonuçlarını, kaynak FX/ses gerçeğini ve açık işleri bir arada içerir. Hareket/ses kodu kısa kontrolden geçti; Bilge insan/kurt GLB'leri son APK ile aynı. Karahan'ın yeni doku ve skin kalitesi kabul edilmedi, canlı modele eklenmedi. İki doku girdisi hazır. 29 Ekim resmî fiyat listesinde 4K Retexture model başına 10; insan+kurt 20 yeni kredi önerisi, bakiye 825; yeni ücretli görev başlatılmadı. Kaynak skin uzamaları ayrıca düzeltilmeden yayıma hazır sayılmaz. Sonraki oturum testleri en baştan tekrarlamak yerine bu açık durumdan devam eder. Yeni tek APK ve güncel MD teslimi hâlâ bekliyor.
+
+## 29 Ekim — Karahan savaş görünüşü ve gerçek son durum
+
+Önceki 20 kredi bekleniyor/üretim yok kaydı geçersizdir. Onaylı insan+kurt 20 kredi kullanıldı. Kullanıcının yalnız kurt tekrar talimatıyla 10 kredi daha kullanıldı; toplam 30. Son kurt görevi 01a188fc-2079-766d-b337-6759221b5482. İnsan yeniden üretilmedi. Karahan kendi kimliğiyle listenin sonuna, Bilge dosyalarına dokunmadan bağlandı. Güncel ana rapor `docs/karahan-v0118/GUNCEL-RAPOR-TR.md`; gerçek hata, reddedilen denemeler, kaynak/uyarlama ayrımı, bütçe ve açık kalite risklerini içerir.
+
+Behamah boynuzları, belirgin yırtık kapri, kan/pençe yaraları artık güncel yöndür. Kaynak 40 kemik/74 ham klip + açıkça türetilmiş tek kükreme düzelticisi. Kliplerde farklı öteleme uzunluğu bulundu: runtime rest uzunluğuna uyarlar; kaynak anahtarlar ayrıca korunur. PBR'de boş paketlenen albedo için gerçek görüntü/paket kapısı zorunlu. Kör skin bulanıklaştırması ve çeneyi göğse boyama tekrar edilmez. Kaplama görsel kaliteyi iyileştirir, bozuk anatomiyi düzeltmez. Fiziksel Android/görsel kabul henüz yok; hatasız denmez.

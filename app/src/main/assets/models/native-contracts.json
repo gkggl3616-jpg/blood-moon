@@ -16,5 +16,26 @@
     "sourceClips": 11,
     "triangleBudget": 12000,
     "sourceAnimationSha256": "f026978087746f5b44df7cf90a8927a189d2596f2660e01f369518a209fbd950"
+  },
+  "karahan": {
+    "modelType": "behamah40",
+    "bones": 40,
+    "sourceClips": 74,
+    "triangleBudget": 15000,
+    "sourceAnimationSha256": "01165aa6de2405f3381f20f22b3a27058fbff8148e5ca52e46cc36a2da5d057c",
+    "roarDuration": 1.933,
+    "roarEvent": 0.866,
+    "rollDuration": 1,
+    "quadClip": "T_Dash",
+    "derivedSourceClips": [
+      "DerivedBehamahRoar"
+    ]
+  },
+  "human-karahan": {
+    "modelType": "human47",
+    "bones": 47,
+    "sourceClips": 11,
+    "triangleBudget": 12000,
+    "sourceAnimationSha256": "f026978087746f5b44df7cf90a8927a189d2596f2660e01f369518a209fbd950"
   }
 }

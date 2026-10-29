@@ -38,7 +38,7 @@ def main():
     run(TOOLS / 'aapt2', 'link', '-o', BUILD / 'base.apk', '-I', ANDROID,
         '--manifest', manifest,
         '--min-sdk-version', '26', '--target-sdk-version', '35',
-        '--version-code', '18', '--version-name', '0.1.17',
+        '--version-code', '19', '--version-name', '0.1.18',
         '-A', ROOT / 'app/src/main/assets', BUILD / 'resources.zip')
     sources = list((ROOT / 'app/src/main/java').rglob('*.java'))
     run('java', '-m', 'jdk.compiler/com.sun.tools.javac.Main', '-source', '17', '-target', '17', '-encoding', 'UTF-8',
@@ -67,7 +67,7 @@ def main():
             '-alias', 'androiddebugkey', '-keyalg', 'RSA', '-keysize', '2048', '-validity', '10000',
             '-dname', 'CN=Rogue Prototype,O=Local Development,C=TR')
         key.chmod(0o600)
-    apk = ROOT / 'dist/Rogue-Blood-Moon-v0.1.17.apk'
+    apk = ROOT / 'dist/Rogue-Blood-Moon-v0.1.18.apk'
     run('java', '-jar', TOOLS / 'lib/apksigner.jar', 'sign', '--ks', key,
         '--ks-pass', 'pass:android', '--key-pass', 'pass:android', '--ks-key-alias', 'androiddebugkey',
         '--out', apk, aligned)
@@ -86,7 +86,7 @@ def main():
         for file in runtime_files:
             packaged='assets/'+file.relative_to(ROOT / 'app/src/main/assets').as_posix()
             assert z.read(packaged)==file.read_bytes(),('runtime asset mismatch',packaged)
-        for model_id in ['bilge','kultigin','alparslan','konuralp','human-bilge']:
+        for model_id in ['bilge','kultigin','alparslan','konuralp','human-bilge','karahan','human-karahan']:
             data=z.read('assets/models/'+model_id+'.glb')
             magic,version,length,json_length,chunk_type=struct.unpack_from('<4sIIII',data)
             assert magic==b'glTF' and version==2 and length==len(data) and chunk_type==0x4E4F534A
@@ -99,7 +99,7 @@ def main():
                 assert len(patches)==3
                 assert all(n.get('extras',{}).get('clothing_faces_excluded') and n['extras'].get('tattoo_policy_version')==policy['version'] for n in patches),('tattoo surface gate',model_id)
             names={a['name'] for a in gltf['animations']}
-            native=model_id in ['bilge','human-bilge']
+            native=model_id in ['bilge','human-bilge','karahan','human-karahan']
             if native:
                 meta=gltf['scenes'][gltf.get('scene',0)]['extras']
                 assert meta['nativeSourceKeyPreserved'] and meta['wardrobeOrigin'] in ['original_authored','original_authored_on_selected_body']
@@ -107,7 +107,12 @@ def main():
                 assert meta['modelType']==contract['modelType'] and len(gltf['skins'][0]['joints'])==contract['bones']
                 if contract['sourceAnimationSha256']:assert meta['sourceAnimationSha256']==contract['sourceAnimationSha256']
                 required={'UI_Default_Idle','LWF','LRF'} if model_id.startswith('human-') else {'LSt','UMSt','LWF','UMWF','LRF','UMRF','T_CRY','T_Specialatk','UMFi1','UMFi2','LJJ','LJT','LJL'}
+                if model_id=='karahan':required=(required-{'T_CRY'})|{'T_cry','DerivedBehamahRoar','T_Dash'}
                 assert required<=names
+                if model_id in ['karahan','human-karahan']:
+                    assert all('uri' not in item for item in gltf.get('buffers',[])+gltf.get('images',[])), 'external PBR dependency'
+                    assert all('baseColorTexture' in m.get('pbrMetallicRoughness',{}) for m in gltf['materials'] if m.get('name','').startswith('Karahan_') and not m['name'].endswith('_Mouth')), 'missing PBR albedo'
+                    assert len(names-set(contract.get('derivedSourceClips',[])))==contract['sourceClips']
                 for animation in gltf['animations']:
                     times=animation['extras']['nativeKeyTimesMs']
                     for sampler in animation['samplers']:
@@ -133,8 +138,8 @@ def main():
             assert triangles <= (12000 if model_id.startswith('human-') else 15000),(model_id,triangles)
         assert {'assets/arena.css','assets/inventory.js','assets/inventory.css','assets/gear-system.js'}<=set(z.namelist())
     report = {'apk': apk.name, 'size_bytes': apk.stat().st_size, 'sha256': hashlib.sha256(apk.read_bytes()).hexdigest(),
-              'package': 'com.roguebloodmoon.prototype', 'version': '0.1.16', 'min_android': '8.0',
-              'version_code': 17, 'runtime_asset_count': len(runtime_files),
+              'package': 'com.roguebloodmoon.prototype', 'version': '0.1.18', 'min_android': '8.0',
+              'version_code': 19, 'runtime_asset_count': len(runtime_files),
               'signed': True, 'certificate_sha256':certificate, 'device_tested': False, 'scope': 'Offline playable flat arena; human FPS, wolf TPS, transformation, run, roll, claw, roar, inventory', 'standalone_apk': True, 'extra_data_files_required': False}
     (ROOT / 'dist/build-report.json').write_text(json.dumps(report, indent=2))
     print(json.dumps(report, indent=2))

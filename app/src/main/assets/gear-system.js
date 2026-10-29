@@ -23,7 +23,7 @@ window.RogueGear=(()=>{
   {id:'grenade-frag',type:'grenade',slot:'grenade',name:'PARÇA-01 · Parça Bombası',price:200,bonus:{},weapon:{kind:'frag',damage:65,interval:3.5,radius:3.5}},
   {id:'grenade-smoke',type:'grenade',slot:'grenade',name:'SİS-01 · Duman Bombası',price:250,bonus:{},weapon:{kind:'smoke',damage:0,interval:5,radius:3}}
  );
- for(const [model,name] of [['bilge','Buz Kıran'],['kultigin','Kızıl Çapraz'],['alparslan','Köz Vuruşu'],['konuralp','Gölge Yırtığı']])catalog.push({id:'claw-'+model,type:'claw',slot:'claw',name:name+' Pençe',price:0,bonus:{},model,profile:model});
+ for(const [model,name] of [['bilge','Buz Kıran'],['kultigin','Kızıl Çapraz'],['alparslan','Köz Vuruşu'],['konuralp','Gölge Yırtığı'],['karahan','Kara Çelik']])catalog.push({id:'claw-'+model,type:'claw',slot:'claw',name:name+' Pençe',price:0,bonus:{},model,profile:model});
  const items=Object.fromEntries(catalog.map(i=>[i.id,i]));
  const empty=()=>({wolf:{back:null,left:null,right:null,skill:null,accessory:null,claw:'claw-standard'},human:{primary:'rifle-ar01',secondary:'pistol-p01',knife:'knife-k01',grenade:null}});
  let data={version:2,owned:['rifle-ar01','pistol-p01','knife-k01','claw-standard'],profiles:{},active:{}};

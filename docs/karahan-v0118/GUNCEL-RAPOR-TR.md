@@ -1,105 +1,68 @@
-# Rogue: Blood Moon — güncel çalışma, kalite ve hata kaydı
+# Karahan — güncel model, animasyon ve hata kaydı
 
-29 Ekim 2026. Bu belge yayımlanmış yeni APK raporu değildir. Son teslim edilmiş sürüm v0.1.17'dir. Bu turdaki kod değişiklikleri yerel çalışma ağacındadır; Karahan'ın görsel kalitesi kabul edilmediği için yeni APK yayımlanmadı. Yeni ücretli Meshy görevi başlatılmadı; bu tur üretim kredi harcaması sıfırdır.
+29 Ekim 2026. Bu belge önceki “üretim başlamadı / bütçe bekleniyor” durumunun yerine geçer. Fiziksel Android ve kullanıcı görsel kabulü yapılmadı. APK teslim bilgileri aşağıdaki doğrulama kaydında ayrıca belirtilir.
 
-## Kullanıcının güncel kararı
+## Son tasarım talimatı ve sonuç
 
-Karahan ayrı karakterdir; Bilge Kağan/Buz Kurdu'nun yerine yazılmaz. Bütün gelecek insan/kurt modellerinde doğal anatomi, kaliteli kürk ve kostüm, kontrollü yara/kuru kan, yıpranmış/yırtık pantolon ve gerçek PBR katmanları gerekir. Shader tek başına kalite çözümü değildir. Kalıcı tam prompt `docs/KALICI-KARAKTER-KALITE-PROMPTU-TR.md`, aynı metin kök `a.md` içindedir. `AGENTS.md` sonraki proje oturumlarını bu kurala yönlendirir. Bu, hesap genelinde otomatik hafıza garantisi değildir.
+Kullanıcı son olarak yalnız kurdun Meshy ile yeniden işlenmesini istedi: Behamah'taki yana kıvrılan boynuzlar, belirgin yırtık pantolon/kapri, kan ve pençe yaraları; yumuşak temiz tasarım istemiyor. Son tur yalnız kurt için yapıldı. İnsan için ikinci ücretli iş açılmadı.
 
-## Gerçekten yapılan kod düzeltmeleri
+Karahan kendi `karahan` kimliğiyle karakter listesinin sonuna eklendi. `human-karahan` onun insanıdır. Bilge Kağan/Buz Kurdu'nun kimliği ve iki model dosyası değiştirilmedi. Eski krediler ve seçili karakter korunur; Karahan güncelleme hediyesi olarak sahip olunan listeye eklenir. Bu bir mağaza harcaması değildir.
 
-- `tools/viewer/arena.js`: fizik 60 Hz, görüntü daha yüksek yenilemede çalışırken fizik adımı olmayan karelerde `moving=false` üretiliyordu. Koşu/duruş arasında tekrar tekrar sıçrama oluşuyordu. Son fizik adımının gerçek yatay hızı saklanıyor; animasyon temposu görüntü karesindeki 0/değişken yer değiştirmeden hesaplanmıyor.
-- Sıçrama, takla, dönüşüm, koşu, kükreme ve iz sürme eylemleri doğrudan `pointerdown` kullanıyor. Uyumluluk `click` olayına dayanmak, yönü tutan ilk parmak varken ikinci parmağı kaçırıyordu. Klavye/erişilebilirlik tıklaması korunuyor; tek dokunuş iki eylem üretmiyor.
-- Kükreme HTMLAudio yeniden oynatmasından tek, önceden çözülmüş WebAudio sesine taşındı. Sesin başlama komutu ve poz süresi ortak. Pozdan sonra geciken ikinci ses kuyruğu yok; önceki ses durduruluyor. Karakter/sahne değişiminde ve arka plana geçişte kesiliyor. Kükreme sırasında giriş onay sesiyle üst üste binme engellendi.
-- `prepare_roar_voice.py`: mevcut sesin 0–1,36 sn hazırlığı ve 1,80–3,11 sn güçlü kükremesi korunuyor; aradaki boşluk kaldırılıp perdeyi koruyan zaman sıkıştırması uygulanıyor. Yalnız sessiz hazırlığı kesip ana sesi atmak yanlış bir ilk denemeydi; son dosya o deneme değildir. Son tampon yaklaşık 1,319 sn, tepe 0,620; çalışma zamanı poz süresine uyarlar ve ayrıca ses düzeyi payı bırakır.
-- Menü kükremesi de gerçek model klibinin süresini aynı ses yoluna gönderir. Hareket ve ses değişiklikleri yeni model üretiminden bağımsızdır.
+Gerçek kurt modeli: seçilmiş Behamah anatomisi, 40 kemik, 74 ham kaynak klip. Boynuzlar kaynak modelin yan boynuzlarıdır; sonradan çizilmiş dik sivri boynuzlar kaldırıldı. Alt giysi ayrı, gövdeye yakın kapri kabuğudur; yırtıkların altında gövde korunur. Uzun etek/kaftan sarkıtları yoktur. Son model 11.631 üçgen; insan 3.204 üçgen/47 kemik/11 kaynak klip. Küçük ayrıntılar PBR dokudadır. İnsan, Bilge'nin başını kopyalamaz; tam Human47 gövdesinin ayrı kaplamasıdır.
 
-## Kısa test — ne geçti, ne anlama gelmez
+Meshy yeni iskelet veya yeni animasyon üretmedi. Retexture çıktısındaki UV ve PBR verisi mevcut gerçek modele aktarıldı; kaynak rig ve ağırlıklar ayrı korundu. Albedo 4K, normal 2K, paketlenmiş pürüzlülük/metal katmanı 1K kullanılır. Deri/kürk kumaş ve keratin ayrı malzeme gruplarındadır. Görsel kontrol dosyaları bu klasördeki `WolfIdle-front.png`, `WolfIdle-back.png`, `WolfRunQuad-side.png`, `WolfRoar-three.png`, `karahan-human-front.png` dosyalarıdır; konsept değil gerçek GLB/Three.js görüntüleridir.
 
-`refresh-touch-audio-test.json` ve `tools/verify_refresh_touch_audio.py`:
+## Ücretli üretim — gerçek kullanım
 
-- Aynı gerçek arena güncellemesini 60/90/120/144 Hz adımlarla sürme: başlangıçtan sonra dört durumda da yalnız `WolfRunQuad`; tempo sabit 1,78331. Bu, farklı fiziksel telefonlarda FPS ölçümü değildir.
-- Buz Kurdu pasifiyle fizik hızı 8,4 m/sn. 8 m/sn temel hız ile +%5 karakter hızı uygulanır.
-- Chrome CDP gerçek çoklu dokunma olaylarıyla ilk parmak ileri basılıyken ikinci parmak sıçrama ve takla: geçti. Sıçrama tepe yatay hızı 8,4; çift hız eklenmedi.
-- Kısa takla 2,01258 m; yön tuşunu bırakmadan koşuya döndü.
-- İleri basılıyken kükremede yatay hareket durdu.
-- Tek ses başlangıcı, 1,333 sn poz/ses süresi eşleşmesi; son ölçümde başlangıç komutu gecikmesi raporda kayıtlıdır. Dijital tepe payı kontrol edildi; gerçek telefon hoparlörü/algılanan ses kalitesi denenmedi.
-- Tarayıcı JS hatası yok. Bütün oyun arayüzü, mağaza veya bütün dövme motifleri yeniden taranmadı.
+İlk onay: insan+kurt 4K PBR toplam 20 kredi. İlk kurt görünüşü kullanıcı tarafından fazla temiz/yumuşak bulundu. Kullanıcı yalnız kurdu yeniden istedi; 10 ek krediyle tek tekrar yapıldı. Toplam bu çalışma 30 kredi; sınırsız tekrar izni yoktur.
 
-Fiziksel Android kurulumu, görsel kullanıcı kabulü ve yeni APK imza doğrulaması bu tur yapılmadı. Önceki v0.1.17 imzası değiştirilmeyecek.
+| Görev | Kimlik | Gerçek kredi | Durum |
+|---|---|---:|---|
+| İlk kurt PBR | 01a188ef-e682-76a7-b177-d2ea1c3cb7dd | 10 | Son görünüş olarak kullanılmadı |
+| İnsan PBR | 01a188f0-3489-71d1-bfe1-dd7fff0337cd | 10 | Korundu; tekrar üretilmedi |
+| Savaş yaralı kurt PBR | 01a188fc-2079-766d-b337-6759221b5482 | 10 | Güncel kurt kaplaması |
 
-## Bilge Kağan'ın yerini alma kontrolü
+800 karakter sınırını aşan iki istem görev kabulünden önce hata verdi; bunlara kabul edilmiş görev kimliği/kredi tüketimi kaydı yoktur. Kabul edilen üç görevin `consumed_credits` alanları 10'ar kredidir.
 
-Son v0.1.17 APK içindeki dosyalarla çalışma ağacındakiler birebir karşılaştırıldı:
+## Animasyon ve iskelet: hangi veri korundu, ne uyarlandı?
 
-- `models/bilge.glb`: SHA-256 `1b08c712bdbe96d9dd607da6a61c3dfd8b4ef3f2ab440d27a35369806354ef71`.
-- `models/human-bilge.glb`: SHA-256 `754233f0a108e69cb3167f0b842936ce520b19a4ce17c7f57c451bcbd7b72e7a`.
+Kaynak `wolf_king_behamah.ltb`, hareket çocuğu `wolf_kingasmon_ch.ltb`. Dört ayak koşusu `T_Dash`: 0,533 sn. Tam kükreme `T_cry`: 1,933 sn/59 anahtar; efekt olayı 0,866 sn. Kısa `T_CRY_old` seçilmedi. Ham 74 kaynak klip saklanır.
 
-Bu iki model bu tur değiştirilmedi. Bu, önceki sürümün görsel kalitesinin kabul edildiği anlamına gelmez. Karahan adayları `art/characters/karahan` altındadır; canlı karakter listesine eksik dosya bağlanmadı. Bir denemede Karahan'ı listenin başına eklemek varsayılan geri dönüş kimliğini etkileyebilirdi; bu geçici kayıt çıkarıldı. Yeni karakter yayıma hazır olduğunda kendi `karahan` / `human-karahan` dosyaları, kayıtları ve ayrı kartıyla eklenir.
+Önemli gerçek hata: aynı adları taşıyan kaynak kliplerde bazı yerel kemik öteleme uzunlukları gövdeyle aynı değil. Üst kol gövdede 21,946 kaynak birimi, bekleme/koşuda 17,838, kükremede 21,946; ön kol 25,443'e karşı 20,942. Doğrudan oynatmak uzuv oranını klipler arasında değiştiriyordu. Karahan için türetilmiş çalışma zamanı klipleri, yerel öteleme yönünü/zamanını koruyarak uzunluğu gövdenin rest uzunluğuna sabitler. Kök ve pelvisin hareketi bu işlemden hariçtir. Diğer karakterlere bu yeni kural uygulanmaz.
 
-## Modelleme nasıl yapılıyor — gerçek zincir
+Kükreme için ayrıca `DerivedBehamahRoar` adında açıkça türetilmiş klip eklendi. Kaynak dönüşler ve 59 zaman anahtarı korunur; uzunluk uyarlaması ve tek düzeltici şekil kanalı vardır. Kükreme tepesinde baş/çene/diş/boynuz birlikte yaklaşık 25 cm aşağı toparlanır; boyun geçişi ağırlıklı yumuşar. Bu bir mesh düzeltmesidir; “bütün çıktı animasyonları hiç değişmedi” denmez. Ham 74 klip değişmeden ayrıca mevcuttur. Çene ve ağız gerçek kaynak geometrisidir; kırmızı dış oval eklenmedi.
 
-Mevcut Buz Kurdu: seçili Power42 gövdesi, 42 kemik, kaynak çene/dişler, 72 kaynak klip. Ücretli özgün üretimden görünüş aktarımı ve sürekli referans kürkü; kontrollü yeni pantolon ağırlıkları. Bu tur yeni Buz geometrisi üretilmedi.
+Uzunluk uyarlaması yer temasını değiştirdiği için Karahan'da 25 örnekle gerçek Three.js deformasyonu üzerinden bekleme/yürüyüş/kükreme zemin eğrileri ölçüldü. Koşuda tek taban düzeltmesi kullanılır; doğal havalanma fazları her kare yere yapıştırılmaz. Bekleme ve kükremenin incelenen örneklerinde taban zeminden yaklaşık 8 mm yüksektedir. Bu tam ayak IK sistemi değildir.
 
-Karahan kurt adayı: Behamah kaynak anatomisi, 40 kemik, 74 ham çocuk klibi; tam kükreme `T_cry` 1,933 sn, `T_Dash` 533 ms. Kısa `T_CRY_old` kullanılmaz. Kaynak eklem uzunlukları korunuyor. İki küçük başa bağlı boynuz, pantolon ve sınırlı kolluk; uzun bel süsleri kaldırılıyor. Ayrıntılar yüzey dokusuyla üretilmeli; kaynakta olmayan yeni rastgele gövdeyi sonradan iskelete zorlamak kullanılmayacak.
+## Dövme ve efekt
 
-İnsan adayı: tamamı birbiriyle uyumlu Human47 gövde/baş temeli üzerinden ilerlemeli. Bilge'nin yüzünü kopyalayıp kıyafeti belden kesmek kötü sonuç verdi ve reddedildi. Karahan'ın insanı ayrı görünüş taşımalı. Tam native insan anatomisi doku girdisi olarak hazırlandı; bu yalnız hazırlıktır.
+Sırt, sol ve sağ kol ayrı üç yüzey yaması kullanır. Kaynak gövde üzerinde barycentrik bind yüzeyi ve aynı skin ağırlıkları kullanılır; giysi yüzleri hariçtir. Önce nötr pozu ters skin matrisiyle geri çözmek kıvrık kolda hatalı noktalar üretmişti; Karahan'da bu yol yerine doğrudan gövde yüzeyi kullanılır. Bütün motifler aynı üç yama üzerinden çalışır; bu tur her motif tek tek denenmedi. Normal parlama düşük, kükreme parlaklığı ortak politika değeridir. Bonus hesabı/sahiplik katmanları değiştirilmedi.
 
-Araçlar: Blender 4.3.2, yerel Python üreticileri, kaynak LTB okuyucu, kaynak anahtarları doğrudan GLB'ye aktaran `export_bilge_native_basis.py`, ortak `apply_tattoo_policy.py`, Three.js gerçek çalışma zamanı. Blender kullanılması tek başına profesyonel görsel kalite garantisi değildir. İskelet/ham animasyon, statik geometri, UV/PBR, dövme ve FX ayrı aşamalar olarak tutulur.
+Meshy'nin kendiliğinden bastığı sabit omuz damgaları istenmiyordu; yerel doku temizliği yapıldı. Kuşanılan dövmeler ayrı kalır. Savaş yaraları kozmetik doku ayrıntısıdır, yeni bonus veya hasar türü değildir.
 
-## Bu tur bulunan ve önceki önemli hatalar
+Karahan'ın arşivdeki `cryguardian` grubu kaynak kamera titreşimi içerir; bu grubun içinde kaynak parçacık/şok dalgası bulunmadı. Mevcut özgün el alevleri ve dövme parlaması buna eşlik eder. Kaynakta olmayan bir parçacık efekti “arşivden aynen alındı” diye sunulmaz. Diğer ailelerin mevcut kaynak Howling efektleri korunur. Arşiv ses indeksinde karakter kükremesi bulunmadı; ses mevcut proje kaydından düzenlendi.
 
-| Hata | Neden / karar | Gerçek durum |
-|---|---|---|
-| Koşunun ayakta duruşa sıçraması | Fizik adımı olmayan görüntü karesi hareketsiz sayılıyordu | Kod düzeltildi; dört yenileme oranı kontrolü geçti |
-| Koşarken ikinci parmak sıçrama/takla çalışmaması | Android çoklu dokunmada uyumluluk click olayına güvenildi | Pointerdown ve CDP çoklu dokunma kontrolü geçti |
-| Geciken/patlayan kükreme | Uzun HTMLAudio, pozdan geç gelen ana ses ve üst üste oynatma | Tek önceden çözülmüş ses, tam ifade/süre ve seviye payı; telefon ses kabulü açık |
-| Yalnız hazırlığı ses diye kırpmak | Güçlü kükreme 1,8 sn sonrasındaydı | Tam ifade yeniden işlendi; ilk kısaltma kullanılmıyor |
-| Bind farkından otomatik uyarlama çıkarmak | Yerel bind farkı tek başına retarget gerekçesi sayıldı | Deneme kaldırıldı. Aynı gövdenin kendi AI kükremesi ile çocuk T_cry anahtarları eşleşiyor; ham hareket korunuyor |
-| Uzayan kasık/omuz/boğaz üçgenleri | Kaynak skin süreksizlikleri ve denenen uygunsuz ağırlık geçişleri | Karahan'da hâlâ açık; birkaç pozu geçmesi tamamlandı sayılmıyor |
-| Tekrarlayan mermer/zebra kürk | Küçük fotoğraf örneğini tüm gövdeye fazla tekrarlama, aşırı normal şiddeti | Reddedildi; mevcut aday son kaplama değildir |
-| Yamalı beyaz/siyah 3B doku aktarımı | Donor eşleşmesindeki boşluklar ve farklı renk bölgeleri | Reddedildi; yayıma alınmadı |
-| Geçersiz normal bake pikselleri | Alpha=1 olması geçerli normal demek sanıldı | Yöntem tek başına kullanılmaz; normal vektörü ve dikiş kontrolü gerekir |
-| Düz blok insan giysisi / ayrık kürk yaka | Zayıf elle kaplama ve uyumsuz parça birleştirme | Reddedildi |
-| Kesilmiş zikzak insan kıyafet kenarı | Yüzleri yalnız yükseklikle silerek kısa kostüm yapma | Reddedildi; tam anatomik/kostüm temeli kullanılacak |
-| Bilge ile Karahan kimliğinin karışması | Aynı insan yüzü/kostümü yeni karakter diye kullanma ve liste geri dönüş riski | Ayrı kimlik şartı kaydedildi; aday henüz canlı listede değil |
-| Sırt dövmesinin giysiye/ön kola taşması | Düşük anchor, yön/baz ve yanlış gövde seçimi | Ortak deri yaması politikası; çok parçalı gövdede açık `tattooProjectionBodyName` kullanılır |
-| Sadece ilk Body meshini projeksiyona almak | Çok parçalı modelde pantolon da Body adını taşıyabilir | Hedef gövde adı seçimi eklendi; kıyafete dövme basılmaz |
-| Sürekli güçlü dövme parlaması | 20 sn güçlendirme ile kısa kükreme pozu karıştırıldı | Normal 0,025 / poz tepe 1,05 politikası korunuyor |
-| Kırmızı dış ağız ovali / yüzün yanlış kesilmesi | Tahmini dünya koordinatıyla ağız ve çene üretme | Kullanılmayacak; gerçek kaynak ağız/çene korunur |
-| Bilekten çıkan ince şeritler | Dekor/giysi geometrisi ve uzak kemiğe yanlış ağırlık | Kaynak ve yeni geometride ayrı kontrol; Karahan insanı tamamlandı denmiyor |
-| UV adalarını karıştıran renk aktarımı | En yakın UV'leri bir üçgende enterpole etme | Önceki yöntem reddedildi; kaynak kıyafetleri özgün tasarım diye kopyalanmaz |
-| Gerçek 3B yerine konsept teslimi | Pafta ile runtime varlığını aynı sayma | Pafta, geometri, entegrasyon ve görsel kabul ayrı yazılır |
+## Gerçek kod hataları ve düzeltmeler
 
-## Dövme, FX ve kaynak arşiv gerçeği
+- 60 Hz fizik/90–144 Hz görüntü farkında adım olmayan kareler hareketi sıfırlıyordu. Son fizik adımının gerçek yatay hızı saklanır; animasyon temposu değişken görüntü yer değiştirmesinden hesaplanmaz.
+- Yönü tutan parmak varken ikinci parmakla sıçrama/takla/dönüşüm kaçıyordu. Eylemler doğrudan `pointerdown` üzerinden çalışır; tek dokunuş çift eylem üretmez.
+- Kükreme sesindeki hazırlık/boşluk ana sesi geciktiriyordu. Hazırlık ve ana kükreme birlikte korunup ara boşluk kaldırıldı. Tek, önceden çözülmüş WebAudio sesi poz süresine uyarlanır; tepe yaklaşık 0,620, ek oynatma payı vardır. Kükreme sırasında onay sesiyle üst üste binme engellendi. Sahne/karakter değişimi ve arka plan sesi durdurur.
+- Shader ile bozuk geometriyi örtmek kalite çözümü değildir. PBR yalnız yüzey tepkisini sağlar.
+- Geniş kör ağırlık yumuşatma, göğse baş/çene ağırlığı taşıdı; reddedildi. Üst gövdede kaynak skin ağırlıkları yeniden yüzeye aktarıldı. Tam bind farkı çarpımıyla kör retarget da kullanılmadı.
+- Ağız malzemesini geniş boyun alanına sürmek ve çene ağırlığını göğse taşımak yanlış denemeydi; üretim zincirinden çıkarıldı.
+- Meshy normalizasyonu UV aktarımını kaydırıyordu. Model sınır kutusuyla ölçülü kayıt ve üçgen bazında UV aktarımı yapıldı. Kurt en büyük kayıt hatası yaklaşık 1,52 mikrometre; insan 0,764 mikrometre. Nonplanar giysi dörtgenlerinde farklı üçgenleme yüzey karşılaştırmasını yaklaşık 1,07 mm etkiliyor; bu gövdeyi yeniden üretme değildir.
+- Blender'daki tembel JPEG yükleme yüzünden albedo bağlantısı var görünse de GLB'ye gömülmüyor, model beyaz çıkıyordu. Görüntü açıkça çıkarılıp okunarak paketlendi; APK kapısı Karahan malzemelerinde gerçek albedo ve dış dosya bağımlılığı olmamasını doğrular.
+- İlk sürümde özgün yan boynuzları kaldırıp dik boynuz çizmek kullanıcı talebine aykırıydı; kaynak boynuzlar geri getirildi.
+- Testte gizli arena seçim kutusunu görünür öğe gibi seçmek zaman aşımı verdi; test hazırlığı düzeltilerek tekrar çalıştırıldı. Bu oyun hatası değildir.
 
-Sırt ve iki üst kol yaması aynı ortak politikayı kullanır; giysi malzemeleri dışlanır. Motif değişince skin/yerleşim değişmez. Yeni Karahan'da son görsel kontrol tamamlanmadı. Dövme bonus hesabı değiştirilmedi: temel × [1 + karakter pasifi/100 + uygun dövme toplamı/100] × aktif yetenek çarpanı. +%240 tek başına 100'ü 340 yapar; eski 180 tavanına dönülmez.
+## Kısa doğrulama ve sınırlar
 
-73.019 girdilik arşiv indeksi ve seçili kaynaklar yereldedir; 4,7 GB yeniden indirilmedi. `modelbutes.txt` içindeki Behamah `ClientFXOnce3="cryguardian"` bağlantısı bulundu. Bu grubun gerçek içeriği **CamJitter**'dır; görsel ateş/sprite paketi değildir. CamJitter türü okuyucuya eklendi. Kaynakta bulunmayan bir parçacık efekti bulundu denmez. Oyunun mevcut el alevi ve dövme parlaması ayrı katmandır. AI kükreme olayındaki FIRE_KEY komutu oyuncuya hasar olarak çalıştırılmaz.
+`refresh-touch-audio-test.json`: Buz Kurdu'nun 60/90/120/144 Hz hareket sürekliliği, gerçek CDP çoklu dokunma sıçrama/takla, yaklaşık 2 m takla, hareket tuşu basılı kükremede durma ve tek ses sınandı. Yeni Karahan karşılığı `karahan-touch-audio-test.json` dosyasına yazılır. Bunlar fiziksel telefon testi değildir.
 
-Arşiv indeksindeki sesler arasında karakter kükremesi bulunmadı. Bu yüzden ses mevcut proje sesinden düzenlendi; arşivden özgün ses alındı denmez. Diğer modellerin Howling_Ice/Fire/Wraith/Reboot grupları önceki runtime kaynak paketinde bulunur. Bütün kurtlara yeni FX görsel kabulü yapıldığı iddia edilmez.
+`karahan-first-review.json`: bekleme ön/arka, koşu yan, tam kükremenin örnek pozu ve takla; `karahan-grounding.json`: gerçek deformasyon yer teması ölçümü. Beş poz örneği bütün hareket boyunca kusursuzluk garantisi değildir. Kaynak gövdenin omuz/kürk sınırlarında sert yüzey geçişleri ve koşu/kükremede az sayıda yüksek oransal kenar büyümesi hâlâ kalite riski taşır. Bunları “hatasız model” diye saklamıyoruz. Telefon performansı, hoparlör ve kullanıcı estetik kabulü açık kalır.
 
-## Yeni doku üretimi için somut hazırlık ve maliyet
+## Tekrar kullanılacak üretim kuralı
 
-Hazır, henüz kaplanmamış girişler:
+Önce doğrulanmış gövde/rig/çene paketi seçilir. Aynı ailede kontrollü yeni görünüş ve küçük, eklemden uzak geometri hazırlanır. Rastgele vücut üretip sonra kırparak iskelete zorlanmaz. Kurtlarda belirgin pantolon/kapri; yırtığın altında gerçek gövde; kontrollü kan/pençe izi; kuşanılabilir dövme için açık deri alanı bulunur. Boynuz, ağız, diş ve pençe silüeti kaynak hareketle birlikte tasarlanır. Albedo/normal/pürüzlülük ayrı hazırlanır; kumaş kürk gibi, kürk metal gibi parlamaz. Tam boyutlu dokular görsel netliği artırır ama telefon bellek/performance ölçümünün yerine geçmez.
 
-- `art/characters/karahan/texture-inputs/wolf-texture-input.glb` (yaklaşık 221 KB).
-- `art/characters/karahan/texture-inputs/human-texture-input.glb` (yaklaşık 126 KB).
-
-Öneri: mevcut geometrilere **yalnız 4K PBR Retexture**, bir insan + bir kurt. Yeni rig, yeni animasyon, yeniden geometri üretimi veya remesh satın alınmayacak. Çıktıdan yalnız uygun UV/PBR verisi alınır; kaynak iskelet ve animasyon verisi korunur. Modelde kalan skin/geometri sorunlarını doku görevi düzeltmez; bunlar bağımsız yerel iş olarak açık kalır. Doku sonucu kötü çıkarsa otomatik ücretli tekrar yapılmaz.
-
-29 Ekim 2026'da okunan resmî fiyat tablosu: <https://docs.meshy.ai/en/api/pricing>. Retexture 2K/4K = model başına tahmini 10 kredi; iki model **20 yeni kredi**. CLI bakiye kontrolü **825 kredi**. Yeni 20 kredi henüz onaylanmadı/harcanmadı; gerçekleşen tutar ancak görev bittikten sonraki `consumed_credits` ile bilinir. Önceki Bilge üretim bütçesi sınırsız yeniden deneme izni sayılmaz.
-
-Kurt doku yönü: anatomiyi takip eden kömür grisi doğal kürk, daha açık kontrollü göğüs/çene, gerçek keratin boynuz/pençe, içeri çekilmiş koyu ağız, doğal fildişi diş, kehribar göz ve belirgin koyu gözbebeği. Mat siyah dokuma pantolon; sınırlı yırtık, altında kürk; dikiş/kıvrım/yıpranma. Küçük bronz donanım. Az sayıda iyileşmiş pençe yarası ve koyu kuru kan. Kalıcı dövme veya parlayan yara dokuya basılmaz. Metalik kürk, mermer/zebra desen, bütün gövde kanı ve boyalı ışık yok.
-
-İnsan doku yönü: Bilge'den ayrı sert komutan yüzü, koyu kısa saç/sakal, küçük eski yanak yarası; siyah çelik/eskitilmiş bronz kısa zırh, gerçek deri kayış ve dokuma pantolon. Ten/saç/kumaş/metal ayrı PBR tepkisi; ten üzerinde metal desen veya kâğıt kürk yaka yok. Wolfteam DTX kıyafet pikselleri kullanılmaz.
-
-## Kalan işler ve teslim koşulu
-
-1. Karahan'ın uzayan skin yüzeylerini gerçekten düzeltmek; boğaz/omuz/kasık kusurları kapanmadan tamamlandı dememek.
-2. İki özgün kaliteli doku/malzeme üretimi; yeni ücretli işlem için yeni bütçe kararını almak.
-3. Tek örnek dövme, tam kükreme ve model FX/ses çevrimiyle kısa görsel kontrol. Her motif veya tüm oyun arayüzünü tekrar taramamak.
-4. Karahan'ı kendi kimliği ve iki dosyasıyla gerçekten oyuna bağlamak; Bilge'nin kimliğini/kayıtlarını korumak.
-5. Sürüm kodunu artırmak, önceki imzayla tek bağımsız APK üretmek; APK'nın tüm runtime dosyalarını içerdiğini ve imzayı doğrulayıp APK + güncel MD bağlantısını teslim etmek.
-
-Bu maddeler henüz tamamlanmış değildir. Şu anki kusurlu adaylar "hatasız son sürüm" diye kullanıcıya gönderilmedi.
+Güncel kurt zinciri: son PBR malzemeli `wolf-static.blend` → kaynak üst gövde skin onarımı/native export/ortak dövme politikası → açıkça türetilmiş kükreme düzelticisi → ölçülü uzunluk uyarlamalı gait ölçümü → gerçek WebGL yer teması meta verisi → ayrı `models/karahan.glb`. Eski reddedilmiş oral/skin denemeleri yeniden çalıştırılmaz. `docs/KALICI-KARAKTER-KALITE-PROMPTU-TR.md` genel standart olmaya devam eder.

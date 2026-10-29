@@ -1,0 +1,937 @@
+[
+  {
+    "floorY": 0.00800000000000009,
+    "joints": {
+      "Head": [
+        0.05720672902500601,
+        1.9972647600078217,
+        0.6076846359276167
+      ],
+      "HandL": [
+        -0.7709523929449833,
+        1.0882607371847566,
+        0.33210201372624915
+      ],
+      "HandR": [
+        0.8949011744081836,
+        1.1476796556607693,
+        0.19852068800487324
+      ],
+      "FootL": [
+        -0.3502715106334247,
+        0.26124852225042583,
+        0.29405642946418925
+      ],
+      "FootR": [
+        0.284956586709987,
+        0.2687088299213641,
+        -0.2847042297536735
+      ],
+      "UpperArmL": [
+        -0.4326570058557959,
+        1.719460289767456,
+        0.3772076348698058
+      ],
+      "UpperArmR": [
+        0.5096881862294822,
+        1.759820304474071,
+        0.27735767400996186
+      ],
+      "ForearmL": [
+        -0.6311709892467874,
+        1.426118074742422,
+        0.08541455706760237
+      ],
+      "ForearmR": [
+        0.7195788964278456,
+        1.4853257394941648,
+        -0.02463488644021189
+      ]
+    },
+    "role": "WolfIdle",
+    "phase": 0.2,
+    "view": "front",
+    "clip": "WolfIdle",
+    "duration": 1.065999984741211,
+    "box": [
+      [
+        -0.8517847953210421,
+        0.00800000000000009,
+        -0.4432917157914093
+      ],
+      [
+        1.0330931773481564,
+        2.2370900780915024,
+        1.1783758248908178
+      ]
+    ],
+    "skin": [
+      {
+        "mesh": "Tattoo_right_surface",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Tattoo_left_surface",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Tattoo_back_surface",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Cloth_Karahan_TornCapri",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Body_karahan_lower_1",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Body_karahan_lower_2",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Body_karahan_lower_3",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Body_karahan_1",
+        "edgesOver3": 2,
+        "severe": []
+      },
+      {
+        "mesh": "Body_karahan_2",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Body_karahan_3",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Body_karahan_4",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Body_karahan_5",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Body_karahan_6",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Behamah_Horns",
+        "edgesOver3": 0,
+        "severe": []
+      }
+    ],
+    "triangles": 11633
+  },
+  {
+    "floorY": 0.00800000000000009,
+    "joints": {
+      "Head": [
+        0.05720672902500601,
+        1.9972647600078217,
+        0.6076846359276167
+      ],
+      "HandL": [
+        -0.7709523929449833,
+        1.0882607371847566,
+        0.33210201372624915
+      ],
+      "HandR": [
+        0.8949011744081836,
+        1.1476796556607693,
+        0.19852068800487324
+      ],
+      "FootL": [
+        -0.3502715106334247,
+        0.26124852225042583,
+        0.29405642946418925
+      ],
+      "FootR": [
+        0.284956586709987,
+        0.2687088299213641,
+        -0.2847042297536735
+      ],
+      "UpperArmL": [
+        -0.4326570058557959,
+        1.719460289767456,
+        0.3772076348698058
+      ],
+      "UpperArmR": [
+        0.5096881862294822,
+        1.759820304474071,
+        0.27735767400996186
+      ],
+      "ForearmL": [
+        -0.6311709892467874,
+        1.426118074742422,
+        0.08541455706760237
+      ],
+      "ForearmR": [
+        0.7195788964278456,
+        1.4853257394941648,
+        -0.02463488644021189
+      ]
+    },
+    "role": "WolfIdle",
+    "phase": 0.2,
+    "view": "back",
+    "clip": "WolfIdle",
+    "duration": 1.065999984741211,
+    "box": [
+      [
+        -0.8517847953210421,
+        0.00800000000000009,
+        -0.4432917157914093
+      ],
+      [
+        1.0330931773481564,
+        2.2370900780915024,
+        1.1783758248908178
+      ]
+    ],
+    "skin": [
+      {
+        "mesh": "Tattoo_right_surface",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Tattoo_left_surface",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Tattoo_back_surface",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Cloth_Karahan_TornCapri",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Body_karahan_lower_1",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Body_karahan_lower_2",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Body_karahan_lower_3",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Body_karahan_1",
+        "edgesOver3": 2,
+        "severe": []
+      },
+      {
+        "mesh": "Body_karahan_2",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Body_karahan_3",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Body_karahan_4",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Body_karahan_5",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Body_karahan_6",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Behamah_Horns",
+        "edgesOver3": 0,
+        "severe": []
+      }
+    ],
+    "triangles": 11633
+  },
+  {
+    "floorY": 0.2511990331809126,
+    "joints": {
+      "Head": [
+        -0.014601934408273004,
+        1.7189697402366717,
+        0.7065679767948149
+      ],
+      "HandL": [
+        -0.29677744746969487,
+        0.8284928945584523,
+        0.2735470720121535
+      ],
+      "HandR": [
+        0.4315591901150843,
+        1.1490268691696028,
+        0.7256674774332725
+      ],
+      "FootL": [
+        -0.2514293665134986,
+        0.553654476342808,
+        -0.8721865884795392
+      ],
+      "FootR": [
+        0.18776726701301552,
+        0.830134484907678,
+        -1.2201125368434735
+      ],
+      "UpperArmL": [
+        -0.47861037970147086,
+        1.469505128108874,
+        0.5237450216865519
+      ],
+      "UpperArmR": [
+        0.42613903531674385,
+        1.5710435832851808,
+        0.5946296973890752
+      ],
+      "ForearmL": [
+        -0.5072477908095123,
+        1.1975890561231988,
+        0.15517725838176383
+      ],
+      "ForearmR": [
+        0.7499457609535887,
+        1.279842958770306,
+        0.4498807326092289
+      ]
+    },
+    "role": "WolfRunQuad",
+    "phase": 0.45,
+    "view": "side",
+    "clip": "WolfRunQuad",
+    "duration": 0.5329999923706055,
+    "box": [
+      [
+        -0.6871852062236757,
+        0.2511990331809126,
+        -1.450738045041585
+      ],
+      [
+        0.9881053455775194,
+        1.9602603177328053,
+        1.2476505672349876
+      ]
+    ],
+    "skin": [
+      {
+        "mesh": "Tattoo_right_surface",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Tattoo_left_surface",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Tattoo_back_surface",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Cloth_Karahan_TornCapri",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Body_karahan_lower_1",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Body_karahan_lower_2",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Body_karahan_lower_3",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Body_karahan_1",
+        "edgesOver3": 82,
+        "severe": [
+          {
+            "ratio": 7.246692410269371,
+            "length": 7.552784901543022,
+            "rest": 1.0422387689892414,
+            "vertices": [
+              {
+                "id": 2941,
+                "rest": [
+                  -14.513555526733398,
+                  127.70088195800781,
+                  -9.560783386230469
+                ],
+                "weights": [
+                  {
+                    "bone": "Bip01_R_Clavicle",
+                    "weight": 0.5826290249824524
+                  },
+                  {
+                    "bone": "Bip01_Head",
+                    "weight": 0.25968798995018005
+                  },
+                  {
+                    "bone": "Bip01_Spine2",
+                    "weight": 0.15768299996852875
+                  }
+                ]
+              },
+              {
+                "id": 2942,
+                "rest": [
+                  -13.589380264282227,
+                  128.13790893554688,
+                  -9.76368522644043
+                ],
+                "weights": [
+                  {
+                    "bone": "Bip01_Head",
+                    "weight": 0.7338430285453796
+                  },
+                  {
+                    "bone": "Bip01_R_Clavicle",
+                    "weight": 0.174250990152359
+                  },
+                  {
+                    "bone": "Bip01_Spine2",
+                    "weight": 0.09190598875284195
+                  }
+                ]
+              }
+            ],
+            "physicalRestM": 0.018798923862731704,
+            "physicalLengthM": 0.1362300188772896
+          },
+          {
+            "ratio": 7.246692410269371,
+            "length": 7.552784901543022,
+            "rest": 1.0422387689892414,
+            "vertices": [
+              {
+                "id": 2946,
+                "rest": [
+                  -14.513555526733398,
+                  127.70088195800781,
+                  -9.560783386230469
+                ],
+                "weights": [
+                  {
+                    "bone": "Bip01_R_Clavicle",
+                    "weight": 0.5826290249824524
+                  },
+                  {
+                    "bone": "Bip01_Head",
+                    "weight": 0.25968798995018005
+                  },
+                  {
+                    "bone": "Bip01_Spine2",
+                    "weight": 0.15768299996852875
+                  }
+                ]
+              },
+              {
+                "id": 2948,
+                "rest": [
+                  -13.589380264282227,
+                  128.13790893554688,
+                  -9.76368522644043
+                ],
+                "weights": [
+                  {
+                    "bone": "Bip01_Head",
+                    "weight": 0.7338430285453796
+                  },
+                  {
+                    "bone": "Bip01_R_Clavicle",
+                    "weight": 0.174250990152359
+                  },
+                  {
+                    "bone": "Bip01_Spine2",
+                    "weight": 0.09190598875284195
+                  }
+                ]
+              }
+            ],
+            "physicalRestM": 0.018798923862731704,
+            "physicalLengthM": 0.1362300188772896
+          },
+          {
+            "ratio": 5.911957031713343,
+            "length": 22.11564606081833,
+            "rest": 3.7408327985358327,
+            "vertices": [
+              {
+                "id": 3781,
+                "rest": [
+                  9.330801963806152,
+                  136.9280548095703,
+                  1.5490230321884155
+                ],
+                "weights": [
+                  {
+                    "bone": "Bip01_Neck",
+                    "weight": 0.5483620166778564
+                  },
+                  {
+                    "bone": "Bip01_Head",
+                    "weight": 0.45163798332214355
+                  }
+                ]
+              },
+              {
+                "id": 3782,
+                "rest": [
+                  12.163854598999023,
+                  135.11480712890625,
+                  -0.08797899633646011
+                ],
+                "weights": [
+                  {
+                    "bone": "Bip01_Spine2",
+                    "weight": 0.646465003490448
+                  },
+                  {
+                    "bone": "Bip01_L_Clavicle",
+                    "weight": 0.353534996509552
+                  }
+                ]
+              }
+            ],
+            "physicalRestM": 0.06747362797786177,
+            "physicalLengthM": 0.39890118937893004
+          }
+        ]
+      },
+      {
+        "mesh": "Body_karahan_2",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Body_karahan_3",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Body_karahan_4",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Body_karahan_5",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Body_karahan_6",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Behamah_Horns",
+        "edgesOver3": 0,
+        "severe": []
+      }
+    ],
+    "triangles": 11633
+  },
+  {
+    "floorY": 0.00800001567276415,
+    "joints": {
+      "Head": [
+        0.06276255907626664,
+        1.830701699463998,
+        0.3945122642266906
+      ],
+      "HandL": [
+        -0.6723674890623664,
+        0.8815077201921524,
+        0.6248831056854841
+      ],
+      "HandR": [
+        0.6086631371425117,
+        0.8482685345245913,
+        0.3215946144312679
+      ],
+      "FootL": [
+        -0.3578605328162734,
+        0.292757566759793,
+        0.31356405982548835
+      ],
+      "FootR": [
+        0.2771581623619613,
+        0.2853953716024003,
+        -0.3235068757256061
+      ],
+      "UpperArmL": [
+        -0.470864856585019,
+        1.5493686050266708,
+        0.1913920334758022
+      ],
+      "UpperArmR": [
+        0.43858589612582166,
+        1.4506532287688232,
+        0.21969718483181652
+      ],
+      "ForearmL": [
+        -0.7006009527499608,
+        1.1638213115173348,
+        0.2871803273636066
+      ],
+      "ForearmR": [
+        0.6358768089486172,
+        1.1175282877154504,
+        -0.02668651598187502
+      ]
+    },
+    "role": "WolfRoar",
+    "phase": 0.5,
+    "view": "three",
+    "clip": "WolfRoar",
+    "duration": 1.9329999685287476,
+    "box": [
+      [
+        -0.8887940184247952,
+        0.00800001567276415,
+        -0.45720818289676063
+      ],
+      [
+        0.7644350120234188,
+        2.0225770567463823,
+        0.9666866366325875
+      ]
+    ],
+    "skin": [
+      {
+        "mesh": "Tattoo_right_surface",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Tattoo_left_surface",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Tattoo_back_surface",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Cloth_Karahan_TornCapri",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Body_karahan_lower_1",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Body_karahan_lower_2",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Body_karahan_lower_3",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Body_karahan_1",
+        "edgesOver3": 104,
+        "severe": [
+          {
+            "ratio": 4.714598242498267,
+            "length": 11.771555714918474,
+            "rest": 2.496830717459421,
+            "vertices": [
+              {
+                "id": 3405,
+                "rest": [
+                  0,
+                  138.57684326171875,
+                  3.664012908935547
+                ],
+                "weights": [
+                  {
+                    "bone": "Bip01_Head",
+                    "weight": 1
+                  }
+                ]
+              },
+              {
+                "id": 3407,
+                "rest": [
+                  0,
+                  139.94334411621094,
+                  5.753711223602295
+                ],
+                "weights": [
+                  {
+                    "bone": "Bip01_Neck",
+                    "weight": 0.595674991607666
+                  },
+                  {
+                    "bone": "Bip01_Head",
+                    "weight": 0.404325008392334
+                  }
+                ]
+              }
+            ],
+            "physicalRestM": 0.045035487022968286,
+            "physicalLengthM": 0.21232422796853984
+          },
+          {
+            "ratio": 4.714598242498267,
+            "length": 11.771555714918474,
+            "rest": 2.496830717459421,
+            "vertices": [
+              {
+                "id": 3448,
+                "rest": [
+                  0,
+                  138.57684326171875,
+                  3.664012908935547
+                ],
+                "weights": [
+                  {
+                    "bone": "Bip01_Head",
+                    "weight": 1
+                  }
+                ]
+              },
+              {
+                "id": 3449,
+                "rest": [
+                  0,
+                  139.94334411621094,
+                  5.753711223602295
+                ],
+                "weights": [
+                  {
+                    "bone": "Bip01_Neck",
+                    "weight": 0.595674991607666
+                  },
+                  {
+                    "bone": "Bip01_Head",
+                    "weight": 0.404325008392334
+                  }
+                ]
+              }
+            ],
+            "physicalRestM": 0.045035487022968286,
+            "physicalLengthM": 0.21232422796853984
+          }
+        ]
+      },
+      {
+        "mesh": "Body_karahan_2",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Body_karahan_3",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Body_karahan_4",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Body_karahan_5",
+        "edgesOver3": 2,
+        "severe": []
+      },
+      {
+        "mesh": "Body_karahan_6",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Behamah_Horns",
+        "edgesOver3": 0,
+        "severe": []
+      }
+    ],
+    "triangles": 11633
+  },
+  {
+    "floorY": 0.005485739919403487,
+    "joints": {
+      "Head": [
+        0.05930324789984266,
+        0.853390983442485,
+        0.665284224955735
+      ],
+      "HandL": [
+        -0.28672635386699846,
+        0.310749532557119,
+        0.22577795201182815
+      ],
+      "HandR": [
+        0.47626228549033517,
+        0.6136554885593268,
+        0.042628499507228634
+      ],
+      "FootL": [
+        -0.35485839038988887,
+        1.077712060034644,
+        -0.4059862457358378
+      ],
+      "FootR": [
+        0.26954626223924144,
+        1.0241301867510701,
+        -0.9205951666765769
+      ],
+      "UpperArmL": [
+        -0.3602867783414507,
+        0.937175101487942,
+        0.5563729236134268
+      ],
+      "UpperArmR": [
+        0.447036455595366,
+        1.0694035781632232,
+        0.7281623462962755
+      ],
+      "ForearmL": [
+        -0.5857095262443026,
+        0.6246401888441183,
+        0.3071597877861332
+      ],
+      "ForearmR": [
+        0.618609583948749,
+        0.9150263914386356,
+        0.33151242435486766
+      ]
+    },
+    "role": "WolfRoll",
+    "phase": 0.5,
+    "view": "three",
+    "clip": "WolfRoll",
+    "duration": 1,
+    "box": [
+      [
+        -0.9458440359626864,
+        0.005485739919403487,
+        -1.0779569021305817
+      ],
+      [
+        0.9113780442119681,
+        1.7930816237283786,
+        0.9996831684053122
+      ]
+    ],
+    "skin": [
+      {
+        "mesh": "Tattoo_right_surface",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Tattoo_left_surface",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Tattoo_back_surface",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Cloth_Karahan_TornCapri",
+        "edgesOver3": 1,
+        "severe": []
+      },
+      {
+        "mesh": "Body_karahan_lower_1",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Body_karahan_lower_2",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Body_karahan_lower_3",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Body_karahan_1",
+        "edgesOver3": 210,
+        "severe": []
+      },
+      {
+        "mesh": "Body_karahan_2",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Body_karahan_3",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Body_karahan_4",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Body_karahan_5",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Body_karahan_6",
+        "edgesOver3": 0,
+        "severe": []
+      },
+      {
+        "mesh": "Behamah_Horns",
+        "edgesOver3": 0,
+        "severe": []
+      }
+    ],
+    "triangles": 11355
+  }
+]

@@ -6,8 +6,19 @@ export const nativeModel=actor=>!!(actor?.userData.nativeSourceKeyPreserved&&MOD
 const wolf={WolfClaw:['LSt','UMFi1','upper'],WolfIdle:['LSt','UMSt'],WolfMove:['LWF','UMWF'],WolfWalk:['LWF','UMWF'],WolfRunQuad:['LRF','UMRF'],WolfRoar:['T_CRY'],WolfRoll:['T_Specialatk'],WolfClawRight:['LSt','UMFi1','upper'],WolfClawLeft:['LSt','UMFi2','upper'],WolfJump:['LJJ','UMJJ'],WolfJumpAir:['LJT','UMJT'],WolfLand:['LJL','UMJL'],WolfTransform:['LSt','UMSt']};
 const human={HumanIdle:['UI_Default_Idle'],HumanMove:['LWF','URi1WF'],HumanWalk:['LWF','URi1WF'],HumanRun:['LRF','URi1RF'],HumanFire:['URi1Fi'],HumanReload:['URi1Re']};
 const trackBone=track=>normalizedBoneName(track.name.slice(0,track.name.lastIndexOf('.')).replace(/^.*\[([^\]]+)\]$/,'$1'));
+// Keep supplied bone lengths constant across the legacy family's clips.
+// Original GLB tracks stay intact; this derived cache adapts positions only.
+function proportionateClips(actor){
+ const raw=actor?.userData.motionClips||[],lengths=actor?.userData.nativeJointRestLengths;if(!lengths)return raw;
+ if(actor.userData.proportionateClips)return actor.userData.proportionateClips;
+ const lookup=new Map(Object.entries(lengths).map(([name,length])=>[normalizedBoneName(name),length]));
+ return actor.userData.proportionateClips=raw.map(clip=>new AnimationClip(clip.name,clip.duration,clip.tracks.map(track=>{
+  const length=lookup.get(trackBone(track));if(!length||!track.name.endsWith('.position'))return track;
+  const copy=track.clone();for(let i=0;i<copy.values.length;i+=3){const current=Math.hypot(copy.values[i],copy.values[i+1],copy.values[i+2]);if(current>1e-6){const scale=length/current;for(let j=0;j<3;j++)copy.values[i+j]*=scale;}}return copy;
+ })));
+}
 export function motionClip(actor,role){
- const clips=actor?.userData.motionClips||[];if(role==='WolfRunQuad'){const chosen=actor?.userData.nativeLocomotion?.quadClip;const quad=clips.find(c=>c.name===(chosen||'DerivedQuadRun'));if(quad){const cache=actor.userData.nativeRoleCache||(actor.userData.nativeRoleCache=new Map());if(!cache.has('WolfRunQuad'))cache.set('WolfRunQuad',new AnimationClip('WolfRunQuad',quad.duration,quad.tracks));return cache.get('WolfRunQuad');}}if(!nativeModel(actor))return clips.find(c=>c.name===role)||clips.find(c=>c.name==='WolfIdle'||c.name==='HumanIdle');
+ const clips=proportionateClips(actor);if(role==='WolfRunQuad'){const chosen=actor?.userData.nativeLocomotion?.quadClip;const quad=clips.find(c=>c.name===(chosen||'DerivedQuadRun'));if(quad){const cache=actor.userData.nativeRoleCache||(actor.userData.nativeRoleCache=new Map());if(!cache.has('WolfRunQuad'))cache.set('WolfRunQuad',new AnimationClip('WolfRunQuad',quad.duration,quad.tracks));return cache.get('WolfRunQuad');}}if(!nativeModel(actor))return clips.find(c=>c.name===role)||clips.find(c=>c.name==='WolfIdle'||c.name==='HumanIdle');
  const cache=actor.userData.nativeRoleCache||(actor.userData.nativeRoleCache=new Map());if(cache.has(role))return cache.get(role);
  const recipe=actor.userData.nativeRoleRecipes?.[role]||(actor.userData.modelType==='human47'?human:wolf)[role];if(!recipe)return clips.find(c=>c.name===role)||null;
  const base=clips.find(c=>c.name===recipe[0]),upper=clips.find(c=>c.name===recipe[1]);if(!base)return null;
@@ -49,6 +60,6 @@ function contactProbes(actor){
 }
 export function keepNativeBodyAboveGround(actor,groundY=0){
  if(!nativeModel(actor))return 0;let probes=supportCache.get(actor);if(!probes){probes=contactProbes(actor);supportCache.set(actor,probes);}actor.updateMatrixWorld(true);let floor=Infinity;
- for(const {mesh,indices} of probes){if(!mesh.visible)continue;for(const i of indices){supportPoint.fromBufferAttribute(mesh.geometry.attributes.position,i);mesh.applyBoneTransform(i,supportPoint).applyMatrix4(mesh.matrixWorld);floor=Math.min(floor,supportPoint.y);}}
+ for(const {mesh,indices} of probes){if(!mesh.visible)continue;for(const i of indices){mesh.getVertexPosition(i,supportPoint).applyMatrix4(mesh.matrixWorld);floor=Math.min(floor,supportPoint.y);}}
  const correction=Number.isFinite(floor)?Math.max(0,groundY+.008-floor):0;if(correction>0){actor.position.y+=correction;actor.updateMatrixWorld(true);}return correction;
 }

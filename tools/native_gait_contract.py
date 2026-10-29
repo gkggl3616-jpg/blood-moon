@@ -3,11 +3,13 @@ import sys,json,struct,statistics,hashlib,argparse
 from pathlib import Path
 from mathutils import Matrix,Vector
 R=Path(__file__).resolve().parents[1];sys.path.insert(0,str(R/'tools'));import export_bilge_native_basis as e
-parser=argparse.ArgumentParser();parser.add_argument('--body');parser.add_argument('--motion');parser.add_argument('--quad',default='T_WallDash');parser.add_argument('--height',type=float,default=2.4);parser.add_argument('--rebind',action='store_true');parser.add_argument('--asset',default='art/characters/premium-wolf-01/v2/wolf.glb');args=parser.parse_args(sys.argv[sys.argv.index('--')+1:] if '--' in sys.argv else []);P=R/args.asset;b=e.Reader().from_file(str(R/(args.body or 'art/3d/source/wolfteam-archive/selected/wt_wolf_power_r.ltb')));m=e.Reader().from_file(str(R/(args.motion or 'art/3d/source/pedro-native/new-motion/wt_new_wolf_ch.ltb')));ix={n.name:i for i,n in enumerate(b.nodes)};clips={a.name:a for a in m.animations};pts=[v.location for p in b.pieces for v in p.lods[0].vertices];low=min(v.y for v in pts);unit=args.height/(max(v.y for v in pts)-low)
+parser=argparse.ArgumentParser();parser.add_argument('--normalized',action='store_true');parser.add_argument('--body');parser.add_argument('--motion');parser.add_argument('--quad',default='T_WallDash');parser.add_argument('--height',type=float,default=2.4);parser.add_argument('--rebind',action='store_true');parser.add_argument('--asset',default='art/characters/premium-wolf-01/v2/wolf.glb');args=parser.parse_args(sys.argv[sys.argv.index('--')+1:] if '--' in sys.argv else []);P=R/args.asset;b=e.Reader().from_file(str(R/(args.body or 'art/3d/source/wolfteam-archive/selected/wt_wolf_power_r.ltb')));m=e.Reader().from_file(str(R/(args.motion or 'art/3d/source/pedro-native/new-motion/wt_new_wolf_ch.ltb')));ix={n.name:i for i,n in enumerate(b.nodes)};clips={a.name:a for a in m.animations};pts=[v.location for p in b.pieces for v in p.lods[0].vertices];low=min(v.y for v in pts);unit=args.height/(max(v.y for v in pts)-low)
 def pose(a,k,upper=None):
  result=[]
  for i,n in enumerate(b.nodes):
-  animation=clips[upper] if upper and n.name in upper_names else a;j=min(k,len(animation.keyframes)-1);t=animation.node_keyframe_transforms[i][j];local=Matrix.LocRotScale(t.location,t.rotation.normalized(),Vector((1,1,1)));
+  animation=clips[upper] if upper and n.name in upper_names else a;j=min(k,len(animation.keyframes)-1);t=animation.node_keyframe_transforms[i][j];location=t.location.copy()
+  if args.normalized and n.parent and n.name!='Bip01 Pelvis' and location.length>1e-6:location*=(n.parent.bind_matrix.inverted()@n.bind_matrix).translation.length/location.length
+  local=Matrix.LocRotScale(location,t.rotation.normalized(),Vector((1,1,1)));
   if args.rebind:
    source=m.nodes[i];tb=n.parent.bind_matrix.inverted()@n.bind_matrix if n.parent else n.bind_matrix;sb=source.parent.bind_matrix.inverted()@source.bind_matrix if source.parent else source.bind_matrix;local=tb@sb.inverted()@local
   result.append(result[ix[n.parent.name]]@local if n.parent else local)
@@ -32,7 +34,7 @@ for role,upper in [('LWF','UMWF'),(args.quad,None)]:
     speed=abs(q.z-p.z)/dt
     if speed>.05:speeds.append(speed)
  stride=statistics.median(speeds)*times[-1];records.append({'clip':role,'duration':times[-1],'stance_samples':len(speeds),'stride_m':stride})
-raw=P.read_bytes();n=struct.unpack_from('<I',raw,12)[0];g=json.loads(raw[20:20+n]);binary=raw[28+n:];meta=g['scenes'][0]['extras'];before=hashlib.sha256(json.dumps(g['animations'],sort_keys=True).encode()).hexdigest();meta.update(nativeClipRootStarts=starts,nativeRollClearance=[[0,0],[1,0]],nativeGroundingMethod='Actual blended skin support probes; native vertical arc and source keys preserved',nativeLocomotion={'quadClip':args.quad,'walkStrideMeters':records[0]['stride_m'],'runStrideMeters':records[1]['stride_m']})
+raw=P.read_bytes();n=struct.unpack_from('<I',raw,12)[0];g=json.loads(raw[20:20+n]);binary=raw[28+n:];meta=g['scenes'][0]['extras'];before=hashlib.sha256(json.dumps(g['animations'],sort_keys=True).encode()).hexdigest();meta.update(nativeClipRootStarts=starts,nativeRollClearance=[[0,0],[1,0]],nativeGroundingMethod='Actual blended skin support probes; native vertical arc and source keys preserved',nativeLocomotion={**meta.get('nativeLocomotion',{}),'quadClip':args.quad,'walkStrideMeters':records[0]['stride_m'],'runStrideMeters':records[1]['stride_m']})
 for material in g.get('materials',[]):
  if material.get('name')=='Premium_Fur':material['pbrMetallicRoughness'].update(baseColorFactor=[.8,.8,.8,1],metallicFactor=0,roughnessFactor=.95)
 assert hashlib.sha256(json.dumps(g['animations'],sort_keys=True).encode()).hexdigest()==before

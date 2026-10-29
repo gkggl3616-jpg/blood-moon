@@ -6,11 +6,12 @@ const roster = [
  {id:'bilge',name:'BİLGE KAĞAN',wolf:'BUZ KURDU',role:'KOMUTAN',price:900,power:145,color:'#c3b17c',human:[['Dayanıklılık',3],['Hareket',-2]],beast:[['Hasar',45],['Dayanıklılık',45]],body:'Uzun ve geniş gövdeli',claw:'Gövde dönüşüyle ağır yatay darbe',trail:'Mat altın • üç geniş yatay yay',desc:'Göktürk hükümdarı Bilge Kağan’dan esinlenen kurgu komutan. Tarihî bir portre iddiası taşımaz.'},
  {id:'kultigin',name:'KÜL TİGİN',wolf:'KAN KURDU',role:'SAVAŞÇI',price:1400,power:180,color:'#b55260',human:[['Dayanıklılık',4],['Hareket',-3]],beast:[['Hasar',80],['Dayanıklılık',80]],body:'Kaslı ve atletik',claw:'Omuzdan başlayan iki çapraz güçlü darbe',trail:'Koyu kızıl • iki kalın çapraz iz',desc:'Göktürk komutanı Kül Tigin’den esinlenen savaşçı. Güçlü karakter pasifi; dövme bonusları ayrıca hesaplanır.'},
  {id:'alparslan',name:'ALP ARSLAN',wolf:'KÖZ KURDU',role:'ÖNCÜ',price:1250,power:165,color:'#c3945e',human:[['Dayanıklılık',5],['Hareket',-4]],beast:[['Hasar',65],['Dayanıklılık',65]],body:'Ağır, geniş göğüslü',claw:'Ağırlık aktarımıyla alttan yukarı ağır darbe',trail:'Kehribar • üç derin yükselen yay',desc:'Selçuklu hükümdarı Alp Arslan’dan esinlenen kurgu öncü. Ağır gövdesi için daha geniş saldırı hareketleri planlanır.'},
- {id:'konuralp',name:'KONURALP',wolf:'GÖLGE KURDU',role:'AKINCI',price:1000,power:150,color:'#6ea8a2',human:[['Hareket',4],['Dayanıklılık',-3]],beast:[['Hasar',50],['Dayanıklılık',50]],body:'İnce, uzun uzuvlu',claw:'Kısa adımla üç hızlı pençe',trail:'Soluk turkuaz • üç ince paralel iz',desc:'Osmanlı uç beyi Konuralp’ten esinlenen kurgu akıncı. Hafif gövde için dar ve hızlı savuruşlar planlanır.'}
-
+ {id:'konuralp',name:'KONURALP',wolf:'GÖLGE KURDU',role:'AKINCI',price:1000,power:150,color:'#6ea8a2',human:[['Hareket',4],['Dayanıklılık',-3]],beast:[['Hasar',50],['Dayanıklılık',50]],body:'İnce, uzun uzuvlu',claw:'Kısa adımla üç hızlı pençe',trail:'Soluk turkuaz • üç ince paralel iz',desc:'Osmanlı uç beyi Konuralp’ten esinlenen kurgu akıncı. Hafif gövde için dar ve hızlı savuruşlar planlanır.'},
+ {id:'karahan',name:'KARAHAN',wolf:'KARAHAN',role:'KARA MUHAFIZ',price:0,power:135,color:'#d89947',human:[['Dayanıklılık',4],['Hareket',0]],beast:[['Hasar',35],['Dayanıklılık',40]],body:'Boynuzlu Behamah gövdesi',claw:'Dönüşümlü ağır pençe',trail:'Kehribar • üç pençe izi',desc:'Savaş yaralı boynuzlu muhafız. Yırtık kapri, eskitilmiş kolluklar ve kendine ait insan formu.'}
 ];
 let collectionState={credits:2500,owned:['basibozuk','bilge'],equipped:'bilge'};
 try{const v=JSON.parse(localStorage.getItem('rogue-collection'));if(v){collectionState.credits=Number.isFinite(v.credits)?Math.max(0,v.credits):2500;collectionState.owned=roster.filter(c=>v.owned?.includes(c.id)).map(c=>c.id);if(!collectionState.owned.includes('basibozuk'))collectionState.owned.push('basibozuk');if(!collectionState.owned.includes('bilge'))collectionState.owned.push('bilge');collectionState.equipped=collectionState.owned.includes(v.equipped)?v.equipped:'basibozuk';}}catch(_){}
+if(!collectionState.owned.includes('karahan'))collectionState.owned.push('karahan');
 let libraryMode='inventory',category='characters',selectedCharacter='basibozuk',previewForm='wolf';
 function saveCollection(){try{localStorage.setItem('rogue-collection',JSON.stringify(collectionState));}catch(_){toast('Cihaz kaydı kullanılamıyor.');}}
 function bonusRows(rows){return rows.map(([label,value])=>`<div class="bonus-row"><span>${label}</span><strong class="${value>0?'positive':value<0?'negative':''}">${value>0?'+':''}${Number(value.toFixed(1))}%</strong></div>`).join('');}
@@ -27,7 +28,7 @@ window.rogueModelId=characterModelId;
 function updateInventoryCharacter(){}
 $('previewHuman').onclick=()=>{previewForm='human';renderCollection();};$('previewWolf').onclick=()=>{previewForm='wolf';renderCollection();};
 $('inventoryBackView').onclick=()=>window.wolf3DView?.(false);
-$('inventoryTestArea').onclick=()=>{if(['bilge','kultigin','alparslan','konuralp'].includes(characterModelId(selectedCharacter)))$('arenaCharacter').value=selectedCharacter;window.openArena?.();};
+$('inventoryTestArea').onclick=()=>{if(['bilge','kultigin','alparslan','konuralp','karahan'].includes(characterModelId(selectedCharacter)))$('arenaCharacter').value=selectedCharacter;window.openArena?.();};
 $('inventoryMode').onclick=()=>{libraryMode='inventory';renderCollection();};$('shopMode').onclick=()=>{libraryMode='shop';renderCollection();};
 for(const b of document.querySelectorAll('[data-category]'))b.onclick=()=>{playSound();category=b.dataset.category;renderCollection();};
 $('openInventory').onclick=()=>window.openCollection();

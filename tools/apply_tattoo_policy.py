@@ -35,6 +35,9 @@ def apply(path):
    if c['target']['path']=='translation':local[i][0]=Vector(v)
    elif c['target']['path']=='rotation':local[i][1]=Quaternion((v[3],*v[:3])).normalized()
    elif c['target']['path']=='scale':local[i][2]=Vector(v)
+ for i,node in enumerate(nodes):
+  length=meta.get('nativeJointRestLengths',{}).get(node.get('name'))
+  if length and local[i][0].length>1e-6:local[i][0]*=length/local[i][0].length
  world={}
  def pose(i):
   if i not in world:world[i]=(pose(parents[i]) if i in parents else Matrix.Identity(4))@Matrix.LocRotScale(*local[i])
@@ -42,11 +45,12 @@ def apply(path):
  body_node=next((node for node in nodes if node.get('name')==meta.get('tattooProjectionBodyName') and 'mesh' in node),None) or next(node for node in nodes if node.get('name','').startswith('Body_') and 'mesh' in node);skin=g['skins'][body_node['skin']];inverse=[Matrix([v[i:i+4] for i in range(0,16,4)]).transposed() for v in read(skin['inverseBindMatrices'])];matrices=[pose(i)@b for i,b in zip(skin['joints'],inverse)];norm=lambda name:name.replace('_','').replace(' ','').lower();joint_nodes={norm(nodes[i]['name']):i for i in skin['joints']}
  def joint(legacy,bip):
   i=joint_nodes.get(norm(bip),joint_nodes.get(norm(legacy)));assert i is not None,(path.name,legacy,bip);return pose(i).translation
- positions=[];weights=[];faces=[];face_materials=[]
+ positions=[];bind_positions=[];weights=[];faces=[];face_materials=[]
  body_mesh_before=copy.deepcopy(g['meshes'][body_node['mesh']])
  for p in body_mesh_before['primitives']:
   a=p['attributes'];ps=read(a['POSITION']);js=read(a['JOINTS_0']);ws=read(a['WEIGHTS_0']);start=len(positions)
   for point,j,w in zip(ps,js,ws):
+   bind_positions.append(Vector(point))
    value={i:v for i,v in zip(j,w) if v>1e-7};weights.append(value);positions.append(sum(((matrices[i]@Vector(point))*v for i,v in value.items()),Vector()))
   ix=[i[0] for i in read(p['indices'])] if 'indices' in p else list(range(len(ps)))
   for k in range(0,len(ix),3):faces.append(tuple(start+i for i in ix[k:k+3]));face_materials.append(g['materials'][p['material']]['name'].lower())
@@ -89,7 +93,9 @@ def apply(path):
     value={}
     for i,factor in zip(inds,factors):
      for bone,w in weights[i].items():value[bone]=value.get(bone,0)+w*factor
-    value=dict(sorted(value.items(),key=lambda v:-v[1])[:4]);total=sum(value.values());value={i:w/total for i,w in value.items()};matrix=sum((matrices[i]*w for i,w in value.items()),zero.copy());p=matrix.inverted_safe()@(point+normal*offset);normal_bind=(matrix.to_3x3().transposed()@normal).normalized();indices=list(value);values=list(value.values());vertices.append((p,normal_bind,[(point.x-left)/width*426/1274,(1-(point.y-bottom)/height)*431/1234],indices+[0]*(4-len(indices)),values+[0]*(4-len(values))))
+    value=dict(sorted(value.items(),key=lambda v:-v[1])[:4]);total=sum(value.values());value={i:w/total for i,w in value.items()};matrix=sum((matrices[i]*w for i,w in value.items()),zero.copy());p=matrix.inverted_safe()@(point+normal*offset);normal_bind=(matrix.to_3x3().transposed()@normal).normalized()
+    if meta.get('tattooSkinMethod')=='barycentric_bind_surface':p=sum((bind_positions[i]*f for i,f in zip(inds,factors)),Vector())+normal_bind*(offset/meta['nativeUnitScaleMeters'])
+    indices=list(value);values=list(value.values());vertices.append((p,normal_bind,[(point.x-left)/width*426/1274,(1-(point.y-bottom)/height)*431/1234],indices+[0]*(4-len(indices)),values+[0]*(4-len(values))))
    for j in range(1,len(vertices)-1):
     for vertex in [vertices[0],vertices[j],vertices[j+1]]:
      p,n,u,joint_ids,bias=vertex;ps.append(p);ns.append(n);uv.append(u);js.append(joint_ids);ws.append(bias)
