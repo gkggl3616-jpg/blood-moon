@@ -36,3 +36,6 @@ Geniş arena testi tek başına tekrarda PASS oldu: havada takla ve iniş, kısa
 Son özgün insan modelinin bilek/kıyafet ağırlıklarında gözle görülür çekilme devam ediyor. Bu yüzden **üretim kabulü başarısız / APK yayımlama kapalı**. Kullanıcının “her şeyi tamamlamadan atma” talimatına göre bu çalışma için APK indirme bağlantısı verilmeyecek. Mevcut APK önceki sürümdür ve bu değişiklikleri içeriyor diye sunulamaz.
 
 Kaynak anahtarları korunuyor; küçük yüzey ayrıntıları yeni PBR atlaslarından geliyor. Native gait için temel oynatma hızının 1 olması hedeflendi; çalışma zamanı stride sözleşmesi fiziksel 8 m/sn koşu ve 4,3 m/sn yürüyüşe göre tanımlıdır. Ayak temasından ölçülmüş bir stride kalibrasyonu olarak sunulmaz. Telefon için hatasızlık/FPS garantisi yoktur.
+
+## Son kullanıcı teslim talebi
+Kullanıcı son testler sonrası APK istedi. Görsel kalite engeli açıkça korunarak v0.1.16 **test APK** hazırlanıyor; bu talep tam model kabulü veya hatasızlık beyanı sayılmaz. Önceki yayımlamama kararı bu test teslimi için güncellendi. İmza ve tüm otomatik kontroller zorunlu kalır.
