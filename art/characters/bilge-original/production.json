@@ -35,5 +35,8 @@
     "Human wrist/cuff skin deformation remains visible; production acceptance not passed",
     "Full source four-foot locomotion is not present in Ice40 selection; do not claim completion",
     "Final Android certificate/update install and physical phone performance not validated"
-  ]
+  ],
+  "test_apk_published": "0.1.16",
+  "test_apk_verified": true,
+  "production_acceptance_complete": false
 }

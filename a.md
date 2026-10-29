@@ -329,3 +329,11 @@ Ice40 kurt / Human47 insan GLB'leri Bilge model yollarına eklendi. Kaynak kemik
 Kıyafet/kol deformasyonu ve zemine temas kalite kapıları sürüyor. Yeni APK henüz yayımlanmadı; cihaz performansı/kurulum/imza doğrulaması henüz yapılmadı. Bu kayıt tamamlandı beyanı değildir. Dört genel model tipinden yalnız Bilge'nin yeni özgün çiftinin entegrasyonu üzerinde çalışıldı. Kaynak Ice40 koşusu iki ayaklıdır; dört ayak koşu tamamlandı denmez.
 
 Son durum: geniş arena testi tek başına PASS; önceki havada takla/iniş zaman aşımı yeniden oluşmadı. Buna karşın insan bilek/kıyafet deformasyonu açık. `production.json` release_ready=false olarak işaretlendi. Bu çalışma için yeni APK yayımlanmadı.
+
+## v0.1.16 test APK teslimi doğrulandı
+
+Kullanıcının son APK talebiyle test sürümü yayımlandı. GitHub Actions 40825318025 SUCCESS: envanter/kayıt/bonus/silah, geniş arena, dört karakter hareket/efekt ve Bilge kaynak-klip/efekt kontrolleri geçti. APK indirildikten sonra ZIP bütünlüğü ve 52 çalışma zamanı dosyasının çalışma ağacındaki içerikle birebir eşleşmesi doğrulandı. Paket com.roguebloodmoon.prototype, sürüm 0.1.16 / kod 17, 74.334.480 bayt. Önceki sürümün sertifika SHA-256 değeriyle eşleşiyor. Ayrı veri/model kurulumu gerekmiyor. Fiziksel telefonda kurulup test edildiği iddia edilmez.
+
+Doğrudan APK: https://github.com/gkggl3616-jpg/blood-moon/releases/download/prototype-v0.1.16-22/Rogue-Blood-Moon-v0.1.16.apk
+
+Doğrulama: docs/bilge-original-complete/apk-v0116-verification.json. İnsan bilek/kıyafet deformasyonu devam eder; bu test sürümü tam görsel kabul değildir. Sonraki sıra docs/sonraki-adimlar-v0116.md içinde: telefon testi → Bilge skin düzeltmesi → kaynak dört ayak klip/temas/efekt kabulü → cihaz ölçümü → diğer özgün model tipleri → harita.

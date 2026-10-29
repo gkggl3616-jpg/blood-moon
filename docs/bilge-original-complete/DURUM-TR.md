@@ -39,3 +39,11 @@ Kaynak anahtarları korunuyor; küçük yüzey ayrıntıları yeni PBR atlaslar�
 
 ## Son kullanıcı teslim talebi
 Kullanıcı son testler sonrası APK istedi. Görsel kalite engeli açıkça korunarak v0.1.16 **test APK** hazırlanıyor; bu talep tam model kabulü veya hatasızlık beyanı sayılmaz. Önceki yayımlamama kararı bu test teslimi için güncellendi. İmza ve tüm otomatik kontroller zorunlu kalır.
+
+## v0.1.16 test APK teslimi doğrulandı
+
+Kullanıcının son APK talebiyle test sürümü yayımlandı. GitHub Actions 40825318025 SUCCESS: envanter/kayıt/bonus/silah, geniş arena, dört karakter hareket/efekt ve Bilge kaynak-klip/efekt kontrolleri geçti. APK indirildikten sonra ZIP bütünlüğü ve 52 çalışma zamanı dosyasının çalışma ağacındaki içerikle birebir eşleşmesi doğrulandı. Paket com.roguebloodmoon.prototype, sürüm 0.1.16 / kod 17, 74.334.480 bayt. Önceki sürümün sertifika SHA-256 değeriyle eşleşiyor. Ayrı veri/model kurulumu gerekmiyor. Fiziksel telefonda kurulup test edildiği iddia edilmez.
+
+Doğrudan APK: https://github.com/gkggl3616-jpg/blood-moon/releases/download/prototype-v0.1.16-22/Rogue-Blood-Moon-v0.1.16.apk
+
+Doğrulama: docs/bilge-original-complete/apk-v0116-verification.json. İnsan bilek/kıyafet deformasyonu devam eder; bu test sürümü tam görsel kabul değildir. Sonraki sıra docs/sonraki-adimlar-v0116.md içinde: telefon testi → Bilge skin düzeltmesi → kaynak dört ayak klip/temas/efekt kabulü → cihaz ölçümü → diğer özgün model tipleri → harita.

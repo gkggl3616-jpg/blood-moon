@@ -1,0 +1,15 @@
+{
+  "version": "0.1.16",
+  "version_code": 17,
+  "size_bytes": 74334480,
+  "sha256": "77396412f18ba7879f000aaa30c8334c18e372b0878d45c92bf244a8f3f6618b",
+  "certificate_sha256": "af43be4b6ee4d5b2e1feca6da3df36805a7b10bbb56b1f884136054ef7f98633",
+  "previous_signature_matches": true,
+  "all_runtime_assets_verified": 52,
+  "standalone": true,
+  "physical_phone_tested": false,
+  "ci_run": 40825318025,
+  "ci_result": "success",
+  "known_visual_defect": "Human wrist/cuff deformation",
+  "download": "https://github.com/gkggl3616-jpg/blood-moon/releases/download/prototype-v0.1.16-22/Rogue-Blood-Moon-v0.1.16.apk"
+}
