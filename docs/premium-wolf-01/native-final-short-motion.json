@@ -1,0 +1,466 @@
+{
+  "poses": [
+    {
+      "role": "WolfIdle",
+      "phase": 0.2,
+      "floor": 0.008000000000000028,
+      "joints": {
+        "Head": [
+          0.07116716785291194,
+          1.9545151527256013,
+          0.355850865468916
+        ],
+        "HandL": [
+          -0.3709866196954697,
+          1.186827586204364,
+          0.3681497048149651
+        ],
+        "HandR": [
+          0.60822273891135,
+          1.1897480380374637,
+          0.018494961175154742
+        ],
+        "FootL": [
+          -0.3498889149662492,
+          0.20720725949827,
+          0.3610868019015481
+        ],
+        "FootR": [
+          0.27971607743233423,
+          0.2083878882994778,
+          -0.29959358602785363
+        ],
+        "UpperArmL": [
+          -0.2750119728292421,
+          1.7414438226685796,
+          0.21410077597493085
+        ],
+        "UpperArmR": [
+          0.3791693242556704,
+          1.7831286094732555,
+          0.10798287685169303
+        ],
+        "ForearmL": [
+          -0.44743907588772247,
+          1.4660094053744026,
+          0.1462458013199294
+        ],
+        "ForearmR": [
+          0.5357060434219929,
+          1.5396548362939864,
+          -0.05454816428125017
+        ]
+      },
+      "meshes": [
+        {
+          "mesh": "Body_bilge_1",
+          "edgesOver3": 12,
+          "maxRatio": 4.546602776488777,
+          "severe": []
+        },
+        {
+          "mesh": "Body_bilge_2",
+          "edgesOver3": 0,
+          "maxRatio": 1,
+          "severe": []
+        },
+        {
+          "mesh": "Body_bilge_3",
+          "edgesOver3": 0,
+          "maxRatio": 1,
+          "severe": []
+        },
+        {
+          "mesh": "Body_bilge_4",
+          "edgesOver3": 0,
+          "maxRatio": 1,
+          "severe": []
+        },
+        {
+          "mesh": "Body_bilge_5",
+          "edgesOver3": 0,
+          "maxRatio": 1,
+          "severe": []
+        },
+        {
+          "mesh": "Body_bilge_6",
+          "edgesOver3": 0,
+          "maxRatio": 1,
+          "severe": []
+        },
+        {
+          "mesh": "Body_bilge_7",
+          "edgesOver3": 0,
+          "maxRatio": 1,
+          "severe": []
+        },
+        {
+          "mesh": "Tattoo_back_surface",
+          "edgesOver3": 0,
+          "maxRatio": 1,
+          "severe": []
+        },
+        {
+          "mesh": "Tattoo_left_surface",
+          "edgesOver3": 0,
+          "maxRatio": 1,
+          "severe": []
+        },
+        {
+          "mesh": "Tattoo_right_surface",
+          "edgesOver3": 0,
+          "maxRatio": 1,
+          "severe": []
+        }
+      ],
+      "contactProbeCount": 481
+    },
+    {
+      "role": "WolfRunQuad",
+      "phase": 0.5,
+      "floor": 0.09274123409042266,
+      "joints": {
+        "Head": [
+          -0.013235562682009275,
+          1.1595669442351701,
+          0.9973497757253251
+        ],
+        "HandL": [
+          -0.21846281161380854,
+          0.6401595069588895,
+          0.7701955340982782
+        ],
+        "HandR": [
+          0.23910440462913052,
+          0.7565205999818652,
+          1.0206876489409498
+        ],
+        "FootL": [
+          -0.2503801221638942,
+          0.3668459900409863,
+          -0.70906485159154
+        ],
+        "FootR": [
+          0.1666515760419656,
+          0.8178326029133385,
+          -0.9514605807611243
+        ],
+        "UpperArmL": [
+          -0.3422847440655001,
+          1.0637230394268653,
+          0.8159380348826779
+        ],
+        "UpperArmR": [
+          0.2997431326127141,
+          1.0820619742977609,
+          0.8387108501756616
+        ],
+        "ForearmL": [
+          -0.4223011774689578,
+          0.8620647697804883,
+          0.5646795888040468
+        ],
+        "ForearmR": [
+          0.522037108800811,
+          0.8377848033570225,
+          0.8053414165544169
+        ]
+      },
+      "meshes": [
+        {
+          "mesh": "Body_bilge_1",
+          "edgesOver3": 100,
+          "maxRatio": 7.2006202227621054,
+          "severe": []
+        },
+        {
+          "mesh": "Body_bilge_2",
+          "edgesOver3": 0,
+          "maxRatio": 1,
+          "severe": []
+        },
+        {
+          "mesh": "Body_bilge_3",
+          "edgesOver3": 0,
+          "maxRatio": 1,
+          "severe": []
+        },
+        {
+          "mesh": "Body_bilge_4",
+          "edgesOver3": 0,
+          "maxRatio": 1,
+          "severe": []
+        },
+        {
+          "mesh": "Body_bilge_5",
+          "edgesOver3": 0,
+          "maxRatio": 1,
+          "severe": []
+        },
+        {
+          "mesh": "Body_bilge_6",
+          "edgesOver3": 0,
+          "maxRatio": 1,
+          "severe": []
+        },
+        {
+          "mesh": "Body_bilge_7",
+          "edgesOver3": 0,
+          "maxRatio": 1,
+          "severe": []
+        },
+        {
+          "mesh": "Tattoo_back_surface",
+          "edgesOver3": 0,
+          "maxRatio": 1,
+          "severe": []
+        },
+        {
+          "mesh": "Tattoo_left_surface",
+          "edgesOver3": 11,
+          "maxRatio": 3.7550756434460286,
+          "severe": []
+        },
+        {
+          "mesh": "Tattoo_right_surface",
+          "edgesOver3": 0,
+          "maxRatio": 1,
+          "severe": []
+        }
+      ],
+      "contactProbeCount": 481
+    },
+    {
+      "role": "WolfRoll",
+      "phase": 0.5,
+      "floor": 0.005988858187920387,
+      "joints": {
+        "Head": [
+          0.05649203567998677,
+          1.0233492626075056,
+          0.8676904315096481
+        ],
+        "HandL": [
+          -0.17399206875142742,
+          0.3041536931793837,
+          1.1265183852319278
+        ],
+        "HandR": [
+          0.5047218039389854,
+          1.5497755928467358,
+          0.918988519224697
+        ],
+        "FootL": [
+          -0.35191590078906254,
+          0.2814851675832415,
+          0.43404683011805834
+        ],
+        "FootR": [
+          0.27130567274971207,
+          0.310392577934729,
+          -0.6609071837677749
+        ],
+        "UpperArmL": [
+          -0.25289524778085704,
+          0.8620785664990546,
+          0.7555223856828427
+        ],
+        "UpperArmR": [
+          0.3054016835733129,
+          1.0761119337442449,
+          0.6316514506484359
+        ],
+        "ForearmL": [
+          -0.2773480477123773,
+          0.5575648582046768,
+          0.8854185419694078
+        ],
+        "ForearmR": [
+          0.5713623587374611,
+          1.2292643043710199,
+          0.7581771036483124
+        ]
+      },
+      "meshes": [
+        {
+          "mesh": "Body_bilge_1",
+          "edgesOver3": 264,
+          "maxRatio": 12.94297564044247,
+          "severe": []
+        },
+        {
+          "mesh": "Body_bilge_2",
+          "edgesOver3": 0,
+          "maxRatio": 1,
+          "severe": []
+        },
+        {
+          "mesh": "Body_bilge_3",
+          "edgesOver3": 0,
+          "maxRatio": 1,
+          "severe": []
+        },
+        {
+          "mesh": "Body_bilge_4",
+          "edgesOver3": 0,
+          "maxRatio": 1,
+          "severe": []
+        },
+        {
+          "mesh": "Body_bilge_5",
+          "edgesOver3": 0,
+          "maxRatio": 1,
+          "severe": []
+        },
+        {
+          "mesh": "Body_bilge_6",
+          "edgesOver3": 0,
+          "maxRatio": 1,
+          "severe": []
+        },
+        {
+          "mesh": "Body_bilge_7",
+          "edgesOver3": 8,
+          "maxRatio": 3.185597153276493,
+          "severe": []
+        },
+        {
+          "mesh": "Tattoo_back_surface",
+          "edgesOver3": 0,
+          "maxRatio": 1,
+          "severe": []
+        },
+        {
+          "mesh": "Tattoo_left_surface",
+          "edgesOver3": 35,
+          "maxRatio": 10.746673270055467,
+          "severe": []
+        },
+        {
+          "mesh": "Tattoo_right_surface",
+          "edgesOver3": 2,
+          "maxRatio": 3.28558229981828,
+          "severe": []
+        }
+      ],
+      "contactProbeCount": 481
+    },
+    {
+      "role": "WolfRoar",
+      "phase": 0.49,
+      "floor": 0.010562378214400375,
+      "joints": {
+        "Head": [
+          0.058084765913018206,
+          2.0691912822723726,
+          0.12089297615007127
+        ],
+        "HandL": [
+          -0.7191910490194833,
+          1.601280001224405,
+          0.16549392495519938
+        ],
+        "HandR": [
+          0.8694721929596125,
+          1.5198874410907288,
+          0.020945169776335953
+        ],
+        "FootL": [
+          -0.34991432959153623,
+          0.2089756611684762,
+          0.36028361683912785
+        ],
+        "FootR": [
+          0.2799236269954981,
+          0.21008225545912762,
+          -0.2993665509699785
+        ],
+        "UpperArmL": [
+          -0.26393391486952894,
+          1.8637196074851456,
+          0.06060756301257424
+        ],
+        "UpperArmR": [
+          0.378982420667314,
+          1.8582040432814169,
+          0.04266237485667112
+        ],
+        "ForearmL": [
+          -0.5206249268342138,
+          1.7379806474501258,
+          -0.10820873762047906
+        ],
+        "ForearmR": [
+          0.6092344492567257,
+          1.7125245892086653,
+          -0.14697137946494745
+        ]
+      },
+      "meshes": [
+        {
+          "mesh": "Body_bilge_1",
+          "edgesOver3": 32,
+          "maxRatio": 5.331634902929874,
+          "severe": []
+        },
+        {
+          "mesh": "Body_bilge_2",
+          "edgesOver3": 0,
+          "maxRatio": 1,
+          "severe": []
+        },
+        {
+          "mesh": "Body_bilge_3",
+          "edgesOver3": 0,
+          "maxRatio": 1,
+          "severe": []
+        },
+        {
+          "mesh": "Body_bilge_4",
+          "edgesOver3": 0,
+          "maxRatio": 1,
+          "severe": []
+        },
+        {
+          "mesh": "Body_bilge_5",
+          "edgesOver3": 0,
+          "maxRatio": 1,
+          "severe": []
+        },
+        {
+          "mesh": "Body_bilge_6",
+          "edgesOver3": 0,
+          "maxRatio": 1,
+          "severe": []
+        },
+        {
+          "mesh": "Body_bilge_7",
+          "edgesOver3": 0,
+          "maxRatio": 1,
+          "severe": []
+        },
+        {
+          "mesh": "Tattoo_back_surface",
+          "edgesOver3": 0,
+          "maxRatio": 1,
+          "severe": []
+        },
+        {
+          "mesh": "Tattoo_left_surface",
+          "edgesOver3": 5,
+          "maxRatio": 4.919396433136366,
+          "severe": []
+        },
+        {
+          "mesh": "Tattoo_right_surface",
+          "edgesOver3": 0,
+          "maxRatio": 1,
+          "severe": []
+        }
+      ],
+      "contactProbeCount": 481
+    }
+  ],
+  "errors": [],
+  "phone_tested": false
+}

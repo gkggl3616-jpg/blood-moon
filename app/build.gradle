@@ -7,8 +7,8 @@ android {
         applicationId 'com.roguebloodmoon.prototype'
         minSdk 26
         targetSdk 35
-        versionCode 15
-        versionName '0.1.14'
+        versionCode 18
+        versionName '0.1.17'
     }
     buildTypes { debug { minifyEnabled false } }
     compileOptions {

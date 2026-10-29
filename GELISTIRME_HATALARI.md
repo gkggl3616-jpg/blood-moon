@@ -119,3 +119,70 @@ Kol hedeflerini tekrar ayarlamak, referans hareketin gücünü üretmedi; kullan
 - Tam kaynak düzeltmesinin uygulaması çalışma 02 içinde: 1,7 sn eylem, yeni görünür ilk açık kol pozu ve tamamlanan toparlanma. Önceki çalışma 01 karşılaştırması tarihî yanlış kesit olarak işaretlendi; güncel video 02 kullanılır.
 
 - Ön kol sınıflandırmasının kaynak hatası bulundu: büyük/küçük harfe duyarlı `Arm` araması `ForearmL/R` kemiklerini kapsamıyordu. `name.lower()` ile kol zincirinin tamamı kapsandı. Mevcut GLB/çalışma kollarının düzeldiği iddia edilmez; ağırlıkların yeniden üretilmesi ve gerçek deformasyon kontrolü gerekir. Kullanıcı çalışma 02’yi de reddetti.
+
+## 29 Ekim 2026 — güncel hata kaydı / bu bölüm eski tamamlandı ifadelerinin önündedir
+
+Aşağıdaki kayıt; kullanıcının son bilek, ağız, giysiye taşan dövme, koşu ve kükreme şikâyetlerini kapsar. “Kodlandı”, “otomatik test geçti”, “görsel kabul” ve “telefonda doğrulandı” aynı şey değildir. Bu tur yeni APK yayımlanmadı.
+
+| Hata / yanlış yaklaşım | Düzeltme ve gerçek durum |
+|---|---|
+| Rastgele üretilmiş gövdeyi sonradan farklı oranlı bir iskelete zorlamak | Yeni üretim onaylı gövdeyle başlıyor. Ice40 adayında kaynak gövde üçgenleri ve skin ağırlıkları dışa aktarımda karşılaştırılıyor. Eski Bilge test geometrisinin bütün kalite sorunları kapanmış sayılmaz. |
+| El/önkol ağırlıklarının bel ve kıyafet köşeleriyle karışması; bilekten uzayan üçgenler | Doğrudan native koordinat dışa aktarımı ve geometrinin kendi ağırlık kılavuzu eklendi. Yeni insanın ön görüntüsünde uzun bilek çıkıntısı görülmedi; bütün pozlar için final kabul verilmedi. Yeni gövdede kaynak ağırlıkları korunuyor. |
+| Uzun etek/kaftan şeritlerinin dört ayak pozlarında kötü deformasyonu | Yeni kurt şablonunda pantolon ve gövdeye yakın alt giysi zorunlu. Eski oyundaki uzun paneller yeni seri için kabul edilmiyor; yeni pantolonlu aday henüz çalışma zamanı modelinin yerine geçirilmedi. |
+| Kırmızı oval ağız içinin yüzün dışında görünmesi | Dış kapalı ağız küresi kaldırıldı; eski test çiftinde içeri alınan ağız boşluğu, yeni temelde kaynak çene/diş geometrisi kullanılıyor. Yeni adayın kükreme yakın planı alındı; yüz/malzeme ayrıntıları hâlâ kalite konusu. |
+| Kol dövmesinin bind pozuna göre yerleştirilip gerçekte önde görünmesi | Yerleşim gerçek LSt+UMSt bekleme pozunun arka yüzünde hesaplanıp bind uzayına geri taşınıyor. Ön/arka kontrolü zorunlu. |
+| Sırt dövmesinin düşükte kalıp pantolona/kemere taşması | İlk anchor Spine1/pelvis bölgesine fazla yakındı. Yeni anchor Spine2–Neck; kullanıcının ikinci düzeltmesiyle ayrıca 5,5 cm yükseltiliyor. Bel alt sınırı ve giysi malzemesi dışlama eklendi. Her motif aynı yamayı kullanır; eski düşük yerleşim kabul edilmez. |
+| Seyrek düz dövme ızgarasının eğri gövdenin içine girmesi | Gövdenin gerçek üçgenlerinden kesilmiş skin yüzeyi kullanılıyor. Native adayda nötr poz yüzey mesafesi yaklaşık 0,85 mm; bütün hareket pozları ayrıca denetlenir. |
+| Normal durumda dövmenin fazla parlaması / poz bitince yüksek parlaklığın buff süresince sürmesi | Ortak politika: normal 0,025, kükreme tepe 1,05; poz bitince düşük değere dönülür. Kükremenin 20 saniyelik oyun bonusu değiştirilmez. Dört ailede normal/tepe/toparlanma testi ekleniyor. |
+| Yalnız kemik adlarının eşitliğini uyum sanmak | Behamah T_Dash ile Ice40 uzuv oranları farklı bulundu. Türetilmiş uyarlama ayrı kliptir. Ardından Ice40'ın kendi T_WallDash döngüsü bulundu; yeni temel bunu özgün anahtarlarla kullanır. Kaynaklar korunur. |
+| “Ice40'ta dört ayak kaynak yok” ifadesinin araştırma ilerleyince yanlış kalması | T_WallDash 533 ms; yeni temel üzerinde tüm döngü inceleniyor. Eski durum belgelerindeki yok ifadesi tarihîdir. Yürüyüş/koşu fizik hızı ile ayak temasından ölçülen tempo ayrı tutulur. |
+| Kükreme referansını hareket bitmeden kesmek | Önceki yanlış kesit kayıtta tutuluyor. Tam video ve toparlanma korunmalı. Güncel native klipler ayrıca kendi tam süre/olay bilgileriyle kaydedilir; kısa kesit tam kükreme diye sunulmaz. |
+| Efekti salt renk değişimiyle tamamlanmış saymak | ClientFX grupları ve 32 bağımlılık çözüldü; dört farklı grup bağlandı. Buz eşleşmesi kaynak yapılandırmada doğrulandı; diğer aile eşleşmeleri tasarım seçimi olarak açıkça kayıtlı. Başka motorun birebir renderı iddia edilmez. |
+| İnce uzun çizgiyi görmeden tek nedene bağlamak | Skin üçgenleri, bind dönüşümü, ağız geometri sınırı ve FX modelleri ayrı denetleniyor. “Süs kemiği bozuyor” tek başına teşhis değildir. Eski sürümdeki çizginin bütün durumlarda kalktığı henüz beyan edilmez. |
+| Ateş tuşuna basılıyken aynı parmakla nişan döndürememek | Ateş pointer capture ile sürükleme nişanı döndürüyor; ikinci parmak hareketi, iptal, odak kaybı ve bırakma testleri eklendi. |
+| Kamera hazır olmadan stopArena çağrısında hata | Kamera erişimi hazır olma kontrolüne alındı. Başlangıç ve giriş testleri yeniden çalıştırılıyor. |
+| İnceleme sahnesinin BLEND dövme malzemesinde depthWrite=false bırakması | Dövme doğru yerdeyken incelemede gövdenin arkasında göründü. İnceleme malzemesi çalışma zamanıyla aynı alphaTest/depthWrite ayarına getirildi. Bu, ürün hatasıyla test sahnesi hatasını ayırmadan karar vermemem gerektiğini gösterdi. |
+| Arşiv klasörü adındaki “wolfteam” yüzünden gereksiz LTB adaylarını seçmek | Seçim basename üzerinden daraltıldı; gereksiz staging kopyaları temizlendi. Tam kaynak arşivi korunuyor. |
+| Otomatik test başarısını kullanıcı görsel kabulü ve hatasız APK saymak | Bu sürümde yapılmayacak. Son görüntü, kaynak hash'i, test zamanı ve açık işler birlikte kaydedilir. Fiziksel Android testi yapılmadan FPS/çökmez/kurulum garantisi verilmez. |
+
+Son testlerde geniş envanter testi karakter kartına tıklarken zaman aşımına uğradı. Önceki PASS logları bu yeni çalışmanın sonucu diye kullanılmayacak; tek başına tekrar ve hata incelemesi sürüyor. Güncel kanıtlar `docs/full-archive-review/` ve `docs/ice40-production/` altında.
+
+### Son dövme düzeltmesinin kontrol sonucu
+
+- Kullanıcının ikinci yükseltme isteği ortak politikaya +5,5 cm olarak eklendi. Eski Bilge'nin yüksek korse üst sınırı ayrıca 1,55 m: salt pelvis yüksekliği bu modelde yeterli değildi. Bu geometri profili kaydedildi; yeni pantolonlu kaynak gövdeyle karıştırılmaz.
+- Bütün dört çalışma zamanı modelinin üç dövme yüzeyi ortak araçtan geçirildi. Gövde verisi, skin/inverse-bind ve animasyon nesneleri değişmedi. 36 motif/model birleşimi gerçek WebGL testinde geçti; sırf motif değiştirmek geometriyi değiştirmiyor.
+- Dört ailede test anındaki normal parlama 0,025; kükreme örnekleri yaklaşık 0,73–0,96 aralığında. Eğrinin tepe tanımı 1,05. Toparlanma sonunda 0,025'e dönüş test edildi; aktif 20 saniye bonus dövmeyi yüksek parlaklıkta kilitlemiyor.
+- Envanter testi tek başına tekrarda PASS oldu. İlk kart tıklama zaman aşımının kalıcı bir ürün hatası olduğu yeniden üretilemedi; önceki log bunun yerine kullanılmadı.
+- İnceleme aracı önce bütün isteğe bağlı aksesuarları aynı anda gösterdi. Bu görüntü gerçek kuşanma durumu değildi. İnceleme `default_visible` ve aksesuar görünürlüğünü gerçek kullanım gibi uygulayacak şekilde düzeltildi. Ürünle aynı görünürlük/derinlik ayarları olmadan görsel kabul verilmez.
+- Yeni üreticide ortak dövme işlevinin import takma adı yanlış çağrıldığı için bir yerel üretim durdu. İşlev adı düzeltildi; kaynak bütünlük/inceleme zinciri yeniden çalıştırılıyor. Bu başarısız çalışma tamamlandı diye kaydedilmedi.
+- Tek yönden ışınla bakıldığında bir dövme köşesinin başka gövde üçgeni tarafından örtülmesi, kendi derisinin içine girdiğinin kanıtı değildir. Yerel yüzey mesafesi ve görüş yönündeki doğal örtülme ayrı tanı verileridir. Önceki görünmezlik teşhisinin bir kısmı inceleme sahnesinin depthWrite ayarındandı; geometriyi değiştirerek bunu gizlemek doğru değildi. Eski seyrek yüzeyin yerine gerçek gövde üçgenleri kullanılması ayrıca yüzeye uyum önlemidir.
+
+Yeni ücretli üretim yapılmadı. Yeni pantolonlu gövdenin tam oyun içi değişimi, uzun eski giysi panellerinin tamamen emekliye ayrılması, bütün yüz/malzeme ayrıntıları ve fiziksel Android kabulü hâlâ ayrı açık işlerdir. Bu testler hatasız APK veya seri üretilmiş yeni karakterler teslim edildiği anlamına gelmez.
+
+## Kullanıcının son görsel reddi — seri üretim ve yayın durduruldu
+
+Kullanıcı dizlerin iki yanındaki sivri/uzayan üçgenleri, kükremede boğazın uzun bir şerit gibi görünmesini ve genel model kalitesini reddetti. Hazır kaynak modelinin kendi ağırlıklarını korumak iyi görsel sonucu garanti etmedi. Sayısal iskelet testleri geçmesine rağmen bu modeli çalışma zamanına geçirmek erkendi; görsel kalite kapısını ben kaçırdım.
+
+- Dizlerde kaynak dizlik/kürk geometrisinin üzerine düz bir yükseklik eşiğiyle pantolon boyamak sivri koyu kenarlar oluşturdu. Odaklı denemede kumaş sınırı dizliğin üstüne çekiliyor; bunun görsel kabulü henüz verilmedi.
+- Boğaz/üst göğüs ağırlıkları ve uzayan kürk görünümü ayrıca ele alınıyor. Kemik uzunlukları sabit olduğu için “kemik uzamıyor, sorun yok” sonucuna varmak yanlıştı. Yerel boyun/üst göğüs ağırlığı düzeltmesi deneme aşamasında; kaynak ağırlıklarıyla artık birebir eşitmiş gibi kaydedilmiyor. Kaynak dosya ve önceki aday saklandı.
+- Son gerçek geçiş testi hareketten beklemeye dönüşte yaklaşık 19 cm zemin ihlali buldu. Diğer altı geçişin geçmesi bu hatayı kapatmaz. Açık sürüm engelidir.
+- Testleri uzun ve geniş döngüler halinde tekrarlamak iki saatlik süreci gereksiz uzattı. Yeni sıra: yalnız sorunlu üç pozun hızlı görsel karşılaştırması → kabul edilen değişikliğin ilgili hareket testi → en sonda tek geniş regresyon. Görsel hata açıkken bütün test paketleri tekrar çalıştırılmayacak.
+- Yeni APK ve seri varyant üretimi bu reddedilen adayla yapılmayacak. `production.json` ve gövde sözleşmesi yayın/seri üretime kapalıdır.
+
+### Hızlı üç poz denemesinin sonucu
+
+Üç gerçek pozla yapılan odaklı denemede dizdeki koyu sivri kumaş sınırı kaldırıldı; giysi sınırı kaynak dizlik formunun üstüne taşındı. Buna karşılık 80 boyun/üst göğüs köşesini yeniden ağırlıklandırma denemesi boyun görünümünü yeterince düzeltmedi. Bu deneme reddedildi ve çalışma BLEND dosyasında kaynak ağırlıklarına geri dönüldü. Yeni ağırlıklar oyuna aktarılmadı. Deneysel GLB yalnız reddedilmiş karşılaştırma çıktısıdır. Boyun/üst göğüs topolojisi ve kaplama kalitesi çözülmüş sayılmaz. Aynı başarısız adayın geniş testlerini tekrar çalıştırmak durduruldu.
+
+## 29 Ekim — yeni ücretli kurt üretimi, eski kaplama yönteminin reddi
+
+Kullanıcı yeni ücretli üretimi açıkça istedi. Tek kurt için 4K geometri + 8K PBR + mobil remesh tahmini 45 kredi; başlangıç bakiyesi 905. Geometri görevi `01a1878d-a5b3-72ac-9098-ccc4a0306a66` başarılı, gerçekleşen 25 kredi. Kaplama görevi `01a18814-08b2-747b-b5ba-1ce9d5c2c6b5` sürüyor. Tekrar gönderim yapılmadı; önceki kabul yerel işlem günlüğünden kurtarıldı.
+
+Önceki Power42 adayında en yakın UV ile eski modelden renk aktarmak kürke giysi/metal desenleri yaydı. Bu yöntem reddedildi; aday oyuna kurulmadı ve tamamlanmış model değildir. Ice40 diz üçgenleri ve uzun boğaz sorunu da kapanmış sayılmaz. Yeni model doğal kürk, ayrı kumaş pantolon ve küçük buz bileklikleriyle üretiliyor. Kaynak animasyonların korunması ve yeni geometri uyumu henüz doğrulanmadı. Kuyruk, ağız/çene ve eklem uyumu özellikle kontrol edilecek. Kalitesiz gövdeyi yeniden zorla uydurup bitmiş sayma yöntemi tekrarlanmayacak. Test kapsamı kısa hareket, bir kükreme/efekt ve tek örnek dövme; bütün motifleri yeniden tarama yok.
+
+### Premium üretim sonucu: başarısız görsel kabul
+
+Üç yeni Meshy görevi başarılı; toplam gerçek maliyet 45 kredi. Yüksek model 1.369.346, oyun adayı 15.586 üçgen. Ancak gerçek ön/yan/arka renderlar gövde kürkünün kumaş gibi, yelenin sivri levhalı kaldığını ve desteksiz kuyruk üretildiğini gösterdi. Ücret harcanmış olması kabul nedeni yapılmadı. Aday oyuna kurulmadı, rig/animasyon/efekt/dövme tamamlandı denmedi. İkinci ücretli tekrar yok. Ayrıntı `docs/premium-wolf-01/README-TR.md`.
+
+## v0.1.17 — seçili gövdeye dönüş ve çalışan zincir
+
+Yeni görselden üretim/remesh 35 krediyle tamamlandı. Üretilen geometriyi Power42 çenesine zorlayan baş/çene denemeleri bozuldu; tahmini ağız kesimi de yanlıştı. Bu adaylar oyuna alınmadı. Kaynak Power42 gövde, gerçek çene/dişler ve 72 kaynak klip korunarak özgün kürk/pantolon görünüşü Cycles ile aktarıldı. Yanlış UV adaları arasındaki renk karışımı giysi desenlerini kürke taşıyordu; bu yöntem kaldırıldı. Sürekli referans kürkü ve yeni giysinin yumuşak kasık ağırlıkları kullanıldı. 42 kemik, yaklaşık 14,2 bin üçgen. Yerel dört poz, gerçek koşu/takla/kükreme ve yedi geçiş kontrolü geçti. Telefon/görsel kullanıcı kabulü henüz yok. Diğer üç yeni özgün kurt tamamlanmış sayılmaz. Ayrıntı `docs/premium-wolf-01/TESLIM-TR.md`. Tek imzalı APK için CI aşamasına geçiliyor.

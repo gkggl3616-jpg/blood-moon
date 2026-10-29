@@ -1,0 +1,5 @@
+Bilge/Buz Kurdu artık seçilen 42 kemikli gövde ve onun 72 kaynak klibi üzerinde çalışır. Rastgele üretilen başı farklı çeneye zorlayan denemeler bu pakete alınmadı. Kürk ve pantolon görünüşü yeni özgün üretimden yüzeye aktarıldı; kaynak DTX kıyafetleri kullanılmadı. Gerçek kaynak ağız/diş geometrisi korundu. Yeni giysinin kasık ağırlığı geçişi yumuşatıldı.
+
+Koşu gerçek mesafe/zaman ölçümünde donanımla 8,4 m/sn; kısa takla yaklaşık 2 m. Kükreme bu modelin 1,333 sn kaynak klibini ve 0,633 sn efekt olayını kullanır. Modelin altındaki temas düzeltmesi artık animasyon geçişlerinde de çalışır. Kaynak efektler, toklaştırılmış kükreme sesi, kısa ekran titreşimi ve ateş tuşuna basılı sürükleyerek nişan korunur. Dövmeler cilde bağlıdır; normal parlama düşük, kükremede belirginleşir.
+
+Tek APK bütün çalışma zamanı modellerini, kaplamaları, efektleri ve sesi içerir. Satın alma/sahiplik/kayıt biçimi silinmez. Kaynak iskelet ile yerel WebGL kontrolleri fiziksel telefon testi değildir; cihazda FPS garantisi verilmez. Bu sürüm diğer üç kurdun yeni özgün üretimlerinin tamamlandığı veya görsel kalitenin kullanıcı tarafından kabul edildiği iddiası değildir.

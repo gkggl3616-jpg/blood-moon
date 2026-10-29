@@ -1,0 +1,39 @@
+[
+  {
+    "asset": "wolf.glb",
+    "before_sha256": "e9bb27acaf164a8ad0801f419d00caa1e9bb9c11de48857bc98673ea4ef3704e",
+    "after_sha256": "1b08c712bdbe96d9dd607da6a61c3dfd8b4ef3f2ab440d27a35369806354ef71",
+    "body_skin_and_all_animation_objects_unchanged": true,
+    "patches": [
+      {
+        "slot": "back",
+        "triangles": 396,
+        "height_min_m": 1.3911977100372315,
+        "height_max_m": 1.872745394706726,
+        "patch_width_m": 0.44302386989593506,
+        "patch_height_m": 0.4815476846694946,
+        "clothing_faces": 0
+      },
+      {
+        "slot": "left",
+        "triangles": 129,
+        "height_min_m": 1.5637647247314452,
+        "height_max_m": 1.7437647247314454,
+        "patch_width_m": 0.13,
+        "patch_height_m": 0.18,
+        "clothing_faces": 0
+      },
+      {
+        "slot": "right",
+        "triangles": 86,
+        "height_min_m": 1.6144630050659179,
+        "height_max_m": 1.794463005065918,
+        "patch_width_m": 0.13,
+        "patch_height_m": 0.18,
+        "clothing_faces": 0
+      }
+    ],
+    "policy_version": 2,
+    "policy_hash": "b9b106cea739358b77b304007ffa4ac9a998cc48502324e412145e335573c3a6"
+  }
+]

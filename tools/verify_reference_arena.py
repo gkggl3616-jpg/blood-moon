@@ -1,11 +1,11 @@
-"""Exercise the shipped clips, stride timing and shared colour-only roar in WebGL."""
+"""Exercise shipped gait timing and distinct source-effect groups in WebGL."""
 from pathlib import Path
 import json, os, shutil, math
 from playwright.sync_api import sync_playwright
 
 ROOT=Path(__file__).resolve().parents[1]
 ASSETS=ROOT/'app/src/main/assets'
-OUT=ROOT/'dist';OUT.mkdir(exist_ok=True)
+OUT=ROOT/'dist';OUT.mkdir(exist_ok=True);contract=json.loads((ASSETS/'models/native-contracts.json').read_text())['bilge']
 with sync_playwright() as p:
     options={'headless':True,'args':['--no-sandbox','--enable-unsafe-swiftshader','--use-angle=swiftshader']}
     if os.environ.get('ROGUE_BROWSER_CHANNEL'):options['channel']=os.environ['ROGUE_BROWSER_CHANNEL']
@@ -52,6 +52,11 @@ with sync_playwright() as p:
         assert peak['motion']=='WolfRoar' and not peak['run']
         assert peak['effects']['roarPeaks']==before['effects']['roarPeaks']+1
         assert peak['effects']['roarColor']==color and peak['effects']['pool']==72
+        assert peak['effects']['tattooGlow'] and min(peak['effects']['tattooGlow'])>.65
+        assert all(abs(v-.025)<1e-6 for v in before['effects']['tattooGlow'])
+        expected_fx={'bilge':'Howling_Ice_1','kultigin':'Howling_Reboot_1_Red','alparslan':'Howling_Fire_1','konuralp':'Howling_Wraith_1'}[key]
+        assert peak['effects']['nativeEffect']['group']==expected_fx
+        assert peak['effects']['nativeEffect']['visible'] and not peak['effects']['nativeEffect']['unhandled']
         rgb=peak['effects']['particleColor'];assert rgb and max(rgb)>0
         # Compare emitted RGB hue, independent of per-particle fading / sRGB conversion.
         if key=='bilge':assert rgb[2]>rgb[1]>rgb[0]
@@ -61,7 +66,7 @@ with sync_playwright() as p:
         if peak.get('nativeClipContract'):
             # Ice40's source roar keeps hands low. Do not demand the old authored
             # overhead pose: check immutable limb lengths against the run pose.
-            assert abs(peak['effects']['nativeEventTime']-.933)<1e-6
+            assert abs(peak['effects']['nativeEventTime']-contract['roarEvent'])<1e-6
             assert peak['effects']['flameSprites']==6
             for side in ['L','R']:
                 for a,b in [('UpperArm','Forearm'),('Forearm','Hand')]:
@@ -81,8 +86,9 @@ with sync_playwright() as p:
         page.screenshot(path=str(OUT/f'roar-{key}.png'))
         page.wait_for_function('()=>arenaDebug.state().roarPoseTime===0')
         page.keyboard.up('KeyW')
+        page.wait_for_function('()=>arenaDebug.state().effects.tattooGlow.every(v=>Math.abs(v-.025)<1e-6)')
         assert page.evaluate('arenaDebug.state().effects.roarPeaks')==peak['effects']['roarPeaks'],'duplicate peak burst'
-        report.append({'id':key,'measured_speed_mps':speed,'action_rate':average_rate,'stride_error_m':clip_distance-run['distance'],'roar_color':color,'emitted_rgb':rgb,'hands_above_head_m':min(peak['joints'][h][1]-peak['joints']['Head'][1] for h in ['HandL','HandR']),'held_direction_stopped':True,'peak_bursts_per_roar':1})
+        report.append({'id':key,'native_effect':peak['effects']['nativeEffect'],'tattoo_glow_idle':before['effects']['tattooGlow'],'tattoo_glow_peak':peak['effects']['tattooGlow'],'measured_speed_mps':speed,'action_rate':average_rate,'stride_error_m':clip_distance-run['distance'],'roar_color':color,'emitted_rgb':rgb,'hands_above_head_m':min(peak['joints'][h][1]-peak['joints']['Head'][1] for h in ['HandL','HandR']),'held_direction_stopped':True,'peak_bursts_per_roar':1})
     # The same actual clip/stride data must drive the inventory preview.
     page.locator('#arenaExit').click();page.locator('[data-nav="inventory"]').click()
     page.locator('#previewWolf').click()
@@ -92,8 +98,8 @@ with sync_playwright() as p:
     page.wait_for_function('()=>wolf3DInfo().actionTime>.1')
     preview=page.evaluate('wolf3DInfo()')
     assert abs(preview['actionRate']-8.4*preview['motionProfile']['runDuration']/preview['motionProfile']['runStride'])<.002
-    assert abs(preview['motionProfile']['roarDuration']-1.933)<1e-5
+    assert abs(preview['motionProfile']['roarDuration']-contract['roarDuration'])<1e-5
     assert not errors,errors
     (OUT/'reference-arena-verification.json').write_text(json.dumps({'wolves':report,'preview_run_rate':preview['actionRate'],'browser_errors':errors},indent=2))
     browser.close()
-print('PASS: four actual run strides, shared overhead roar, emitted character colours, one peak burst, stopped held movement, unchanged buff layers and inventory timing.')
+print('PASS: four actual run strides, model-specific source effect groups, emitted character colours, one peak burst, stopped held movement, unchanged buff layers and inventory timing.')

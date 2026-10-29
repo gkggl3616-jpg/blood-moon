@@ -1,0 +1,13 @@
+{
+  "form": "wolf",
+  "bones": 42,
+  "clips": 72,
+  "triangles": 14219,
+  "source_native_basis": true,
+  "source_positions_copied_without_basis_conversion": true,
+  "bytes": 22621408,
+  "native_skin_refinement": "SIMPLE subdivision of original native weights",
+  "generated_mesh_forced_onto_skeleton": false,
+  "source_dtx_pixels_used": false,
+  "paid_original_appearance_task": "01a18823-7e5f-7422-8ae2-b27a15865086"
+}

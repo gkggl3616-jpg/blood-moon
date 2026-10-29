@@ -2,10 +2,12 @@ import * as THREE from 'three';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
 export {THREE};
+import tattooPolicy from '../../art/characters/model-families/tattoo-policy.json';
+export const TATTOO_GLOW=Object.freeze({idle:tattooPolicy.glow.idle,peak:tattooPolicy.glow.roar_peak});
 const loader=new GLTFLoader(),cache=new Map(),pending=new Map();
 let renderer,active,env,lastTime=0,pins=new Set();
 export const modelIds={basibozuk:'kultigin',kul:'konuralp',ayaz:'alparslan',bilge:'bilge',kultigin:'kultigin',alparslan:'alparslan',konuralp:'konuralp'};
-export const identity={bilge:{name:'BOZ KAĞAN',element:'BUZ',color:0x70dfff,claws:3,tilt:-.35},kultigin:{name:'KARA TİGİN',element:'KAN',color:0xff354d,claws:2,tilt:.65},alparslan:{name:'BOZ ARSLAN',element:'KÖZ',color:0xffae36,claws:3,tilt:-.8},konuralp:{name:'UÇ AVCISI',element:'GÖLGE',color:0xaf65ff,claws:4,tilt:.25}};
+export const identity={bilge:{name:'BUZ KURDU',element:'BUZ',color:0x70dfff,claws:3,tilt:-.35},kultigin:{name:'KAN KURDU',element:'KAN',color:0xff354d,claws:2,tilt:.65},alparslan:{name:'KÖZ KURDU',element:'KÖZ',color:0xffae36,claws:3,tilt:-.8},konuralp:{name:'GÖLGE KURDU',element:'GÖLGE',color:0xaf65ff,claws:4,tilt:.25}};
 export function keyFor(id,form='wolf'){const key=modelIds[id]||'kultigin';return form==='human'?'human-'+key:key;}
 export function getRenderer(){
  if(renderer)return renderer;
@@ -50,7 +52,7 @@ export function configureCharacter(object,state={}){
     const rect=rects[motif]||rects.dragon,base=o.userData.atlas_uv_base,uv=o.geometry.attributes.uv;
     if(base&&uv&&o.userData._atlasMotif!==motif){
      if(!o.userData._normalizedUV){const original=new Float32Array(uv.array.length);for(let i=0;i<uv.count;i++){original[i*2]=(uv.getX(i)-base[0])/base[2];original[i*2+1]=(uv.getY(i)-base[1])/base[3];}o.userData._normalizedUV=original;}
-     const original=o.userData._normalizedUV;for(let i=0;i<uv.count;i++)uv.setXY(i,rect[0]/1274+original[i*2]*(rect[2]-rect[0])/1274,1-rect[3]/1234+original[i*2+1]*(rect[3]-rect[1])/1234);uv.needsUpdate=true;o.userData._atlasMotif=motif;
+     const original=o.userData._normalizedUV;for(let i=0;i<uv.count;i++)uv.setXY(i,rect[0]/1274+original[i*2]*(rect[2]-rect[0])/1274,(object.userData.nativeGeometryBasis==='native-game-units-v1'||o.userData.tattoo_uv_basis==='gltf-top-left'?rect[1]/1234:1-rect[3]/1234)+original[i*2+1]*(rect[3]-rect[1])/1234);uv.needsUpdate=true;o.userData._atlasMotif=motif;
     }
    }}
   }
@@ -59,16 +61,16 @@ export function configureCharacter(object,state={}){
    if(!mat)continue;
    if(mat.map)mat.map.anisotropy=Math.min(8,getRenderer().capabilities.getMaxAnisotropy());
    if(mat.name.startsWith('Fur_')){mat.metalness=0;mat.roughness=.88;mat.normalScale?.set(.65,.65);}
-   if(mat.name.startsWith('Tattoo_')){mat.emissiveIntensity=state.roaring?.9:.08;mat.alphaTest=.3;mat.transparent=false;mat.depthWrite=true;mat.polygonOffset=true;mat.polygonOffsetFactor=-1;mat.polygonOffsetUnits=-1;}
+   if(mat.name.startsWith('Tattoo_')){mat.emissiveIntensity=TATTOO_GLOW.idle;mat.alphaTest=.3;mat.transparent=false;mat.depthWrite=true;mat.polygonOffset=true;mat.polygonOffsetFactor=-1;mat.polygonOffsetUnits=-1;}
   }
  });
  setRoarGlow(object,!!state.roaring);
 }
 export function setRoarGlow(object,active,phase=null){
  if(!object)return;const color=identity[object.userData.identity]?.color||0xaf65ff;
- if(!object.userData.glowMaterials){const set=new Set();object.traverse(o=>{if(o.isMesh)for(const m of Array.isArray(o.material)?o.material:[o.material])if(m?.emissive&&!m.name.startsWith('Mouth')&&!m.name.startsWith('Teeth'))set.add(m);});object.userData.glowMaterials=[...set].map(m=>({m,color:m.emissive.clone(),intensity:m.emissiveIntensity}));}
+ if(!object.userData.glowMaterials){const set=new Set();object.traverse(o=>{if(o.isMesh)for(const m of Array.isArray(o.material)?o.material:[o.material])if(m?.emissive&&!/(?:^|_)(?:Mouth|Teeth|Tongue)(?:_|$)/i.test(m.name))set.add(m);});object.userData.glowMaterials=[...set].map(m=>({m,color:m.emissive.clone(),intensity:m.emissiveIntensity}));}
  const pulse=active&&phase!==null?Math.sin(Math.PI*Math.max(0,Math.min(1,(phase-.26)/.62)))**2:0;
- for(const b of object.userData.glowMaterials){const m=b.m;if(m.name.startsWith('Tattoo_')){m.emissive.setHex(active?color:0xffffff);m.emissiveIntensity=active?.25+pulse*.55:.08;}else if(active){m.emissive.setHex(color);m.emissiveIntensity=.025+pulse*.075;}else{m.emissive.copy(b.color);m.emissiveIntensity=b.intensity;}}
+ for(const b of object.userData.glowMaterials){const m=b.m;if(m.name.startsWith('Tattoo_')){m.emissive.setHex(active?color:0xffffff);m.emissiveIntensity=TATTOO_GLOW.idle+(active&&phase!==null?pulse*(TATTOO_GLOW.peak-TATTOO_GLOW.idle):0);}else if(active){m.emissive.setHex(color);m.emissiveIntensity=.025+pulse*.075;}else{m.emissive.copy(b.color);m.emissiveIntensity=b.intensity;}}
 }
 export function engineInfo(){return {contexts:renderer?1:0,stage:active?.name||null,cacheKeys:[...cache.keys()],triangles:renderer?.info.render.triangles||0,drawCalls:renderer?.info.render.calls||0,textures:renderer?.info.memory.textures||0,pixelRatio:renderer?.getPixelRatio(),buffer:renderer?[renderer.domElement.width,renderer.domElement.height]:[0,0],quality:window.getRoguePreferences?.().graphicsQuality||'sharp'};}
 window.rogueEngineInfo=engineInfo;

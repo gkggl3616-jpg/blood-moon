@@ -1,0 +1,31 @@
+{
+  "form": "wolf",
+  "bones": 42,
+  "clips": 72,
+  "triangles": 14219,
+  "source_native_basis": true,
+  "source_positions_copied_without_basis_conversion": true,
+  "bytes": 17996408,
+  "bakes": [
+    {
+      "kind": "Fur",
+      "mode": "DIFFUSE",
+      "valid_fraction": 0.2744624614715576
+    },
+    {
+      "kind": "Fur",
+      "mode": "NORMAL",
+      "valid_fraction": 1.0
+    },
+    {
+      "kind": "Pants",
+      "mode": "DIFFUSE",
+      "valid_fraction": 0.1173563003540039
+    },
+    {
+      "kind": "Pants",
+      "mode": "NORMAL",
+      "valid_fraction": 1.0
+    }
+  ]
+}

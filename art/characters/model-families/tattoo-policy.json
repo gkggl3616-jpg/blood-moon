@@ -1,0 +1,60 @@
+{
+  "version": 2,
+  "scope": "Every motif, every variant and every future model family",
+  "back": {
+    "anchor_lower": "Bip01 Spine2",
+    "anchor_upper": "Bip01 Neck",
+    "anchor_mix": 0.2,
+    "raise_m_at_2_4m_height": 0.055,
+    "width_m_at_2_4m_height": 0.46,
+    "height_m_at_2_4m_height": 0.5,
+    "minimum_above_pelvis_m_at_2_4m_height": 0.28,
+    "preserve_patch_aspect_when_clipped": true
+  },
+  "arms": {
+    "surface": "rear upper arm",
+    "width_m_at_2_4m_height": 0.13,
+    "height_m_at_2_4m_height": 0.18,
+    "anchor_mix": 0.3
+  },
+  "excluded_material_tokens": [
+    "pants",
+    "cloth",
+    "leather",
+    "armor",
+    "garment"
+  ],
+  "surface_offset_native_units": 0.045,
+  "all_motifs_share_validated_skin_patch": true,
+  "glow": {
+    "idle": 0.025,
+    "roar_peak": 1.05,
+    "return_to_idle_after_pose": true
+  },
+  "release_requirements": [
+    "no clothing overlap",
+    "visible from rear not chest",
+    "source-skin surface audit",
+    "full roar-cycle render",
+    "idle/peak/recovery glow test"
+  ],
+  "geometry_skin_regions": {
+    "legacy_generated_bilge_wolf": {
+      "back_min_height_m": 1.55,
+      "reason": "Original generated Bilge has a high corset; the tattoo must stay above its top edge."
+    },
+    "selected_native_base": {
+      "back_min_height_m": null,
+      "reason": "Use the validated body waistband/material mask; all variants inherit it."
+    }
+  },
+  "excluded_material_regions": [
+    "ice",
+    "metal",
+    "armor",
+    "pants",
+    "cloth",
+    "leather",
+    "garment"
+  ]
+}

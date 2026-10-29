@@ -1,5 +1,5 @@
 'use strict';
-sounds.roar=new Audio('media/roar.mp3');
+sounds.roar=new Audio('media/roar-deep.mp3');
 const ROAR_DURATION=20000;let roarUntil=0;
 const wolfBodyProfiles=Object.fromEntries(roster.map(c=>[c.id,{body:c.body,width:1,height:1,color:c.color}]));
 let wolfEquipment={},wolfTattoos={};

@@ -1,0 +1,20 @@
+{
+  "bilge": {
+    "modelType": "power42",
+    "bones": 42,
+    "sourceClips": 72,
+    "triangleBudget": 16500,
+    "roarDuration": 1.333,
+    "roarEvent": 0.633,
+    "rollDuration": 1,
+    "quadClip": "T_WallDash",
+    "sourceAnimationSha256": "c06e7e9347968a1987126450bdb7ba3d37353ac97c414ace261bfca9873bbfc4"
+  },
+  "human-bilge": {
+    "modelType": "human47",
+    "bones": 47,
+    "sourceClips": 11,
+    "triangleBudget": 12000,
+    "sourceAnimationSha256": "f026978087746f5b44df7cf90a8927a189d2596f2660e01f369518a209fbd950"
+  }
+}

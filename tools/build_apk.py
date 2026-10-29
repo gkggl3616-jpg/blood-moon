@@ -38,7 +38,7 @@ def main():
     run(TOOLS / 'aapt2', 'link', '-o', BUILD / 'base.apk', '-I', ANDROID,
         '--manifest', manifest,
         '--min-sdk-version', '26', '--target-sdk-version', '35',
-        '--version-code', '17', '--version-name', '0.1.16',
+        '--version-code', '18', '--version-name', '0.1.17',
         '-A', ROOT / 'app/src/main/assets', BUILD / 'resources.zip')
     sources = list((ROOT / 'app/src/main/java').rglob('*.java'))
     run('java', '-m', 'jdk.compiler/com.sun.tools.javac.Main', '-source', '17', '-target', '17', '-encoding', 'UTF-8',
@@ -67,7 +67,7 @@ def main():
             '-alias', 'androiddebugkey', '-keyalg', 'RSA', '-keysize', '2048', '-validity', '10000',
             '-dname', 'CN=Rogue Prototype,O=Local Development,C=TR')
         key.chmod(0o600)
-    apk = ROOT / 'dist/Rogue-Blood-Moon-v0.1.16.apk'
+    apk = ROOT / 'dist/Rogue-Blood-Moon-v0.1.17.apk'
     run('java', '-jar', TOOLS / 'lib/apksigner.jar', 'sign', '--ks', key,
         '--ks-pass', 'pass:android', '--key-pass', 'pass:android', '--ks-key-alias', 'androiddebugkey',
         '--out', apk, aligned)
@@ -91,12 +91,21 @@ def main():
             magic,version,length,json_length,chunk_type=struct.unpack_from('<4sIIII',data)
             assert magic==b'glTF' and version==2 and length==len(data) and chunk_type==0x4E4F534A
             gltf=json.loads(data[20:20+json_length]);assert gltf['skins']
+            if not model_id.startswith('human-'):
+                policy=json.loads((ROOT/'art/characters/model-families/tattoo-policy.json').read_text())
+                policy_hash=hashlib.sha256(json.dumps(policy,sort_keys=True).encode()).hexdigest()
+                assert gltf['scenes'][gltf.get('scene',0)].get('extras',{}).get('tattooPolicyHash')==policy_hash,('stale tattoo policy',model_id)
+                patches=[n for n in gltf['nodes'] if n.get('name','').startswith('Tattoo_')]
+                assert len(patches)==3
+                assert all(n.get('extras',{}).get('clothing_faces_excluded') and n['extras'].get('tattoo_policy_version')==policy['version'] for n in patches),('tattoo surface gate',model_id)
             names={a['name'] for a in gltf['animations']}
             native=model_id in ['bilge','human-bilge']
             if native:
                 meta=gltf['scenes'][gltf.get('scene',0)]['extras']
-                assert meta['nativeSourceKeyPreserved'] and meta['wardrobeOrigin']=='original_authored'
-                assert len(gltf['skins'][0]['joints'])==(47 if model_id.startswith('human-') else 40)
+                assert meta['nativeSourceKeyPreserved'] and meta['wardrobeOrigin'] in ['original_authored','original_authored_on_selected_body']
+                contract=json.loads((ROOT/'app/src/main/assets/models/native-contracts.json').read_text())[model_id]
+                assert meta['modelType']==contract['modelType'] and len(gltf['skins'][0]['joints'])==contract['bones']
+                if contract['sourceAnimationSha256']:assert meta['sourceAnimationSha256']==contract['sourceAnimationSha256']
                 required={'UI_Default_Idle','LWF','LRF'} if model_id.startswith('human-') else {'LSt','UMSt','LWF','UMWF','LRF','UMRF','T_CRY','T_Specialatk','UMFi1','UMFi2','LJJ','LJT','LJL'}
                 assert required<=names
                 for animation in gltf['animations']:
@@ -106,9 +115,9 @@ def main():
                         assert timing['count']==len(times)
                         assert abs(timing['min'][0]-times[0]/1000)<1e-6 and abs(timing['max'][0]-times[-1]/1000)<1e-6
                 if model_id=='bilge':
-                    assert len(gltf['animations'])==68
+                    assert len([a for a in gltf['animations'] if a['name']!='DerivedQuadRun'])==contract['sourceClips']
                     assert len([n for n in gltf['nodes'] if n.get('name','').startswith('Tattoo_')])==3
-                    assert any(n.get('name','').startswith('Mouth_') for n in gltf['nodes'])
+                    assert any(n.get('name','').startswith('Mouth_') for n in gltf['nodes']) or meta.get('nativeMouthGeometry') and any(n.get('name')=='Bip01 Ponytail2' for n in gltf['nodes'])
             else:
                 required={'HumanIdle','HumanMove'} if model_id.startswith('human-') else {'WolfIdle','WolfMove','WolfRunQuad','WolfRoll','WolfClaw','WolfRoar','WolfJump','WolfTransform'}
                 assert required<=names

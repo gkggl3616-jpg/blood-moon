@@ -1,1 +1,14 @@
-{"private":true,"scripts":{"build":"esbuild main3d.js --bundle --minify --outfile=../../app/src/main/assets/wolf3d.js"},"dependencies":{"three":"0.180.0"},"devDependencies":{"esbuild":"0.25.12"}}
+{
+  "private": true,
+  "scripts": {
+    "build": "esbuild main3d.js --bundle --minify --outfile=../../app/src/main/assets/wolf3d.js",
+    "review": "esbuild model-review.js --bundle --minify --format=esm --outfile=model-review.bundle.js",
+    "review:premium": "esbuild premium-review.js --bundle --minify --format=esm --outfile=premium-review.bundle.js"
+  },
+  "dependencies": {
+    "three": "0.180.0"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.12"
+  }
+}

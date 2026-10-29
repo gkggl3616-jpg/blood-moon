@@ -1,0 +1,516 @@
+{
+  "transitions": [
+    {
+      "transition": "idle_to_quad",
+      "samples": [
+        {
+          "time": 2.716666666666662,
+          "motion": "WolfRunQuad",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.024760315617654932
+        },
+        {
+          "time": 2.7333333333333285,
+          "motion": "WolfRunQuad",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.05810254256384948
+        },
+        {
+          "time": 2.8666666666666614,
+          "motion": "WolfRunQuad",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.007999999999999993
+        },
+        {
+          "time": 2.9833333333333276,
+          "motion": "WolfRunQuad",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.007999999999999896
+        },
+        {
+          "time": 3.099999999999994,
+          "motion": "WolfRunQuad",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.05847315959521615
+        },
+        {
+          "time": 3.21666666666666,
+          "motion": "WolfRunQuad",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.007999999999999782
+        }
+      ],
+      "minimum_grounded_floor_relative_m": 0.007999999999999782
+    },
+    {
+      "transition": "quad_to_roar",
+      "samples": [
+        {
+          "time": 3.3333333333333264,
+          "motion": "WolfRoar",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.010492517593704892
+        },
+        {
+          "time": 3.4666666666666592,
+          "motion": "WolfRoar",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.010559011002197877
+        },
+        {
+          "time": 3.483333333333326,
+          "motion": "WolfRoar",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.010557788903721766
+        },
+        {
+          "time": 3.599999999999992,
+          "motion": "WolfRoar",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.010563664352522113
+        },
+        {
+          "time": 3.683333333333325,
+          "motion": "WolfRoar",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.010564032313794311
+        },
+        {
+          "time": 3.7999999999999914,
+          "motion": "WolfRoar",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.010564431178462707
+        },
+        {
+          "time": 3.9166666666666576,
+          "motion": "WolfRoar",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.010563492456842915
+        },
+        {
+          "time": 4.033333333333324,
+          "motion": "WolfRoar",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.010554446808623216
+        },
+        {
+          "time": 4.049999999999991,
+          "motion": "WolfRoar",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.01056410920380485
+        },
+        {
+          "time": 4.166666666666657,
+          "motion": "WolfRoar",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.010553301817074754
+        },
+        {
+          "time": 4.29999999999999,
+          "motion": "WolfRoar",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.01055567597077429
+        },
+        {
+          "time": 4.416666666666656,
+          "motion": "WolfRoar",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.010555046804892398
+        },
+        {
+          "time": 4.533333333333323,
+          "motion": "WolfRoar",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.010549246354539675
+        },
+        {
+          "time": 4.649999999999989,
+          "motion": "WolfWalk",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.00799999999999993
+        },
+        {
+          "time": 4.766666666666655,
+          "motion": "WolfWalk",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.007999999999999903
+        },
+        {
+          "time": 4.899999999999988,
+          "motion": "WolfWalk",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.008000000000000208
+        },
+        {
+          "time": 5.016666666666654,
+          "motion": "WolfWalk",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.007999999999999861
+        },
+        {
+          "time": 5.13333333333332,
+          "motion": "WolfWalk",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.008000000000000004
+        }
+      ],
+      "minimum_grounded_floor_relative_m": 0.007999999999999861
+    },
+    {
+      "transition": "roar_to_walk",
+      "samples": [
+        {
+          "time": 5.249999999999987,
+          "motion": "WolfWalk",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.007999999999999938
+        },
+        {
+          "time": 5.366666666666653,
+          "motion": "WolfWalk",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.007999999999999976
+        },
+        {
+          "time": 5.499999999999986,
+          "motion": "WolfWalk",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.008000000000000031
+        },
+        {
+          "time": 5.599999999999985,
+          "motion": "WolfWalk",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.007068458450275712
+        },
+        {
+          "time": 5.716666666666652,
+          "motion": "WolfWalk",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.007999999999999882
+        },
+        {
+          "time": 5.833333333333318,
+          "motion": "WolfWalk",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.00799999999999989
+        }
+      ],
+      "minimum_grounded_floor_relative_m": 0.007068458450275712
+    },
+    {
+      "transition": "walk_to_quad",
+      "samples": [
+        {
+          "time": 5.949999999999984,
+          "motion": "WolfRunQuad",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.0621429771605406
+        },
+        {
+          "time": 6.06666666666665,
+          "motion": "WolfRunQuad",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.007999999999999785
+        },
+        {
+          "time": 6.199999999999983,
+          "motion": "WolfRunQuad",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.06435670809613797
+        },
+        {
+          "time": 6.3166666666666496,
+          "motion": "WolfRunQuad",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.008000000000000007
+        },
+        {
+          "time": 6.433333333333316,
+          "motion": "WolfRunQuad",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.031359357006785674
+        },
+        {
+          "time": 6.549999999999982,
+          "motion": "WolfRunQuad",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.008000000000000007
+        }
+      ],
+      "minimum_grounded_floor_relative_m": 0.007999999999999785
+    },
+    {
+      "transition": "quad_to_roll_and_recovery",
+      "samples": [
+        {
+          "time": 6.666666666666648,
+          "motion": "WolfRoll",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.08625214021775647
+        },
+        {
+          "time": 6.799999999999981,
+          "motion": "WolfRoll",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.3814031162203185
+        },
+        {
+          "time": 6.916666666666647,
+          "motion": "WolfRoll",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.36531957120958136
+        },
+        {
+          "time": 7.033333333333314,
+          "motion": "WolfRoll",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.007999999999999948
+        },
+        {
+          "time": 7.14999999999998,
+          "motion": "WolfRoll",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.007249435637874946
+        },
+        {
+          "time": 7.266666666666646,
+          "motion": "WolfRoll",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.007149946920262704
+        },
+        {
+          "time": 7.399999999999979,
+          "motion": "WolfRoll",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.007999999999999959
+        },
+        {
+          "time": 7.516666666666645,
+          "motion": "WolfRoll",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.007999999999999868
+        },
+        {
+          "time": 7.6333333333333115,
+          "motion": "WolfRunQuad",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.013507241307577793
+        },
+        {
+          "time": 7.749999999999978,
+          "motion": "WolfRunQuad",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.005410337323572427
+        },
+        {
+          "time": 7.866666666666644,
+          "motion": "WolfRunQuad",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.00799999999999997
+        }
+      ],
+      "minimum_grounded_floor_relative_m": 0.005410337323572427
+    },
+    {
+      "transition": "quad_to_jump_and_land",
+      "samples": [
+        {
+          "time": 7.999999999999977,
+          "motion": "WolfJump",
+          "grounded": false,
+          "playerY": 0.7466666666666666,
+          "floor": 0.8122344763034782
+        },
+        {
+          "time": 8.04999999999998,
+          "motion": "WolfJumpAir",
+          "grounded": false,
+          "playerY": 0.9533333333333333,
+          "floor": 1.0309027219899727
+        },
+        {
+          "time": 8.166666666666652,
+          "motion": "WolfJumpAir",
+          "grounded": false,
+          "playerY": 1.2799999999999998,
+          "floor": 1.3575688659808813
+        },
+        {
+          "time": 8.266666666666657,
+          "motion": "WolfJumpAir",
+          "grounded": false,
+          "playerY": 1.3866666666666665,
+          "floor": 1.4642355326475485
+        },
+        {
+          "time": 8.38333333333333,
+          "motion": "WolfJumpAir",
+          "grounded": false,
+          "playerY": 1.308888888888889,
+          "floor": 1.386457754869771
+        },
+        {
+          "time": 8.500000000000002,
+          "motion": "WolfJumpAir",
+          "grounded": false,
+          "playerY": 1.0133333333333336,
+          "floor": 1.0909021993142156
+        },
+        {
+          "time": 8.616666666666674,
+          "motion": "WolfJumpAir",
+          "grounded": false,
+          "playerY": 0.5000000000000004,
+          "floor": 0.5775688659808821
+        },
+        {
+          "time": 8.733333333333347,
+          "motion": "WolfLand",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.008000000000000108
+        },
+        {
+          "time": 8.85000000000002,
+          "motion": "WolfLand",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.00799999999999991
+        },
+        {
+          "time": 8.98333333333336,
+          "motion": "WolfLand",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.00799999999999984
+        },
+        {
+          "time": 9.100000000000032,
+          "motion": "WolfLand",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.008000000000000144
+        },
+        {
+          "time": 9.216666666666704,
+          "motion": "WolfRunQuad",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.06214288860634631
+        },
+        {
+          "time": 9.333333333333377,
+          "motion": "WolfRunQuad",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.007999999999999785
+        },
+        {
+          "time": 9.450000000000049,
+          "motion": "WolfRunQuad",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.029195187278424475
+        }
+      ],
+      "minimum_grounded_floor_relative_m": 0.007999999999999785
+    },
+    {
+      "transition": "moving_to_idle",
+      "samples": [
+        {
+          "time": 9.600000000000056,
+          "motion": "WolfIdle",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.007999999999999664
+        },
+        {
+          "time": 9.716666666666729,
+          "motion": "WolfIdle",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.007999999999999834
+        },
+        {
+          "time": 9.766666666666731,
+          "motion": "WolfIdle",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.008000000000000026
+        },
+        {
+          "time": 9.883333333333404,
+          "motion": "WolfIdle",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.007999999999999998
+        },
+        {
+          "time": 10.000000000000076,
+          "motion": "WolfIdle",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.00800000000000005
+        },
+        {
+          "time": 10.116666666666749,
+          "motion": "WolfIdle",
+          "grounded": true,
+          "playerY": 0,
+          "floor": 0.00800000000000002
+        }
+      ],
+      "minimum_grounded_floor_relative_m": 0.007999999999999664
+    }
+  ],
+  "errors": []
+}

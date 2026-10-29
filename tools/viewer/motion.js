@@ -6,8 +6,8 @@ export function motionProfile(actor){
  let data;actor?.traverse(o=>{if(o.userData.run_stride_m||o.userData.walk_stride_m)data=o.userData;});
  const clips=actor?.userData.motionClips||[];
  const walk=nativeModel(actor)?motionClip(actor,actor.userData.modelType==='human47'?'HumanWalk':'WolfWalk'):clips.find(c=>c.name==='WolfWalk'||c.name==='HumanWalk')||clips.find(c=>c.name==='WolfMove'||c.name==='HumanMove');
- const walkStride=data?.walk_stride_m||((walk?.name==='WolfMove'||walk?.name==='HumanMove')?walk.duration*3.6:null);
- const profile={walkClip:walk?.name||'WolfMove',walkDuration:walk?.duration||0,walkStride,walkCalibrated:!!data?.walk_stride_m&&data?.stride_origin!=='runtime_speed_contract_not_measured_foot_contact',runDuration:motionClip(actor,'WolfRunQuad')?.duration||16/30,runStride:data?.run_stride_m||8*16/30,runSpeed:data?.run_reference_speed_mps||8,roarDuration:nativeModel(actor)?nativeRoar(actor).duration:clips.find(c=>c.name==='WolfRoar')?.duration||1.2,roarPeak:nativeModel(actor)?nativeRoar(actor).peakPhase:.49};
+ const walkStride=actor?.userData.nativeLocomotion?.walkStrideMeters||data?.walk_stride_m||((walk?.name==='WolfMove'||walk?.name==='HumanMove')?walk.duration*3.6:null);
+ const profile={walkClip:walk?.name||'WolfMove',walkDuration:walk?.duration||0,walkStride,walkCalibrated:!!actor?.userData.nativeLocomotion?.walkStrideMeters||!!data?.walk_stride_m&&data?.stride_origin!=='runtime_speed_contract_not_measured_foot_contact',runDuration:motionClip(actor,'WolfRunQuad')?.duration||16/30,runStride:actor?.userData.nativeLocomotion?.runStrideMeters||actor?.userData.derivedQuad?.strideMeters||data?.run_stride_m||8*16/30,runSpeed:data?.run_reference_speed_mps||8,roarDuration:nativeModel(actor)?nativeRoar(actor).duration:clips.find(c=>c.name==='WolfRoar')?.duration||1.2,roarPeak:nativeModel(actor)?nativeRoar(actor).peakPhase:.49};
  if(actor)actor.userData.motionProfile=profile;return profile;
 }
 export function walkRate(actor,metersPerSecond){const p=motionProfile(actor);return p.walkStride>0?Math.max(0,metersPerSecond)*p.walkDuration/p.walkStride:1;}

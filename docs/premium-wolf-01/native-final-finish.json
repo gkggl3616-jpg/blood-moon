@@ -1,0 +1,10 @@
+{
+  "form": "wolf",
+  "bones": 42,
+  "clips": 72,
+  "triangles": 14219,
+  "source_native_basis": true,
+  "source_positions_copied_without_basis_conversion": true,
+  "bytes": 21848892,
+  "trouser_hip_vertices_refined": 805
+}

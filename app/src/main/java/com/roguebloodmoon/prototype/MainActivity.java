@@ -27,6 +27,8 @@ public class MainActivity extends Activity {
         web.setBackgroundColor(0xff090d10);
         web.getSettings().setJavaScriptEnabled(true);
         web.getSettings().setDomStorageEnabled(true);
+        // APK updates must read their bundled assets; ownership remains in DOM storage.
+        web.getSettings().setCacheMode(android.webkit.WebSettings.LOAD_NO_CACHE);
         web.getSettings().setUseWideViewPort(true);
         web.getSettings().setLoadWithOverviewMode(true);
         web.getSettings().setSupportZoom(false);
@@ -54,7 +56,8 @@ public class MainActivity extends Activity {
                 else if (lower.endsWith(".wav")) mime = "audio/wav";
                 else if (lower.endsWith(".mp3")) mime = "audio/mpeg";
                 else if (lower.endsWith(".mp4")) mime = "video/mp4";
-                try { return new WebResourceResponse(mime, "UTF-8", getAssets().open(path)); }
+                try { return new WebResourceResponse(mime, "UTF-8", 200, "OK",
+                        java.util.Collections.singletonMap("Cache-Control", "no-store"), getAssets().open(path)); }
                 catch (IOException e) { return denied(); }
             }
         });

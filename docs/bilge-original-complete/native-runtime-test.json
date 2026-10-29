@@ -2,11 +2,11 @@
   "assets": [
     {
       "form": "wolf",
-      "bones": 40,
-      "clips": 68,
-      "triangles": 13550,
+      "bones": 42,
+      "clips": 72,
+      "triangles": 14219,
       "embedded_textures": true,
-      "sha256": "985fad3e5abc9147520de510a8aac100716e5b9a3ed21165f0d9ecc0c30fa894"
+      "sha256": "1b08c712bdbe96d9dd607da6a61c3dfd8b4ef3f2ab440d27a35369806354ef71"
     },
     {
       "form": "human",
@@ -14,12 +14,12 @@
       "clips": 11,
       "triangles": 10349,
       "embedded_textures": true,
-      "sha256": "2af36ee233bca5e938b048e3ff3fcfac45cba8c0af92303b8ecb4e95c74065f6"
+      "sha256": "754233f0a108e69cb3167f0b842936ce520b19a4ce17c7f57c451bcbd7b72e7a"
     }
   ],
   "measured_run_mps": 8.400000000000064,
-  "roar_duration": 1.933,
-  "native_effect_event": 0.933,
+  "roar_duration": 1.333,
+  "native_effect_event": 0.633,
   "roll_distance_m": 2.0125786163522097,
   "held_direction_stopped": true,
   "browser_errors": []

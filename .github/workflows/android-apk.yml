@@ -58,6 +58,10 @@ jobs:
         run: python tools/verify_reference_arena.py
       - name: Verify original Bilge native assets and effects
         run: python tools/verify_bilge_native.py
+      - name: Verify short native skin poses and blended contact
+        run: |
+          python tools/verify_premium_motion.py
+          python tools/verify_native_transitions.py
       - name: Download verified Android build tools
         run: python tools/bootstrap_android.py
       - name: Compile and sign APK
@@ -65,19 +69,19 @@ jobs:
       - name: Upload installable Android prototype
         uses: actions/upload-artifact@v4
         with:
-          name: Rogue-Blood-Moon-v0.1.16-APK
-          path: dist/Rogue-Blood-Moon-v0.1.16.apk
+          name: Rogue-Blood-Moon-v0.1.17-APK
+          path: dist/Rogue-Blood-Moon-v0.1.17.apk
           if-no-files-found: error
           retention-days: 30
       - name: Publish one directly installable APK
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          apk_tag="prototype-v0.1.16-${GITHUB_RUN_NUMBER}"
+          apk_tag="prototype-v0.1.17-${GITHUB_RUN_NUMBER}"
           if gh release view "$apk_tag" >/dev/null 2>&1; then
-            gh release upload "$apk_tag" dist/Rogue-Blood-Moon-v0.1.16.apk --clobber
+            gh release upload "$apk_tag" dist/Rogue-Blood-Moon-v0.1.17.apk --clobber
           else
-            gh release create "$apk_tag" dist/Rogue-Blood-Moon-v0.1.16.apk --target "$GITHUB_SHA" --prerelease --title "Rogue: Blood Moon v0.1.16" --notes-file docs/release-v0116.md
+            gh release create "$apk_tag" dist/Rogue-Blood-Moon-v0.1.17.apk --target "$GITHUB_SHA" --prerelease --title "Rogue: Blood Moon v0.1.17" --notes-file docs/release-v0117.md
           fi
       - name: Upload UI preview on failure
         if: failure()

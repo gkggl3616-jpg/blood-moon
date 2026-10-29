@@ -337,3 +337,37 @@ Kullanıcının son APK talebiyle test sürümü yayımlandı. GitHub Actions 40
 Doğrudan APK: https://github.com/gkggl3616-jpg/blood-moon/releases/download/prototype-v0.1.16-22/Rogue-Blood-Moon-v0.1.16.apk
 
 Doğrulama: docs/bilge-original-complete/apk-v0116-verification.json. İnsan bilek/kıyafet deformasyonu devam eder; bu test sürümü tam görsel kabul değildir. Sonraki sıra docs/sonraki-adimlar-v0116.md içinde: telefon testi → Bilge skin düzeltmesi → kaynak dört ayak klip/temas/efekt kabulü → cihaz ölçümü → diğer özgün model tipleri → harita.
+
+## 29 Ekim — onaylı gövde önce / kalıcı model standardı ve yeni kontroller
+
+Kullanıcı bir güvenilir gövdeden 3–4 küçük varyant, sonra başka gövde ailesi istedi. Yeni kurtlarda pantolon/eşdeğer alt giysi zorunlu; Bilge'deki uzun sarkan paneller ve büyük süsler tekrarlanmayacak. İnsan eşleri de onaylı anatomik temel üzerinden yapılacak. Kaynak DTX görselleri kontrol edilir; kıyafet dokuları yeni özgün kostüm diye kopyalanmaz. Kalıcı standart `docs/MODEL-URETIM-STANDARDI-TR.md`, proje başlangıç yönergesi kök `AGENTS.md` ve `PROJE_KURALLARI.md` içine eklendi. Bu depo için kalıcı kayıttır; hesap geneli bellek iddiası değildir.
+
+Ateş tuşu basılı sürüklenirken nişan dönüyor. Fare ve gerçek iki-parmak dokunma, pointer iptali/odak kaybı, koşudan sıçrama/takla/insana dönüş testleri geçti. Kükremede bir defalık, sınırlı kamera titreşimi var; hedef yaw/pitch ve oyuncu konumu değişmiyor. Güçlü/zırhlı Köz ailesinde biraz daha belirgin. Daha tok ses mevcut sesin perde/ton/eko düzenlemesiyle `roar-deep.mp3` olarak hazırlandı; kullanıcı ses ayarlarına uyar. Kanıt `docs/full-archive-review/fire-drag-roar-verification.json`.
+
+4,74 GB arşiv indeksi ve kaynak efekt bağlantıları `docs/full-archive-review/` altında. Buz/kan/köz/gölge kaynak efekt grupları ayrı bileşenlerle bağlandı; salt renk değişikliği değil. Kaynak geometri, sprite kareleri ve renk/ölçek eğrileri kullanılıyor; başka motorun tam birebir renderı iddia edilmez. Koşu uyarlamasına kullanıcı “en iyi şekilde yap bozuk hiçbir şey istemiyorum” yanıtıyla izin verdi. Orijinaller korunur; türetilmiş koşu ayrı kliptir. Araştırma ve görsel kabul sürüyor. Yeni 3–4 varyant üretilmiş veya bütün model hataları kapanmış sayılmaz; bu çalışma için yeni APK yayımlanmadı.
+
+## 29 Ekim — kullanıcı dövme yerleşimini iki kez düzeltti
+
+İlk sırt dövmesi pantolona taşıyordu. Spine1 odaklı düşük anchor yanlıştı. Spine2–Neck arası anchor ve kullanıcının “birazcık daha üstte” düzeltmesi için ek 5,5 cm yükseltme ortak `tattoo-policy.json` dosyasına alındı. Bel sınırı ve kıyafet malzemesi dışlama bütün motiflerde zorunlu. Normal parlama 0,025; kükreme tepe 1,05; poz bitince normale döner. Aynı politika üretici ve çalışma zamanı tarafından okunur. Kullanıcı gelecekte kurtların hızlı, standart ve hatasız üretilmesini istedi: önce güvenilir gövde ve ortak kontrol, sonra seri varyant. Bilinen bütün bu tur hataları `GELISTIRME_HATALARI.md` son tablosunda durumlarıyla kayıtlı; tamamlanmamış işlere tamamlandı denmez.
+
+## Son yeniden tasarım talimatı
+
+Kullanıcı düşük model kalitesini reddetti; kurdun yeniden tasarlanmasını, testlerin azaltılmasını ve dövmelerin tek tek denenmemesini istedi. Ice40 görünüşüne yama eklemek yerine seçilmiş Power42 gövdesi ve kendi 42 kemikli WT_NEW_WOLF_CH paketi üzerinden yeni aday hazırlanıyor. Kendi özgün Meshy kurt modelinin detaylı kürk renkleri yeni native gövdeye bake ediliyor; DTX kıyafetleri aktarılmıyor. Büyük bel aksesuarları çıkarılıyor, pantolon ve sınırlı omuz zırhı korunuyor. Araç tools/build_power_redesign.py. Yeni ücretli iş yok. Yeni aday görsel olarak incelenmeden çalışma zamanı modeli değiştirilmeyecek.
+
+## 29 Ekim — yeni ücretli kurt üretimi, eski kaplama yönteminin reddi
+
+Kullanıcı yeni ücretli üretimi açıkça istedi. Tek kurt için 4K geometri + 8K PBR + mobil remesh tahmini 45 kredi; başlangıç bakiyesi 905. Geometri görevi `01a1878d-a5b3-72ac-9098-ccc4a0306a66` başarılı, gerçekleşen 25 kredi. Kaplama görevi `01a18814-08b2-747b-b5ba-1ce9d5c2c6b5` sürüyor. Tekrar gönderim yapılmadı; önceki kabul yerel işlem günlüğünden kurtarıldı.
+
+Önceki Power42 adayında en yakın UV ile eski modelden renk aktarmak kürke giysi/metal desenleri yaydı. Bu yöntem reddedildi; aday oyuna kurulmadı ve tamamlanmış model değildir. Ice40 diz üçgenleri ve uzun boğaz sorunu da kapanmış sayılmaz. Yeni model doğal kürk, ayrı kumaş pantolon ve küçük buz bileklikleriyle üretiliyor. Kaynak animasyonların korunması ve yeni geometri uyumu henüz doğrulanmadı. Kuyruk, ağız/çene ve eklem uyumu özellikle kontrol edilecek. Kalitesiz gövdeyi yeniden zorla uydurup bitmiş sayma yöntemi tekrarlanmayacak. Test kapsamı kısa hareket, bir kükreme/efekt ve tek örnek dövme; bütün motifleri yeniden tarama yok.
+
+### Premium üretim sonucu: başarısız görsel kabul
+
+Üç yeni Meshy görevi başarılı; toplam gerçek maliyet 45 kredi. Yüksek model 1.369.346, oyun adayı 15.586 üçgen. Ancak gerçek ön/yan/arka renderlar gövde kürkünün kumaş gibi, yelenin sivri levhalı kaldığını ve desteksiz kuyruk üretildiğini gösterdi. Ücret harcanmış olması kabul nedeni yapılmadı. Aday oyuna kurulmadı, rig/animasyon/efekt/dövme tamamlandı denmedi. İkinci ücretli tekrar yok. Ayrıntı `docs/premium-wolf-01/README-TR.md`.
+
+## Yeni yetki — tekrar tekrar sormadan tamamla
+
+Kullanıcı görselden yeni üretime devam edilmesini ve tek çalışan kurt + tam APK teslimini açıkça istedi. Yeni 35 kredi tahminli üretim zinciri onaylandı; tamamlandı. Kaynak `01a18823-7e5f-7422-8ae2-b27a15865086`, remesh `01a18825-b1ec-7227-8e88-c5062cd205d2`. Aynı kapsam için tekrar bütçe onayı istenmeyecek. Öncelik tek kurdun tüm zincirini tamamlamak; seri varyant üretimi henüz yok.
+
+## v0.1.17 — seçili gövdeye dönüş ve çalışan zincir
+
+Yeni görselden üretim/remesh 35 krediyle tamamlandı. Üretilen geometriyi Power42 çenesine zorlayan baş/çene denemeleri bozuldu; tahmini ağız kesimi de yanlıştı. Bu adaylar oyuna alınmadı. Kaynak Power42 gövde, gerçek çene/dişler ve 72 kaynak klip korunarak özgün kürk/pantolon görünüşü Cycles ile aktarıldı. Yanlış UV adaları arasındaki renk karışımı giysi desenlerini kürke taşıyordu; bu yöntem kaldırıldı. Sürekli referans kürkü ve yeni giysinin yumuşak kasık ağırlıkları kullanıldı. 42 kemik, yaklaşık 14,2 bin üçgen. Yerel dört poz, gerçek koşu/takla/kükreme ve yedi geçiş kontrolü geçti. Telefon/görsel kullanıcı kabulü henüz yok. Diğer üç yeni özgün kurt tamamlanmış sayılmaz. Ayrıntı `docs/premium-wolf-01/TESLIM-TR.md`. Tek imzalı APK için CI aşamasına geçiliyor.
