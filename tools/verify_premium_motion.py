@@ -1,10 +1,13 @@
 """Short actual-WebGL qualification: four main poses, not every tattoo motif."""
-import json,shutil,math
+import json,shutil,math,os
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 R=Path(__file__).resolve().parents[1];D=R/'docs/premium-wolf-01';records=[];errors=[]
 with sync_playwright() as p:
- browser=p.chromium.launch(headless=True,executable_path=shutil.which('chromium'),args=['--no-sandbox','--enable-unsafe-swiftshader','--use-angle=swiftshader']);page=browser.new_page(viewport={'width':900,'height':1000});page.on('pageerror',lambda e:errors.append(str(e)))
+ options={'headless':True,'args':['--no-sandbox','--enable-unsafe-swiftshader','--use-angle=swiftshader']}
+ if os.getenv('ROGUE_BROWSER_CHANNEL'):options['channel']=os.environ['ROGUE_BROWSER_CHANNEL']
+ elif shutil.which('chromium'):options['executable_path']=shutil.which('chromium')
+ browser=p.chromium.launch(**options);page=browser.new_page(viewport={'width':900,'height':1000});page.on('pageerror',lambda e:errors.append(str(e)))
  def serve(route):
   f=(R/route.request.url.split('https://rogue.local/')[1].split('?')[0]).resolve();route.fulfill(path=str(f)) if f.is_relative_to(R) and f.is_file() else route.fulfill(status=404,body='missing')
  page.route('https://rogue.local/**',serve);page.goto('https://rogue.local/tools/viewer/model-review.html?asset=../../app/src/main/assets/models/bilge.glb');page.wait_for_function('()=>window.modelReview?.ready',timeout=90000)

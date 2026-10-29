@@ -27,3 +27,5 @@ Gerçek WebGL: dört ana poz, sabit kol uzunlukları, ağır yüzey uzaması ve 
 - İlk kısa testin bekleme koşulunda henüz tanımlanmamış JS globali okunuyordu; test yardımcı kodu düzeltildi. Başarısız testler geçti diye kaydedilmedi.
 - Diğer üç kurdun yeni özgün üretimleri tamamlanmadı; mevcut prototipler korunuyor. İnsan modeli bu tur sıfırdan yeniden üretilmedi; mevcut 47 kemikli/11 klipli sürüm paketlenir.
 - Bu, kullanıcının görsel kaliteyi kabul ettiği veya fiziksel Android telefonda test edildiği anlamına gelmez. Belirli FPS veya hatasızlık garantisi verilmez.
+
+İlk CI (`40905160918`) envanter, arena, kaynak efekt/koşu, native varlık ve dört ana pozu geçti. Son geçiş yardımcısı giriş videosu kendiliğinden bitince görünmez `Atla` düğmesini bekleyip durdu. Yardımcı, açılış hâlâ etkinse atlar ve CI'nin seçtiği Chrome kanalını kullanır hale getirildi. Oyun varlıkları bu düzeltmede değiştirilmedi. İmzalı APK üretilmeden önce düzeltilmiş yardımcı yeniden çalıştırılır.
