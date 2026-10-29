@@ -1,0 +1,46 @@
+[
+  {
+    "body": "wt_chars/newchars/ai/wt_wolfrush_behamah_type_ai.ltb",
+    "declared_child": "CH\\WT_WOLFRUSH_Behamah_CH.ltb",
+    "resolved_motion": "wt_chars/newchars/ai/ch/wt_wolfrush_behamah_ch.ltb",
+    "bones": 40,
+    "bind_error": 31.21741485595703,
+    "body_triangles": 4122,
+    "clips": [
+      {
+        "name": "T_cry",
+        "duration_ms": 1933
+      },
+      {
+        "name": "T_Dash",
+        "duration_ms": 533
+      },
+      {
+        "name": "T_Specialatk",
+        "duration_ms": 1000
+      }
+    ]
+  },
+  {
+    "body": "wt_chars/newchars/wolf_king/wolf_king_behamah.ltb",
+    "declared_child": "Wolf_kingAsmon_CH.ltb",
+    "resolved_motion": "wt_chars/newchars/wolf_king/wolf_kingasmon_ch.ltb",
+    "bones": 40,
+    "bind_error": 31.21741485595703,
+    "body_triangles": 4484,
+    "clips": [
+      {
+        "name": "T_cry",
+        "duration_ms": 1933
+      },
+      {
+        "name": "T_Dash",
+        "duration_ms": 533
+      },
+      {
+        "name": "T_Specialatk",
+        "duration_ms": 1000
+      }
+    ]
+  }
+]

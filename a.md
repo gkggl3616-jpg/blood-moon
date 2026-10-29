@@ -371,3 +371,13 @@ Kullanıcı görselden yeni üretime devam edilmesini ve tek çalışan kurt + t
 ## v0.1.17 — seçili gövdeye dönüş ve çalışan zincir
 
 Yeni görselden üretim/remesh 35 krediyle tamamlandı. Üretilen geometriyi Power42 çenesine zorlayan baş/çene denemeleri bozuldu; tahmini ağız kesimi de yanlıştı. Bu adaylar oyuna alınmadı. Kaynak Power42 gövde, gerçek çene/dişler ve 72 kaynak klip korunarak özgün kürk/pantolon görünüşü Cycles ile aktarıldı. Yanlış UV adaları arasındaki renk karışımı giysi desenlerini kürke taşıyordu; bu yöntem kaldırıldı. Sürekli referans kürkü ve yeni giysinin yumuşak kasık ağırlıkları kullanıldı. 42 kemik, yaklaşık 14,2 bin üçgen. Yerel dört poz, gerçek koşu/takla/kükreme ve yedi geçiş kontrolü geçti. Telefon/görsel kullanıcı kabulü henüz yok. Diğer üç yeni özgün kurt tamamlanmış sayılmaz. Ayrıntı `docs/premium-wolf-01/TESLIM-TR.md`. Tek imzalı APK için CI aşamasına geçiliyor.
+
+## Son sıralama — APK önce, boynuzlu çift sonra
+
+Kullanıcı mevcut kurtla APK'nın önce gönderilmesini; sonra koşu referansında görülen boynuzlu gövde için yeni insan/kurt çiftine başlanmasını istedi. Bu yeni çiftin tasarımı APK tesliminden önce başlatılmaz. Ağız/diş, iskelet uyumu, dövme ve efekt hataları tekrar edilmez. Kontrol kapsamı karakter, insan, animasyon, dövme ve efektlerle sınırlanır; her karakter eklemede bütün arayüz/mağaza testleri yeniden taranmaz. Manuel CI varsayılanı `character`, gerekirse ayrı `full` seçeneğidir. Açılışı geçmek karaktere ulaşma hazırlığıdır; Atla düğmesi bu kapsamda test edilmez. Mevcut CI'de arayüz kontrolleri kullanıcı bu sınırlamayı iletmeden önce bitmişti; bunlar yeniden başlatılmadı.
+
+## v0.1.17 APK gerçekten teslim edildi
+
+CI 40906762220 başarılı; sürüm 0.1.17/kod 18, 75.029.377 bayt. İmza önceki v0.1.16 ile aynı: af43be4b6ee4d5b2e1feca6da3df36805a7b10bbb56b1f884136054ef7f98633. İndirilen APK CRC/bütünlük ve 81 çalışma zamanı dosyasının birebir eşleşme kontrolünü geçti. İnsan tek bekleme pozunda ölçülen ağır bilek uzaması yok. Tek örnek dövme/ortak yama, kaynak kükreme/FX ve geçişler kontrol edildi. Telefon veya kullanıcı görsel kabulü yapılmadı. Doğrudan bağlantı ve hash: docs/premium-wolf-01/apk-v0117-verification.json.
+
+APK gönderildikten sonra boynuzlu kaynak gövde için Demir Han / Kara Boynuz çiftinin tasarım başlangıcı açıldı. Ayrıntı docs/horned-pair/TASARIM-TR.md. Bu yeni çift mevcut APK'ya eklenmedi. Bind eşleşmesindeki farklar çözülmeden rastgele yeni mesh üretip iskelete zorlanmayacak.

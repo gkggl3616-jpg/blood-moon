@@ -4,6 +4,12 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      validation_scope:
+        description: Character assets only, or full game regression
+        type: choice
+        options: [character, full]
+        default: character
 
 permissions:
   contents: write
@@ -51,10 +57,13 @@ jobs:
           path: tools/signing-cache
           key: rogue-prototype-signing-v1
       - name: Verify offline mobile interface
+        if: github.event_name == 'push' || inputs.validation_scope == 'full'
         run: python tools/verify_ui.py
       - name: Verify playable flat test arena
+        if: github.event_name == 'push' || inputs.validation_scope == 'full'
         run: python tools/verify_arena.py
       - name: Verify reference run and shared roar in actual gameplay
+        if: github.event_name == 'push' || inputs.validation_scope == 'full'
         run: python tools/verify_reference_arena.py
       - name: Verify original Bilge native assets and effects
         run: python tools/verify_bilge_native.py

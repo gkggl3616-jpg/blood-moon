@@ -12,7 +12,7 @@
   "price_read_date": "2026-10-29",
   "existing_animations_to_preserve": true,
   "test_scope": "short motion check, one roar/FX and one tattoo example; no exhaustive motif testing",
-  "status": "native_body_integrated_runtime_and_transition_checks_passed",
+  "status": "signed_v0117_apk_delivered",
   "preview_task_id": "01a1878d-a5b3-72ac-9098-ccc4a0306a66",
   "refine_task_id": "01a18814-08b2-747b-b5ba-1ce9d5c2c6b5",
   "actual_preview_credits": 25,
@@ -46,5 +46,9 @@
   "final_bones": 42,
   "final_source_clips": 72,
   "all_requested_models_completed": false,
-  "phone_tested": false
+  "phone_tested": false,
+  "final_apk_url": "https://github.com/gkggl3616-jpg/blood-moon/releases/download/prototype-v0.1.17-24/Rogue-Blood-Moon-v0.1.17.apk",
+  "final_ci_run": 40906762220,
+  "final_apk_verified": true,
+  "visual_user_accepted": false
 }

@@ -1,0 +1,185 @@
+[
+  {
+    "form": "wolf",
+    "source_body": "art/3d/source/wolfteam-archive/full-selected/wt_chars/newchars/wolf_king/wolf_king_behamah.ltb",
+    "source_motion": "art/3d/source/wolfteam-archive/full-selected/wt_chars/newchars/wolf_king/wolf_kingasmon_ch.ltb",
+    "source_body_sha256": "da4bf1d3d98b26ad5af412cb7690fd0fea6ee10dffbefbf9948ccb7d997df132",
+    "source_motion_sha256": "01165aa6de2405f3381f20f22b3a27058fbff8148e5ca52e46cc36a2da5d057c",
+    "bones": 40,
+    "native_clips": 74,
+    "max_source_bind_error": 31.21741485595703,
+    "source_jaw_weighted_vertices": 271,
+    "triangles": 4484,
+    "clips": {
+      "T_Dash": {
+        "duration_ms": 533,
+        "keys": 16,
+        "events": [
+          {
+            "ms": 0,
+            "text": "show_attachfx 0 ; show_attachfx 1"
+          },
+          {
+            "ms": 333,
+            "text": "FOOTSTEP_KEY"
+          },
+          {
+            "ms": 466,
+            "text": "FOOTSTEP_KEY"
+          }
+        ]
+      },
+      "T_cry": {
+        "duration_ms": 1933,
+        "keys": 59,
+        "events": [
+          {
+            "ms": 0,
+            "text": "WolfCrySnd"
+          },
+          {
+            "ms": 866,
+            "text": "create_attachfx 3"
+          }
+        ]
+      },
+      "T_CRY_old": {
+        "duration_ms": 1133,
+        "keys": 35,
+        "events": [
+          {
+            "ms": 0,
+            "text": "WolfCrySnd"
+          },
+          {
+            "ms": 266,
+            "text": "create_attachfx 3"
+          }
+        ]
+      },
+      "T_Specialatk": {
+        "duration_ms": 1000,
+        "keys": 31,
+        "events": [
+          {
+            "ms": 0,
+            "text": "sound_key 15 12;show_attachfx 0 ; show_attachfx 1"
+          },
+          {
+            "ms": 33,
+            "text": "spline 0 1; spline 1 1"
+          },
+          {
+            "ms": 100,
+            "text": "FIRE_KEY 68"
+          },
+          {
+            "ms": 200,
+            "text": "FIRE_KEY 68"
+          },
+          {
+            "ms": 300,
+            "text": "FIRE_KEY 68"
+          },
+          {
+            "ms": 400,
+            "text": "FIRE_KEY 68"
+          },
+          {
+            "ms": 466,
+            "text": "spline 0 0; spline 1 0"
+          },
+          {
+            "ms": 533,
+            "text": "FIRE_KEY 68"
+          },
+          {
+            "ms": 666,
+            "text": "FIRE_KEY 68"
+          }
+        ]
+      },
+      "T_Dash_JJ": {
+        "duration_ms": 733,
+        "keys": 13,
+        "events": [
+          {
+            "ms": 0,
+            "text": "show_attachfx 0 ; show_attachfx 1"
+          }
+        ]
+      },
+      "T_Dash_JT": {
+        "duration_ms": 0,
+        "keys": 1,
+        "events": [
+          {
+            "ms": 0,
+            "text": "show_attachfx 0 ; show_attachfx 1"
+          }
+        ]
+      },
+      "T_Dash_JL": {
+        "duration_ms": 233,
+        "keys": 7,
+        "events": [
+          {
+            "ms": 0,
+            "text": "show_attachfx 0 ; show_attachfx 1"
+          }
+        ]
+      }
+    },
+    "reference_only": true,
+    "runtime_added": false
+  },
+  {
+    "form": "human",
+    "source_body": "art/3d/source/pedro-native/main/pedro.ltb",
+    "source_motion": "art/3d/source/pedro-native/new-motion/wt_new_man_ch.ltb",
+    "source_body_sha256": "ef1111e1bf1804da63de457551ff48a13882dcd34e71e1d0924fd6130b34535a",
+    "source_motion_sha256": "f026978087746f5b44df7cf90a8927a189d2596f2660e01f369518a209fbd950",
+    "bones": 47,
+    "native_clips": 569,
+    "max_source_bind_error": 6.314330816268921,
+    "source_jaw_weighted_vertices": 0,
+    "triangles": 3204,
+    "clips": {
+      "LRF": {
+        "duration_ms": 726,
+        "keys": 23,
+        "events": [
+          {
+            "ms": 99,
+            "text": "FOOTSTEP_KEY"
+          },
+          {
+            "ms": 462,
+            "text": "FOOTSTEP_KEY"
+          }
+        ]
+      },
+      "LWF": {
+        "duration_ms": 726,
+        "keys": 31,
+        "events": [
+          {
+            "ms": 73,
+            "text": "FOOTSTEP_KEY"
+          },
+          {
+            "ms": 484,
+            "text": "FOOTSTEP_KEY"
+          }
+        ]
+      },
+      "UI_Default_Idle": {
+        "duration_ms": 1633,
+        "keys": 50,
+        "events": []
+      }
+    },
+    "reference_only": true,
+    "runtime_added": false
+  }
+]

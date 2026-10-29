@@ -29,3 +29,10 @@ Gerçek WebGL: dört ana poz, sabit kol uzunlukları, ağır yüzey uzaması ve 
 - Bu, kullanıcının görsel kaliteyi kabul ettiği veya fiziksel Android telefonda test edildiği anlamına gelmez. Belirli FPS veya hatasızlık garantisi verilmez.
 
 İlk CI (`40905160918`) envanter, arena, kaynak efekt/koşu, native varlık ve dört ana pozu geçti. Son geçiş yardımcısı giriş videosu kendiliğinden bitince görünmez `Atla` düğmesini bekleyip durdu. Yardımcı, açılış hâlâ etkinse atlar ve CI'nin seçtiği Chrome kanalını kullanır hale getirildi. Oyun varlıkları bu düzeltmede değiştirilmedi. İmzalı APK üretilmeden önce düzeltilmiş yardımcı yeniden çalıştırılır.
+
+## v0.1.17 APK gerçekten teslim edildi
+
+CI 40906762220 başarılı; sürüm 0.1.17/kod 18, 75.029.377 bayt. İmza önceki v0.1.16 ile aynı: af43be4b6ee4d5b2e1feca6da3df36805a7b10bbb56b1f884136054ef7f98633. İndirilen APK CRC/bütünlük ve 81 çalışma zamanı dosyasının birebir eşleşme kontrolünü geçti. İnsan tek bekleme pozunda ölçülen ağır bilek uzaması yok. Tek örnek dövme/ortak yama, kaynak kükreme/FX ve geçişler kontrol edildi. Telefon veya kullanıcı görsel kabulü yapılmadı. Doğrudan bağlantı ve hash: docs/premium-wolf-01/apk-v0117-verification.json.
+
+
+İnsanın tek bekleme pozunda ağır bilek uzaması ölçülmedi (`human-single-pose.json`); bu, bütün insan animasyonları ve kostümün görsel kabulü anlamına gelmez. Manuel CI artık varsayılan olarak yalnız karakter kapsamını seçer.

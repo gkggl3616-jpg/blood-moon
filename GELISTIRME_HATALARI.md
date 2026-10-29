@@ -188,3 +188,14 @@ Kullanıcı yeni ücretli üretimi açıkça istedi. Tek kurt için 4K geometri 
 Yeni görselden üretim/remesh 35 krediyle tamamlandı. Üretilen geometriyi Power42 çenesine zorlayan baş/çene denemeleri bozuldu; tahmini ağız kesimi de yanlıştı. Bu adaylar oyuna alınmadı. Kaynak Power42 gövde, gerçek çene/dişler ve 72 kaynak klip korunarak özgün kürk/pantolon görünüşü Cycles ile aktarıldı. Yanlış UV adaları arasındaki renk karışımı giysi desenlerini kürke taşıyordu; bu yöntem kaldırıldı. Sürekli referans kürkü ve yeni giysinin yumuşak kasık ağırlıkları kullanıldı. 42 kemik, yaklaşık 14,2 bin üçgen. Yerel dört poz, gerçek koşu/takla/kükreme ve yedi geçiş kontrolü geçti. Telefon/görsel kullanıcı kabulü henüz yok. Diğer üç yeni özgün kurt tamamlanmış sayılmaz. Ayrıntı `docs/premium-wolf-01/TESLIM-TR.md`. Tek imzalı APK için CI aşamasına geçiliyor.
 
 CI başlangıç yarışı: `verify_native_transitions.py` giriş videosu bittikten sonra gizlenen Atla düğmesini bekledi. Oyun hatası veya animasyon başarısızlığı diye sınıflandırılmaz. Açılış ekranının etkinliği kontrol edildi; test yardımcıları CI tarayıcı kanalını aynı biçimde kullanır. İlk CI başarı göstermediği için APK teslim edildi denmedi.
+
+## Tekrar edilmeyecek model/animasyon/FX kuralları
+
+1. İsim/kemik sayısı eşleşmesini bind uyumu sanma. Ağırlıklı kemiklerin yerel ölçülerini, kök/pelvis çerçevesini ve gövdenin ilan ettiği çocuk hareket kaynağını kontrol et. Başka gövdenin çene pivotuna rastgele mesh zorlanmaz.
+2. Başka modelden tahmini Y/Z yüksekliği kopyalayarak ağız kesme. Üst/alt dişler ayrı gerçek geometridir; ağız içi kaplaması diş değildir. Çene bağlantısı doğrulanmadan yeni model veya kükreme tamamlandı denmez.
+3. Ağız/diş/dil malzemelerini, isim öneki değişse bile gövde parlamasından dışla. Kükremede kırmızı dış oval veya parlayan diş kartı üretme.
+4. Farklı UV adalarının koordinatlarını ara değerde karıştırma; kürke giysi desenleri taşır. Gerçek yüzey bake'i ve doğru tangent normal kullan; eksik bake alanı düz boyasız levha bırakılmasın.
+5. Pantolon sınırını üçgen merkezine göre boyama; bel/paça sınırında geometri/UV uyumu olsun. Kasıkta keskin pelvis/uyluk ağırlık değişimini gerçek takla pozunda denetle. 16,7 cm büyüyen kasık kenarı bulundu ve sürekli ağırlık geçişiyle giderildi.
+6. Ayrı kliplerin zemin eğrilerinin geçiş pozunu da düzelttiğini varsayma. Gerçek karışan pozda sınırlı skin temas noktalarını kullan; fizik konumuna/nişana kayma ekleme.
+7. Tam `T_cry` ile kısa `T_CRY_old` aynı değildir. Kaynak adı, süre ve olay zamanı model bazında korunur; büyük/küçük harf farkı yüzünden eski/kısa klip seçilmez. Efekt kuyruğu hareket bitince erken kesilmez.
+8. Bütün karakterlerde körlemesine tam arayüz testi tekrarlanmaz. Karakter kapsamı: model/insan, kısa hareket, bir dövme ve tam kükreme/FX. Telefon/görsel kullanıcı kabulü yapılmadan böyle bir kabul varmış gibi yazılmaz.

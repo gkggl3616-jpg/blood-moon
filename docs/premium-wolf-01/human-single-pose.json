@@ -1,0 +1,11 @@
+{
+  "role": "HumanIdle",
+  "floor": 0.008000000000000326,
+  "meshes": [
+    {
+      "mesh": "Body_human_bilge",
+      "edgesOver3": 36,
+      "severeWrist": []
+    }
+  ]
+}

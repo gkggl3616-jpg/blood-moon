@@ -1,0 +1,216 @@
+[
+  {
+    "form": "wolf",
+    "body": "art/3d/source/wolfteam-archive/full-selected/wt_chars/newchars/wolf_king/wolf_king_behamah.ltb",
+    "motion": "art/3d/source/wolfteam-archive/full-selected/wt_chars/newchars/wolf_king/wolf_kingasmon_ch.ltb",
+    "differences": [
+      {
+        "name": "Bip01",
+        "weighted": false,
+        "global_error": 31.21741485595703,
+        "local_translation_difference": 32.174496470248194
+      },
+      {
+        "name": "Bip01 Pelvis",
+        "weighted": true,
+        "global_error": 0.05202293395996094,
+        "local_translation_difference": 32.15721615302832
+      },
+      {
+        "name": "Bip01 Spine",
+        "weighted": false,
+        "global_error": 0.05202317237854004,
+        "local_translation_difference": 2.384185791015625e-07
+      },
+      {
+        "name": "Bip01 Spine1",
+        "weighted": true,
+        "global_error": 0.052024126052856445,
+        "local_translation_difference": 4.532403189175383e-06
+      },
+      {
+        "name": "Bip01 Spine2",
+        "weighted": true,
+        "global_error": 0.08088800311088562,
+        "local_translation_difference": 0.0028393779391775735
+      },
+      {
+        "name": "Bip01 Neck",
+        "weighted": true,
+        "global_error": 3.1419906616210938,
+        "local_translation_difference": 2.7949736985343505
+      },
+      {
+        "name": "Bip01 Head",
+        "weighted": true,
+        "global_error": 4.6760780811309814,
+        "local_translation_difference": 1.2235620640973047e-05
+      },
+      {
+        "name": "Bip01 Ponytail2",
+        "weighted": true,
+        "global_error": 4.622541427612305,
+        "local_translation_difference": 0.0007769023726766439
+      },
+      {
+        "name": "Bip01 L Clavicle",
+        "weighted": true,
+        "global_error": 2.4865798950195312,
+        "local_translation_difference": 2.437611290029456
+      },
+      {
+        "name": "Bip01 L UpperArm",
+        "weighted": true,
+        "global_error": 4.471673965454102,
+        "local_translation_difference": 4.107864392337416
+      },
+      {
+        "name": "Bip01 L Forearm",
+        "weighted": true,
+        "global_error": 8.166828155517578,
+        "local_translation_difference": 4.501022434645525
+      },
+      {
+        "name": "Bip01 L Hand",
+        "weighted": true,
+        "global_error": 8.796737670898438,
+        "local_translation_difference": 2.891025217008205e-05
+      },
+      {
+        "name": "Bip01 L Finger0",
+        "weighted": true,
+        "global_error": 8.838916778564453,
+        "local_translation_difference": 2.5261849837923793
+      },
+      {
+        "name": "Bip01 L Finger01",
+        "weighted": true,
+        "global_error": 8.447185516357422,
+        "local_translation_difference": 7.555461825127995e-06
+      },
+      {
+        "name": "Bip01 L Finger1",
+        "weighted": true,
+        "global_error": 12.97115707397461,
+        "local_translation_difference": 5.368386213912082
+      },
+      {
+        "name": "Bip01 L Finger11",
+        "weighted": true,
+        "global_error": 13.037666320800781,
+        "local_translation_difference": 3.465449172693426e-06
+      },
+      {
+        "name": "Bip01 R Clavicle",
+        "weighted": true,
+        "global_error": 2.4865798950195312,
+        "local_translation_difference": 2.437607133173811
+      },
+      {
+        "name": "Bip01 R UpperArm",
+        "weighted": true,
+        "global_error": 4.471670150756836,
+        "local_translation_difference": 4.10786439233454
+      },
+      {
+        "name": "Bip01 R Forearm",
+        "weighted": true,
+        "global_error": 8.166820526123047,
+        "local_translation_difference": 4.501018620815052
+      },
+      {
+        "name": "Bip01 R Hand",
+        "weighted": true,
+        "global_error": 8.79672622680664,
+        "local_translation_difference": 3.7041633899550445e-05
+      },
+      {
+        "name": "Bip01 R Finger0",
+        "weighted": true,
+        "global_error": 8.83889389038086,
+        "local_translation_difference": 2.526178908142898
+      },
+      {
+        "name": "Bip01 R Finger01",
+        "weighted": true,
+        "global_error": 8.447166442871094,
+        "local_translation_difference": 1.441594739707086e-05
+      },
+      {
+        "name": "Bip01 R Finger1",
+        "weighted": true,
+        "global_error": 12.971134185791016,
+        "local_translation_difference": 5.368386213894451
+      },
+      {
+        "name": "Bip01 R Finger11",
+        "weighted": true,
+        "global_error": 13.037635803222656,
+        "local_translation_difference": 8.93080680943726e-06
+      },
+      {
+        "name": "Bip01 L Thigh",
+        "weighted": true,
+        "global_error": 0.052024126052856445,
+        "local_translation_difference": 4.877962885095712e-06
+      },
+      {
+        "name": "Bip01 L Calf",
+        "weighted": true,
+        "global_error": 0.43276119232177734,
+        "local_translation_difference": 1.5351870245161258e-05
+      },
+      {
+        "name": "Bip01 L Foot",
+        "weighted": true,
+        "global_error": 0.8312769830226898,
+        "local_translation_difference": 2.5929205544807668e-05
+      },
+      {
+        "name": "Bip01 L Toe0",
+        "weighted": true,
+        "global_error": 0.8312788009643555,
+        "local_translation_difference": 2.132480599880018e-06
+      },
+      {
+        "name": "Bip01 R Thigh",
+        "weighted": true,
+        "global_error": 0.052023887634277344,
+        "local_translation_difference": 4.835788416823528e-06
+      },
+      {
+        "name": "Bip01 R Calf",
+        "weighted": true,
+        "global_error": 0.43276023864746094,
+        "local_translation_difference": 1.5826829082792543e-05
+      },
+      {
+        "name": "Bip01 R Foot",
+        "weighted": true,
+        "global_error": 0.8312780112028122,
+        "local_translation_difference": 9.539712020251791e-06
+      },
+      {
+        "name": "Bip01 R Toe0",
+        "weighted": true,
+        "global_error": 0.8312778472900391,
+        "local_translation_difference": 1.356905989388491e-06
+      }
+    ],
+    "max_weighted_error": 13.037666320800781
+  },
+  {
+    "form": "human",
+    "body": "art/3d/source/pedro-native/main/pedro.ltb",
+    "motion": "art/3d/source/pedro-native/new-motion/wt_new_man_ch.ltb",
+    "differences": [
+      {
+        "name": "Bip01",
+        "weighted": false,
+        "global_error": 6.314330816268921,
+        "local_translation_difference": 7.149525910779075
+      }
+    ],
+    "max_weighted_error": 0
+  }
+]

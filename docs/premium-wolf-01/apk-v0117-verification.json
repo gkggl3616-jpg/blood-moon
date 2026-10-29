@@ -1,0 +1,16 @@
+{
+  "ci_run": 40906762220,
+  "ci_source_commit": "c65c83e5c7487e3d95a0a69e7209c54199c3e04a",
+  "ci_success": true,
+  "url": "https://github.com/gkggl3616-jpg/blood-moon/releases/download/prototype-v0.1.17-24/Rogue-Blood-Moon-v0.1.17.apk",
+  "bytes": 75029377,
+  "apk_sha256": "7fd2a647dc2976d13163fad75ab078d837fb8851a1fb4d1a9427d772939370aa",
+  "certificate_sha256": "af43be4b6ee4d5b2e1feca6da3df36805a7b10bbb56b1f884136054ef7f98633",
+  "same_certificate_as_v0116": true,
+  "package": "package: name='com.roguebloodmoon.prototype' versionCode='18' versionName='0.1.17' platformBuildVersionName='15' platformBuildVersionCode='35' compileSdkVersion='35' compileSdkVersionCodename='15'",
+  "zip_crc_passed": true,
+  "runtime_files_compared": 81,
+  "all_runtime_files_match": true,
+  "standalone_apk": true,
+  "phone_tested": false
+}
