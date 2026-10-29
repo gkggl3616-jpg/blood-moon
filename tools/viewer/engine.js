@@ -6,8 +6,8 @@ import tattooPolicy from '../../art/characters/model-families/tattoo-policy.json
 export const TATTOO_GLOW=Object.freeze({idle:tattooPolicy.glow.idle,peak:tattooPolicy.glow.roar_peak});
 const loader=new GLTFLoader(),cache=new Map(),pending=new Map();
 let renderer,active,env,lastTime=0,pins=new Set();
-export const modelIds={basibozuk:'kultigin',kul:'konuralp',ayaz:'alparslan',bilge:'bilge',kultigin:'kultigin',alparslan:'alparslan',konuralp:'konuralp'};
-export const identity={bilge:{name:'BUZ KURDU',element:'BUZ',color:0x70dfff,claws:3,tilt:-.35},kultigin:{name:'KAN KURDU',element:'KAN',color:0xff354d,claws:2,tilt:.65},alparslan:{name:'KÖZ KURDU',element:'KÖZ',color:0xffae36,claws:3,tilt:-.8},konuralp:{name:'GÖLGE KURDU',element:'GÖLGE',color:0xaf65ff,claws:4,tilt:.25}};
+export const modelIds={karahan:'karahan',basibozuk:'kultigin',kul:'konuralp',ayaz:'alparslan',bilge:'bilge',kultigin:'kultigin',alparslan:'alparslan',konuralp:'konuralp'};
+export const identity={karahan:{name:'KARAHAN',element:'KARA ÇELİK',color:0xd89947,claws:3,tilt:-.2},bilge:{name:'BUZ KURDU',element:'BUZ',color:0x70dfff,claws:3,tilt:-.35},kultigin:{name:'KAN KURDU',element:'KAN',color:0xff354d,claws:2,tilt:.65},alparslan:{name:'KÖZ KURDU',element:'KÖZ',color:0xffae36,claws:3,tilt:-.8},konuralp:{name:'GÖLGE KURDU',element:'GÖLGE',color:0xaf65ff,claws:4,tilt:.25}};
 export function keyFor(id,form='wolf'){const key=modelIds[id]||'kultigin';return form==='human'?'human-'+key:key;}
 export function getRenderer(){
  if(renderer)return renderer;

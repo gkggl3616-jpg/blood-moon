@@ -199,3 +199,13 @@ CI başlangıç yarışı: `verify_native_transitions.py` giriş videosu bittikt
 6. Ayrı kliplerin zemin eğrilerinin geçiş pozunu da düzelttiğini varsayma. Gerçek karışan pozda sınırlı skin temas noktalarını kullan; fizik konumuna/nişana kayma ekleme.
 7. Tam `T_cry` ile kısa `T_CRY_old` aynı değildir. Kaynak adı, süre ve olay zamanı model bazında korunur; büyük/küçük harf farkı yüzünden eski/kısa klip seçilmez. Efekt kuyruğu hareket bitince erken kesilmez.
 8. Bütün karakterlerde körlemesine tam arayüz testi tekrarlanmaz. Karakter kapsamı: model/insan, kısa hareket, bir dövme ve tam kükreme/FX. Telefon/görsel kullanıcı kabulü yapılmadan böyle bir kabul varmış gibi yazılmaz.
+
+## 29 Ekim — Karahan, yüksek yenileme ve son kalite itirazı
+
+Tam güncel hata/neden/durum tablosu: `docs/karahan-v0118/GUNCEL-RAPOR-TR.md`. Kalıcı görsel kalite promptu: `docs/KALICI-KARAKTER-KALITE-PROMPTU-TR.md`; tam metni `a.md`'de de saklandı.
+
+Bu tur kapatılan kod sorunları: fizik adımı olmayan 90/120/144 Hz karelerde idle'a düşme; görüntü dt'sinden yanlış adım temposu; Android ikinci parmağın click olayını kaçırması; geciken/üst üste HTMLAudio kükremesi. Kısa test `refresh-touch-audio-test.json`: dört oran, gerçek CDP çoklu dokunma, 2,01258 m takla, kükremede durma; fiziksel telefon testi değildir.
+
+Bu tur reddedilen denemeler: bind farkından gereksiz retarget çıkarma; yalnız sessiz hazırlığı ses diye kırpma; mermer/zebra kürk; yamalı beyaz/siyah bake; geçersiz normal piksellerini alpha ile geçerli sayma; düz insan giysisi; ayrık kürk yaka; yüzleri belden silerek zikzak kısa kıyafet yapma; Bilge'nin yüz/kostümünü Karahan'ın ayrı tamamlanmış insanı sayma. Bunlar yeni APK'ya kurulmadı. Karahan'da kaynak skin/omuz/boğaz uzamaları hâlâ açık; pahalı doku bunu otomatik düzeltmez. Eski hata kayıtları silinmez.
+
+Bilge'nin iki GLB'si son v0.1.17 APK ile byte karşılaştırmasını geçti; bu tur değiştirilmedi. Karahan canlı listede değil. Yeni ücretli görev yok; 4K PBR Retexture önerisi insan+kurt için toplam 20 yeni kredi, bakiye 825; onay bekliyor. Yeni APK yayımlanmadı.

@@ -1,3 +1,11 @@
+# Güncel karar: Karahan — 29 Ekim 2026
+
+İnsan ve kurt kimliği Karahan olarak adlandırıldı; aşağıdaki Demir Han/Kara Boynuz adları eski çalışma adlarıdır. Karahan Bilge Kağan'ın yerini almaz. Yeni görüntü denemeleri yeterli bulunmadı; canlı model listesine eklenmedi. Kalıcı güncel prompt `../KALICI-KARAKTER-KALITE-PROMPTU-TR.md`, ayrıntılı gerçek durum `../karahan-v0118/GUNCEL-RAPOR-TR.md` içindedir.
+
+Ek bind düzeltmesi denemesi reddedildi: aynı Behamah gövdesinin AI `T_Explosion` kükreme anahtarları, çocuk dosyanın `T_cry` anahtarlarıyla aynıdır. Farklı bind kayıtları tek başına ek dönüştürme gerekçesi değildir. Ham hareket anahtarları korunur. Kaynak cilt/giysi ağırlıklarında kalan uzamalar ayrıca düzeltilmelidir; doku üretimi bunları otomatik çözmez.
+
+---
+
 # Demir Han / Kara Boynuz — tasarım başlangıcı
 
 Bu çalışma v0.1.17 APK gönderildikten sonra başladı. Bu çift o APK'nın içinde değildir. İsimler çalışma adıdır: insan **Demir Han**, kurt **Kara Boynuz**.

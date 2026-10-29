@@ -1,0 +1,71 @@
+{
+  "physical_phone_tested": false,
+  "audio_buffer": {
+    "duration": 1.3188662131519275,
+    "peak": 0.6199951171875
+  },
+  "refresh_rates": [
+    {
+      "hz": 60,
+      "samples": 60,
+      "motions": [
+        "WolfRunQuad"
+      ],
+      "minRate": 1.7833117920756338,
+      "maxRate": 1.7833117920756338,
+      "speed": 8.400000000000034
+    },
+    {
+      "hz": 90,
+      "samples": 90,
+      "motions": [
+        "WolfRunQuad"
+      ],
+      "minRate": 1.7833117920756338,
+      "maxRate": 1.7833117920756338,
+      "speed": 8.400000000000034
+    },
+    {
+      "hz": 120,
+      "samples": 120,
+      "motions": [
+        "WolfRunQuad"
+      ],
+      "minRate": 1.7833117920756338,
+      "maxRate": 1.7833117920756338,
+      "speed": 8.400000000000034
+    },
+    {
+      "hz": 144,
+      "samples": 144,
+      "motions": [
+        "WolfRunQuad"
+      ],
+      "minRate": 1.7833117920756338,
+      "maxRate": 1.7833117920756338,
+      "speed": 8.400000000000034
+    }
+  ],
+  "multi_touch": {
+    "run_jump": true,
+    "run_roll": true,
+    "roll_distance": 2.0125786163522097,
+    "jump_peak_speed": 8.4,
+    "held_direction_roar_stops": true
+  },
+  "roar_audio": {
+    "ready": true,
+    "state": "running",
+    "started": 23116.39999999851,
+    "duration": 1.3329999446868896,
+    "count": 1,
+    "singleVoice": true,
+    "gesture_to_scheduled_start_ms": 2.7999999970197678,
+    "pose_duration": 1.3329999446868896
+  },
+  "browser_errors": [],
+  "bilge_identity_preserved": {
+    "bilge": "1b08c712bdbe96d9dd607da6a61c3dfd8b4ef3f2ab440d27a35369806354ef71",
+    "human-bilge": "754233f0a108e69cb3167f0b842936ce520b19a4ce17c7f57c451bcbd7b72e7a"
+  }
+}

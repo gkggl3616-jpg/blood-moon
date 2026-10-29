@@ -28,8 +28,28 @@ if (window.ResizeObserver) new ResizeObserver(fit).observe(viewport);
 fit();
 function saveSettings() { try { localStorage.setItem('rogue-settings', JSON.stringify({ audio: audioEnabled, volume, lookSensitivity, graphicsQuality })); } catch (_) {} updateSound(); }
 window.getRoguePreferences = () => ({ lookSensitivity, graphicsQuality });
-function updateSound() { $('openingSound').textContent = audioEnabled ? 'SES AÇIK' : 'SES KAPALI'; intro.muted = !audioEnabled; intro.volume = volume; }
-function playSound(type = 'click') { if (!audioEnabled || document.hidden) return; const a = sounds[type]; if (!a) return; a.volume = volume; a.currentTime = 0; a.play().catch(() => {}); }
+function updateSound() { if(!audioEnabled)window.stopRoarSound?.(); $('openingSound').textContent = audioEnabled ? 'SES AÇIK' : 'SES KAPALI'; intro.muted = !audioEnabled; intro.volume = volume; }
+// Decode before gameplay. A single scheduled voice follows the pose clock;
+// HTMLAudio replay/late promise completion must never produce a second roar.
+let roarContext,roarBuffer,roarVoice,roarGain,roarStarted=0,roarDuration=0,roarCount=0;
+const roarBytes=fetch('media/roar-voice.wav').then(r=>{if(!r.ok)throw Error('roar audio');return r.arrayBuffer();});
+window.prepareRoarSound=async()=>{if(!roarContext){roarContext=new (window.AudioContext||window.webkitAudioContext)({latencyHint:'interactive'});roarGain=roarContext.createGain();roarGain.connect(roarContext.destination);}if(!roarBuffer)roarBuffer=await roarContext.decodeAudioData((await roarBytes).slice(0));};
+window.prepareRoarSound().catch(()=>{});
+document.addEventListener('pointerdown',()=>{if(roarContext?.state==='suspended')roarContext.resume().catch(()=>{});},{capture:true});
+window.stopRoarSound=()=>{if(roarVoice){try{roarVoice.stop();}catch(_){}roarVoice=null;}};
+window.roarAudioInfo=()=>({ready:!!roarBuffer,state:roarContext?.state,started:roarStarted,duration:roarDuration,count:roarCount,singleVoice:true});
+function playSound(type = 'click',options={}) {
+ if (!audioEnabled || document.hidden) return;
+ if(type==='roar'){
+  window.stopRoarSound();for(const sound of Object.values(sounds))sound.pause();if(!roarBuffer||roarContext.state!=='running')return;
+  const now=roarContext.currentTime,duration=Math.max(.5,Math.min(3,options.duration||1.333));
+  roarVoice=roarContext.createBufferSource();roarVoice.buffer=roarBuffer;roarVoice.playbackRate.value=roarBuffer.duration/duration;roarVoice.connect(roarGain);
+  roarGain.gain.cancelScheduledValues(now);roarGain.gain.setValueAtTime(0,now);roarGain.gain.linearRampToValueAtTime(volume*.62,now+.015);roarGain.gain.setValueAtTime(volume*.62,now+duration-.12);roarGain.gain.linearRampToValueAtTime(0,now+duration);
+  roarVoice.start(now);roarVoice.stop(now+duration+.01);roarStarted=performance.now();roarDuration=duration;roarCount++;return;
+ }
+ const a=sounds[type];if(!a)return;a.volume=volume;a.currentTime=0;a.play().catch(()=>{});
+}
+document.addEventListener('visibilitychange',()=>{if(document.hidden)window.stopRoarSound();});
 function screen(name) { if(name!=='arena')window.stopArena?.(); if(name!=='wolfGear'&&name!=='collection')window.stopWolfMotion?.(); if (name !== 'opening') { intro.pause(); intro.classList.remove('playing'); } for (const el of document.querySelectorAll('.screen')) { const active = el.id === name; el.classList.toggle('active', active); el.inert = !active; } currentScreen = name; }
 function toast(text) { $('toast').textContent = text; $('toast').classList.add('show'); clearTimeout(toastTimer); toastTimer = setTimeout(() => $('toast').classList.remove('show'), 3500); }
 function showModal(title, html, label = 'ROGUE: BLOOD MOON') { modal.classList.remove('events-modal','settings-modal'); $('modalTitle').textContent = title; $('modalBody').innerHTML = html; $('modalLabel').textContent = label; document.getElementById(currentScreen).inert = true; modal.hidden = false; modal.open = true; modal.setAttribute('open', ''); $('closeModal').focus(); }

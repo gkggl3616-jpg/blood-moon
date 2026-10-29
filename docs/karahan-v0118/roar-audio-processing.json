@@ -1,0 +1,21 @@
+{
+  "source": "existing roar-deep.mp3, not archive audio",
+  "preserved_segments_seconds": [
+    [
+      0,
+      1.36
+    ],
+    [
+      1.8,
+      3.11
+    ]
+  ],
+  "removed_gap_seconds": [
+    1.36,
+    1.8
+  ],
+  "pitch_preserving_atempo": 2.02,
+  "buffer_seconds": 1.3188662131519275,
+  "normalized_peak": 0.6199951171875,
+  "single_decoded_voice": true
+}

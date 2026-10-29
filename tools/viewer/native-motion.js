@@ -1,7 +1,7 @@
 // Shared model contracts: character identity and wardrobe are independent of rig type.
 import {AnimationClip,Vector3} from 'three';
 import {normalizedBoneName} from './rig-bones.js';
-export const MODEL_TYPES=Object.freeze({ice40:{bones:40,roar:'T_CRY'},power42:{bones:42,roar:'T_CRY'},r1_54:{bones:54,roar:'T_CRY'},wraith58:{bones:58,roar:'T_CRY'},human47:{bones:47}});
+export const MODEL_TYPES=Object.freeze({behamah40:{bones:40,roar:'T_cry'},ice40:{bones:40,roar:'T_CRY'},power42:{bones:42,roar:'T_CRY'},r1_54:{bones:54,roar:'T_CRY'},wraith58:{bones:58,roar:'T_CRY'},human47:{bones:47}});
 export const nativeModel=actor=>!!(actor?.userData.nativeSourceKeyPreserved&&MODEL_TYPES[actor.userData.modelType]);
 const wolf={WolfClaw:['LSt','UMFi1','upper'],WolfIdle:['LSt','UMSt'],WolfMove:['LWF','UMWF'],WolfWalk:['LWF','UMWF'],WolfRunQuad:['LRF','UMRF'],WolfRoar:['T_CRY'],WolfRoll:['T_Specialatk'],WolfClawRight:['LSt','UMFi1','upper'],WolfClawLeft:['LSt','UMFi2','upper'],WolfJump:['LJJ','UMJJ'],WolfJumpAir:['LJT','UMJT'],WolfLand:['LJL','UMJL'],WolfTransform:['LSt','UMSt']};
 const human={HumanIdle:['UI_Default_Idle'],HumanMove:['LWF','URi1WF'],HumanWalk:['LWF','URi1WF'],HumanRun:['LRF','URi1RF'],HumanFire:['URi1Fi'],HumanReload:['URi1Re']};
@@ -9,14 +9,14 @@ const trackBone=track=>normalizedBoneName(track.name.slice(0,track.name.lastInde
 export function motionClip(actor,role){
  const clips=actor?.userData.motionClips||[];if(role==='WolfRunQuad'){const chosen=actor?.userData.nativeLocomotion?.quadClip;const quad=clips.find(c=>c.name===(chosen||'DerivedQuadRun'));if(quad){const cache=actor.userData.nativeRoleCache||(actor.userData.nativeRoleCache=new Map());if(!cache.has('WolfRunQuad'))cache.set('WolfRunQuad',new AnimationClip('WolfRunQuad',quad.duration,quad.tracks));return cache.get('WolfRunQuad');}}if(!nativeModel(actor))return clips.find(c=>c.name===role)||clips.find(c=>c.name==='WolfIdle'||c.name==='HumanIdle');
  const cache=actor.userData.nativeRoleCache||(actor.userData.nativeRoleCache=new Map());if(cache.has(role))return cache.get(role);
- const recipe=(actor.userData.modelType==='human47'?human:wolf)[role];if(!recipe)return clips.find(c=>c.name===role)||null;
+ const recipe=actor.userData.nativeRoleRecipes?.[role]||(actor.userData.modelType==='human47'?human:wolf)[role];if(!recipe)return clips.find(c=>c.name===role)||null;
  const base=clips.find(c=>c.name===recipe[0]),upper=clips.find(c=>c.name===recipe[1]);if(!base)return null;
  let tracks=base.tracks,duration=base.duration;
  if(upper){const mask=new Set((actor.userData.nativeUpperBoneNames||[]).map(normalizedBoneName));tracks=[...base.tracks.filter(t=>!mask.has(trackBone(t))),...upper.tracks.filter(t=>mask.has(trackBone(t)))];duration=recipe[2]==='upper'?upper.duration:Math.max(base.duration,upper.duration);}
  // Track times/values are referenced unchanged: only native upper/lower selection.
  const clip=new AnimationClip(role,duration,tracks);cache.set(role,clip);return clip;
 }
-export function nativeRoar(actor){const clip=motionClip(actor,'WolfRoar');const duration=clip?.duration||1.2;const events=actor?.userData.nativeClipEvents?.T_CRY||[];const event=events.find(e=>/create_attachfx|FX ChangeCharEffect/i.test(e.event));return {modelType:actor?.userData.modelType||'legacy27',clip:clip?.name,duration,eventTime:event?event.timeMs/1000:null,peakPhase:event?Math.min(.95,Math.max(.05,event.timeMs/1000/duration)):.49};}
+export function nativeRoar(actor){const clip=motionClip(actor,'WolfRoar');const duration=clip?.duration||1.2;const events=actor?.userData.nativeClipEvents?.[actor?.userData.nativeRoleRecipes?.WolfRoar?.[0]||MODEL_TYPES[actor?.userData.modelType]?.roar||'T_CRY']||[];const event=events.find(e=>/create_attachfx|FX ChangeCharEffect/i.test(e.event));return {modelType:actor?.userData.modelType||'legacy27',clip:clip?.name,duration,eventTime:event?event.timeMs/1000:null,peakPhase:event?Math.min(.95,Math.max(.05,event.timeMs/1000/duration)):.49};}
 export function motionDuration(actor,role,fallback){return motionClip(actor,role)?.duration||fallback;}
 // Correct only measured mesh penetration; retain the source gait's aerial phases.
 export function placeNativeLocomotion(actor,role,clipTime){

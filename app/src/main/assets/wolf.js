@@ -1,5 +1,5 @@
 'use strict';
-sounds.roar=new Audio('media/roar-deep.mp3');
+// Roar voice is decoded once by the shared audio engine.
 const ROAR_DURATION=20000;let roarUntil=0;
 const wolfBodyProfiles=Object.fromEntries(roster.map(c=>[c.id,{body:c.body,width:1,height:1,color:c.color}]));
 let wolfEquipment={},wolfTattoos={};
@@ -24,7 +24,7 @@ $('wolfAccessory').onchange=e=>{toast(RogueGear.equip(collectionState.equipped,'
 for(const [node,slot] of [['tattooBack','back'],['tattooLeft','left'],['tattooRight','right']])$(node).onchange=e=>{window.saveInventoryTattoo(collectionState.equipped,slot,e.target.value);updateRoar();};
 $('saveWolfGear').onclick=()=>{RogueGear.save();loadWolfLoadout();try{localStorage.setItem('rogue-wolf-equipment',JSON.stringify(wolfEquipment));}catch(_){}toast('Donanım kaydedildi.');};
 $('runPreview').onclick=()=>window.playWolfMotion?.('WolfRunQuad');$('rollPreview').onclick=()=>window.playWolfMotion?.('WolfRoll');
-$('activateRoar').onclick=()=>{if(wolfStats().active)return;roarUntil=Date.now()+ROAR_DURATION;playSound('roar');window.playWolfMotion?.('WolfRoar');updateRoar();};
+$('activateRoar').onclick=()=>{if(wolfStats().active)return;roarUntil=Date.now()+ROAR_DURATION;window.playWolfMotion?.('WolfRoar');updateRoar();};
 $('viewWolfFront').onclick=()=>window.wolf3DView?.(true);$('viewWolfBack').onclick=()=>window.wolf3DView?.(false);
 function updateRoar(){if(currentScreen!=='wolfGear')return;const s=wolfStats();window.refreshWolf3D?.();$('wolfFigure').classList.toggle('roaring',s.active);$('activateRoar').disabled=s.active;$('roarRemaining').textContent=s.active?(s.remaining/1000).toFixed(1)+' sn':'HAZIR';$('roarProgress').style.width=s.remaining/ROAR_DURATION*100+'%';$('wolfLiveStats').innerHTML=[['Hız',s.speed],['Hasar',s.damage],['Savunma',s.defense],['Can',s.health]].map(([n,v])=>`<div class="bonus-row"><span>${n}</span><strong>${v.toFixed(1)}</strong></div>`).join('');$('roarStatus').textContent='Temel + karakter + dövme; kükreme etkinse ayrıca çarpılır. Genel 180 tavanı yok.';}
 setInterval(updateRoar,100);

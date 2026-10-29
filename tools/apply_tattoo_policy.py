@@ -39,7 +39,7 @@ def apply(path):
  def pose(i):
   if i not in world:world[i]=(pose(parents[i]) if i in parents else Matrix.Identity(4))@Matrix.LocRotScale(*local[i])
   return world[i]
- body_node=next(node for node in nodes if node.get('name','').startswith('Body_') and 'mesh' in node);skin=g['skins'][body_node['skin']];inverse=[Matrix([v[i:i+4] for i in range(0,16,4)]).transposed() for v in read(skin['inverseBindMatrices'])];matrices=[pose(i)@b for i,b in zip(skin['joints'],inverse)];norm=lambda name:name.replace('_','').replace(' ','').lower();joint_nodes={norm(nodes[i]['name']):i for i in skin['joints']}
+ body_node=next((node for node in nodes if node.get('name')==meta.get('tattooProjectionBodyName') and 'mesh' in node),None) or next(node for node in nodes if node.get('name','').startswith('Body_') and 'mesh' in node);skin=g['skins'][body_node['skin']];inverse=[Matrix([v[i:i+4] for i in range(0,16,4)]).transposed() for v in read(skin['inverseBindMatrices'])];matrices=[pose(i)@b for i,b in zip(skin['joints'],inverse)];norm=lambda name:name.replace('_','').replace(' ','').lower();joint_nodes={norm(nodes[i]['name']):i for i in skin['joints']}
  def joint(legacy,bip):
   i=joint_nodes.get(norm(bip),joint_nodes.get(norm(legacy)));assert i is not None,(path.name,legacy,bip);return pose(i).translation
  positions=[];weights=[];faces=[];face_materials=[]
