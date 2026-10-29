@@ -36,3 +36,7 @@ Modelin kendi kaynak kükreme klibi ve efekt bağlantısı çözülsün; yalnız
 ## Teslim ve dürüst kayıt
 
 Ön/yan/arka gerçek oyun görüntüsüyle kontrol et. Ağır uzama veya açık ağız hatası varken modeli yayıma hazır sayma. Yalnız test edildiği kadarını söyle. Yapılan, otomatik kontrol edilen, görsel olarak incelenen, kullanıcı tarafından kabul edilen ve fiziksel telefonda deneneni ayrı yaz. Yeni ücretli görev gerekiyorsa gerçek kapsam/maliyet açık olmalı; geçmiş bütçe sınırsız izin değildir. Kurulum tek imzalı APK, belgeler ayrı güncel MD bağlantısıdır.
+
+## Son görsel yön — Karahan / Behamah, 29 Ekim
+
+Behamah ailesinde boynuzlar onun özgün yana kıvrılan boynuz biçimini izler; iki rastgele dik sivri çıkıntıya çevrilmez. Alt giysi uzaktan açıkça pantolon veya kapri olarak okunur: kumaş örgüsü, kemer/dikiş, gerilim kırışığı, gerçek yırtık kenarı ve altında gövde. Savaş görünüşü için göğüs/omuzda okunabilir pençe yaraları, yer yer koyu/kuru kan, eskitilmiş kolluk ve kir bulunur. Temiz/parlak araba cilası benzeri yüzey kabul edilmez. Yaralar simgesel dövme değildir; kuşanılan dövmeler kaplamaya kalıcı basılmaz. Eklem, ağız ve deriyi kan/efektle örtme. Yeni bütçe yalnız talep edilen forma harcanır; yalnız kurt tekrar istendiğinde insan yeniden üretilmez.

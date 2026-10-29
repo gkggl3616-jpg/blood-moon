@@ -1,6 +1,6 @@
 # Karahan — güncel model, animasyon ve hata kaydı
 
-29 Ekim 2026. Bu belge önceki “üretim başlamadı / bütçe bekleniyor” durumunun yerine geçer. Fiziksel Android ve kullanıcı görsel kabulü yapılmadı. APK teslim bilgileri aşağıdaki doğrulama kaydında ayrıca belirtilir.
+29 Ekim 2026. v0.1.18 / sürüm kodu 19 yayımlandı. Bu belge önceki “üretim başlamadı / bütçe bekleniyor” durumunun yerine geçer. Fiziksel Android ve kullanıcı görsel kabulü yapılmadı.
 
 ## Son tasarım talimatı ve sonuç
 
@@ -66,3 +66,26 @@ Karahan'ın arşivdeki `cryguardian` grubu kaynak kamera titreşimi içerir; bu 
 Önce doğrulanmış gövde/rig/çene paketi seçilir. Aynı ailede kontrollü yeni görünüş ve küçük, eklemden uzak geometri hazırlanır. Rastgele vücut üretip sonra kırparak iskelete zorlanmaz. Kurtlarda belirgin pantolon/kapri; yırtığın altında gerçek gövde; kontrollü kan/pençe izi; kuşanılabilir dövme için açık deri alanı bulunur. Boynuz, ağız, diş ve pençe silüeti kaynak hareketle birlikte tasarlanır. Albedo/normal/pürüzlülük ayrı hazırlanır; kumaş kürk gibi, kürk metal gibi parlamaz. Tam boyutlu dokular görsel netliği artırır ama telefon bellek/performance ölçümünün yerine geçmez.
 
 Güncel kurt zinciri: son PBR malzemeli `wolf-static.blend` → kaynak üst gövde skin onarımı/native export/ortak dövme politikası → açıkça türetilmiş kükreme düzelticisi → ölçülü uzunluk uyarlamalı gait ölçümü → gerçek WebGL yer teması meta verisi → ayrı `models/karahan.glb`. Eski reddedilmiş oral/skin denemeleri yeniden çalıştırılmaz. `docs/KALICI-KARAKTER-KALITE-PROMPTU-TR.md` genel standart olmaya devam eder.
+
+### Bu sürümde tamamlanan kısa Karahan sonucu
+
+Karahan kimliğiyle 60/90/120/144 Hz hareket örneklerinde yalnız koşu durumu görüldü; tempo 2,179411, donanımla yatay hız 8,4 m/sn. Çoklu dokunma sıçrama/takla geçti; takla 2,01258 m. Yön tuşu basılı kükremede yatay hareket durdu. Tek ses 1,93299997 sn; son yerel ölçümde komut gecikmesi yaklaşık 3,9 ms. Bu değer hoparlör akustik gecikmesi değildir. Bilge iki dosyasının SHA-256 değerleri önceki APK ile aynı kaldı.
+
+### Son kurt üretiminde kullanılan gerçek Meshy istemi
+
+```text
+Savage battle-hardened werewolf Karahan. Keep supplied BEHAMAH side horns exactly: curved dark ridged keratin, not upright spikes. Natural charcoal fur, amber eyes, ivory fangs, dark inner mouth. UNMISTAKABLE faded brown-olive COMBAT CAPRI trousers: leather waistband, pockets, seams, ragged below-knee hems, large frayed tears exposing grey fur. Distinct cloth from fur, not black leggings. VISIBLE dark red blood streaks on chest, shoulders, forearms and hands. Three large claw-slash scars with fresh red edges, bruises, dirt. Scarred black steel bracers, worn bronze edges. Brutal war-game veteran, NOT clean, soft, polished or elegant. Detailed realistic PBR. No tattoos, logos, glow or baked lighting. Preserve anatomy.
+```
+
+İstenen koyu kürke rağmen üretim göğüs/kollarda daha sıcak çıplak deri yorumu verdi. Bu sapma saklanmaz; gerçek görünüş önizlemelerdeki gibidir. Yeni ücretli tekrar açılmadı.
+
+## Gerçek APK teslimi ve son kontrol
+
+- [Tek, bağımsız APK v0.1.18](https://github.com/gkggl3616-jpg/blood-moon/releases/download/prototype-v0.1.18-25/Rogue-Blood-Moon-v0.1.18.apk); sürüm kodu 19.
+- Boyut 133278989 bayt (yaklaşık 133,3 MB). SHA-256 `32075e6f9a9e1551c355599bbdbf85c271be2699a32efdca5450e4421e33f7dd`.
+- Önceki sürümle aynı imza sertifikası: `af43be4b6ee4d5b2e1feca6da3df36805a7b10bbb56b1f884136054ef7f98633`. Paket `com.roguebloodmoon.prototype`; önceki sürüm kodu 18 idi. İmza/sürüm uyumluluğu doğrulandı; gerçek cihazda kurulum denenmedi.
+- Yayımlanan APK yeniden indirildi; ZIP bütünlüğü ve 86 çalışma zamanı dosyasının her biri yerel güncel dosyayla bayt bayt aynı bulundu. Modeller, PBR dokular, FX ve ses APK içinde. Ek veri kurulumu yok.
+- CI 40941336513 başarılı; kaynak commit `796bd9c350fe73497d0185ffceb75bd77acb7a2a`. Buz kaynak sözleşmesi/temas geçişleri ve Karahan çoklu dokunma/ses testi geçti. Karahan kaynak efekt grubu `cryguardian` bulundu ve desteklenmeyen bileşen kaydı çıkmadı.
+- [İsteğe bağlı kurt GLB dosyası](https://github.com/gkggl3616-jpg/blood-moon/releases/download/prototype-v0.1.18-25/Karahan-Wolf.glb). Bu, APK kurulumu için gerekmez. Uzunluk uyarlaması/zemin sözleşmesi oyunun runtime katmanındadır; genel bir GLB oynatıcı ham klipleri doğrudan seçerse aynı sonuç garanti edilmez.
+
+Açık işler: omuz/kürk sınırlarındaki yüzey kalitesi, bazı pozlardaki kaynak deformasyonları ve istenen koyu kürke karşı üretimin sıcak deri yorumu. Yeni ücretli üretim açılmadı. Bu aday, görsel kullanıcı kabulü veya bütün karakterlerin tamamlandığı anlamına gelmez. Sonraki düzenleme aynı gövde üzerinde bu somut sorunlara odaklanmalı; bütün oyun ve dövme motifleri tekrar taranmamalı.

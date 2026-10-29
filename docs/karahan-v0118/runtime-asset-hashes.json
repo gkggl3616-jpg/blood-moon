@@ -1,0 +1,18 @@
+{
+  "bilge": {
+    "bytes": 21967476,
+    "sha256": "1b08c712bdbe96d9dd607da6a61c3dfd8b4ef3f2ab440d27a35369806354ef71"
+  },
+  "human-bilge": {
+    "bytes": 17465176,
+    "sha256": "754233f0a108e69cb3167f0b842936ce520b19a4ce17c7f57c451bcbd7b72e7a"
+  },
+  "karahan": {
+    "bytes": 44071628,
+    "sha256": "50b181178e731f2a78619ac8614e0bc6a2687958cb19bd79c96d3fecd2b142ed"
+  },
+  "human-karahan": {
+    "bytes": 19329472,
+    "sha256": "b355165aaf414c89158dd598f2285f50029089a237b0dc2c13ab5ce1dad23860"
+  }
+}
