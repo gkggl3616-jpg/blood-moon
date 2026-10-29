@@ -5,6 +5,10 @@ on:
     branches: [main]
   workflow_dispatch:
     inputs:
+      delivery_only:
+        description: Attach existing verified model and latest report without rebuilding APK
+        type: boolean
+        default: false
       validation_scope:
         description: Character assets only, or full game regression
         type: choice
@@ -20,6 +24,7 @@ concurrency:
 
 jobs:
   build:
+    if: ${{ !inputs.delivery_only }}
     name: Verify UI and build signed prototype APK
     runs-on: ubuntu-24.04
     timeout-minutes: 20
@@ -101,3 +106,28 @@ jobs:
           name: build-diagnostics
           path: dist/
           if-no-files-found: ignore
+
+  attach:
+    if: ${{ inputs.delivery_only }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify released model bytes
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json
+          expected=json.loads(Path('docs/karahan-v0118/runtime-asset-hashes.json').read_text())['karahan']['sha256']
+          p=Path('app/src/main/assets/models/karahan.glb')
+          assert hashlib.sha256(p.read_bytes()).hexdigest()==expected
+          Path('/tmp/Karahan-Wolf.glb').write_bytes(p.read_bytes())
+          PY
+      - name: Attach model, preview and latest report
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release upload prototype-v0.1.18-25 /tmp/Karahan-Wolf.glb --clobber
+          gh release upload prototype-v0.1.18-25 docs/karahan-v0118/WolfIdle-front.png --clobber
+          gh release upload prototype-v0.1.18-25 docs/karahan-v0118/GUNCEL-RAPOR-TR.md --clobber
+          gh release view prototype-v0.1.18-25 --json assets --jq '.assets[].name'
