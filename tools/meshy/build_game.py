@@ -291,7 +291,11 @@ def clip_over(chans, t):
         val = _slerp(v[i].astype(float), v[j2].astype(float), f) if pth == 'rotation' else v[i] * (1 - f) + v[j2] * f
         over.setdefault(node, {})[pth] = np.asarray(val, float)
     return over
-def destretch(m, nodes, clips, jidx, IB, report, frames=14, ratio=2.4, absm=.12, rounds=160, skip_clips=()):
+def skin_dense(Wd, M, Ph):
+    """Linear blend skinning with dense weights (N x nJ) and joint matrices M (nJ x 3 x 4)."""
+    A = np.einsum('nj,jab->nab', Wd.astype(np.float32), M)   # per-vertex blended 3x4
+    return np.einsum('nab,nb->na', A, Ph.astype(np.float32))
+def destretch(m, nodes, clips, jidx, IB, report, frames=24, ratio=2.4, absm=.12, rounds=160, skip_clips=()):
     """Anti-stretch pass on the final weights: sample every clip, find edges that grow too long, and pull the weights of
     both end vertices (and their 1-ring) toward each other until no edge tears. Same idea as tools/wolfgen fix_stretch."""
     P = m['P'].astype(float); I = m['I'].reshape(-1, 3); Wd = m['Wd'].copy(); nJ = Wd.shape[1]
@@ -303,20 +307,23 @@ def destretch(m, nodes, clips, jidx, IB, report, frames=14, ratio=2.4, absm=.12,
         T = max(float(c[2][-1]) for c in chans)
         for t in np.linspace(0, T, frames):
             W = world_with(J(nodes), clip_over(chans, t)); M = np.stack([W[j] @ IB[q] for q, j in enumerate(jidx)])
-            poses.append(np.einsum('jab,nb->jna', M[:, :3], Ph))   # (nJ, N, 3)
+            poses.append(M[:, :3].astype(np.float32))   # joint matrices only: skinning is redone per round (low memory)
     nb = [[] for _ in range(len(P))]
     for a, b in E: nb[a].append(b); nb[b].append(a)
+    def top4(Wx):   # evaluate exactly what ships: 4 influences per vertex
+        t = np.argsort(-Wx, 1)[:, 4:]; Wx = Wx.copy(); np.put_along_axis(Wx, t, 0, 1); return Wx / (Wx.sum(1, keepdims=True) + 1e-9)
+    Wd = top4(Wd)
     for r in range(rounds):
         badv = set(); worst = 0
         for X in poses:
-            Q = np.einsum('nj,jna->na', Wd, X); L = np.linalg.norm(Q[E[:, 0]] - Q[E[:, 1]], axis=1)
+            Q = skin_dense(Wd, X, Ph); L = np.linalg.norm(Q[E[:, 0]] - Q[E[:, 1]], axis=1)
             bad = (L > L0 * ratio) & (L - L0 > absm)
             if bad.any(): worst = max(worst, float((L - L0)[bad].max())); badv.update(E[bad].reshape(-1).tolist())
         if not badv:
             report('  %s: no stretched edges after %d anti-stretch rounds' % (m['name'], r)); break
         if r >= 20:   # persistent tears: weld the weights of both ends of every still-stretched edge
             for X in poses:
-                Q = np.einsum('nj,jna->na', Wd, X); L = np.linalg.norm(Q[E[:, 0]] - Q[E[:, 1]], axis=1)
+                Q = skin_dense(Wd, X, Ph); L = np.linalg.norm(Q[E[:, 0]] - Q[E[:, 1]], axis=1)
                 for a, b in E[(L > L0 * ratio) & (L - L0 > absm)]: avg = .5 * (Wd[a] + Wd[b]); Wd[a] = avg; Wd[b] = avg
         bv = np.array(sorted(badv)); ring = set(bv.tolist())
         for v in bv: ring.update(nb[v])
@@ -324,7 +331,7 @@ def destretch(m, nodes, clips, jidx, IB, report, frames=14, ratio=2.4, absm=.12,
         for v in ring:
             nbs = nb[v]
             if nbs: newW[v] = .5 * Wd[v] + .5 * Wd[nbs].mean(0)
-        Wd = newW
+        Wd = top4(newW)
         if r % 10 == 0: report('  %s: anti-stretch round %d, %d vertices, worst +%.2f m' % (m['name'], r, len(bv), worst))
     else:
         report('  %s: WARNING stretched edges remain (worst +%.2f m)' % (m['name'], worst))
@@ -333,7 +340,7 @@ def destretch(m, nodes, clips, jidx, IB, report, frames=14, ratio=2.4, absm=.12,
         if nc:
             badE = set()
             for X in poses:
-                Q = np.einsum('nj,jna->na', Wd, X); L = np.linalg.norm(Q[E[:, 0]] - Q[E[:, 1]], axis=1)
+                Q = skin_dense(Wd, X, Ph); L = np.linalg.norm(Q[E[:, 0]] - Q[E[:, 1]], axis=1)
                 for a, b in E[(L > L0 * ratio) & (L - L0 > absm)]: badE.add((a, b))
             T = m['I'].reshape(-1, 3); capT = T[-nc:]
             drop = np.array([any(tuple(sorted(x)) in badE for x in ((t[0], t[1]), (t[1], t[2]), (t[2], t[0]))) for t in capT])
@@ -383,7 +390,14 @@ def write(path, old, nodes, jidx, IB, meshes, clips):
     # images / textures / materials copied verbatim from the old game model
     imgs = []
     for im in old.j.get('images', []):
-        imgs.append(dict(bufferView=blob(old.view_bytes(im['bufferView'])), mimeType=im.get('mimeType', 'image/png')))
+        raw = old.view_bytes(im['bufferView']); mime = im.get('mimeType', 'image/png')
+        if len(raw) > 1_500_000:   # Meshy ships 2k PNG maps: 1k JPEG keeps the APK small and looks the same on a phone
+            from PIL import Image as _I; import io as _io
+            pic = _I.open(_io.BytesIO(raw))
+            if pic.mode in ('RGBA', 'LA') and pic.getextrema()[-1][0] < 250: pic = None   # real transparency: keep PNG
+            if pic is not None:
+                pic = pic.convert('RGB'); pic.thumbnail((1024, 1024), _I.LANCZOS); b = _io.BytesIO(); pic.save(b, 'JPEG', quality=88); raw = b.getvalue(); mime = 'image/jpeg'
+        imgs.append(dict(bufferView=blob(raw), mimeType=mime))
     j['images'] = imgs; j['textures'] = old.j.get('textures', []); j['samplers'] = old.j.get('samplers', []); j['materials'] = old.j.get('materials', [])
     j['skins'] = [dict(joints=jidx, inverseBindMatrices=acc(np.array([m.T.reshape(-1) for m in IB], np.float32), 'MAT4', 5126), skeleton=jidx[0])]
     j['meshes'] = []
