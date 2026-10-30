@@ -452,3 +452,5 @@ Bilge paketi yayımlandı: https://github.com/gkggl3616-jpg/blood-moon/releases/
 ## 30 Ekim — yalnız karakter dosyaları: Bilge + dört aile
 
 Kullanıcı oyun kodunu istemedi; Bilge insan/kurt ve seçilmiş Buz40/Kan54/Köz42/Gölge58 ailelerini hareketleriyle tek ZIP istedi. `tools/package_bilge_and_rigs.py` yalnız 41 veri dosyası paketler: 6 animasyonlu GLB, LTB kaynakları, Bilge dokuları/DTX, statik Blender sahneleri, dövme/ses ve açıklama/manifesto. JS/Python/shader/oyun kaynak kodu pakette yoktur. Dört referans GLB: 40/68, 54/76, 42/72, 58/83 kemik/klip; nötr gri geometri/UV/skin önizlemeleridir, dört yeni kaplamalı tasarım değildir. Karahan yok. Dosya adları sadeleştirildi; kullanıcının başka AI kabul etsin diye kökeni gizleme talebi karşılanmadı, köken kaydı doğru tutuldu. Yeni üretim/ücret veya oyun/APK değişikliği yok.
+
+Bilge + dört aile yeni kodsuz paket yayımlandı: https://github.com/gkggl3616-jpg/blood-moon/releases/download/prototype-v0.1.18-25/Bilge-Kagan-ve-4-Model.zip . 149.785.695 bayt, 41 dosya, SHA256 5cc9219b2b1b30cdff9f8f9890b6575be482d7acb4f03808443addb458fbbbbe. CI 41007174572 başarılı; yayımlanmış bundle-report.json yerel kontrolle aynı.
