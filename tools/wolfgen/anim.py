@@ -98,18 +98,32 @@ def jump(t):
 
 
 def roar(t):
-    p = {}
-    pre = sm(t / .16) * (1 - sm((t - .16) / .08))          # coil forward, claws down
-    up = sm((t - .18) / .12) * (1 - sm((t - .84) / .16)); hold = up
-    shake = math.sin(t * TAU * 13) * up * (1 if .3 < t < .85 else .3)
-    add(p, 'Hips', 10 * pre - 6 * hold); add(p, 'Spine', 22 * pre - 18 * hold); add(p, 'Chest', 14 * pre - 20 * hold)
-    add(p, 'Neck', 10 * pre - 28 * hold + 2.5 * shake); add(p, 'Head', 8 * pre - 38 * hold + 3.5 * shake)
-    add(p, 'Jaw', 42 * hold + 10 * math.sin(t * TAU * 10) * hold)
+    """Ice Rage Roar, 5 s: prep 0-.8 (crouch, head down), build .8-1.6 (fists, chest swells), roar 1.6-2.5 (head snaps
+    45-60 deg up, chest out, back arched, arms open to the sides, palms up/forward, wide stance with the right leg
+    forward), blast 2.5-3.5 (held, trembling), calm 3.5-5 (back to the ready stance)."""
+    T = t * 5.0; p = {}
+    def env(a, b, c, d): return sm((T - a) / max(b - a, 1e-6)) * (1 - sm((T - c) / max(d - c, 1e-6)))
+    prep = env(0, .6, 1.4, 1.75)            # crouch / head down
+    build = env(.8, 1.55, 1.6, 1.85)        # fists, chest swells
+    R = env(1.6, 1.92, 3.5, 4.7)            # main roar pose (fast in, slow out)
+    tr = math.sin(T * TAU * 2.3) * (env(2.0, 2.3, 3.4, 3.7) * 1.0 + build * .4)   # muscle tremble
+    # torso
+    add(p, 'Hips', 10 * prep + 4 * build - 6 * R)
+    add(p, 'Spine', 20 * prep + 6 * build - 14 * R + .6 * tr)
+    add(p, 'Chest', 10 * prep - 6 * build - 18 * R + .8 * tr)
+    add(p, 'Neck', 16 * prep + 6 * build - 28 * R + 1.2 * tr, 0, 3 * R)
+    add(p, 'Head', 12 * prep - 4 * build - 30 * R + 2 * tr)
+    add(p, 'Jaw', 10 * build + 46 * R + 4 * math.sin(T * TAU * 6) * R)
     for s, L in ((1, 'L'), (-1, 'R')):
-        add(p, 'Clav' + L, 0, 0, s * 10 * hold); add(p, 'UpperArm' + L, -20 * pre - 12 * hold, 0, s * 115 * hold + s * 2 * shake)
-        add(p, 'Forearm' + L, -30 * pre, 0, s * 100 * hold); add(p, 'Hand' + L, 0, 0, -s * 8 * hold)
-        add(p, 'Thigh' + L, -(30 * pre + 38 * hold)); add(p, 'Shin' + L, 44 * pre + 62 * hold); add(p, 'Foot' + L, -(14 * pre - 20 * hold))
-    add(p, 'Tail1', 12 * hold); add(p, 'Tail2', 14 * hold); add(p, 'Tail3', 16 * hold)
+        add(p, 'Clav' + L, 0, -s * 8 * prep, s * (-4 * prep + 6 * build + 4 * R))
+        add(p, 'UpperArm' + L, -14 * prep + 6 * build + 6 * R, -s * 14 * R, s * (6 * prep + 18 * build + 46 * R) + s * 1.2 * tr)
+        add(p, 'Forearm' + L, -26 * prep - 58 * build - 28 * R, -s * 20 * R, s * 6 * R)
+        add(p, 'Hand' + L, 18 * build - 24 * R, -s * 30 * R, -s * (14 * build - 6 * R))
+    # legs: wider than shoulders, knees bent; right leg reaches forward/out, left leg carries the weight
+    add(p, 'ThighL', -(22 * prep + 10 * build + 18 * R), 0, 8 * build + 16 * R); add(p, 'ShinL', 34 * prep + 18 * build + 40 * R); add(p, 'FootL', -(12 * prep + 8 * build + 22 * R), 0, -16 * R)
+    add(p, 'ThighR', -(22 * prep + 10 * build + 42 * R), 0, -(8 * build + 22 * R)); add(p, 'ShinR', 34 * prep + 18 * build + 34 * R); add(p, 'FootR', -(12 * prep + 8 * build) + 8 * R, 0, 22 * R)
+    sw = math.sin(T * TAU * .9)
+    add(p, 'Tail1', 6 * prep - 14 * R, 0, 14 * R + 4 * sw * R); add(p, 'Tail2', -6 * R, 0, 12 * R + 7 * sw * R); add(p, 'Tail3', 6 * R, 0, 10 * R + 10 * sw * R)
     return p, 'feet'
 
 
@@ -162,7 +176,7 @@ def transform(t):
 
 CLIPS = {  # name: (fn, duration_s, loop)
     'WolfIdle': (idle, 2.4, True), 'WolfMove': (walk, 1.0, True), 'WolfRunQuad': (run_quad, .62, True), 'WolfJump': (jump, 1.0, False),
-    'WolfRoar': (roar, 1.2, False), 'WolfRoll': (roll, .8, False), 'WolfClaw': (claw, .62, False), 'WolfTransform': (transform, 1.0, False), 'WolfClawR': (claw, .65, False),
+    'WolfRoar': (roar, 5.0, False), 'WolfRoll': (roll, .8, False), 'WolfClaw': (claw, .62, False), 'WolfTransform': (transform, 1.0, False), 'WolfClawR': (claw, .65, False),
 }
 
 
@@ -185,7 +199,7 @@ def bake(skel, name, fps=FPS):
 # ----------------------------------------------------------------------------- Mixamo-retargeted clips (baked JSON)
 import json, os
 BAKED = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'retarget', 'baked')
-MIX = {'WolfIdle': ('idle', 6.0, True), 'WolfRoar': ('roar', 1.2, False), 'WolfClaw': ('clawR', .65, False), 'WolfJump': ('jump', .9, False), 'WolfClawR': ('clawR', .65, False)}
+MIX = {'WolfIdle': ('idle', 6.0, True), 'WolfClaw': ('clawR', .65, False), 'WolfJump': ('jump', .9, False), 'WolfClawR': ('clawR', .65, False)}
 
 
 def _nlerp(a, b, u):

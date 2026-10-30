@@ -93,10 +93,10 @@ with sync_playwright() as p:
  page.wait_for_function('()=>arenaDebug.state().effects.particles>0',timeout=10000)
  assert 17<state()['roarTime']<=20 and abs(state()['stats']['damage']-235.75)<.001
  assert not page.evaluate('arenaDebug.action("roll")'),'roar pose was interrupted'
- page.wait_for_function('()=>arenaDebug.state().roarPoseTime<.45&&arenaDebug.state().roarPoseTime>0',timeout=10000)
+ page.wait_for_function('()=>arenaDebug.state().roarPoseTime<.45&&arenaDebug.state().roarPoseTime>0',timeout=40000)
  assert sum((a-b)**2 for a,b in zip(state()['position'],roar_start))<.0001,'roar did not stop held movement'
  assert not state()['run'] and state()['motion']=='WolfRoar'
- page.keyboard.up('KeyW');page.wait_for_function('()=>arenaDebug.state().roarPoseTime===0',timeout=10000)
+ page.keyboard.up('KeyW');page.wait_for_function('()=>arenaDebug.state().roarPoseTime===0',timeout=40000)
  page.evaluate('arenaDebug.place(0,-5.8)');page.locator('#arenaFire').click()
  page.wait_for_function('()=>arenaDebug.state().attackTime>0',timeout=10000)
  assert state()['effects']['trail']
