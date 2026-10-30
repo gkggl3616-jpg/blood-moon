@@ -143,17 +143,13 @@ class Mesh:
                 verts.append(path[-1]); ci = len(verts) - 1
                 o = (n - 1) * sides
                 tris += [(ci, o + s, o + (s + 1) % sides) for s in range(sides)]
-        # orientation fix: make triangles face outward
+        # orientation fix: majority vote of side triangles against the centreline
         V = np.array(verts); tris = np.array(tris)
-        cen = V.mean(0)
-        fnrm = np.cross(V[tris[:, 1]] - V[tris[:, 0]], V[tris[:, 2]] - V[tris[:, 0]])
-        mid = V[tris].mean(1)
-        # tube centreline based test is more robust than global centre
-        flip = 0
-        sample = tris[len(tris) // 3]
-        nn = np.cross(V[sample[1]] - V[sample[0]], V[sample[2]] - V[sample[0]])
-        ctr = path[min(len(path) - 1, int(sample[0] // sides))]
-        if np.dot(nn, V[sample].mean(0) - ctr) < 0: tris = tris[:, ::-1]
+        side = tris[: (n - 1) * sides * 2]
+        fnrm = np.cross(V[side[:, 1]] - V[side[:, 0]], V[side[:, 2]] - V[side[:, 0]])
+        ring = np.minimum(side[:, 0] // sides, n - 1)
+        out = V[side].mean(1) - path[ring]
+        if np.sum(np.einsum('ij,ij->i', fnrm, out)) < 0: tris = tris[:, ::-1]
         return self.add_part(V, tris, weight_fn, color_fn, material)
 
     def ellipsoid(self, c, r, weight_fn, color_fn, material, rot=None, seg=14, rings=10):
@@ -382,8 +378,8 @@ def render(skel, mesh, pose, root_t=(0, 0, 0), yaw=30, pitch=8, size=(700, 800),
         m &= z < sub
         if not m.any(): continue
         nrm = (w0[..., None] * Nc[a] + w1[..., None] * Nc[b] + w2[..., None] * Nc[c3]); nrm = nrm / np.maximum(np.linalg.norm(nrm, axis=-1, keepdims=True), 1e-6)
-        if mat['double']: nrm = np.where((nrm[..., 2:3] < 0), -nrm, nrm)
-        lum = np.clip(nrm @ (R @ L) * .8 + .28, 0, 1.2)[..., None] + np.clip(nrm @ (R @ L2), 0, 1)[..., None] * .22
+        nrm = np.where((nrm[..., 2:3] > 0), -nrm, nrm)   # two-sided lighting: normal always faces the camera (-z)
+        lum = np.clip(nrm @ (R @ L) * .55 + .62, .25, 1.25)[..., None] + np.clip(nrm @ (R @ L2), 0, 1)[..., None] * .18
         base = (w0[..., None] * cols[a] + w1[..., None] * cols[b] + w2[..., None] * cols[c3]) * np.array(mat['color'])
         em = np.array(mat['emissive']) * (1 + glow * 1.5)
         rgb = base * lum + em * .9

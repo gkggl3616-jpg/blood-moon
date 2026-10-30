@@ -186,6 +186,33 @@ def build_wolf(variant):
     tail = [(0, .95, -.12), (0, .92, -.32), (0, .86, -.55), (0, .76, -.78), (0, .64, -.97)]
     M.tube(tail, [.07, .09, .095, .075, 0.0], path_weights(tail, [('Tail1', 0), ('Tail2', .25), ('Tail3', .55)], .08), fur, FUR, sides=10, cap_start=False, cap_end=False)
 
+    # --- fur tufts: break up the tube silhouettes -------------------------------
+    trng = np.random.default_rng(11)
+
+    def tuft(b, d, ln, r, bone, k=1.0):
+        d = normalize(np.array(d, float) + trng.normal(0, .12, 3))
+        M.cone(np.array(b, float), np.array(b, float) + d * ln * k * trng.uniform(.8, 1.2), r, one(bone), fur, FUR, sides=4, curve=(0, -.01, 0))
+    for sx in (1, -1):
+        for k in range(5):   # cheek ruff
+            tuft((.095 * sx, 1.66 - k * .012, .12 - k * .028), (.8 * sx, -.35 - k * .1, -.9), .11, .03, 'Head')
+        for k in range(8):   # neck / shoulder mane
+            a = k / 7.0
+            tuft((.09 * sx, 1.56 - a * .08, .08 - a * .05), (.5 * sx, -.9, -.4), .16, .045, 'Neck')
+        for k in range(6):   # back of forearms
+            tuft((.35 * sx + .03 * sx, 1.10 - k * .045, .0 - k * .003), (.15 * sx, -.9, -.5), .09, .028, 'Forearm' + ('L' if sx > 0 else 'R'))
+        for k in range(5):   # shin tufts
+            tuft((.17 * sx, .50 - k * .06, .08 - k * .035), (.2 * sx, -.4, -.9), .08, .026, 'Shin' + ('L' if sx > 0 else 'R'))
+    for k in range(12):      # chest ruff
+        a = k / 11.0
+        tuft(((a - .5) * .32, 1.36 - .12 * (1 - abs(a - .5) * 2), .2), ((a - .5) * 1.2, -.9, .35), .13, .04, 'Chest')
+    for k in range(9):       # bushy tail
+        a = k / 8.0
+        for s2 in (-1, 1):
+            tuft((s2 * .06, .92 - .2 * a, -.2 - .75 * a), (s2 * .8, -.3, -.8), .17, .05 * (1 - .4 * a), 'Tail2' if a > .3 else 'Tail1')
+    for sx in (1, -1):       # shoulder fluff
+        for k in range(4):
+            tuft((.26 * sx, 1.56 - k * .02, .0 - k * .03), (.8 * sx, .3, -.5), .12, .04, 'Clav' + ('L' if sx > 0 else 'R'))
+
     # === variant features =====================================================
     if variant == 'ice':
         ice = lambda p, n: (.75, .93, 1.0)
