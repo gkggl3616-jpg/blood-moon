@@ -1,17 +1,11 @@
 'use strict';
 const roster = [
- {id:'basibozuk',name:'BAŞIBOZUK',wolf:'GECE AVCISI',role:'DENGELİ',power:100,body:'Dengeli gövde',claw:'Kısa çapraz savuruş',trail:'Soluk çelik • üç kısa çizgi',price:0,color:'#607d89',human:[['Hareket',0],['Şarjör değişimi',0]],beast:[['Hasar',0],['Dayanıklılık',0]],desc:'Dengeli başlangıç operatörü. Temel insan ve kurt değerleriyle oynanış referansı.'},
- {id:'kul',name:'KÜL',wolf:'KÜL PENÇESİ',role:'İZCİ',power:112,body:'İnce ve çevik',claw:'Hızlı ters el serisi',trail:'Kül grisi • iki dar kavis',price:750,color:'#be8b72',human:[['Hareket',4],['Dayanıklılık',-3]],beast:[['Hasar',12],['Dayanıklılık',12]],desc:'Çeviklik odaklı izci. Daha hızlı hareket karşılığında daha düşük dayanıklılık.'},
- {id:'ayaz',name:'AYAZ',wolf:'AYAZ MUHAFIZI',role:'SAVUNMA',power:118,body:'Geniş omuzlu',claw:'Ağır üstten savuruş',trail:'Buz mavisi • geniş tek yay',price:1200,color:'#72a7b5',human:[['Dayanıklılık',5],['Hareket',-3]],beast:[['Hasar',18],['Dayanıklılık',18]],desc:'Alan savunmasına odaklı ağır operatör. Dayanıklılık avantajı, hareket hızı bedeliyle dengelenir.'} ,
- {id:'bilge',name:'BİLGE KAĞAN',wolf:'BOZ KAĞAN',role:'KOMUTAN',price:900,power:145,color:'#c3b17c',human:[['Dayanıklılık',3],['Hareket',-2]],beast:[['Hasar',45],['Dayanıklılık',45]],body:'Uzun ve geniş gövdeli',claw:'Gövde dönüşüyle ağır yatay darbe',trail:'Mat altın • üç geniş yatay yay',desc:'Göktürk hükümdarı Bilge Kağan’dan esinlenen kurgu komutan. Tarihî bir portre iddiası taşımaz.'},
- {id:'kultigin',name:'KÜL TİGİN',wolf:'KARA TİGİN',role:'SAVAŞÇI',price:1400,power:180,color:'#b55260',human:[['Dayanıklılık',4],['Hareket',-3]],beast:[['Hasar',80],['Dayanıklılık',80]],body:'Kaslı ve atletik',claw:'Omuzdan başlayan iki çapraz güçlü darbe',trail:'Koyu kızıl • iki kalın çapraz iz',desc:'Göktürk komutanı Kül Tigin’den esinlenen savaşçı. Güçlü karakter pasifi; dövme bonusları ayrıca hesaplanır.'},
- {id:'alparslan',name:'ALP ARSLAN',wolf:'BOZ ARSLAN',role:'ÖNCÜ',price:1250,power:165,color:'#c3945e',human:[['Dayanıklılık',5],['Hareket',-4]],beast:[['Hasar',65],['Dayanıklılık',65]],body:'Ağır, geniş göğüslü',claw:'Ağırlık aktarımıyla alttan yukarı ağır darbe',trail:'Kehribar • üç derin yükselen yay',desc:'Selçuklu hükümdarı Alp Arslan’dan esinlenen kurgu öncü. Ağır gövdesi için daha geniş saldırı hareketleri planlanır.'},
- {id:'konuralp',name:'KONURALP',wolf:'UÇ AVCISI',role:'AKINCI',price:1000,power:150,color:'#6ea8a2',human:[['Hareket',4],['Dayanıklılık',-3]],beast:[['Hasar',50],['Dayanıklılık',50]],body:'İnce, uzun uzuvlu',claw:'Kısa adımla üç hızlı pençe',trail:'Soluk turkuaz • üç ince paralel iz',desc:'Osmanlı uç beyi Konuralp’ten esinlenen kurgu akıncı. Hafif gövde için dar ve hızlı savuruşlar planlanır.'}
+ {id:'bilge',name:'BİLGE KAĞAN',wolf:'BOZ KAĞAN',role:'KOMUTAN',price:0,power:145,color:'#c3b17c',human:[['Dayanıklılık',3],['Hareket',-2]],beast:[['Hasar',45],['Dayanıklılık',45]],body:'Uzun ve geniş gövdeli',claw:'Gövde dönüşüyle ağır yatay darbe',trail:'Mat altın • üç geniş yatay yay',desc:'Göktürk hükümdarı Bilge Kağan’dan esinlenen kurgu komutan. Tarihî bir portre iddiası taşımaz.'}
 
 ];
-let collectionState={credits:2500,owned:['basibozuk','bilge'],equipped:'bilge'};
-try{const v=JSON.parse(localStorage.getItem('rogue-collection'));if(v){collectionState.credits=Number.isFinite(v.credits)?Math.max(0,v.credits):2500;collectionState.owned=roster.filter(c=>v.owned?.includes(c.id)).map(c=>c.id);if(!collectionState.owned.includes('basibozuk'))collectionState.owned.push('basibozuk');if(!collectionState.owned.includes('bilge'))collectionState.owned.push('bilge');collectionState.equipped=collectionState.owned.includes(v.equipped)?v.equipped:'basibozuk';}}catch(_){}
-let libraryMode='inventory',category='characters',selectedCharacter='basibozuk',previewForm='wolf';
+let collectionState={credits:2500,owned:['bilge'],equipped:'bilge'};
+try{const v=JSON.parse(localStorage.getItem('rogue-collection'));if(v){collectionState.credits=Number.isFinite(v.credits)?Math.max(0,v.credits):2500;collectionState.owned=roster.filter(c=>v.owned?.includes(c.id)).map(c=>c.id);if(!collectionState.owned.includes('bilge'))collectionState.owned.push('bilge');collectionState.equipped=collectionState.owned.includes(v.equipped)?v.equipped:'bilge';}}catch(_){}
+let libraryMode='inventory',category='characters',selectedCharacter='bilge',previewForm='wolf';
 function saveCollection(){try{localStorage.setItem('rogue-collection',JSON.stringify(collectionState));}catch(_){toast('Cihaz kaydı kullanılamıyor.');}}
 function bonusRows(rows){return rows.map(([label,value])=>`<div class="bonus-row"><span>${label}</span><strong class="${value>0?'positive':value<0?'negative':''}">${value>0?'+':''}${Number(value.toFixed(1))}%</strong></div>`).join('');}
 window.refreshCharacter=()=>{const c=roster.find(c=>c.id===collectionState.equipped);$('operatorName').textContent=gearForm==='human'?c.name:c.wolf;$('operatorRole').textContent=c.role+' • Temsilî görsel';$('gearRole').textContent=c.role;$('operatorPortrait').style.backgroundImage='url(media/characters/'+characterModelId(c.id)+'-'+gearForm+'.webp)';$('operatorPortrait').style.backgroundSize='contain';$('operatorPortrait').style.backgroundPosition='center';};
@@ -22,12 +16,12 @@ function renderCharacter(){const c=roster.find(c=>c.id===selectedCharacter);cons
  $('characterAction').onclick=()=>{playSound();if(!owned){if(collectionState.credits<c.price){toast('Deneme kredisi yetersiz.');return;}collectionState.credits-=c.price;collectionState.owned.push(c.id);toast(c.name+' deneme envanterine eklendi.');}else{collectionState.equipped=c.id;toast(c.name+' teçhizata seçildi.');}saveCollection();renderGear();renderCollection();};
  updateInventoryCharacter();
 }
-function characterModelId(id){return ({basibozuk:'kultigin',kul:'konuralp',ayaz:'alparslan'})[id]||id;}
+function characterModelId(id){return 'bilge';}
 window.rogueModelId=characterModelId;
 function updateInventoryCharacter(){}
 $('previewHuman').onclick=()=>{previewForm='human';renderCollection();};$('previewWolf').onclick=()=>{previewForm='wolf';renderCollection();};
 $('inventoryBackView').onclick=()=>window.wolf3DView?.(false);
-$('inventoryTestArea').onclick=()=>{if(['bilge','kultigin','alparslan','konuralp'].includes(characterModelId(selectedCharacter)))$('arenaCharacter').value=selectedCharacter;window.openArena?.();};
+$('inventoryTestArea').onclick=()=>{$('arenaCharacter').value=selectedCharacter;window.openArena?.();};
 $('inventoryMode').onclick=()=>{libraryMode='inventory';renderCollection();};$('shopMode').onclick=()=>{libraryMode='shop';renderCollection();};
 for(const b of document.querySelectorAll('[data-category]'))b.onclick=()=>{playSound();category=b.dataset.category;renderCollection();};
 $('openInventory').onclick=()=>window.openCollection();

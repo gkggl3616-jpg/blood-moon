@@ -86,7 +86,7 @@ def main():
         for file in runtime_files:
             packaged='assets/'+file.relative_to(ROOT / 'app/src/main/assets').as_posix()
             assert z.read(packaged)==file.read_bytes(),('runtime asset mismatch',packaged)
-        for model_id in ['bilge','kultigin','alparslan','konuralp','human-bilge']:
+        for model_id in ['bilge','human-bilge']:
             data=z.read('assets/models/'+model_id+'.glb')
             magic,version,length,json_length,chunk_type=struct.unpack_from('<4sIIII',data)
             assert magic==b'glTF' and version==2 and length==len(data) and chunk_type==0x4E4F534A

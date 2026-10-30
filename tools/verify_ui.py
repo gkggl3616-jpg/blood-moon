@@ -191,9 +191,9 @@ with sync_playwright() as p:
     page.wait_for_function('(n)=>arenaDebug.state().hits>n',arg=before)
     assert page.evaluate('arenaDebug.state().targets[0].hp')==0,'tattoo not applied to melee'
     taken=page.evaluate('arenaDebug.receiveDamage(18)');assert abs(taken-11.25)<.001,'defense rating not used'
-    assert page.evaluate('RogueGear.equip("basibozuk","wolf","back","tattoo-reaper-back").ok')
-    page.locator('#arenaCharacter').select_option('basibozuk');page.wait_for_function('()=>arenaDebug.state().character==="basibozuk"&&document.getElementById("arenaLoad").hidden')
-    assert abs(page.evaluate('arenaDebug.state().stats.damage')-340)<.001,'real tattoo bonus requires character passive'
+    assert page.evaluate('RogueGear.equip("bilge","wolf","back","tattoo-reaper-back").ok')
+    page.locator('#arenaCharacter').select_option('bilge');page.wait_for_function('()=>arenaDebug.state().character==="bilge"&&document.getElementById("arenaLoad").hidden')
+    assert abs(page.evaluate('arenaDebug.state().stats.damage')-385)<.001,'real tattoo bonus requires character passive (bilge beast dmg 45 + reaper 240)'
     # Migration preserves wallet and owned characters; old selected tattoos are granted once.
     legacy=browser.new_context(viewport={'width':960,'height':540});legacy.route('https://rogue.local/**',serve)
     legacy.add_init_script("localStorage.setItem('rogue-collection',JSON.stringify({credits:1234,owned:['basibozuk','bilge'],equipped:'bilge'}));localStorage.setItem('rogue-wolf-loadouts',JSON.stringify({bilge:{tattoos:{back:'phoenix',left:'runes',right:'dragon'}}}));")

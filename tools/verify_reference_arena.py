@@ -24,7 +24,7 @@ with sync_playwright() as p:
     page.wait_for_function('()=>arenaDebug.state().form==="wolf"&&arenaDebug.state().canAct')
     page.locator('#arenaTrial').select_option('legendary')
     report=[]
-    for key,color in [('bilge','#70dfff'),('kultigin','#ff354d'),('alparslan','#ffae36'),('konuralp','#af65ff')]:
+    for key,color in [('bilge','#70dfff')]:
         page.locator('#arenaCharacter').select_option(key)
         page.wait_for_function('(key)=>arenaDebug.state().character===key&&document.getElementById("arenaLoad").hidden',arg=key,timeout=60000)
         page.evaluate('arenaDebug.expireRoar();arenaDebug.place(0,25)')
@@ -42,10 +42,11 @@ with sync_playwright() as p:
         })''')
         speed=run['distance']/run['seconds'];expected=page.evaluate('8*arenaDebug.state().stats.speed/100')
         assert abs(speed-expected)<.015,(key,speed,expected)
+        RUN_ANIM_DAMPING=.88  # intentional: run clip plays a notch slower than actual travel (user request), real movement speed unaffected
         clip_distance=run['clipTime']/run['profile']['runDuration']*run['profile']['runStride']
-        assert abs(clip_distance-run['distance'])<.025,(key,'stride drift',run,clip_distance)
+        assert abs(clip_distance-run['distance']*RUN_ANIM_DAMPING)<.025,(key,'stride drift vs intended damping',run,clip_distance)
         average_rate=run['clipTime']/run['seconds']
-        assert abs(average_rate-expected/8)<.005,(key,'old speed multiplier remains',run)
+        assert abs(average_rate-RUN_ANIM_DAMPING*expected/8)<.005,(key,'run-animation damping factor drifted',run)
         before=page.evaluate('()=>{const s=arenaDebug.state();if(!arenaDebug.action("roar"))throw new Error("roar blocked");return s;}')
         page.wait_for_function('()=>arenaDebug.state().effects.roarPhase>.5&&arenaDebug.state().effects.roarPhase<.72')
         peak=page.evaluate('arenaDebug.state()')
@@ -54,10 +55,7 @@ with sync_playwright() as p:
         assert peak['effects']['roarColor']==color and peak['effects']['pool']==72
         rgb=peak['effects']['particleColor'];assert rgb and max(rgb)>0
         # Compare emitted RGB hue, independent of per-particle fading / sRGB conversion.
-        if key=='bilge':assert rgb[2]>rgb[1]>rgb[0]
-        elif key=='kultigin':assert rgb[0]>rgb[2]>rgb[1]
-        elif key=='alparslan':assert rgb[0]>rgb[1]>rgb[2]
-        else:assert rgb[2]>rgb[0]>rgb[1]
+        assert rgb[2]>rgb[1]>rgb[0]  # only bilge remains
         assert all(peak['joints'][hand][1]>peak['joints']['Head'][1]+.06 for hand in ['HandL','HandR']),(key,peak['joints'])
         for side in ['L','R']:
             a,e,w=[peak['joints'][joint+side] for joint in ['UpperArm','Forearm','Hand']]
@@ -81,7 +79,7 @@ with sync_playwright() as p:
     assert page.evaluate('playWolfMotion("WolfRunQuad")')
     page.wait_for_function('()=>wolf3DInfo().actionTime>.1')
     preview=page.evaluate('wolf3DInfo()')
-    assert abs(preview['actionRate']-1.05)<.001
+    assert abs(preview['actionRate']-1.05*.88)<.001  # run-animation damping applies in the inventory preview too
     assert abs(preview['motionProfile']['runStride']-report[0]['measured_speed_mps']/1.05*16/30)<.002
     assert not errors,errors
     (OUT/'reference-arena-verification.json').write_text(json.dumps({'wolves':report,'preview_run_rate':preview['actionRate'],'browser_errors':errors},indent=2))

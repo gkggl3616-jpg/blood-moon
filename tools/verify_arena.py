@@ -105,7 +105,7 @@ with sync_playwright() as p:
  page.screenshot(path=str(ROOT/'dist/arena-wolf-preview.png'))
  page.evaluate('arenaDebug.expireRoar()');page.wait_for_function('()=>arenaDebug.state().effects.particles===0',timeout=10000)
  # Model switching must release inactive GPU resources; all wolves have common run/roll clips.
- for id in ['kultigin','alparslan','konuralp','bilge']:
+ for id in ['bilge']:
   page.locator('#arenaCharacter').select_option(id);page.wait_for_selector('#arenaLoad[hidden]',state='attached',timeout=60000)
   assert len(state()['render']['cacheKeys'])<=2
  page.locator('#arenaTransform').click();page.wait_for_function('()=>arenaDebug.state().form==="human"',timeout=10000)
