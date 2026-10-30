@@ -64,6 +64,12 @@ def make(prep='/tmp/human_prep.npz', texpath='/tmp/human_prep_tex.jpg'):
         el = np.array([HJ['Forearm'][0] * sx, HJ['Forearm'][1], HJ['Forearm'][2]]); kn = np.array([HJ['Shin'][0] * sx, HJ['Shin'][1], HJ['Shin'][2]])
         if np.linalg.norm(P[i] - el) < .15: Jn[i] = [S.idx('Forearm' + L), 0, 0, 0]; Wn[i] = [1, 0, 0, 0]
         elif np.linalg.norm(P[i] - kn) < .17: Jn[i] = [S.idx('Shin' + L), 0, 0, 0]; Wn[i] = [1, 0, 0, 0]
+    from build_icewolf import fix_stretch          # same permanent anti-stretch pass as the wolves, over the human clips
+    poses = [f for c in bake_human(S).values() for f in c['frames'][::2]]
+    rig_ = np.zeros(len(P), bool)
+    for i in np.where(ice)[0]:
+        if Wn[i][0] == 1: rig_[i] = True
+    Jl, Wl = fix_stretch(S, P, Jn, Wn, T, rig_, poses=poses); Jn = np.asarray(Jl); Wn = np.asarray(Wl, np.float32)
     # first-person arms: triangles whose three vertices are driven mainly by upper/forearm/hand bones
     arm_ids = {S.idx(n + L) for n in ('UpperArm', 'Forearm', 'Hand', 'Fingers') for L in 'LR'}
     dom = Jn[:, 0]; armv = np.array([d_ in arm_ids for d_ in dom]) & (P[:, 1] < 1.42) & ~ARM_EXCLUDE(P)

@@ -50,6 +50,11 @@ jobs:
         with:
           path: tools/signing-cache
           key: rogue-prototype-signing-v1
+      - name: Verify character models have no stretched triangles
+        run: |
+          python -m pip install numpy
+          set -o pipefail
+          python tools/verify_models.py 2>&1 | tee /tmp/models.log || { grep FAIL /tmp/models.log | while IFS= read -r l; do echo "::error title=verify_models::$l"; done; exit 1; }
       - name: Verify offline mobile interface
         run: |
           set -o pipefail

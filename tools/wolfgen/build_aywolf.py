@@ -18,7 +18,9 @@ if __name__ == '__main__':
     # braid physics chain (engine spring bones Hair1-3): the braid hangs from the right side of the head over the shoulder
     S.add('Hair1', 'Head', (-.15, 1.62, .06)); S.add('Hair2', 'Hair1', (-.24, 1.45, .12)); S.add('Hair3', 'Hair2', (-.29, 1.28, .14))
     P = np.asarray(M.P); h = [S.idx(n) for n in ('Head', 'Hair1', 'Hair2', 'Hair3')]
-    braid = ((P[:, 0] < -.17) & (P[:, 1] > 1.47) & (P[:, 1] < 1.66)) | ((P[:, 0] < -.265) & (P[:, 1] > 1.1) & (P[:, 1] <= 1.47) & (P[:, 2] > .04))
+    from rig import seg_dist
+    arm = np.minimum(seg_dist(P, S.pos[S.idx('UpperArmR')], S.pos[S.idx('ForearmR')]), seg_dist(P, S.pos[S.idx('ForearmR')], S.pos[S.idx('HandR')]))
+    braid = (((P[:, 0] < -.17) & (P[:, 1] > 1.47) & (P[:, 1] < 1.66)) | ((P[:, 0] < -.265) & (P[:, 1] > 1.18) & (P[:, 1] <= 1.47) & (P[:, 2] > .13))) & (arm > .075)
     for i in np.where(braid)[0]:
         y = P[i, 1]
         if y > 1.56: w = [(h[0], .6), (h[1], .4)]
@@ -27,6 +29,9 @@ if __name__ == '__main__':
         else: w = [(h[3], 1.0)]
         M.J[i] = [b for b, _ in w] + [0] * (4 - len(w)); M.W[i] = [x for _, x in w] + [0] * (4 - len(w))
     print('braid verts', int(braid.sum()))
+    T = np.array([t[:3] for t in M.tris]); rigid = np.zeros(len(P), bool)
+    Jn, Wn = bi.fix_stretch(S, P, np.asarray(M.J), np.asarray(M.W), T, rigid)   # final pass with the braid bones included
+    M.J = list(Jn); M.W = list(Wn)
     clips = {n: bi.bake(S, n) for n in bi.CLIPS}
     extras = dict(source_kind='new_ay', clawProfile='standard', previewHeight=1.85, run_stride_m=3.2, run_reference_speed_mps=8.0)
     write_glb('/tmp/aywolf_rigged.glb', S, M, clips, 'Body_ay', extras=extras)

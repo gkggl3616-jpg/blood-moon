@@ -34,6 +34,7 @@ def build(kind, out, scale_note):
     b = io.BytesIO(); Image.fromarray(tex).save(b, 'JPEG', quality=90); M.texture = b.getvalue()
     b = io.BytesIO(); Image.fromarray(em).save(b, 'PNG', optimize=True); M.emissive_tex = b.getvalue()
     M._uv = []
+    n_body = len(M.P)
     if kind == 'king':
         head = S.idx('Head'); horn_uv = swatch_uv('horn', size)
         for sx in (1, -1):
@@ -82,6 +83,10 @@ def build(kind, out, scale_note):
             t = 2 * math.pi * k / 12; ring.append((.13 + .035 * math.cos(t), 1.38 + .035 * math.sin(t), .17))
         tube(M, ring, .009, .009, gu, [(ch, 1.0)], sides=6)
     if kind == 'hell':
+        head = S.idx('Head'); hu = swatch_uv('horn', size)
+        for sx in (1, -1):   # short swept-back black horns
+            pts = [(sx * (.06 + .03 * t), 1.75 + .07 * t - .04 * t * t, .06 - .16 * t) for t in np.linspace(0, 1, 8)]
+            tube(M, pts, .03, .004, hu, [(head, 1.0)], sides=8)
         # bone spikes in one line down the spine, smallest at the lower back, growing toward the neck
         horn_uv = swatch_uv('horn', size)
         back = [(1.05, -.07), (1.13, -.055), (1.19, -.05), (1.25, -.065), (1.31, -.12), (1.37, -.145), (1.43, -.157), (1.49, -.166), (1.55, -.157)]
@@ -94,6 +99,11 @@ def build(kind, out, scale_note):
             bone = S.idx('Hips') if y0 < 1.12 else S.idx('Spine') if y0 < 1.30 else S.idx('Chest') if y0 < 1.50 else S.idx('Neck')
             tube(M, pts, r0, .0015, horn_uv, [(bone, 1.0)], sides=7)
     if M._uv: M.UV = np.concatenate([np.asarray(M.UV), np.asarray(M._uv)], 0)
+    if len(M.P) > n_body:   # horns / cape / spikes were added after skinning: give the whole mesh one more anti-stretch pass
+        from build_icewolf import fix_stretch
+        P_ = np.asarray(M.P); T_ = np.array([t[:3] for t in M.tris]); rig_ = np.zeros(len(P_), bool); rig_[n_body:] = True
+        rig_[n_body:] = np.array([w[0] >= .999 for w in M.W[n_body:]])   # single-bone horns/spikes/clasp stay rigid, cloth may blend
+        Jl, Wl = fix_stretch(S, P_, np.asarray(M.J), np.asarray(M.W), T_, rig_); M.J = list(Jl); M.W = list(Wl)
     U = np.asarray(M.UV); px = (U[:, 0] % 1 * (size - 1)).astype(int); py = (U[:, 1] % 1 * (size - 1)).astype(int)
     M.C = [list(c) + [1.0] for c in tex[py, px] / 255.0]   # vertex colours from the painted texture (offline previews)
     build.last = (S, M)

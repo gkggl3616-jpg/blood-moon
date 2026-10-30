@@ -58,10 +58,17 @@ def compute_weights(skel, P, sharp=2.2, T=None):
         E = inv[np.concatenate([T[:, [0, 1]], T[:, [1, 2]], T[:, [2, 0]]])]; w = np.linalg.norm(Q[E[:, 0]] - Q[E[:, 1]], axis=1) + 1e-6
         G = coo_matrix((w, (E[:, 0], E[:, 1])), shape=(n, n)).tocsr()
         for k, nm in enumerate(names):
-            if not any(nm.startswith(b) for b in ('UpperArm', 'Forearm', 'Hand')): continue
+            if not any(nm.startswith(b) for b in ('UpperArm', 'Forearm', 'Hand', 'Thigh', 'Shin', 'Foot', 'Tail')): continue   # surface distance for every limb
             a_, b_, r = seg[nm]; dq = seg_dist(Q, a_, b_); seeds = np.argsort(dq)[:12]
             gd = dijkstra(G, directed=False, indices=seeds, min_only=True) + 0
             D[:, k] = np.maximum(D[:, k], gd[inv] / r * .55)
+    # limb guard: in the rest pose arms and legs hang down, so nothing above the elbow may follow the forearm/hand
+    # and nothing above the knee may follow the shin/foot (fused armpit/hip geometry otherwise tears when the limb swings)
+    for k, n in enumerate(names):
+        for low, joint in (('Forearm', 'Forearm'), ('Hand', 'Forearm'), ('Shin', 'Shin'), ('Foot', 'Shin')):
+            if n.startswith(low):
+                jy = skel.pos[skel.idx(joint + n[-1])][1]
+                D[:, k] += np.where(P[:, 1] > jy + .05, 4.0, 0)
     # side guard: left-side bones never drive right-side vertices (and vice versa) away from the midline
     for k, n in enumerate(names):
         if n.endswith('L'): D[:, k] += np.where(P[:, 0] < -.04, 3.0, 0)

@@ -57,18 +57,27 @@ def paint(kind, tex_path='/tmp/wolf_prep_tex.jpg', pm='/tmp/wolf_posmap.npz'):
         moon = np.stack([.78 + .2 * L, .62 + .2 * L, 1.0 + 0 * L], -1)
         out = np.where(ice[..., None], moon * .85, out); em = np.where(ice[..., None], moon * .9, em)
     elif kind == 'hell':
-        # charred black hide split by glowing lava fissures (hellgate wolf)
-        fur = np.stack([.05 + .10 * L ** 1.3, .045 + .08 * L ** 1.4, .045 + .07 * L ** 1.4], -1)
-        n3 = noise(L.shape, 3, 5)
-        ridge = (np.abs(n1 - .5) < .009 + .006 * n2) | (np.abs(n3 - .5) < .006)   # vein / crack network over the whole hide
-        crack = cov & ridge & ~pants
-        lava = np.stack([1.0 + 0 * L, .32 + .25 * n1, .05 + 0 * L], -1)
+        # scorched hide: charcoal fur with ash-gray tips and burnt patches, a few lava veins only on the limbs, chest and neck
+        n3 = noise(L.shape, 3, 5); n4 = noise(L.shape, 4, 14)
+        ash = np.clip((L - .45) * 1.6, 0, 1)[..., None]
+        fur = np.stack([.07 + .07 * L, .06 + .055 * L, .055 + .05 * L], -1) * (.75 + .5 * n4[..., None])
+        fur = fur * (1 - ash) + np.array([.30, .27, .25]) * ash * (.6 + .5 * n2[..., None])
+        fur = np.where((n4 < .28)[..., None], fur * .45, fur)                       # burnt patches
+        arms = (np.minimum(seg_d(pos, (.25, 1.40, .02), (.30, .90, .24)), seg_d(pos, (-.25, 1.38, -.02), (-.28, .88, .03))) < .07)
+        chest = (z > .08) & (y > 1.12) & (y < 1.45) & (np.abs(x) < .16)
+        neck = (y > 1.45) & (y < 1.6) & (z > 0)
+        legs = (y > .5) & (y < .95) & (z > .02)
+        zone = cov & (arms | chest | neck | legs) & ~pants
+        crack = zone & (np.abs(n1 - .5) < .0075) & (n3 > .3)
+        lava = np.array([1.0, .38, .06])
         pa = np.stack([.07 * (.4 + .8 * L), .045 * (.4 + .8 * L), .04 * (.4 + .8 * L)], -1)
-        out = np.where(pants[..., None], pa, fur); out = np.where(crack[..., None], np.array([.32, .05, .02]) + 0 * out, out)
-        em = np.where(crack[..., None], lava * .45, em)
-        out = np.where(claws[..., None], np.array([.06, .04, .035]) + 0 * out, out)
-        hot = np.stack([1.0 + 0 * L, .45 + .3 * L, .1 + .1 * L], -1)
-        out = np.where(ice[..., None], hot * .9, out); em = np.where(ice[..., None], hot, em)
+        out = np.where(pants[..., None], pa, fur); out = np.where(crack[..., None], np.array([.28, .05, .02]), out)
+        em = np.where(crack[..., None], lava * .3, em)
+        out = np.where(claws[..., None], np.array([.04, .035, .03]) + 0 * out, out)
+        obs = np.stack([.05 + .1 * L, .04 + .06 * L, .05 + .06 * L], -1)          # obsidian elbow crystals with a hot core
+        core = ice & (L > .8)
+        out = np.where(ice[..., None], obs, out); out = np.where(core[..., None], np.array([.9, .3, .05]), out)
+        em = np.where(core[..., None], lava * .7, em)
     else:  # king
         fur = np.stack([.16 + .30 * L ** 1.1, .13 + .25 * L ** 1.15, .11 + .19 * L ** 1.2], -1)   # gray-brown, like the sheet
         pa = np.stack([.12 * (.4 + .8 * L), .085 * (.4 + .8 * L), .07 * (.4 + .8 * L)], -1)
