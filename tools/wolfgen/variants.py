@@ -49,14 +49,14 @@ def paint(kind, tex_path='/tmp/wolf_prep_tex.jpg', pm='/tmp/wolf_posmap.npz'):
             sc |= cov & (dd < .010 + .004 * (1 - abs(k - 1))) & (z > .08) & (np.abs(x) < .2)
         out[sc] = [.55, .03, .03]; em[sc] = [.9, .12, .04]
     else:  # king
-        fur = np.stack([.12 + .30 * L ** 1.2, .095 + .23 * L ** 1.25, .075 + .17 * L ** 1.3], -1) * (.8 + .35 * n2[..., None])
+        fur = np.stack([.12 + .30 * L ** 1.2, .095 + .23 * L ** 1.25, .075 + .17 * L ** 1.3], -1) * (.9 + .15 * n2[..., None])
         pa = np.stack([.12 * (.4 + .8 * L), .085 * (.4 + .8 * L), .07 * (.4 + .8 * L)], -1)
         out = np.where(pants[..., None], pa, fur)
         out = np.where(claws[..., None], t * .4, out)
         # dried blood: on claws/hands, forearms, muzzle and chest splatter
         hands = np.minimum(seg_d(pos, (.30, .95, .2), (.30, .76, .30)), seg_d(pos, (-.28, .95, .02), (-.27, .72, .04)))
         mouth = seg_d(pos, (0, 1.6, .26), (0, 1.62, .36))
-        blood = cov & (((hands < .09) & (n1 > .35)) | ((mouth < .06) & (n1 > .4)) | ((z > .1) & (y > 1.1) & (y < 1.45) & (n2 > .72)) | (n1 * n2 > .62))
+        blood = cov & (((hands < .09) & (n1 > .35)) | ((mouth < .06) & (n1 > .4)) | ((z > .1) & (y > 1.1) & (y < 1.45) & (n2 > .78)))
         bc = np.array([.32, .02, .025]) * (.6 + .5 * n1[..., None])
         out = np.where(blood[..., None], out * .25 + bc * .9, out)
         # pale scars: a few long slashes on chest, shoulder and thigh
@@ -68,7 +68,7 @@ def paint(kind, tex_path='/tmp/wolf_prep_tex.jpg', pm='/tmp/wolf_posmap.npz'):
         out = np.where(ice[..., None], crys, out); em = np.where(ice[..., None], crys * .9, em)
     out = np.where(cov[..., None], out, t * .3); em = em * cov[..., None]   # keep unused texels dark (mip bleeding)
     for k, (cx, cy, s) in SWATCH.items():
-        col = {'horn': (.17, .14, .11), 'cape': (.06, .055, .055), 'capein': (.04, .035, .035), 'gold': (.55, .52, .45)}[k]
+        col = {'horn': (.30, .25, .2), 'cape': (.06, .055, .055), 'capein': (.04, .035, .035), 'gold': (.55, .52, .45)}[k]
         out[cy:cy + s, cx:cx + s] = col
     return (np.clip(out, 0, 1) * 255).astype(np.uint8), (np.clip(em, 0, 1) * 255).astype(np.uint8)
 

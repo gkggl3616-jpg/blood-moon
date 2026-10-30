@@ -42,13 +42,13 @@ def build(kind, out, scale_note):
             for i in range(16):
                 t = i / 15; th = math.pi * 1.55 * t; R = .085 * (1 - .4 * t)
                 pts.append((sx * (.075 + .085 * t), 1.745 + R * math.cos(th) + .02 * (1 - t), .05 - R * math.sin(th) - .04 * t))
-            tube(M, pts, .036, .008, horn_uv, [(head, 1.0)], sides=10)
+            tube(M, pts, .046, .01, horn_uv, [(head, 1.0)], sides=10)
         # cape bones (Chest -> Cape1 -> Cape2 -> Cape3)
         S.add('Cape1', 'Chest', (0, 1.40, -.19)); S.add('Cape2', 'Cape1', (0, 1.08, -.27)); S.add('Cape3', 'Cape2', (0, .76, -.35))
         ch, c1, c2, c3 = (S.idx(n) for n in ('Chest', 'Cape1', 'Cape2', 'Cape3'))
         cu = swatch_uv('cape', size); rows, cols = 10, 9; base = len(M.P)
         for r in range(rows + 1):
-            s = r / rows; yv = 1.44 - s * 1.0; half = .22 + .13 * s
+            s = r / rows; yv = 1.42 - s * .92; half = .19 + .07 * s
             for c in range(cols + 1):
                 u = c / cols * 2 - 1; xv = u * half; zv = -.17 - .27 * s - .05 * (1 - u * u) - .02 * math.sin(u * 7) * s
                 M.P.append(np.array([xv, yv, zv])); M.N.append(np.array([0, 0, -1.0]))
@@ -61,9 +61,8 @@ def build(kind, out, scale_note):
         for r in range(rows):
             for c in range(cols):
                 a = base + r * (cols + 1) + c; b_ = a + 1; d = a + cols + 1; e = d + 1
-                rnd = (r * 7 + c * 13) % 11
-                if r >= rows - 2 and (c * 5 + r) % 3 == 0: continue          # ragged hem
-                if 3 <= r < rows - 2 and rnd == 4: continue                   # moth-eaten holes
+                hem = rows - 1 - ((c * 7) % 4 == 0) - ((c * 3) % 5 == 1)          # torn, uneven hem (no square holes)
+                if r >= hem: continue
                 M.tris += [[a, d, b_, M.tris[0][3]], [b_, d, e, M.tris[0][3]]]
     if M._uv: M.UV = np.concatenate([np.asarray(M.UV), np.asarray(M._uv)], 0)
     U = np.asarray(M.UV); px = (U[:, 0] % 1 * (size - 1)).astype(int); py = (U[:, 1] % 1 * (size - 1)).astype(int)
