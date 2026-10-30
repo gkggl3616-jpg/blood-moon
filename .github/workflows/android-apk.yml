@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       bilge_assets_only:
-        description: Package existing Bilge models, animations, DTX and Blender sources without building APK
+        description: Package Bilge plus four rig families as character files only, without building APK
         type: boolean
         default: false
       delivery_only:
@@ -143,11 +143,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Package and verify Bilge character files
-        run: python tools/package_bilge_delivery.py
+        run: python tools/package_bilge_and_rigs.py
       - name: Publish downloadable Bilge bundle
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release upload prototype-v0.1.18-25 dist/bilge-kagan-assets/Bilge-Kagan-Assets-v0.1.18.zip --clobber
-          gh release upload prototype-v0.1.18-25 dist/bilge-kagan-assets/OKU-BENI-TR.md --clobber
-          gh release upload prototype-v0.1.18-25 dist/bilge-kagan-assets/package-report.json --clobber
+          gh release upload prototype-v0.1.18-25 dist/bilge-four-models/Bilge-Kagan-ve-4-Model.zip --clobber
+          cp docs/bilge-four-models/README-TR.md /tmp/Bilge-ve-4-Model-README-TR.md
+          gh release upload prototype-v0.1.18-25 /tmp/Bilge-ve-4-Model-README-TR.md --clobber
+          gh release upload prototype-v0.1.18-25 dist/bilge-four-models/bundle-report.json --clobber

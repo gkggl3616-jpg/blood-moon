@@ -1,0 +1,42 @@
+{
+  "bytes": 12752082,
+  "sha256": "1bb49ec4c60781cfe3cc34265da217d6dbbcfc64b6ec89c0c6c4fc0ad46be3fb",
+  "models": [
+    {
+      "name": "Buz-40",
+      "bones": 40,
+      "clips": 68,
+      "triangles": 5300,
+      "sha256": "6e1acd670719b4e5360818b45d70f797b33fe6281855cc1388717f63d9882568",
+      "source_body": "wt_wolf_ice_r.ltb",
+      "source_motion": "wt_wolf_ice_ch.ltb"
+    },
+    {
+      "name": "Kan-54",
+      "bones": 54,
+      "clips": 76,
+      "triangles": 5906,
+      "sha256": "cf3a4c5df2f716feed13d817ad8ea28d17e904d9929facbfc1f7986dbae998f4",
+      "source_body": "r1_wolf.ltb",
+      "source_motion": "r1_wolf.ltb"
+    },
+    {
+      "name": "Koz-42",
+      "bones": 42,
+      "clips": 72,
+      "triangles": 4344,
+      "sha256": "7fb9958b6dc4dabe9ff92572fcce73077959d3650ac4c1d40aa93fadf0bc9e34",
+      "source_body": "wt_wolf_power_r.ltb",
+      "source_motion": "wt_new_wolf_ch.ltb"
+    },
+    {
+      "name": "Golge-58",
+      "bones": 58,
+      "clips": 83,
+      "triangles": 5097,
+      "sha256": "e893b30d1e2c7f7919c3c656054e6429c76bb1c07bb1fafe02828bb65761c39d",
+      "source_body": "wt_wolf_wraith.ltb",
+      "source_motion": "wt_wolf_wraith.ltb"
+    }
+  ]
+}

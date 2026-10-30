@@ -1,0 +1,15 @@
+{
+  "zip": "Bilge-Kagan-ve-4-Model.zip",
+  "bytes": 149785695,
+  "files": 41,
+  "sha256": "5cc9219b2b1b30cdff9f8f9890b6575be482d7acb4f03808443addb458fbbbbe",
+  "glb_files": [
+    "BilgeKagan/Kurt.glb",
+    "BilgeKagan/Insan.glb",
+    "DortModel/Buz-40/Model.glb",
+    "DortModel/Kan-54/Model.glb",
+    "DortModel/Koz-42/Model.glb",
+    "DortModel/Golge-58/Model.glb"
+  ],
+  "game_code_included": false
+}
