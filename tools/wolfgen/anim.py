@@ -38,14 +38,22 @@ def idle(t):
 
 
 def walk(t):
-    p = {}; ph = t * TAU
-    add(p, 'Hips', 4 + 2 * abs(math.sin(ph)), 5 * math.sin(ph)); add(p, 'Spine', 4, -3 * math.sin(ph)); add(p, 'Chest', 3, -3 * math.sin(ph)); add(p, 'Neck', -6); add(p, 'Head', -4)
-    for s, L, o in ((1, 'L', 0), (-1, 'R', math.pi)):
-        sw = math.sin(ph + o)
-        add(p, 'Thigh' + L, -26 * sw - 4, 0, 0); add(p, 'Shin' + L, 14 + 30 * max(0, -math.sin(ph + o + 1.1)))
-        add(p, 'Foot' + L, 10 * sw - 6 - 0.3 * 30 * max(0, -math.sin(ph + o + 1.1)))
-        add(p, 'UpperArm' + L, 24 * sw, 0, -s * 3); add(p, 'Forearm' + L, -14 - 14 * max(0, -sw))
-    add(p, 'Tail1', 8, 0, 6 * math.sin(ph)); add(p, 'Tail2', 8, 0, 9 * math.sin(ph - .6)); add(p, 'Tail3', 10, 0, 12 * math.sin(ph - 1.2))
+    """Upright werewolf stalking jog: hunched torso, long strides with high knee lift in swing, counter-swinging
+    bent arms, hip sway / shoulder counter-rotation, head steady, tail swaying."""
+    p = {}; ph = t * TAU; b2 = math.sin(2 * ph)
+    add(p, 'Hips', 12 + 2 * b2, 7 * math.sin(ph), 3 * math.sin(ph))
+    add(p, 'Spine', 10 - 1.5 * b2, -5 * math.sin(ph)); add(p, 'Chest', 6, -6 * math.sin(ph), -2 * math.sin(ph))
+    add(p, 'Neck', -14 + 2 * b2, 4 * math.sin(ph)); add(p, 'Head', -8 + 1.5 * b2, 3 * math.sin(ph))
+    for s, L, o in ((1, 'L', 0.0), (-1, 'R', math.pi)):
+        sw = math.sin(ph + o)                         # +1 = leg forward
+        lift = max(0.0, math.sin(ph + o + 1.35))      # swing phase knee lift
+        th = -12 - 36 * sw - 16 * lift
+        sh = 18 + 62 * lift + 8 * max(0.0, -sw)
+        add(p, 'Thigh' + L, th, 0, s * 3); add(p, 'Shin' + L, sh); add(p, 'Foot' + L, -(th + sh) * .55 - 10 + 14 * max(0.0, -sw))
+        aw = -sw                                       # arms counter-swing
+        add(p, 'Clav' + L, 0, -s * 4 * aw, 0)
+        add(p, 'UpperArm' + L, -10 - 30 * aw, 0, s * 12); add(p, 'Forearm' + L, -38 - 22 * max(0.0, aw)); add(p, 'Hand' + L, 10, 0, -s * 6)
+    add(p, 'Tail1', 4, 0, 9 * math.sin(ph)); add(p, 'Tail2', 6, 0, 12 * math.sin(ph - .7)); add(p, 'Tail3', 6, 0, 15 * math.sin(ph - 1.4))
     return p, 'feet'
 
 
@@ -201,7 +209,7 @@ def transform(t):
 
 
 CLIPS = {  # name: (fn, duration_s, loop)
-    'WolfIdle': (idle, 2.4, True), 'WolfMove': (walk, 1.0, True), 'WolfRunQuad': (run_quad, .4, True), 'WolfJump': (jump, 1.0, False),
+    'WolfIdle': (idle, 2.4, True), 'WolfMove': (walk, .72, True), 'WolfRunQuad': (run_quad, .4, True), 'WolfJump': (jump, 1.0, False),
     'WolfRoar': (roar, 1.4, False), 'WolfRoll': (roll, 1.2, False), 'WolfClaw': (claw, .62, False), 'WolfTransform': (transform, 1.0, False), 'WolfClawR': (claw, .65, False),
 }
 

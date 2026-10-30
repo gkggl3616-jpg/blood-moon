@@ -44,26 +44,43 @@ def build(kind, out, scale_note):
                 pts.append((sx * (.075 + .085 * t), 1.745 + R * math.cos(th) + .02 * (1 - t), .05 - R * math.sin(th) - .04 * t))
             tube(M, pts, .046, .01, horn_uv, [(head, 1.0)], sides=10)
         # cape bones (Chest -> Cape1 -> Cape2 -> Cape3)
-        S.add('Cape1', 'Chest', (0, 1.40, -.19)); S.add('Cape2', 'Cape1', (0, 1.08, -.27)); S.add('Cape3', 'Cape2', (0, .76, -.35))
+        S.add('Cape1', 'Chest', (0, 1.38, -.17)); S.add('Cape2', 'Cape1', (0, 1.12, -.21)); S.add('Cape3', 'Cape2', (0, .88, -.23))
         ch, c1, c2, c3 = (S.idx(n) for n in ('Chest', 'Cape1', 'Cape2', 'Cape3'))
-        cu = swatch_uv('cape', size); rows, cols = 10, 9; base = len(M.P)
+        # tattered cloak draped over both shoulders (design sheet): wraps the back from shoulder to shoulder,
+        # widens toward the calves, irregular moth-eaten holes and a long jagged hem; metal clasp on the left chest.
+        cu, ci = swatch_uv('cape', size), swatch_uv('capein', size); rows, cols = 16, 22; base = len(M.P)
+        sp_, hp_ = S.idx('Spine'), S.idx('Hips'); cl = {1: S.idx('ClavL'), -1: S.idx('ClavR')}
+        rng = np.random.default_rng(7)
         for r in range(rows + 1):
-            s = r / rows; yv = 1.42 - s * .92; half = .19 + .07 * s
+            s_ = r / rows; yv = 1.48 - s_ * .98
+            A = math.radians(118 - 22 * s_); R = .21 + .13 * s_; zc = .03 - .05 * s_
             for c in range(cols + 1):
-                u = c / cols * 2 - 1; xv = u * half; zv = -.17 - .27 * s - .05 * (1 - u * u) - .02 * math.sin(u * 7) * s
-                M.P.append(np.array([xv, yv, zv])); M.N.append(np.array([0, 0, -1.0]))
-                if yv >= 1.40: bw = [(ch, 1.0)]
-                elif yv >= 1.08: k = (1.40 - yv) / .32; bw = [(c1, 1 - k * .5), (c2, k * .5)]
-                elif yv >= .76: k = (1.08 - yv) / .32; bw = [(c2, 1 - k * .5), (c3, .5 * k + 0)] if k > 0 else [(c2, 1.0)]
-                else: bw = [(c3, 1.0)]
-                tot = sum(x for _, x in bw); bw = [(i, x / tot) for i, x in bw]
-                add_v(M, (cu[0] + (c / cols - .5) * .02, cu[1] + (s - .5) * .02), bw)
+                a = -A + 2 * A * c / cols
+                Rr = R + .018 * math.sin(a * 7 + s_ * 2.5) * s_ + (.03 if s_ < .08 else 0)
+                xv = Rr * math.sin(a); zv = zc - Rr * math.cos(a); yy = yv - .07 * (abs(math.sin(a)) ** 2) * (1 - s_)
+                M.P.append(np.array([xv, yy, zv])); M.N.append(np.array([math.sin(a), 0, -math.cos(a)]))
+                side = 1 if xv > 0 else -1; front = abs(math.sin(a))
+                body = ch if yy >= 1.26 else sp_ if yy >= 1.06 else hp_
+                chain = c1 if yy >= 1.15 else c2 if yy >= .9 else c3
+                if s_ < .1: bw = [(ch, 1 - .5 * front), (cl[side], .5 * front)]
+                else:
+                    k = min(1.0, (s_ - .1) * 1.3) * (1 - .55 * front)
+                    bw = [(body, 1 - .6 * k), (chain, .6 * k)]
+                uvc = cu if (c + r) % 3 else ci
+                add_v(M, (uvc[0] + (c / cols - .5) * .02, uvc[1] + (s_ - .5) * .02), bw)
+        hem = [rows - int(rng.integers(0, 4)) - (2 if rng.random() < .25 else 0) for _ in range(cols)]
         for r in range(rows):
             for c in range(cols):
                 a = base + r * (cols + 1) + c; b_ = a + 1; d = a + cols + 1; e = d + 1
-                hem = rows - 1 - ((c * 7) % 4 == 0) - ((c * 3) % 5 == 1)          # torn, uneven hem (no square holes)
-                if r >= hem: continue
-                M.tris += [[a, d, b_, M.tris[0][3]], [b_, d, e, M.tris[0][3]]]
+                if r >= hem[c]: continue
+                hole = 3 <= r < rows - 3 and rng.random() < .07
+                if not hole or rng.random() < .5: M.tris.append([a, d, b_, M.tris[0][3]])
+                if not hole: M.tris.append([b_, d, e, M.tris[0][3]])
+        # clasp ring on the left chest
+        gu = swatch_uv('gold', size); ring = []
+        for k in range(13):
+            t = 2 * math.pi * k / 12; ring.append((.13 + .035 * math.cos(t), 1.38 + .035 * math.sin(t), .17))
+        tube(M, ring, .009, .009, gu, [(ch, 1.0)], sides=6)
     if M._uv: M.UV = np.concatenate([np.asarray(M.UV), np.asarray(M._uv)], 0)
     U = np.asarray(M.UV); px = (U[:, 0] % 1 * (size - 1)).astype(int); py = (U[:, 1] % 1 * (size - 1)).astype(int)
     M.C = [list(c) + [1.0] for c in tex[py, px] / 255.0]   # vertex colours from the painted texture (offline previews)
