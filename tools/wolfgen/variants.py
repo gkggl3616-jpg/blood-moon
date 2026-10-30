@@ -30,10 +30,10 @@ def paint(kind, tex_path='/tmp/wolf_prep_tex.jpg', pm='/tmp/wolf_posmap.npz'):
         # warmer ember-red undertone deeper in the fur and toward the forearms
         heat = np.clip(1 - np.minimum(seg_d(pos, (.30, 1.17, .10), (.30, .90, .24)), seg_d(pos, (-.27, 1.16, -.08), (-.28, .88, .03))) / .22, 0, 1) * cov
         fur = fur + heat[..., None] * np.array([.25, .05, .0]) * (.4 + .6 * n1[..., None])
-        pa = np.stack([.24 * (.35 + .75 * L), .045 * (.4 + .7 * L), .07 * (.4 + .7 * L)], -1)
+        pa = np.stack([.095 * (.4 + .8 * L), .08 * (.4 + .8 * L), .08 * (.4 + .8 * L)], -1)   # charcoal torn shorts
         out = np.where(pants[..., None], pa, fur)
         # crimson mane: head/neck crest, a stripe down the spine and the tail, like the design sheet
-        mane = cov & (((y > 1.56) & (z < .06) & (n1 > .3)) | ((np.abs(x) < .035) & (z < -.08) & (y > 1.05) & (y < 1.58)) | ((z < -.12) & (y < .72) & (np.abs(x) < .16) & (n1 > .25)))
+        mane = cov & (((y > 1.56) & (z < .06) & (n1 > .3)) | ((np.abs(x) < .035) & (z < -.08) & (y > 1.05) & (y < 1.58)) | ((z < -.2) & (y < .8) & (y > .35) & (np.abs(x) < .09) & (n1 > .25)))
         mc = np.stack([.26 + .26 * L, .025 + .04 * L, .035 + .04 * L], -1) * (.6 + .5 * n1[..., None])
         out = np.where(mane[..., None], mc, out)
         out = np.where(claws[..., None], np.array([.55, .12, .03]) * (.6 + .4 * n1[..., None]), out)
@@ -68,7 +68,7 @@ def paint(kind, tex_path='/tmp/wolf_prep_tex.jpg', pm='/tmp/wolf_posmap.npz'):
         out = np.where(ice[..., None], crys, out); em = np.where(ice[..., None], crys * .9, em)
     out = np.where(cov[..., None], out, t * .3); em = em * cov[..., None]   # keep unused texels dark (mip bleeding)
     for k, (cx, cy, s) in SWATCH.items():
-        col = {'horn': (.10, .085, .075), 'cape': (.06, .055, .055), 'capein': (.04, .035, .035), 'gold': (.55, .52, .45)}[k]
+        col = {'horn': (.17, .14, .11), 'cape': (.06, .055, .055), 'capein': (.04, .035, .035), 'gold': (.55, .52, .45)}[k]
         out[cy:cy + s, cx:cx + s] = col
     return (np.clip(out, 0, 1) * 255).astype(np.uint8), (np.clip(em, 0, 1) * 255).astype(np.uint8)
 

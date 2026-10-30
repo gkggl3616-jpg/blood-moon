@@ -66,6 +66,9 @@ def build(kind, out, scale_note):
                 if 3 <= r < rows - 2 and rnd == 4: continue                   # moth-eaten holes
                 M.tris += [[a, d, b_, M.tris[0][3]], [b_, d, e, M.tris[0][3]]]
     if M._uv: M.UV = np.concatenate([np.asarray(M.UV), np.asarray(M._uv)], 0)
+    U = np.asarray(M.UV); px = (U[:, 0] % 1 * (size - 1)).astype(int); py = (U[:, 1] % 1 * (size - 1)).astype(int)
+    M.C = [list(c) + [1.0] for c in tex[py, px] / 255.0]   # vertex colours from the painted texture (offline previews)
+    build.last = (S, M)
     clips = {n: bake(S, n) for n in CLIPS}
     extras = dict(source_kind='new_' + kind, clawProfile='standard', previewHeight=1.85, run_stride_m=3.2, run_reference_speed_mps=8.0)
     write_glb(out, S, M, clips, 'Body_' + ('ates' if kind == 'fire' else 'kral'), extras=extras)
