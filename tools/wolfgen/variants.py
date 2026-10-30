@@ -48,6 +48,14 @@ def paint(kind, tex_path='/tmp/wolf_prep_tex.jpg', pm='/tmp/wolf_posmap.npz'):
             dd = seg_d(pos, (-.09 + o, 1.43, .19), (.07 + o, 1.20, .21))
             sc |= cov & (dd < .010 + .004 * (1 - abs(k - 1))) & (z > .08) & (np.abs(x) < .2)
         out[sc] = [.55, .03, .03]; em[sc] = [.9, .12, .04]
+    elif kind == 'moon':
+        fur = np.stack([.70 + .28 * L, .70 + .26 * L, .76 + .22 * L], -1) * (.92 + .1 * n2[..., None])
+        stripes = cov & (np.sin(y * 38 + np.abs(x) * 22 + n2 * 4) > .78) & ~pants
+        fur = np.where(stripes[..., None], np.array([.55, .48, .78]) * (.8 + .3 * L[..., None]), fur)
+        pa = np.stack([.12 * (.4 + .8 * L), .11 * (.4 + .8 * L), .12 * (.4 + .8 * L)], -1)
+        out = np.where(pants[..., None], pa, fur); out = np.where(claws[..., None], t * .35, out)
+        moon = np.stack([.78 + .2 * L, .62 + .2 * L, 1.0 + 0 * L], -1)
+        out = np.where(ice[..., None], moon * .85, out); em = np.where(ice[..., None], moon * .9, em)
     else:  # king
         fur = np.stack([.12 + .30 * L ** 1.2, .095 + .23 * L ** 1.25, .075 + .17 * L ** 1.3], -1) * (.9 + .15 * n2[..., None])
         pa = np.stack([.12 * (.4 + .8 * L), .085 * (.4 + .8 * L), .07 * (.4 + .8 * L)], -1)
