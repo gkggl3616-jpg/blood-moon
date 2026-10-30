@@ -81,13 +81,25 @@ def build(kind, out, scale_note):
         for k in range(13):
             t = 2 * math.pi * k / 12; ring.append((.13 + .035 * math.cos(t), 1.38 + .035 * math.sin(t), .17))
         tube(M, ring, .009, .009, gu, [(ch, 1.0)], sides=6)
+    if kind == 'hell':
+        # bone spikes in one line down the spine, smallest at the lower back, growing toward the neck
+        horn_uv = swatch_uv('horn', size)
+        back = [(1.05, -.07), (1.13, -.055), (1.19, -.05), (1.25, -.065), (1.31, -.12), (1.37, -.145), (1.43, -.157), (1.49, -.166), (1.55, -.157)]
+        ys, zs = zip(*back); n = 10
+        for k in range(n):
+            u = k / (n - 1); y0 = 1.05 + u * .50; z0 = float(np.interp(y0, ys, zs)) + .012
+            L = .035 + .14 * u ** 1.3; r0 = .011 + .026 * u
+            d = np.array([0, math.sin(math.radians(32)), -math.cos(math.radians(32))])
+            pts = [np.array([0, y0, z0]) + d * L * t for t in np.linspace(0, 1, 6)]
+            bone = S.idx('Hips') if y0 < 1.12 else S.idx('Spine') if y0 < 1.30 else S.idx('Chest') if y0 < 1.50 else S.idx('Neck')
+            tube(M, pts, r0, .0015, horn_uv, [(bone, 1.0)], sides=7)
     if M._uv: M.UV = np.concatenate([np.asarray(M.UV), np.asarray(M._uv)], 0)
     U = np.asarray(M.UV); px = (U[:, 0] % 1 * (size - 1)).astype(int); py = (U[:, 1] % 1 * (size - 1)).astype(int)
     M.C = [list(c) + [1.0] for c in tex[py, px] / 255.0]   # vertex colours from the painted texture (offline previews)
     build.last = (S, M)
     clips = {n: bake(S, n) for n in CLIPS}
     extras = dict(source_kind='new_' + kind, clawProfile='standard', previewHeight=1.85, run_stride_m=3.2, run_reference_speed_mps=8.0)
-    write_glb(out, S, M, clips, 'Body_' + {'fire': 'ates', 'king': 'kral', 'moon': 'ay'}[kind], extras=extras)
+    write_glb(out, S, M, clips, 'Body_' + {'fire': 'ates', 'king': 'kral', 'moon': 'ay', 'hell': 'hellgate'}[kind], extras=extras)
     import os; print(kind, 'glb', os.path.getsize(out), 'joints', len(S.names), 'tris', len(M.tris))
 
 

@@ -56,6 +56,18 @@ def paint(kind, tex_path='/tmp/wolf_prep_tex.jpg', pm='/tmp/wolf_posmap.npz'):
         out = np.where(pants[..., None], pa, fur); out = np.where(claws[..., None], t * .35, out)
         moon = np.stack([.78 + .2 * L, .62 + .2 * L, 1.0 + 0 * L], -1)
         out = np.where(ice[..., None], moon * .85, out); em = np.where(ice[..., None], moon * .9, em)
+    elif kind == 'hell':
+        # charred black hide split by glowing lava fissures (hellgate wolf)
+        fur = np.stack([.05 + .10 * L ** 1.3, .045 + .08 * L ** 1.4, .045 + .07 * L ** 1.4], -1)
+        ridge = np.abs(n1 - .5) < .018 + .01 * n2          # thin crack network
+        crack = cov & ridge & ~pants & (n2 > .35)
+        lava = np.stack([1.0 + 0 * L, .32 + .25 * n1, .05 + 0 * L], -1)
+        pa = np.stack([.07 * (.4 + .8 * L), .045 * (.4 + .8 * L), .04 * (.4 + .8 * L)], -1)
+        out = np.where(pants[..., None], pa, fur); out = np.where(crack[..., None], lava * .85, out)
+        em = np.where(crack[..., None], lava * .55, em)
+        out = np.where(claws[..., None], np.array([.06, .04, .035]) + 0 * out, out)
+        hot = np.stack([1.0 + 0 * L, .45 + .3 * L, .1 + .1 * L], -1)
+        out = np.where(ice[..., None], hot * .9, out); em = np.where(ice[..., None], hot, em)
     else:  # king
         fur = np.stack([.16 + .30 * L ** 1.1, .13 + .25 * L ** 1.15, .11 + .19 * L ** 1.2], -1)   # gray-brown, like the sheet
         pa = np.stack([.12 * (.4 + .8 * L), .085 * (.4 + .8 * L), .07 * (.4 + .8 * L)], -1)
@@ -77,6 +89,7 @@ def paint(kind, tex_path='/tmp/wolf_prep_tex.jpg', pm='/tmp/wolf_posmap.npz'):
     out = np.where(cov[..., None], out, t * .3); em = em * cov[..., None]   # keep unused texels dark (mip bleeding)
     for k, (cx, cy, s) in SWATCH.items():
         col = {'horn': (.30, .25, .2), 'cape': (.075, .07, .07), 'capein': (.05, .045, .045), 'gold': (.55, .52, .45)}[k]
+        if kind == 'hell' and k == 'horn': col = (.16, .12, .11); em[cy:cy + s, cx:cx + s] = (.35, .06, .02)   # spikes smoulder, flare on roar
         out[cy:cy + s, cx:cx + s] = col
     return (np.clip(out, 0, 1) * 255).astype(np.uint8), (np.clip(em, 0, 1) * 255).astype(np.uint8)
 
