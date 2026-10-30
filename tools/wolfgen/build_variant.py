@@ -70,7 +70,7 @@ def build(kind, out, scale_note):
     build.last = (S, M)
     clips = {n: bake(S, n) for n in CLIPS}
     extras = dict(source_kind='new_' + kind, clawProfile='standard', previewHeight=1.85, run_stride_m=3.2, run_reference_speed_mps=8.0)
-    write_glb(out, S, M, clips, 'Body_' + ('ates' if kind == 'fire' else 'kral'), extras=extras)
+    write_glb(out, S, M, clips, 'Body_' + {'fire': 'ates', 'king': 'kral', 'moon': 'ay'}[kind], extras=extras)
     import os; print(kind, 'glb', os.path.getsize(out), 'joints', len(S.names), 'tris', len(M.tris))
 
 

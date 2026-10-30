@@ -2,7 +2,8 @@
 const roster = [
  {id:'bilge',name:'BİLGE KAĞAN',wolf:'BOZ KAĞAN',role:'KOMUTAN',price:0,power:145,color:'#c3b17c',human:[['Dayanıklılık',3],['Hareket',-2]],beast:[['Hasar',45],['Dayanıklılık',45]],body:'Uzun ve geniş gövdeli',claw:'Gövde dönüşüyle ağır yatay darbe',trail:'Mat altın • üç geniş yatay yay',desc:'Göktürk hükümdarı Bilge Kağan’dan esinlenen kurgu komutan. Tarihî bir portre iddiası taşımaz.'},
  {id:'ates',name:'KÖZ BEY',wolf:'KÖZ KAĞAN',role:'AVCI',price:0,power:150,color:'#ff5a24',human:[['Hasar',4],['Dayanıklılık',-2]],beast:[['Hasar',55],['Dayanıklılık',35]],body:'Kara kürklü, bilekten dirseğe yanan',claw:'Alevli pençe darbesi',trail:'Kızıl köz • üç yanık iz',desc:'Buz kurdunun kötü ikizi: kara ve bordo kürk, bileklerinden dirseklerine yanan alevler, göğsünde üç pençe izi. Kükreyince alevleri köze döner.'},
- {id:'kral',name:'KARA HAN',wolf:'KURT KRAL',role:'HÜKÜMDAR',price:0,power:160,color:'#c8102e',human:[['Dayanıklılık',5],['Hareket',-3]],beast:[['Hasar',50],['Dayanıklılık',55]],body:'Boynuzlu, pelerinli, savaştan yeni çıkmış',claw:'Kanlı ağır darbe',trail:'Koyu kızıl • üç derin yarık',desc:'Kötü kurt kral: boynuzları, yara izleri ve kanla kaplı kürkü, rüzgârda savrulan pelerini.'}
+ {id:'kral',name:'KARA HAN',wolf:'KURT KRAL',role:'HÜKÜMDAR',price:0,power:160,color:'#c8102e',human:[['Dayanıklılık',5],['Hareket',-3]],beast:[['Hasar',50],['Dayanıklılık',55]],body:'Boynuzlu, pelerinli, savaştan yeni çıkmış',claw:'Kanlı ağır darbe',trail:'Koyu kızıl • üç derin yarık',desc:'Kötü kurt kral: boynuzları, yara izleri ve kanla kaplı kürkü, rüzgârda savrulan pelerini.'},
+ {id:'ay',name:'AYSEL',wolf:'AY KURDU',role:'İZCİ',price:0,power:140,color:'#a78bfa',mods:{health:-10,speed:15},human:[['Hareket',0]],beast:[['Hasar',45],['Dayanıklılık',40]],body:'İnce, çevik dişi kurt; örgülü gümüş yele',claw:'Hızlı ay pençesi',trail:'Mor ay ışığı • üç ince iz',desc:'Gümüş kürklü, mor çizgili dişi kurt. Diğer kurtlardan %10 daha az canı, %15 daha fazla hızı var. Kollarındaki hilal işaretleri kükreyince parlar.'}
 
 ];
 let collectionState={credits:2500,owned:['bilge','ates','kral'],equipped:'bilge'};
@@ -18,7 +19,7 @@ function renderCharacter(){const c=roster.find(c=>c.id===selectedCharacter);cons
  $('characterAction').onclick=()=>{playSound();if(!owned){if(collectionState.credits<c.price){toast('Deneme kredisi yetersiz.');return;}collectionState.credits-=c.price;collectionState.owned.push(c.id);toast(c.name+' deneme envanterine eklendi.');}else{collectionState.equipped=c.id;toast(c.name+' teçhizata seçildi.');}saveCollection();renderGear();renderCollection();};
  updateInventoryCharacter();
 }
-function characterModelId(id){return ['bilge','ates','kral'].includes(id)?id:'bilge';}
+function characterModelId(id){return ['bilge','ates','kral','ay'].includes(id)?id:'bilge';}
 window.rogueModelId=characterModelId;
 function updateInventoryCharacter(){}
 $('previewHuman').onclick=()=>{previewForm='human';renderCollection();};$('previewWolf').onclick=()=>{previewForm='wolf';renderCollection();};

@@ -23,7 +23,7 @@ window.RogueGear=(()=>{
   {id:'grenade-frag',type:'grenade',slot:'grenade',name:'PARÇA-01 · Parça Bombası',price:200,bonus:{},weapon:{kind:'frag',damage:65,interval:3.5,radius:3.5}},
   {id:'grenade-smoke',type:'grenade',slot:'grenade',name:'SİS-01 · Duman Bombası',price:250,bonus:{},weapon:{kind:'smoke',damage:0,interval:5,radius:3}}
  );
- for(const [model,name] of [['bilge','Buz Kıran'],['ates','Köz'],['kral','Kral']])catalog.push({id:'claw-'+model,type:'claw',slot:'claw',name:name+' Pençe',price:0,bonus:{},model,profile:model});
+ for(const [model,name] of [['bilge','Buz Kıran'],['ates','Köz'],['kral','Kral'],['ay','Hilal']])catalog.push({id:'claw-'+model,type:'claw',slot:'claw',name:name+' Pençe',price:0,bonus:{},model,profile:model});
  const items=Object.fromEntries(catalog.map(i=>[i.id,i]));
  const empty=()=>({wolf:{back:null,left:null,right:null,skill:null,accessory:null,claw:'claw-standard'},human:{primary:'rifle-ar01',secondary:'pistol-p01',knife:'knife-k01',grenade:null}});
  let data={version:2,owned:['rifle-ar01','pistol-p01','knife-k01','claw-standard'],profiles:{},active:{}};
@@ -60,6 +60,7 @@ window.RogueGear=(()=>{
  function stats(id,form='wolf',roaring=false){const c=roster.find(c=>c.id===id)||roster[0],character={damage:0,defense:0,speed:0,health:0},tattoo={damage:0,defense:0,speed:0,health:0};
   if(form==='wolf'){character.damage=c.beast[0][1];character.defense=c.beast[1][1];const seen=new Set();for(const slot of ['back','left','right']){const item=items[current(c.id)[slot]];if(!item||!owns(item.id)||seen.has(item.id)||item.slot!==slot)continue;seen.add(item.id);for(const [key,value] of Object.entries(item.bonus))tattoo[key]+=value;}}
   else{for(const [key,value] of c.human){if(key==='Hareket')character.speed=value;if(key==='Dayanıklılık')character.health=value;}}
+  if(c.mods){character.health+=c.mods.health||0;character.speed+=c.mods.speed||0;}
   return aggregate({damage:100,defense:100,speed:100,health:100},character,tattoo,roaring);
  }
  return {catalog,items,slotNames,owns,profile,current,compatible,equip,buy,aggregate,stats,save,ensure,syncOwnedCharacters,
