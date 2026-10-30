@@ -7,9 +7,9 @@ from PIL import Image
 from scipy.ndimage import binary_dilation
 
 HJ = dict(Hips=(0, .95, -.01), Spine=(0, 1.10, -.01), Chest=(0, 1.28, 0), Neck=(0, 1.52, .0), Head=(0, 1.62, .02),
-          Clav=(.08, 1.46, -.01), UpperArm=(.20, 1.46, -.02), Forearm=(.28, 1.18, -.07), Hand=(.33, .92, .0),
+          Clav=(.08, 1.46, -.01), UpperArm=(.20, 1.46, -.02), Forearm=(.28, 1.18, -.07), Hand=(.355, .955, .03),
           Thigh=(.10, .94, -.01), Shin=(.12, .56, .03), Foot=(.12, .10, -.04))
-HAND_TIP = (.35, .78, .04); TOE = (.12, .02, .14); HEAD_TIP = (0, 1.78, .03)
+HAND_TIP = (.37, .785, .06); KNUCKLE = (.372, .872, .045); TOE = (.12, .02, .14); HEAD_TIP = (0, 1.78, .03)
 
 
 def skeleton():
@@ -17,7 +17,7 @@ def skeleton():
     s.add('Neck', 'Chest', HJ['Neck']); s.add('Head', 'Neck', HJ['Head'])
     for sx, L in ((1, 'L'), (-1, 'R')):
         m = lambda p: (p[0] * sx, p[1], p[2])
-        s.add('Clav' + L, 'Chest', m(HJ['Clav'])); s.add('UpperArm' + L, 'Clav' + L, m(HJ['UpperArm'])); s.add('Forearm' + L, 'UpperArm' + L, m(HJ['Forearm'])); s.add('Hand' + L, 'Forearm' + L, m(HJ['Hand']))
+        s.add('Clav' + L, 'Chest', m(HJ['Clav'])); s.add('UpperArm' + L, 'Clav' + L, m(HJ['UpperArm'])); s.add('Forearm' + L, 'UpperArm' + L, m(HJ['Forearm'])); s.add('Hand' + L, 'Forearm' + L, m(HJ['Hand'])); s.add('Fingers' + L, 'Hand' + L, m(KNUCKLE))
         s.add('Thigh' + L, 'Hips', m(HJ['Thigh'])); s.add('Shin' + L, 'Thigh' + L, m(HJ['Shin'])); s.add('Foot' + L, 'Shin' + L, m(HJ['Foot']))
     return s
 
@@ -28,7 +28,7 @@ def segs(s):
     for sx, L in ((1, 'L'), (-1, 'R')):
         m = lambda q: np.array((q[0] * sx, q[1], q[2]))
         out['Clav' + L] = (p['Clav' + L], p['UpperArm' + L], .10); out['UpperArm' + L] = (p['UpperArm' + L], p['Forearm' + L], .09)
-        out['Forearm' + L] = (p['Forearm' + L], p['Hand' + L], .08); out['Hand' + L] = (p['Hand' + L], m(HAND_TIP), .07)
+        out['Forearm' + L] = (p['Forearm' + L], p['Hand' + L], .08); out['Hand' + L] = (p['Hand' + L], p['Fingers' + L], .07); out['Fingers' + L] = (p['Fingers' + L], m(HAND_TIP), .05)
         out['Thigh' + L] = (p['Thigh' + L], p['Shin' + L], .13); out['Shin' + L] = (p['Shin' + L], p['Foot' + L], .09); out['Foot' + L] = (p['Foot' + L], m(TOE), .08)
     return out
 
@@ -57,7 +57,7 @@ def make(prep='/tmp/human_prep.npz', texpath='/tmp/human_prep_tex.jpg'):
         if np.linalg.norm(P[i] - el) < .15: Jn[i] = [S.idx('Forearm' + L), 0, 0, 0]; Wn[i] = [1, 0, 0, 0]
         elif np.linalg.norm(P[i] - kn) < .17: Jn[i] = [S.idx('Shin' + L), 0, 0, 0]; Wn[i] = [1, 0, 0, 0]
     # first-person arms: triangles whose three vertices are driven mainly by upper/forearm/hand bones
-    arm_ids = {S.idx(n + L) for n in ('UpperArm', 'Forearm', 'Hand') for L in 'LR'}
+    arm_ids = {S.idx(n + L) for n in ('UpperArm', 'Forearm', 'Hand', 'Fingers') for L in 'LR'}
     dom = Jn[:, 0]; armv = np.array([d_ in arm_ids for d_ in dom]) & (P[:, 1] < 1.42)
     armt = armv[T].all(1)
     M = Mesh(S); M.material('Human_body', (1, 1, 1), roughness=.85, textured=True); M.material('Human_arms', (1, 1, 1), roughness=.85, textured=True)
@@ -105,6 +105,7 @@ def human_ready(t):
     for sx, L in ((1, 'L'), (-1, 'R')):
         qu, qf = solve_arm(S_, L, sx); p['UpperArm' + L] = tuple(qu); p['Forearm' + L] = tuple(qf)
         add(p, 'Hand' + L, -8 + 2 * b, 0, sx * -10)
+        add(p, 'Fingers' + L, 0, 0, -sx * (68 + 3 * b))   # curl around the weapon grip / handguard
     add(p, 'Spine', 1 + .4 * b)
     return p
 

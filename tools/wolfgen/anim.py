@@ -114,17 +114,24 @@ def roar(t):
 
 
 def roll(t):
+    """Attack shoulder-roll: dive low, tuck into a tight ball that tumbles along the ground, come up on all fours."""
     p = {}
-    dive = sm(t / .22); rise = sm((t - .78) / .22)
-    ang = 360 * sm((t - .12) / .72)
-    add(p, 'Hips', ang)
-    tuck = sm((t - .05) / .2) * (1 - sm((t - .8) / .2))
-    add(p, 'Spine', 50 * tuck); add(p, 'Chest', 34 * tuck); add(p, 'Neck', 26 * tuck); add(p, 'Head', 14 * tuck)
+    tuck = sm(t / .16) * (1 - sm((t - .72) / .2))
+    ang = 360 * sm((t - .1) / .66)
+    rise = sm((t - .74) / .26)
+    add(p, 'Hips', ang + 30 * rise * (1 - sm((t - .92) / .08)))
+    add(p, 'Spine', 58 * tuck + 14 * rise); add(p, 'Chest', 44 * tuck); add(p, 'Neck', 40 * tuck - 10 * rise); add(p, 'Head', 26 * tuck)
     for s, L in ((1, 'L'), (-1, 'R')):
-        add(p, 'UpperArm' + L, -105 * tuck, 0, -s * 10 * tuck); add(p, 'Forearm' + L, -110 * tuck)
-        add(p, 'Thigh' + L, -(100 * tuck + 30 * (1 - tuck) * 0)); add(p, 'Shin' + L, 135 * tuck); add(p, 'Foot' + L, -25 * tuck)
-    add(p, 'Tail1', 14 * tuck); add(p, 'Tail2', 20 * tuck); add(p, 'Tail3', 22 * tuck)
+        add(p, 'UpperArm' + L, -120 * tuck - 30 * rise, 0, -s * 18 * tuck); add(p, 'Forearm' + L, -125 * tuck - 30 * rise)
+        add(p, 'Thigh' + L, -125 * tuck - 40 * rise); add(p, 'Shin' + L, 150 * tuck + 70 * rise); add(p, 'Foot' + L, -30 * tuck)
+    add(p, 'Tail1', 40 * tuck); add(p, 'Tail2', 40 * tuck); add(p, 'Tail3', 30 * tuck)
     return p, 'roll'
+
+
+def ball_lock(skel, pose, pad=.2):
+    """keep the lowest joint of the tumbling body on the ground so the roll never floats."""
+    jw = skel.joint_world(pose)
+    return (0, pad - min(v[1] for k, v in jw.items() if not k.startswith('Tail') and k != 'Root'), 0)
 
 
 def claw(t):
@@ -169,8 +176,7 @@ def bake(skel, name, fps=FPS):
         elif mode == 'feet': root = feet_lock(skel, pose)
         elif mode == 'jump':
             root = feet_lock(skel, pose); air = sm((t - .24) / .12) * (1 - sm((t - .8) / .15)); root = (0, root[1] + .55 * air, 0)
-        elif mode == 'roll':
-            tuck = math.sin(math.pi * min(1, t * 1.15)) ** .8; root = (0, .52 + .08 * math.sin(math.pi * t) - .12 * 0 + 0 * tuck, 0)
+        elif mode == 'roll': root = ball_lock(skel, pose)
         else: root = (0, 0, 0)
         frames.append((pose, root))
     return dict(duration=dur, frames=frames)
