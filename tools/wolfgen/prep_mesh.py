@@ -34,7 +34,9 @@ def extract(path, pick_x_rank=2, out='/tmp/wolf_prep.npz', height=1.85):
     tm = vm[T].all(1); Tn = remap[T[tm]]
     Q = P[ids].copy(); Q[:, 0] -= Q[:, 0].mean(); Q[:, 2] -= (Q[:, 2].min() + Q[:, 2].max()) / 2
     Q[:, 1] -= Q[:, 1].min(); s = height / Q[:, 1].max(); Q *= s
-    np.savez(out, P=Q, N=N[ids], UV=UV[ids], T=Tn)
+    Q = np.stack([-Q[:, 2], Q[:, 1], Q[:, 0]], 1)         # generated wolves face +x; engine convention is +z
+    N2 = N[ids]; N2 = np.stack([-N2[:, 2], N2[:, 1], N2[:, 0]], 1)
+    np.savez(out, P=Q, N=N2, UV=UV[ids], T=Tn)
     tex.resize((1024, 1024), Image.LANCZOS).save(out.replace('.npz', '_tex.jpg'), quality=88)
     print('wolf', comp, 'verts', len(Q), 'tris', len(Tn), 'bbox', Q.min(0).round(2), Q.max(0).round(2))
 

@@ -80,7 +80,7 @@ with sync_playwright() as p:
     page.wait_for_function('()=>wolf3DInfo().actionTime>.1')
     preview=page.evaluate('wolf3DInfo()')
     assert abs(preview['actionRate']-1.05*.88)<.001  # run-animation damping applies in the inventory preview too
-    assert abs(preview['motionProfile']['runStride']-report[0]['measured_speed_mps']/1.05*16/30)<.002
+    assert abs(preview['motionProfile']['runStride']-report[0]['measured_speed_mps']/1.05*preview['motionProfile']['runDuration'])<.002
     assert not errors,errors
     (OUT/'reference-arena-verification.json').write_text(json.dumps({'wolves':report,'preview_run_rate':preview['actionRate'],'browser_errors':errors},indent=2))
     browser.close()

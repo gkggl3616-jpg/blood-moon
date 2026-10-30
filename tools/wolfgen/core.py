@@ -19,6 +19,26 @@ def quat_from_euler(rx, ry, rz):
                      cx * cy * sz + sx * sy * cz, cx * cy * cz - sx * sy * sz])
 
 
+def pose_quat(v):
+    return np.asarray(v, float) if len(v) == 4 else quat_from_euler(*v)
+
+
+def qmul(a, b):
+    ax, ay, az, aw = a; bx, by, bz, bw = b
+    return np.array([aw * bx + ax * bw + ay * bz - az * by, aw * by - ax * bz + ay * bw + az * bx, aw * bz + ax * by - ay * bx + az * bw, aw * bw - ax * bx - ay * by - az * bz])
+
+
+def qinv(q): return np.array([-q[0], -q[1], -q[2], q[3]])
+
+
+def qrot_between(a, b):
+    a = np.asarray(a, float) / np.linalg.norm(a); b = np.asarray(b, float) / np.linalg.norm(b)
+    c = np.cross(a, b); d = float(np.dot(a, b))
+    if d < -.9999:
+        ax = np.cross(a, [1, 0, 0]); ax = ax / np.linalg.norm(ax) if np.linalg.norm(ax) > 1e-6 else np.array([0, 1.0, 0]); return np.array([*ax, 0.0])
+    q = np.array([c[0], c[1], c[2], 1 + d]); return q / np.linalg.norm(q)
+
+
 def quat_to_mat(q):
     x, y, z, w = q
     return np.array([[1 - 2 * (y * y + z * z), 2 * (x * y - z * w), 2 * (x * z + y * w)],
@@ -70,7 +90,7 @@ class Skeleton:
         mats = []
         for i, n in enumerate(self.names):
             M = np.eye(4)
-            M[:3, :3] = quat_to_mat(quat_from_euler(*pose.get(n, (0, 0, 0))))
+            M[:3, :3] = quat_to_mat(pose_quat(pose.get(n, (0, 0, 0))))
             M[:3, 3] = self.local_offset(i) + (np.array(root_t) if self.parent[i] is None else 0)
             mats.append(M if self.parent[i] is None else mats[self.parent[i]] @ M)
         return mats
@@ -84,10 +104,11 @@ class Mesh:
     def __init__(self, skel):
         self.skel = skel
         self.P, self.N, self.C, self.J, self.W, self.M, self.tris = [], [], [], [], [], [], []
+        self.UV = None; self.texture = None; self.emissive_tex = None; self.emissive_factor = None     # optional: (n,2) uvs and jpeg/png bytes
         self.materials = {}   # name -> dict(color, emissive, roughness, metallic)
 
-    def material(self, name, color=(1, 1, 1), emissive=(0, 0, 0), roughness=.8, metallic=0, emissive_strength=1.0, double=False):
-        self.materials[name] = dict(color=list(color), emissive=list(emissive), roughness=roughness, metallic=metallic, double=double)
+    def material(self, name, color=(1, 1, 1), emissive=(0, 0, 0), roughness=.8, metallic=0, emissive_strength=1.0, double=False, textured=False):
+        self.materials[name] = dict(color=list(color), emissive=list(emissive), roughness=roughness, metallic=metallic, double=double, textured=textured)
         return name
 
     def _weights(self, wd):
@@ -243,7 +264,7 @@ def _pad(b, ch=b'\0'):
     return b + ch * ((4 - len(b) % 4) % 4)
 
 
-def write_glb(path, skel, mesh, clips, node_name, extras=None, scene_extras=None, fps=30):
+def write_glb(path, skel, mesh, clips, node_name, extras=None, scene_extras=None, fps=30, parts=None):
     """clips: {name: dict(duration, frames=[(pose dict, root_t)])}"""
     bin_chunks, views, accessors = [], [], []
 
@@ -259,12 +280,24 @@ def write_glb(path, skel, mesh, clips, node_name, extras=None, scene_extras=None
     P, N, C, J, W = mesh.arrays()
     a_pos = add(P, 34962, 5126, 'VEC3', True); a_nrm = add(N, 34962, 5126, 'VEC3')
     a_col = add(C, 34962, 5126, 'VEC4'); a_j = add(J, 34962, 5123, 'VEC4'); a_w = add(W, 34962, 5126, 'VEC4')
+    a_uv = add(np.array(mesh.UV, np.float32), 34962, 5126, 'VEC2') if mesh.UV is not None else None
+    img_view = None; em_view = None
+    if mesh.emissive_tex is not None:
+        data = mesh.emissive_tex; off = sum(len(_pad(c)) for c in bin_chunks); bin_chunks.append(data)
+        views.append(dict(buffer=0, byteOffset=off, byteLength=len(data))); em_view = len(views) - 1
+    if mesh.texture is not None:
+        data = mesh.texture; off = sum(len(_pad(c)) for c in bin_chunks); bin_chunks.append(data)
+        views.append(dict(buffer=0, byteOffset=off, byteLength=len(data))); img_view = len(views) - 1
     mats = list(mesh.materials.keys())
-    prims = []
+    prims = []; prim_names = []
     for mi, mname in enumerate(mats):
         idx = np.array([t[:3] for t in mesh.tris if t[3] == mname], np.uint32).reshape(-1)
         if len(idx) == 0: continue
-        prims.append(dict(attributes=dict(POSITION=a_pos, NORMAL=a_nrm, COLOR_0=a_col, JOINTS_0=a_j, WEIGHTS_0=a_w),
+        attrs = dict(POSITION=a_pos, NORMAL=a_nrm, JOINTS_0=a_j, WEIGHTS_0=a_w)
+        if a_uv is None: attrs['COLOR_0'] = a_col
+        else: attrs['TEXCOORD_0'] = a_uv
+        prim_names.append(mname)
+        prims.append(dict(attributes=attrs,
                           indices=add(idx, 34963, 5125, 'SCALAR'), material=mi, mode=4))
     ibm = []
     for i in range(len(skel.names)):
@@ -279,9 +312,13 @@ def write_glb(path, skel, mesh, clips, node_name, extras=None, scene_extras=None
     for i, p in enumerate(skel.parent):
         parent_node = 0 if p is None else jn[p]
         nodes[parent_node].setdefault('children', []).append(jn[i])
-    mesh_node = dict(name=node_name, mesh=0, skin=0)
-    if extras: mesh_node['extras'] = extras
-    nodes.append(mesh_node); mesh_idx = len(nodes) - 1
+    gl_meshes, mesh_idxs = [], []
+    groups = parts or {node_name: list(mesh.materials.keys())}
+    for gi, (gname, gmats) in enumerate(groups.items()):
+        gl_meshes.append(dict(name=gname, primitives=[pr for pr, pn in zip(prims, prim_names) if pn in gmats]))
+        mn = dict(name=gname, mesh=gi, skin=0)
+        if extras and gi == 0: mn['extras'] = extras
+        nodes.append(mn); mesh_idxs.append(len(nodes) - 1)
 
     animations = []
     for cname, clip in clips.items():
@@ -289,7 +326,7 @@ def write_glb(path, skel, mesh, clips, node_name, extras=None, scene_extras=None
         samplers, channels = [], []
         t_acc = add(times, None, 5126, 'SCALAR', True)
         for i, bname in enumerate(skel.names):
-            rq = np.array([quat_from_euler(*fr[0].get(bname, (0, 0, 0))) for fr in frames], np.float32)
+            rq = np.array([pose_quat(fr[0].get(bname, (0, 0, 0))) for fr in frames], np.float32)
             # keep quaternion continuity
             for k in range(1, n):
                 if np.dot(rq[k], rq[k - 1]) < 0: rq[k] = -rq[k]
@@ -306,14 +343,22 @@ def write_glb(path, skel, mesh, clips, node_name, extras=None, scene_extras=None
     gl_mats = []
     for m in mats:
         d = mesh.materials[m]
-        gl_mats.append(dict(name=m, pbrMetallicRoughness=dict(baseColorFactor=d['color'] + [1.0], metallicFactor=d['metallic'], roughnessFactor=d['roughness']),
+        pbr = dict(baseColorFactor=d['color'] + [1.0], metallicFactor=d['metallic'], roughnessFactor=d['roughness'])
+        if d.get('textured') and img_view is not None: pbr['baseColorTexture'] = dict(index=0)
+        extra = {}
+        if d.get('textured') and em_view is not None: extra['emissiveTexture'] = dict(index=1)
+        gl_mats.append(dict(name=m, pbrMetallicRoughness=pbr, **extra,
                             emissiveFactor=d['emissive'], doubleSided=bool(d['double'])))
     gltf = dict(asset=dict(version='2.0', generator='bloodmoon-wolfgen (original)'),
-                scene=0, scenes=[dict(nodes=[0, mesh_idx], **({'extras': scene_extras} if scene_extras else {}))],
-                nodes=nodes, meshes=[dict(name=node_name, primitives=prims)],
+                scene=0, scenes=[dict(nodes=[0] + mesh_idxs, **({'extras': scene_extras} if scene_extras else {}))],
+                nodes=nodes, meshes=gl_meshes,
                 skins=[dict(inverseBindMatrices=a_ibm, joints=[jn[i] for i in range(len(skel.names))], skeleton=0)],
                 materials=gl_mats, animations=animations, accessors=accessors, bufferViews=views,
                 buffers=[dict(byteLength=sum(len(_pad(c)) for c in bin_chunks))])
+    if img_view is not None:
+        gltf['images'] = [dict(bufferView=img_view, mimeType='image/jpeg')]; gltf['samplers'] = [dict(magFilter=9729, minFilter=9987, wrapS=10497, wrapT=10497)]; gltf['textures'] = [dict(source=0, sampler=0)]
+        if em_view is not None:
+            gltf['images'].append(dict(bufferView=em_view, mimeType='image/png')); gltf['textures'].append(dict(source=1, sampler=0))
     jsb = _pad(json.dumps(gltf, separators=(',', ':')).encode(), b' ')
     binb = b''.join(_pad(c) for c in bin_chunks)
     with open(path, 'wb') as f:
