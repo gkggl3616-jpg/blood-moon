@@ -60,6 +60,7 @@ window.RogueGear=(()=>{
  function stats(id,form='wolf',roaring=false){const c=roster.find(c=>c.id===id)||roster[0],character={damage:0,defense:0,speed:0,health:0},tattoo={damage:0,defense:0,speed:0,health:0};
   if(form==='wolf'){character.damage=c.beast[0][1];character.defense=c.beast[1][1];const seen=new Set();for(const slot of ['back','left','right']){const item=items[current(c.id)[slot]];if(!item||!owns(item.id)||seen.has(item.id)||item.slot!==slot)continue;seen.add(item.id);for(const [key,value] of Object.entries(item.bonus))tattoo[key]+=value;}}
   else{for(const [key,value] of c.human){if(key==='Hareket')character.speed=value;if(key==='Dayanıklılık')character.health=value;}}
+  if(c.mods){character.health+=c.mods.health||0;character.speed+=c.mods.speed||0;}
   return aggregate({damage:100,defense:100,speed:100,health:100},character,tattoo,roaring);
  }
  return {catalog,items,slotNames,owns,profile,current,compatible,equip,buy,aggregate,stats,save,ensure,syncOwnedCharacters,
