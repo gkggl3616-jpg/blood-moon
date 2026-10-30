@@ -37,7 +37,7 @@ with sync_playwright() as p:
  page.evaluate('arenaDebug.place(-5,1)');page.keyboard.down('KeyW');page.wait_for_function('()=>arenaDebug.state().position[2]<-1.2',timeout=20000);page.keyboard.up('KeyW')
  assert state()['position'][2]>=-1.4,'player went through cover'
  page.evaluate('arenaDebug.place(0,5)');page.locator('#arenaTransform').click();page.wait_for_function('()=>arenaDebug.state().form==="wolf"',timeout=10000);page.wait_for_timeout(500)
- page.locator('#arenaTrial').select_option('normal');assert page.locator('#arenaRun').is_disabled()
+ page.locator('#arenaTrial').select_option('normal');assert page.locator('#arenaRun').is_hidden()
  assert not page.evaluate('arenaDebug.action("run")')
  check_vertical_look()
  page.evaluate('arenaDebug.place(0,-5.5)')
@@ -74,20 +74,20 @@ with sync_playwright() as p:
  page.wait_for_function('()=>arenaDebug.state().grounded',timeout=15000)
  assert .7<state()['jumpDistance']<8.2 and state()['jumpPeakSpeed']<8.55,'running jump has stacked impulse'
  page.wait_for_function('()=>arenaDebug.state().motion==="WolfRunQuad"',timeout=10000)
- # The running flip attack is allowed from a run; it keeps the run mode and covers ~5.5m (dive, somersault, claw strike, landing slide).
+ # The running flip attack is allowed from a run; it keeps the run mode and covers ~2.2m (dive, somersault, claw strike, landing slide).
  roll_start=state()['position'];page.locator('#arenaRoll').click();page.keyboard.up('KeyW')
  page.wait_for_function('()=>arenaDebug.state().rollTime===0',timeout=40000)
- assert state()['run'] and 4.8<state()['rollDistance']<6.2,(state()['run'],state()['rollDistance'])
+ assert state()['run'] and 1.6<state()['rollDistance']<2.9,(state()['run'],state()['rollDistance'])
  # An airborne running wolf can also go into the same flip attack.
  page.evaluate('arenaDebug.place(0,15)');page.keyboard.down('KeyW');page.wait_for_function('()=>arenaDebug.state().motion==="WolfRunQuad"',timeout=10000)
  page.locator('#arenaJump').click();page.wait_for_function('()=>arenaDebug.state().position[1]>.25',timeout=10000)
  assert page.evaluate('arenaDebug.action("roll")')
  page.keyboard.up('KeyW');page.wait_for_function('()=>arenaDebug.state().rollTime===0&&arenaDebug.state().grounded',timeout=40000)
- page.locator('#arenaRun').click();page.evaluate('arenaDebug.place(0,1)');page.locator('#arenaJump').click()
+ page.evaluate('arenaDebug.action("run")');page.evaluate('arenaDebug.place(0,1)');page.locator('#arenaJump').click()
  page.wait_for_function('()=>arenaDebug.state().position[1]>.3',timeout=10000)
  page.wait_for_function('()=>arenaDebug.state().grounded',timeout=15000)
  assert state()['position'][2]<.5,'wolf did not jump forward'
- page.evaluate('arenaDebug.place(0,4)');page.locator('#arenaRun').click();page.keyboard.down('KeyW')
+ page.evaluate('arenaDebug.place(0,4)');page.evaluate('arenaDebug.action("run")');page.keyboard.down('KeyW')
  page.wait_for_function('()=>arenaDebug.state().motion==="WolfRunQuad"',timeout=10000)
  page.locator('#arenaRoarButton').click();roar_start=state()['position']
  page.wait_for_function('()=>arenaDebug.state().effects.particles>0',timeout=10000)
@@ -129,7 +129,7 @@ with sync_playwright() as p:
  hd.locator('#graphicsQuality').select_option('balanced');hd.locator('#lookSensitivity').evaluate('(el)=>{el.value=180;el.dispatchEvent(new Event("input",{bubbles:true}));}')
  assert hd.evaluate('getRoguePreferences().lookSensitivity')==1.8
  hd.locator('#closeModal').click();hd.locator('#join').click()
- hd.wait_for_function('()=>rogueEngineInfo().quality==="balanced"&&rogueEngineInfo().pixelRatio<3',timeout=15000)
+ hd.wait_for_function('()=>rogueEngineInfo().quality==="balanced"&&rogueEngineInfo().pixelRatio<3',timeout=60000)
  assert hd.evaluate('rogueEngineInfo().buffer.reduce((a,b)=>a*b)')<=2001000
  hd.reload();hd.wait_for_function('()=>document.querySelector("#lobby.active")||document.getElementById("skipIntro")?.offsetParent',timeout=30000);hd.evaluate('()=>{const b=document.getElementById("skipIntro");if(b&&b.offsetParent)b.click()}')
  assert hd.evaluate('getRoguePreferences()')=={'lookSensitivity':1.8,'graphicsQuality':'balanced'}

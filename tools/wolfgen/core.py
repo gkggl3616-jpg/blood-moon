@@ -432,3 +432,25 @@ def render(skel, mesh, pose, root_t=(0, 0, 0), yaw=30, pitch=8, size=(700, 800),
         img[miny:maxy + 1, minx:maxx + 1][m] = (np.clip(rgb[m], 0, 1) * 255)
     im = Image.fromarray(img.astype(np.uint8))
     return im.resize(size, Image.LANCZOS) if ss > 1 else im
+
+
+def smooth_normals(P, T, crease=70.0):
+    """Area-weighted vertex normals shared across split (seam/flat-shaded) vertices at the same position,
+    keeping hard edges sharper than `crease` degrees."""
+    P = np.asarray(P, float); T = np.asarray(T, int)
+    a, b, c = P[T[:, 0]], P[T[:, 1]], P[T[:, 2]]
+    fn = np.cross(b - a, c - a); fu = fn / (np.linalg.norm(fn, axis=1, keepdims=True) + 1e-12)
+    _, inv = np.unique(np.round(P, 4), axis=0, return_inverse=True); inv = inv.ravel()
+    faces_of = [[] for _ in range(inv.max() + 1)]
+    for f, tri in enumerate(T):
+        for v in tri: faces_of[inv[v]].append(f)
+    own = [[] for _ in range(len(P))]
+    for f, tri in enumerate(T):
+        for v in tri: own[v].append(f)
+    cs = np.cos(np.radians(crease)); out = np.zeros_like(P)
+    for v in range(len(P)):
+        if not own[v]: out[v] = (0, 1, 0); continue
+        ref = fu[own[v]].sum(0); ref /= np.linalg.norm(ref) + 1e-12
+        fs = faces_of[inv[v]]; w = fn[fs]; ok = (fu[fs] @ ref) > cs
+        n = w[ok].sum(0) if ok.any() else ref; out[v] = n / (np.linalg.norm(n) + 1e-12)
+    return out

@@ -61,7 +61,7 @@ def make(prep='/tmp/human_prep.npz', texpath='/tmp/human_prep_tex.jpg'):
     dom = Jn[:, 0]; armv = np.array([d_ in arm_ids for d_ in dom]) & (P[:, 1] < 1.42)
     armt = armv[T].all(1)
     M = Mesh(S); M.material('Human_body', (1, 1, 1), roughness=.85, textured=True); M.material('Human_arms', (1, 1, 1), roughness=.85, textured=True)
-    M.P = [p for p in P]; M.N = [n for n in normalize(Nn)]; M.J = Jn.tolist(); M.W = Wn.tolist(); M.C = [list(c) + [1.0] for c in col]; M.M = ['Human_body'] * len(P)
+    M.P = [p for p in P]; M.N = [n for n in smooth_normals(P, T)]; M.J = Jn.tolist(); M.W = Wn.tolist(); M.C = [list(c) + [1.0] for c in col]; M.M = ['Human_body'] * len(P)
     M.tris = [t.tolist() + ['Human_arms' if a else 'Human_body'] for t, a in zip(T, armt)]
     M.UV = UV; M.texture = open(texpath, 'rb').read()
     t = ta.astype(float) / 255.0; mask = binary_dilation(((t[..., 2] - t[..., 0]) > .10) & (t[..., 2] > .55), iterations=1)

@@ -17,7 +17,7 @@ with sync_playwright() as p:
  page.evaluate('arenaDebug.place(0,5)');page.locator('#arenaTransform').click()
  page.wait_for_function('()=>arenaDebug.state().form==="wolf"',timeout=30000);page.wait_for_timeout(1500)
  page.screenshot(path='/tmp/game_idle.png')
- page.locator('#arenaRun').click();page.keyboard.down('KeyW');page.wait_for_timeout(900);page.screenshot(path='/tmp/game_run1.png');page.wait_for_timeout(180);page.screenshot(path='/tmp/game_run2.png');page.keyboard.up('KeyW')
+ page.evaluate('arenaDebug.action("run")');page.keyboard.down('KeyW');page.wait_for_timeout(900);page.screenshot(path='/tmp/game_run1.png');page.wait_for_timeout(180);page.screenshot(path='/tmp/game_run2.png');page.keyboard.up('KeyW')
  page.wait_for_timeout(500);page.locator('#arenaRoarButton').click();page.wait_for_timeout(250);page.screenshot(path='/tmp/game_roar0.png');page.wait_for_timeout(350);page.screenshot(path='/tmp/game_roar.png')
  page.wait_for_timeout(1600);page.locator('#arenaRoll').click();page.wait_for_timeout(250);page.screenshot(path='/tmp/game_roll.png')
  print('errors',errors[:5]);b.close()

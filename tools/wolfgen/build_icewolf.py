@@ -52,7 +52,7 @@ def make_mesh(prep='/tmp/wolf_prep.npz', texpath='/tmp/wolf_prep_tex.jpg'):
         else: ice[i] = False
     print('rigid ice verts', int(ice.sum()))
     Jn, Wn = fix_stretch(S, P, Jn, Wn, T, ice)
-    M.P = [p for p in P]; M.N = [n for n in normalize(Nn)]; M.J = list(Jn); M.W = list(Wn)
+    M.P = [p for p in P]; M.N = [n for n in smooth_normals(P, T)]; M.J = list(Jn); M.W = list(Wn)
     M.C = [list(c) + [1.0] for c in col]; M.M = ['Fur_icewolf'] * len(P)
     M.tris = [t.tolist() + ['Fur_icewolf'] for t in T]
     M.UV = UV; M.texture = open(texpath, 'rb').read()
@@ -67,6 +67,6 @@ def make_mesh(prep='/tmp/wolf_prep.npz', texpath='/tmp/wolf_prep_tex.jpg'):
 if __name__ == '__main__':
     S, M = make_mesh()
     clips = {n: bake(S, n) for n in CLIPS}
-    extras = dict(source_kind='new_ice', clawProfile='standard', previewHeight=1.85, run_stride_m=4.8, run_reference_speed_mps=8.0)
+    extras = dict(source_kind='new_ice', clawProfile='standard', previewHeight=1.85, run_stride_m=3.2, run_reference_speed_mps=8.0)
     write_glb('/tmp/icewolf_rigged.glb', S, M, clips, 'Body_bilge', extras=extras)
     import os; print('glb', os.path.getsize('/tmp/icewolf_rigged.glb'))

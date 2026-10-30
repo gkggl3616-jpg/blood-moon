@@ -98,7 +98,7 @@ def jump(t):
 
 
 def roar(t):
-    """Ice Rage Roar (timeline written in 5 units, played over 2.5 s): prep 0-.8 (crouch, head down), build .8-1.6 (fists, chest swells), roar 1.6-2.5 (head snaps
+    """Ice Rage Roar (timeline written in 5 units, played over 1.4 s): prep 0-.8 (crouch, head down), build .8-1.6 (fists, chest swells), roar 1.6-2.5 (head snaps
     45-60 deg up, chest out, back arched, arms open to the sides, palms up/forward, wide stance with the right leg
     forward), blast 2.5-3.5 (held, trembling), calm 3.5-5 (back to the ready stance)."""
     T = t * 5.0; p = {}
@@ -128,13 +128,13 @@ def roar(t):
 
 
 def roll(t):
-    """Running flip attack, 1.8 s: prep 0-.2 s (knees bend, torso drives down/forward, arms pulled back),
+    """Running flip attack (timeline written in 1.8 units, played over 1.2 s): prep 0-.2 s (knees bend, torso drives down/forward, arms pulled back),
     forward somersault .2-.9 s (head goes down at 90 deg, fully inverted at 180, comes round to attack),
     double claw strike .9-1.25 s (both claws slam down in front), land on hands and feet, slide and
     recover into a run-ready crouch 1.25-1.8 s."""
     T = t * 1.8; p = {}
     def E(a, b): return sm((T - a) / (b - a))
-    prep = E(0, .2) * (1 - E(.2, .34))
+    prep = (.55 + .45 * E(0, .2)) * (1 - E(.2, .34))   # already low from the run, coils further
     flip = E(.16, .86)                        # 0..1 rotation progress
     tuck = E(.22, .4) * (1 - E(.7, .9))
     reach = E(.62, .86) * (1 - E(.9, 1.0))     # arms swing overhead coming out of the flip
@@ -201,8 +201,8 @@ def transform(t):
 
 
 CLIPS = {  # name: (fn, duration_s, loop)
-    'WolfIdle': (idle, 2.4, True), 'WolfMove': (walk, 1.0, True), 'WolfRunQuad': (run_quad, .62, True), 'WolfJump': (jump, 1.0, False),
-    'WolfRoar': (roar, 2.5, False), 'WolfRoll': (roll, 1.8, False), 'WolfClaw': (claw, .62, False), 'WolfTransform': (transform, 1.0, False), 'WolfClawR': (claw, .65, False),
+    'WolfIdle': (idle, 2.4, True), 'WolfMove': (walk, 1.0, True), 'WolfRunQuad': (run_quad, .4, True), 'WolfJump': (jump, 1.0, False),
+    'WolfRoar': (roar, 1.4, False), 'WolfRoll': (roll, 1.2, False), 'WolfClaw': (claw, .62, False), 'WolfTransform': (transform, 1.0, False), 'WolfClawR': (claw, .65, False),
 }
 
 
@@ -219,6 +219,7 @@ def bake(skel, name, fps=FPS):
         elif mode == 'roll': r = ball_lock(skel, pose); root = (0, r[1] + flip_air(t), 0)
         else: root = (0, 0, 0)
         frames.append((pose, root))
+    if loop: frames.append(frames[0])   # closing key so the glTF clip lasts exactly `dur`
     return dict(duration=dur, frames=frames)
 
 
@@ -263,4 +264,5 @@ def bake_mixamo(skel, name, fps=FPS):
             root = (0, base + dy, 0)
         else: root = feet_lock(skel, pose)
         out.append((pose, root))
+    if loop: out.append(out[0])
     return dict(duration=dur, frames=out)
