@@ -51,11 +51,17 @@ jobs:
           path: tools/signing-cache
           key: rogue-prototype-signing-v1
       - name: Verify offline mobile interface
-        run: python tools/verify_ui.py
+        run: |
+          set -o pipefail
+          python tools/verify_ui.py 2>&1 | tee /tmp/verify_ui.log || { tail -n 25 /tmp/verify_ui.log | cut -c1-400 | while IFS= read -r l; do echo "::error title=verify_ui::$l"; done; exit 1; }
       - name: Verify playable flat test arena
-        run: python tools/verify_arena.py
+        run: |
+          set -o pipefail
+          python tools/verify_arena.py 2>&1 | tee /tmp/verify_arena.log || { tail -n 25 /tmp/verify_arena.log | cut -c1-400 | while IFS= read -r l; do echo "::error title=verify_arena::$l"; done; exit 1; }
       - name: Verify reference run and shared roar in actual gameplay
-        run: python tools/verify_reference_arena.py
+        run: |
+          set -o pipefail
+          python tools/verify_reference_arena.py 2>&1 | tee /tmp/verify_reference_arena.log || { tail -n 25 /tmp/verify_reference_arena.log | cut -c1-400 | while IFS= read -r l; do echo "::error title=verify_reference_arena::$l"; done; exit 1; }
       - name: Download verified Android build tools
         run: python tools/bootstrap_android.py
       - name: Compile and sign APK
