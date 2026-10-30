@@ -59,12 +59,13 @@ def paint(kind, tex_path='/tmp/wolf_prep_tex.jpg', pm='/tmp/wolf_posmap.npz'):
     elif kind == 'hell':
         # charred black hide split by glowing lava fissures (hellgate wolf)
         fur = np.stack([.05 + .10 * L ** 1.3, .045 + .08 * L ** 1.4, .045 + .07 * L ** 1.4], -1)
-        ridge = np.abs(n1 - .5) < .018 + .01 * n2          # thin crack network
-        crack = cov & ridge & ~pants & (n2 > .35)
+        n3 = noise(L.shape, 3, 5)
+        ridge = (np.abs(n1 - .5) < .009 + .006 * n2) | (np.abs(n3 - .5) < .006)   # vein / crack network over the whole hide
+        crack = cov & ridge & ~pants
         lava = np.stack([1.0 + 0 * L, .32 + .25 * n1, .05 + 0 * L], -1)
         pa = np.stack([.07 * (.4 + .8 * L), .045 * (.4 + .8 * L), .04 * (.4 + .8 * L)], -1)
-        out = np.where(pants[..., None], pa, fur); out = np.where(crack[..., None], lava * .85, out)
-        em = np.where(crack[..., None], lava * .55, em)
+        out = np.where(pants[..., None], pa, fur); out = np.where(crack[..., None], np.array([.32, .05, .02]) + 0 * out, out)
+        em = np.where(crack[..., None], lava * .45, em)
         out = np.where(claws[..., None], np.array([.06, .04, .035]) + 0 * out, out)
         hot = np.stack([1.0 + 0 * L, .45 + .3 * L, .1 + .1 * L], -1)
         out = np.where(ice[..., None], hot * .9, out); em = np.where(ice[..., None], hot, em)
