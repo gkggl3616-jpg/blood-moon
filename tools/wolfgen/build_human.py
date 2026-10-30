@@ -80,7 +80,7 @@ def human_idle(t):
 
 
 FP_SCALE = 1.3; FP_OFF = np.array([0, 0, -.25])
-TARGET = {'R': np.array([.21, -.31, -.50]), 'L': np.array([-.10, -.31, -.90])}   # wrist targets in viewmodel (camera) space
+TARGET = {'R': np.array([.21, -.31, -.50]), 'L': np.array([.04, -.36, -.82])}   # wrist targets in viewmodel (camera) space
 
 
 def cam_to_model(p, head):

@@ -29,11 +29,11 @@ def feet_lock(skel, pose, foot_off=.10):
 
 def idle(t):
     p = {}; b = math.sin(t * TAU)
-    add(p, 'Spine', 2 + 1.2 * b); add(p, 'Chest', 1.5 * b); add(p, 'Neck', -1 - .8 * b); add(p, 'Head', -.5 * b)
+    add(p, 'Hips', 10); add(p, 'Spine', 16 + 1.5 * b); add(p, 'Chest', 8 + 1.2 * b); add(p, 'Neck', -14 - .8 * b); add(p, 'Head', -6 - .5 * b)
     for s, L in ((1, 'L'), (-1, 'R')):
-        add(p, 'UpperArm' + L, 2 * b, 0, -s * (1 + b)); add(p, 'Forearm' + L, -4 - 2 * b); add(p, 'Clav' + L, 0, 0, s * .8 * b)
-        add(p, 'Thigh' + L, -3); add(p, 'Shin' + L, 6); add(p, 'Foot' + L, -3)
-    add(p, 'Tail1', 6 + 3 * b); add(p, 'Tail2', 6 + 5 * math.sin(t * TAU - .6)); add(p, 'Tail3', 8 + 8 * math.sin(t * TAU - 1.2), 4 * math.sin(t * TAU))
+        add(p, 'UpperArm' + L, -16 + 2 * b, 0, s * 10 + s * b); add(p, 'Forearm' + L, -26 - 3 * b); add(p, 'Hand' + L, 8); add(p, 'Clav' + L, 0, 0, s * 3)
+        add(p, 'Thigh' + L, -34); add(p, 'Shin' + L, 52); add(p, 'Foot' + L, -(10 - 34 + 52))
+    add(p, 'Tail1', 8 + 3 * b); add(p, 'Tail2', 6 + 5 * math.sin(t * TAU - .6)); add(p, 'Tail3', 8 + 8 * math.sin(t * TAU - 1.2), 4 * math.sin(t * TAU))
     return p, 'feet'
 
 
@@ -50,20 +50,40 @@ def walk(t):
 
 
 def run_quad(t):
+    """Wolf gallop: forelegs reach and plant (hand on ground), hind legs push; hand height solved in bake()."""
     p = {}; ph = t * TAU
-    H, S_, C_ = 56 + 4 * math.sin(2 * ph), 22 + 5 * math.sin(2 * ph + .8), 10
+    H, S_, C_ = 62 + 5 * math.sin(2 * ph), 26 + 5 * math.sin(2 * ph + .8), 12
     add(p, 'Hips', H); add(p, 'Spine', S_); add(p, 'Chest', C_)
-    add(p, 'Neck', -(H + S_ + C_) * .62 - 4 * math.sin(2 * ph)); add(p, 'Head', -10)
+    add(p, 'Neck', -(H + S_ + C_) * .66 - 4 * math.sin(2 * ph)); add(p, 'Head', -8)
     tilt = H + S_ + C_
     for s, L, da, dl in ((1, 'L', 0.0, math.pi), (-1, 'R', .55, math.pi + .55)):
         sa = math.sin(ph + da)
-        add(p, 'Clav' + L, -tilt * .0); add(p, 'UpperArm' + L, -(tilt) - 30 * sa + 16, 0, -s * 4)
-        add(p, 'Forearm' + L, -(8 + 38 * max(0.0, math.sin(ph + da + 1.0)))); add(p, 'Hand' + L, 14 * sa - 4)
+        add(p, 'UpperArm' + L, -(tilt) - 36 * sa + 6, 0, -s * 3)       # reach forward / pull back
+        add(p, 'Hand' + L, 12 * sa - 4)
         sl = math.sin(ph + dl)
-        th = -H - 34 * sl - 6; sh = 26 + 42 * max(0.0, -math.sin(ph + dl + .7))
+        th = -H - 34 * sl - 8; sh = 30 + 46 * max(0.0, -math.sin(ph + dl + .7))
         add(p, 'Thigh' + L, th); add(p, 'Shin' + L, sh); add(p, 'Foot' + L, -(H + th + sh) + 18 * sl)
     add(p, 'Tail1', 6, 0, 5 * math.sin(ph)); add(p, 'Tail2', 6, 0, 10 * math.sin(ph - .7)); add(p, 'Tail3', 8, 0, 14 * math.sin(ph - 1.4))
     return p, 'quad'
+
+
+def plant_hands(skel, pose, t, hand_off=.10):
+    """Solve Forearm bend so the hand touches the ground while the foreleg is in stance and lifts in swing."""
+    ph = t * TAU; root = feet_lock(skel, pose)
+    for L, da in (('L', 0.0), ('R', .55)):
+        sa = math.sin(ph + da)                      # >0 = arm pulled back (stance), <0 = reaching/swing
+        lift = .30 * max(0.0, -sa) ** .8
+        target = hand_off + lift
+        lo, hi = -125.0, 0.0
+        for _ in range(26):
+            mid = (lo + hi) / 2; q = dict(pose); q['Forearm' + L] = (mid, 0, 0)
+            y = skel.joint_world(q, root)['Hand' + L][1]
+            if y > target: hi = mid          # too high -> bend more (more negative)... keep monotone search
+            else: lo = mid
+        # choose the bend giving hand height closest to target
+        best = min((abs(skel.joint_world({**pose, 'Forearm' + L: (r, 0, 0)}, root)['Hand' + L][1] - target), r) for r in np.linspace(-125, 20, 59))[1]
+        pose['Forearm' + L] = (best, 0, 0)
+    return pose
 
 
 def jump(t):
@@ -79,27 +99,31 @@ def jump(t):
 
 def roar(t):
     p = {}
-    up = sm(t / .26) * (1 - sm((t - .82) / .18)); hold = up
-    shake = math.sin(t * TAU * 11) * up * (1 if .3 < t < .85 else .2)
-    add(p, 'Hips', -4 * hold); add(p, 'Spine', -12 * hold); add(p, 'Chest', -14 * hold); add(p, 'Neck', -22 * hold + 2 * shake); add(p, 'Head', -34 * hold + 3 * shake)
-    add(p, 'Jaw', 36 * hold + 8 * math.sin(t * TAU * 9) * hold)
+    pre = sm(t / .16) * (1 - sm((t - .16) / .08))          # coil forward, claws down
+    up = sm((t - .18) / .12) * (1 - sm((t - .84) / .16)); hold = up
+    shake = math.sin(t * TAU * 13) * up * (1 if .3 < t < .85 else .3)
+    add(p, 'Hips', 10 * pre - 6 * hold); add(p, 'Spine', 22 * pre - 18 * hold); add(p, 'Chest', 14 * pre - 20 * hold)
+    add(p, 'Neck', 10 * pre - 28 * hold + 2.5 * shake); add(p, 'Head', 8 * pre - 38 * hold + 3.5 * shake)
+    add(p, 'Jaw', 42 * hold + 10 * math.sin(t * TAU * 10) * hold)
     for s, L in ((1, 'L'), (-1, 'R')):
-        add(p, 'Clav' + L, 0, 0, s * 8 * hold); add(p, 'UpperArm' + L, -12 * hold, 0, s * 115 * hold); add(p, 'Forearm' + L, 0, 0, s * 100 * hold); add(p, 'Hand' + L, 0, 0, -s * 8 * hold)
-        add(p, 'Thigh' + L, -6 * hold); add(p, 'Shin' + L, 12 * hold); add(p, 'Foot' + L, -4 * hold)
+        add(p, 'Clav' + L, 0, 0, s * 10 * hold); add(p, 'UpperArm' + L, -20 * pre - 12 * hold, 0, s * 115 * hold + s * 2 * shake)
+        add(p, 'Forearm' + L, -30 * pre, 0, s * 100 * hold); add(p, 'Hand' + L, 0, 0, -s * 8 * hold)
+        add(p, 'Thigh' + L, -(30 * pre + 38 * hold)); add(p, 'Shin' + L, 44 * pre + 62 * hold); add(p, 'Foot' + L, -(14 * pre - 20 * hold))
     add(p, 'Tail1', 12 * hold); add(p, 'Tail2', 14 * hold); add(p, 'Tail3', 16 * hold)
     return p, 'feet'
 
 
 def roll(t):
     p = {}
-    ang = 360 * sm(t * 1.0)
+    dive = sm(t / .22); rise = sm((t - .78) / .22)
+    ang = 360 * sm((t - .12) / .72)
     add(p, 'Hips', ang)
-    tuck = math.sin(math.pi * min(1, t * 1.15)) ** .8
-    add(p, 'Spine', 32 * tuck); add(p, 'Chest', 22 * tuck); add(p, 'Neck', 14 * tuck); add(p, 'Head', 12 * tuck)
+    tuck = sm((t - .05) / .2) * (1 - sm((t - .8) / .2))
+    add(p, 'Spine', 50 * tuck); add(p, 'Chest', 34 * tuck); add(p, 'Neck', 26 * tuck); add(p, 'Head', 14 * tuck)
     for s, L in ((1, 'L'), (-1, 'R')):
-        add(p, 'UpperArm' + L, -70 * tuck, 0, -s * 14 * tuck); add(p, 'Forearm' + L, -105 * tuck)
-        add(p, 'Thigh' + L, -85 * tuck); add(p, 'Shin' + L, 120 * tuck); add(p, 'Foot' + L, -20 * tuck)
-    add(p, 'Tail1', 12 * tuck); add(p, 'Tail2', 18 * tuck); add(p, 'Tail3', 20 * tuck)
+        add(p, 'UpperArm' + L, -105 * tuck, 0, -s * 10 * tuck); add(p, 'Forearm' + L, -110 * tuck)
+        add(p, 'Thigh' + L, -(100 * tuck + 30 * (1 - tuck) * 0)); add(p, 'Shin' + L, 135 * tuck); add(p, 'Foot' + L, -25 * tuck)
+    add(p, 'Tail1', 14 * tuck); add(p, 'Tail2', 20 * tuck); add(p, 'Tail3', 22 * tuck)
     return p, 'roll'
 
 
@@ -140,7 +164,7 @@ def bake(skel, name, fps=FPS):
     for k in range(n):
         t = k / (n if loop else n - 1)
         pose, mode = fn(t)
-        if mode == 'quad': root = ground_lock(skel, pose)
+        if mode == 'quad': pose = plant_hands(skel, pose, t); root = ground_lock(skel, pose)
         elif mode == 'feet': root = feet_lock(skel, pose)
         elif mode == 'jump':
             root = feet_lock(skel, pose); air = sm((t - .24) / .12) * (1 - sm((t - .8) / .15)); root = (0, root[1] + .55 * air, 0)
