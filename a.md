@@ -442,3 +442,7 @@ Karahan v0.1.18/code19 yayımlandı: prototype-v0.1.18-25. CI 40941336513 geçti
 ## 29 Ekim — GitHub dosya adları ve son kullanıcı doğrulaması
 
 Kullanıcı “pardon tamam doğru çalışıyormuş” diyerek son koşu bildiriminin geri alındığını belirtti. Yeni koşu/üretim/APK değişikliği yapılmadı. GitHub dalı animation/bilge-roar-study-01; oyundaki KARAHAN = karahan.glb + human-karahan.glb. Kaynak LTB adı Karahan değil wolf_king_behamah.ltb; hareket wolf_kingasmon_ch.ltb. Model/animasyon/DTX/FX eşleştirmeleri docs/KARAKTER-DOSYA-ESLESTIRMELERI-TR.md ve güncel tek raporun ekinde. Seçilmiş aile ile APK içindeki gerçek rig ayrıldı; R1/Wraith kesin DTX bağlantıları doğrulanmadan uydurulmadı.
+
+## 30 Ekim — Bilge dosya paketi talebi
+
+Kullanıcı Bilge Kağan'ın insan/kurt modeli, animasyon LTB'leri, DTX'leri ve ilgili dosyaları indirilebilir istedi. `tools/package_bilge_delivery.py` güncel iki runtime GLB, ayrıca çıkarılmış gömülü dokular, 4 kaynak LTB, doğrulanmış kaynak DTX'ler, statik Blender sahneleri, ortak FX/dövme/ses ve entegrasyon referansını paketler. Kaynaklar ile oyundaki özgün kaplamalar ayrıdır; kaynak adları/köken korunur. Godot'a esas GLB aktarılır; LTB/DTX doğrudan desteklenmez. Paket manifestosu her dosyanın SHA256/CRC kontrolünü içerir. Oyun kodu/APK değiştirilmez; yeni üretim/harcama yapılmaz. Açıklama `docs/bilge-assets/OKU-BENI-TR.md`.

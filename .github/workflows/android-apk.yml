@@ -5,6 +5,10 @@ on:
     branches: [main]
   workflow_dispatch:
     inputs:
+      bilge_assets_only:
+        description: Package existing Bilge models, animations, DTX and Blender sources without building APK
+        type: boolean
+        default: false
       delivery_only:
         description: Attach existing verified model and latest report without rebuilding APK
         type: boolean
@@ -24,7 +28,7 @@ concurrency:
 
 jobs:
   build:
-    if: ${{ !inputs.delivery_only }}
+    if: ${{ !inputs.delivery_only && !inputs.bilge_assets_only }}
     name: Verify UI and build signed prototype APK
     runs-on: ubuntu-24.04
     timeout-minutes: 20
@@ -131,3 +135,19 @@ jobs:
           gh release upload prototype-v0.1.18-25 docs/karahan-v0118/WolfIdle-front.png --clobber
           gh release upload prototype-v0.1.18-25 docs/karahan-v0118/GUNCEL-RAPOR-TR.md --clobber
           gh release view prototype-v0.1.18-25 --json assets --jq '.assets[].name'
+
+  bilge-assets:
+    if: ${{ inputs.bilge_assets_only }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Package and verify Bilge character files
+        run: python tools/package_bilge_delivery.py
+      - name: Publish downloadable Bilge bundle
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release upload prototype-v0.1.18-25 dist/bilge-kagan-assets/Bilge-Kagan-Assets-v0.1.18.zip --clobber
+          gh release upload prototype-v0.1.18-25 dist/bilge-kagan-assets/OKU-BENI-TR.md --clobber
+          gh release upload prototype-v0.1.18-25 dist/bilge-kagan-assets/package-report.json --clobber

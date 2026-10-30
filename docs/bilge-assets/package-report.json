@@ -1,0 +1,16 @@
+{
+  "zip": "Bilge-Kagan-Assets-v0.1.18.zip",
+  "bytes": 138168434,
+  "sha256": "e5f556d30d21e7f2f6cdedb8d3c503e1924f845b9abb2b5f6442a83e9757b21a",
+  "files": 99,
+  "runtime_models": {
+    "bilge": {
+      "bytes": 21967476,
+      "sha256": "1b08c712bdbe96d9dd607da6a61c3dfd8b4ef3f2ab440d27a35369806354ef71"
+    },
+    "human-bilge": {
+      "bytes": 17465176,
+      "sha256": "754233f0a108e69cb3167f0b842936ce520b19a4ce17c7f57c451bcbd7b72e7a"
+    }
+  }
+}
