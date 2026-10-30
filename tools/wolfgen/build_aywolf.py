@@ -15,6 +15,18 @@ bi.ICE_MASK = lambda c: (c[..., 2] > .78) & (c[..., 0] > .5) & ((c[..., 2] - c[.
 if __name__ == '__main__':
     S, M = bi.make_mesh('/tmp/aywolf_prep.npz', '/tmp/aywolf_prep_tex.jpg')
     M.materials['Fur_icewolf']['emissive'] = [.5, .5, .5]
+    # braid physics chain (engine spring bones Hair1-3): the braid hangs from the right side of the head over the shoulder
+    S.add('Hair1', 'Head', (-.15, 1.62, .06)); S.add('Hair2', 'Hair1', (-.24, 1.45, .12)); S.add('Hair3', 'Hair2', (-.29, 1.28, .14))
+    P = np.asarray(M.P); h = [S.idx(n) for n in ('Head', 'Hair1', 'Hair2', 'Hair3')]
+    braid = ((P[:, 0] < -.17) & (P[:, 1] > 1.47) & (P[:, 1] < 1.66)) | ((P[:, 0] < -.265) & (P[:, 1] > 1.1) & (P[:, 1] <= 1.47) & (P[:, 2] > .04))
+    for i in np.where(braid)[0]:
+        y = P[i, 1]
+        if y > 1.56: w = [(h[0], .6), (h[1], .4)]
+        elif y > 1.45: k = (1.56 - y) / .11; w = [(h[1], 1 - .5 * k), (h[2], .5 * k)]
+        elif y > 1.28: k = (1.45 - y) / .17; w = [(h[2], 1 - .5 * k), (h[3], .5 * k)]
+        else: w = [(h[3], 1.0)]
+        M.J[i] = [b for b, _ in w] + [0] * (4 - len(w)); M.W[i] = [x for _, x in w] + [0] * (4 - len(w))
+    print('braid verts', int(braid.sum()))
     clips = {n: bi.bake(S, n) for n in bi.CLIPS}
     extras = dict(source_kind='new_ay', clawProfile='standard', previewHeight=1.85, run_stride_m=3.2, run_reference_speed_mps=8.0)
     write_glb('/tmp/aywolf_rigged.glb', S, M, clips, 'Body_ay', extras=extras)

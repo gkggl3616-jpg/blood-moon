@@ -53,19 +53,22 @@ with sync_playwright() as p:
  page.locator('#arenaRoll').click();page.wait_for_function('()=>arenaDebug.state().rollTime===0',timeout=40000)
  assert state()['position'][2]>=-11.84 and state()['targets'][1]['hp']==hp_cover,'roll crossed cover'
  page.evaluate('arenaDebug.place(0,5)')
+ def run_w():
+  page.keyboard.press('KeyW');page.wait_for_timeout(90);page.keyboard.down('KeyW')
  page.locator('#arenaTrial').select_option('legendary')
- page.locator('#moveForward').click(click_count=2,delay=70)
- page.wait_for_function('()=>arenaDebug.state().run',timeout=10000)
+ page.locator('#moveForward').click()
  rect=page.locator('#moveForward').bounding_box();page.mouse.move(rect['x']+rect['width']/2,rect['y']+rect['height']/2);page.mouse.down()
+ page.wait_for_function('()=>arenaDebug.state().run',timeout=10000)
  page.wait_for_function('()=>arenaDebug.state().motion==="WolfRunQuad"',timeout=10000);page.mouse.up()
  assert state()['input']=={'x':0,'y':0}
+ assert not state()['run'],'run mode must end when forward is released'
  # Real displacement/time, independent of the animation clip's playback rate.
- page.evaluate('arenaDebug.place(0,25)');page.keyboard.down('KeyW');page.wait_for_function('()=>arenaDebug.state().motion==="WolfRunQuad"')
+ page.evaluate('arenaDebug.place(0,25)');run_w();page.wait_for_function('()=>arenaDebug.state().motion==="WolfRunQuad"')
  measure_start=state();page.wait_for_function('(t)=>arenaDebug.state().time>t+.8',arg=measure_start['time']);measure_end=state();page.keyboard.up('KeyW')
  distance=measure_start['position'][2]-measure_end['position'][2];measured=distance/(measure_end['simulationTime']-measure_start['simulationTime']);wall_measured=distance/(measure_end['time']-measure_start['time']);assert abs(measured-8.4)<.01 and 8.0<wall_measured<8.8,(measured,wall_measured)
  (ROOT/'dist/run-speed.json').write_text(json.dumps({'measured_mps':measured,'wall_time_mps':wall_measured,'baseline_mps':8,'tattoo_speed_percent':5}))
  # A running jump keeps the run state and run cycle (the body just rises) and carries one horizontal speed.
- page.evaluate('arenaDebug.place(0,15)');page.keyboard.down('KeyW')
+ page.evaluate('arenaDebug.place(0,15)');run_w()
  page.wait_for_function('()=>arenaDebug.state().motion==="WolfRunQuad"',timeout=10000)
  jump_start=state()['position'];page.locator('#arenaJump').click()
  page.wait_for_function('()=>arenaDebug.state().position[1]>.3&&arenaDebug.state().motion==="WolfRunQuad"',timeout=10000)
@@ -77,9 +80,9 @@ with sync_playwright() as p:
  # The running flip attack is allowed from a run; it keeps the run mode and covers ~2.2m (dive, somersault, claw strike, landing slide).
  roll_start=state()['position'];page.locator('#arenaRoll').click();page.keyboard.up('KeyW')
  page.wait_for_function('()=>arenaDebug.state().rollTime===0',timeout=40000)
- assert state()['run'] and 1.6<state()['rollDistance']<2.9,(state()['run'],state()['rollDistance'])
+ assert 1.6<state()['rollDistance']<2.9,state()['rollDistance']
  # An airborne running wolf can also go into the same flip attack.
- page.evaluate('arenaDebug.place(0,15)');page.keyboard.down('KeyW');page.wait_for_function('()=>arenaDebug.state().motion==="WolfRunQuad"',timeout=10000)
+ page.evaluate('arenaDebug.place(0,15)');run_w();page.wait_for_function('()=>arenaDebug.state().motion==="WolfRunQuad"',timeout=10000)
  page.locator('#arenaJump').click();page.wait_for_function('()=>arenaDebug.state().position[1]>.25',timeout=10000)
  assert page.evaluate('arenaDebug.action("roll")')
  page.keyboard.up('KeyW');page.wait_for_function('()=>arenaDebug.state().rollTime===0&&arenaDebug.state().grounded',timeout=40000)
@@ -87,7 +90,7 @@ with sync_playwright() as p:
  page.wait_for_function('()=>arenaDebug.state().position[1]>.3',timeout=10000)
  page.wait_for_function('()=>arenaDebug.state().grounded',timeout=15000)
  assert state()['position'][2]<.5,'wolf did not jump forward'
- page.evaluate('arenaDebug.place(0,4)');page.evaluate('arenaDebug.action("run")');page.keyboard.down('KeyW')
+ page.evaluate('arenaDebug.place(0,4)');run_w()
  page.wait_for_function('()=>arenaDebug.state().motion==="WolfRunQuad"',timeout=10000)
  page.locator('#arenaRoarButton').click();roar_start=state()['position']
  page.wait_for_function('()=>arenaDebug.state().effects.particles>0',timeout=10000)

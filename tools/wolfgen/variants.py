@@ -56,8 +56,21 @@ def paint(kind, tex_path='/tmp/wolf_prep_tex.jpg', pm='/tmp/wolf_posmap.npz'):
         out = np.where(pants[..., None], pa, fur); out = np.where(claws[..., None], t * .35, out)
         moon = np.stack([.78 + .2 * L, .62 + .2 * L, 1.0 + 0 * L], -1)
         out = np.where(ice[..., None], moon * .85, out); em = np.where(ice[..., None], moon * .9, em)
+    elif kind == 'hell':
+        # charred black hide split by glowing lava fissures (hellgate wolf)
+        fur = np.stack([.05 + .10 * L ** 1.3, .045 + .08 * L ** 1.4, .045 + .07 * L ** 1.4], -1)
+        n3 = noise(L.shape, 3, 5)
+        ridge = (np.abs(n1 - .5) < .009 + .006 * n2) | (np.abs(n3 - .5) < .006)   # vein / crack network over the whole hide
+        crack = cov & ridge & ~pants
+        lava = np.stack([1.0 + 0 * L, .32 + .25 * n1, .05 + 0 * L], -1)
+        pa = np.stack([.07 * (.4 + .8 * L), .045 * (.4 + .8 * L), .04 * (.4 + .8 * L)], -1)
+        out = np.where(pants[..., None], pa, fur); out = np.where(crack[..., None], np.array([.32, .05, .02]) + 0 * out, out)
+        em = np.where(crack[..., None], lava * .45, em)
+        out = np.where(claws[..., None], np.array([.06, .04, .035]) + 0 * out, out)
+        hot = np.stack([1.0 + 0 * L, .45 + .3 * L, .1 + .1 * L], -1)
+        out = np.where(ice[..., None], hot * .9, out); em = np.where(ice[..., None], hot, em)
     else:  # king
-        fur = np.stack([.12 + .30 * L ** 1.2, .095 + .23 * L ** 1.25, .075 + .17 * L ** 1.3], -1) * (.9 + .15 * n2[..., None])
+        fur = np.stack([.16 + .30 * L ** 1.1, .13 + .25 * L ** 1.15, .11 + .19 * L ** 1.2], -1)   # gray-brown, like the sheet
         pa = np.stack([.12 * (.4 + .8 * L), .085 * (.4 + .8 * L), .07 * (.4 + .8 * L)], -1)
         out = np.where(pants[..., None], pa, fur)
         out = np.where(claws[..., None], t * .4, out)
@@ -72,11 +85,12 @@ def paint(kind, tex_path='/tmp/wolf_prep_tex.jpg', pm='/tmp/wolf_posmap.npz'):
         for a_, b_ in (((-.15, 1.42, .17), (.05, 1.22, .21)), ((.18, 1.40, .05), (.27, 1.22, .12)), ((-.2, .95, .1), (-.12, .72, .14)), ((.02, 1.38, .2), (.12, 1.30, .2))):
             sc |= cov & (seg_d(pos, a_, b_) < .007)
         out[sc] = out[sc] * .4 + np.array([.62, .5, .48]) * .6
-        crys = np.stack([.45 + .2 * L, .02 + .03 * L, .04 + .03 * L], -1)
-        out = np.where(ice[..., None], crys, out); em = np.where(ice[..., None], crys * .9, em)
+        crys = np.stack([.16 + .12 * L, .11 + .08 * L, .09 + .06 * L], -1)   # the shards become dark bone spurs
+        out = np.where(ice[..., None], crys, out); em = np.where(ice[..., None], np.array([.18, .02, .02]) * (.5 + .5 * L[..., None]), em)
     out = np.where(cov[..., None], out, t * .3); em = em * cov[..., None]   # keep unused texels dark (mip bleeding)
     for k, (cx, cy, s) in SWATCH.items():
-        col = {'horn': (.30, .25, .2), 'cape': (.06, .055, .055), 'capein': (.04, .035, .035), 'gold': (.55, .52, .45)}[k]
+        col = {'horn': (.30, .25, .2), 'cape': (.075, .07, .07), 'capein': (.05, .045, .045), 'gold': (.55, .52, .45)}[k]
+        if kind == 'hell' and k == 'horn': col = (.16, .12, .11); em[cy:cy + s, cx:cx + s] = (.35, .06, .02)   # spikes smoulder, flare on roar
         out[cy:cy + s, cx:cx + s] = col
     return (np.clip(out, 0, 1) * 255).astype(np.uint8), (np.clip(em, 0, 1) * 255).astype(np.uint8)
 

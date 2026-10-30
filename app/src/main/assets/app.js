@@ -4,7 +4,17 @@ const stage = $('stage');
 const viewport = $('viewport');
 const intro = $('intro');
 const modal = $('modal');
-const sounds = { click: new Audio('media/click.wav'), confirm: new Audio('media/enter.mp3'), back: new Audio('media/back.wav') };
+const sounds = { click: new Audio('media/click.wav'), confirm: new Audio('media/enter.mp3'), back: new Audio('media/back.wav'), roar: new Audio('media/roar.mp3') };
+let sfxCtx=null;
+function sfx(type){try{sfxCtx=sfxCtx||new (window.AudioContext||window.webkitAudioContext)();const c=sfxCtx,t0=c.currentTime,out=c.createGain();out.gain.value=volume*.9;out.connect(c.destination);
+ const noise=(at,dur,freq,q,gain)=>{const n=c.createBuffer(1,Math.ceil(c.sampleRate*dur),c.sampleRate),d=n.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/d.length,3);const src=c.createBufferSource();src.buffer=n;const f=c.createBiquadFilter();f.type='bandpass';f.frequency.value=freq;f.Q.value=q;const g=c.createGain();g.gain.value=gain;src.connect(f);f.connect(g);g.connect(out);src.start(t0+at)};
+ const tick=(at,freq,dur,gain)=>{const o=c.createOscillator(),g=c.createGain();o.type='square';o.frequency.setValueAtTime(freq,t0+at);o.frequency.exponentialRampToValueAtTime(freq*.45,t0+at+dur);g.gain.setValueAtTime(gain,t0+at);g.gain.exponentialRampToValueAtTime(.001,t0+at+dur);o.connect(g);g.connect(out);o.start(t0+at);o.stop(t0+at+dur+.02)};
+ if(type==='magOut'){noise(0,.06,2600,3,.9);tick(0,900,.05,.18);noise(.07,.18,700,1.2,.35)}
+ else if(type==='magIn'){noise(0,.05,1800,2,.8);tick(.0,520,.06,.25);noise(.05,.07,3200,4,.7);tick(.06,1300,.03,.15)}
+ else if(type==='charge'){noise(0,.09,1500,1.5,.7);tick(.02,700,.05,.2);noise(.13,.06,2800,3,.9);tick(.14,1100,.04,.22)}
+ else if(type==='swap'){noise(0,.12,900,1,.35);tick(.05,600,.05,.12)}
+}catch(_){}}
+
 let audioEnabled = true;
 let volume = 0.65;
 let lookSensitivity = 1.45, graphicsQuality = "sharp";
@@ -29,7 +39,7 @@ fit();
 function saveSettings() { try { localStorage.setItem('rogue-settings', JSON.stringify({ audio: audioEnabled, volume, lookSensitivity, graphicsQuality })); } catch (_) {} updateSound(); }
 window.getRoguePreferences = () => ({ lookSensitivity, graphicsQuality });
 function updateSound() { $('openingSound').textContent = audioEnabled ? 'SES AÇIK' : 'SES KAPALI'; intro.muted = !audioEnabled; intro.volume = volume; }
-function playSound(type = 'click') { if (!audioEnabled || document.hidden) return; const a = sounds[type]; if (!a) return; a.volume = volume; a.currentTime = 0; a.play().catch(() => {}); }
+function playSound(type = 'click') { if (!audioEnabled || document.hidden) return; if(['magOut','magIn','charge','swap'].includes(type))return sfx(type); const a = sounds[type]; if (!a) return; a.volume = volume; a.currentTime = 0; a.play().catch(() => {}); }
 function screen(name) { if(name!=='arena')window.stopArena?.(); if(name!=='wolfGear'&&name!=='collection')window.stopWolfMotion?.(); if (name !== 'opening') { intro.pause(); intro.classList.remove('playing'); } for (const el of document.querySelectorAll('.screen')) { const active = el.id === name; el.classList.toggle('active', active); el.inert = !active; } currentScreen = name; }
 function toast(text) { $('toast').textContent = text; $('toast').classList.add('show'); clearTimeout(toastTimer); toastTimer = setTimeout(() => $('toast').classList.remove('show'), 3500); }
 function showModal(title, html, label = 'ROGUE: BLOOD MOON') { modal.classList.remove('events-modal','settings-modal'); $('modalTitle').textContent = title; $('modalBody').innerHTML = html; $('modalLabel').textContent = label; document.getElementById(currentScreen).inert = true; modal.hidden = false; modal.open = true; modal.setAttribute('open', ''); $('closeModal').focus(); }
