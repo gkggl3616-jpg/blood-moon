@@ -37,12 +37,16 @@ def build(kind, out, scale_note):
     n_body = len(M.P)
     if kind == 'king':
         head = S.idx('Head'); horn_uv = swatch_uv('horn', size)
+        Pb = np.asarray(M.P[:n_body])
         for sx in (1, -1):
-            # ram horn: rises from the temple, curls back, down and forward around the ear
+            # ram horn: rises from the temple, curls back, down and forward around the ear.
+            # Its root is seated 2 cm into the skull surface measured under it, so it never floats.
+            sel = (np.abs(Pb[:, 0] - sx * .075) < .035) & (np.abs(Pb[:, 2] - .05) < .035) & (Pb[:, 1] > 1.5)
+            seat = (Pb[sel, 1].max() - .02 - 1.85) if sel.any() else 0.0
             pts = []
             for i in range(16):
                 t = i / 15; th = math.pi * 1.55 * t; R = .085 * (1 - .4 * t)
-                pts.append((sx * (.075 + .085 * t), 1.745 + R * math.cos(th) + .02 * (1 - t), .05 - R * math.sin(th) - .04 * t))
+                pts.append((sx * (.075 + .085 * t), 1.745 + seat + R * math.cos(th) + .02 * (1 - t), .05 - R * math.sin(th) - .04 * t))
             tube(M, pts, .046, .01, horn_uv, [(head, 1.0)], sides=10)
         # cape bones (Chest -> Cape1 -> Cape2 -> Cape3)
         S.add('Cape1', 'Chest', (0, 1.38, -.17)); S.add('Cape2', 'Cape1', (0, 1.12, -.21)); S.add('Cape3', 'Cape2', (0, .88, -.23))

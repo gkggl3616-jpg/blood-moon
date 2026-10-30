@@ -31,8 +31,9 @@ def local(n, ov=None):
     M[:3, :3] = quat_mat(r) * np.array(s); M[:3, 3] = t; return M
 
 
+PER = {}
 def check(path):
-    g, acc = load(path); nodes = g['nodes']; parent = {c: i for i, n in enumerate(nodes) for c in n.get('children', [])}
+    PER.clear(); g, acc = load(path); nodes = g['nodes']; parent = {c: i for i, n in enumerate(nodes) for c in n.get('children', [])}
     skin = g['skins'][0]; joints = skin['joints']; ibm = acc(skin['inverseBindMatrices']).reshape(-1, 4, 4).transpose(0, 2, 1)
     worst = (0, 0, '', 0)
     for mi, n in enumerate(nodes):
@@ -65,6 +66,7 @@ def check(path):
                     if bad.any():
                         k = int(np.argmax(np.where(bad, L - L0, 0)))
                         if L[k] - L0[k] > worst[0]: worst = (float(L[k] - L0[k]), int(bad.sum()), an['name'], f)
+                        PER[an['name']] = max(PER.get(an['name'], 0), float(L[k] - L0[k]))
     return worst
 
 
@@ -73,7 +75,7 @@ if __name__ == '__main__':
     failed = []
     for f in files:
         w = check(f); ok = w[1] == 0
-        print(('OK   ' if ok else 'FAIL ') + f.name + ('' if ok else f'  {w[1]} stretched edges, worst +{w[0]:.2f} m in {w[2]} frame {w[3]}'))
+        print(('OK   ' if ok else 'FAIL ') + f.name + ('' if ok else f'  {w[1]} stretched edges, worst +{w[0]:.2f} m in {w[2]} frame {w[3]}; clips: ' + ', '.join(f'{k} +{v:.2f}' for k, v in PER.items())))
         if not ok: failed.append(f.name)
     if failed: raise SystemExit('stretched triangles in: ' + ', '.join(failed))
     print('PASS: no stretched triangles in any clip')

@@ -6,7 +6,9 @@ const intro = $('intro');
 const modal = $('modal');
 const sounds = { click: new Audio('media/click.wav'), confirm: new Audio('media/enter.mp3'), back: new Audio('media/back.wav'), roar: new Audio('media/roar.mp3') };
 let sfxCtx=null;
-function sfx(type){try{sfxCtx=sfxCtx||new (window.AudioContext||window.webkitAudioContext)();const c=sfxCtx,t0=c.currentTime,out=c.createGain();out.gain.value=volume*.9;out.connect(c.destination);
+function sfxUnlock(){try{sfxCtx=sfxCtx||new (window.AudioContext||window.webkitAudioContext)();if(sfxCtx.state!=='running')sfxCtx.resume();}catch(_){}}
+['pointerdown','touchstart','keydown'].forEach(e=>window.addEventListener(e,sfxUnlock,{capture:true,passive:true}));
+function sfx(type){try{sfxUnlock();const c=sfxCtx,t0=c.currentTime,out=c.createGain();out.gain.value=volume*.9;out.connect(c.destination);
  const noise=(at,dur,freq,q,gain)=>{const n=c.createBuffer(1,Math.ceil(c.sampleRate*dur),c.sampleRate),d=n.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/d.length,3);const src=c.createBufferSource();src.buffer=n;const f=c.createBiquadFilter();f.type='bandpass';f.frequency.value=freq;f.Q.value=q;const g=c.createGain();g.gain.value=gain;src.connect(f);f.connect(g);g.connect(out);src.start(t0+at)};
  const tick=(at,freq,dur,gain)=>{const o=c.createOscillator(),g=c.createGain();o.type='square';o.frequency.setValueAtTime(freq,t0+at);o.frequency.exponentialRampToValueAtTime(freq*.45,t0+at+dur);g.gain.setValueAtTime(gain,t0+at);g.gain.exponentialRampToValueAtTime(.001,t0+at+dur);o.connect(g);g.connect(out);o.start(t0+at);o.stop(t0+at+dur+.02)};
  if(type==='magOut'){noise(0,.06,2600,3,.9);tick(0,900,.05,.18);noise(.07,.18,700,1.2,.35)}
