@@ -17,3 +17,8 @@ art/3d/*.log
 tools/signing-cache/
 
 art/3d/*-mobile.blend
+
+# Godot decoy imports and local texture working copies
+*.import
+art/3d/approved-source/
+art/3d/textures/
