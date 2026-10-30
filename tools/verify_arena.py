@@ -56,8 +56,8 @@ with sync_playwright() as p:
  def run_w():
   page.keyboard.press('KeyW');page.wait_for_timeout(90);page.keyboard.down('KeyW')
  page.locator('#arenaTrial').select_option('legendary')
- page.locator('#moveForward').click()
- rect=page.locator('#moveForward').bounding_box();page.mouse.move(rect['x']+rect['width']/2,rect['y']+rect['height']/2);page.mouse.down()
+ rect=page.locator('#moveForward').bounding_box();page.mouse.move(rect['x']+rect['width']/2,rect['y']+rect['height']/2)
+ page.mouse.down();page.mouse.up();page.mouse.down()   # double tap, second press held
  page.wait_for_function('()=>arenaDebug.state().run',timeout=10000)
  page.wait_for_function('()=>arenaDebug.state().motion==="WolfRunQuad"',timeout=10000);page.mouse.up()
  assert state()['input']=={'x':0,'y':0}
