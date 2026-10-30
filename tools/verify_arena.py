@@ -131,7 +131,7 @@ with sync_playwright() as p:
  hd.locator('#closeModal').click();hd.locator('#join').click()
  hd.wait_for_function('()=>rogueEngineInfo().quality==="balanced"&&rogueEngineInfo().pixelRatio<3',timeout=15000)
  assert hd.evaluate('rogueEngineInfo().buffer.reduce((a,b)=>a*b)')<=2001000
- hd.reload();hd.locator('#skipIntro').click()
+ hd.reload();hd.wait_for_function('()=>document.querySelector("#lobby.active")||document.getElementById("skipIntro")?.offsetParent',timeout=30000);hd.evaluate('()=>{const b=document.getElementById("skipIntro");if(b&&b.offsetParent)b.click()}')
  assert hd.evaluate('getRoguePreferences()')=={'lookSensitivity':1.8,'graphicsQuality':'balanced'}
  hd.close()
  assert not errors,errors
