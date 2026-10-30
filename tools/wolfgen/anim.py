@@ -52,18 +52,18 @@ def walk(t):
 def run_quad(t):
     """Wolf gallop: forelegs reach and plant (hand on ground), hind legs push; hand height solved in bake()."""
     p = {}; ph = t * TAU
-    H, S_, C_ = 62 + 5 * math.sin(2 * ph), 26 + 5 * math.sin(2 * ph + .8), 12
+    H, S_, C_ = 58 + 5 * math.sin(2 * ph), 24 + 8 * math.sin(2 * ph + .8), 14 - 6 * math.sin(2 * ph + .8)
     add(p, 'Hips', H); add(p, 'Spine', S_); add(p, 'Chest', C_)
     add(p, 'Neck', -(H + S_ + C_) * .66 - 4 * math.sin(2 * ph)); add(p, 'Head', -8)
     tilt = H + S_ + C_
     for s, L, da, dl in ((1, 'L', 0.0, math.pi), (-1, 'R', .55, math.pi + .55)):
         sa = math.sin(ph + da)
-        add(p, 'UpperArm' + L, -(tilt) - 36 * sa + 6, 0, -s * 3)       # reach forward / pull back
+        add(p, 'UpperArm' + L, -(tilt) - 34 * sa - 14, 0, -s * 3)       # reach forward / pull back
         add(p, 'Hand' + L, 12 * sa - 4)
         sl = math.sin(ph + dl)
-        th = -H - 34 * sl - 8; sh = 30 + 46 * max(0.0, -math.sin(ph + dl + .7))
+        th = -H - 46 - 34 * sl; sh = 62 + 50 * max(0.0, -math.sin(ph + dl + .7))
         add(p, 'Thigh' + L, th); add(p, 'Shin' + L, sh); add(p, 'Foot' + L, -(H + th + sh) + 18 * sl)
-    add(p, 'Tail1', 6, 0, 5 * math.sin(ph)); add(p, 'Tail2', 6, 0, 10 * math.sin(ph - .7)); add(p, 'Tail3', 8, 0, 14 * math.sin(ph - 1.4))
+    add(p, 'Tail1', -22, 0, 5 * math.sin(ph)); add(p, 'Tail2', -8, 0, 10 * math.sin(ph - .7)); add(p, 'Tail3', -4, 0, 14 * math.sin(ph - 1.4))
     return p, 'quad'
 
 
