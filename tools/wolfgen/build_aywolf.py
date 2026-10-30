@@ -15,6 +15,7 @@ bi.ICE_MASK = lambda c: (c[..., 2] > .78) & (c[..., 0] > .5) & ((c[..., 2] - c[.
 if __name__ == '__main__':
     S, M = bi.make_mesh('/tmp/aywolf_prep.npz', '/tmp/aywolf_prep_tex.jpg')
     M.materials['Fur_icewolf']['emissive'] = [.5, .5, .5]
+    from core import attach_detail_maps; attach_detail_maps(M, '/tmp/aywolf_prep')
     # braid physics chain (engine spring bones Hair1-3): the braid hangs from the right side of the head over the shoulder
     S.add('Hair1', 'Head', (-.15, 1.62, .06)); S.add('Hair2', 'Hair1', (-.24, 1.45, .12)); S.add('Hair3', 'Hair2', (-.29, 1.28, .14))
     P = np.asarray(M.P); h = [S.idx(n) for n in ('Head', 'Hair1', 'Hair2', 'Hair3')]

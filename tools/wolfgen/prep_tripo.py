@@ -35,6 +35,8 @@ def prep(src, out, height, cell):
     Nn = np.zeros_like(Q); [np.add.at(Nn, Tn[:, k], fn) for k in range(3)]; Nn /= np.linalg.norm(Nn, axis=1, keepdims=True) + 1e-12
     np.savez(out, P=Q, N=Nn, UV=U, T=Tn)
     tex.convert('RGB').resize((1024, 1024), Image.LANCZOS).save(out.replace('.npz', '_tex.jpg'), quality=90)
+    for key, im in getattr(load_glb, 'extra', {}).items():   # keep the surface detail maps (fur/muscle relief, roughness)
+        im.resize((1024, 1024), Image.LANCZOS).save(out.replace('.npz', '_' + key + '.jpg'), quality=92)
     print(out, 'verts', len(Q), 'tris', len(Tn), 'bbox', Q.min(0).round(2), Q.max(0).round(2))
 
 

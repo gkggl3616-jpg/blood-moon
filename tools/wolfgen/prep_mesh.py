@@ -18,6 +18,13 @@ def load_glb(path):
     pr = j['meshes'][0]['primitives'][0]; at = pr['attributes']
     v = j['bufferViews'][j['images'][0]['bufferView']]
     tex = Image.open(io.BytesIO(bin_[v.get('byteOffset', 0):v.get('byteOffset', 0) + v['byteLength']])).convert('RGB')
+    extra = {}
+    mat = j['materials'][pr.get('material', 0)]
+    for key, ref in (('normal', mat.get('normalTexture')), ('mr', mat.get('pbrMetallicRoughness', {}).get('metallicRoughnessTexture'))):
+        if ref is None: continue
+        vv = j['bufferViews'][j['images'][j['textures'][ref['index']]['source']]['bufferView']]
+        extra[key] = Image.open(io.BytesIO(bin_[vv.get('byteOffset', 0):vv.get('byteOffset', 0) + vv['byteLength']])).convert('RGB')
+    load_glb.extra = extra
     return acc(at['POSITION']).astype(float), acc(at['NORMAL']).astype(float), acc(at['TEXCOORD_0']).astype(float), acc(pr['indices']).reshape(-1, 3).astype(int), tex
 
 
