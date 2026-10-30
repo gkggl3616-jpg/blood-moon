@@ -32,7 +32,12 @@ def paint(kind, tex_path='/tmp/wolf_prep_tex.jpg', pm='/tmp/wolf_posmap.npz'):
         fur = fur + heat[..., None] * np.array([.25, .05, .0]) * (.4 + .6 * n1[..., None])
         pa = np.stack([.24 * (.35 + .75 * L), .045 * (.4 + .7 * L), .07 * (.4 + .7 * L)], -1)
         out = np.where(pants[..., None], pa, fur)
-        out = np.where(claws[..., None], t * .45, out)
+        # crimson mane: head/neck crest, a stripe down the spine and the tail, like the design sheet
+        mane = cov & (((y > 1.56) & (z < .06) & (n1 > .3)) | ((np.abs(x) < .035) & (z < -.08) & (y > 1.05) & (y < 1.58)) | ((z < -.12) & (y < .72) & (np.abs(x) < .16) & (n1 > .25)))
+        mc = np.stack([.26 + .26 * L, .025 + .04 * L, .035 + .04 * L], -1) * (.6 + .5 * n1[..., None])
+        out = np.where(mane[..., None], mc, out)
+        out = np.where(claws[..., None], np.array([.55, .12, .03]) * (.6 + .4 * n1[..., None]), out)
+        em = em + (claws & cov)[..., None] * np.array([.35, .07, .0])
         ember = np.stack([1.0 * np.ones_like(L), .38 + .35 * L, .08 + .1 * L], -1)
         out = np.where(ice[..., None], ember * .9, out); em = np.where(ice[..., None], ember, em)
         em = em + (heat * (n1 > .55))[..., None] * np.array([.6, .16, .02])
@@ -44,7 +49,7 @@ def paint(kind, tex_path='/tmp/wolf_prep_tex.jpg', pm='/tmp/wolf_posmap.npz'):
             sc |= cov & (dd < .010 + .004 * (1 - abs(k - 1))) & (z > .08) & (np.abs(x) < .2)
         out[sc] = [.55, .03, .03]; em[sc] = [.9, .12, .04]
     else:  # king
-        fur = np.stack([.07 + .22 * L ** 1.2, .065 + .19 * L ** 1.25, .065 + .175 * L ** 1.3], -1) * (.85 + .3 * n2[..., None])
+        fur = np.stack([.12 + .30 * L ** 1.2, .095 + .23 * L ** 1.25, .075 + .17 * L ** 1.3], -1) * (.8 + .35 * n2[..., None])
         pa = np.stack([.12 * (.4 + .8 * L), .085 * (.4 + .8 * L), .07 * (.4 + .8 * L)], -1)
         out = np.where(pants[..., None], pa, fur)
         out = np.where(claws[..., None], t * .4, out)
@@ -61,9 +66,9 @@ def paint(kind, tex_path='/tmp/wolf_prep_tex.jpg', pm='/tmp/wolf_posmap.npz'):
         out[sc] = out[sc] * .4 + np.array([.62, .5, .48]) * .6
         crys = np.stack([.45 + .2 * L, .02 + .03 * L, .04 + .03 * L], -1)
         out = np.where(ice[..., None], crys, out); em = np.where(ice[..., None], crys * .9, em)
-    out = np.where(cov[..., None], out, t * .3)   # keep unused texels dark (mip bleeding)
+    out = np.where(cov[..., None], out, t * .3); em = em * cov[..., None]   # keep unused texels dark (mip bleeding)
     for k, (cx, cy, s) in SWATCH.items():
-        col = {'horn': (.16, .13, .11), 'cape': (.30, .03, .04), 'capein': (.12, .02, .03), 'gold': (.62, .46, .16)}[k]
+        col = {'horn': (.10, .085, .075), 'cape': (.06, .055, .055), 'capein': (.04, .035, .035), 'gold': (.55, .52, .45)}[k]
         out[cy:cy + s, cx:cx + s] = col
     return (np.clip(out, 0, 1) * 255).astype(np.uint8), (np.clip(em, 0, 1) * 255).astype(np.uint8)
 

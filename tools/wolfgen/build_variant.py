@@ -37,8 +37,12 @@ def build(kind, out, scale_note):
     if kind == 'king':
         head = S.idx('Head'); horn_uv = swatch_uv('horn', size)
         for sx in (1, -1):
-            pts = [(sx * .065, 1.73, .11), (sx * .11, 1.81, .09), (sx * .16, 1.88, .04), (sx * .19, 1.92, -.04), (sx * .19, 1.93, -.12), (sx * .16, 1.91, -.18)]
-            tube(M, pts, .034, .004, horn_uv, [(head, 1.0)])
+            # ram horn: rises from the temple, curls back, down and forward around the ear
+            pts = []
+            for i in range(16):
+                t = i / 15; th = math.pi * 1.55 * t; R = .085 * (1 - .4 * t)
+                pts.append((sx * (.075 + .085 * t), 1.745 + R * math.cos(th) + .02 * (1 - t), .05 - R * math.sin(th) - .04 * t))
+            tube(M, pts, .036, .008, horn_uv, [(head, 1.0)], sides=10)
         # cape bones (Chest -> Cape1 -> Cape2 -> Cape3)
         S.add('Cape1', 'Chest', (0, 1.40, -.19)); S.add('Cape2', 'Cape1', (0, 1.08, -.27)); S.add('Cape3', 'Cape2', (0, .76, -.35))
         ch, c1, c2, c3 = (S.idx(n) for n in ('Chest', 'Cape1', 'Cape2', 'Cape3'))
@@ -57,6 +61,9 @@ def build(kind, out, scale_note):
         for r in range(rows):
             for c in range(cols):
                 a = base + r * (cols + 1) + c; b_ = a + 1; d = a + cols + 1; e = d + 1
+                rnd = (r * 7 + c * 13) % 11
+                if r >= rows - 2 and (c * 5 + r) % 3 == 0: continue          # ragged hem
+                if 3 <= r < rows - 2 and rnd == 4: continue                   # moth-eaten holes
                 M.tris += [[a, d, b_, M.tris[0][3]], [b_, d, e, M.tris[0][3]]]
     if M._uv: M.UV = np.concatenate([np.asarray(M.UV), np.asarray(M._uv)], 0)
     clips = {n: bake(S, n) for n in CLIPS}
