@@ -73,9 +73,17 @@ def check(path):
 if __name__ == '__main__':
     files = [Path(a) for a in sys.argv[1:]] or sorted(MODELS.glob('*.glb'))
     failed = []
+    sys.path.insert(0, str(ROOT / 'tools' / 'meshy'))
+    SRC = ROOT / 'art/3d/meshy/source'; MAX_HOLE = .03   # m^2: an open loop larger than this is a see-through hole
     for f in files:
+        src = SRC / f.name.replace('_meshy', '')
+        if src.exists():
+            from holes import new_holes
+            n_open, areas = new_holes(str(f), str(src))
+            if areas and areas[0] > MAX_HOLE:
+                print(f'FAIL {f.name}  new hole in the surface: {areas[0] * 1e4:.0f} cm2 (limit {MAX_HOLE * 1e4:.0f})'); failed.append(f.name); continue
         w = check(f); ok = w[1] == 0
         print(('OK   ' if ok else 'FAIL ') + f.name + ('' if ok else f'  {w[1]} stretched edges, worst +{w[0]:.2f} m in {w[2]} frame {w[3]}; clips: ' + ', '.join(f'{k} +{v:.2f}' for k, v in PER.items())))
         if not ok: failed.append(f.name)
-    if failed: raise SystemExit('stretched triangles in: ' + ', '.join(failed))
+    if failed: raise SystemExit('model checks failed (stretched triangles or holes): ' + ', '.join(failed))
     print('PASS: no stretched triangles in any clip')

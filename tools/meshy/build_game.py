@@ -36,7 +36,7 @@ def parents(nodes):
 def skinned_mesh(g, ni):
     n = g.j['nodes'][ni]; pr = g.j['meshes'][n['mesh']]['primitives'][0]; A = pr['attributes']
     return pr, A
-def build(old_path, rig_path, anim_specs, out_path, transfer=(), scale_wrap=None, report=print, rigid=('Head',), destretch_skip=(), fp_arms=False):
+def build(old_path, rig_path, anim_specs, out_path, transfer=(), scale_wrap=None, report=print, rigid=('Head',), destretch_skip=(), fp_arms=False, old_from=None):
     old = GLB(old_path); mr = GLB(rig_path); Wo, _ = old.node_world(); Wm, _ = mr.node_world()
     on = old.j['nodes']; oname = {n.get('name'): i for i, n in enumerate(on)}
     k = scale_wrap if scale_wrap is not None else (on[oname['WolfScale']]['scale'][0] if 'WolfScale' in oname else 1.0)
@@ -137,6 +137,22 @@ def build(old_path, rig_path, anim_specs, out_path, transfer=(), scale_wrap=None
             for v in range(len(P)):
                 if nm_[v] in extras: Eo[v, joint_names.index(nm_[v])] += Wto[v, c]
         e = Eo.sum(1, keepdims=True); Wd = Wd / (Wd.sum(1, keepdims=True) + 1e-9) * (1 - np.clip(e, 0, 1)) + Eo
+        # cloth / tail / hair vertices: their body share comes only from torso bones (Meshy only knows a humanoid and
+        # would otherwise hang a cape corner or tail tip on an arm or a leg)
+        limb = np.array([bool(re.match(r'^(UpperArm|Forearm|Hand|Fingers|Thigh|Shin|Foot|Toe)', x)) for x in joint_names])
+        exv = e[:, 0] > 1e-3
+        if exv.any():
+            Mt = Wd[exv].copy(); Mt[:, limb] = 0; Mt[:, [joint_names.index(x) for x in extras]] = 0
+            z = Mt.sum(1) < 1e-6; Mt[z, joint_names.index('Hips')] = 1
+            Mt /= Mt.sum(1, keepdims=True); Wd[exv] = Mt * (1 - np.clip(e[exv], 0, 1)) + Eo[exv]
+        # hand-built attachments appended after the generated body (King's horns + cloak) keep their tuned old weights
+        if old_from is not None and len(P) > old_from:
+            Om = np.zeros((len(P) - old_from, nJ))
+            for c in range(4):
+                for q, v in enumerate(range(old_from, len(P))):
+                    nm_ = ojnames[Jo[v, c]]; nm_ = 'Hips' if nm_ == 'Root' else nm_
+                    if Wto[v, c] > 0 and nm_ in joint_names: Om[q, joint_names.index(nm_)] += Wto[v, c]
+            Wd[old_from:] = Om / (Om.sum(1, keepdims=True) + 1e-9)
         # rigid attachments (horns, skull plates) that were 100% on one bone stay 100% on that bone
         for bn in rigid:
             if bn not in ojnames or bn not in joint_names: continue
@@ -158,12 +174,14 @@ def build(old_path, rig_path, anim_specs, out_path, transfer=(), scale_wrap=None
             if re.match(r'^(Thigh|Shin|Foot|Toe)', nm_): grp[q] = 3 if nm_.endswith('L') else 4
         armw = np.stack([Wd[:, grp == g_].sum(1) for g_ in (1, 2, 3, 4)], 1)
         dom = np.where(armw.max(1) > .15, armw.argmax(1) + 1, 0)
+        exw = Wd[:, [joint_names.index(x) for x in extras]].sum(1) if extras else np.zeros(len(Wd)); dom[exw > .3] = 0   # cloth/tail follow their own bones
         G = dom[I_]; arm_ = (G == 1) | (G == 2); leg_ = (G == 3) | (G == 4); lr_ = (G == 1) | (G == 3)
         bridge = (arm_.any(1) & leg_.any(1)) | ((G == 1).any(1) & (G == 2).any(1))
-        if bridge.any(): report('  %s: dropped %d arm-leg bridging triangles' % (n['name'], bridge.sum()))
-        idx_keep = I_[~bridge].reshape(-1)
+        caps = cap_holes(I_[~bridge], I_, dom, weld_ids(Pw)) if bridge.any() else np.zeros((0, 3), np.int64)
+        if bridge.any(): report('  %s: split %d arm-leg bridging triangles, closed both sides with %d cap triangles' % (n['name'], bridge.sum(), len(caps)))
+        idx_keep = np.concatenate([I_[~bridge], caps]).reshape(-1)
         out_meshes.append(dict(name=n['name'], extras=n.get('extras'), P=Pw.astype(np.float32), N=(Nw / (np.linalg.norm(Nw, axis=1, keepdims=True) + 1e-9)).astype(np.float32),
-                               UV=old.acc(A['TEXCOORD_0']).astype(np.float32), I=idx_keep.astype(np.uint32), J=top.astype(np.uint16), W=tw.astype(np.float32), mat=pr.get('material', 0), Wd=Wd))
+                               UV=old.acc(A['TEXCOORD_0']).astype(np.float32), I=idx_keep.astype(np.uint32), J=top.astype(np.uint16), W=tw.astype(np.float32), mat=pr.get('material', 0), Wd=Wd, ncap=len(caps)))
     IB = [np.linalg.inv(Wn[j]) for j in jidx]
     # ---------- animations ----------
     clips = []
@@ -224,6 +242,46 @@ def build(old_path, rig_path, anim_specs, out_path, transfer=(), scale_wrap=None
     nodes, clips, IB = normalize(nodes, clips, jidx, k)
     write(out_path, old, nodes, jidx, IB, out_meshes, clips)
     return dict(nodes=nodes, joints=joint_names)
+def open_edges(T):
+    """Directed edges of triangles T that have no opposite edge (boundary of the surface)."""
+    d = {}
+    for a, b, c in T:
+        for u, v in ((a, b), (b, c), (c, a)): d[(u, v)] = d.get((u, v), 0) + 1
+    return [(u, v) for (u, v) in d if (v, u) not in d]
+def weld_ids(P):
+    """Vertices split along UV seams share a position: give every vertex the id of its first twin."""
+    key = np.round(np.asarray(P, float) / 1e-5).astype(np.int64)
+    _, first, inv = np.unique(key, axis=0, return_index=True, return_inverse=True)
+    return first[inv.reshape(-1)]
+def cap_holes(kept, full, dom, wid=None):
+    """Close the holes left where arm-leg bridging triangles were removed. Each new boundary loop is split into its
+    arm run and its body/leg run and each run is closed on its own with a fan, so neither side stays open."""
+    if wid is not None: kept, full = wid[kept], wid[full]
+    old_open = set(open_edges(full)); new_open = [e for e in open_edges(kept) if e not in old_open]
+    nxt = {}
+    for u, v in new_open: nxt.setdefault(u, []).append(v)
+    used = set(); caps = []
+    side = lambda v: int(dom[v])
+    for u0, v0 in new_open:
+        if (u0, v0) in used: continue
+        loop = [u0]; cur = v0; used.add((u0, v0)); guard = 0
+        while cur != u0 and guard < 5000:
+            loop.append(cur); cand = [w for w in nxt.get(cur, []) if (cur, w) not in used]
+            if not cand: break
+            used.add((cur, cand[0])); cur = cand[0]; guard += 1
+        if len(loop) < 3: continue
+        lab = [side(v) for v in loop]
+        if len(set(lab)) == 1: runs = [loop]
+        else:   # rotate so a run starts at index 0, then cut into same-side runs
+            k = next(i for i in range(len(loop)) if lab[i] != lab[i - 1]); loop = loop[k:] + loop[:k]; lab = lab[k:] + lab[:k]
+            runs = []; cur_run = [loop[0]]
+            for v, l, lp in zip(loop[1:], lab[1:], lab[:-1]):
+                if l == lp: cur_run.append(v)
+                else: runs.append(cur_run); cur_run = [v]
+            runs.append(cur_run)
+        for r in runs:
+            for i in range(1, len(r) - 1): caps.append((r[0], r[i + 1], r[i]))   # opposite winding to the open edges
+    return np.array(caps, np.int64).reshape(-1, 3)
 def clip_over(chans, t):
     from glbio import _slerp
     over = {}
@@ -233,7 +291,7 @@ def clip_over(chans, t):
         val = _slerp(v[i].astype(float), v[j2].astype(float), f) if pth == 'rotation' else v[i] * (1 - f) + v[j2] * f
         over.setdefault(node, {})[pth] = np.asarray(val, float)
     return over
-def destretch(m, nodes, clips, jidx, IB, report, frames=14, ratio=2.4, absm=.12, rounds=60, skip_clips=()):
+def destretch(m, nodes, clips, jidx, IB, report, frames=14, ratio=2.4, absm=.12, rounds=160, skip_clips=()):
     """Anti-stretch pass on the final weights: sample every clip, find edges that grow too long, and pull the weights of
     both end vertices (and their 1-ring) toward each other until no edge tears. Same idea as tools/wolfgen fix_stretch."""
     P = m['P'].astype(float); I = m['I'].reshape(-1, 3); Wd = m['Wd'].copy(); nJ = Wd.shape[1]
@@ -256,6 +314,10 @@ def destretch(m, nodes, clips, jidx, IB, report, frames=14, ratio=2.4, absm=.12,
             if bad.any(): worst = max(worst, float((L - L0)[bad].max())); badv.update(E[bad].reshape(-1).tolist())
         if not badv:
             report('  %s: no stretched edges after %d anti-stretch rounds' % (m['name'], r)); break
+        if r >= 20:   # persistent tears: weld the weights of both ends of every still-stretched edge
+            for X in poses:
+                Q = np.einsum('nj,jna->na', Wd, X); L = np.linalg.norm(Q[E[:, 0]] - Q[E[:, 1]], axis=1)
+                for a, b in E[(L > L0 * ratio) & (L - L0 > absm)]: avg = .5 * (Wd[a] + Wd[b]); Wd[a] = avg; Wd[b] = avg
         bv = np.array(sorted(badv)); ring = set(bv.tolist())
         for v in bv: ring.update(nb[v])
         ring = np.array(sorted(ring)); newW = Wd.copy()
@@ -266,6 +328,18 @@ def destretch(m, nodes, clips, jidx, IB, report, frames=14, ratio=2.4, absm=.12,
         if r % 10 == 0: report('  %s: anti-stretch round %d, %d vertices, worst +%.2f m' % (m['name'], r, len(bv), worst))
     else:
         report('  %s: WARNING stretched edges remain (worst +%.2f m)' % (m['name'], worst))
+        # a hole-cap triangle that spans a bending joint cannot be smoothed: drop just those caps
+        nc = m.get('ncap', 0)
+        if nc:
+            badE = set()
+            for X in poses:
+                Q = np.einsum('nj,jna->na', Wd, X); L = np.linalg.norm(Q[E[:, 0]] - Q[E[:, 1]], axis=1)
+                for a, b in E[(L > L0 * ratio) & (L - L0 > absm)]: badE.add((a, b))
+            T = m['I'].reshape(-1, 3); capT = T[-nc:]
+            drop = np.array([any(tuple(sorted(x)) in badE for x in ((t[0], t[1]), (t[1], t[2]), (t[2], t[0]))) for t in capT])
+            if drop.any():
+                m['I'] = np.concatenate([T[:-nc], capT[~drop]]).reshape(-1).astype(np.uint32); m['ncap'] = int((~drop).sum())
+                report('  %s: removed %d cap triangles that spanned a bending joint' % (m['name'], drop.sum()))
     top = np.argsort(-Wd, 1)[:, :4]; tw = np.take_along_axis(Wd, top, 1); tw /= tw.sum(1, keepdims=True) + 1e-9
     m['J'] = top.astype(np.uint16); m['W'] = tw.astype(np.float32)
 def normalize(nodes, clips, jidx, k):
