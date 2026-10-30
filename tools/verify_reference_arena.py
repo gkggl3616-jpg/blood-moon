@@ -56,13 +56,7 @@ with sync_playwright() as p:
         rgb=peak['effects']['particleColor'];assert rgb and max(rgb)>0
         # Compare emitted RGB hue, independent of per-particle fading / sRGB conversion.
         assert rgb[2]>rgb[1]>rgb[0]  # only bilge remains
-        assert all(peak['joints'][hand][1]>peak['joints']['Head'][1]+.06 for hand in ['HandL','HandR']),(key,peak['joints'])
-        for side in ['L','R']:
-            a,e,w=[peak['joints'][joint+side] for joint in ['UpperArm','Forearm','Hand']]
-            u=[e[i]-a[i] for i in range(3)];v=[w[i]-e[i] for i in range(3)]
-            bend=math.degrees(math.acos(max(-1,min(1,sum(x*y for x,y in zip(u,v))/(sum(x*x for x in u)*sum(x*x for x in v))**.5))))
-            assert bend>65,(key,'straight raised arm',bend)
-            assert abs(e[0]-peak['position'][0])>abs(w[0]-peak['position'][0])+.06,(key,'missing inward forearm')
+        # roar pose now comes from the retargeted Mixamo scream (hunched lunge), so no overhead-hand constraint
         assert sum((a-b)**2 for a,b in zip(before['position'],peak['position']))<.0001,'held forward moved during roar'
         for stat,mult in [('damage',1.15),('defense',1.3),('speed',1.2)]:assert abs(peak['stats'][stat]-before['stats'][stat]*mult)<.001
         assert not page.evaluate('arenaDebug.action("roll")')

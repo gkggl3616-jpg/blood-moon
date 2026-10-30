@@ -160,6 +160,7 @@ CLIPS = {  # name: (fn, duration_s, loop)
 
 
 def bake(skel, name, fps=FPS):
+    if name in MIX: return bake_mixamo(skel, name, fps)
     fn, dur, loop = CLIPS[name]; n = max(2, int(round(dur * fps)) + (0 if loop else 1)); frames = []
     for k in range(n):
         t = k / (n if loop else n - 1)
@@ -173,3 +174,44 @@ def bake(skel, name, fps=FPS):
         else: root = (0, 0, 0)
         frames.append((pose, root))
     return dict(duration=dur, frames=frames)
+
+
+# ----------------------------------------------------------------------------- Mixamo-retargeted clips (baked JSON)
+import json, os
+BAKED = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'retarget', 'baked')
+MIX = {'WolfIdle': ('idle', 6.0, True), 'WolfRoar': ('roar', 1.2, False), 'WolfClaw': ('clawR', .65, False), 'WolfJump': ('jump', .9, False)}
+
+
+def _nlerp(a, b, u):
+    a = np.asarray(a); b = np.asarray(b)
+    if np.dot(a, b) < 0: b = -b
+    q = a * (1 - u) + b * u; return q / np.linalg.norm(q)
+
+
+def bake_mixamo(skel, name, fps=FPS):
+    key, dur, loop = MIX[name]; d = json.load(open(os.path.join(BAKED, key + '.json'))); src = d['frames']; m = len(src)
+    n = max(2, int(round(dur * fps)) + (0 if loop else 1)); frames = []
+    for k in range(n):
+        u = (k / (n if loop else n - 1)) * (m - 1); i = min(int(u), m - 2); f = u - i
+        pose = {b: tuple(_nlerp(src[i]['q'][b], src[i + 1]['q'][b], f)) for b in src[0]['q']}
+        dy = src[i]['dy'] * (1 - f) + src[i + 1]['dy'] * f
+        t = k / (n if loop else n - 1); ph = t * TAU
+        if name == 'WolfRoar':
+            op = math.sin(math.pi * min(1, max(0, (t - .12) / .7))) ; pose['Jaw'] = (38 * op ** .6 + 7 * math.sin(t * TAU * 10) * op, 0, 0)
+        add(pose, 'Tail1', 6, 0, 5 * math.sin(ph)); add(pose, 'Tail2', 8, 0, 9 * math.sin(ph - .7)); add(pose, 'Tail3', 10, 0, 13 * math.sin(ph - 1.4))
+        frames.append([pose, dy])
+    if loop:   # crossfade the tail of the loop into its first frame so it repeats seamlessly
+        X = 24
+        for k in range(X):
+            w = (k + 1) / X; w = w * w * (3 - 2 * w); j = n - X + k
+            frames[j][0] = {b: (tuple(_nlerp(frames[j][0][b], frames[0][0][b], w)) if len(frames[j][0][b]) == 4 else frames[j][0][b]) for b in frames[j][0]}
+            frames[j][1] = frames[j][1] * (1 - w) + frames[0][1] * w
+    out = []
+    base = None
+    for pose, dy in frames:
+        if name == 'WolfJump':
+            if base is None: base = feet_lock(skel, pose)[1]
+            root = (0, base + dy, 0)
+        else: root = feet_lock(skel, pose)
+        out.append((pose, root))
+    return dict(duration=dur, frames=out)
