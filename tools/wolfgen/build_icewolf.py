@@ -5,6 +5,36 @@ from rig import *
 from anim import *
 from PIL import Image
 
+def fix_stretch(S, P, Jn, Wn, T, rigid, rounds=16):
+    """Find edges that tear apart (posed length >> rest length) over all clips and pull their end-point weights together."""
+    nb = len(S.names); n = len(P)
+    Wd = np.zeros((n, nb)); 
+    for k in range(4): np.add.at(Wd, (np.arange(n), Jn[:, k]), Wn[:, k])
+    E = np.unique(np.sort(np.concatenate([T[:, [0, 1]], T[:, [1, 2]], T[:, [2, 0]]]), 1), axis=0)
+    E0 = np.linalg.norm(P[E[:, 0]] - P[E[:, 1]], axis=1)
+    rest = S.fk({}); inv = [np.linalg.inv(m) for m in rest]; Ph = np.c_[P, np.ones(n)]
+    poses = []
+    for name in ('WolfRunQuad', 'WolfRoar', 'WolfClaw', 'WolfClawR', 'WolfJump', 'WolfRoll', 'WolfIdle'):
+        fr = bake(S, name)['frames']; poses += [fr[i] for i in range(0, len(fr), 2)]
+    for it in range(rounds):
+        top = np.argsort(-Wd, 1)[:, :4]; bad = np.zeros(len(E), bool); worst = 0
+        for pose, root in poses:
+            mats = S.fk(pose, root); sk = [m @ i for m, i in zip(mats, inv)]; Q = np.zeros((n, 3))
+            for b in range(nb):
+                w = Wd[:, b]; m = w > 1e-4
+                if m.any(): Q[m] += w[m, None] * (Ph[m] @ sk[b].T)[:, :3]
+            L = np.linalg.norm(Q[E[:, 0]] - Q[E[:, 1]], axis=1); b_ = (L > E0 * 2.2 + .06); bad |= b_; worst = max(worst, float((L - E0).max()))
+        print('stretch round', it, 'bad edges', int(bad.sum()), 'worst +%.2fm' % worst)
+        if not bad.any(): break
+        for a, b in E[bad]:
+            if rigid[a] and rigid[b]: continue
+            if rigid[a]: Wd[b] = Wd[a]
+            elif rigid[b]: Wd[a] = Wd[b]
+            else: Wd[a] = Wd[b] = (Wd[a] + Wd[b]) / 2
+    top = np.argsort(-Wd, 1)[:, :4]; w = np.take_along_axis(Wd, top, 1); w /= w.sum(1, keepdims=True)
+    return top.astype(np.uint16).tolist(), w.astype(np.float32).tolist()
+
+
 def make_mesh(prep='/tmp/wolf_prep.npz', texpath='/tmp/wolf_prep_tex.jpg'):
     d = np.load(prep); P = d['P']; Nn = d['N']; UV = d['UV']; T = d['T']
     S = build_skeleton(); Jn, Wn, _ = compute_weights(S, P)
@@ -16,12 +46,13 @@ def make_mesh(prep='/tmp/wolf_prep.npz', texpath='/tmp/wolf_prep_tex.jpg'):
     ice = ((col[:, 2] - col[:, 0]) > .10) & (col[:, 2] > .55)
     for i in np.where(ice)[0]:
         L = 'L' if P[i, 0] >= 0 else 'R'; sx = 1 if L == 'L' else -1
-        el = np.array([J['Forearm'][0] * sx, J['Forearm'][1], J['Forearm'][2]]); kn = np.array([J['Shin'][0] * sx, J['Shin'][1], J['Shin'][2]])
+        el = S.pos[S.idx('Forearm' + L)].copy(); kn = np.array([J['Shin'][0] * sx, J['Shin'][1], J['Shin'][2]])
         if np.linalg.norm(P[i] - el) < .17: Jn[i] = [S.idx('Forearm' + L), 0, 0, 0]; Wn[i] = [1, 0, 0, 0]
         elif np.linalg.norm(P[i] - kn) < .17: Jn[i] = [S.idx('Shin' + L), 0, 0, 0]; Wn[i] = [1, 0, 0, 0]
         else: ice[i] = False
     print('rigid ice verts', int(ice.sum()))
-    M.P = [p for p in P]; M.N = [n for n in normalize(Nn)]; M.J = Jn.tolist(); M.W = Wn.tolist()
+    Jn, Wn = fix_stretch(S, P, Jn, Wn, T, ice)
+    M.P = [p for p in P]; M.N = [n for n in normalize(Nn)]; M.J = list(Jn); M.W = list(Wn)
     M.C = [list(c) + [1.0] for c in col]; M.M = ['Fur_icewolf'] * len(P)
     M.tris = [t.tolist() + ['Fur_icewolf'] for t in T]
     M.UV = UV; M.texture = open(texpath, 'rb').read()

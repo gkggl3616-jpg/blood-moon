@@ -9,6 +9,8 @@ J = dict(
     Thigh=(.12, .96, .0), Shin=(.13, .52, .10), Foot=(.12, .12, -.04),
     Tail1=(0, .95, -.12), Tail2=(0, .75, -.28), Tail3=(0, .55, -.34),
 )
+# the generated mesh is asymmetric: its right arm hangs straight down at z~0 while the left reaches forward
+JR = dict(UpperArm=(.25, 1.38, -.02), Forearm=(.27, 1.16, -.08), Hand=(.28, .88, .03)); HAND_TIP_R = (.27, .72, .04)
 HEAD_TIP = (0, 1.64, .36); HAND_TIP = (.30, .76, .30); TOE_TIP = (.12, .02, .22); TAIL_TIP = (0, .40, -.38)
 
 
@@ -17,9 +19,9 @@ def build_skeleton(extra_cape=False):
     s.add('Root', None, (0, 0, 0)); s.add('Hips', 'Root', J['Hips']); s.add('Spine', 'Hips', J['Spine']); s.add('Chest', 'Spine', J['Chest'])
     s.add('Neck', 'Chest', J['Neck']); s.add('Head', 'Neck', J['Head']); s.add('Jaw', 'Head', J['Jaw'])
     for sx, L in ((1, 'L'), (-1, 'R')):
-        m = lambda p: (p[0] * sx, p[1], p[2])
-        s.add('Clav' + L, 'Chest', m(J['Clav'])); s.add('UpperArm' + L, 'Clav' + L, m(J['UpperArm']))
-        s.add('Forearm' + L, 'UpperArm' + L, m(J['Forearm'])); s.add('Hand' + L, 'Forearm' + L, m(J['Hand']))
+        m = lambda p: (p[0] * sx, p[1], p[2]); JJ = J if sx == 1 else {**J, **JR}
+        s.add('Clav' + L, 'Chest', m(J['Clav'])); s.add('UpperArm' + L, 'Clav' + L, m(JJ['UpperArm']))
+        s.add('Forearm' + L, 'UpperArm' + L, m(JJ['Forearm'])); s.add('Hand' + L, 'Forearm' + L, m(JJ['Hand']))
         s.add('Thigh' + L, 'Hips', m(J['Thigh'])); s.add('Shin' + L, 'Thigh' + L, m(J['Shin'])); s.add('Foot' + L, 'Shin' + L, m(J['Foot']))
     s.add('Tail1', 'Hips', J['Tail1']); s.add('Tail2', 'Tail1', J['Tail2']); s.add('Tail3', 'Tail2', J['Tail3'])
     return s
@@ -34,7 +36,7 @@ def segments(skel):
     for sx, L in ((1, 'L'), (-1, 'R')):
         m = lambda q: np.array((q[0] * sx, q[1], q[2]))
         seg['Clav' + L] = (p['Clav' + L], p['UpperArm' + L], .12); seg['UpperArm' + L] = (p['UpperArm' + L], p['Forearm' + L], .12)
-        seg['Forearm' + L] = (p['Forearm' + L], p['Hand' + L], .12); seg['Hand' + L] = (p['Hand' + L], m(HAND_TIP), .09)
+        seg['Forearm' + L] = (p['Forearm' + L], p['Hand' + L], .12); seg['Hand' + L] = (p['Hand' + L], m(HAND_TIP if sx == 1 else HAND_TIP_R), .09)
         seg['Thigh' + L] = (p['Thigh' + L], p['Shin' + L], .17); seg['Shin' + L] = (p['Shin' + L], p['Foot' + L], .13)
         seg['Foot' + L] = (p['Foot' + L], m(TOE_TIP), .10)
     return seg

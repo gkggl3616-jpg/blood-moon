@@ -155,7 +155,7 @@ def transform(t):
 
 CLIPS = {  # name: (fn, duration_s, loop)
     'WolfIdle': (idle, 2.4, True), 'WolfMove': (walk, 1.0, True), 'WolfRunQuad': (run_quad, .62, True), 'WolfJump': (jump, 1.0, False),
-    'WolfRoar': (roar, 1.2, False), 'WolfRoll': (roll, .8, False), 'WolfClaw': (claw, .62, False), 'WolfTransform': (transform, 1.0, False),
+    'WolfRoar': (roar, 1.2, False), 'WolfRoll': (roll, .8, False), 'WolfClaw': (claw, .62, False), 'WolfTransform': (transform, 1.0, False), 'WolfClawR': (claw, .65, False),
 }
 
 
@@ -179,7 +179,7 @@ def bake(skel, name, fps=FPS):
 # ----------------------------------------------------------------------------- Mixamo-retargeted clips (baked JSON)
 import json, os
 BAKED = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'retarget', 'baked')
-MIX = {'WolfIdle': ('idle', 6.0, True), 'WolfRoar': ('roar', 1.2, False), 'WolfClaw': ('clawR', .65, False), 'WolfJump': ('jump', .9, False)}
+MIX = {'WolfIdle': ('idle', 6.0, True), 'WolfRoar': ('roar', 1.2, False), 'WolfClaw': ('clawR', .65, False), 'WolfJump': ('jump', .9, False), 'WolfClawR': ('clawR', .65, False)}
 
 
 def _nlerp(a, b, u):
@@ -194,6 +194,9 @@ def bake_mixamo(skel, name, fps=FPS):
     for k in range(n):
         u = (k / (n if loop else n - 1)) * (m - 1); i = min(int(u), m - 2); f = u - i
         pose = {b: tuple(_nlerp(src[i]['q'][b], src[i + 1]['q'][b], f)) for b in src[0]['q']}
+        if name == 'WolfClawR':   # the supplied slash is left-handed: mirror it across the sagittal plane for the right arm
+            sw = lambda b: b[:-1] + ('R' if b.endswith('L') else 'L') if b[-1] in 'LR' and b not in ('Hips',) else b
+            pose = {sw(b): (q[0], -q[1], -q[2], q[3]) for b, q in pose.items()}
         dy = src[i]['dy'] * (1 - f) + src[i + 1]['dy'] * f
         t = k / (n if loop else n - 1); ph = t * TAU
         if name == 'WolfRoar':
