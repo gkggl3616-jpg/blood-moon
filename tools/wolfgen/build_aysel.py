@@ -13,5 +13,6 @@ import numpy as np
 bh.ARM_EXCLUDE = lambda P: (P[:, 2] < -.08) & (np.abs(P[:, 0]) < .2)   # ponytail hanging behind the shoulders
 if __name__ == '__main__':
     S, M = bh.make('/tmp/aysel_prep.npz', '/tmp/aysel_prep_tex.jpg'); clips = bh.bake_human(S)
+    from core import attach_detail_maps; attach_detail_maps(M, '/tmp/aysel_prep')
     bh.write_glb('/tmp/aysel_rigged.glb', S, M, clips, 'Body_human', extras=dict(previewHeight=1.79), parts={'Body_human': ['Human_body'], 'FPArms_human': ['Human_arms']})
     print('glb', os.path.getsize('/tmp/aysel_rigged.glb'), 'tris', len(M.tris))

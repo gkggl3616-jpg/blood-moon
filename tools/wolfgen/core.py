@@ -104,7 +104,7 @@ class Mesh:
     def __init__(self, skel):
         self.skel = skel
         self.P, self.N, self.C, self.J, self.W, self.M, self.tris = [], [], [], [], [], [], []
-        self.UV = None; self.texture = None; self.emissive_tex = None; self.emissive_factor = None     # optional: (n,2) uvs and jpeg/png bytes
+        self.UV = None; self.texture = None; self.emissive_tex = None; self.emissive_factor = None; self.normal_tex = None; self.mr_tex = None     # optional: (n,2) uvs and jpeg/png bytes
         self.materials = {}   # name -> dict(color, emissive, roughness, metallic)
 
     def material(self, name, color=(1, 1, 1), emissive=(0, 0, 0), roughness=.8, metallic=0, emissive_strength=1.0, double=False, textured=False):
@@ -288,6 +288,13 @@ def write_glb(path, skel, mesh, clips, node_name, extras=None, scene_extras=None
     if mesh.texture is not None:
         data = mesh.texture; off = sum(len(_pad(c)) for c in bin_chunks); bin_chunks.append(data)
         views.append(dict(buffer=0, byteOffset=off, byteLength=len(data))); img_view = len(views) - 1
+    nrm_view = mr_view = None
+    for attr in ('normal_tex', 'mr_tex'):
+        data = getattr(mesh, attr, None)
+        if data is None: continue
+        off = sum(len(_pad(c)) for c in bin_chunks); bin_chunks.append(data); views.append(dict(buffer=0, byteOffset=off, byteLength=len(data)))
+        if attr == 'normal_tex': nrm_view = len(views) - 1
+        else: mr_view = len(views) - 1
     mats = list(mesh.materials.keys())
     prims = []; prim_names = []
     for mi, mname in enumerate(mats):
@@ -340,6 +347,7 @@ def write_glb(path, skel, mesh, clips, node_name, extras=None, scene_extras=None
         channels.append(dict(sampler=len(samplers) - 1, target=dict(node=jn[hips], path='translation')))
         animations.append(dict(name=cname, samplers=samplers, channels=channels))
 
+    TEX_IDX = {'nrm': 1 + (em_view is not None), 'mr': 1 + (em_view is not None) + (nrm_view is not None)}
     gl_mats = []
     for m in mats:
         d = mesh.materials[m]
@@ -347,6 +355,8 @@ def write_glb(path, skel, mesh, clips, node_name, extras=None, scene_extras=None
         if d.get('textured') and img_view is not None: pbr['baseColorTexture'] = dict(index=0)
         extra = {}
         if d.get('textured') and em_view is not None: extra['emissiveTexture'] = dict(index=1)
+        if d.get('textured') and nrm_view is not None: extra['normalTexture'] = dict(index=TEX_IDX['nrm'], scale=1.0)
+        if d.get('textured') and mr_view is not None: pbr['metallicRoughnessTexture'] = dict(index=TEX_IDX['mr'])
         gl_mats.append(dict(name=m, pbrMetallicRoughness=pbr, **extra,
                             emissiveFactor=d['emissive'], doubleSided=bool(d['double'])))
     gltf = dict(asset=dict(version='2.0', generator='bloodmoon-wolfgen (original)'),
@@ -359,6 +369,9 @@ def write_glb(path, skel, mesh, clips, node_name, extras=None, scene_extras=None
         gltf['images'] = [dict(bufferView=img_view, mimeType='image/jpeg')]; gltf['samplers'] = [dict(magFilter=9729, minFilter=9987, wrapS=10497, wrapT=10497)]; gltf['textures'] = [dict(source=0, sampler=0)]
         if em_view is not None:
             gltf['images'].append(dict(bufferView=em_view, mimeType='image/png')); gltf['textures'].append(dict(source=1, sampler=0))
+        for v in (nrm_view, mr_view):
+            if v is not None:
+                gltf['images'].append(dict(bufferView=v, mimeType='image/jpeg')); gltf['textures'].append(dict(source=len(gltf['images']) - 1, sampler=0))
     jsb = _pad(json.dumps(gltf, separators=(',', ':')).encode(), b' ')
     binb = b''.join(_pad(c) for c in bin_chunks)
     with open(path, 'wb') as f:
@@ -454,3 +467,11 @@ def smooth_normals(P, T, crease=70.0):
         fs = faces_of[inv[v]]; w = fn[fs]; ok = (fu[fs] @ ref) > cs
         n = w[ok].sum(0) if ok.any() else ref; out[v] = n / (np.linalg.norm(n) + 1e-12)
     return out
+
+def attach_detail_maps(M, prefix):
+    """surface relief + roughness from the Tripo source (prepared next to the colour texture)"""
+    import os
+    for attr, suf in (('normal_tex', '_normal.jpg'), ('mr_tex', '_mr.jpg')):
+        p = prefix + suf
+        if os.path.exists(p): setattr(M, attr, open(p, 'rb').read())
+    for m in M.materials.values(): m['roughness'] = 1.0; m['metallic'] = 0.0
