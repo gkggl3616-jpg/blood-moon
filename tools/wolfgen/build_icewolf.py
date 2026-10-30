@@ -35,6 +35,10 @@ def fix_stretch(S, P, Jn, Wn, T, rigid, rounds=16):
     return top.astype(np.uint16).tolist(), w.astype(np.float32).tolist()
 
 
+def ICE_MASK(c):
+    return ((c[..., 2] - c[..., 0]) > .10) & (c[..., 2] > .55)
+
+
 def make_mesh(prep='/tmp/wolf_prep.npz', texpath='/tmp/wolf_prep_tex.jpg'):
     d = np.load(prep); P = d['P']; Nn = d['N']; UV = d['UV']; T = d['T']
     S = build_skeleton(); Jn, Wn, _ = compute_weights(S, P, T=T)
@@ -43,7 +47,7 @@ def make_mesh(prep='/tmp/wolf_prep.npz', texpath='/tmp/wolf_prep_tex.jpg'):
     u = (UV[:, 0] % 1 * (tarr.shape[1] - 1)).astype(int); v = (UV[:, 1] % 1 * (tarr.shape[0] - 1)).astype(int)
     col = tarr[v, u] / 255.0
     # rigid ice: blue crystal vertices follow a single bone so the shards never stretch
-    ice = ((col[:, 2] - col[:, 0]) > .10) & (col[:, 2] > .55)
+    ice = ICE_MASK(col)
     for i in np.where(ice)[0]:
         L = 'L' if P[i, 0] >= 0 else 'R'; sx = 1 if L == 'L' else -1
         el = S.pos[S.idx('Forearm' + L)].copy(); kn = np.array([J['Shin'][0] * sx, J['Shin'][1], J['Shin'][2]])
@@ -57,7 +61,7 @@ def make_mesh(prep='/tmp/wolf_prep.npz', texpath='/tmp/wolf_prep_tex.jpg'):
     M.tris = [t.tolist() + ['Fur_icewolf'] for t in T]
     M.UV = UV; M.texture = open(texpath, 'rb').read()
     # emissive mask: only the ice-blue texels glow (elbow crystals + knee shards)
-    t = tarr.astype(float) / 255.0; mask = ((t[..., 2] - t[..., 0]) > .10) & (t[..., 2] > .55)
+    t = tarr.astype(float) / 255.0; mask = ICE_MASK(t)
     from scipy.ndimage import binary_dilation
     mask = binary_dilation(mask, iterations=1)
     em = (t * mask[..., None] * 255).astype(np.uint8); buf = io.BytesIO(); Image.fromarray(em).save(buf, 'PNG', optimize=True); M.emissive_tex = buf.getvalue()

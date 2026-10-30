@@ -45,12 +45,20 @@ def weights(S, P, sharp=2.4):
     return np.array([[S.idx(names[i]) for i in r] for r in idx], np.uint16), w.astype(np.float32)
 
 
+def ICE_MASK(c):
+    return ((c[..., 2] - c[..., 0]) > .10) & (c[..., 2] > .55)
+
+
+def ARM_EXCLUDE(P):
+    return np.zeros(len(P), bool)
+
+
 def make(prep='/tmp/human_prep.npz', texpath='/tmp/human_prep_tex.jpg'):
     d = np.load(prep); P = d['P']; Nn = d['N']; UV = d['UV']; T = d['T']
     S = skeleton(); Jn, Wn = weights(S, P)
     tex = Image.open(texpath).convert('RGB'); ta = np.array(tex)
     u = (UV[:, 0] % 1 * (ta.shape[1] - 1)).astype(int); v = (UV[:, 1] % 1 * (ta.shape[0] - 1)).astype(int); col = ta[v, u] / 255.0
-    ice = ((col[:, 2] - col[:, 0]) > .10) & (col[:, 2] > .55)
+    ice = ICE_MASK(col)
     for i in np.where(ice)[0]:
         L = 'L' if P[i, 0] >= 0 else 'R'; sx = 1 if L == 'L' else -1
         el = np.array([HJ['Forearm'][0] * sx, HJ['Forearm'][1], HJ['Forearm'][2]]); kn = np.array([HJ['Shin'][0] * sx, HJ['Shin'][1], HJ['Shin'][2]])
@@ -58,13 +66,13 @@ def make(prep='/tmp/human_prep.npz', texpath='/tmp/human_prep_tex.jpg'):
         elif np.linalg.norm(P[i] - kn) < .17: Jn[i] = [S.idx('Shin' + L), 0, 0, 0]; Wn[i] = [1, 0, 0, 0]
     # first-person arms: triangles whose three vertices are driven mainly by upper/forearm/hand bones
     arm_ids = {S.idx(n + L) for n in ('UpperArm', 'Forearm', 'Hand', 'Fingers') for L in 'LR'}
-    dom = Jn[:, 0]; armv = np.array([d_ in arm_ids for d_ in dom]) & (P[:, 1] < 1.42)
+    dom = Jn[:, 0]; armv = np.array([d_ in arm_ids for d_ in dom]) & (P[:, 1] < 1.42) & ~ARM_EXCLUDE(P)
     armt = armv[T].all(1)
     M = Mesh(S); M.material('Human_body', (1, 1, 1), roughness=.85, textured=True); M.material('Human_arms', (1, 1, 1), roughness=.85, textured=True)
     M.P = [p for p in P]; M.N = [n for n in smooth_normals(P, T)]; M.J = Jn.tolist(); M.W = Wn.tolist(); M.C = [list(c) + [1.0] for c in col]; M.M = ['Human_body'] * len(P)
     M.tris = [t.tolist() + ['Human_arms' if a else 'Human_body'] for t, a in zip(T, armt)]
     M.UV = UV; M.texture = open(texpath, 'rb').read()
-    t = ta.astype(float) / 255.0; mask = binary_dilation(((t[..., 2] - t[..., 0]) > .10) & (t[..., 2] > .55), iterations=1)
+    t = ta.astype(float) / 255.0; mask = binary_dilation(ICE_MASK(t), iterations=1)
     buf = io.BytesIO(); Image.fromarray((t * mask[..., None] * 255).astype(np.uint8)).save(buf, 'PNG', optimize=True); M.emissive_tex = buf.getvalue()
     for k in ('Human_body', 'Human_arms'): M.materials[k]['emissive'] = [.35, .35, .35]
     print('arm tris', int(armt.sum()), 'of', len(T))
