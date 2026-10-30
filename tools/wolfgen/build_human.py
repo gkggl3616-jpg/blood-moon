@@ -49,6 +49,9 @@ def ICE_MASK(c):
     return ((c[..., 2] - c[..., 0]) > .10) & (c[..., 2] > .55)
 
 
+ARM_TOP = 1.42   # first-person arms mesh: nothing above this (shoulder mantles/pauldrons stay on the body)
+
+
 def ARM_EXCLUDE(P):
     return np.zeros(len(P), bool)
 
@@ -56,6 +59,18 @@ def ARM_EXCLUDE(P):
 def make(prep='/tmp/human_prep.npz', texpath='/tmp/human_prep_tex.jpg'):
     d = np.load(prep); P = d['P']; Nn = d['N']; UV = d['UV']; T = d['T']
     S = skeleton(); Jn, Wn = weights(S, P)
+    # hands and forearms often touch capes / thighs in the generated meshes: points hugging a forearm or hand follow the arm only
+    from rig import seg_dist
+    armlock = np.zeros(len(P), bool)
+    for L in 'LR':
+        ids = [S.idx(n + L) for n in ('Forearm', 'Hand', 'Fingers')]
+        near = np.minimum(seg_dist(P, S.pos[ids[0]], S.pos[ids[1]]), seg_dist(P, S.pos[ids[1]], S.pos[ids[2]] + (S.pos[ids[2]] - S.pos[ids[1]]))) < .065
+        armlock |= near
+        for i in np.where(near)[0]:
+            keep = [(j, w) for j, w in zip(Jn[i], Wn[i]) if j in ids or j == S.idx('UpperArm' + L)]
+            if not keep or sum(w for _, w in keep) < 1e-3: keep = [(ids[1], 1.0)]
+            tot = sum(w for _, w in keep); keep = [(j, w / tot) for j, w in keep] + [(0, 0.0)] * (4 - len(keep))
+            Jn[i] = [j for j, _ in keep]; Wn[i] = [w for _, w in keep]
     tex = Image.open(texpath).convert('RGB'); ta = np.array(tex)
     u = (UV[:, 0] % 1 * (ta.shape[1] - 1)).astype(int); v = (UV[:, 1] % 1 * (ta.shape[0] - 1)).astype(int); col = ta[v, u] / 255.0
     ice = ICE_MASK(col)
@@ -66,13 +81,13 @@ def make(prep='/tmp/human_prep.npz', texpath='/tmp/human_prep_tex.jpg'):
         elif np.linalg.norm(P[i] - kn) < .17: Jn[i] = [S.idx('Shin' + L), 0, 0, 0]; Wn[i] = [1, 0, 0, 0]
     from build_icewolf import fix_stretch          # same permanent anti-stretch pass as the wolves, over the human clips
     poses = [f for c in bake_human(S).values() for f in c['frames'][::2]]
-    rig_ = np.zeros(len(P), bool)
+    rig_ = armlock.copy()   # hand/forearm points stay on the arm through the anti-stretch pass
     for i in np.where(ice)[0]:
         if Wn[i][0] == 1: rig_[i] = True
     Jl, Wl = fix_stretch(S, P, Jn, Wn, T, rig_, poses=poses); Jn = np.asarray(Jl); Wn = np.asarray(Wl, np.float32)
     # first-person arms: triangles whose three vertices are driven mainly by upper/forearm/hand bones
     arm_ids = {S.idx(n + L) for n in ('UpperArm', 'Forearm', 'Hand', 'Fingers') for L in 'LR'}
-    dom = Jn[:, 0]; armv = np.array([d_ in arm_ids for d_ in dom]) & (P[:, 1] < 1.42) & ~ARM_EXCLUDE(P)
+    dom = Jn[:, 0]; armv = np.array([d_ in arm_ids for d_ in dom]) & (P[:, 1] < ARM_TOP) & ~ARM_EXCLUDE(P)
     armt = armv[T].all(1)
     M = Mesh(S); M.material('Human_body', (1, 1, 1), roughness=.85, textured=True); M.material('Human_arms', (1, 1, 1), roughness=.85, textured=True)
     M.P = [p for p in P]; M.N = [n for n in smooth_normals(P, T)]; M.J = Jn.tolist(); M.W = Wn.tolist(); M.C = [list(c) + [1.0] for c in col]; M.M = ['Human_body'] * len(P)
