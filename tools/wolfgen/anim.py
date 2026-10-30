@@ -98,7 +98,7 @@ def jump(t):
 
 
 def roar(t):
-    """Ice Rage Roar, 5 s: prep 0-.8 (crouch, head down), build .8-1.6 (fists, chest swells), roar 1.6-2.5 (head snaps
+    """Ice Rage Roar (timeline written in 5 units, played over 2.5 s): prep 0-.8 (crouch, head down), build .8-1.6 (fists, chest swells), roar 1.6-2.5 (head snaps
     45-60 deg up, chest out, back arched, arms open to the sides, palms up/forward, wide stance with the right leg
     forward), blast 2.5-3.5 (held, trembling), calm 3.5-5 (back to the ready stance)."""
     T = t * 5.0; p = {}
@@ -128,21 +128,47 @@ def roar(t):
 
 
 def roll(t):
-    """Attack shoulder-roll: dive low, tuck into a tight ball that tumbles along the ground, come up on all fours."""
-    p = {}
-    tuck = sm(t / .16) * (1 - sm((t - .72) / .2))
-    ang = 360 * sm((t - .1) / .66)
-    rise = sm((t - .74) / .26)
-    add(p, 'Hips', ang + 30 * rise * (1 - sm((t - .92) / .08)))
-    add(p, 'Spine', 58 * tuck + 14 * rise); add(p, 'Chest', 44 * tuck); add(p, 'Neck', 40 * tuck - 10 * rise); add(p, 'Head', 26 * tuck)
+    """Running flip attack, 1.8 s: prep 0-.2 s (knees bend, torso drives down/forward, arms pulled back),
+    forward somersault .2-.9 s (head goes down at 90 deg, fully inverted at 180, comes round to attack),
+    double claw strike .9-1.25 s (both claws slam down in front), land on hands and feet, slide and
+    recover into a run-ready crouch 1.25-1.8 s."""
+    T = t * 1.8; p = {}
+    def E(a, b): return sm((T - a) / (b - a))
+    prep = E(0, .2) * (1 - E(.2, .34))
+    flip = E(.16, .86)                        # 0..1 rotation progress
+    tuck = E(.22, .4) * (1 - E(.7, .9))
+    reach = E(.62, .86) * (1 - E(.9, 1.0))     # arms swing overhead coming out of the flip
+    strike = E(.88, 1.02) * (1 - E(1.25, 1.45))
+    land = E(1.0, 1.18) * (1 - E(1.45, 1.8))
+    ready = E(1.4, 1.8)
+    ang = 360 * flip
+    dive = E(.7, .96) * (1 - E(1.25, 1.6))
+    add(p, 'Hips', 34 * prep + ang + 62 * dive + 18 * land + 34 * ready)
+    add(p, 'Spine', 22 * prep + 42 * tuck - 10 * reach + 18 * strike + 20 * land + 16 * ready)
+    add(p, 'Chest', 10 * prep + 28 * tuck - 12 * reach + 10 * strike + 8 * land + 6 * ready)
+    add(p, 'Neck', -14 * prep + 24 * tuck - 30 * strike - 34 * land - 30 * ready)
+    add(p, 'Head', -6 * prep + 14 * tuck - 14 * strike - 12 * land - 10 * ready)
+    add(p, 'Jaw', 22 * strike + 8 * reach)
     for s, L in ((1, 'L'), (-1, 'R')):
-        add(p, 'UpperArm' + L, -120 * tuck - 30 * rise, 0, -s * 18 * tuck); add(p, 'Forearm' + L, -125 * tuck - 30 * rise)
-        add(p, 'Thigh' + L, -125 * tuck - 40 * rise); add(p, 'Shin' + L, 150 * tuck + 70 * rise); add(p, 'Foot' + L, -30 * tuck)
-    add(p, 'Tail1', 40 * tuck); add(p, 'Tail2', 40 * tuck); add(p, 'Tail3', 30 * tuck)
+        add(p, 'UpperArm' + L, 55 * prep - 110 * tuck - 165 * reach - 40 * strike - 70 * land - 30 * ready, 0, s * (10 * prep + 14 * reach) - s * 10 * tuck)
+        add(p, 'Forearm' + L, -20 * prep - 100 * tuck - 30 * reach - 15 * strike - 30 * land - 40 * ready)
+        add(p, 'Hand' + L, 10 * prep + 25 * strike + 20 * land)
+    for s, L, lead in ((1, 'L', 1.0), (-1, 'R', .8)):
+        add(p, 'Thigh' + L, -(40 * prep + 115 * tuck * lead + 30 * reach + 80 * land * lead + 60 * ready * lead + 20 * strike))
+        add(p, 'Shin' + L, 70 * prep + 135 * tuck + 40 * reach + 90 * land + 70 * ready + 30 * strike)
+        add(p, 'Foot' + L, -(30 * prep + 20 * tuck + 30 * land + 20 * ready))
+    add(p, 'Tail1', -18 * prep + 30 * tuck - 20 * strike - 22 * land - 18 * ready, 0, 0)
+    add(p, 'Tail2', 20 * tuck - 10 * strike - 8 * land); add(p, 'Tail3', 16 * tuck + 6 * strike)
     return p, 'roll'
 
 
-def ball_lock(skel, pose, pad=.2):
+def flip_air(t):
+    """height of the take-off arc (m) during the somersault."""
+    T = t * 1.8
+    return 1.05 * math.sin(math.pi * min(1, max(0, (T - .2) / .74))) ** .9
+
+
+def ball_lock(skel, pose, pad=.12):
     """keep the lowest joint of the tumbling body on the ground so the roll never floats."""
     jw = skel.joint_world(pose)
     return (0, pad - min(v[1] for k, v in jw.items() if not k.startswith('Tail') and k != 'Root'), 0)
@@ -176,7 +202,7 @@ def transform(t):
 
 CLIPS = {  # name: (fn, duration_s, loop)
     'WolfIdle': (idle, 2.4, True), 'WolfMove': (walk, 1.0, True), 'WolfRunQuad': (run_quad, .62, True), 'WolfJump': (jump, 1.0, False),
-    'WolfRoar': (roar, 5.0, False), 'WolfRoll': (roll, .8, False), 'WolfClaw': (claw, .62, False), 'WolfTransform': (transform, 1.0, False), 'WolfClawR': (claw, .65, False),
+    'WolfRoar': (roar, 2.5, False), 'WolfRoll': (roll, 1.8, False), 'WolfClaw': (claw, .62, False), 'WolfTransform': (transform, 1.0, False), 'WolfClawR': (claw, .65, False),
 }
 
 
@@ -190,7 +216,7 @@ def bake(skel, name, fps=FPS):
         elif mode == 'feet': root = feet_lock(skel, pose)
         elif mode == 'jump':
             root = feet_lock(skel, pose); air = sm((t - .24) / .12) * (1 - sm((t - .8) / .15)); root = (0, root[1] + .55 * air, 0)
-        elif mode == 'roll': root = ball_lock(skel, pose)
+        elif mode == 'roll': r = ball_lock(skel, pose); root = (0, r[1] + flip_air(t), 0)
         else: root = (0, 0, 0)
         frames.append((pose, root))
     return dict(duration=dur, frames=frames)
@@ -199,7 +225,7 @@ def bake(skel, name, fps=FPS):
 # ----------------------------------------------------------------------------- Mixamo-retargeted clips (baked JSON)
 import json, os
 BAKED = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'retarget', 'baked')
-MIX = {'WolfIdle': ('idle', 6.0, True), 'WolfClaw': ('clawR', .65, False), 'WolfJump': ('jump', .9, False), 'WolfClawR': ('clawR', .65, False)}
+MIX = {'WolfIdle': ('idle', 6.0, True), 'WolfClaw': ('clawR', .5, False), 'WolfJump': ('jump', .9, False), 'WolfClawR': ('clawR', .5, False)}
 
 
 def _nlerp(a, b, u):

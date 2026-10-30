@@ -99,7 +99,7 @@ def main():
                 for animation in gltf['animations']:
                     if animation['name'] in ['WolfRunQuad','WolfRoll','WolfRoar']:
                         timing=gltf['accessors'][animation['samplers'][0]['input']]
-                        expected=timing['max'][0] if animation['name']=='WolfRunQuad' else .8 if animation['name']=='WolfRoll' else 5.0
+                        expected=timing['max'][0] if animation['name']=='WolfRunQuad' else 1.8 if animation['name']=='WolfRoll' else 2.5
                         assert abs(timing['min'][0])<1e-5 and abs(timing['max'][0]-expected)<1e-5
             triangles=sum(gltf['accessors'][p['indices']]['count']//3 for m in gltf['meshes'] for p in m['primitives'])
             assert triangles <= (25000 if model_id.startswith('human-') else 15000),(model_id,triangles)

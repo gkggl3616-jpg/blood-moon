@@ -44,13 +44,13 @@ with sync_playwright() as p:
  hp=state()['targets'][0]['hp'];hit_count=state()['hits'];expected=38*state()['stats']['damage']/100
  page.locator('#arenaRoll').click()
  page.wait_for_function('(n)=>arenaDebug.state().hits===n+1',arg=hit_count,timeout=15000)
- page.wait_for_function('()=>arenaDebug.state().rollTime===0',timeout=15000)
+ page.wait_for_function('()=>arenaDebug.state().rollTime===0',timeout=40000)
  assert abs(state()['targets'][0]['hp']-max(0,hp-expected))<.02,'wrong roll damage or repeated damage'
  assert state()['hits']==hit_count+1 and state()['rollHitTargets']==[0]
- assert -7.85<state()['position'][2]<-6.9,'roll is not compact'
+ assert -11.4<state()['position'][2]<-6.9,('flip attack range',state()['position'])
  # A straight roll into cover must stop at its near side; no distant dummy takes damage.
  page.evaluate('arenaDebug.place(-8,-10,0)');hp_cover=state()['targets'][1]['hp']
- page.locator('#arenaRoll').click();page.wait_for_function('()=>arenaDebug.state().rollTime===0',timeout=15000)
+ page.locator('#arenaRoll').click();page.wait_for_function('()=>arenaDebug.state().rollTime===0',timeout=40000)
  assert state()['position'][2]>=-11.84 and state()['targets'][1]['hp']==hp_cover,'roll crossed cover'
  page.evaluate('arenaDebug.place(0,5)')
  page.locator('#arenaTrial').select_option('legendary')
@@ -64,25 +64,25 @@ with sync_playwright() as p:
  measure_start=state();page.wait_for_function('(t)=>arenaDebug.state().time>t+.8',arg=measure_start['time']);measure_end=state();page.keyboard.up('KeyW')
  distance=measure_start['position'][2]-measure_end['position'][2];measured=distance/(measure_end['simulationTime']-measure_start['simulationTime']);wall_measured=distance/(measure_end['time']-measure_start['time']);assert abs(measured-8.4)<.01 and 8.0<wall_measured<8.8,(measured,wall_measured)
  (ROOT/'dist/run-speed.json').write_text(json.dumps({'measured_mps':measured,'wall_time_mps':wall_measured,'baseline_mps':8,'tattoo_speed_percent':5}))
- # A running jump keeps the run state and carries one horizontal speed, not two added speeds.
+ # A running jump keeps the run state and run cycle (the body just rises) and carries one horizontal speed.
  page.evaluate('arenaDebug.place(0,15)');page.keyboard.down('KeyW')
  page.wait_for_function('()=>arenaDebug.state().motion==="WolfRunQuad"',timeout=10000)
  jump_start=state()['position'];page.locator('#arenaJump').click()
- page.wait_for_function('()=>arenaDebug.state().position[1]>.3&&arenaDebug.state().motion==="WolfJump"',timeout=10000)
+ page.wait_for_function('()=>arenaDebug.state().position[1]>.3&&arenaDebug.state().motion==="WolfRunQuad"',timeout=10000)
  assert state()['run']
  assert (state()['velocity'][0]**2+state()['velocity'][2]**2)**.5<8.55,'jump stacked two speeds'
  page.wait_for_function('()=>arenaDebug.state().grounded',timeout=15000)
  assert .7<state()['jumpDistance']<8.2 and state()['jumpPeakSpeed']<8.55,'running jump has stacked impulse'
  page.wait_for_function('()=>arenaDebug.state().motion==="WolfRunQuad"',timeout=10000)
- # Rolling directly from running is allowed; it keeps the selected run mode but only travels ~2m.
+ # The running flip attack is allowed from a run; it keeps the run mode and covers ~5.5m (dive, somersault, claw strike, landing slide).
  roll_start=state()['position'];page.locator('#arenaRoll').click();page.keyboard.up('KeyW')
- page.wait_for_function('()=>arenaDebug.state().rollTime===0',timeout=15000)
- assert state()['run'] and 1.3<state()['rollDistance']<2.25,(state()['run'],state()['rollDistance'])
- # An airborne running wolf can also tuck into the same short roll.
+ page.wait_for_function('()=>arenaDebug.state().rollTime===0',timeout=40000)
+ assert state()['run'] and 4.8<state()['rollDistance']<6.2,(state()['run'],state()['rollDistance'])
+ # An airborne running wolf can also go into the same flip attack.
  page.evaluate('arenaDebug.place(0,15)');page.keyboard.down('KeyW');page.wait_for_function('()=>arenaDebug.state().motion==="WolfRunQuad"',timeout=10000)
  page.locator('#arenaJump').click();page.wait_for_function('()=>arenaDebug.state().position[1]>.25',timeout=10000)
  assert page.evaluate('arenaDebug.action("roll")')
- page.keyboard.up('KeyW');page.wait_for_function('()=>arenaDebug.state().rollTime===0&&arenaDebug.state().grounded',timeout=15000)
+ page.keyboard.up('KeyW');page.wait_for_function('()=>arenaDebug.state().rollTime===0&&arenaDebug.state().grounded',timeout=40000)
  page.locator('#arenaRun').click();page.evaluate('arenaDebug.place(0,1)');page.locator('#arenaJump').click()
  page.wait_for_function('()=>arenaDebug.state().position[1]>.3',timeout=10000)
  page.wait_for_function('()=>arenaDebug.state().grounded',timeout=15000)
