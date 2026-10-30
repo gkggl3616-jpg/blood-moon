@@ -47,9 +47,21 @@ def seg_dist(P, a, b):
     return np.linalg.norm(P - (a + t[:, None] * ab), axis=1)
 
 
-def compute_weights(skel, P, sharp=2.2):
+def compute_weights(skel, P, sharp=2.2, T=None):
     seg = segments(skel); names = list(seg)
     D = np.stack([seg_dist(P, *seg[n][:2]) / seg[n][2] for n in names], 1)   # normalised distance
+    if T is not None:   # arm bones use surface (geodesic) distance so a hanging hand never grabs the hip/pants it touches
+        from scipy.sparse import coo_matrix
+        from scipy.sparse.csgraph import dijkstra
+        _, inv = np.unique(np.round(P, 4), axis=0, return_inverse=True); inv = inv.ravel(); n = inv.max() + 1
+        Q = np.zeros((n, 3)); Q[inv] = P
+        E = inv[np.concatenate([T[:, [0, 1]], T[:, [1, 2]], T[:, [2, 0]]])]; w = np.linalg.norm(Q[E[:, 0]] - Q[E[:, 1]], axis=1) + 1e-6
+        G = coo_matrix((w, (E[:, 0], E[:, 1])), shape=(n, n)).tocsr()
+        for k, nm in enumerate(names):
+            if not any(nm.startswith(b) for b in ('UpperArm', 'Forearm', 'Hand')): continue
+            a_, b_, r = seg[nm]; dq = seg_dist(Q, a_, b_); seeds = np.argsort(dq)[:12]
+            gd = dijkstra(G, directed=False, indices=seeds, min_only=True) + 0
+            D[:, k] = np.maximum(D[:, k], gd[inv] / r * .55)
     # side guard: left-side bones never drive right-side vertices (and vice versa) away from the midline
     for k, n in enumerate(names):
         if n.endswith('L'): D[:, k] += np.where(P[:, 0] < -.04, 3.0, 0)

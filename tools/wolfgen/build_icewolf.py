@@ -37,7 +37,7 @@ def fix_stretch(S, P, Jn, Wn, T, rigid, rounds=16):
 
 def make_mesh(prep='/tmp/wolf_prep.npz', texpath='/tmp/wolf_prep_tex.jpg'):
     d = np.load(prep); P = d['P']; Nn = d['N']; UV = d['UV']; T = d['T']
-    S = build_skeleton(); Jn, Wn, _ = compute_weights(S, P)
+    S = build_skeleton(); Jn, Wn, _ = compute_weights(S, P, T=T)
     M = Mesh(S); M.material('Fur_icewolf', (1, 1, 1), roughness=.9, textured=True, double=True)
     tex = Image.open(texpath).convert('RGB'); tarr = np.array(tex)
     u = (UV[:, 0] % 1 * (tarr.shape[1] - 1)).astype(int); v = (UV[:, 1] % 1 * (tarr.shape[0] - 1)).astype(int)
