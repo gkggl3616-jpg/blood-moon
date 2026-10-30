@@ -446,3 +446,5 @@ Kullanıcı “pardon tamam doğru çalışıyormuş” diyerek son koşu bildir
 ## 30 Ekim — Bilge dosya paketi talebi
 
 Kullanıcı Bilge Kağan'ın insan/kurt modeli, animasyon LTB'leri, DTX'leri ve ilgili dosyaları indirilebilir istedi. `tools/package_bilge_delivery.py` güncel iki runtime GLB, ayrıca çıkarılmış gömülü dokular, 4 kaynak LTB, doğrulanmış kaynak DTX'ler, statik Blender sahneleri, ortak FX/dövme/ses ve entegrasyon referansını paketler. Kaynaklar ile oyundaki özgün kaplamalar ayrıdır; kaynak adları/köken korunur. Godot'a esas GLB aktarılır; LTB/DTX doğrudan desteklenmez. Paket manifestosu her dosyanın SHA256/CRC kontrolünü içerir. Oyun kodu/APK değiştirilmez; yeni üretim/harcama yapılmaz. Açıklama `docs/bilge-assets/OKU-BENI-TR.md`.
+
+Bilge paketi yayımlandı: https://github.com/gkggl3616-jpg/blood-moon/releases/download/prototype-v0.1.18-25/Bilge-Kagan-Assets-v0.1.18.zip . 99 dosya / 138.168.434 bayt; SHA256 e5f556d30d21e7f2f6cdedb8d3c503e1924f845b9abb2b5f6442a83e9757b21a. CI 41006353639 paketleme ve CRC/manifest kontrolü geçti. Yayımlanmış package-report.json yerel sonuçla aynı. Oyun/APK dosyaları değişmedi.
