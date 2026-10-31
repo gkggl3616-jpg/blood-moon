@@ -3,7 +3,7 @@ from pathlib import Path
 import json
 import math
 import shutil
-import subprocess
+import struct
 
 from playwright.sync_api import sync_playwright
 
@@ -31,9 +31,30 @@ reference = spring(60)
 consistency = {str(fps): spring(fps) for fps in (30, 60, 120)}
 assert all(max(abs(a - b) for a, b in zip(value, reference)) < 1e-8 for value in consistency.values())
 
-duration = float(subprocess.check_output([
-    'ffprobe', '-v', 'error', '-show_entries', 'format=duration',
-    '-of', 'default=nw=1:nk=1', ASSETS / 'media/reload.ogg'], text=True).strip())
+
+def ogg_vorbis_duration(path: Path) -> float:
+    """Read duration from Vorbis sample rate and Ogg page granule positions."""
+    data = path.read_bytes()
+    ident = data.find(b'\x01vorbis')
+    assert ident >= 0, 'reload.ogg has no Vorbis identification packet'
+    sample_rate = struct.unpack_from('<I', data, ident + 12)[0]
+    assert sample_rate > 0
+    offset = 0
+    final_granule = 0
+    while offset + 27 <= len(data):
+        assert data[offset:offset + 4] == b'OggS', f'invalid Ogg page at {offset}'
+        granule = struct.unpack_from('<Q', data, offset + 6)[0]
+        if granule != 0xffffffffffffffff:
+            final_granule = max(final_granule, granule)
+        segments = data[offset + 26]
+        table_end = offset + 27 + segments
+        assert table_end <= len(data)
+        offset = table_end + sum(data[offset + 27:table_end])
+    assert offset == len(data) and final_granule > 0
+    return final_granule / sample_rate
+
+
+duration = ogg_vorbis_duration(ASSETS / 'media/reload.ogg')
 assert 1.39 <= duration <= 1.41
 assert (ASSETS / 'media/reload-original.wav').stat().st_size > 250_000
 
