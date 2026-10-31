@@ -182,6 +182,9 @@ def build(old_path, rig_path, anim_specs, out_path, transfer=(), scale_wrap=None
         idx_keep = np.concatenate([I_[~bridge], caps]).reshape(-1)
         out_meshes.append(dict(name=n['name'], extras=n.get('extras'), P=Pw.astype(np.float32), N=(Nw / (np.linalg.norm(Nw, axis=1, keepdims=True) + 1e-9)).astype(np.float32),
                                UV=old.acc(A['TEXCOORD_0']).astype(np.float32), I=idx_keep.astype(np.uint32), J=top.astype(np.uint16), W=tw.astype(np.float32), mat=pr.get('material', 0), Wd=Wd, ncap=len(caps)))
+    if fp_arms and out_meshes:   # humans: thumb / index / other-finger bones so the hands can really grip and pull triggers
+        split_fingers(nodes, byname, joint_names, jidx, out_meshes[0], report)
+        Wn = world_with(J(nodes), {})
     IB = [np.linalg.inv(Wn[j]) for j in jidx]
     # ---------- animations ----------
     clips = []
@@ -268,6 +271,34 @@ def open_edges(T):
     for a, b, c in T:
         for u, v in ((a, b), (b, c), (c, a)): d[(u, v)] = d.get((u, v), 0) + 1
     return [(u, v) for (u, v) in d if (v, u) not in d]
+def split_fingers(nodes, byname, joint_names, jidx, m, report):
+    """Generated hands have no finger joints. Classify the hand's vertices into thumb, index finger and the other three
+    fingers (spread runs along the model's forward axis in both arms-down and T-pose rests; the thumb sticks forward
+    near the wrist, the index is the forward-most finger) and give each group its own bone under the hand."""
+    P = m['P'].astype(float); Wd = m['Wd']; Wn = world_with(J(nodes), {})
+    for sd in 'LR':
+        h = Wn[byname['Hand' + sd]][:3, 3]; f = Wn[byname['Forearm' + sd]][:3, 3]; d = (h - f) / np.linalg.norm(h - f); L = np.linalg.norm(h - f) * .45
+        cols = [joint_names.index(x) for x in ('Hand' + sd, 'Fingers' + sd) if x in joint_names]
+        hand = Wd[:, cols].sum(1) > .5; along = (P - h) @ d
+        z = P[:, 2]; zc = np.median(z[hand & (along > .3 * L)]) if (hand & (along > .3 * L)).sum() > 10 else h[2]
+        zs = np.percentile(z[hand], 95) - np.percentile(z[hand], 5) + 1e-6
+        thumb = hand & (along > .05 * L) & (along < .75 * L) & (z > zc + .32 * zs)
+        fing = hand & (along > .42 * L) & ~thumb
+        index = fing & (z > zc + .08 * zs)
+        rest = fing & ~index
+        if thumb.sum() < 8 or index.sum() < 8 or rest.sum() < 8:
+            report('  hand %s: finger split skipped (%d/%d/%d)' % (sd, thumb.sum(), index.sum(), rest.sum())); continue
+        for nm, sel, pivot in (('Thumb' + sd, thumb, h + d * .15 * L + np.array([0, 0, .25 * zs])), ('Index' + sd, index, h + d * .45 * L), ('Fingers' + sd, rest, h + d * .45 * L)):
+            if nm not in byname:
+                Wp = Wn[byname['Hand' + sd]]; loc = np.linalg.inv(Wp) @ np.r_[pivot, 1]
+                nodes.append({'name': nm, 'translation': loc[:3].tolist()}); byname[nm] = len(nodes) - 1
+                nodes[byname['Hand' + sd]].setdefault('children', []).append(byname[nm]); joint_names.append(nm); jidx.append(byname[nm])
+                m['Wd'] = Wd = np.c_[Wd, np.zeros(len(Wd))]
+            k = joint_names.index(nm); tot = Wd[sel][:, cols + [k]].sum(1)
+            ramp = np.clip((along[sel] - (.05 if nm.startswith('Thumb') else .42) * L) / (.25 * L), 0, 1)
+            row = Wd[sel]; row[:, cols] = 0; row[:, k] = 0
+            row[:, joint_names.index('Hand' + sd)] += tot * (1 - ramp); row[:, k] += tot * ramp; Wd[sel] = row
+        m['Wd'] = Wd; report('  hand %s: thumb %d, index %d, other fingers %d vertices' % (sd, thumb.sum(), index.sum(), rest.sum()))
 def weld_ids(P):
     """Vertices split along UV seams share a position: give every vertex the id of its first twin."""
     key = np.round(np.asarray(P, float) / 1e-5).astype(np.int64)

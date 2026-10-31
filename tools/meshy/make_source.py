@@ -48,7 +48,7 @@ def chain_weights(P, idx, pts, root_bone, chain, joint_names, Wd, blend_top=.15)
         if s < blend_top:   # root of the chain blends into the body bone so the seam does not tear
             r = 1 - s / blend_top; w *= (1 - r); w[joint_names.index(root_bone)] += r
         Wd[v] = w
-def make_source(rigged, donor, out, body_name, tail=True, hair=True, clips=(), report=print, extras=None):
+def make_source(rigged, donor, out, body_name, tail=True, hair=True, clips=(), report=print, extras=None, fingers_bones=False):
     mr = GLB(rigged); Wm, _ = mr.node_world(); mn = mr.j['nodes']; mname = {n.get('name'): i for i, n in enumerate(mn)}
     arm = mname['Armature']; keep = [arm]; st = list(mn[arm].get('children', []))
     while st:
@@ -92,6 +92,19 @@ def make_source(rigged, donor, out, body_name, tail=True, hair=True, clips=(), r
             low = P[idx][np.argmin(P[idx, 1])]; root = np.array([0, neck + .02 * h, head[2] - .04 * h]); tipp = np.array([0, low[1], P[idx, 2].min() * .5 + root[2] * .5])
             pts = np.array([root + (tipp - root) * f for f in (0, .35, .7, 1.0)])
             extra_specs.append(('Hair', 'Head', pts, idx)); report('  hair below the skull: %d vertices down to y=%.2f' % (len(idx), low[1]))
+    fingers = []
+    if fingers_bones:   # Meshy hands have no finger joints: add one curl bone per hand (first-person grip)
+        for sd in 'LR':
+            hnd = pos('Hand' + sd); fa = pos('Forearm' + sd); d = (hnd - fa) / np.linalg.norm(hnd - fa)
+            hi = joint_names.index('Hand' + sd); domh = Wtm[np.arange(len(P)), 0] * 0
+            for c in range(4): domh = domh + Wtm[:, c] * (Jm[:, c] == hi)
+            along = (P - hnd) @ d; L_h = np.linalg.norm(hnd - fa) * .45
+            lat = np.linalg.norm((P - hnd) - along[:, None] * d[None], axis=1)   # the thumb sticks out sideways: leave it on the hand
+            idx = np.where((domh > .4) & (along > L_h * .45) & (lat < L_h * .42))[0]
+            if len(idx) > 20: fingers.append(('Fingers' + sd, 'Hand' + sd, hnd + d * L_h * .35, idx, along[idx], L_h))
+    for nm_, par_, p_, idx_, al_, L_ in fingers:
+        Wp = world_with(bg.J(nodes), {})[byname[par_]]; loc = np.linalg.inv(Wp) @ np.r_[p_, 1]
+        nodes.append({'name': nm_, 'translation': loc[:3].tolist()}); byname[nm_] = len(nodes) - 1; nodes[byname[par_]].setdefault('children', []).append(byname[nm_]); joint_names.append(nm_)
     for base, parent, pts, idx in extra_specs:
         par = parent
         for k in range(3):
@@ -100,6 +113,9 @@ def make_source(rigged, donor, out, body_name, tail=True, hair=True, clips=(), r
             nodes[byname[par]].setdefault('children', []).append(byname[nm]); par = nm; joint_names.append(nm)
     nJ = len(joint_names); Wd = np.zeros((len(P), nJ))
     for c in range(4): np.add.at(Wd, (np.arange(len(P)), Jm[:, c]), Wtm[:, c])
+    for nm_, par_, p_, idx_, al_, L_ in fingers:
+        f_ = np.clip((al_ - L_ * .45) / (L_ * .3), 0, 1)   # knuckles blend, finger tips fully on the curl bone
+        Wd[idx_] *= (1 - f_)[:, None]; Wd[idx_, joint_names.index(nm_)] += f_
     for base, parent, pts, idx in extra_specs:
         chain_weights(P, idx, pts, parent, ['%s1' % base, '%s2' % base, '%s3' % base], joint_names, Wd)
     top = np.argsort(-Wd, 1)[:, :4]; tw_ = np.take_along_axis(Wd, top, 1); tw_ /= tw_.sum(1, keepdims=True) + 1e-9
