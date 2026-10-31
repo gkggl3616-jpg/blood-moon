@@ -24,3 +24,9 @@
 - Son üç video (00-19-31, 00-22-55, 00-28-44): 1 mevcut hatalı koşu, 2 hedef koşu, 3 bütün kurt formlarına aynı kükreme. Kükreme hareketi ve efekt biçimi ortak, yalnız efekt rengi karakter paletine göre değişir; eski sabit mor renk bu yeni kararın önüne geçmez. 2. kaydın maç sayacı yavaş oynatımı gösterdiği için kayıt temposu oyun temposu sanılmaz. Önceki inceleme turunda kod/APK değiştirilmedi. Sonraki “tamam başla kodlamaya” onayıyla v0.1.13 uygulaması yapıldı; güncel durum `docs/guncelleme-v013.md` içinde. Analiz: `docs/uc-video-kosu-kukreme-analizi-20261028.md`.
 
 - Son 07-19-41 videosu bizim oyunun reddedilen v0.1.13 kükremesidir; hedef video olarak kullanılmaz. Yalnız elleri baş üstüne taşımak yeterli değildir: geniş bükülü dirsekler, içe eğimli ön kollar, hazırlık ve göğüs/boyun açılması önceki hedef kayıtla kontrol edilir. Teknik test başarısı kullanıcı görsel kabulü değildir. v0.1.14 odaklı düzeltme: docs/kukreme-duzeltmesi-v014.md.
+
+- (31.10.2026) WolfTeam'e ait hiçbir dosya, model, görüntü veya video kullanılmaz ve referans alınmaz; yukarıdaki eski "Wolfteam duruşları" maddesi geçersizdir. Başka oyunlardan ekran görüntüleri yalnız genel kamera/kavrama fikri için kullanılır, modelleri kopyalanmaz.
+- Karakter tasarımları onaylı görselin birebir aynısı olur. Birinci şahısta her karakterin kendine özel, yüksek detaylı, parmak kemikli eldiveni/eli vardır; eller silahın kabzasını/tutamağını kavrar, işaret parmağı tetikte durur.
+- Silahlar özgün, 4K dokulu PBR modellerdir; kabza, el kundağı/tutamak, tetik, nişangah, şarjör ve namlu ucu noktaları her silah için tek tek belirlenir.
+- Higgsfield: karakter başına ~15 kredi sınırı, her üretimden önce maliyet sorgusu. Meshy: toplu işten önce bakiye okunur.
+- APK yalnız kullanıcı onayından sonra; APK çıktığında hem dosya hem GitHub release bağlantısı gönderilir.

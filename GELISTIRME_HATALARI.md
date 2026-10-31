@@ -109,3 +109,14 @@ Bu dosya bu konuşmada tespit edilen hataları, bunların sonucunu ve gerçek du
 ## v0.1.14 — kullanıcı kükreme sonucunu reddetti
 
 v0.1.13 baş üstü el testi, fazla düz/dar kol duruşunu yakalamadı. Bu sonuç referans kabulü sayılmamalıydı. Yeni poz; dışarıda bükülü dirsek, içe eğimli ön kol, göğüs/boyun açılması ve belirgin hazırlık kullanır. Kısa kollu kurtlarda öne uzak el hedefi yeniden düzleşme üretiyordu; uzaklık düzeltildi. Gerçek GLB ve WebGL dirsek ölçümleri eklendi. Ayrıntı: docs/kukreme-duzeltmesi-v014.md.
+
+## v0.1.15 hazırlığı — Meshy hattı, birinci şahıs ve kredi hataları (31.10.2026)
+
+51. **Uzayan üçgen yerine şeffaf delik ürettim.** El-uyluk köprü üçgenlerini silip yerini kapatmadım; Kurt Kral'da 194, diğer kurtlarda ~90 delik kaldı, pelerin şerit şerit göründü. Düzeltme: iki yan ayrı ayrı kapatılıyor; `verify_models.py` kaynağa göre 300 cm²'den büyük yeni açık halka bulursa derleme durur.
+52. **Pelerin/kuyruk/saç köşelerine Meshy'nin kol-bacak ağırlıkları karıştı.** Bu köşeler artık gövde payını sadece gövde kemiklerinden alır; Kral'ın elle yapılmış boynuz+pelerini eski ayarlı ağırlıklarını korur.
+53. **Uzama testi 4 etki sınırını dikkate almıyordu.** Sevk edilen model her köşede en fazla 4 kemik kullanır; uzama döngüsü artık tam bu kesilmiş ağırlıkları dener.
+54. **Birinci şahıs kolları gövde/saç/pelerin kemiklerine de bağlıydı.** Kamera önünde dev düz üçgenler ve havada uçan ceket/saç parçaları oluştu (kullanıcı Zeynoş SS'i). Kalıcı önlem: FP kolu yalnız Clav/UpperArm/Forearm/Hand/Fingers ağırlığı alır, kol kemiğine uzak deri FP'ye girmez; `verify_models.py` ikisini de denetler, `verify_fp.py` 6 karakter × 2 silah × 3 bakış açısında ellerin kabzaya ulaştığını CI'da ölçer.
+55. **Karakterleri çok düşük poligonla ürettim; eller parmak ayrılamayacak kadar kaba.** Mobil bütçe için gövdeyi indirgemek ellerin de 20–60 köşeye düşmesine yol açtı; işaret parmağı tetiğe konamaz. Ders: birinci şahısta görülen eller/eldivenler gövdeden ayrı, yüksek detaylı ve parmak kemikli üretilir (karaktere özel eldiven). Gövde düşük poligon kalabilir, eller kalamaz.
+56. **Meshy kredisini yanlış iş tükettti.** Silah görselleri için plan dosyasını güncelledim sanırken bilgisayardaki eski Gökçe planı okundu; 6 gereksiz görsel (~54 kredi) üretildi. Ders: her iş kendi adıyla ayrı plan dosyası okur; işi başlatmadan önce plan dosyasının içeriği bilgisayarda doğrulanır.
+57. **6 eşzamanlı 4K görselden-3D isteği "yetersiz kredi" aldı.** Bakiye kontrol edilmeden toplu iş başlatıldı. Ders: toplu Meshy işinden önce `/balance` okunur, maliyet hesaplanır, istekler sırayla gönderilir.
+58. **Dört ayak koşusunun adımı kısa.** Yere basan pençeler ~3 m/sn gidiyor, oyun 8 m/sn koşuyor; hızlandırmak 0,14 sn'lik telaşlı döngü yapar. Açık iş: daha uzun adımlı gallop.
