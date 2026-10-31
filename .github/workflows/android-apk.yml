@@ -67,6 +67,10 @@ jobs:
         run: |
           set -o pipefail
           python tools/verify_reference_arena.py 2>&1 | tee /tmp/verify_reference_arena.log || { tail -n 25 /tmp/verify_reference_arena.log | cut -c1-400 | while IFS= read -r l; do echo "::error title=verify_reference_arena::$l"; done; exit 1; }
+      - name: Verify first-person arms reach their grips for every character
+        run: |
+          set -o pipefail
+          python tools/verify_fp.py 2>&1 | tee /tmp/verify_fp.log || { tail -n 25 /tmp/verify_fp.log | cut -c1-400 | while IFS= read -r l; do echo "::error title=verify_fp::$l"; done; exit 1; }
       - name: Download verified Android build tools
         run: python tools/bootstrap_android.py
       - name: Compile and sign APK

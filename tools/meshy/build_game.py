@@ -235,9 +235,26 @@ def build(old_path, rig_path, anim_specs, out_path, transfer=(), scale_wrap=None
     if fp_arms:   # first-person arms: everything from the collarbones outward, cut from the finished full body
         b = out_meshes[0]; T3 = b['I'].reshape(-1, 3)
         armset = np.array([bool(re.match(r'^(UpperArm|Forearm|Hand|Fingers)', x)) for x in joint_names])
+        chain = np.array([bool(re.match(r'^(Clav|UpperArm|Forearm|Hand|Fingers)', x)) for x in joint_names])
         aw = (b['W'] * armset[b['J'].astype(int)]).sum(1)
-        keep = (aw[T3] > .6).all(1)   # only pure arm triangles: anything tied to the torso would sit at the camera and fill the screen
+        # keep only skin that hugs the arm bones: coat flaps, capes and long hair that merely touch the arm would
+        # float in front of the camera once the arm is lifted into the aiming pose
+        Wn0 = world_with(J(nodes), {}); jp = lambda nm: Wn0[byname[nm]][:3, 3]
+        hgt = b['P'][:, 1].max() - b['P'][:, 1].min(); R = .11 * hgt / 1.78; segs = []
+        for sd in 'LR':
+            c_, u_, f_, h_ = jp('Clav' + sd), jp('UpperArm' + sd), jp('Forearm' + sd), jp('Hand' + sd)
+            segs += [(c_, u_), (u_, f_), (f_, h_), (h_, h_ + (h_ - f_) * .75)]
+        Pb = b['P'].astype(float); dmin = np.full(len(Pb), 1e9)
+        for a_, c2 in segs:
+            v_ = c2 - a_; t_ = np.clip(((Pb - a_) @ v_) / (v_ @ v_ + 1e-12), 0, 1); dmin = np.minimum(dmin, np.linalg.norm(Pb - (a_ + t_[:, None] * v_), axis=1))
+        near = dmin < R
+        keep = ((aw[T3] > .45) & near[T3]).all(1)
+        # The first-person arms get their OWN weights: arm chain only. In first person the torso stays where the body
+        # was while IK throws the hands forward, so any torso influence would smear a vertex across the screen.
+        Jb = b['J'].astype(int); Wb = b['W'] * chain[Jb]; Wb[Wb.sum(1) < 1e-6, 0] = 1
+        Wb /= Wb.sum(1, keepdims=True)
         fp = dict(b); fp['name'] = 'FPArms_human'; fp['extras'] = None; fp['I'] = T3[keep].reshape(-1).astype(np.uint32)
+        fp['W'] = Wb.astype(np.float32)
         out_meshes.append(fp); report('  FPArms_human: %d triangles' % keep.sum())
     nodes, clips, IB = normalize(nodes, clips, jidx, k)
     write(out_path, old, nodes, jidx, IB, out_meshes, clips)

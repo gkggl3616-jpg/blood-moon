@@ -82,6 +82,23 @@ if __name__ == '__main__':
             n_open, areas = new_holes(str(f), str(src))
             if areas and areas[0] > MAX_HOLE:
                 print(f'FAIL {f.name}  new hole in the surface: {areas[0] * 1e4:.0f} cm2 (limit {MAX_HOLE * 1e4:.0f})'); failed.append(f.name); continue
+        g_, acc_ = load(f); names_ = [g_['nodes'][j].get('name', '') for j in g_['skins'][0]['joints']]; bad_fp = False
+        for n_ in g_['nodes']:   # first-person arms may only follow the arm chain (torso influence smears them across the screen)
+            if 'mesh' in n_ and n_.get('name', '').startswith('FPArms'):
+                pr_ = g_['meshes'][n_['mesh']]['primitives'][0]; J_ = acc_(pr_['attributes']['JOINTS_0']).astype(int); W_ = acc_(pr_['attributes']['WEIGHTS_0'])
+                used = np.unique(acc_(pr_['indices']).astype(int)); off = {names_[j] for j in np.unique(J_[used][W_[used] > 1e-4]) if not names_[j].startswith(('Clav', 'UpperArm', 'Forearm', 'Hand', 'Fingers'))}
+                if off: print(f'FAIL {f.name}  first-person arms follow non-arm bones: {sorted(off)}'); bad_fp = True
+                # and every first-person vertex must hug an arm bone (no coat flaps / hair floating in front of the camera)
+                from glbio import GLB as _G, world_with as _ww
+                _g = _G(str(f)); _W = _ww(_g, {}); _nm = {n.get('name'): i for i, n in enumerate(_g.j['nodes'])}
+                _P = acc_(pr_['attributes']['POSITION'])[used]; _h = np.ptp(acc_(pr_['attributes']['POSITION'])[:, 1])
+                _d = np.full(len(_P), 1e9)
+                for sd in 'LR':
+                    pts = [_W[_nm[b + sd]][:3, 3] for b in ('Clav', 'UpperArm', 'Forearm', 'Hand')]; pts.append(pts[-1] + (pts[-1] - pts[-2]) * .75)
+                    for a, c in zip(pts[:-1], pts[1:]):
+                        v = c - a; t = np.clip(((_P - a) @ v) / (v @ v + 1e-12), 0, 1); _d = np.minimum(_d, np.linalg.norm(_P - (a + t[:, None] * v), axis=1))
+                if _d.max() > .14 * _h / 1.78: print(f'FAIL {f.name}  first-person arm vertex {_d.max():.2f} m away from the arm bones'); bad_fp = True
+        if bad_fp: failed.append(f.name); continue
         w = check(f); ok = w[1] == 0
         print(('OK   ' if ok else 'FAIL ') + f.name + ('' if ok else f'  {w[1]} stretched edges, worst +{w[0]:.2f} m in {w[2]} frame {w[3]}; clips: ' + ', '.join(f'{k} +{v:.2f}' for k, v in PER.items())))
         if not ok: failed.append(f.name)
