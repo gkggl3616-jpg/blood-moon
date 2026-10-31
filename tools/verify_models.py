@@ -71,11 +71,65 @@ def check(path):
 
 
 if __name__ == '__main__':
-    files = [Path(a) for a in sys.argv[1:]] or sorted(MODELS.glob('*.glb'))
+    files = [Path(a) for a in sys.argv[1:]] or sorted(MODELS.glob('*.glb')) + sorted((MODELS / 'weapons').glob('*.glb'))
     failed = []
+    sys.path.insert(0, str(ROOT / 'tools' / 'meshy'))
+    SRC = ROOT / 'art/3d/meshy/source'; MAX_HOLE = .03   # m^2: an open loop larger than this is a see-through hole
     for f in files:
+        src = SRC / f.name.replace('_meshy', '')
+        if src.exists():
+            from holes import new_holes
+            n_open, areas = new_holes(str(f), str(src))
+            if areas and areas[0] > MAX_HOLE:
+                print(f'FAIL {f.name}  new hole in the surface: {areas[0] * 1e4:.0f} cm2 (limit {MAX_HOLE * 1e4:.0f})'); failed.append(f.name); continue
+        g_, acc_ = load(f); names_ = [g_['nodes'][j].get('name', '') for j in g_['skins'][0]['joints']] if g_.get('skins') else []; bad_fp = False
+        if 'weapons' in f.parts:   # static weapon: real size, sockets the hands are driven to (tools/weapons/build_weapons.py)
+            ex = g_['nodes'][0].get('extras', {}); sk = ex.get('sockets', {}); gun = f.stem in ('rifle', 'sniper', 'pistol')
+            P_ = np.vstack([acc_(p['attributes']['POSITION']) + np.array(n.get('translation', [0, 0, 0])) for n in g_['nodes'] if 'mesh' in n for p in g_['meshes'][n['mesh']]['primitives']])
+            L_ = np.ptp(P_, 0).max(); need = ['grip_r', 'trigger', 'muzzle'] + (['grip_l', 'sight'] if gun else [])
+            if abs(L_ - ex.get('length_m', 0)) > .05 * ex.get('length_m', 1): print(f'FAIL {f.name}  length {L_:.3f} m, expected {ex.get("length_m")}'); bad_fp = True
+            if [k for k in need if not sk.get(k)]: print(f'FAIL {f.name}  missing sockets {[k for k in need if not sk.get(k)]}'); bad_fp = True
+            if gun and sk.get('trigger') and np.linalg.norm(np.array(sk['trigger']) - np.array(sk['grip_r'])) > .085: print(f'FAIL {f.name}  trigger out of index-finger reach from the grip'); bad_fp = True
+            if gun and f.stem != 'pistol' and not any(m.get('name') == 'Mag' for m in g_['meshes']): print(f'FAIL {f.name}  no separate magazine'); bad_fp = True
+        for n_ in g_['nodes']:   # first-person arms may only follow the arm chain (torso influence smears them across the screen)
+            if 'mesh' in n_ and n_.get('name', '').startswith('FPArms'):
+                pr_ = g_['meshes'][n_['mesh']]['primitives'][0]; J_ = acc_(pr_['attributes']['JOINTS_0']).astype(int); W_ = acc_(pr_['attributes']['WEIGHTS_0'])
+                used = np.unique(acc_(pr_['indices']).astype(int)); off = {names_[j] for j in np.unique(J_[used][W_[used] > 1e-4]) if not names_[j].startswith(('Clav', 'Deltoid', 'UpperArm', 'Forearm', 'Hand', 'Fingers', 'Palm', 'Thumb', 'Index', 'Middle', 'Ring', 'Pinky'))}
+                if off: print(f'FAIL {f.name}  first-person arms follow non-arm bones: {sorted(off)}'); bad_fp = True
+                # and every first-person vertex must hug an arm bone (no coat flaps / hair floating in front of the camera)
+                from glbio import GLB as _G, world_with as _ww
+                _g = _G(str(f)); _W = _ww(_g, {}); _nm = {n.get('name'): i for i, n in enumerate(_g.j['nodes'])}
+                _P = acc_(pr_['attributes']['POSITION'])[used]; _bm = next((m for m in g_['nodes'] if 'mesh' in m and m.get('name', '').startswith('Body')), None)
+                if _bm is None: continue   # dedicated first-person rig (models/fp_arms.glb): no body to be cut from
+                _h = np.ptp(acc_(g_['meshes'][_bm['mesh']]['primitives'][0]['attributes']['POSITION'])[:, 1])   # body height
+                _d = np.full(len(_P), 1e9)
+                for sd in 'LR':
+                    pts = [_W[_nm[b + sd]][:3, 3] for b in ('Clav', 'UpperArm', 'Forearm', 'Hand')]; pts.append(pts[-1] + (pts[-1] - pts[-2]) * .75)
+                    for a, c in zip(pts[:-1], pts[1:]):
+                        v = c - a; t = np.clip(((_P - a) @ v) / (v @ v + 1e-12), 0, 1); _d = np.minimum(_d, np.linalg.norm(_P - (a + t[:, None] * v), axis=1))
+                if _d.max() > .14 * _h / 1.78: print(f'FAIL {f.name}  first-person arm vertex {_d.max():.2f} m away from the arm bones'); bad_fp = True
+        # docs/uretim-standardi.md: fixed triangle budgets and the cloth/tail/hair weighting rule
+        BUDGET = {'Body_human': 35000, 'FPArms': 12000}
+        for n_ in g_['nodes']:
+            if 'mesh' not in n_: continue
+            nm = n_.get('name', ''); pr_ = g_['meshes'][n_['mesh']]['primitives']
+            tris = sum(g_['accessors'][p['indices']]['count'] // 3 for p in pr_)
+            lim = BUDGET['Body_human'] if nm.startswith('Body_human') else BUDGET['FPArms'] if nm.startswith('FPArms') else 30000 if nm.startswith('Body_') else None
+            if 'weapons' in f.parts: lim = 10000 if f.stem in ('frag', 'smoke') else 35000
+            if lim and tris > lim: print(f'FAIL {f.name}  {nm}: {tris} triangles > budget {lim}'); bad_fp = True
+            if nm.startswith('Body_') and 'skin' in n_:
+                J_ = acc_(pr_[0]['attributes']['JOINTS_0']).astype(int); W_ = acc_(pr_[0]['attributes']['WEIGHTS_0'])
+                cloth = np.array([x.startswith(('Cape', 'Tail', 'Hair')) for x in names_]); limb = np.array([x.startswith(('UpperArm', 'Forearm', 'Hand', 'Fingers', 'Thumb', 'Index', 'Thigh', 'Shin', 'Foot', 'Toe')) for x in names_])
+                cw = (W_ * cloth[J_]).sum(1); lw = (W_ * limb[J_]).sum(1); bad = (cw > .05) & (lw > .05)
+                if bad.sum() > 0: print(f'FAIL {f.name}  {bad.sum()} cape/tail/hair vertices also follow arm or leg bones'); bad_fp = True
+                if nm == 'Body_human':   # the third-person body is posed by arm IK: a forearm/hand vertex may not also follow the hips or legs
+                    armc = np.array([x.startswith(('Forearm', 'Hand', 'Fingers', 'Thumb', 'Index')) for x in names_]); legc = np.array([x.startswith(('Hips', 'Thigh', 'Shin', 'Foot', 'Toe')) for x in names_])
+                    both = ((W_ * armc[J_]).sum(1) > .02) & ((W_ * legc[J_]).sum(1) > .02)
+                    if both.sum() > 0: print(f'FAIL {f.name}  {both.sum()} vertices follow both a hand/forearm and the hips/legs'); bad_fp = True
+        if bad_fp: failed.append(f.name); continue
+        if 'weapons' in f.parts: print('OK   weapons/' + f.name); continue
         w = check(f); ok = w[1] == 0
         print(('OK   ' if ok else 'FAIL ') + f.name + ('' if ok else f'  {w[1]} stretched edges, worst +{w[0]:.2f} m in {w[2]} frame {w[3]}; clips: ' + ', '.join(f'{k} +{v:.2f}' for k, v in PER.items())))
         if not ok: failed.append(f.name)
-    if failed: raise SystemExit('stretched triangles in: ' + ', '.join(failed))
+    if failed: raise SystemExit('model checks failed (stretched triangles or holes): ' + ', '.join(failed))
     print('PASS: no stretched triangles in any clip')

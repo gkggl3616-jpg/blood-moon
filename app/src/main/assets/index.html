@@ -15,7 +15,7 @@
     <video id="intro" src="media/intro.mp4" playsinline autoplay preload="auto" poster="media/opening.jpg"></video>
     <div class="opening-top"><span class="badge">ROGUE: BLOOD MOON</span><div class="intro-controls"><button class="icon-button" id="openingSound" aria-label="Sesi aç veya kapat">SES AÇIK</button><button class="icon-button" id="skipIntro">ATLA →</button></div></div>
     <button class="primary intro-start" id="startIntro" hidden>AÇILIŞI BAŞLAT <span>▶</span></button>
-    <footer class="opening-footer"><span>AÇILIŞTAN SONRA MENÜYE GEÇİLECEK</span><span>v0.1.14</span></footer>
+    <footer class="opening-footer"><span>AÇILIŞTAN SONRA MENÜYE GEÇİLECEK</span><span>v0.1.15</span></footer>
   </section>
 
   <section id="lobby" class="screen" aria-label="Oyun lobisi" inert>
@@ -76,8 +76,8 @@
 
 <section id="arena" class="screen" aria-label="Düz test haritası" inert>
  <div id="arenaCanvas"></div><div id="arenaLoad" class="arena-load" role="status">Test alanı hazırlanıyor…</div>
- <div class="arena-top"><button id="arenaExit" class="arena-small">← LOBİ</button><div><b id="arenaName">BİLGE KAĞAN</b><small id="arenaMode">İNSAN • BİRİNCİ ŞAHIS</small></div><span class="arena-session">DÜZ TEST ALANI · ÇEVRİMDIŞI</span><span id="arenaPerformance">— FPS</span></div>
- <div class="arena-trial"><label>KARAKTER<select id="arenaCharacter"><option value="bilge" selected>Bilge Kağan</option><option value="ates">Köz Kağan (Ateş Kurdu)</option><option value="kral">Kurt Kral</option><option value="ay">Ay Kurdu</option><option value="hellgate">Hellgate Kurdu</option></select></label><label>TEST DONANIMI<select id="arenaTrial"><option value="legendary">Deneme: Efsanevi takla</option><option value="normal">Deneme: Standart takla</option><option value="equipped">Kaydedilen donanım</option></select></label><small>Deneme seçimi mağaza sahipliğini değiştirmez.</small><label class="counterfire"><input id="arenaCounterfire" type="checkbox"> Hedef karşı ateşi</label></div>
+ <div class="arena-top"><button id="arenaExit" class="arena-small">← LOBİ</button><button id="arenaView" class="arena-small" title="Görünüm (V)">3. ŞAHIS</button><div><b id="arenaName">BİLGE KAĞAN</b><small id="arenaMode">İNSAN • BİRİNCİ ŞAHIS</small></div><span class="arena-session">DÜZ TEST ALANI · ÇEVRİMDIŞI</span><span id="arenaPerformance">— FPS</span></div>
+ <div class="arena-trial"><label>KARAKTER<select id="arenaCharacter"><option value="bilge" selected>Bilge Kağan</option><option value="ates">Köz Kağan (Ateş Kurdu)</option><option value="kral">Kurt Kral</option><option value="ay">Ay Kurdu</option><option value="hellgate">Hellgate Kurdu</option><option value="zeynos">Ak Yürek</option></select></label><label>TEST DONANIMI<select id="arenaTrial"><option value="legendary">Deneme: Efsanevi takla</option><option value="normal">Deneme: Standart takla</option><option value="equipped">Kaydedilen donanım</option></select></label><small>Deneme seçimi mağaza sahipliğini değiştirmez.</small><label class="counterfire"><input id="arenaCounterfire" type="checkbox"> Hedef karşı ateşi</label></div>
  <div class="arena-crosshair"><i></i><i></i></div><div id="arenaHit" class="arena-hit">×</div><div id="arenaDamage" role="status"></div>
  <div id="arenaRoar" class="arena-roar" hidden><span>KÜKREME</span><b id="arenaRoarTimer">20.0</b><small>HIZ +%20 · HASAR +%15 · SAVUNMA +%30</small><i id="arenaRoarBar"></i></div>
  <div id="arenaNotice" role="status">Deneme donanımı açık. Hareket et, dönüş ve animasyonları dene.</div>

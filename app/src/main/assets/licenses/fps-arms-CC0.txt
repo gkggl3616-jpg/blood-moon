@@ -1,0 +1,4 @@
+First-person arms model (models/fp_arms.glb)
+Source: "FPS arms rigged only", https://opengameart.org/content/fps-arms-rigged-only
+License: CC0 1.0 Universal (public domain dedication). Mesh and texture based on MakeHuman.
+Modified for Rogue: Blood Moon: converted to glTF, renamed bones, per-character textures painted (gloves, wraps, bracers).

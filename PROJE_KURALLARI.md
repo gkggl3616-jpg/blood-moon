@@ -1,10 +1,12 @@
 # Rogue: Blood Moon — kullanıcının kalıcı çalışma kuralları
 
+- **Her model/silah işinden önce `docs/uretim-standardi.md` okunur.** Sabit poligon bütçesi (insan 35.000, kurt 30.000, silah 35.000, bomba 10.000 üçgen), üretim promptu ve pelerin/delik/FP kolu için kalıcı önlemler oradadır. Bunlar CI'da `tools/verify_models.py` ile zorlanır.
+
 - Kısa mesajları önceki kararlarla birlikte ayrıntılı görev olarak yorumla; rutin ayrıntıları kullanıcıya tekrar sordurma. Eksik veya belirsiz noktaları makul oyun tasarım kararlarıyla tamamla. Kullanıcı son mesajlarıyla işi genişlettiğinde önceki hedefleri bırakma.
 - Android öncelikli. Kurulum teslimi tek, bağımsız `.apk` ve doğrudan indirme bağlantısı olmalı. ZIP, kaynak modelleri veya ek veri paketlerini kurulumun parçası gibi sunma. Tüm çalışma zamanı dosyaları APK'da bulunmalı.
 - Referanslar: Wolfteam insan/kurt duruşları, sert yüz ve diş yapısı, ayrıntılı kıyafet/zırh, farklı yele/silüet, buzlu el-dirsek geometrisi, kükremede mor el alevi. Yalnız renk ve boy değiştirerek farklı model tamamlandı deme.
 - Bilge Kağan, Kül Tigin, Alp Arslan ve Konuralp için birbirine uyan insan ve kurt tasarımları. Yavuz Selim görselleri tarihî kıyafet ve iki formun ortak kimliği için referans.
-- Kurtlar geniş omuz/göğüs, belirgin kas, dar bel; göbekli görünüm istemiyor. Model/efektler düşük poligonlu ve mobil belleğe uygun olacak. Performans ölçülmeden 'çökmez' denmez.
+- Kurtlar geniş omuz/göğüs, belirgin kas, dar bel; göbekli görünüm istemiyor. Model/efektler mobil belleğe uygun olacak; poligon bütçesi `docs/uretim-standardi.md`'deki sabit sınırlardır (düşük poligon artık hedef değil). Performans ölçülmeden 'çökmez' denmez.
 - Güncel envanter hedefi son mesajın 4. SS (11497.jpg) ve 5. SS (11498.jpg): solda donanım kutuları ve bağımsız donanım sekmeleri, sağda sahip olunan eşya ızgarası/kategoriler, altta eşya ayrıntısı. Satın alınan uyumlu eşyalar sağdan sola dokunma/fare sürüklemesiyle kuşanılır. İnsan/silah ve kurt donanımı ayrı kaydedilir; karakter önizlemesi erişilebilir kalır. Bu istek önceki 11473.jpg odaklı büyük sol karakter yerleşiminin önüne geçer.
 - İz sürme korunacak. Sıçrama doğal ileri sıçrama; yerde hedef/alan halkası yok. Yetenek laboratuvarı yok.
 - Standart Kurt Taklası mağazadan alınır ve yalnız takla açar. Efsanevi Kurt Taklası dört ayak koşu ve takla açar. Kurt başına kuşanma. Son kullanıcı düzeltmesi: takla temas hasarı verir; aynı hedef tek taklada yalnız bir kez vurulur, siper arkasına hasar geçmez.
@@ -24,3 +26,9 @@
 - Son üç video (00-19-31, 00-22-55, 00-28-44): 1 mevcut hatalı koşu, 2 hedef koşu, 3 bütün kurt formlarına aynı kükreme. Kükreme hareketi ve efekt biçimi ortak, yalnız efekt rengi karakter paletine göre değişir; eski sabit mor renk bu yeni kararın önüne geçmez. 2. kaydın maç sayacı yavaş oynatımı gösterdiği için kayıt temposu oyun temposu sanılmaz. Önceki inceleme turunda kod/APK değiştirilmedi. Sonraki “tamam başla kodlamaya” onayıyla v0.1.13 uygulaması yapıldı; güncel durum `docs/guncelleme-v013.md` içinde. Analiz: `docs/uc-video-kosu-kukreme-analizi-20261028.md`.
 
 - Son 07-19-41 videosu bizim oyunun reddedilen v0.1.13 kükremesidir; hedef video olarak kullanılmaz. Yalnız elleri baş üstüne taşımak yeterli değildir: geniş bükülü dirsekler, içe eğimli ön kollar, hazırlık ve göğüs/boyun açılması önceki hedef kayıtla kontrol edilir. Teknik test başarısı kullanıcı görsel kabulü değildir. v0.1.14 odaklı düzeltme: docs/kukreme-duzeltmesi-v014.md.
+
+- (31.10.2026) WolfTeam'e ait hiçbir dosya, model, görüntü veya video kullanılmaz ve referans alınmaz; yukarıdaki eski "Wolfteam duruşları" maddesi geçersizdir. Başka oyunlardan ekran görüntüleri yalnız genel kamera/kavrama fikri için kullanılır, modelleri kopyalanmaz.
+- Karakter tasarımları onaylı görselin birebir aynısı olur. Birinci şahısta her karakterin kendine özel, yüksek detaylı, parmak kemikli eldiveni/eli vardır; eller silahın kabzasını/tutamağını kavrar, işaret parmağı tetikte durur.
+- Silahlar özgün, 4K dokulu PBR modellerdir; kabza, el kundağı/tutamak, tetik, nişangah, şarjör ve namlu ucu noktaları her silah için tek tek belirlenir.
+- Higgsfield: karakter başına ~15 kredi sınırı, her üretimden önce maliyet sorgusu. Meshy: toplu işten önce bakiye okunur.
+- APK yalnız kullanıcı onayından sonra; APK çıktığında hem dosya hem GitHub release bağlantısı gönderilir.

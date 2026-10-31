@@ -4,7 +4,8 @@ const roster = [
  {id:'ates',name:'KÖZ BEY',wolf:'KÖZ KAĞAN',role:'AVCI',price:0,power:150,color:'#ff5a24',human:[['Hasar',4],['Dayanıklılık',-2]],beast:[['Hasar',55],['Dayanıklılık',35]],body:'Kara kürklü, bilekten dirseğe yanan',claw:'Alevli pençe darbesi',trail:'Kızıl köz • üç yanık iz',desc:'Buz kurdunun kötü ikizi: kara ve bordo kürk, bileklerinden dirseklerine yanan alevler, göğsünde üç pençe izi. Kükreyince alevleri köze döner.'},
  {id:'kral',name:'KARA HAN',wolf:'KURT KRAL',role:'HÜKÜMDAR',price:0,power:160,color:'#c8102e',human:[['Dayanıklılık',5],['Hareket',-3]],beast:[['Hasar',50],['Dayanıklılık',55]],body:'Boynuzlu, pelerinli, savaştan yeni çıkmış',claw:'Kanlı ağır darbe',trail:'Koyu kızıl • üç derin yarık',desc:'Kötü kurt kral: boynuzları, yara izleri ve kanla kaplı kürkü, rüzgârda savrulan pelerini.'},
  {id:'ay',name:'AYSEL',wolf:'AY KURDU',role:'İZCİ',price:0,power:140,color:'#a78bfa',mods:{health:-10,speed:15},human:[['Hareket',0]],beast:[['Hasar',45],['Dayanıklılık',40]],body:'İnce, çevik dişi kurt; örgülü gümüş yele',claw:'Hızlı ay pençesi',trail:'Mor ay ışığı • üç ince iz',desc:'Gümüş kürklü, mor çizgili dişi kurt. Diğer kurtlardan %10 daha az canı, %15 daha fazla hızı var. Kollarındaki hilal işaretleri kükreyince parlar.'},
- {id:'hellgate',name:'ZEBANİ',wolf:'HELLGATE KURDU',role:'CEHENNEM BEKÇİSİ',price:0,power:155,color:'#ff4a1c',human:[['Dayanıklılık',2],['Hareket',-1]],beast:[['Hasar',52],['Dayanıklılık',48]],body:'Kömürleşmiş deri, lav çatlakları, omurga dikenleri',claw:'Kor pençe',trail:'Kızıl lav • üç yanık yarık',desc:'Cehennem kapısının bekçisi. Kömürleşmiş derisinde lav çatlakları parlar; omurgası boyunca aşağıdan yukarı büyüyen kemik dikenleri kükreyince kızarır.'}
+ {id:'hellgate',name:'ZEBANİ',wolf:'HELLGATE KURDU',role:'CEHENNEM BEKÇİSİ',price:0,power:155,color:'#ff4a1c',human:[['Dayanıklılık',2],['Hareket',-1]],beast:[['Hasar',52],['Dayanıklılık',48]],body:'Kömürleşmiş deri, lav çatlakları, omurga dikenleri',claw:'Kor pençe',trail:'Kızıl lav • üç yanık yarık',desc:'Cehennem kapısının bekçisi. Kömürleşmiş derisinde lav çatlakları parlar; omurgası boyunca aşağıdan yukarı büyüyen kemik dikenleri kükreyince kızarır.'},
+ {id:'zeynos',name:'ZEYNOŞ',wolf:'AK YÜREK',role:'KORUYUCU',price:0,power:145,color:'#ff7ab5',human:[['Dayanıklılık',2],['Hareket',1]],beast:[['Hasar',44],['Dayanıklılık',50]],body:'Beyaz kürk, kızıl kıvırcık yele; kalp kristalli gerdanlık ve dirseklikler',claw:'Yumuşak ama kararlı pençe',trail:'Pembe ışık • üç kalp izi',desc:'Kötülüğe karşı savaşan iyi kalpli koruyucu. Beyaz tenli, kızıl saçlı Zeynoş kurda dönüşünce de kalp kolyesini ve dirseklerindeki kalp kristallerini taşır; kükreyince etrafında pembe kalpler belirir.'}
 
 ];
 let collectionState={credits:2500,owned:['bilge','ates','kral'],equipped:'bilge'};
@@ -20,7 +21,7 @@ function renderCharacter(){const c=roster.find(c=>c.id===selectedCharacter);cons
  $('characterAction').onclick=()=>{playSound();if(!owned){if(collectionState.credits<c.price){toast('Deneme kredisi yetersiz.');return;}collectionState.credits-=c.price;collectionState.owned.push(c.id);toast(c.name+' deneme envanterine eklendi.');}else{collectionState.equipped=c.id;toast(c.name+' teçhizata seçildi.');}saveCollection();renderGear();renderCollection();};
  updateInventoryCharacter();
 }
-function characterModelId(id){return ['bilge','ates','kral','ay','hellgate'].includes(id)?id:'bilge';}
+function characterModelId(id){return ['bilge','ates','kral','ay','hellgate','zeynos'].includes(id)?id:'bilge';}
 window.rogueModelId=characterModelId;
 function updateInventoryCharacter(){}
 $('previewHuman').onclick=()=>{previewForm='human';renderCollection();};$('previewWolf').onclick=()=>{previewForm='wolf';renderCollection();};

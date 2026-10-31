@@ -38,7 +38,7 @@ def main():
     run(TOOLS / 'aapt2', 'link', '-o', BUILD / 'base.apk', '-I', ANDROID,
         '--manifest', manifest,
         '--min-sdk-version', '26', '--target-sdk-version', '35',
-        '--version-code', '15', '--version-name', '0.1.14',
+        '--version-code', '16', '--version-name', '0.1.15',
         '-A', ROOT / 'app/src/main/assets', BUILD / 'resources.zip')
     sources = list((ROOT / 'app/src/main/java').rglob('*.java'))
     run('java', '-m', 'jdk.compiler/com.sun.tools.javac.Main', '-source', '17', '-target', '17', '-encoding', 'UTF-8',
@@ -67,7 +67,7 @@ def main():
             '-alias', 'androiddebugkey', '-keyalg', 'RSA', '-keysize', '2048', '-validity', '10000',
             '-dname', 'CN=Rogue Prototype,O=Local Development,C=TR')
         key.chmod(0o600)
-    apk = ROOT / 'dist/Rogue-Blood-Moon-v0.1.14.apk'
+    apk = ROOT / 'dist/Rogue-Blood-Moon-v0.1.15.apk'
     run('java', '-jar', TOOLS / 'lib/apksigner.jar', 'sign', '--ks', key,
         '--ks-pass', 'pass:android', '--key-pass', 'pass:android', '--ks-key-alias', 'androiddebugkey',
         '--out', apk, aligned)
@@ -101,11 +101,13 @@ def main():
                         timing=gltf['accessors'][animation['samplers'][0]['input']]
                         expected=timing['max'][0] if animation['name']=='WolfRunQuad' else 1.2 if animation['name']=='WolfRoll' else 1.4
                         assert abs(timing['min'][0])<1e-5 and abs(timing['max'][0]-expected)<1e-5
-            triangles=sum(gltf['accessors'][p['indices']]['count']//3 for m in gltf['meshes'] for p in m['primitives'])
-            assert triangles <= (40000 if model_id.startswith('human-') else 22000),(model_id,triangles)   # humans count the full body plus the first-person arm subset
+            for m in gltf['meshes']:   # budgets fixed in docs/uretim-standardi.md: human body 35k, wolf body 30k, FP arm subset 12k
+                triangles=sum(gltf['accessors'][p['indices']]['count']//3 for p in m['primitives'])
+                budget=12000 if m.get('name','').startswith('FPArms') else 35000 if model_id.startswith('human-') else 30000
+                assert triangles <= budget,(model_id,m.get('name'),triangles,budget)
         assert {'assets/arena.css','assets/inventory.js','assets/inventory.css','assets/gear-system.js'}<=set(z.namelist())
     report = {'apk': apk.name, 'size_bytes': apk.stat().st_size, 'sha256': hashlib.sha256(apk.read_bytes()).hexdigest(),
-              'package': 'com.roguebloodmoon.prototype', 'version': '0.1.14', 'min_android': '8.0',
+              'package': 'com.roguebloodmoon.prototype', 'version': '0.1.15', 'min_android': '8.0',
               'version_code': 15, 'runtime_asset_count': len(runtime_files),
               'signed': True, 'certificate_sha256':certificate, 'device_tested': False, 'scope': 'Offline playable flat arena; human FPS, wolf TPS, transformation, run, roll, claw, roar, inventory', 'standalone_apk': True, 'extra_data_files_required': False}
     (ROOT / 'dist/build-report.json').write_text(json.dumps(report, indent=2))

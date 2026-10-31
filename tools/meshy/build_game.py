@@ -36,7 +36,7 @@ def parents(nodes):
 def skinned_mesh(g, ni):
     n = g.j['nodes'][ni]; pr = g.j['meshes'][n['mesh']]['primitives'][0]; A = pr['attributes']
     return pr, A
-def build(old_path, rig_path, anim_specs, out_path, transfer=(), scale_wrap=None, report=print, rigid=('Head',), destretch_skip=(), fp_arms=False):
+def build(old_path, rig_path, anim_specs, out_path, transfer=(), scale_wrap=None, report=print, rigid=('Head',), destretch_skip=(), fp_arms=False, old_from=None):
     old = GLB(old_path); mr = GLB(rig_path); Wo, _ = old.node_world(); Wm, _ = mr.node_world()
     on = old.j['nodes']; oname = {n.get('name'): i for i, n in enumerate(on)}
     k = scale_wrap if scale_wrap is not None else (on[oname['WolfScale']]['scale'][0] if 'WolfScale' in oname else 1.0)
@@ -137,6 +137,22 @@ def build(old_path, rig_path, anim_specs, out_path, transfer=(), scale_wrap=None
             for v in range(len(P)):
                 if nm_[v] in extras: Eo[v, joint_names.index(nm_[v])] += Wto[v, c]
         e = Eo.sum(1, keepdims=True); Wd = Wd / (Wd.sum(1, keepdims=True) + 1e-9) * (1 - np.clip(e, 0, 1)) + Eo
+        # cloth / tail / hair vertices: their body share comes only from torso bones (Meshy only knows a humanoid and
+        # would otherwise hang a cape corner or tail tip on an arm or a leg)
+        limb = np.array([bool(re.match(r'^(UpperArm|Forearm|Hand|Fingers|Thigh|Shin|Foot|Toe)', x)) for x in joint_names])
+        exv = e[:, 0] > 1e-3
+        if exv.any():
+            Mt = Wd[exv].copy(); Mt[:, limb] = 0; Mt[:, [joint_names.index(x) for x in extras]] = 0
+            z = Mt.sum(1) < 1e-6; Mt[z, joint_names.index('Hips')] = 1
+            Mt /= Mt.sum(1, keepdims=True); Wd[exv] = Mt * (1 - np.clip(e[exv], 0, 1)) + Eo[exv]
+        # hand-built attachments appended after the generated body (King's horns + cloak) keep their tuned old weights
+        if old_from is not None and len(P) > old_from:
+            Om = np.zeros((len(P) - old_from, nJ))
+            for c in range(4):
+                for q, v in enumerate(range(old_from, len(P))):
+                    nm_ = ojnames[Jo[v, c]]; nm_ = 'Hips' if nm_ == 'Root' else nm_
+                    if Wto[v, c] > 0 and nm_ in joint_names: Om[q, joint_names.index(nm_)] += Wto[v, c]
+            Wd[old_from:] = Om / (Om.sum(1, keepdims=True) + 1e-9)
         # rigid attachments (horns, skull plates) that were 100% on one bone stay 100% on that bone
         for bn in rigid:
             if bn not in ojnames or bn not in joint_names: continue
@@ -148,6 +164,22 @@ def build(old_path, rig_path, anim_specs, out_path, transfer=(), scale_wrap=None
             a_ = np.array([g_ == 1 and x.endswith(sd) for g_, x in zip(grp0, joint_names)]); l_ = np.array([g_ == 2 and x.endswith(sd) for g_, x in zip(grp0, joint_names)])
             wa, wl = Wd[:, a_].sum(1), Wd[:, l_].sum(1); both = (wa > 0) & (wl > 0)
             Wd[np.ix_(both & (wa >= wl), l_)] = 0; Wd[np.ix_(both & (wa < wl), a_)] = 0
+        if fp_arms:   # humans (posed by arm IK in third person): forearm/hand never shares a vertex with the hips or either leg
+            a_ = np.array([bool(re.match(r'^(Forearm|Hand|Fingers)', x)) for x in joint_names]); l_ = np.array([bool(re.match(r'^(Hips|Thigh|Shin|Foot|Toe)', x)) for x in joint_names])
+            wa, wl = Wd[:, a_].sum(1), Wd[:, l_].sum(1); both = (wa > 0) & (wl > 0)
+            # decide by geometry, not by the (often wrong) transferred weights: a vertex close to the forearm/hand/finger
+            # line belongs to the arm even if it touched the thigh in the rest pose (else finger pieces stay at the hips)
+            Wn_ = world_with(J(nodes), {}); Hs = np.ptp(Pw[:, 1]) / 1.78; isa = np.zeros(len(Pw), bool)
+            def _seg(p0, p1):
+                v = p1 - p0; t = np.clip(((Pw - p0) @ v) / (v @ v + 1e-12), 0, 1); return np.linalg.norm(Pw - (p0 + t[:, None] * v), axis=1)
+            for sd in 'LR':
+                h = Wn_[byname['Hand' + sd]][:3, 3]; fo = Wn_[byname['Forearm' + sd]][:3, 3]; tip = h + (h - fo) * .75
+                dt = np.minimum(_seg(Wn_[byname['Thigh' + sd]][:3, 3], Wn_[byname['Shin' + sd]][:3, 3]), _seg(Wn_[byname['Thigh' + ('R' if sd == 'L' else 'L')]][:3, 3], Wn_[byname['Shin' + ('R' if sd == 'L' else 'L')]][:3, 3]))
+                dh = _seg(h, tip); df = _seg(fo, h); mine = ((dh < .09 * Hs) | (df < .06 * Hs)) & (np.minimum(dh, df) < dt - .045 * Hs)
+                orphan = mine & (wa < 1e-6); Wd[orphan] = 0; Wd[orphan, joint_names.index('Hand' + sd)] = 1; isa |= mine
+            wa = Wd[:, a_].sum(1); both = (wa > 0) & (wl > 0)
+            Wd[np.ix_(both & isa, l_)] = 0; Wd[np.ix_(both & ~isa, a_)] = 0
+            low_ = Wd[:, l_].sum(1) / (Wd.sum(1) + 1e-9)
         top = np.argsort(-Wd, 1)[:, :4]; tw = np.take_along_axis(Wd, top, 1); tw /= tw.sum(1, keepdims=True) + 1e-9
         # Generated meshes often fuse the hanging hand to the thigh. Triangles bridging an arm and a leg tear open
         # as soon as the arm moves, so they are dropped (the two surfaces only touched in the rest pose).
@@ -158,12 +190,20 @@ def build(old_path, rig_path, anim_specs, out_path, transfer=(), scale_wrap=None
             if re.match(r'^(Thigh|Shin|Foot|Toe)', nm_): grp[q] = 3 if nm_.endswith('L') else 4
         armw = np.stack([Wd[:, grp == g_].sum(1) for g_ in (1, 2, 3, 4)], 1)
         dom = np.where(armw.max(1) > .15, armw.argmax(1) + 1, 0)
+        exw = Wd[:, [joint_names.index(x) for x in extras]].sum(1) if extras else np.zeros(len(Wd)); dom[exw > .3] = 0   # cloth/tail follow their own bones
         G = dom[I_]; arm_ = (G == 1) | (G == 2); leg_ = (G == 3) | (G == 4); lr_ = (G == 1) | (G == 3)
         bridge = (arm_.any(1) & leg_.any(1)) | ((G == 1).any(1) & (G == 2).any(1))
-        if bridge.any(): report('  %s: dropped %d arm-leg bridging triangles' % (n['name'], bridge.sum()))
-        idx_keep = I_[~bridge].reshape(-1)
+        if fp_arms:   # also cut forearm/hand surfaces fused to the hips (hands resting on the hips in the rest pose)
+            fh = np.array([bool(re.match(r'^(Forearm|Hand|Fingers)', x)) for x in joint_names]); fw = Wd[:, fh].sum(1) / (Wd.sum(1) + 1e-9)
+            hipb = (fw[I_] > .5).any(1) & (low_[I_] > .5).any(1); bridge |= hipb; dom = np.where(fw > .5, np.where(dom > 0, dom, 1), np.where(low_ > .5, np.where(dom > 0, dom, 3), dom))
+        caps = cap_holes(I_[~bridge], I_, dom, weld_ids(Pw)) if bridge.any() else np.zeros((0, 3), np.int64)
+        if bridge.any(): report('  %s: split %d arm-leg bridging triangles, closed both sides with %d cap triangles' % (n['name'], bridge.sum(), len(caps)))
+        idx_keep = np.concatenate([I_[~bridge], caps]).reshape(-1)
         out_meshes.append(dict(name=n['name'], extras=n.get('extras'), P=Pw.astype(np.float32), N=(Nw / (np.linalg.norm(Nw, axis=1, keepdims=True) + 1e-9)).astype(np.float32),
-                               UV=old.acc(A['TEXCOORD_0']).astype(np.float32), I=idx_keep.astype(np.uint32), J=top.astype(np.uint16), W=tw.astype(np.float32), mat=pr.get('material', 0), Wd=Wd))
+                               UV=old.acc(A['TEXCOORD_0']).astype(np.float32), I=idx_keep.astype(np.uint32), J=top.astype(np.uint16), W=tw.astype(np.float32), mat=pr.get('material', 0), Wd=Wd, ncap=len(caps)))
+    if fp_arms and out_meshes:   # humans: thumb / index / other-finger bones so the hands can really grip and pull triggers
+        split_fingers(nodes, byname, joint_names, jidx, out_meshes[0], report)
+        Wn = world_with(J(nodes), {})
     IB = [np.linalg.inv(Wn[j]) for j in jidx]
     # ---------- animations ----------
     clips = []
@@ -213,17 +253,106 @@ def build(old_path, rig_path, anim_specs, out_path, transfer=(), scale_wrap=None
         ch.append((hips, 'translation', ts.astype(np.float32), np.array(tra, np.float32)))
         clips.append((cname, ch)); report('  clip %s <- old %s (%.2fs, transferred)' % (cname, src_name, T))
     for m in out_meshes:
+        m['joint_names'] = joint_names; m['separate_arms'] = fp_arms
         destretch(m, nodes, clips, jidx, IB, report, skip_clips=destretch_skip)
     if fp_arms:   # first-person arms: everything from the collarbones outward, cut from the finished full body
         b = out_meshes[0]; T3 = b['I'].reshape(-1, 3)
         armset = np.array([bool(re.match(r'^(UpperArm|Forearm|Hand|Fingers)', x)) for x in joint_names])
+        chain = np.array([bool(re.match(r'^(Clav|UpperArm|Forearm|Hand|Fingers)', x)) for x in joint_names])
         aw = (b['W'] * armset[b['J'].astype(int)]).sum(1)
-        keep = (aw[T3] > .6).all(1)   # only pure arm triangles: anything tied to the torso would sit at the camera and fill the screen
+        # keep only skin that hugs the arm bones: coat flaps, capes and long hair that merely touch the arm would
+        # float in front of the camera once the arm is lifted into the aiming pose
+        Wn0 = world_with(J(nodes), {}); jp = lambda nm: Wn0[byname[nm]][:3, 3]
+        hgt = b['P'][:, 1].max() - b['P'][:, 1].min(); R = .11 * hgt / 1.78; segs = []
+        for sd in 'LR':
+            c_, u_, f_, h_ = jp('Clav' + sd), jp('UpperArm' + sd), jp('Forearm' + sd), jp('Hand' + sd)
+            segs += [(c_, u_), (u_, f_), (f_, h_), (h_, h_ + (h_ - f_) * .75)]
+        Pb = b['P'].astype(float); dmin = np.full(len(Pb), 1e9)
+        for a_, c2 in segs:
+            v_ = c2 - a_; t_ = np.clip(((Pb - a_) @ v_) / (v_ @ v_ + 1e-12), 0, 1); dmin = np.minimum(dmin, np.linalg.norm(Pb - (a_ + t_[:, None] * v_), axis=1))
+        near = dmin < R
+        keep = ((aw[T3] > .45) & near[T3]).all(1)
+        # The first-person arms get their OWN weights: arm chain only. In first person the torso stays where the body
+        # was while IK throws the hands forward, so any torso influence would smear a vertex across the screen.
+        Jb = b['J'].astype(int); Wb = b['W'] * chain[Jb]; Wb[Wb.sum(1) < 1e-6, 0] = 1
+        Wb /= Wb.sum(1, keepdims=True)
         fp = dict(b); fp['name'] = 'FPArms_human'; fp['extras'] = None; fp['I'] = T3[keep].reshape(-1).astype(np.uint32)
+        fp['W'] = Wb.astype(np.float32)
+        used = np.unique(fp['I']); remap = np.full(len(b['P']), -1, np.int64); remap[used] = np.arange(len(used))   # only the arm vertices
+        for key in ('P', 'N', 'UV', 'J', 'W'): fp[key] = fp[key][used]
+        fp['I'] = remap[fp['I']].astype(np.uint32)
         out_meshes.append(fp); report('  FPArms_human: %d triangles' % keep.sum())
     nodes, clips, IB = normalize(nodes, clips, jidx, k)
     write(out_path, old, nodes, jidx, IB, out_meshes, clips)
     return dict(nodes=nodes, joints=joint_names)
+def open_edges(T):
+    """Directed edges of triangles T that have no opposite edge (boundary of the surface)."""
+    d = {}
+    for a, b, c in T:
+        for u, v in ((a, b), (b, c), (c, a)): d[(u, v)] = d.get((u, v), 0) + 1
+    return [(u, v) for (u, v) in d if (v, u) not in d]
+def split_fingers(nodes, byname, joint_names, jidx, m, report):
+    """Generated hands have no finger joints. Classify the hand's vertices into thumb, index finger and the other three
+    fingers (spread runs along the model's forward axis in both arms-down and T-pose rests; the thumb sticks forward
+    near the wrist, the index is the forward-most finger) and give each group its own bone under the hand."""
+    P = m['P'].astype(float); Wd = m['Wd']; Wn = world_with(J(nodes), {})
+    for sd in 'LR':
+        h = Wn[byname['Hand' + sd]][:3, 3]; f = Wn[byname['Forearm' + sd]][:3, 3]; d = (h - f) / np.linalg.norm(h - f); L = np.linalg.norm(h - f) * .45
+        cols = [joint_names.index(x) for x in ('Hand' + sd, 'Fingers' + sd) if x in joint_names]
+        hand = Wd[:, cols].sum(1) > .5; along = (P - h) @ d
+        z = P[:, 2]; zc = np.median(z[hand & (along > .3 * L)]) if (hand & (along > .3 * L)).sum() > 10 else h[2]
+        zs = np.percentile(z[hand], 95) - np.percentile(z[hand], 5) + 1e-6
+        thumb = hand & (along > .05 * L) & (along < .75 * L) & (z > zc + .32 * zs)
+        fing = hand & (along > .42 * L) & ~thumb
+        index = fing & (z > zc + .08 * zs)
+        rest = fing & ~index
+        if thumb.sum() < 8 or index.sum() < 8 or rest.sum() < 8:
+            report('  hand %s: finger split skipped (%d/%d/%d)' % (sd, thumb.sum(), index.sum(), rest.sum())); continue
+        for nm, sel, pivot in (('Thumb' + sd, thumb, h + d * .15 * L + np.array([0, 0, .25 * zs])), ('Index' + sd, index, h + d * .45 * L), ('Fingers' + sd, rest, h + d * .45 * L)):
+            if nm not in byname:
+                Wp = Wn[byname['Hand' + sd]]; loc = np.linalg.inv(Wp) @ np.r_[pivot, 1]
+                nodes.append({'name': nm, 'translation': loc[:3].tolist()}); byname[nm] = len(nodes) - 1
+                nodes[byname['Hand' + sd]].setdefault('children', []).append(byname[nm]); joint_names.append(nm); jidx.append(byname[nm])
+                m['Wd'] = Wd = np.c_[Wd, np.zeros(len(Wd))]
+            k = joint_names.index(nm); tot = Wd[sel][:, cols + [k]].sum(1)
+            ramp = np.clip((along[sel] - (.05 if nm.startswith('Thumb') else .42) * L) / (.25 * L), 0, 1)
+            row = Wd[sel]; row[:, cols] = 0; row[:, k] = 0
+            row[:, joint_names.index('Hand' + sd)] += tot * (1 - ramp); row[:, k] += tot * ramp; Wd[sel] = row
+        m['Wd'] = Wd; report('  hand %s: thumb %d, index %d, other fingers %d vertices' % (sd, thumb.sum(), index.sum(), rest.sum()))
+def weld_ids(P):
+    """Vertices split along UV seams share a position: give every vertex the id of its first twin."""
+    key = np.round(np.asarray(P, float) / 1e-5).astype(np.int64)
+    _, first, inv = np.unique(key, axis=0, return_index=True, return_inverse=True)
+    return first[inv.reshape(-1)]
+def cap_holes(kept, full, dom, wid=None):
+    """Close the holes left where arm-leg bridging triangles were removed. Each new boundary loop is split into its
+    arm run and its body/leg run and each run is closed on its own with a fan, so neither side stays open."""
+    if wid is not None: kept, full = wid[kept], wid[full]
+    old_open = set(open_edges(full)); new_open = [e for e in open_edges(kept) if e not in old_open]
+    nxt = {}
+    for u, v in new_open: nxt.setdefault(u, []).append(v)
+    used = set(); caps = []
+    side = lambda v: int(dom[v])
+    for u0, v0 in new_open:
+        if (u0, v0) in used: continue
+        loop = [u0]; cur = v0; used.add((u0, v0)); guard = 0
+        while cur != u0 and guard < 5000:
+            loop.append(cur); cand = [w for w in nxt.get(cur, []) if (cur, w) not in used]
+            if not cand: break
+            used.add((cur, cand[0])); cur = cand[0]; guard += 1
+        if len(loop) < 3: continue
+        lab = [side(v) for v in loop]
+        if len(set(lab)) == 1: runs = [loop]
+        else:   # rotate so a run starts at index 0, then cut into same-side runs
+            k = next(i for i in range(len(loop)) if lab[i] != lab[i - 1]); loop = loop[k:] + loop[:k]; lab = lab[k:] + lab[:k]
+            runs = []; cur_run = [loop[0]]
+            for v, l, lp in zip(loop[1:], lab[1:], lab[:-1]):
+                if l == lp: cur_run.append(v)
+                else: runs.append(cur_run); cur_run = [v]
+            runs.append(cur_run)
+        for r in runs:
+            for i in range(1, len(r) - 1): caps.append((r[0], r[i + 1], r[i]))   # opposite winding to the open edges
+    return np.array(caps, np.int64).reshape(-1, 3)
 def clip_over(chans, t):
     from glbio import _slerp
     over = {}
@@ -233,7 +362,11 @@ def clip_over(chans, t):
         val = _slerp(v[i].astype(float), v[j2].astype(float), f) if pth == 'rotation' else v[i] * (1 - f) + v[j2] * f
         over.setdefault(node, {})[pth] = np.asarray(val, float)
     return over
-def destretch(m, nodes, clips, jidx, IB, report, frames=14, ratio=2.4, absm=.12, rounds=60, skip_clips=()):
+def skin_dense(Wd, M, Ph):
+    """Linear blend skinning with dense weights (N x nJ) and joint matrices M (nJ x 3 x 4)."""
+    A = np.einsum('nj,jab->nab', Wd.astype(np.float32), M)   # per-vertex blended 3x4
+    return np.einsum('nab,nb->na', A, Ph.astype(np.float32))
+def destretch(m, nodes, clips, jidx, IB, report, frames=24, ratio=2.4, absm=.12, rounds=160, skip_clips=()):
     """Anti-stretch pass on the final weights: sample every clip, find edges that grow too long, and pull the weights of
     both end vertices (and their 1-ring) toward each other until no edge tears. Same idea as tools/wolfgen fix_stretch."""
     P = m['P'].astype(float); I = m['I'].reshape(-1, 3); Wd = m['Wd'].copy(); nJ = Wd.shape[1]
@@ -245,28 +378,62 @@ def destretch(m, nodes, clips, jidx, IB, report, frames=14, ratio=2.4, absm=.12,
         T = max(float(c[2][-1]) for c in chans)
         for t in np.linspace(0, T, frames):
             W = world_with(J(nodes), clip_over(chans, t)); M = np.stack([W[j] @ IB[q] for q, j in enumerate(jidx)])
-            poses.append(np.einsum('jab,nb->jna', M[:, :3], Ph))   # (nJ, N, 3)
+            poses.append(M[:, :3].astype(np.float32))   # joint matrices only: skinning is redone per round (low memory)
     nb = [[] for _ in range(len(P))]
     for a, b in E: nb[a].append(b); nb[b].append(a)
+    jn = m.get('joint_names') or []
+    cloth = np.array([x.startswith(('Cape', 'Tail', 'Hair')) for x in jn]) if jn else None
+    remap = {}
+    for k, x in enumerate(jn):   # a limb's share on a cloth vertex goes to the torso bone the limb hangs from
+        if x.startswith(('UpperArm', 'Forearm', 'Hand', 'Fingers', 'Thumb', 'Index')): remap[k] = jn.index('Clav' + x[-1]) if ('Clav' + x[-1]) in jn else jn.index('Chest')
+        elif x.startswith(('Thigh', 'Shin', 'Foot', 'Toe')): remap[k] = jn.index('Hips')
+    armc = np.array([x.startswith(('Forearm', 'Hand', 'Fingers', 'Thumb', 'Index')) for x in jn]) if jn else np.zeros(0, bool)
+    legc = np.array([x.startswith(('Hips', 'Thigh', 'Shin', 'Foot', 'Toe')) for x in jn]) if jn else np.zeros(0, bool)
+    def top4(Wx):   # evaluate exactly what ships: 4 influences per vertex, cloth never follows a limb
+        Wx = Wx.copy()
+        if cloth is not None and cloth.any():
+            cv = Wx[:, cloth].sum(1) > .03
+            for k, t in remap.items(): Wx[cv, t] += Wx[cv, k]; Wx[cv, k] = 0
+        if m.get('separate_arms') and armc.any():   # humans: a vertex follows either the forearm/hand or the hips/legs, never both
+            aw = Wx[:, armc].sum(1); lw = Wx[:, legc].sum(1); both = (aw > .02) & (lw > .02)
+            Wx[np.ix_(both & (aw >= lw), np.nonzero(legc)[0])] = 0; Wx[np.ix_(both & (aw < lw), np.nonzero(armc)[0])] = 0
+        t = np.argsort(-Wx, 1)[:, 4:]; np.put_along_axis(Wx, t, 0, 1); return Wx / (Wx.sum(1, keepdims=True) + 1e-9)
+    Wd = top4(Wd)
     for r in range(rounds):
         badv = set(); worst = 0
         for X in poses:
-            Q = np.einsum('nj,jna->na', Wd, X); L = np.linalg.norm(Q[E[:, 0]] - Q[E[:, 1]], axis=1)
+            Q = skin_dense(Wd, X, Ph); L = np.linalg.norm(Q[E[:, 0]] - Q[E[:, 1]], axis=1)
             bad = (L > L0 * ratio) & (L - L0 > absm)
             if bad.any(): worst = max(worst, float((L - L0)[bad].max())); badv.update(E[bad].reshape(-1).tolist())
         if not badv:
             report('  %s: no stretched edges after %d anti-stretch rounds' % (m['name'], r)); break
+        if r >= 20:   # persistent tears: weld the weights of both ends of every still-stretched edge
+            for X in poses:
+                Q = skin_dense(Wd, X, Ph); L = np.linalg.norm(Q[E[:, 0]] - Q[E[:, 1]], axis=1)
+                for a, b in E[(L > L0 * ratio) & (L - L0 > absm)]: avg = .5 * (Wd[a] + Wd[b]); Wd[a] = avg; Wd[b] = avg
         bv = np.array(sorted(badv)); ring = set(bv.tolist())
         for v in bv: ring.update(nb[v])
         ring = np.array(sorted(ring)); newW = Wd.copy()
         for v in ring:
             nbs = nb[v]
             if nbs: newW[v] = .5 * Wd[v] + .5 * Wd[nbs].mean(0)
-        Wd = newW
+        Wd = top4(newW)
         if r % 10 == 0: report('  %s: anti-stretch round %d, %d vertices, worst +%.2f m' % (m['name'], r, len(bv), worst))
     else:
         report('  %s: WARNING stretched edges remain (worst +%.2f m)' % (m['name'], worst))
-    top = np.argsort(-Wd, 1)[:, :4]; tw = np.take_along_axis(Wd, top, 1); tw /= tw.sum(1, keepdims=True) + 1e-9
+        # a hole-cap triangle that spans a bending joint cannot be smoothed: drop just those caps
+        nc = m.get('ncap', 0)
+        if nc:
+            badE = set()
+            for X in poses:
+                Q = skin_dense(Wd, X, Ph); L = np.linalg.norm(Q[E[:, 0]] - Q[E[:, 1]], axis=1)
+                for a, b in E[(L > L0 * ratio) & (L - L0 > absm)]: badE.add((a, b))
+            T = m['I'].reshape(-1, 3); capT = T[-nc:]
+            drop = np.array([any(tuple(sorted(x)) in badE for x in ((t[0], t[1]), (t[1], t[2]), (t[2], t[0]))) for t in capT])
+            if drop.any():
+                m['I'] = np.concatenate([T[:-nc], capT[~drop]]).reshape(-1).astype(np.uint32); m['ncap'] = int((~drop).sum())
+                report('  %s: removed %d cap triangles that spanned a bending joint' % (m['name'], drop.sum()))
+    Wd = top4(Wd); top = np.argsort(-Wd, 1)[:, :4]; tw = np.take_along_axis(Wd, top, 1); tw /= tw.sum(1, keepdims=True) + 1e-9
     m['J'] = top.astype(np.uint16); m['W'] = tw.astype(np.float32)
 def normalize(nodes, clips, jidx, k):
     """Make every bone world-aligned at rest, in metres (like the engine's original rig): rest rotations become identity,
@@ -309,7 +476,14 @@ def write(path, old, nodes, jidx, IB, meshes, clips):
     # images / textures / materials copied verbatim from the old game model
     imgs = []
     for im in old.j.get('images', []):
-        imgs.append(dict(bufferView=blob(old.view_bytes(im['bufferView'])), mimeType=im.get('mimeType', 'image/png')))
+        raw = old.view_bytes(im['bufferView']); mime = im.get('mimeType', 'image/png')
+        if len(raw) > 1_500_000:   # Meshy ships 2k PNG maps: 1k JPEG keeps the APK small and looks the same on a phone
+            from PIL import Image as _I; import io as _io
+            pic = _I.open(_io.BytesIO(raw))
+            if pic.mode in ('RGBA', 'LA') and pic.getextrema()[-1][0] < 250: pic = None   # real transparency: keep PNG
+            if pic is not None:
+                pic = pic.convert('RGB'); pic.thumbnail((1024, 1024), _I.LANCZOS); b = _io.BytesIO(); pic.save(b, 'JPEG', quality=88); raw = b.getvalue(); mime = 'image/jpeg'
+        imgs.append(dict(bufferView=blob(raw), mimeType=mime))
     j['images'] = imgs; j['textures'] = old.j.get('textures', []); j['samplers'] = old.j.get('samplers', []); j['materials'] = old.j.get('materials', [])
     j['skins'] = [dict(joints=jidx, inverseBindMatrices=acc(np.array([m.T.reshape(-1) for m in IB], np.float32), 'MAT4', 5126), skeleton=jidx[0])]
     j['meshes'] = []

@@ -16,7 +16,7 @@ jobs:
   build:
     name: Verify UI and build signed prototype APK
     runs-on: ubuntu-24.04
-    timeout-minutes: 20
+    timeout-minutes: 50
     env:
       ROGUE_BROWSER_CHANNEL: chrome
       ROGUE_EXPECTED_CERT_SHA256: af43be4b6ee4d5b2e1feca6da3df36805a7b10bbb56b1f884136054ef7f98633
@@ -67,6 +67,10 @@ jobs:
         run: |
           set -o pipefail
           python tools/verify_reference_arena.py 2>&1 | tee /tmp/verify_reference_arena.log || { tail -n 25 /tmp/verify_reference_arena.log | cut -c1-400 | while IFS= read -r l; do echo "::error title=verify_reference_arena::$l"; done; exit 1; }
+      - name: Verify first-person arms reach their grips for every character
+        run: |
+          set -o pipefail
+          python tools/verify_fp.py 2>&1 | tee /tmp/verify_fp.log || { tail -n 25 /tmp/verify_fp.log | cut -c1-400 | while IFS= read -r l; do echo "::error title=verify_fp::$l"; done; exit 1; }
       - name: Download verified Android build tools
         run: python tools/bootstrap_android.py
       - name: Compile and sign APK
@@ -74,19 +78,19 @@ jobs:
       - name: Upload installable Android prototype
         uses: actions/upload-artifact@v4
         with:
-          name: Rogue-Blood-Moon-v0.1.14-APK
-          path: dist/Rogue-Blood-Moon-v0.1.14.apk
+          name: Rogue-Blood-Moon-v0.1.15-APK
+          path: dist/Rogue-Blood-Moon-v0.1.15.apk
           if-no-files-found: error
           retention-days: 30
       - name: Publish one directly installable APK
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          apk_tag="prototype-v0.1.14-${GITHUB_RUN_NUMBER}"
+          apk_tag="prototype-v0.1.15-${GITHUB_RUN_NUMBER}"
           if gh release view "$apk_tag" >/dev/null 2>&1; then
-            gh release upload "$apk_tag" dist/Rogue-Blood-Moon-v0.1.14.apk --clobber
+            gh release upload "$apk_tag" dist/Rogue-Blood-Moon-v0.1.15.apk --clobber
           else
-            gh release create "$apk_tag" dist/Rogue-Blood-Moon-v0.1.14.apk --target "$GITHUB_SHA" --prerelease --title "Rogue: Blood Moon v0.1.14" --notes-file docs/release-v0114.md
+            gh release create "$apk_tag" dist/Rogue-Blood-Moon-v0.1.15.apk --target "$GITHUB_SHA" --prerelease --title "Rogue: Blood Moon v0.1.15" --notes-file docs/release-v0115.md
           fi
       - name: Upload UI preview on failure
         if: failure()
