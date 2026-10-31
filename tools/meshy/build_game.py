@@ -255,6 +255,9 @@ def build(old_path, rig_path, anim_specs, out_path, transfer=(), scale_wrap=None
         Wb /= Wb.sum(1, keepdims=True)
         fp = dict(b); fp['name'] = 'FPArms_human'; fp['extras'] = None; fp['I'] = T3[keep].reshape(-1).astype(np.uint32)
         fp['W'] = Wb.astype(np.float32)
+        used = np.unique(fp['I']); remap = np.full(len(b['P']), -1, np.int64); remap[used] = np.arange(len(used))   # only the arm vertices
+        for key in ('P', 'N', 'UV', 'J', 'W'): fp[key] = fp[key][used]
+        fp['I'] = remap[fp['I']].astype(np.uint32)
         out_meshes.append(fp); report('  FPArms_human: %d triangles' % keep.sum())
     nodes, clips, IB = normalize(nodes, clips, jidx, k)
     write(out_path, old, nodes, jidx, IB, out_meshes, clips)

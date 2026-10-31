@@ -91,7 +91,7 @@ if __name__ == '__main__':
                 # and every first-person vertex must hug an arm bone (no coat flaps / hair floating in front of the camera)
                 from glbio import GLB as _G, world_with as _ww
                 _g = _G(str(f)); _W = _ww(_g, {}); _nm = {n.get('name'): i for i, n in enumerate(_g.j['nodes'])}
-                _P = acc_(pr_['attributes']['POSITION'])[used]; _h = np.ptp(acc_(pr_['attributes']['POSITION'])[:, 1])
+                _P = acc_(pr_['attributes']['POSITION'])[used]; _bm = next(m for m in g_['nodes'] if 'mesh' in m and m.get('name', '').startswith('Body')); _h = np.ptp(acc_(g_['meshes'][_bm['mesh']]['primitives'][0]['attributes']['POSITION'])[:, 1])   # body height
                 _d = np.full(len(_P), 1e9)
                 for sd in 'LR':
                     pts = [_W[_nm[b + sd]][:3, 3] for b in ('Clav', 'UpperArm', 'Forearm', 'Hand')]; pts.append(pts[-1] + (pts[-1] - pts[-2]) * .75)
