@@ -30,6 +30,13 @@ KAYNAK VE TASARIM
 - Yalnız kullanıcının onayladığı görselin birebir aynısı. WolfTeam'e ait hiçbir şey kullanılmaz.
   Başka oyunların ekran görüntüleri yalnız genel kamera/kavrama fikri içindir.
 - Karakter görselleri T-pozda, düz açık gri arka plan, tam boy, ön görünüş.
+- Kollar ve eller boş bırakılmaz: her insan formunda karaktere özel bir kol/el aksesuarı modelin parçası
+  olarak üretilir (31.10.2026 kullanıcı kararı). Eldiven aksesuardır, ayrı parça olarak sonradan eklenmez:
+  Zeynoş: kalp oyuklu siyah deri eldiven; Aysel: siyah dantel parmaksız eldiven; Bilge Kağan: taktik
+  parmaksız eldiven (sert eklem korumalı); Köz Bey, Kara Han, Zebani: eldivensiz ama bileklik / sargı /
+  zırhlı kolluk gibi karaktere uygun bir kol aksesuarı. Parmaklar eldivenin içinden ayrı ayrı okunmalı.
+- Kurt formlarında kollar ve sırttaki parlayan bölgeler korunur (buz, köz, lav, ay ışığı, kalp kristali):
+  yeniden üretimde eski modeldeki parlama yerleri ve renkleri aynen istenir.
 - Silah görselleri tam yandan ortografik, namlu/bıçak SAĞA bakar, beyaz arka plan, marka/logo/yazı yok.
 
 POLİGON (zorunlu)
@@ -51,6 +58,8 @@ KREDİ
   Neck, Head, Clav) alır; kol ve bacak kemiklerinden ağırlık ALAMAZ.
 - Elle eklenen sert parçalar (boynuz, kolye, plaka) tek kemiğe %100 kilitlidir ve yüzeye 2 cm gömülür.
 - Birinci şahıs kolu: yalnız Clav/UpperArm/Forearm/Hand/parmak ağırlığı; kol kemiğinden uzak deri girmez.
+- İnsan gövdesi üçüncü şahısta kol IK'sı ile silaha yerleştirilir: ön kol/el köşesi aynı anda kalça veya
+  bacak kemiğine bağlı olamaz (yoksa el kalçaya lastik gibi uzar). build_game bunu uygular, test yakalar.
 - Uzama testi her köşede en fazla 4 etkiyle (sevk edilen ağırlıkla) yapılır.
 
 SİLAH

@@ -164,6 +164,22 @@ def build(old_path, rig_path, anim_specs, out_path, transfer=(), scale_wrap=None
             a_ = np.array([g_ == 1 and x.endswith(sd) for g_, x in zip(grp0, joint_names)]); l_ = np.array([g_ == 2 and x.endswith(sd) for g_, x in zip(grp0, joint_names)])
             wa, wl = Wd[:, a_].sum(1), Wd[:, l_].sum(1); both = (wa > 0) & (wl > 0)
             Wd[np.ix_(both & (wa >= wl), l_)] = 0; Wd[np.ix_(both & (wa < wl), a_)] = 0
+        if fp_arms:   # humans (posed by arm IK in third person): forearm/hand never shares a vertex with the hips or either leg
+            a_ = np.array([bool(re.match(r'^(Forearm|Hand|Fingers)', x)) for x in joint_names]); l_ = np.array([bool(re.match(r'^(Hips|Thigh|Shin|Foot|Toe)', x)) for x in joint_names])
+            wa, wl = Wd[:, a_].sum(1), Wd[:, l_].sum(1); both = (wa > 0) & (wl > 0)
+            # decide by geometry, not by the (often wrong) transferred weights: a vertex close to the forearm/hand/finger
+            # line belongs to the arm even if it touched the thigh in the rest pose (else finger pieces stay at the hips)
+            Wn_ = world_with(J(nodes), {}); Hs = np.ptp(Pw[:, 1]) / 1.78; isa = np.zeros(len(Pw), bool)
+            def _seg(p0, p1):
+                v = p1 - p0; t = np.clip(((Pw - p0) @ v) / (v @ v + 1e-12), 0, 1); return np.linalg.norm(Pw - (p0 + t[:, None] * v), axis=1)
+            for sd in 'LR':
+                h = Wn_[byname['Hand' + sd]][:3, 3]; fo = Wn_[byname['Forearm' + sd]][:3, 3]; tip = h + (h - fo) * .75
+                dt = np.minimum(_seg(Wn_[byname['Thigh' + sd]][:3, 3], Wn_[byname['Shin' + sd]][:3, 3]), _seg(Wn_[byname['Thigh' + ('R' if sd == 'L' else 'L')]][:3, 3], Wn_[byname['Shin' + ('R' if sd == 'L' else 'L')]][:3, 3]))
+                dh = _seg(h, tip); df = _seg(fo, h); mine = ((dh < .09 * Hs) | (df < .06 * Hs)) & (np.minimum(dh, df) < dt - .045 * Hs)
+                orphan = mine & (wa < 1e-6); Wd[orphan] = 0; Wd[orphan, joint_names.index('Hand' + sd)] = 1; isa |= mine
+            wa = Wd[:, a_].sum(1); both = (wa > 0) & (wl > 0)
+            Wd[np.ix_(both & isa, l_)] = 0; Wd[np.ix_(both & ~isa, a_)] = 0
+            low_ = Wd[:, l_].sum(1) / (Wd.sum(1) + 1e-9)
         top = np.argsort(-Wd, 1)[:, :4]; tw = np.take_along_axis(Wd, top, 1); tw /= tw.sum(1, keepdims=True) + 1e-9
         # Generated meshes often fuse the hanging hand to the thigh. Triangles bridging an arm and a leg tear open
         # as soon as the arm moves, so they are dropped (the two surfaces only touched in the rest pose).
@@ -177,6 +193,9 @@ def build(old_path, rig_path, anim_specs, out_path, transfer=(), scale_wrap=None
         exw = Wd[:, [joint_names.index(x) for x in extras]].sum(1) if extras else np.zeros(len(Wd)); dom[exw > .3] = 0   # cloth/tail follow their own bones
         G = dom[I_]; arm_ = (G == 1) | (G == 2); leg_ = (G == 3) | (G == 4); lr_ = (G == 1) | (G == 3)
         bridge = (arm_.any(1) & leg_.any(1)) | ((G == 1).any(1) & (G == 2).any(1))
+        if fp_arms:   # also cut forearm/hand surfaces fused to the hips (hands resting on the hips in the rest pose)
+            fh = np.array([bool(re.match(r'^(Forearm|Hand|Fingers)', x)) for x in joint_names]); fw = Wd[:, fh].sum(1) / (Wd.sum(1) + 1e-9)
+            hipb = (fw[I_] > .5).any(1) & (low_[I_] > .5).any(1); bridge |= hipb; dom = np.where(fw > .5, np.where(dom > 0, dom, 1), np.where(low_ > .5, np.where(dom > 0, dom, 3), dom))
         caps = cap_holes(I_[~bridge], I_, dom, weld_ids(Pw)) if bridge.any() else np.zeros((0, 3), np.int64)
         if bridge.any(): report('  %s: split %d arm-leg bridging triangles, closed both sides with %d cap triangles' % (n['name'], bridge.sum(), len(caps)))
         idx_keep = np.concatenate([I_[~bridge], caps]).reshape(-1)
@@ -234,7 +253,7 @@ def build(old_path, rig_path, anim_specs, out_path, transfer=(), scale_wrap=None
         ch.append((hips, 'translation', ts.astype(np.float32), np.array(tra, np.float32)))
         clips.append((cname, ch)); report('  clip %s <- old %s (%.2fs, transferred)' % (cname, src_name, T))
     for m in out_meshes:
-        m['joint_names'] = joint_names
+        m['joint_names'] = joint_names; m['separate_arms'] = fp_arms
         destretch(m, nodes, clips, jidx, IB, report, skip_clips=destretch_skip)
     if fp_arms:   # first-person arms: everything from the collarbones outward, cut from the finished full body
         b = out_meshes[0]; T3 = b['I'].reshape(-1, 3)
@@ -368,11 +387,16 @@ def destretch(m, nodes, clips, jidx, IB, report, frames=24, ratio=2.4, absm=.12,
     for k, x in enumerate(jn):   # a limb's share on a cloth vertex goes to the torso bone the limb hangs from
         if x.startswith(('UpperArm', 'Forearm', 'Hand', 'Fingers', 'Thumb', 'Index')): remap[k] = jn.index('Clav' + x[-1]) if ('Clav' + x[-1]) in jn else jn.index('Chest')
         elif x.startswith(('Thigh', 'Shin', 'Foot', 'Toe')): remap[k] = jn.index('Hips')
+    armc = np.array([x.startswith(('Forearm', 'Hand', 'Fingers', 'Thumb', 'Index')) for x in jn]) if jn else np.zeros(0, bool)
+    legc = np.array([x.startswith(('Hips', 'Thigh', 'Shin', 'Foot', 'Toe')) for x in jn]) if jn else np.zeros(0, bool)
     def top4(Wx):   # evaluate exactly what ships: 4 influences per vertex, cloth never follows a limb
         Wx = Wx.copy()
         if cloth is not None and cloth.any():
             cv = Wx[:, cloth].sum(1) > .03
             for k, t in remap.items(): Wx[cv, t] += Wx[cv, k]; Wx[cv, k] = 0
+        if m.get('separate_arms') and armc.any():   # humans: a vertex follows either the forearm/hand or the hips/legs, never both
+            aw = Wx[:, armc].sum(1); lw = Wx[:, legc].sum(1); both = (aw > .02) & (lw > .02)
+            Wx[np.ix_(both & (aw >= lw), np.nonzero(legc)[0])] = 0; Wx[np.ix_(both & (aw < lw), np.nonzero(armc)[0])] = 0
         t = np.argsort(-Wx, 1)[:, 4:]; np.put_along_axis(Wx, t, 0, 1); return Wx / (Wx.sum(1, keepdims=True) + 1e-9)
     Wd = top4(Wd)
     for r in range(rounds):

@@ -25,9 +25,10 @@ def wolf(name, U, src=None):
     return out
 def human(name, U, src=None):
     d = os.path.join(U, name)
-    specs = [(os.path.join(d, 'anim_a.glb'), [('HumanIdle', {}), (None, {}), (None, {}), (None, {}), (None, {})])]
+    specs = [(os.path.join(d, 'anim_a.glb'), [('HumanIdle', {}), ('HumanWalk', {}), ('HumanRun', {}), ('HumanCombat', {}), ('HumanReload', {})])]   # third-person body: idle / walk / run / combat stance / reload
     out = os.path.join('/tmp', name + '_meshy.glb')
     bg.build(src or os.path.join(MODELS, name + '.glb'), os.path.join(d, 'rigged.glb'), specs, out, transfer=[('HumanReady', 'HumanReady', {})], fp_arms=True)
+    import foot_speeds; print('  foot speeds:', foot_speeds.patch(out))
     return out
 if __name__ == '__main__':
     U = sys.argv[1]; names = sys.argv[2:] or ['bilge', 'ates', 'kral', 'ay', 'hellgate', 'zeynos', 'human-bilge', 'human-ates', 'human-kral', 'human-ay', 'human-hellgate', 'human-zeynos']
