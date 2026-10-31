@@ -55,7 +55,7 @@ def check(path):
             R = skinned({}); L0 = np.linalg.norm(R[E[:, 0]] - R[E[:, 1]], axis=1)
             mname = nodes[mi].get('name', '')
             for an in g.get('animations', []):
-                if mname.startswith('Body_human') and an['name'] != 'HumanIdle': continue   # the human body is only seen idling; first-person poses show the arms mesh
+                if mname.startswith('Body_human') and an['name'] not in ('HumanIdle','HumanWalk','HumanRun'): continue   # visible third-person body clips; dedicated first-person rig is checked separately
                 ch = an['channels']; sm = an['samplers']; tin = acc(sm[0]['input']).ravel()
                 for f in range(0, len(tin), 2):
                     ov = {}

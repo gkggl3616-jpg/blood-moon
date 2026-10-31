@@ -31,14 +31,16 @@ def main():
             raise SystemExit('Missing required media: ' + media)
     for d in [BUILD, BUILD / 'classes', BUILD / 'dex', ROOT / 'dist']:
         d.mkdir(parents=True, exist_ok=True)
+    side_by_side = os.environ.get('ROGUE_SIDE_BY_SIDE_TEST') == '1'
+    package_id = 'com.roguebloodmoon.animationtest' if side_by_side else 'com.roguebloodmoon.prototype'
     manifest = BUILD / 'AndroidManifest.xml'
     manifest.write_text((ROOT / 'app/src/main/AndroidManifest.xml').read_text().replace(
-        '<manifest xmlns:', '<manifest package="com.roguebloodmoon.prototype" xmlns:', 1))
+        '<manifest xmlns:', '<manifest package="' + package_id + '" xmlns:', 1).replace('android:name=".MainActivity"','android:name="com.roguebloodmoon.prototype.MainActivity"').replace('android:label="Rogue: Blood Moon"', 'android:label="Rogue: Blood Moon - Animasyon Testi"' if side_by_side else 'android:label="Rogue: Blood Moon"'))
     run(TOOLS / 'aapt2', 'compile', '--dir', ROOT / 'app/src/main/res', '-o', BUILD / 'resources.zip')
     run(TOOLS / 'aapt2', 'link', '-o', BUILD / 'base.apk', '-I', ANDROID,
         '--manifest', manifest,
         '--min-sdk-version', '26', '--target-sdk-version', '35',
-        '--version-code', '16', '--version-name', '0.1.15',
+        '--version-code', '17', '--version-name', '0.1.16',
         '-A', ROOT / 'app/src/main/assets', BUILD / 'resources.zip')
     sources = list((ROOT / 'app/src/main/java').rglob('*.java'))
     run('java', '-m', 'jdk.compiler/com.sun.tools.javac.Main', '-source', '17', '-target', '17', '-encoding', 'UTF-8',
@@ -56,10 +58,10 @@ def main():
             z.write(file, file.name, compress_type=zipfile.ZIP_STORED)
     aligned = BUILD / 'aligned.apk'
     run(TOOLS / 'zipalign', '-f', '-p', '4', unsigned, aligned)
-    key = ROOT / 'tools/signing-cache/rogue-prototype.keystore'
+    key = ROOT / ('tools/signing-cache/rogue-animation-test.keystore' if side_by_side else 'tools/signing-cache/rogue-prototype.keystore')
     key.parent.mkdir(parents=True, exist_ok=True)
     previous_key = ROOT.parent / '.rogue-prototype-debug.keystore'
-    if not key.exists() and previous_key.exists():
+    if not side_by_side and not key.exists() and previous_key.exists():
         shutil.copyfile(previous_key, key)
         key.chmod(0o600)
     if not key.exists():
@@ -67,12 +69,12 @@ def main():
             '-alias', 'androiddebugkey', '-keyalg', 'RSA', '-keysize', '2048', '-validity', '10000',
             '-dname', 'CN=Rogue Prototype,O=Local Development,C=TR')
         key.chmod(0o600)
-    apk = ROOT / 'dist/Rogue-Blood-Moon-v0.1.15.apk'
+    apk = ROOT / ('dist/Rogue-Blood-Moon-v0.1.16-Animasyon-Test.apk' if side_by_side else 'dist/Rogue-Blood-Moon-v0.1.16.apk')
     run('java', '-jar', TOOLS / 'lib/apksigner.jar', 'sign', '--ks', key,
         '--ks-pass', 'pass:android', '--key-pass', 'pass:android', '--ks-key-alias', 'androiddebugkey',
         '--out', apk, aligned)
     verify = run('java', '-jar', TOOLS / 'lib/apksigner.jar', 'verify', '--verbose', '--print-certs', apk)
-    expected=os.environ.get('ROGUE_EXPECTED_CERT_SHA256')
+    expected=os.environ.get('ROGUE_TEST_EXPECTED_CERT_SHA256' if side_by_side else 'ROGUE_EXPECTED_CERT_SHA256')
     certificate=re.search(r'certificate SHA-256 digest: (\w+)',verify).group(1)
     if expected and certificate!=expected:raise SystemExit('Signing certificate differs from the previous published APK; refusing release.')
     (ROOT / 'dist/signature-verification.txt').write_text(verify)
@@ -107,8 +109,8 @@ def main():
                 assert triangles <= budget,(model_id,m.get('name'),triangles,budget)
         assert {'assets/arena.css','assets/inventory.js','assets/inventory.css','assets/gear-system.js'}<=set(z.namelist())
     report = {'apk': apk.name, 'size_bytes': apk.stat().st_size, 'sha256': hashlib.sha256(apk.read_bytes()).hexdigest(),
-              'package': 'com.roguebloodmoon.prototype', 'version': '0.1.15', 'min_android': '8.0',
-              'version_code': 15, 'runtime_asset_count': len(runtime_files),
+              'package': package_id, 'side_by_side_test': side_by_side, 'updates_existing_app': not side_by_side, 'version': '0.1.16', 'min_android': '8.0',
+              'version_code': 17, 'runtime_asset_count': len(runtime_files),
               'signed': True, 'certificate_sha256':certificate, 'device_tested': False, 'scope': 'Offline playable flat arena; human FPS, wolf TPS, transformation, run, roll, claw, roar, inventory', 'standalone_apk': True, 'extra_data_files_required': False}
     (ROOT / 'dist/build-report.json').write_text(json.dumps(report, indent=2))
     print(json.dumps(report, indent=2))

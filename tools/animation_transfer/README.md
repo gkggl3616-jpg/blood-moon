@@ -1,0 +1,9 @@
+# Animation-only transfer
+
+`python tools/animation_transfer/apply.py` applies the reviewed channels in `data/*.json.gz` to the exact original GLB versions identified by SHA-256. It fails on any unsupported source version. CI runs this before all existing checks and APK packaging.
+
+`python tools/animation_transfer/verify.py` compares generated runtime files to the original Git blobs. Original binary buffer bytes, mesh/material/texture/skin/rest declarations, protected animations, camera/input/physics/FP assets are preserved. Only animation entries plus playback speed measurement metadata may change. New channels may write bone rotations or Hips.translation; no other limb translation, scale, geometry or weights are edited.
+
+The source archive was supplied by the user in this session and its animation use and APK build were explicitly requested. `mapping.json` records donor names for each target slot. Source/target horizontal axes and segment directions are aligned. The same source and normalized phase drive all six WolfRunQuad and WolfRoll clips, with proportion-dependent limb rotations. Shoulder/neck curls in the roll retain a blend of the target's previously compatible local pose to respect mixed skin weights; Bilge needs the stricter upper-body limit. Human upper-body and pelvis trajectories are preserved from the previously compatible target clips; source movement is applied to the legs. Zeynos idle adds a 0.25 rad left-clavicle pose correction so the existing third-person rifle IK can reach its grip. Zeynos WolfClawR remains the old compatible clip; the source exceeded the unchanged skin's deformation limit.
+
+Do not rebuild wolf3d.js for this change: it contains the current FPS camera/weapon/hand patches. Do not run source model remeshing, weight-transfer or hole-repair tools. Existing fp_arms.glb and HumanReady/Combat/Reload are protected.

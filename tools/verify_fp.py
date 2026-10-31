@@ -13,14 +13,21 @@ with sync_playwright() as p:
     page.on('pageerror', lambda e: errors.append(str(e)))
     def serve(route):
         f = (ASSETS / route.request.url.split('https://rogue.local/')[1].split('?')[0]).resolve()
-        route.fulfill(path=str(f)) if f.is_file() and f.is_relative_to(ASSETS) else route.fulfill(status=404, body='missing')
+        if f.is_file() and f.is_relative_to(ASSETS):
+            if f.name == 'wolf3d.js':
+                code=f.read_text();a='TP.m=m;TP.mix=';b='hn.userData.fp=f;let m=new B.AnimationMixer(f)';assert code.count(a)==1 and code.count(b)==1
+                # Readiness markers only, in the intercepted test response; shipped runtime code is untouched.
+                code=code.replace(a,'TP.m=m;window.__qaTPReady=s;TP.mix=').replace(b,'hn.userData.fp=f;window.__qaFPReady=s;let m=new B.AnimationMixer(f)')
+                route.fulfill(body=code,content_type='application/javascript')
+            else:route.fulfill(path=str(f))
+        else:route.fulfill(status=404, body='missing')
     page.route('https://rogue.local/**', serve)
     page.goto('https://rogue.local/index.html'); page.locator('#skipIntro').click(); page.locator('#join').click()
     page.wait_for_function('()=>window.arenaDebug&&arenaDebug.state().ready', timeout=120000)
     bad = []
     for c in CHARS:
         page.evaluate('c=>arenaDebug.setCharacter(c)', c)
-        page.wait_for_function('()=>arenaDebug.fp()&&arenaDebug.fp().fit', timeout=120000)
+        page.wait_for_function('(c)=>window.__qaTPReady===c&&window.__qaFPReady===c&&arenaDebug.fp()&&arenaDebug.fp().fit', arg=c, timeout=120000)
         for slot in ('primary', 'secondary'):
             page.evaluate('w=>arenaDebug.selectWeapon(w)', slot); page.wait_for_timeout(300)
             for pitch in (0, .9, -.9):

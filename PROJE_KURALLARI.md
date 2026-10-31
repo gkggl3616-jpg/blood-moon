@@ -32,3 +32,5 @@
 - Silahlar özgün, 4K dokulu PBR modellerdir; kabza, el kundağı/tutamak, tetik, nişangah, şarjör ve namlu ucu noktaları her silah için tek tek belirlenir.
 - Higgsfield: karakter başına ~15 kredi sınırı, her üretimden önce maliyet sorgusu. Meshy: toplu işten önce bakiye okunur.
 - APK yalnız kullanıcı onayından sonra; APK çıktığında hem dosya hem GitHub release bağlantısı gönderilir.
+
+- 31.10.2026 bu oturumdaki son açık talep: kullanıcının sağladığı kurt/insan kaynaklarından yalnız animasyon aktarılır; önceki WolfTeam-kaynak-kullanmama maddesi bu özel görev için değiştirilmiştir. Görünüş/mesh/UV/skin/rest/kameralar korunur. İnsanlarda yalnız üçüncü şahıs HumanIdle/Walk/Run değişebilir; birinci şahıs hareketleri, fp_arms ve silah/IK kodu aynıdır. Kullanıcı bu görev için APK istemiştir.

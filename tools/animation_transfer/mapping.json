@@ -1,0 +1,614 @@
+[
+  {
+    "target": "bilge.glb",
+    "base_sha256": "20d60a9cc85982b81c3bd708b4ac335b8f84ec3dea0457e204d33cf49ab1bb91",
+    "clips": [
+      {
+        "name": "WolfMove",
+        "duration": 0.933,
+        "source": {
+          "file": "wt_chars/models/wt_wolf_ch.ltb",
+          "clip": "LWF",
+          "duration": 0.933,
+          "matched_bones": 22
+        }
+      },
+      {
+        "name": "WolfJog",
+        "duration": 0.7,
+        "source": {
+          "file": "wt_chars/models/wt_wolf_ch.ltb",
+          "clip": "LRF",
+          "duration": 0.733,
+          "matched_bones": 22
+        }
+      },
+      {
+        "name": "WolfRunQuad",
+        "duration": 0.4,
+        "source": {
+          "file": "wt_chars/models/wt_wolf_ch.ltb",
+          "clip": "T_WallDash",
+          "duration": 0.533,
+          "matched_bones": 22
+        }
+      },
+      {
+        "name": "WolfRoll",
+        "duration": 1.2,
+        "source": {
+          "file": "wt_chars/models/wt_wolf_ch.ltb",
+          "clip": "T_Specialatk",
+          "duration": 1.0,
+          "matched_bones": 22
+        }
+      },
+      {
+        "name": "WolfRoar",
+        "duration": 1.4,
+        "source": {
+          "file": "wt_chars/models/wt_wolf_ch.ltb",
+          "clip": "T_CRY",
+          "duration": 1.333,
+          "matched_bones": 22
+        }
+      },
+      {
+        "name": "WolfClaw",
+        "duration": 0.5,
+        "source": {
+          "file": "wt_chars/models/wt_wolf_ch.ltb",
+          "clip": "UMFi1",
+          "duration": 0.333,
+          "matched_bones": 22
+        }
+      },
+      {
+        "name": "WolfClawR",
+        "duration": 0.5,
+        "source": {
+          "file": "wt_chars/models/wt_wolf_ch.ltb",
+          "clip": "UMFi2",
+          "duration": 0.4,
+          "matched_bones": 22
+        }
+      }
+    ]
+  },
+  {
+    "target": "human-bilge.glb",
+    "base_sha256": "10445236a7f3394e090939cf8005b47ffdf38010cc24c23f5652b5a227937763",
+    "clips": [
+      {
+        "name": "HumanWalk",
+        "duration": 0.933,
+        "source": {
+          "file": "wt_chars/models/wt_man_ch.ltb",
+          "clip": "LWF",
+          "duration": 1.0,
+          "matched_bones": 22
+        }
+      },
+      {
+        "name": "HumanRun",
+        "duration": 0.7,
+        "source": {
+          "file": "wt_chars/models/wt_man_ch.ltb",
+          "clip": "LRF",
+          "duration": 0.733,
+          "matched_bones": 22
+        }
+      }
+    ]
+  },
+  {
+    "target": "ates.glb",
+    "base_sha256": "dcda111238cad8772d6d67f8e072f6426e2af3c89cf23b72d82105c0670a73bf",
+    "clips": [
+      {
+        "name": "WolfMove",
+        "duration": 0.933,
+        "source": {
+          "file": "wt_chars/models/wt_wolf_smart_ch.ltb",
+          "clip": "LWF",
+          "duration": 0.933,
+          "matched_bones": 22
+        }
+      },
+      {
+        "name": "WolfJog",
+        "duration": 0.7,
+        "source": {
+          "file": "wt_chars/models/wt_wolf_smart_ch.ltb",
+          "clip": "LRF",
+          "duration": 0.6,
+          "matched_bones": 22
+        }
+      },
+      {
+        "name": "WolfRunQuad",
+        "duration": 0.4,
+        "source": {
+          "file": "wt_chars/models/wt_wolf_ch.ltb",
+          "clip": "T_WallDash",
+          "duration": 0.533,
+          "matched_bones": 22
+        }
+      },
+      {
+        "name": "WolfRoll",
+        "duration": 1.2,
+        "source": {
+          "file": "wt_chars/models/wt_wolf_ch.ltb",
+          "clip": "T_Specialatk",
+          "duration": 1.0,
+          "matched_bones": 22
+        }
+      },
+      {
+        "name": "WolfRoar",
+        "duration": 1.4,
+        "source": {
+          "file": "wt_chars/models/wt_wolf_smart_ch.ltb",
+          "clip": "T_CRY",
+          "duration": 1.333,
+          "matched_bones": 22
+        }
+      },
+      {
+        "name": "WolfClaw",
+        "duration": 0.5,
+        "source": {
+          "file": "wt_chars/models/wt_wolf_smart_ch.ltb",
+          "clip": "UMFi1",
+          "duration": 0.566,
+          "matched_bones": 22
+        }
+      },
+      {
+        "name": "WolfClawR",
+        "duration": 0.5,
+        "source": {
+          "file": "wt_chars/models/wt_wolf_ch.ltb",
+          "clip": "UMFi2",
+          "duration": 0.4,
+          "matched_bones": 22
+        }
+      }
+    ]
+  },
+  {
+    "target": "human-ates.glb",
+    "base_sha256": "58f7eceef8bc7da4bcc795dae188d34ec9e9412282bf84dca102c6722a8f64ef",
+    "clips": [
+      {
+        "name": "HumanWalk",
+        "duration": 0.933,
+        "source": {
+          "file": "wt_chars/models/wt_man_ch.ltb",
+          "clip": "LWF",
+          "duration": 1.0,
+          "matched_bones": 22
+        }
+      },
+      {
+        "name": "HumanRun",
+        "duration": 0.7,
+        "source": {
+          "file": "wt_chars/models/wt_man_ch.ltb",
+          "clip": "LRF",
+          "duration": 0.733,
+          "matched_bones": 22
+        }
+      }
+    ]
+  },
+  {
+    "target": "kral.glb",
+    "base_sha256": "f1edefc5dc307cfe72901247f2b9a79552f2f461e0c5bd7dc0a952848646d48a",
+    "clips": [
+      {
+        "name": "WolfMove",
+        "duration": 0.933,
+        "source": {
+          "file": "wt_chars/models/wt_wolf_guardian_ch.ltb",
+          "clip": "LWF",
+          "duration": 0.933,
+          "matched_bones": 22
+        }
+      },
+      {
+        "name": "WolfJog",
+        "duration": 0.7,
+        "source": {
+          "file": "wt_chars/models/wt_wolf_guardian_ch.ltb",
+          "clip": "LRF",
+          "duration": 0.733,
+          "matched_bones": 22
+        }
+      },
+      {
+        "name": "WolfRunQuad",
+        "duration": 0.4,
+        "source": {
+          "file": "wt_chars/models/wt_wolf_ch.ltb",
+          "clip": "T_WallDash",
+          "duration": 0.533,
+          "matched_bones": 22
+        }
+      },
+      {
+        "name": "WolfRoll",
+        "duration": 1.2,
+        "source": {
+          "file": "wt_chars/models/wt_wolf_ch.ltb",
+          "clip": "T_Specialatk",
+          "duration": 1.0,
+          "matched_bones": 22
+        }
+      },
+      {
+        "name": "WolfRoar",
+        "duration": 1.4,
+        "source": {
+          "file": "wt_chars/models/wt_wolf_guardian_ch.ltb",
+          "clip": "T_CRY",
+          "duration": 1.333,
+          "matched_bones": 22
+        }
+      },
+      {
+        "name": "WolfClaw",
+        "duration": 0.5,
+        "source": {
+          "file": "wt_chars/models/wt_wolf_guardian_ch.ltb",
+          "clip": "UMFi1",
+          "duration": 0.333,
+          "matched_bones": 22
+        }
+      },
+      {
+        "name": "WolfClawR",
+        "duration": 0.5,
+        "source": {
+          "file": "wt_chars/models/wt_wolf_guardian_ch.ltb",
+          "clip": "UMFi2",
+          "duration": 0.4,
+          "matched_bones": 22
+        }
+      }
+    ]
+  },
+  {
+    "target": "human-kral.glb",
+    "base_sha256": "affe2881086eb9eeef4fb4fe1625b9799d0e616e1655336260c81140575552b8",
+    "clips": [
+      {
+        "name": "HumanWalk",
+        "duration": 0.933,
+        "source": {
+          "file": "wt_chars/models/wt_man_ch.ltb",
+          "clip": "LWF",
+          "duration": 1.0,
+          "matched_bones": 22
+        }
+      },
+      {
+        "name": "HumanRun",
+        "duration": 0.7,
+        "source": {
+          "file": "wt_chars/models/wt_man_ch.ltb",
+          "clip": "LRF",
+          "duration": 0.733,
+          "matched_bones": 22
+        }
+      }
+    ]
+  },
+  {
+    "target": "hellgate.glb",
+    "base_sha256": "57246172e7c168080dd9bf49fc691cb36467893c678ea890f958462a2cde1645",
+    "clips": [
+      {
+        "name": "WolfMove",
+        "duration": 0.933,
+        "source": {
+          "file": "wt_chars/models/wt_wolf_berserker_ch.ltb",
+          "clip": "LWF",
+          "duration": 0.933,
+          "matched_bones": 22
+        }
+      },
+      {
+        "name": "WolfJog",
+        "duration": 0.7,
+        "source": {
+          "file": "wt_chars/models/wt_wolf_berserker_ch.ltb",
+          "clip": "LRF",
+          "duration": 0.733,
+          "matched_bones": 22
+        }
+      },
+      {
+        "name": "WolfRunQuad",
+        "duration": 0.4,
+        "source": {
+          "file": "wt_chars/models/wt_wolf_ch.ltb",
+          "clip": "T_WallDash",
+          "duration": 0.533,
+          "matched_bones": 22
+        }
+      },
+      {
+        "name": "WolfRoll",
+        "duration": 1.2,
+        "source": {
+          "file": "wt_chars/models/wt_wolf_ch.ltb",
+          "clip": "T_Specialatk",
+          "duration": 1.0,
+          "matched_bones": 22
+        }
+      },
+      {
+        "name": "WolfRoar",
+        "duration": 1.4,
+        "source": {
+          "file": "wt_chars/models/wt_wolf_berserker_ch.ltb",
+          "clip": "T_CRY",
+          "duration": 1.333,
+          "matched_bones": 22
+        }
+      },
+      {
+        "name": "WolfClaw",
+        "duration": 0.5,
+        "source": {
+          "file": "wt_chars/models/wt_wolf_berserker_ch.ltb",
+          "clip": "UMFi1",
+          "duration": 1.166,
+          "matched_bones": 22
+        }
+      },
+      {
+        "name": "WolfClawR",
+        "duration": 0.5,
+        "source": {
+          "file": "wt_chars/models/wt_wolf_ch.ltb",
+          "clip": "UMFi2",
+          "duration": 0.4,
+          "matched_bones": 22
+        }
+      }
+    ]
+  },
+  {
+    "target": "human-hellgate.glb",
+    "base_sha256": "c3b28b468e868b7886dd91b469eae3349a26bfdf656d53ddc99e0546b859cef1",
+    "clips": [
+      {
+        "name": "HumanWalk",
+        "duration": 0.933,
+        "source": {
+          "file": "wt_chars/models/wt_man_ch.ltb",
+          "clip": "LWF",
+          "duration": 1.0,
+          "matched_bones": 22
+        }
+      },
+      {
+        "name": "HumanRun",
+        "duration": 0.7,
+        "source": {
+          "file": "wt_chars/models/wt_man_ch.ltb",
+          "clip": "LRF",
+          "duration": 0.733,
+          "matched_bones": 22
+        }
+      }
+    ]
+  },
+  {
+    "target": "ay.glb",
+    "base_sha256": "2262bfd6a1aaa4a8cda892a4e79fbc72e772881470e0c45ceb39daf57cd59b87",
+    "clips": [
+      {
+        "name": "WolfMove",
+        "duration": 0.933,
+        "source": {
+          "file": "wt_chars/models/wt_wolf_woman_b_ch.ltb",
+          "clip": "LWF",
+          "duration": 0.933,
+          "matched_bones": 22
+        }
+      },
+      {
+        "name": "WolfJog",
+        "duration": 0.7,
+        "source": {
+          "file": "wt_chars/models/wt_wolf_woman_b_ch.ltb",
+          "clip": "LRF",
+          "duration": 0.733,
+          "matched_bones": 22
+        }
+      },
+      {
+        "name": "WolfRunQuad",
+        "duration": 0.4,
+        "source": {
+          "file": "wt_chars/models/wt_wolf_ch.ltb",
+          "clip": "T_WallDash",
+          "duration": 0.533,
+          "matched_bones": 22
+        }
+      },
+      {
+        "name": "WolfRoll",
+        "duration": 1.2,
+        "source": {
+          "file": "wt_chars/models/wt_wolf_ch.ltb",
+          "clip": "T_Specialatk",
+          "duration": 1.0,
+          "matched_bones": 22
+        }
+      },
+      {
+        "name": "WolfRoar",
+        "duration": 1.4,
+        "source": {
+          "file": "wt_chars/models/wt_wolf_woman_b_ch.ltb",
+          "clip": "T_CRY",
+          "duration": 1.6,
+          "matched_bones": 22
+        }
+      },
+      {
+        "name": "WolfClaw",
+        "duration": 0.5,
+        "source": {
+          "file": "wt_chars/models/wt_wolf_woman_b_ch.ltb",
+          "clip": "UMFi1",
+          "duration": 0.566,
+          "matched_bones": 22
+        }
+      },
+      {
+        "name": "WolfClawR",
+        "duration": 0.5,
+        "source": {
+          "file": "wt_chars/models/wt_wolf_woman_b_ch.ltb",
+          "clip": "UMFi2",
+          "duration": 0.566,
+          "matched_bones": 22
+        }
+      }
+    ]
+  },
+  {
+    "target": "human-ay.glb",
+    "base_sha256": "66a75989b86178fee58c8bb0aa53f12e23e3e1c05876698aa85f5d84f56abd39",
+    "clips": [
+      {
+        "name": "HumanWalk",
+        "duration": 0.933,
+        "source": {
+          "file": "wt_chars/models/wt_new_woman_ch.ltb",
+          "clip": "LWF",
+          "duration": 0.726,
+          "matched_bones": 22
+        }
+      },
+      {
+        "name": "HumanRun",
+        "duration": 0.7,
+        "source": {
+          "file": "wt_chars/models/wt_new_woman_ch.ltb",
+          "clip": "LRF",
+          "duration": 0.726,
+          "matched_bones": 22
+        }
+      }
+    ]
+  },
+  {
+    "target": "zeynos.glb",
+    "base_sha256": "84184e8926fbf9c9e1ce041b97502aa104a1d2fa7408eb920e4b8a84aba86ae9",
+    "clips": [
+      {
+        "name": "WolfMove",
+        "duration": 0.933,
+        "source": {
+          "file": "wt_chars/models/wt_wolf_woman_r_ch.ltb",
+          "clip": "LWF",
+          "duration": 0.933,
+          "matched_bones": 22
+        }
+      },
+      {
+        "name": "WolfJog",
+        "duration": 0.7,
+        "source": {
+          "file": "wt_chars/models/wt_wolf_woman_r_ch.ltb",
+          "clip": "LRF",
+          "duration": 0.733,
+          "matched_bones": 22
+        }
+      },
+      {
+        "name": "WolfRunQuad",
+        "duration": 0.4,
+        "source": {
+          "file": "wt_chars/models/wt_wolf_ch.ltb",
+          "clip": "T_WallDash",
+          "duration": 0.533,
+          "matched_bones": 22
+        }
+      },
+      {
+        "name": "WolfRoll",
+        "duration": 1.2,
+        "source": {
+          "file": "wt_chars/models/wt_wolf_ch.ltb",
+          "clip": "T_Specialatk",
+          "duration": 1.0,
+          "matched_bones": 22
+        }
+      },
+      {
+        "name": "WolfRoar",
+        "duration": 1.4,
+        "source": {
+          "file": "wt_chars/models/wt_wolf_woman_r_ch.ltb",
+          "clip": "T_CRY",
+          "duration": 1.6,
+          "matched_bones": 22
+        }
+      },
+      {
+        "name": "WolfClaw",
+        "duration": 0.5,
+        "source": {
+          "file": "wt_chars/models/wt_wolf_woman_r_ch.ltb",
+          "clip": "UMFi1",
+          "duration": 0.566,
+          "matched_bones": 22
+        }
+      }
+    ]
+  },
+  {
+    "target": "human-zeynos.glb",
+    "base_sha256": "7d96d75509bab6b1a153a3f402b88d730898af8c207c52e264ea20b050f22ec1",
+    "clips": [
+      {
+        "name": "HumanWalk",
+        "duration": 0.933,
+        "source": {
+          "file": "wt_chars/models/wt_new_woman_ch.ltb",
+          "clip": "LWF",
+          "duration": 0.726,
+          "matched_bones": 22
+        }
+      },
+      {
+        "name": "HumanRun",
+        "duration": 0.7,
+        "source": {
+          "file": "wt_chars/models/wt_new_woman_ch.ltb",
+          "clip": "LRF",
+          "duration": 0.726,
+          "matched_bones": 22
+        }
+      },
+      {
+        "name": "HumanIdle",
+        "duration": 4.0,
+        "source": {
+          "file": "original human-zeynos.glb",
+          "clip": "HumanIdle / ClavL aim reach",
+          "matched_bones": 1,
+          "shoulder_z_offset_radians": 0.25
+        }
+      }
+    ]
+  }
+]
