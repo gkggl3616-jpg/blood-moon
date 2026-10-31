@@ -116,6 +116,10 @@ dtx = []
 if dtx_root.exists():
     for path in sorted(dtx_root.rglob('*.dtx')):
         dtx.append({'path': str(path.relative_to(dtx_root)), 'sha256': hashlib.sha256(path.read_bytes()).hexdigest()})
+elif (ROOT / 'docs/v0117-dtx-checksums.json').is_file():
+    # CI does not contain the user's 4 GB source archive. Keep its immutable,
+    # locally generated inventory in the repository so Release evidence remains complete.
+    dtx = json.loads((ROOT / 'docs/v0117-dtx-checksums.json').read_text())['files']
 
 out = {'models': reports, 'dtx_files': dtx, 'dtx_files_modified': False,
        'texture_image_material_uv_modified': False,
