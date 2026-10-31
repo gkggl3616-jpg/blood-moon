@@ -72,7 +72,7 @@ with sync_playwright() as playwright:
         route.fulfill(path=str(path)) if path.is_relative_to(ASSETS) and path.is_file() else route.fulfill(status=404)
     page.route('https://rogue.local/**', serve)
     page.goto('https://rogue.local/index.html')
-    page.locator('#skipIntro').click()
+    page.evaluate('rogueOpenScreen("lobby")')
     page.locator('#join').click()
     page.wait_for_function('()=>arenaDebug?.state().ready', timeout=90_000)
     page.evaluate('arenaDebug.action("fire")')
