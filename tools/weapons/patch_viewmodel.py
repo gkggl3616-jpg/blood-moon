@@ -26,4 +26,10 @@ rep('Fe("arenaTrack").disabled=!s,',
 rep('fire:Jc,view:TpToggle}', 'fire:Jc,view:TpToggle,ads:VmAds,inspect:VmInspect,heavy:VmHeavy}')
 rep('selectWeapon:_s,', 'selectWeapon:_s,vm:()=>({weapon:hn?.userData.weapon,ads:VM.ads,adsOn:VM.adsOn,inspect:VM.insp,heavy:VM.heavy,kick:VM.kz,fov:cn?.fov,fit:hn?.userData.fp?.userData.fit}),')
 rep('let La=(uL.distanceTo(eL)+eL.distanceTo(hL)+uR.distanceTo(eR)+eR.distanceTo(hR))/2,', 'let La=f.userData.La0||(f.userData.La0=(uL.distanceTo(eL)+eL.distanceTo(hL)+uR.distanceTo(eR)+eR.distanceTo(hR))/2),')
+# human sprint: double-tap forward (button or W) while in human form; fire / aim / reload end it
+rep('function Zc(){return Ys()?pt!=="wolf"?(Kn("D\\xF6rt ayak ko\\u015Fu kurt formunda kullan\\u0131l\\u0131r."),!1):', 'function Zc(){return Ys()?pt!=="wolf"?(TPV||Ln>0||VM.ads>.3?!1:(dn=!dn,VM.adsOn=!1,eo(),!0)):')
+rep('let o=(pt==="wolf"?dn&&At.run?8:4.3:4.1)', 'let o=(pt==="wolf"?dn&&At.run?8:4.3:dn?6.3:4.1)')
+rep('h-e<=330&&pt==="wolf"&&!dn&&Zc()', 'h-e<=330&&!dn&&Zc()')
+rep('h-KW<=330&&pt==="wolf"&&!dn&&Zc()', 'h-KW<=330&&!dn&&Zc()')
+rep('if(pt==="human"){let s=wi(),e=s?.weapon;if(!e||Ln>0)return!1;', 'if(pt==="human"){let s=wi(),e=s?.weapon;if(!e||Ln>0)return!1;dn&&(dn=!1,eo());')
 open(P, 'w').write(s); print('patched')

@@ -1,65 +1,213 @@
-# Rogue: Blood Moon — Android Prototype 0.1.11
+# Rogue: Blood Moon — Android prototip (v0.1.15)
 
-Yatay Android ekranı için menü ve harita konsepti prototipi.
+Yatay ekranlı Android için insan ↔ kurt dönüşümlü FPS/TPS prototipi. Oyun bir WebView içinde çalışan three.js
+uygulamasıdır; bütün çalışma zamanı dosyaları APK'nın içindedir (ek indirme yok).
 
-v0.1.3: Açılış videosu otomatik başlar ve bitince lobiye geçer. Görünür ekran alanına göre ölçekleme, sabit viewport ve Android çentik/sistem çubuğu güvenli alanları eklendi.
+- **APK:** her `main` push'unda GitHub Actions derler ve
+  [Releases](https://github.com/gkggl3616-jpg/blood-moon/releases) altına `prototype-v0.1.15-<çalıştırma no>` olarak koyar.
+- **Kurallar ve bütçeler:** [`PROJE_KURALLARI.md`](PROJE_KURALLARI.md), [`docs/uretim-standardi.md`](docs/uretim-standardi.md)
+- **Hata günlüğü ve dersler:** [`GELISTIRME_HATALARI.md`](GELISTIRME_HATALARI.md)
+- **Birinci şahıs silah sistemi:** [`docs/fps-viewmodel.md`](docs/fps-viewmodel.md)
+- **Sürüm notları:** `docs/release-v0*.md` (son: [`docs/release-v0115.md`](docs/release-v0115.md))
 
-## v0.1.4 — karakter ve mekanik yönü
+---
 
-- Envanter, deneme mağazası, insan/kurt bonus karşılaştırması ve kalıcı karakter seçimi.
-- Bilge Kağan, Kül Tigin, Alp Arslan ve Konuralp’ten esinlenen kurgu karakter kartları.
-- Kurt güç endeksi 100–180; kurt bonusları 0–%80 ile sınırlanır. Bunlar taslak değerlerdir.
-- Her gövde tipi için ayrı pençe hareketi ve iz tarifi tutulur; 3B animasyon uygulanmadı.
-- İz sürme korunur; ileri sıçrama için hedef alanı göstergesi kullanılmaz.
-- Yetenek laboratuvarı kaldırıldı. Yeni 3B mekanikler hâlâ tasarım aşamasındadır.
-- Higgsfield konseptleri prototypes/ klasöründedir; oyun içi kartlar henüz temsilîdir.
+## 1. Klasör haritası
 
-## v0.1.5
+```
+app/src/main/
+  java/…                    Android kabuğu (WebView, tam ekran, ses)
+  assets/                   OYUNUN KENDİSİ (APK'ya giren her şey)
+    index.html              tüm ekranlar (açılış, lobi, envanter, mağaza, arena)
+    app.js                  ekran geçişleri, ayarlar, ses
+    collection.js           karakter kataloğu (ad, kurt adı, rol, güçler, açıklama)
+    gear-system.js          eşyalar (silah/bomba/bıçak/dövme/takla), bonus hesabı, kuşanma
+    inventory.js / .css     envanter ve mağaza arayüzü
+    wolf.js / wolf.css      kurt donanım ekranı (3B önizleme)
+    wolf3d.js               3B motor: three.js + arena + kurt/insan kontrolü + efektler (tek paket dosya)
+    arena.css               arena arayüzü
+    media/                  açılış videosu, karakter kart görselleri, sesler
+    models/                 oyunun 3B modelleri (aşağıda ayrıntılı)
+art/                        kaynak sanat (APK'ya girmez)
+  characters/<id>/          onaylı tasarım görselleri + not (ör. art/characters/zeynos/)
+  3d/meshy/source/<id>.glb  her karakterin kaynak gövdesi (Meshy çıktısı, düzenlenmiş)
+  3d/meshy/rigs/<id>/       Meshy iskeleti (rigged.glb) ve Meshy animasyon paketleri (anim_a.glb, anim_b.glb)
+  3d/weapons/src/*.glb      silah/bomba kaynak modelleri (Higgsfield Tripo image-to-3D)
+  3d/weapons/sockets.json   silah tutuş noktaları (kabza, tetik, el kundağı, nişangah, namlu, şarjör)
+  3d/fp_arms/               CC0 parmak kemikli FP kol modeli (Blender dışa aktarımı + deri dokusu)
+docs/                       üretim standardı, viewmodel raporu, sürüm notları, video analizleri
+tools/                      derleme ve test araçları (aşağıda)
+.github/workflows/android-apk.yml   CI: test + APK + release
+```
 
-Kurt donanımında koşu ve takla ayrı kuşanılır; kozmetik aksesuar seçimi kaydedilir. Kükreme 20 saniye boyunca %20 hız, %15 hasar, %30 savunma sağlar; 2B dövme şeması parlar. Pasif değerler kükreme dahil toplam 180 tavanına göre ayarlanır. Koşu önizlemesi %15 koşu bonusu kullanır. Bunlar henüz 3B savaş animasyonları değildir. Silah, bomba ve bıçak katalog kategorileri eklendi. Bilinen hata kaydı: GELISTIRME_HATALARI.md.
+## 2. Karakterler ve dosyaları
 
-## v0.1.6 — İlk gerçek 3B kurtlar
+Her karakterin iki formu vardır: **insan** (`models/human-<id>.glb`) ve **kurt** (`models/<id>.glb`).
+Kimlikler motor/dosya adıdır; oyundaki adlar `collection.js` içindedir.
 
-Meshy text-to-3D kaynak modelinden Blender’da dört gövde varyantı oluşturuldu. Donanım ekranı solda sürükleyerek dönen model, sağda dövme/ekipman listesi şeklindedir. Sırtta altı özgün motif, sağ ve sol kollarda ayrı çizgi katmanları, aksesuar seçimi ve kükreme emisif malzemesi vardır. Motifler final UV dövme sanatı değil, düzenlenebilir başlangıç çizgi geometrileridir.
+| id | İnsan adı | Kurt adı | Kurt modeli | İnsan modeli | Kaynak gövde / iskelet | FP eli (aksesuar) |
+|---|---|---|---|---|---|---|
+| `bilge` | Bilge Kağan | Boz Kağan | `models/bilge.glb` (6.785 üçgen) | `models/human-bilge.glb` (23.636) | `art/3d/meshy/source/bilge.glb`, `rigs/bilge/` | taktik parmaksız eldiven |
+| `ates` | Köz Bey | Köz Kağan | `models/ates.glb` (6.780) | `models/human-ates.glb` (32.249) | `source/ates.glb`, `rigs/ates/` | kırmızı bez bilek sargısı |
+| `kral` | Kara Han | Kurt Kral | `models/kral.glb` (8.123; boynuz+pelerin elle) | `models/human-kral.glb` (30.044) | `source/kral.glb`, `rigs/kral/` | deri zırhlı kolluk |
+| `ay` | Aysel | Ay Kurdu | `models/ay.glb` (16.979) | `models/human-ay.glb` (18.382) | `source/ay.glb`, `rigs/ay/` | siyah dantel parmaksız eldiven |
+| `hellgate` | Zebani | Hellgate Kurdu | `models/hellgate.glb` (19.792) | `models/human-hellgate.glb` (27.167) | `source/hellgate.glb`, `rigs/hellgate/` | kömürleşmiş deri, lav çatlakları |
+| `zeynos` | Zeynoş | Ak Yürek | `models/zeynos.glb` (20.466) | `models/human-zeynos.glb` (36.446 = gövde 33.459 + kol kesiti) | `source/zeynos.glb`, `rigs/zeynos/`, `art/characters/zeynos/` | kalp oyuklu siyah deri eldiven |
 
-Blender dosyası: `art/3d/wolves-modular.blend`. GLB dosyaları: `app/src/main/assets/models/`. Gerçek üçgen sayıları: `art/3d/model-report.json`. Meshy görevleri ve gerçek tüketim: `art/3d/task-trail.json` (toplam 30 kredi). Modeller A-pozunda; rig/koşu/takla/savaş animasyonu tamamlanmadı.
+Eski kurgu karakterler (`basibozuk`, `kul`, `ayaz`, `kultigin`, `alparslan`, `konuralp`) Bilge'nin modelini kullanır
+(`wolf3d.js` → `Zw` eşlemesi).
 
-TikTok sayfası ve kapak karesi incelendi; video akışı 403 döndüğü için tamamı izlendiği iddia edilmez. Yüklenen dövme örneğinin yerleşimi referans alındı; oyun varlıkları kopyalanmadı.
+### 2.1 Kurt animasyonları (her kurt GLB'sinin içinde)
 
-## v0.1.7 — Mağazadan alınan takla özellikleri
+| Klip | Kaynak | Ne zaman oynar |
+|---|---|---|
+| `WolfIdle` | Meshy `Combat_Stance` (anim_a #0) | dururken |
+| `WolfMove` | Meshy `Quick_Walk` (anim_b #2), adım hızına göre yeniden zamanlanır | yürürken (`WalkBlend` ile `WolfJog` karışır) |
+| `WolfJog` | Meshy `Run_02` (anim_b #0) | hızlı yürüyüş |
+| `WolfRunQuad` | eski elle yapılmış dört ayak koşu (önceki rig'den aktarılır) | dört ayak koşu (ileri ×2) |
+| `WolfJump` | eski rig'den aktarılır | sıçrama |
+| `WolfRoar` | eski rig'den aktarılır | kükreme |
+| `WolfRoll` | eski rig'den aktarılır | takla |
+| `WolfClaw`, `WolfClawR` | eski rig'den aktarılır | sol / sağ pençe |
+| `WolfTransform` | eski rig'den aktarılır | dönüşüm |
 
-- **Kurt Taklası:** 450 deneme kredisi, yalnızca takla. Dört ayak koşu açmaz; takla temas hasarı verir (v0.1.10 kuralı).
-- **Efsanevi Kurt Taklası:** 1.200 deneme kredisi, dört ayak koşu ve takla birlikte. Tek takla yuvası kullanır.
-- Mağaza → Kurt Özellikleri bölümünden satın alındıktan sonra Kurt Donanımı → Takla Yuvası bölümünde kuşanılır ve kaydedilir. Her kurdun seçimi ayrı tutulur; satın alma otomatik kuşanma yapmaz. Bu sürüm önceki ücretsiz koşu/takla kutularının yerini alır.
-- Mevcut dört Meshy/Blender gövdesine Blender’da 22 kemikli başlangıç rig’i ve `WolfIdle`, `WolfRoll`, `WolfRunQuad` klipleri eklendi. Düğmeler tüm modelin CSS dönüşünü değil, GLB içindeki iskelet animasyonunu oynatır. Koşu döngüsü durdurulabilir; takla bitince önceki uygun duruşa döner.
-- Düzenlenebilir kaynak: `art/3d/wolves-rigged.blend`; üretim betiği: `art/3d/scripts/animate_wolves.py`; klip/kemik kaydı: `art/3d/animation-report.json`. Bu aşamada yeni Meshy üretimi ve kredi tüketimi yoktur.
+Ayak hızları (`walk_foot_speed_mps`, `jog_foot_speed_mps`, `run_measured_foot_speed_mps`) gövde düğümünün `extras`
+alanına yazılır (`tools/meshy/foot_speeds.py`); motor klibi bu hızla oynatır, ayak kaymaz.
+Kuyruk ve pelerin motor içinde yay fiziğiyle sallanır (`TailSpring`, `TailCollide`, `CapeCollide`).
 
-Bu hareketler donanım ekranındaki ilk 3B önizlemelerdir. Ağırlıklar geometrik yöntemle atanmıştır; özellikle omuz, kalça ve kürkte elle deformasyon düzeltmesi gerekir. Haritada ilerleme, çarpışma, saldırı ve çevrimiçi maç henüz uygulanmadı. Tarayıcı testi satın alma/kuşanma ayrımını, kalıcı kaydı ve klip oynatmayı doğrular; fiziksel Android cihazda oynanış testi değildir.
+### 2.2 İnsan animasyonları (her `human-<id>.glb` içinde)
 
-## v0.1.8 — Atletik gövdeler ve ayrıntılı dövmeler
+| Klip | Kaynak | Kullanım |
+|---|---|---|
+| `HumanIdle` | Meshy `Idle` | üçüncü şahıs bekleme |
+| `HumanWalk` | Meshy `Casual_Walk` | üçüncü şahıs yürüme |
+| `HumanRun` | Meshy `Run_02` | üçüncü şahıs koşu / sprint |
+| `HumanCombat` | Meshy `Combat_Stance` | havadayken |
+| `HumanReload` | Meshy `Standing_Reload` | (yedek) |
+| `HumanReady` | eski rig | eski FP kolu için hazır duruş |
 
-Dört gerçek gövdenin beli ve karın derinliği yeniden biçimlendirildi. Ağır varyantların hacmi omuz/göğüste korunur. Bel daraltması yalnızca gövde bölgesine uygulanır; ön kolları ve elleri sıkıştırmaz. Her varyantın oranları, boyu ve ölçülen gövde kesitleri `art/3d/model-report.json` içindedir. Kaynak Meshy modeli korunarak Blender'da düzenlendi; yeni Meshy üretimi ve kredi tüketimi yoktur.
+Üçüncü şahısta kollar IK ile silahın kabza soketlerine yerleştirilir (`TpTick`).
 
-Gövde LOD'si 18.000'den 28.000 üçgene çıkarıldı. Dokuz ayrıntılı, özgün sırt dövmesi: ejder, anka, aslan, kanatlı at, örümcek, boğa, kader zarı, tekboynuz ve ölüm. Kaynak sayfa `art/3d/textures/tattoo-atlas.png`, UV bölmeleri aynı klasördeki JSON dosyasıdır. Dövmeler görüntü üretimiyle hazırlanan şeffaf renk/emisyon dokularını kullanır; referans oyundan doku dosyası alınmadı. Her dövme gerçek gövde yüzey üçgenlerini izleyen ayrı bir mesh'tir. Sol ve sağ kol bağımsız olarak kanat şeridi, ejder, anka veya ölüm deseni seçer. Kükreme bu renkli mürekkepleri parlatır.
+### 2.3 Birinci şahıs kolları ve silahlar
 
-Dövme iskelet ağırlıkları gövdenin en yakın üçgeninden ara değerleme ile aktarılır. İlk rig ve üç hareket klibi korunur; final üretim topolojisi, yüz ifadesi ve deformasyon cilası henüz tamamlanmadı. Bu bir kalite geliştirme geçişidir; nihai AAA model iddiası yoktur. Yedi karakter hâlâ dört temel geometriyi paylaşır.
+| Dosya | İçerik |
+|---|---|
+| `models/fp_arms.glb` | CC0 parmak kemikli kol (omuz, dirsek, bilek, parmak başına 3 kemik), 8.152 üçgen |
+| `models/fp/<id>_c.jpg`, `<id>_r.jpg` | karaktere göre ten rengi + eldiven/aksesuar (renk ve pürüzlülük) |
+| `models/weapons/rifle.glb` | AR-01 saldırı tüfeği (0,86 m, 28.704 üçgen, şarjör ayrı) |
+| `models/weapons/sniper.glb` | SR-01 keskin nişancı (1,18 m, 28.098) |
+| `models/weapons/pistol.glb` | P-01 tabanca (0,19 m, 17.783) |
+| `models/weapons/knife.glb` | KAMA-01 bıçak (0,33 m, 11.646) |
+| `models/weapons/frag.glb`, `smoke.glb` | parça ve sis bombası (6.228 / 6.096) |
 
-## v0.1.9 — oynanabilir düz test alanı
+Silah GLB'lerinin kök düğümü `extras.sockets` taşır: `grip_r`, `grip_l`, `trigger`, `sight`, `muzzle`, `ring`, `grip_dir`.
 
-Yeni Bilge Kağan insan/kurt çifti Meshy image-to-3D ile üretildi; onaylanan ve tüketilen toplam 60 kredi. Diğer altı insan/kurt referansı 2B konsepttir, yeni ücretli üretimleri yapılmadı. Bilge bu geliştirme sürümünde başlangıç envanterine dahildir. Oyun LOD'ları insan 9.000, Bilge kurt 13.773 üçgen; diğer üç kurt 10 bin üçgenden az. İnsan FPS, kurt TPS, dönüşüm, ileri sıçrama, ortak dört ayak koşu/takla, pençe klipleri ve vuruş efektleri düz alanda denenir. Hedeflerin canı azalır ve 3 saniyede yenilenir. Deneme donanımı mağaza sahipliğini değiştirmez.
+## 3. Motor içindeki önemli bölümler (`app/src/main/assets/wolf3d.js`)
 
-Sol dört yön düğmesi; ileriye 330 ms içinde iki basış efsanevi özellik takılıysa koşuyu açar. Sağda simgeli yuvarlak eylemler. Klavye WASD, E dönüşüm, Q takla, Shift koşu, Space sıçrama, F saldırı, R kükreme/şarjör, T iz sürme. Sağ ekranı sürüklemek bakışı değiştirir. Kükreme 20 saniye, mor el alevleri ve dövme parlaması; 180 tavanı korunur. Tek WebGL context, iki kayıtla sınırlı model cache'i, 72 parçacık havuzu, karakterden düşen 1024 PCF gölge kullanılır.
+`wolf3d.js` derlenmiş bir paket dosyasıdır; elle yazılan bölümler işaretlerle ayrılmıştır ve `tools/weapons/*.js`
+kaynaklarından yamalanır:
 
-Tek APK release varlığı bütün çalışma zamanı dosyalarını içerir; ek model/OBB/ZIP kurulumu yoktur. Actions imza sırrı yazma yetkisi 403 verdiği için geliştirme imzası cache ile korunur; üretim imzası kurulmuş değildir. Fiziksel Android testi ve çevrimiçi maç yoktur. Deformasyon ve yüz cilası geliştirme aşamasındadır. TikTok sayfalarına erişildi, yeni akış 403 verdi; yüklenen yerel referans videolarının kareleri incelendi.
+| İşaret / fonksiyon | Kaynak dosya | Görev |
+|---|---|---|
+| `/*VIEWMODEL-BEGIN*/ … END` | `tools/weapons/viewmodel.js` | silah profilleri, ADS, geri tepme, bob, nefes, sprint pozu, inceleme, bıçak saldırıları |
+| `/*FPHANDS-BEGIN*/ … END` | `tools/weapons/fp_hands.js` | kol IK, elin kabzaya yerleşmesi, parmak sarma, tetik parmağı, deri dokuları |
+| `WeapLoad`, `WGP/WGR` | (paket içinde) | silah modellerini yükler, şarjörü bulur |
+| `TpBody`, `TpTick`, `TpToggle` | (paket içinde) | insan üçüncü şahıs |
+| `FpFit`, `FPK` | (paket içinde) | FP kollarının ölçek/yerleşimi |
+| `WalkBlend`, `TailSpring`, `CapeCollide` | (paket içinde) | kurt hareket karışımı, kuyruk/pelerin fiziği |
+| `EnvLight`, `ArenaDress` | (paket içinde) | gece gökyüzü ışığı (IBL), arena görünümü |
 
-## v0.1.10 — takla teması ve bakış düzeltmesi
+Yamaları yeniden uygulamak için: `python3 tools/weapons/patch_fp_hands.py && python3 tools/weapons/patch_viewmodel.py`.
 
-Takla temas hasarı verir: 38 taban hasar, karakter hasar değeri/kükreme çarpanı ve 180 tavanıyla ölçeklenir. Bu yerel denge ayarıdır; yeni YouTube videosundan ölçülmüş değer değildir. Süpürülen gövde teması, hedef başına taklada bir vuruş, siper engeli, sabit takla yönü kullanılır. Koşu/takla dört kurtta ortak v2 şablonu; taklada hazırlık–toplanma–360 dönüş–iniş, kükremede hazırlık–açılma–tutma–toparlanma vardır. Çene kemiği/yüz animasyonu henüz yoktur. İnsan ve kurt dikey sürüklemesi aynı yönde düzeltilmiştir.
+## 4. Kontroller (arena)
 
-Yeni video `https://youtube.com/shorts/NGqOn5o0dHE` ortam ağ geçidinde 403 ile engellendi; tamamı izlenmedi. Zaman kodlu içerik analizi bekliyor. Önceki erişilebilir referanslar ile kullanıcı düzeltmesi ayrı kaynak olarak kaydedildi: `docs/video-NGqOn5o0dHE.md`. Yeni ücretli model üretimi yok; mevcut düşük poligonlu modeller ve yerel Blender rig'i düzenlendi.
+| Eylem | Dokunmatik | Klavye / fare |
+|---|---|---|
+| Hareket | sol yön düğmeleri | WASD |
+| Bakış | sağ ekranı sürükle | fare sürükle |
+| Ateş / pençe | ATEŞ | F |
+| Nişan al (insan) / ağır bıçak | NİŞAN (kurtta İZ SÜR) | T veya sağ tık |
+| İncele (insan) | İNCELE (kurtta TAKLA) | Q |
+| Sprint (insan) / dört ayak koşu (kurt) | ileri ×2 | W ×2 |
+| Şarjör / kükreme | DOLDUR / KÜKRE | R |
+| Dönüşüm | KURT / İNSAN | E |
+| 1. / 3. şahıs (insan) | 3. ŞAHIS | V |
+| Silah seçimi | 1 ANA · 2 İKİNCİ · 3 BIÇAK · 4 BOMBA | 1–4 |
 
-## v0.1.11 — yüklenen hareket kaydı ve görüntü netliği
+## 5. Araçlar (`tools/`)
 
-Yüklenen 4.91 saniyelik videonun 119 karesi zaman sırasıyla incelendi. Ayrıntılı gözlemler ve uygulama kararları `docs/video-screenrecorder-20261027.md` içinde. Ortak v3 koşu/duruş iki kemikli IK ile kol/bacak uzunluklarını korur; yere basma ve toparlanma fazları, daha sabit baş ve kısa döngü kullanır. Takla 0.8 saniye / yaklaşık 2m; temas hasarı korunur. Koşarken sıçrama/takla, havada taklaya geçiş ve kükremede durma test edilir. Sıçramada koşu hızına ikinci bir yatay hız eklenmez.
+| Araç | Ne yapar |
+|---|---|
+| `meshy/build_all.py <rigs> [ad…]` | Meshy iskelet + animasyonlardan oyun GLB'lerini kurar (`SRC_DIR=art/3d/meshy/source INSTALL=1`) |
+| `meshy/build_game.py` | ağırlık aktarımı, delik kapatma, uzama düzeltme, FP kesiti, doku sıkıştırma |
+| `meshy/make_source.py` | yeni karakter için kaynak: kuyruk/saç kemikleri, parmak kemiği |
+| `meshy/foot_speeds.py` | yürüme/koşu ayak hızlarını ölçer, GLB'ye yazar |
+| `weapons/build_weapons.py` | silah kaynaklarını gerçek boya, silah çerçevesine ve soketlere çevirir |
+| `weapons/side_view.py` | yandan ortografik görünüm (soket okumak için) |
+| `weapons/build_fp_arms.py` | CC0 kol modelini oyun dosyasına çevirir |
+| `weapons/paint_fp_skins.py` | karaktere özel kol dokuları: eldiven, sargı, kolluk, ten |
+| `weapons/patch_*.py` | `wolf3d.js` içine viewmodel / el kodlarını yamalar |
+| `verify_models.py` | poligon bütçesi, uzayan üçgen, yeni delik, pelerin/kuyruk ağırlığı, FP kolu, silah soketleri |
+| `verify_fp.py` | 6 karakter × tüfek/tabanca × düz/yukarı/aşağı: avuçlar kabzada; üçüncü şahıs tüfek |
+| `verify_ui.py`, `verify_arena.py`, `verify_reference_arena.py` | arayüz, oynanış, kükreme/koşu |
+| `build_apk.py` | APK derler, içeriği ve model bütçelerini denetler |
 
-1.25 DPR sınırı kaldırıldı. Net varsayılanı ekran piksel yoğunluğunu 4.2M piksel bütçesi içinde izler; Dengeli 2M bütçe kullanır. Kenar yumuşatma ve 8x'e kadar doku filtreleme korunur, aşırı parlak ışık azaltılır. Hassasiyet ekran genişliğine göre normalize edilir; varsayılan 1.45x, ayarlardan 0.60–2.40x. Tercihler kalıcıdır. Poligon ve parçacık bütçeleri değişmez; fiziksel telefon performansı henüz ölçülmedi. Yeni Meshy kredisi harcanmadı.
+Bilgisayardaki Blender iş kuyruğu: `Desktop\rbm-blender\` (`sunucu.py` Blender'da çalışır; `jobs\*.py` sırayla işlenir,
+günlük `out\`). Meshy anahtarı yalnız bu işler tarafından dosyadan okunur, depoya yazılmaz.
+
+## 6. Üretim promptları (kullanılanlardan örnekler)
+
+Bütçe ve kurallar: [`docs/uretim-standardi.md`](docs/uretim-standardi.md) (insan 35.000, kurt 30.000, silah 35.000,
+bomba 10.000 üçgen). Aşağıdakiler projede gerçekten gönderilmiş promptlardır (bilgisayardaki plan dosyalarından):
+
+**Silah görseli (AR-01) — görüntü modeli `gpt-image-2`, sonra Higgsfield Tripo image-to-3D:**
+```text
+AR-01 assault rifle: modern military carbine, dark gunmetal and matte black polymer, long M-LOK style handguard with
+a vertical foregrip underneath, curved 30-round magazine, clear pistol grip behind the trigger guard with visible
+trigger, adjustable stock, flip-up iron sights plus a compact red-dot sight on the top rail, worn edges. Original
+fictional design for the game Rogue Blood Moon, no real-world brand, no logos, no text. Single object only, exact
+orthographic side view, muzzle/blade pointing to the RIGHT, whole object in frame, centered, plain pure white
+background, soft even studio lighting, photorealistic PBR materials, ultra-detailed 4K game asset.
+```
+
+**Bıçak görseli (KAMA-01):**
+```text
+KAMA-01 combat knife: Turkic-inspired fighting knife with a long slightly curved steel blade with a fuller, brass
+guard, wrapped dark leather grip with finger grooves, wolf-head pommel. Original fictional design for the game Rogue
+Blood Moon, no real-world brand, no logos, no text. Single object only, exact orthographic side view, muzzle/blade
+pointing to the RIGHT, whole object in frame, centered, plain pure white background, soft even studio lighting,
+photorealistic PBR materials, ultra-detailed 4K game asset.
+```
+
+**Eldiven görseli (taktik, birinci şahıs için):**
+```text
+A single RIGHT human hand and forearm wearing a black-and-dark-grey tactical combat glove with reinforced knuckles
+and a short sleeve cuff at the forearm, palm facing DOWN, viewed exactly from above (top-down orthographic), fingers
+straight, fully extended and clearly SPREAD apart with visible gaps between every finger, thumb pointing out to the
+side at 45 degrees, forearm cut cleanly at mid-forearm, centered, plain pure white background, soft even lighting,
+photorealistic PBR 3D game asset, no text, no logos.
+```
+
+**Zeynoş (Higgsfield, onaylı):** iş kimlikleri insan `1c264348-9f01-4ccf-8fd0-e940696ed0fd`, kurt
+`c5371cef-5156-48a1-9737-a9ca4847b441`. Bu iki işin prompt metni depoya kaydedilmemiş; onaylı tasarım tarifi
+`art/characters/zeynos/README.md` içindedir. Yeni karakterlerde prompt metni de karakter klasörüne yazılır.
+Yeni karakter için şablon: `docs/uretim-standardi.md` § 2 (T-poz, açık gri fon, karaktere özel eldiven/kol aksesuarı,
+kurtta kol ve sırt parlama bölgeleri).
+
+## 7. CI ve APK
+
+`.github/workflows/android-apk.yml` her `main` push'unda sırayla şunları çalıştırır: `verify_models` → `verify_ui` →
+`verify_arena` → `verify_reference_arena` → `verify_fp` → `build_apk`. Bunlardan biri başarısız olursa APK çıkmaz.
+APK geliştirme imzasıyla imzalanır ve `prototype-v0.1.15-<no>` sürümüne yüklenir. Geliştirme `wip/*` dallarında yapılır.
+
+## 8. Bilinen eksikler (v0.1.15)
+
+- Kurtlar Meshy'nin insan iskeletiyle kurulu; dört ayaklı hareketler eski elle yapılmış kliplerden aktarılıyor.
+  Gerçek dört ayaklı iskelet + elle keyframe'lenmiş kurt animasyonları yapılmadı.
+- Birinci şahıs silah animasyonları kodla üretilir (yordamsal); Blender'da keyframe'lenmiş FP animasyonu yoktur.
+- FP kol modeli tüm karakterlerde aynı geometri; fark dokuda (ten, eldiven, aksesuar).
+- Boz Kağan, Köz Kağan ve Kurt Kral bütçenin çok altında (7–8 bin üçgen); yeniden üretim kredi bekliyor.
+- Fiziksel Android cihaz performans ölçümü yapılmadı.
+
+Lisanslar: `app/src/main/assets/licenses/`. FP kol modeli CC0 (opengameart.org/content/fps-arms-rigged-only,
+MakeHuman tabanlı).

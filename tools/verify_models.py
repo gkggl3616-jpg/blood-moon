@@ -94,12 +94,14 @@ if __name__ == '__main__':
         for n_ in g_['nodes']:   # first-person arms may only follow the arm chain (torso influence smears them across the screen)
             if 'mesh' in n_ and n_.get('name', '').startswith('FPArms'):
                 pr_ = g_['meshes'][n_['mesh']]['primitives'][0]; J_ = acc_(pr_['attributes']['JOINTS_0']).astype(int); W_ = acc_(pr_['attributes']['WEIGHTS_0'])
-                used = np.unique(acc_(pr_['indices']).astype(int)); off = {names_[j] for j in np.unique(J_[used][W_[used] > 1e-4]) if not names_[j].startswith(('Clav', 'UpperArm', 'Forearm', 'Hand', 'Fingers'))}
+                used = np.unique(acc_(pr_['indices']).astype(int)); off = {names_[j] for j in np.unique(J_[used][W_[used] > 1e-4]) if not names_[j].startswith(('Clav', 'Deltoid', 'UpperArm', 'Forearm', 'Hand', 'Fingers', 'Palm', 'Thumb', 'Index', 'Middle', 'Ring', 'Pinky'))}
                 if off: print(f'FAIL {f.name}  first-person arms follow non-arm bones: {sorted(off)}'); bad_fp = True
                 # and every first-person vertex must hug an arm bone (no coat flaps / hair floating in front of the camera)
                 from glbio import GLB as _G, world_with as _ww
                 _g = _G(str(f)); _W = _ww(_g, {}); _nm = {n.get('name'): i for i, n in enumerate(_g.j['nodes'])}
-                _P = acc_(pr_['attributes']['POSITION'])[used]; _bm = next(m for m in g_['nodes'] if 'mesh' in m and m.get('name', '').startswith('Body')); _h = np.ptp(acc_(g_['meshes'][_bm['mesh']]['primitives'][0]['attributes']['POSITION'])[:, 1])   # body height
+                _P = acc_(pr_['attributes']['POSITION'])[used]; _bm = next((m for m in g_['nodes'] if 'mesh' in m and m.get('name', '').startswith('Body')), None)
+                if _bm is None: continue   # dedicated first-person rig (models/fp_arms.glb): no body to be cut from
+                _h = np.ptp(acc_(g_['meshes'][_bm['mesh']]['primitives'][0]['attributes']['POSITION'])[:, 1])   # body height
                 _d = np.full(len(_P), 1e9)
                 for sd in 'LR':
                     pts = [_W[_nm[b + sd]][:3, 3] for b in ('Clav', 'UpperArm', 'Forearm', 'Hand')]; pts.append(pts[-1] + (pts[-1] - pts[-2]) * .75)

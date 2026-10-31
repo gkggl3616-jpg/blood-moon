@@ -9,11 +9,11 @@ var VMP={
  knife:{fpk:{reach:.524,kmax:1.1,x:.04,y:-.26,z:-.04,yaw:-.05},hip:{p:[.2,-.21,-.4],r:[.12,.05,.1]},bob:1.2},
  frag:{fpk:{reach:.524,kmax:1.1,x:.04,y:-.26,z:-.04,yaw:-.05},hip:{p:[.17,-.19,-.36],r:[0,.2,0]},bob:1.2},
  smoke:{fpk:{reach:.524,kmax:1.1,x:.04,y:-.26,z:-.04,yaw:-.05},hip:{p:[.17,-.19,-.36],r:[0,.2,0]},bob:1.2}};
-var VM={ads:0,adsOn:!1,insp:0,heavy:0,kz:0,kp:0,ky:0,bob:0,amp:0,br:0,w:"",v:new B.Vector3,e:new B.Euler};
+var VM={spr:0,ads:0,adsOn:!1,insp:0,heavy:0,kz:0,kp:0,ky:0,bob:0,amp:0,br:0,w:"",v:new B.Vector3,e:new B.Euler};
 var VSm=x=>x*x*(3-2*x),VEnv=(t,a,b,c,d)=>t<a||t>d?0:t<b?VSm((t-a)/(b-a)):t<=c?1:1-VSm((t-c)/(d-c));
 function VmFit(w){let f=hn?.userData.fp,P=VMP[w];if(!f||!P?.fpk)return;let k0=f.userData.fit?.k||1;Object.assign(FPK,P.fpk);let pa=f.parent;pa?.remove(f);FpFit(f);pa?.add(f);let k1=f.userData.fit?.k||1,rig=f.userData.rig;if(rig&&k0>0)for(let L in rig){let r=rig[L],q=k1/k0;r.l1*=q;r.l2*=q;r.hs*=q}}
-function VmCanAds(){return pt==="human"&&!TPV&&["rifle","sniper","pistol"].includes(hn?.userData.weapon)&&Ln<=0&&!(hn.userData.swap>0)}
-function VmAds(on){if(!Ys()||pt!=="human")return!1;let w=hn.userData.weapon;if(w==="knife")return VmHeavy();if(!VmCanAds())return!1;VM.adsOn=on===void 0?!VM.adsOn:!!on;VM.insp=0;eo();return!0}
+function VmCanAds(){return pt==="human"&&!TPV&&!dn&&["rifle","sniper","pistol"].includes(hn?.userData.weapon)&&Ln<=0&&!(hn.userData.swap>0)}
+function VmAds(on){if(!Ys()||pt!=="human")return!1;let w=hn.userData.weapon;if(w==="knife")return VmHeavy();on!==!1&&dn&&(dn=!1);if(!VmCanAds())return!1;VM.adsOn=on===void 0?!VM.adsOn:!!on;VM.adsOn&&dn&&(dn=!1);VM.insp=0;eo();return!0}
 function VmInspect(){if(!Ys()||pt!=="human"||VM.ads>.05||Ln>0)return!1;VM.insp=2.4;return!0}
 function VmKick(w){let R=VMP[w]?.rec;if(!R)return;let a=1-.45*VM.ads;VM.kz+=R.z*a;VM.kp+=R.p*a;VM.ky+=(Math.random()-.5)*2*R.y;VM.insp=0}
 /* heavy knife attack: wide right-to-left slash, more damage and reach than the stab */
@@ -33,5 +33,7 @@ function VmTick(dt,moving,speed){let w=hn.userData.weapon,P=VMP[w],M=hn.userData
  /* knife: light stab (hn.userData.stab, set by the attack) and heavy slash */
  if(w==="knife"){let U=hn.userData;U.stab=Math.max(0,(U.stab||0)-dt);let t=U.stab>0?1-U.stab/.38:1,e=t<.18?-.25*VSm(t/.18):t<.4?-.25+1.25*VSm((t-.18)/.22):t<.6?1:1-VSm((t-.6)/.4);px-=.05*e;py+=.05*e;pz-=.3*e;rx-=.3*Math.max(0,e);ry-=.08*e;
   if(VM.heavy>0){VM.heavy=Math.max(0,VM.heavy-dt);let h=1-VM.heavy/.75,wind=VEnv(h,0,.25,.3,.42),sw=h<.3?0:h<.55?VSm((h-.3)/.25):1,back=VEnv(h,.55,.62,.7,1);let s2=sw*(1-back);px+=.12*wind-.32*s2;py+=.06*wind-.02*s2;pz+=-.05*wind-.16*s2;rz+=.9*wind-1.4*s2;ry+=.4*wind-.7*s2;rx+=.1*wind}}
+ /* sprint: weapon lowered and turned across the body */
+ VM.spr+=((dn&&moving&&pt==="human"?1:0)-VM.spr)*(1-Math.exp(-dt*9));let sr=VM.spr;px-=.04*sr;py-=.07*sr;pz+=.05*sr;rx-=.38*sr;ry+=.55*sr;rz+=.32*sr;
  M.position.set(px+bx,py+by+brY,pz+VM.kz);M.rotation.set(rx+brP+VM.kp,ry+VM.ky,rz+Math.cos(VM.bob)*.02*ba);
  let ch=document.querySelector(".arena-crosshair");ch&&(ch.style.opacity=String(1-A))}

@@ -5,7 +5,8 @@
 var FPSKIN={bilge:0xf1d8c6,ates:0xd7a07c,kral:0xc8946f,ay:0xf6e2d8,hellgate:0x7a5149,zeynos:0xfde6dc};
 var FH={v:Array.from({length:12},()=>new B.Vector3),q:new B.Quaternion,q2:new B.Quaternion,m:new B.Matrix4,m2:new B.Matrix4};
 var FCH=["Index","Middle","Ring","Pinky","Thumb"];
-function FpRigInit(f,s){f.updateMatrixWorld(!0);let id=Zw[s]||"bilge";f.traverse(o=>{o.isMesh&&o.material&&(o.material.color.setHex(FPSKIN[id]||16777215),o.material.roughness=.6)});let rig={};
+var FPTX={};function FpSkinTex(id,m){let ld=new B.TextureLoader,get=(k,srgb)=>FPTX[k]||(FPTX[k]=ld.load("models/fp/"+k+".jpg",t=>{t.flipY=!1;srgb&&(t.colorSpace=B.SRGBColorSpace);t.needsUpdate=!0}));let c=get(id+"_c",!0),r=get(id+"_r",!1);c.flipY=!1;r.flipY=!1;c.colorSpace=B.SRGBColorSpace;m.map=c;m.roughnessMap=r;m.roughness=1;m.color.setHex(16777215);m.needsUpdate=!0}
+function FpRigInit(f,s){f.updateMatrixWorld(!0);let id=Zw[s]||"bilge";f.traverse(o=>{o.isMesh&&o.material&&FpSkinTex(id,o.material)});let rig={};
  for(let L of["L","R"]){let up=f.getObjectByName("UpperArm"+L),fo=f.getObjectByName("Forearm"+L),ha=f.getObjectByName("Hand"+L);if(!up||!fo||!ha)continue;let W=n=>f.getObjectByName(n)?.getWorldPosition(new B.Vector3),pu=W("UpperArm"+L),pf=W("Forearm"+L),ph=W("Hand"+L),hs=ha.getWorldScale(new B.Vector3).x,inv=new B.Matrix4().copy(ha.matrixWorld).invert(),loc=v=>v.clone().applyMatrix4(inv);
   let kn=["Index","Middle","Ring","Pinky"].map(c=>loc(W(c+L+"1"))),fl=kn[1].clone().normalize(),side=kn[0].clone().sub(kn[3]),nl=new B.Vector3().crossVectors(side,fl).multiplyScalar(L==="R"?1:-1);nl.addScaledVector(fl,-nl.dot(fl)).normalize();
   let bl=new B.Vector3().crossVectors(fl,nl),Ml=new B.Matrix4().makeBasis(fl,nl,bl),avg=kn.reduce((a,b)=>a.add(b),new B.Vector3).multiplyScalar(.25),pc=avg.multiplyScalar(.5).addScaledVector(nl,.011/hs);
