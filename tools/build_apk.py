@@ -101,8 +101,10 @@ def main():
                         timing=gltf['accessors'][animation['samplers'][0]['input']]
                         expected=timing['max'][0] if animation['name']=='WolfRunQuad' else 1.2 if animation['name']=='WolfRoll' else 1.4
                         assert abs(timing['min'][0])<1e-5 and abs(timing['max'][0]-expected)<1e-5
-            triangles=sum(gltf['accessors'][p['indices']]['count']//3 for m in gltf['meshes'] for p in m['primitives'])
-            assert triangles <= (40000 if model_id.startswith('human-') else 22000),(model_id,triangles)   # humans count the full body plus the first-person arm subset
+            for m in gltf['meshes']:   # budgets fixed in docs/uretim-standardi.md: human body 35k, wolf body 30k, FP arm subset 12k
+                triangles=sum(gltf['accessors'][p['indices']]['count']//3 for p in m['primitives'])
+                budget=12000 if m.get('name','').startswith('FPArms') else 35000 if model_id.startswith('human-') else 30000
+                assert triangles <= budget,(model_id,m.get('name'),triangles,budget)
         assert {'assets/arena.css','assets/inventory.js','assets/inventory.css','assets/gear-system.js'}<=set(z.namelist())
     report = {'apk': apk.name, 'size_bytes': apk.stat().st_size, 'sha256': hashlib.sha256(apk.read_bytes()).hexdigest(),
               'package': 'com.roguebloodmoon.prototype', 'version': '0.1.14', 'min_android': '8.0',

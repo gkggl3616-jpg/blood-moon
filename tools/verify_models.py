@@ -98,6 +98,20 @@ if __name__ == '__main__':
                     for a, c in zip(pts[:-1], pts[1:]):
                         v = c - a; t = np.clip(((_P - a) @ v) / (v @ v + 1e-12), 0, 1); _d = np.minimum(_d, np.linalg.norm(_P - (a + t[:, None] * v), axis=1))
                 if _d.max() > .14 * _h / 1.78: print(f'FAIL {f.name}  first-person arm vertex {_d.max():.2f} m away from the arm bones'); bad_fp = True
+        # docs/uretim-standardi.md: fixed triangle budgets and the cloth/tail/hair weighting rule
+        BUDGET = {'Body_human': 35000, 'FPArms': 12000}
+        for n_ in g_['nodes']:
+            if 'mesh' not in n_: continue
+            nm = n_.get('name', ''); pr_ = g_['meshes'][n_['mesh']]['primitives']
+            tris = sum(g_['accessors'][p['indices']]['count'] // 3 for p in pr_)
+            lim = BUDGET['Body_human'] if nm.startswith('Body_human') else BUDGET['FPArms'] if nm.startswith('FPArms') else 30000 if nm.startswith('Body_') else None
+            if 'weapons' in f.parts: lim = 10000 if f.stem in ('frag', 'smoke') else 35000
+            if lim and tris > lim: print(f'FAIL {f.name}  {nm}: {tris} triangles > budget {lim}'); bad_fp = True
+            if nm.startswith('Body_') and 'skin' in n_:
+                J_ = acc_(pr_[0]['attributes']['JOINTS_0']).astype(int); W_ = acc_(pr_[0]['attributes']['WEIGHTS_0'])
+                cloth = np.array([x.startswith(('Cape', 'Tail', 'Hair')) for x in names_]); limb = np.array([x.startswith(('UpperArm', 'Forearm', 'Hand', 'Fingers', 'Thumb', 'Index', 'Thigh', 'Shin', 'Foot', 'Toe')) for x in names_])
+                cw = (W_ * cloth[J_]).sum(1); lw = (W_ * limb[J_]).sum(1); bad = (cw > .05) & (lw > .05)
+                if bad.sum() > 0: print(f'FAIL {f.name}  {bad.sum()} cape/tail/hair vertices also follow arm or leg bones'); bad_fp = True
         if bad_fp: failed.append(f.name); continue
         w = check(f); ok = w[1] == 0
         print(('OK   ' if ok else 'FAIL ') + f.name + ('' if ok else f'  {w[1]} stretched edges, worst +{w[0]:.2f} m in {w[2]} frame {w[3]}; clips: ' + ', '.join(f'{k} +{v:.2f}' for k, v in PER.items())))

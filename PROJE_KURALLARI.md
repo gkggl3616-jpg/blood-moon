@@ -1,10 +1,12 @@
 # Rogue: Blood Moon — kullanıcının kalıcı çalışma kuralları
 
+- **Her model/silah işinden önce `docs/uretim-standardi.md` okunur.** Sabit poligon bütçesi (insan 35.000, kurt 30.000, silah 35.000, bomba 10.000 üçgen), üretim promptu ve pelerin/delik/FP kolu için kalıcı önlemler oradadır. Bunlar CI'da `tools/verify_models.py` ile zorlanır.
+
 - Kısa mesajları önceki kararlarla birlikte ayrıntılı görev olarak yorumla; rutin ayrıntıları kullanıcıya tekrar sordurma. Eksik veya belirsiz noktaları makul oyun tasarım kararlarıyla tamamla. Kullanıcı son mesajlarıyla işi genişlettiğinde önceki hedefleri bırakma.
 - Android öncelikli. Kurulum teslimi tek, bağımsız `.apk` ve doğrudan indirme bağlantısı olmalı. ZIP, kaynak modelleri veya ek veri paketlerini kurulumun parçası gibi sunma. Tüm çalışma zamanı dosyaları APK'da bulunmalı.
 - Referanslar: Wolfteam insan/kurt duruşları, sert yüz ve diş yapısı, ayrıntılı kıyafet/zırh, farklı yele/silüet, buzlu el-dirsek geometrisi, kükremede mor el alevi. Yalnız renk ve boy değiştirerek farklı model tamamlandı deme.
 - Bilge Kağan, Kül Tigin, Alp Arslan ve Konuralp için birbirine uyan insan ve kurt tasarımları. Yavuz Selim görselleri tarihî kıyafet ve iki formun ortak kimliği için referans.
-- Kurtlar geniş omuz/göğüs, belirgin kas, dar bel; göbekli görünüm istemiyor. Model/efektler düşük poligonlu ve mobil belleğe uygun olacak. Performans ölçülmeden 'çökmez' denmez.
+- Kurtlar geniş omuz/göğüs, belirgin kas, dar bel; göbekli görünüm istemiyor. Model/efektler mobil belleğe uygun olacak; poligon bütçesi `docs/uretim-standardi.md`'deki sabit sınırlardır (düşük poligon artık hedef değil). Performans ölçülmeden 'çökmez' denmez.
 - Güncel envanter hedefi son mesajın 4. SS (11497.jpg) ve 5. SS (11498.jpg): solda donanım kutuları ve bağımsız donanım sekmeleri, sağda sahip olunan eşya ızgarası/kategoriler, altta eşya ayrıntısı. Satın alınan uyumlu eşyalar sağdan sola dokunma/fare sürüklemesiyle kuşanılır. İnsan/silah ve kurt donanımı ayrı kaydedilir; karakter önizlemesi erişilebilir kalır. Bu istek önceki 11473.jpg odaklı büyük sol karakter yerleşiminin önüne geçer.
 - İz sürme korunacak. Sıçrama doğal ileri sıçrama; yerde hedef/alan halkası yok. Yetenek laboratuvarı yok.
 - Standart Kurt Taklası mağazadan alınır ve yalnız takla açar. Efsanevi Kurt Taklası dört ayak koşu ve takla açar. Kurt başına kuşanma. Son kullanıcı düzeltmesi: takla temas hasarı verir; aynı hedef tek taklada yalnız bir kez vurulur, siper arkasına hasar geçmez.

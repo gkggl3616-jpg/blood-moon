@@ -234,6 +234,7 @@ def build(old_path, rig_path, anim_specs, out_path, transfer=(), scale_wrap=None
         ch.append((hips, 'translation', ts.astype(np.float32), np.array(tra, np.float32)))
         clips.append((cname, ch)); report('  clip %s <- old %s (%.2fs, transferred)' % (cname, src_name, T))
     for m in out_meshes:
+        m['joint_names'] = joint_names
         destretch(m, nodes, clips, jidx, IB, report, skip_clips=destretch_skip)
     if fp_arms:   # first-person arms: everything from the collarbones outward, cut from the finished full body
         b = out_meshes[0]; T3 = b['I'].reshape(-1, 3)
@@ -361,8 +362,18 @@ def destretch(m, nodes, clips, jidx, IB, report, frames=24, ratio=2.4, absm=.12,
             poses.append(M[:, :3].astype(np.float32))   # joint matrices only: skinning is redone per round (low memory)
     nb = [[] for _ in range(len(P))]
     for a, b in E: nb[a].append(b); nb[b].append(a)
-    def top4(Wx):   # evaluate exactly what ships: 4 influences per vertex
-        t = np.argsort(-Wx, 1)[:, 4:]; Wx = Wx.copy(); np.put_along_axis(Wx, t, 0, 1); return Wx / (Wx.sum(1, keepdims=True) + 1e-9)
+    jn = m.get('joint_names') or []
+    cloth = np.array([x.startswith(('Cape', 'Tail', 'Hair')) for x in jn]) if jn else None
+    remap = {}
+    for k, x in enumerate(jn):   # a limb's share on a cloth vertex goes to the torso bone the limb hangs from
+        if x.startswith(('UpperArm', 'Forearm', 'Hand', 'Fingers', 'Thumb', 'Index')): remap[k] = jn.index('Clav' + x[-1]) if ('Clav' + x[-1]) in jn else jn.index('Chest')
+        elif x.startswith(('Thigh', 'Shin', 'Foot', 'Toe')): remap[k] = jn.index('Hips')
+    def top4(Wx):   # evaluate exactly what ships: 4 influences per vertex, cloth never follows a limb
+        Wx = Wx.copy()
+        if cloth is not None and cloth.any():
+            cv = Wx[:, cloth].sum(1) > .03
+            for k, t in remap.items(): Wx[cv, t] += Wx[cv, k]; Wx[cv, k] = 0
+        t = np.argsort(-Wx, 1)[:, 4:]; np.put_along_axis(Wx, t, 0, 1); return Wx / (Wx.sum(1, keepdims=True) + 1e-9)
     Wd = top4(Wd)
     for r in range(rounds):
         badv = set(); worst = 0
@@ -398,7 +409,7 @@ def destretch(m, nodes, clips, jidx, IB, report, frames=24, ratio=2.4, absm=.12,
             if drop.any():
                 m['I'] = np.concatenate([T[:-nc], capT[~drop]]).reshape(-1).astype(np.uint32); m['ncap'] = int((~drop).sum())
                 report('  %s: removed %d cap triangles that spanned a bending joint' % (m['name'], drop.sum()))
-    top = np.argsort(-Wd, 1)[:, :4]; tw = np.take_along_axis(Wd, top, 1); tw /= tw.sum(1, keepdims=True) + 1e-9
+    Wd = top4(Wd); top = np.argsort(-Wd, 1)[:, :4]; tw = np.take_along_axis(Wd, top, 1); tw /= tw.sum(1, keepdims=True) + 1e-9
     m['J'] = top.astype(np.uint16); m['W'] = tw.astype(np.float32)
 def normalize(nodes, clips, jidx, k):
     """Make every bone world-aligned at rest, in metres (like the engine's original rig): rest rotations become identity,
