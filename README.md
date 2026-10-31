@@ -1,4 +1,4 @@
-# Rogue: Blood Moon — Android prototip (v0.1.16)
+# Rogue: Blood Moon — Android prototip (v0.1.17)
 
 Yatay ekranlı Android için insan ↔ kurt dönüşümlü FPS/TPS prototipi. Oyun bir WebView içinde çalışan three.js
 uygulamasıdır; bütün çalışma zamanı dosyaları APK'nın içindedir (ek indirme yok).
@@ -19,6 +19,12 @@ uygulamasıdır; bütün çalışma zamanı dosyaları APK'nın içindedir (ek i
 - İnsan: yalnız üçüncü şahıs yürüyüş/koşu ve gerekli uyumlu duruş kanalları. `HumanReady`, `HumanCombat`, `HumanReload` ve birinci şahıs görünümü değişmez.
 - Zeynoş sağ pençe, eski uyumlu klibi korur. Bazı deri sınırlarında yalnız animasyon bükülmesi uyarlanır; model ağırlıkları değiştirilmez.
 - Aşağıdaki eski kaynak tablosu önceki sürümün geçmişidir; yeni eşleme için sürüm notu ve mapping.json geçerlidir.
+
+### v0.1.17 — karakter deformasyonu, idle, secondary motion ve reload sesi
+
+Kurt idle/yürüyüş/koşu/takla klipleri hedef karakterin kendi deform rig'i üzerinde yeniden bake edilir. Root X/Z ve yaw kilitlidir; quaternionlar normalize ve aynı yarımkürededir. Taklada hedef rig'in güvenli kol zinciri korunur. İnsan idle kliplerinde pelvis dönüşü ve yatay sürüklenme kaldırılmış, 3,2 saniyelik düşük genlikli göğüs nefesi eklenmiştir.
+
+Kuyruk, saç ve pelerinler AnimationMixer sonrasında sabit 1/60 saniye adımlı, açı sınırlı spring solver kullanır. Kral insan pelerinine aynı armature içinde Cape1–3 eklenmiş, kaynakta bacağa bağlanmış pelerin bandı komşulukla yumuşatılmıştır. `fp_arms.glb`, silahlar ve işaretli FP el/viewmodel blokları korunur. Yeni 1,4 saniyelik CC0 gerçek reload kaydı APK içine gömülüdür; kaynak ve lisans `THIRD_PARTY_AUDIO.md` içindedir.
 
 ---
 

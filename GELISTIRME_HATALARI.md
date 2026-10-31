@@ -137,3 +137,12 @@ v0.1.13 baş üstü el testi, fazla düz/dar kol duruşunu yakalamadı. Bu sonu�
 - Eski verify_models, insan gövdesinde yalnız idle sınadığı için üçüncü şahıs walk/run hasarını kaçırabilirdi. Görünür üç insan klibi de artık sınanır.
 
 - Son FP/TPS kontrolü kaynak insan duruşunun Kral ve Zeynoş silah kavramasını bozduğunu buldu. İnsan üst gövdesi/kalça ve idle korundu, kaynak yürüyüş/koşu bacaklara aktarıldı. Zeynoş idle sol omuz animasyonu 0.25 rad düzeltilerek mevcut TPS IK sınırında kavrama sağlandı; FP/IK/kamera koduna dokunulmadı. Test artık önceki karakterin eski fp.fit değerine aldanmaz: yalnız test yanıtına eklenen hazır işaretleriyle hem gerçek yeni FP hem TP yüklemesini bekler.
+
+## v0.1.17 — kalıcı karakter ve fizik düzeltmeleri
+
+64. **Kaynak kurt dönüşleri hedef riglere tam güçle uygulanıyordu.** Farklı kemik oranlarında yürüyüş/koşu eklemleri açılıyor, taklada kollar gövdeye giriyordu. Her hedefin kendi rest matrisi ve eski güvenli deform pozu korunarak yürüyüş %50, ortak koşu %65 oranında bake edildi. Taklada clavicle–hand zinciri hedefin güvenli pozunda kaldı; kaynak süre ve gövde hareketi korundu.
+65. **WolfIdle kaynak kataloğunda yoktu.** `wt_wolf_ch.ltb / Ui_idle` ayrı klip olarak eklendi. Hips X/Z ve yaw sabitlendi; loop uçları ve quaternion yarımküresi eşitlendi.
+66. **İnsan idle pelvis yaw kanalı karakteri sağa sola döndürüyordu.** Altı HumanIdle klibinde pelvis rotasyonu ve X/Z sürüklenmesi kilitlendi. Chest üzerinde 3,2 saniyelik 1,15 derece nefes eklendi; el/ayak/root additive kanala alınmadı.
+67. **Secondary motion render delta süresiyle doğrudan entegre ediliyordu.** Kuyruk/saç/pelerin solver'ı accumulator kullanan sabit 1/60 adıma geçirildi; teleport/büyük frame reseti, finite kontrolü ve açı sınırı eklendi. Mixer önce, solver sonra çalışır.
+68. **Kral insan pelerini için Cape kemiği yoktu ve arka pelerin yüzeyi Thigh/Shin ağırlığı taşıyordu.** Mevcut armature içine Cape1–3 eklendi. Yalnız arka pelerin bandına en fazla %35 Cape payı verildi, 160 topoloji-komşuluk turuyla gövde sınırı yumuşatıldı. UV, normal, position, material, image ve texture verisi değişmedi; bütün kliplerde uzayan kenar testi geçer.
+69. **Reload olayı gerçek ses çalmıyordu; mevcut sentetik click katmanı şarjör yerine kullanılabiliyordu.** CC0 airsoft foley kaydı 1,4 saniyelik reload penceresine hazırlandı. Aynı reload sırasında tek başlangıç, form değişiminde/arena çıkışında iptal ve ses ayarı uyumu otomatik WebAudio testiyle doğrulanır.

@@ -4,7 +4,8 @@ const stage = $('stage');
 const viewport = $('viewport');
 const intro = $('intro');
 const modal = $('modal');
-const sounds = { click: new Audio('media/click.wav'), confirm: new Audio('media/enter.mp3'), back: new Audio('media/back.wav'), roar: new Audio('media/roar.mp3') };
+const sounds = { click: new Audio('media/click.wav'), confirm: new Audio('media/enter.mp3'), back: new Audio('media/back.wav'), roar: new Audio('media/roar.mp3'), reload: new Audio('media/reload.ogg') };
+const soundDebug = { starts: Object.create(null), stops: Object.create(null) };
 let sfxCtx=null;
 function sfxUnlock(){try{sfxCtx=sfxCtx||new (window.AudioContext||window.webkitAudioContext)();if(sfxCtx.state!=='running')sfxCtx.resume();}catch(_){}}
 ['pointerdown','touchstart','keydown'].forEach(e=>window.addEventListener(e,sfxUnlock,{capture:true,passive:true}));
@@ -41,7 +42,8 @@ fit();
 function saveSettings() { try { localStorage.setItem('rogue-settings', JSON.stringify({ audio: audioEnabled, volume, lookSensitivity, graphicsQuality })); } catch (_) {} updateSound(); }
 window.getRoguePreferences = () => ({ lookSensitivity, graphicsQuality });
 function updateSound() { $('openingSound').textContent = audioEnabled ? 'SES AÇIK' : 'SES KAPALI'; intro.muted = !audioEnabled; intro.volume = volume; }
-function playSound(type = 'click') { if (!audioEnabled || document.hidden) return; if(['magOut','magIn','charge','swap'].includes(type))return sfx(type); const a = sounds[type]; if (!a) return; a.volume = volume; a.currentTime = 0; a.play().catch(() => {}); }
+function playSound(type = 'click') { if (!audioEnabled || document.hidden) return false; if(['magOut','magIn','charge','swap'].includes(type)){sfx(type);return true;} const a = sounds[type]; if (!a) return false; a.pause(); a.volume = volume; a.currentTime = 0; soundDebug.starts[type]=(soundDebug.starts[type]||0)+1; a.play().catch(() => {}); return true; }
+function stopSound(type) { const a=sounds[type]; if(!a)return false; a.pause(); a.currentTime=0; soundDebug.stops[type]=(soundDebug.stops[type]||0)+1; return true; }
 function screen(name) { if(name!=='arena')window.stopArena?.(); if(name!=='wolfGear'&&name!=='collection')window.stopWolfMotion?.(); if (name !== 'opening') { intro.pause(); intro.classList.remove('playing'); } for (const el of document.querySelectorAll('.screen')) { const active = el.id === name; el.classList.toggle('active', active); el.inert = !active; } currentScreen = name; }
 function toast(text) { $('toast').textContent = text; $('toast').classList.add('show'); clearTimeout(toastTimer); toastTimer = setTimeout(() => $('toast').classList.remove('show'), 3500); }
 function showModal(title, html, label = 'ROGUE: BLOOD MOON') { modal.classList.remove('events-modal','settings-modal'); $('modalTitle').textContent = title; $('modalBody').innerHTML = html; $('modalLabel').textContent = label; document.getElementById(currentScreen).inert = true; modal.hidden = false; modal.open = true; modal.setAttribute('open', ''); $('closeModal').focus(); }
@@ -150,4 +152,4 @@ renderGear();
 updateSound();
 startIntro();
 
-window.rogueOpenScreen=screen;window.roguePlaySound=playSound;
+window.rogueOpenScreen=screen;window.roguePlaySound=playSound;window.rogueStopSound=stopSound;window.rogueSoundDebug=()=>JSON.parse(JSON.stringify(soundDebug));

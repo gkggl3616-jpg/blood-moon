@@ -2,7 +2,7 @@ name: Android APK
 
 on:
   push:
-    branches: [main, 'animation-transfer-*']
+    branches: [main, 'animation-transfer-*', 'character-repair-*']
   workflow_dispatch:
 
 permissions:
@@ -55,8 +55,13 @@ jobs:
           python -m pip install numpy scipy pillow
           python tools/animation_transfer/apply.py
           python tools/animation_transfer/verify.py
+          python tools/repair_character_assets.py
+          python tools/sanitize_gltf.py
+          npm ci --prefix tools/viewer
+          node tools/validate_gltf.js
           set -o pipefail
           python tools/verify_models.py 2>&1 | tee /tmp/models.log || { grep FAIL /tmp/models.log | while IFS= read -r l; do echo "::error title=verify_models::$l"; done; exit 1; }
+          python tools/audit_characters.py
       - name: Verify offline mobile interface
         run: |
           set -o pipefail
@@ -65,6 +70,8 @@ jobs:
         run: |
           set -o pipefail
           python tools/verify_arena.py 2>&1 | tee /tmp/verify_arena.log || { tail -n 25 /tmp/verify_arena.log | cut -c1-400 | while IFS= read -r l; do echo "::error title=verify_arena::$l"; done; exit 1; }
+      - name: Verify reload audio and deterministic secondary motion
+        run: python tools/verify_v0117_runtime.py
       - name: Verify reference run and shared roar in actual gameplay
         run: |
           set -o pipefail
@@ -73,6 +80,8 @@ jobs:
         run: |
           set -o pipefail
           python tools/verify_fp.py 2>&1 | tee /tmp/verify_fp.log || { tail -n 25 /tmp/verify_fp.log | cut -c1-400 | while IFS= read -r l; do echo "::error title=verify_fp::$l"; done; exit 1; }
+      - name: Collect v0.1.17 test evidence
+        run: python tools/collect_v0117_results.py
       - name: Download verified Android build tools
         run: python tools/bootstrap_android.py
       - name: Compile and sign APK
@@ -80,26 +89,32 @@ jobs:
       - name: Upload installable Android prototype
         uses: actions/upload-artifact@v4
         with:
-          name: Rogue-Blood-Moon-v0.1.16-APK
-          path: dist/Rogue-Blood-Moon-v0.1.16.apk
+          name: Rogue-Blood-Moon-v0.1.17-APK
+          path: dist/Rogue-Blood-Moon-v0.1.17.apk
           if-no-files-found: error
           retention-days: 30
       - name: Publish one directly installable APK
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          apk_tag="prototype-v0.1.16-${GITHUB_RUN_NUMBER}"
+          apk_tag="prototype-v0.1.17-${GITHUB_RUN_NUMBER}"
           release_files=(
-            dist/Rogue-Blood-Moon-v0.1.16.apk
-            release-assets/ortak-kurt-animasyonlari/ortak-kosu.glb
-            release-assets/ortak-kurt-animasyonlari/takla-saldirisi.glb
-            release-assets/ortak-kurt-animasyonlari/ortak-yuruyus.glb
-            release-assets/Ortak-Kurt-Animasyonlari.zip
+            dist/Rogue-Blood-Moon-v0.1.17.apk
+            dist/character-rig-topology-audit.json
+            dist/dtx-checksums.json
+            dist/v0117-runtime-verification.json
+            dist/human-kral-cape-repair.json
+            dist/gltf-validator-report.json
+            dist/test-results-v0117.json
+            docs/verification-v017/compare-wolf-idle.png
+            docs/verification-v017/compare-wolf-run.png
+            docs/verification-v017/compare-wolf-roll.png
+            docs/verification-v017/compare-human-idle.png
           )
           if gh release view "$apk_tag" >/dev/null 2>&1; then
             gh release upload "$apk_tag" "${release_files[@]}" --clobber
           else
-            gh release create "$apk_tag" "${release_files[@]}" --target "$GITHUB_SHA" --prerelease --title "Rogue: Blood Moon v0.1.16" --notes-file docs/release-v0116.md
+            gh release create "$apk_tag" "${release_files[@]}" --target "$GITHUB_SHA" --prerelease --title "Rogue: Blood Moon v0.1.17" --notes-file docs/release-v0117.md
           fi
       - name: Upload UI preview on failure
         if: failure()

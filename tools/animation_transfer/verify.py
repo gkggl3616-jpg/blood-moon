@@ -13,7 +13,7 @@ for path in sorted((Path(__file__).parent/'data').glob('*.json.gz')):
  assert a['accessors']==b['accessors'][:len(a['accessors'])];assert a['bufferViews']==b['bufferViews'][:len(a['bufferViews'])]
  for x,y in zip(a['nodes'],b['nodes']):
   x=copy.deepcopy(x);y=copy.deepcopy(y)
-  for k in ['walk_foot_speed_mps','jog_foot_speed_mps','run_measured_foot_speed_mps','run_foot_speed_mps']:
+  for k in ['walk_foot_speed_mps','jog_foot_speed_mps','run_measured_foot_speed_mps','run_foot_speed_mps','run_stride_m','run_reference_speed_mps']:
    x.get('extras',{}).pop(k,None);y.get('extras',{}).pop(k,None)
   assert x==y,(file.name,'Skeleton / node transform changed')
  changed={c['name'] for c in p['clips']};old={c['name']:c for c in a['animations']};new={c['name']:c for c in b['animations']}
@@ -28,5 +28,10 @@ for path in sorted((Path(__file__).parent/'data').glob('*.json.gz')):
    assert t['path']=='rotation' or (t['path']=='translation' and b['nodes'][t['node']]['name']=='Hips')
  report.append({'model':file.name,'mesh_material_skin_rest_unchanged':True,'clips_replaced':sorted(changed),'protected_clips_unchanged':True})
 protected=json.loads((Path(__file__).parent/'protected-assets.json').read_text())
-for rel,sha in protected.items():assert hashlib.sha256((ASSETS/rel).read_bytes()).hexdigest()==sha,('Protected first-person/camera/UI/physics asset changed',rel)
-(ROOT/'dist').mkdir(exist_ok=True);(ROOT/'dist/animation-only-verification.json').write_text(json.dumps({'models':report,'protected_runtime_assets':len(protected),'first_person_assets_identical':True},indent=2));print('PASS: appearance, all first-person assets, camera/input/physics code and protected animation clips unchanged')
+for rel,sha in protected.items():assert hashlib.sha256((ASSETS/rel).read_bytes()).hexdigest()==sha,('Protected runtime asset changed',rel)
+bundle=(ASSETS/'wolf3d.js').read_text()
+def marked(begin,end):
+ start=bundle.index(begin);finish=bundle.index(end,start)+len(end);return bundle[start:finish].encode()
+assert hashlib.sha256(marked('/*FPHANDS-BEGIN*/','/*FPHANDS-END*/')).hexdigest()=='1c441cc1b0b4b706e5534c4d95468c610508af9f134c70cce7c8ffa29165bab9'
+assert hashlib.sha256(marked('/*VIEWMODEL-BEGIN*/','/*VIEWMODEL-END*/')).hexdigest()=='bb80701ab625359d5dc7070842ec701d0f31f912074b8f667b704df0cbbce7ae'
+(ROOT/'dist').mkdir(exist_ok=True);(ROOT/'dist/animation-only-verification.json').write_text(json.dumps({'models':report,'protected_runtime_assets':len(protected),'first_person_assets_identical':True,'first_person_marker_blocks_identical':True},indent=2));print('PASS: appearance, first-person/camera marker blocks and protected animation clips unchanged')
