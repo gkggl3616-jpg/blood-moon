@@ -40,7 +40,7 @@ def main():
     run(TOOLS / 'aapt2', 'link', '-o', BUILD / 'base.apk', '-I', ANDROID,
         '--manifest', manifest,
         '--min-sdk-version', '26', '--target-sdk-version', '35',
-        '--version-code', '18', '--version-name', '0.1.17',
+        '--version-code', '19', '--version-name', '0.1.18',
         '-A', ROOT / 'app/src/main/assets', BUILD / 'resources.zip')
     sources = list((ROOT / 'app/src/main/java').rglob('*.java'))
     run('java', '-m', 'jdk.compiler/com.sun.tools.javac.Main', '-source', '17', '-target', '17', '-encoding', 'UTF-8',
@@ -69,7 +69,7 @@ def main():
             '-alias', 'androiddebugkey', '-keyalg', 'RSA', '-keysize', '2048', '-validity', '10000',
             '-dname', 'CN=Rogue Prototype,O=Local Development,C=TR')
         key.chmod(0o600)
-    apk = ROOT / ('dist/Rogue-Blood-Moon-v0.1.17-Animasyon-Test.apk' if side_by_side else 'dist/Rogue-Blood-Moon-v0.1.17.apk')
+    apk = ROOT / ('dist/Rogue-Blood-Moon-v0.1.18-Animasyon-Test.apk' if side_by_side else 'dist/Rogue-Blood-Moon-v0.1.18.apk')
     run('java', '-jar', TOOLS / 'lib/apksigner.jar', 'sign', '--ks', key,
         '--ks-pass', 'pass:android', '--key-pass', 'pass:android', '--ks-key-alias', 'androiddebugkey',
         '--out', apk, aligned)
@@ -109,8 +109,8 @@ def main():
                 assert triangles <= budget,(model_id,m.get('name'),triangles,budget)
         assert {'assets/arena.css','assets/inventory.js','assets/inventory.css','assets/gear-system.js'}<=set(z.namelist())
     report = {'apk': apk.name, 'size_bytes': apk.stat().st_size, 'sha256': hashlib.sha256(apk.read_bytes()).hexdigest(),
-              'package': package_id, 'side_by_side_test': side_by_side, 'updates_existing_app': not side_by_side, 'version': '0.1.17', 'min_android': '8.0',
-              'version_code': 18, 'runtime_asset_count': len(runtime_files),
+              'package': package_id, 'side_by_side_test': side_by_side, 'updates_existing_app': not side_by_side, 'version': '0.1.18', 'min_android': '8.0',
+              'version_code': 19, 'runtime_asset_count': len(runtime_files),
               'signed': True, 'certificate_sha256':certificate, 'device_tested': False, 'scope': 'Offline playable flat arena; human FPS, wolf TPS, transformation, run, roll, claw, roar, inventory', 'standalone_apk': True, 'extra_data_files_required': False}
     (ROOT / 'dist/build-report.json').write_text(json.dumps(report, indent=2))
     print(json.dumps(report, indent=2))

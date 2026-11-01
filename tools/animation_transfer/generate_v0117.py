@@ -235,9 +235,10 @@ def build_target(key, form):
                 old_q = np.array(original_pose.get(index, {}).get('rotation', nodes[index].get('rotation', [0, 0, 0, 1])), float)
                 if bone == 'Hips' and destination in ('WolfIdle', 'WolfMove', 'WolfJog', 'WolfRunQuad'):
                     world_rotation = parent_rotation @ R.from_quat(neutral_hip_q).as_matrix()
-                # The source and target have different anatomy.  The canonical source supplies
-                # phase/direction while each target retains most of its compatible deform pose.
-                blend = .50 if destination in ('WolfMove', 'WolfJog') else .65 if destination == 'WolfRunQuad' else .35 if destination == 'WolfIdle' else 1.0
+                # Preserve the target rest rig but let the source motion visibly drive every
+                # locomotion joint.  The earlier conservative blend retained the broken target
+                # pose and made v0.1.17 look unchanged in the game.
+                blend = .90 if destination in ('WolfMove', 'WolfJog') else 1.0 if destination == 'WolfRunQuad' else .80 if destination == 'WolfIdle' else 1.0
                 if destination in ('WolfMove', 'WolfJog', 'WolfRunQuad', 'WolfIdle') and index in joints and index != hips:
                     new_q = R.from_matrix(parent_rotation.T @ world_rotation).as_quat()
                     world_rotation = parent_rotation @ R.from_quat(_slerp(old_q, new_q, blend)).as_matrix()
